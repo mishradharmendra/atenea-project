@@ -1,0 +1,331 @@
+@charset "utf-8";
+
+/* CSS Document */
+.PrimerNivel {
+	font-family: Arial;
+	font-size: 11px;
+	color: #FFFFFF;
+	border: none;
+	font-weight: normal;
+}
+
+a.PrimerNivel:hover {
+	font-family: Arial;
+	font-size: 11px;
+	text-decoration: none;
+	font-weight: normal;
+	color: #FFFFFF;
+}
+
+a.PrimerNivel:link {
+	font-family: Arial;
+	font-size: 11px;
+	color: #FFFFFF;
+	text-decoration: none;
+	font-weight: normal;
+	border: none;
+}
+
+a.PrimerNivel:visited {
+	text-decoration: none;
+	font-weight: normal;
+	font-family: Arial;
+	font-size: 11px;
+	color: #FFFFFF;
+}
+
+a.PrimerNivel:active {
+	text-decoration: none;
+	font-weight: normal;
+	font-family: Arial;
+	font-size: 11px;
+	color: #FFFFFF;
+}
+
+.SegundoNivel {
+	font-family: Arial;
+	font-size: 12px;
+	color: #FFFFFF;
+	height: 20px;
+	font-weight: bold;
+	padding-left: 10px;
+}
+
+.TextoSup {
+	font-family: Arial;
+	font-weight: bold;
+	color: #026A9F;
+	font-size: 12px;
+	margin: 30px;
+	padding-left: 1px;
+}
+
+.TextoInfo {
+	font-family: Arial;
+	font-size: 12px;
+	color: #333333;
+	padding: 10px;
+	line-height: 120%;
+	text-align: left;
+	font-weight: normal;
+}
+
+.TextoInfoCursiva {
+	font-family: Arial;
+	font-size: 12px;
+	color: #333333;
+	line-height: 120%;
+	text-align: left;
+	font-weight: normal;
+	font-style: italic;
+}
+
+.Resaltado {
+	font-family: Arial;
+	font-size: 12px;
+	padding-left: 10px;
+	color: #0093DD;
+	line-height: 0.7;
+	font-weight: bold;
+	padding-right: 10px;
+}
+
+.TextoFormulario {
+	font-family: Arial;
+	font-size: 12px;
+	color: #026A9F;
+	border-bottom-style: solid;
+	border-width: 1px;
+}
+
+.TextoBlanco {
+	font-family: Arial;
+	font-size: 12px;
+	color: #0093DD;
+	padding: 10px;
+	line-height: 130%;
+	text-align: justify;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: right;
+}
+
+.Titulo {
+	font-family: Arial;
+	font-size: 12px;
+	color: #FFFFFF;
+	height: 20px;
+	font-weight: bold;
+}
+
+.TextoContenido {
+	font-family: Arial;
+	font-size: 12px;
+	color: #333333;
+	line-height: 130%;
+	text-align: justify;
+	font-weight: normal;
+	padding-left: 30px;
+	padding-right: 1px;
+}
+
+.TituloContenido {
+	text-align: left;
+	font-family: Arial;
+	font-weight: bold;
+	color: #026A9F;
+	font-size: 14px;
+	padding-left: 30px;
+	padding-right: 40px;
+	padding-top: 20px;
+}
+
+.TextoInfoR {
+	font-family: Arial;
+	font-size: 12px;
+	color: #0093DD;
+	line-height: 120%;
+	text-align: left;
+	font-weight: bold;
+}
+
+a.TextoInfo:hover {
+	font-family: Arial;
+	font-size: 12px;
+	color: #0093DD;
+	padding: 10px;
+	line-height: 120%;
+	text-align: left;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.TextoInfo:active {
+	font-family: Arial;
+	font-size: 12px;
+	color: #0093DD;
+	padding: 10px;
+	line-height: 120%;
+	text-align: left;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.TextoInfo:link {
+	font-family: Arial;
+	font-size: 12px;
+	color: #333333;
+	padding: 10px;
+	line-height: 120%;
+	text-align: left;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.TextoInfo:visited {
+	font-family: Arial;
+	font-size: 12px;
+	color: #333333;
+	padding: 10px;
+	line-height: 120%;
+	text-align: left;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.Resaltado:link {
+	font-family: Arial;
+	font-size: 12px;
+	padding-left: 10px;
+	color: #0093DD;
+	line-height: 0.7;
+	font-weight: bold;
+	padding-right: 10px;
+}
+
+a.Resaltado:hover {
+	font-family: Arial;
+	font-size: 12px;
+	padding-left: 10px;
+	color: #0093DD;
+	line-height: 0.7;
+	font-weight: bold;
+	padding-right: 10px;
+}
+
+a.Resaltado:visited {
+	font-family: Arial;
+	font-size: 12px;
+	padding-left: 10px;
+	color: #0093DD;
+	line-height: 0.7;
+	font-weight: bold;
+	padding-right: 10px;
+}
+
+a.Resaltado:active {
+	font-family: Arial;
+	font-size: 12px;
+	padding-left: 10px;
+	color: #0093DD;
+	line-height: 0.7;
+	font-weight: bold;
+	padding-right: 10px;
+}
+
+.tabla {
+	padding-left: 40px;
+	padding-right: 40px;
+	border-style: solid;
+	border: 1px;
+	border-color: #CCCCCC;
+}
+
+.tablaEncabezado {
+	background-color: #0093DD;
+	color: #FFFFFF;
+	font-family: Arial;
+	font-size: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	height: 20px;
+	border-width: 1px;
+	border-color: #CCCCCC;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-style: solid;
+}
+
+.tablaContenido {
+	background-color: #FFFFFF;
+	color: #666666;
+	font-family: Arial;
+	font-size: 10px;
+	font-weight: normal;
+	text-transform: inherit;
+	text-align: left;
+	height: 20px;
+	border-width: 1px;
+	border-color: #CCCCCC;
+	padding-left: 5px;
+	border-style: solid;
+}
+
+a.tablaContenido:link {
+	background-color: #FFFFFF;
+	color: #666666;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: inherit;
+	text-align: left;
+	height: 20px;
+	border-width: 2;
+	border-color: #FFFFFF;
+	text-decoration: underline;
+}
+
+a.tablaContenido:hover {
+	background-color: #FFFFFF;
+	color: #666666;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: inherit;
+	text-align: left;
+	height: 20px;
+	border-width: 2;
+	border-color: #FFFFFF;
+	text-decoration: underline;
+}
+
+a.tablaContenido:active {
+	background-color: #FFFFFF;
+	color: #666666;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: inherit;
+	text-align: left;
+	height: 20px;
+	border-width: 2;
+	border-color: #FFFFFF;
+	text-decoration: underline;
+}
+
+.tablaTitulo {
+	font-family: Arial;
+	font-size: 10px;
+	color: #026A9F;
+	line-height: 100%;
+	text-align: center;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+.rojo {
+	color: #FF0000;
+	font-family: Arial;
+	font-size: 9pt;
+}
