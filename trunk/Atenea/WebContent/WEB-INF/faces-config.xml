@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+    version="1.2">
+
+	<application>
+		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>    
+	</application> 
+
+	<managed-bean>
+        <managed-bean-name>DepartamentoMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.DepartamentoMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>HOME_DEPTO</from-outcome>
+			<to-view-id>/web/faces/admin/departamento_home.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/departamento_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>DETALLE_DEPTO</from-outcome>
+			<to-view-id>/web/faces/admin/departamento_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/departamento_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>CREAR_DEPTO</from-outcome>
+			<to-view-id>/web/faces/admin/departamento_crear.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>			
+</faces-config>
