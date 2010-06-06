@@ -67,7 +67,7 @@ public class RolService implements IRolService {
 		return gppRol;
 	}
 
-	public boolean crearRol(String nombreRol, String descripcionRol, String activoRol) {
+	public boolean crearRol(String nombreRol, String descripcionRol, String activoRol, List <Object> listaServicios) {
 		estadoOperacion = false;
 		try{			
 			gppRolDAO = new GppRolDAO();
@@ -76,7 +76,8 @@ public class RolService implements IRolService {
 			gppRol.setRolVdescripcion(descripcionRol);
 			gppRol.setRolVusucrea("mi memo crea");
 			gppRol.setRolDfeccrea(new Date());
-			gppRol.setRolVactivo(activoRol);			
+			gppRol.setRolVactivo(activoRol);
+			gppRol.setRolServicios(listaServicios);
 			estadoOperacion = gppRolDAO.crear(gppRol);
 		} catch (Exception ex){
 			ex.printStackTrace();
