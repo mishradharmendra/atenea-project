@@ -9,6 +9,7 @@ import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppServiciorol;
 import co.com.inascol.atenea.entity.rowmapper.GppServiciorolRowMapper;
+import co.com.inascol.atenea.entity.rowmapper.GppUsuariorolRowMapper;
 
 public class GppServiciorolDAO implements DAO {
 	
@@ -50,6 +51,19 @@ public class GppServiciorolDAO implements DAO {
 		return estadoOperation;
 	}
 
+	public List<Object> buscarTodosServiciosRoles(Object obj) {
+		gppServicioroles = null;
+		try{
+			gppServiciorolRowMapper = new GppServiciorolRowMapper();
+			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
+			sentenciaSQL = "select * from gpp_serviciorol where rol_nidrol = ? order by ser_nidservicio asc";
+			gppServicioroles = (List) jdbcTemplate.query(sentenciaSQL,new Object[] {obj}, gppServiciorolRowMapper);
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return gppServicioroles;
+	}
+	
 	public Object buscarPorId(Object idObj) {
 		gppServiciorol = null;
 		try{

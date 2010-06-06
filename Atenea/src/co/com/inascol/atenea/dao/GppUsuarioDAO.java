@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppUsuario;
+import co.com.inascol.atenea.dao.GppUsuariorolDAO;
 import co.com.inascol.atenea.entity.rowmapper.GppUsuarioRowMapper;
 
 public class GppUsuarioDAO implements DAO {
@@ -127,4 +128,22 @@ public class GppUsuarioDAO implements DAO {
 		} 
 		return estadoOperation;
 	}
+	
+	public Object buscarPorLogin (Object idObj) {
+		gppUsuario = null;
+		try{ 
+			gppUsuarioRowMapper = new GppUsuarioRowMapper();
+			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
+			sentenciaSQL = "select * from gpp_usuario where usu_vlogin = ?";
+			gppUsuario = (GppUsuario) jdbcTemplate.queryForObject(sentenciaSQL, new Object[] {idObj}, gppUsuarioRowMapper);
+			GppUsuariorolDAO gppUsuariorol = new GppUsuariorolDAO(); 
+			List <Object> usuarioRoles = gppUsuariorol.buscarTodosRolesUsuario(Integer.valueOf(gppUsuario.getUsuNidusuario()));
+			gppUsuario.setGppRoles(usuarioRoles);
+		} catch (Exception ex){
+			ex.printStackTrace();
+		}
+		return gppUsuario;
+	} 
+	
+	
 }

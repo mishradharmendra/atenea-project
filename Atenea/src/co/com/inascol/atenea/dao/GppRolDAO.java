@@ -1,13 +1,20 @@
 package co.com.inascol.atenea.dao;
 
 import java.sql.Types;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
+import co.com.inascol.atenea.entity.GppDepartamento;
 import co.com.inascol.atenea.entity.GppRol;
+import co.com.inascol.atenea.entity.GppServicio;
+import co.com.inascol.atenea.dao.GppServiciorolDAO;
+import co.com.inascol.atenea.entity.GppServiciorol;
+import co.com.inascol.atenea.entity.GppServiciorolId;
 import co.com.inascol.atenea.entity.rowmapper.GppRolRowMapper;
 
 public class GppRolDAO implements DAO {
@@ -73,6 +80,9 @@ public class GppRolDAO implements DAO {
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "select * from gpp_rol where rol_nidrol = ?";
 			gppRol = (GppRol) jdbcTemplate.queryForObject(sentenciaSQL, new Object[] {idObj}, gppRolRowMapper);
+			GppServiciorolDAO gppServiciorol = new GppServiciorolDAO(); 
+			List <Object> servicioRoles = gppServiciorol.buscarTodosServiciosRoles(Integer.valueOf(gppRol.getRolNidrol()));
+			gppRol.setRolServicios(servicioRoles);		
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}
@@ -111,6 +121,28 @@ public class GppRolDAO implements DAO {
 																		Types.VARCHAR,
 																		Types.DATE,
 																		Types.VARCHAR});
+			sentenciaSQL = "select rol_nidrol from gpp_rol where rol_vnombre = ? ";
+			int gppIdRol = jdbcTemplate.queryForInt(sentenciaSQL, new Object[]{gppRol.getRolVnombre()},
+																				new int[] {Types.VARCHAR});
+			if(gppRol.getRolServicios()!=null){
+				Iterator<Object> it = gppRol.getRolServicios().iterator();
+				while(it.hasNext()){ 
+					int idServicio =  (Integer) it.next();
+
+					GppServiciorolId gppServiciorolId= new GppServiciorolId();
+					gppServiciorolId.setRolNidrol(gppIdRol);
+					gppServiciorolId.setSerNidservicio(idServicio);
+
+					GppServiciorol gppServiciorol = new GppServiciorol();
+					gppServiciorol.setId(gppServiciorolId);
+					gppServiciorol.setSrlDfeccrea(new Date());
+					gppServiciorol.setSrlVusucrea("mi memo crea");
+					GppServiciorolDAO gppServiciorolDAO = new GppServiciorolDAO();					
+					estadoOperation = gppServiciorolDAO.crear(gppServiciorol);
+				}
+			}else{
+				System.out.println("error");
+			}	
 			estadoOperation = true;
 		} catch (Exception ex) {
 			ex.printStackTrace();

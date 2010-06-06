@@ -13,6 +13,7 @@ public class UsuarioService implements IUsuarioService {
 	private GppUsuarioDAO gppUsuarioDAO;
 	private GppUsuario gppUsuario;
 	private List<Object> gppUsuarios;
+	private List<Object> gppRoles;
 	
 	public UsuarioService(){}
 
@@ -69,6 +70,17 @@ public class UsuarioService implements IUsuarioService {
 		return gppUsuario;
 	}
 
+	public GppUsuario buscarPorLogin(String loginUsuario) {
+		gppUsuario = null;
+		try{			
+			gppUsuarioDAO = new GppUsuarioDAO();
+			gppUsuario = (GppUsuario) gppUsuarioDAO.buscarPorLogin(loginUsuario);
+		} catch (Exception ex){
+			ex.printStackTrace();
+		}
+		return gppUsuario;
+	}
+	
 	public boolean crearUsuario(String nombreUsuario, String loginUsuario, String emailUsuario, String telefonoUsuario, String activoUsuario) {
 		estadoOperacion = false;
 		try{			

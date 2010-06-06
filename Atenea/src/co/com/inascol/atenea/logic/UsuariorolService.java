@@ -12,9 +12,9 @@ public class UsuariorolService implements IUsuariorolService {
 
 	private Boolean estadoOperacion;
 	private GppUsuariorolDAO gppUsuariorolDAO;
-	private GppUsuariorol gppUsuariorol;
 	private GppUsuariorolId gppUsuariorolId;	
 	private List<Object> gppUsuarioroles;
+	private GppUsuariorol gppUsuariorol;
 	
 	
 	public UsuariorolService(){}

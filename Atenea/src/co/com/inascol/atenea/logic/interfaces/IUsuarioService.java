@@ -11,4 +11,5 @@ public interface IUsuarioService {
 	public boolean borrarUsuario(Integer idUsuario);
 	public GppUsuario buscarPorIdUsuario(Integer idUsuario);
 	public List<Object> buscarUsuarios();
+	public GppUsuario buscarPorLogin (String idObj);
 }

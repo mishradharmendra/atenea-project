@@ -1,10 +1,12 @@
 package co.com.inascol.atenea.test;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppRol;
 import co.com.inascol.atenea.logic.RolService;
+import co.com.inascol.atenea.entity.GppServicio;
 import co.com.inascol.atenea.logic.interfaces.IRolService;
 
 public class TestRolService {
@@ -13,11 +15,11 @@ public class TestRolService {
 	private static Boolean estadoOperacion;
 	
 	public static void main(String argss[]){
-//		crear();
+		crear();
 //		actualizar();
 //		borrar();
 //		buscarPorId();
-		buscarTodos();		
+//		buscarTodos();		
 	}
 	
 	static void crear(){
@@ -26,7 +28,10 @@ public class TestRolService {
 		String nombreRol = "Gestor Humano";
 		String descripcionRol = "Administra las Hojas de Vida";
 		String activoRol ="SI";
-		estadoOperacion = rolService.crearRol(nombreRol, descripcionRol, activoRol);
+		List <Object> listaServicios= new ArrayList();
+		listaServicios.add(1);
+		listaServicios.add(2);    
+		estadoOperacion = rolService.crearRol(nombreRol, descripcionRol, activoRol, listaServicios);
 		System.out.println(estadoOperacion);		
 	}
 	

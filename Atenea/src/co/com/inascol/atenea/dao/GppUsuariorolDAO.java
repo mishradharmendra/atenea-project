@@ -68,6 +68,19 @@ public class GppUsuariorolDAO implements DAO {
 		return gppUsuariorol;
 	}
 
+	public List<Object> buscarTodosRolesUsuario(Object obj) {
+		gppUsuarioroles = null;
+		try{
+			gppUsuariorolRowMapper = new GppUsuariorolRowMapper();
+			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
+			sentenciaSQL = "select * from gpp_usuariorol where usu_nidusuario = ? order by rol_nidrol asc";
+			gppUsuarioroles = (List) jdbcTemplate.query(sentenciaSQL,new Object[] {obj}, gppUsuariorolRowMapper);
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return gppUsuarioroles;
+	}
+
 	public List<Object> buscarTodos() {
 		gppUsuarioroles = null;
 		try{
