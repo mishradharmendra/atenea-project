@@ -45,20 +45,20 @@
 				<h:outputLabel value="Resultados de Búsqueda"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:dataTable id="tablaDepartamentos" value="#{DepartamentoMB.departamentos}" var="depto" style="height:200px">
-					<rich:column>
+				<rich:extendedDataTable id="tablaDepartamentos" value="#{DepartamentoMB.departamentos}" var="depto" width="600px" height="300px">
+					<rich:column width="100px">
 						<f:facet name="header">
 							<h:outputLabel value="Id Departamento"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{depto.dptViddepto}"></h:outputLabel>
 					</rich:column>
-					<rich:column>
+					<rich:column width="300px">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Departamento"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{depto.dptVdepto}"></h:outputLabel>
 					</rich:column>
-					<rich:column>
+					<rich:column width="100px">
 						<f:facet name="header">
 							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>
@@ -66,13 +66,13 @@
                             <h:graphicImage url="../../imagenes/editar.png"/>
                         </a4j:commandLink>
 					</rich:column>
-					<rich:column>
+					<rich:column width="100px">
 						<f:facet name="header">
 							<h:outputLabel value="Activar"></h:outputLabel>
 						</f:facet>
 						<h:selectBooleanCheckbox></h:selectBooleanCheckbox>
 					</rich:column>									
-				</rich:dataTable>
+				</rich:extendedDataTable>
 				</h:form>					
 			</rich:panel>
         	<a4j:form>
