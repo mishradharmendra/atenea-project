@@ -18,8 +18,6 @@ public class GppDepartamentoDAO implements DAO {
 	private Boolean estadoOperation;	
 	private String sentenciaSQL;
 	private JdbcTemplate jdbcTemplate;
-
-	public GppDepartamentoDAO(){}
 	
 	public boolean actualizar(Object obj) {
 		estadoOperation = false;
@@ -96,20 +94,16 @@ public class GppDepartamentoDAO implements DAO {
 			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_departamento " +
-							"(dpt_viddepto, dpt_vdepto, pai_vidpais, dpt_vusucrea, dpt_dfeccrea, dpt_vusumodifica, dpt_dfecmodifica)" +
+							"(dpt_viddepto, dpt_vdepto, pai_vidpais, dpt_vusumodifica, dpt_dfecmodifica) " +
 							"values (?, ?, ?, ?, ?, ?, ?)";	
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppDepartamento.getDptViddepto(),
 					 										gppDepartamento.getDptVdepto(),
 					 										gppDepartamento.getPaiVidpais(),
-															gppDepartamento.getDptVusucrea(),
-															gppDepartamento.getDptDfeccrea(),
 															gppDepartamento.getDptVusumodifica(),
 															gppDepartamento.getDptDfecmodifica()},
 															new int[] {Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.VARCHAR,
-																		Types.VARCHAR,
-																		Types.DATE,
 																		Types.VARCHAR,
 																		Types.DATE});
 			estadoOperation = true;

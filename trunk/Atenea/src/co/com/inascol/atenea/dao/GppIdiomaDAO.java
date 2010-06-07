@@ -18,8 +18,6 @@ public class GppIdiomaDAO implements DAO {
 	private Boolean estadoOperation;	
 	private String sentenciaSQL;
 	private JdbcTemplate jdbcTemplate;
-
-	public GppIdiomaDAO(){}
 	
 	public boolean actualizar(Object obj) {
 		estadoOperation = false;

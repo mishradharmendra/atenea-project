@@ -18,8 +18,6 @@ public class GppPaisDAO implements DAO {
 	private Boolean estadoOperation;	
 	private String sentenciaSQL;
 	private JdbcTemplate jdbcTemplate;
-
-	public GppPaisDAO(){}
 	
 	public boolean actualizar(Object obj) {
 		estadoOperation = false;

@@ -18,8 +18,6 @@ public class GppTipoarchivoDAO implements DAO {
 	private Boolean estadoOperation;	
 	private String sentenciaSQL;
 	private JdbcTemplate jdbcTemplate;
-
-	public GppTipoarchivoDAO(){}
 	
 	public boolean actualizar(Object obj) {
 		estadoOperation = false;

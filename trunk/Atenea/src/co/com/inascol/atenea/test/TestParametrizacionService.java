@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppParametrizacion;
-import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.ParametrizacionService;
 import co.com.inascol.atenea.logic.interfaces.IParametrizacionService;
 

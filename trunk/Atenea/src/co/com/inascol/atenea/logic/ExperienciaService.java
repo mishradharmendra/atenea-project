@@ -71,7 +71,7 @@ public class ExperienciaService implements IExperienciaService{
 		return gppExperiencia;
 	}
 
-	public List buscarExperienciasLaborales() {
+	public List<Object> buscarExperienciasLaborales() {
 		gppExperienciasLaborales = null;
 		try{
 			gppExperienciaDAO = new GppExperienciaDAO();
