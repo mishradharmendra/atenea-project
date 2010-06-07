@@ -17,9 +17,7 @@ public class GppMunicipioDAO implements DAO{
 	private List<Object> gppMunicipios;
 	private Boolean estadoOperation;	
 	private String sentenciaSQL;
-	private JdbcTemplate jdbcTemplate;	
-	
-	public GppMunicipioDAO(){}
+	private JdbcTemplate jdbcTemplate;
 	
 	public boolean actualizar(Object obj) {
 		estadoOperation = false;

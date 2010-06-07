@@ -18,7 +18,6 @@ public class GppTipoarchivo {
 
 	public GppTipoarchivo() {}
 
-
 	public Integer getTarNidtipoarchivo() {
 		return this.tarNidtipoarchivo;
 	}

@@ -12,7 +12,13 @@ public class GppCargoequivalenteRowMapper implements RowMapper{
 	private GppCargoequivalente gppCargoequivalente;
 	
 	public Object mapRow(ResultSet rs, int index) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		gppCargoequivalente = new GppCargoequivalente();
+		gppCargoequivalente.setCeqNidcargoeq(rs.getInt("ceq_nidcargoeq"));
+		gppCargoequivalente.setCeqVcargoeq(rs.getString("ceq_vcargoeq"));
+		gppCargoequivalente.setCeqVusucrea(rs.getString("ceq_vusucrea"));
+		gppCargoequivalente.setCeqDfeccrea(rs.getDate("ceq_dfeccrea"));
+		gppCargoequivalente.setCeqVusumodifica(rs.getString("ceq_vusumodifica"));
+		gppCargoequivalente.setCeqDfecmodifica(rs.getDate("ceq_dfecmodifica"));
+		return gppCargoequivalente;
 	}
 }

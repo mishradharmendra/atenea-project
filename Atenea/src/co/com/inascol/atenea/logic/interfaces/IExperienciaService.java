@@ -15,5 +15,5 @@ public interface IExperienciaService {
 											Integer docCertificacion1, Integer docCertificacion2, Integer idDepto, Integer idMunicipio, Integer cargoEquivalente);
 	public boolean borrarExperiencia(Integer idExperiencia);
 	public GppExperiencia buscarExperienciaPorId(Integer idExperiencia);
-	public List buscarExperienciasLaborales();
+	public List<Object> buscarExperienciasLaborales();
 }

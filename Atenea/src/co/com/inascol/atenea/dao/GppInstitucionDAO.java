@@ -19,8 +19,6 @@ public class GppInstitucionDAO implements DAO{
 	private String sentenciaSQL;
 	private JdbcTemplate jdbcTemplate;
 	
-	public GppInstitucionDAO(){}
-	
 	public boolean actualizar(Object obj) {
 		estadoOperation = false;
 		try{

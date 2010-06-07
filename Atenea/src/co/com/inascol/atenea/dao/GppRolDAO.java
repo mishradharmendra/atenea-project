@@ -9,9 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
-import co.com.inascol.atenea.entity.GppDepartamento;
 import co.com.inascol.atenea.entity.GppRol;
-import co.com.inascol.atenea.entity.GppServicio;
 import co.com.inascol.atenea.dao.GppServiciorolDAO;
 import co.com.inascol.atenea.entity.GppServiciorol;
 import co.com.inascol.atenea.entity.GppServiciorolId;
@@ -25,8 +23,6 @@ public class GppRolDAO implements DAO {
 	private Boolean estadoOperation;	
 	private String sentenciaSQL;
 	private JdbcTemplate jdbcTemplate;
-
-	public GppRolDAO(){}
 	
 	public boolean actualizar(Object obj) {
 		estadoOperation = false;

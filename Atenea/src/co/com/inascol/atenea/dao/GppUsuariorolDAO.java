@@ -18,8 +18,6 @@ public class GppUsuariorolDAO implements DAO {
 	private Boolean estadoOperation;	
 	private String sentenciaSQL;
 	private JdbcTemplate jdbcTemplate;
-
-	public GppUsuariorolDAO(){}
 	
 	public boolean actualizar(Object obj) {
 		estadoOperation = false;

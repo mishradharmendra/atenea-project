@@ -13,7 +13,6 @@ public class UsuarioService implements IUsuarioService {
 	private GppUsuarioDAO gppUsuarioDAO;
 	private GppUsuario gppUsuario;
 	private List<Object> gppUsuarios;
-	private List<Object> gppRoles;
 	
 	public UsuarioService(){}
 

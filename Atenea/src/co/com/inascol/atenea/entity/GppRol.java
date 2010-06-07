@@ -20,8 +20,7 @@ public class GppRol  {
 	private Date rolDfecmodifica;
 	private List <Object> serServicio;
 
-	public GppRol() {
-	}
+	public GppRol() {}
 
 	public Integer getRolNidrol() {
 		return this.rolNidrol;

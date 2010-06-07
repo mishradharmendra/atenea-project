@@ -107,9 +107,9 @@ public class TestExperienciaService {
 	
 	static void buscarTodos(){
 		experienciaService = new ExperienciaService();
-		List experienciasLaborales = experienciaService.buscarExperienciasLaborales();
+		List<Object> experienciasLaborales = experienciaService.buscarExperienciasLaborales();
 		if(experienciasLaborales.size()>0){
-			Iterator it = experienciasLaborales.iterator();
+			Iterator<Object> it = experienciasLaborales.iterator();
 			while(it.hasNext()){
 				GppExperiencia gppExperiencia = (GppExperiencia) it.next();
 				if(gppExperiencia!=null){

@@ -9,7 +9,6 @@ import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppServiciorol;
 import co.com.inascol.atenea.entity.rowmapper.GppServiciorolRowMapper;
-import co.com.inascol.atenea.entity.rowmapper.GppUsuariorolRowMapper;
 
 public class GppServiciorolDAO implements DAO {
 	
@@ -19,8 +18,6 @@ public class GppServiciorolDAO implements DAO {
 	private Boolean estadoOperation;	
 	private String sentenciaSQL;
 	private JdbcTemplate jdbcTemplate;
-
-	public GppServiciorolDAO(){}
 	
 	public boolean actualizar(Object obj) {
 		estadoOperation = false;
