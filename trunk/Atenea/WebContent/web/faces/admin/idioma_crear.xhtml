@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
+	  xmlns:a4j="http://richfaces.org/a4j">
+<body>
+	<ui:composition template="../../template.xhtml">
+		<ui:define name="cuerpo">
+			<rich:panel>
+				<table align="left">
+					<tr>
+						<td align="left"><h:outputLabel value="ADMINISTRACIÓN"></h:outputLabel></td>
+						<td align="left"><h:outputLabel value=">>"></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="Tablas de Refencia - Idiomas"></h:outputLabel></td>
+					</tr>
+				</table>
+				<br/><br/>	
+				<h:form>
+				<h:outputLabel value="Agregar Idioma"></h:outputLabel>
+				<br/><br/>					
+				<table>
+					<tr>
+						<td><h:outputLabel value="Idioma: "></h:outputLabel></td>
+						<td><h:inputText value="#{IdiomaMB.nombreIdioma}"></h:inputText></td>					
+						<td width="100px"></td>
+					</tr>
+				</table>
+				<br/>				
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{IdiomaMB.getCrearIdioma}" value="Aceptar"/></td>
+						<td width="20px"></td>
+						<td><h:commandButton action="#{IdiomaMB.getCancelar}" value="Cancelar"/></td>
+					</tr>
+				</table>
+				</h:form>								
+			</rich:panel>						
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
