@@ -15,9 +15,6 @@ public class UsuariorolService implements IUsuariorolService {
 	private GppUsuariorolId gppUsuariorolId;	
 	private List<Object> gppUsuarioroles;
 	private GppUsuariorol gppUsuariorol;
-	
-	
-	public UsuariorolService(){}
 
 	public boolean actualizarUsuariorol(Integer idUsuario, Integer idRol) {
 		estadoOperacion = false;

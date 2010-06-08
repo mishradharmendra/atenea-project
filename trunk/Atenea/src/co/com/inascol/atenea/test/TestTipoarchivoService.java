@@ -15,7 +15,7 @@ public class TestTipoarchivoService {
 	private static Boolean estadoOperacion;
 	
 	public static void main(String argss[]){
-//		crear();
+		crear();
 //		actualizar();
 //		borrar();
 //		buscarPorId();

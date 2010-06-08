@@ -91,18 +91,14 @@ public class GppPaisDAO implements DAO {
 			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_pais " +
-							"(pai_vidpais, pai_vpais, pai_vusucrea, pai_dfeccrea, pai_vusumodifica, pai_dfecmodifica)" +
-							"values (?, ?, ?, ?, ?, ?)";	
+							"(pai_vidpais, pai_vpais, pai_vusucrea, pai_dfeccrea)" +
+							"values (?, ?, ?, ?)";	
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppPais.getPaiVidpais(),
 					 										gppPais.getPaiVpais(),
 															gppPais.getPaiVusucrea(),
-															gppPais.getPaiDfeccrea(),
-															gppPais.getPaiVusumodifica(),
-															gppPais.getPaiDfecmodifica()},
+															gppPais.getPaiDfeccrea()},
 															new int[] {Types.VARCHAR,
 																		Types.VARCHAR,
-																		Types.VARCHAR,
-																		Types.DATE,
 																		Types.VARCHAR,
 																		Types.DATE});
 			estadoOperation = true;

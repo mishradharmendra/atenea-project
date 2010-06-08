@@ -91,16 +91,15 @@ public class GppDepartamentoDAO implements DAO {
 		estadoOperation = false;
 		try{
 			gppDepartamento = (GppDepartamento) obj;
-			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_departamento " +
-							"(dpt_viddepto, dpt_vdepto, pai_vidpais, dpt_vusumodifica, dpt_dfecmodifica) " +
-							"values (?, ?, ?, ?, ?, ?, ?)";	
+							"(dpt_viddepto, dpt_vdepto, pai_vidpais, dpt_vusucrea, dpt_dfeccrea) " +
+							"values (?, ?, ?, ?, ?)";	
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppDepartamento.getDptViddepto(),
 					 										gppDepartamento.getDptVdepto(),
 					 										gppDepartamento.getPaiVidpais(),
-															gppDepartamento.getDptVusumodifica(),
-															gppDepartamento.getDptDfecmodifica()},
+															gppDepartamento.getDptVusucrea(),
+															gppDepartamento.getDptDfeccrea()},
 															new int[] {Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.VARCHAR,

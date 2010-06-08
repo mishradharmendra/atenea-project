@@ -91,23 +91,18 @@ public class GppMunicipioDAO implements DAO{
 		estadoOperation = false;
 		try{
 			gppMunicipio = (GppMunicipio) obj;
-			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_municipio " +
-							"(mun_vidmunicipio, mun_vmunicipio, dpt_viddepto, mun_vusucrea, mun_dfeccrea, mun_vusumodifica, mun_dfecmodifica) " +
-							"values (?, ?, ?, ?, ?, ?, ?)";	
+							"(mun_vidmunicipio, mun_vmunicipio, dpt_viddepto, mun_vusucrea, mun_dfeccrea) " +
+							"values (?, ?, ?, ?, ?)";	
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppMunicipio.getMunVidmunicipio(),
 															gppMunicipio.getMunVmunicipio(),
 															gppMunicipio.getDptViddepto(),
 															gppMunicipio.getMunVusucrea(),
-															gppMunicipio.getMunDfeccrea(),
-															gppMunicipio.getMunVusumodifica(),
-															gppMunicipio.getMunDfecmodifica()},
+															gppMunicipio.getMunDfeccrea()},
 															new int[] {Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.VARCHAR,																		
-																		Types.VARCHAR,
-																		Types.DATE,
 																		Types.VARCHAR,
 																		Types.DATE});
 			estadoOperation = true;

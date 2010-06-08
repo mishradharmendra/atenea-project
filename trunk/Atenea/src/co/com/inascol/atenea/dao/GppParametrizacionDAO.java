@@ -88,7 +88,6 @@ public class GppParametrizacionDAO implements DAO {
 		estadoOperation = false;
 		try{
 			gppParametrizacion = (GppParametrizacion) obj;
-			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_parametrizacion " +
 							"(par_nidparam, par_vnombre, par_vvalor, par_vdescripcion)" +

@@ -101,7 +101,6 @@ public class GppUsuarioDAO implements DAO {
 		estadoOperation = false;
 		try{
 			gppUsuario = (GppUsuario) obj;
-			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_usuario " +
 							"(usu_vnombre, usu_vlogin, usu_vemail, usu_vtelefono, usu_vusucrea, usu_dfeccrea, usu_vactivo) "+
@@ -141,7 +140,5 @@ public class GppUsuarioDAO implements DAO {
 			ex.printStackTrace();
 		}
 		return gppUsuario;
-	} 
-	
-	
+	} 		
 }

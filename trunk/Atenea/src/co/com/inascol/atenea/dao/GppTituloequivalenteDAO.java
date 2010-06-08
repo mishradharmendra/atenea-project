@@ -76,7 +76,7 @@ public class GppTituloequivalenteDAO implements DAO{
 		try{
 			gppTituloequivalenteRowMapper = new GppTituloequivalenteRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_tituloequivalente order by teq_vtituloeq asc";
+			sentenciaSQL = "select * from gpp_tituloequivalente order by teq_nidtituloeq asc";
 			gppTitulosEquivalentes = (List) jdbcTemplate.query(sentenciaSQL, gppTituloequivalenteRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();
@@ -88,14 +88,13 @@ public class GppTituloequivalenteDAO implements DAO{
 		estadoOperation = false;
 		try{
 			gppTituloequivalente = (GppTituloequivalente) obj;
-			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_tituloequivalente " +
 							"(teq_vtituloeq, teq_vusucrea, teq_dfeccrea) " +
 							"values (?, ?, ?)";	
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppTituloequivalente.getTeqVtituloeq(),
-															gppTituloequivalente.getTeqVusumodifica(),
-															gppTituloequivalente.getTeqDfecmodifica()},
+															gppTituloequivalente.getTeqVusucrea(),
+															gppTituloequivalente.getTeqDfeccrea()},
 															new int[] {Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.DATE});

@@ -14,8 +14,6 @@ public class NivelacademicoService implements INivelacademicoService {
 	private GppNivelacademico gppNivelacademico;
 	private List<Object> gppNivelesacademicos;
 	
-	public NivelacademicoService(){}
-	
 	public boolean actualizarNivelAcademico(Integer idNivelAcademico, String nombreNivelAcademico) {
 		estadoOperacion = false;
 		try{			

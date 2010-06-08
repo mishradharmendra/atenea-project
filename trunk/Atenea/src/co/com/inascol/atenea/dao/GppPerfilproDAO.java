@@ -100,7 +100,7 @@ public class GppPerfilproDAO implements DAO{
 		try{
 			gppPerfilprofRowMapper = new GppPerfilprofRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_perfilprof order by ppr_vperfil asc";
+			sentenciaSQL = "select * from gpp_perfilprof order by ppr_nidperfilprof asc";
 			gppPerfilesprofesionales = (List) jdbcTemplate.query(sentenciaSQL, gppPerfilprofRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();

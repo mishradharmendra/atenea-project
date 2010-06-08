@@ -14,8 +14,6 @@ public class RolService implements IRolService {
 	private GppRol gppRol;
 	private List<Object> gppRols;
 	
-	public RolService(){}
-
 	public boolean actualizarRol(Integer idRol, String nombreRol, String descripcionRol, String activoRol) {
 		estadoOperacion = false;
 		try{			

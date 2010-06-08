@@ -111,7 +111,7 @@ public class GppExperienciaDAO implements DAO{
 		try{
 			gppExperienciaRowMapper = new GppExperienciaRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_experiencia order by exp_vnomempresa";
+			sentenciaSQL = "select * from gpp_experiencia order by exp_nidexplaboral";
 			gppExperienciasLaborales = (List) jdbcTemplate.query(sentenciaSQL, gppExperienciaRowMapper);
 		} catch (Exception ex){
 			ex.printStackTrace();

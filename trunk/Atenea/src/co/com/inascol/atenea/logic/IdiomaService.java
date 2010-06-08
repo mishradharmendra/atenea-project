@@ -14,8 +14,6 @@ public class IdiomaService implements IIdiomaService {
 	private GppIdioma gppIdioma;
 	private List<Object> gppIdiomas;
 	
-	public IdiomaService(){}
-
 	public boolean actualizarIdioma(Integer idIdioma, String nombreIdioma) {
 		estadoOperacion = false;
 		try{			
