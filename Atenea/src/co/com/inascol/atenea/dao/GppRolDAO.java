@@ -102,7 +102,6 @@ public class GppRolDAO implements DAO {
 		estadoOperation = false;
 		try{
 			gppRol = (GppRol) obj;
-			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_rol " +
 							"(rol_vnombre, rol_vdescripcion, rol_vusucrea, rol_dfeccrea, rol_vactivo) "+
@@ -118,17 +117,14 @@ public class GppRolDAO implements DAO {
 																		Types.DATE,
 																		Types.VARCHAR});
 			sentenciaSQL = "select rol_nidrol from gpp_rol where rol_vnombre = ? ";
-			int gppIdRol = jdbcTemplate.queryForInt(sentenciaSQL, new Object[]{gppRol.getRolVnombre()},
-																				new int[] {Types.VARCHAR});
+			int gppIdRol = jdbcTemplate.queryForInt(sentenciaSQL, new Object[]{gppRol.getRolVnombre()},	new int[] {Types.VARCHAR});
 			if(gppRol.getRolServicios()!=null){
 				Iterator<Object> it = gppRol.getRolServicios().iterator();
 				while(it.hasNext()){ 
 					int idServicio =  (Integer) it.next();
-
 					GppServiciorolId gppServiciorolId= new GppServiciorolId();
 					gppServiciorolId.setRolNidrol(gppIdRol);
 					gppServiciorolId.setSerNidservicio(idServicio);
-
 					GppServiciorol gppServiciorol = new GppServiciorol();
 					gppServiciorol.setId(gppServiciorolId);
 					gppServiciorol.setSrlDfeccrea(new Date());
@@ -137,7 +133,7 @@ public class GppRolDAO implements DAO {
 					estadoOperation = gppServiciorolDAO.crear(gppServiciorol);
 				}
 			}else{
-				System.out.println("error");
+				System.out.println("Rol Sin Servicios");
 			}	
 			estadoOperation = true;
 		} catch (Exception ex) {

@@ -13,8 +13,6 @@ public class TipoarchivoService implements ITipoarchivoService {
 	private GppTipoarchivoDAO gppTipoarchivoDAO;
 	private GppTipoarchivo gppTipoarchivo;
 	private List<Object> gppTipoarchivos;
-	
-	public TipoarchivoService(){}
 
 	public boolean actualizarTipoarchivo(Integer idTipoarchivo, String nombreTipoarchivo) {
 		estadoOperacion = false;

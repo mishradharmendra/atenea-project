@@ -88,7 +88,6 @@ public class GppNivelacademicoDAO implements DAO{
 		estadoOperation = false;
 		try{
 			gppNivelacademico = (GppNivelacademico) obj;
-			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_nivelacademico " +
 							"(nac_vnivelac, nac_vusucrea, nac_dfeccrea) " +

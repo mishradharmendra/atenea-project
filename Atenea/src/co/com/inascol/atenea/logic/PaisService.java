@@ -14,8 +14,6 @@ public class PaisService implements IPaisService {
 	private GppPais gppPais;
 	private List<Object> gppPaiss;
 	
-	public PaisService(){}
-
 	public boolean actualizarPais(String idPais, String nombrePais) {
 		estadoOperacion = false;
 		try{			

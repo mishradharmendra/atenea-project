@@ -14,8 +14,6 @@ public class MunicipioService implements IMunicipioService{
 	private GppMunicipio gppMunicipio;
 	private List<Object> gppMunicipios;
 	
-	public MunicipioService(){}
-	
 	public boolean actualizarMunicipio(String idMunicipio, String nombreMunicipio, String idDepto) {
 		estadoOperacion = false;
 		try{			

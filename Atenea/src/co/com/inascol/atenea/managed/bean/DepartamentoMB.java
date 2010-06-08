@@ -10,14 +10,14 @@ import javax.faces.model.SelectItem;
 import co.com.inascol.atenea.entity.GppDepartamento;
 import co.com.inascol.atenea.entity.GppPais;
 import co.com.inascol.atenea.managed.bean.delegate.DepartamentoDelegate;
-import co.com.inascol.atenea.managed.bean.delegate.PaisesDelegate;
+import co.com.inascol.atenea.managed.bean.delegate.PaisDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
 
 
 public class DepartamentoMB {
 
 	private DepartamentoDelegate departamentoDelegate;
-	private PaisesDelegate paisesDelegate;
+	private PaisDelegate paisDelegate;
 	private String idDepartamento;
 	private String nombreDepartamento;
 	private String estadoDepartamento;
@@ -79,9 +79,9 @@ public class DepartamentoMB {
 	}
 	
 	public List<SelectItem> getPaises(){
-		paisesDelegate = new PaisesDelegate();
+		paisDelegate = new PaisDelegate();
 		List<SelectItem> listadoPaises = new ArrayList<SelectItem>();
-		List paises = paisesDelegate.getListaPaises();
+		List paises = paisDelegate.getListaPaises();
 		if(paises.size()>0){
 			Iterator it = paises.iterator();
 			while(it.hasNext()){

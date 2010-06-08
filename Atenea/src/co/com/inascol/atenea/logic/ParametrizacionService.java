@@ -13,8 +13,6 @@ public class ParametrizacionService implements IParametrizacionService {
 	private GppParametrizacion gppParametrizacion;
 	private List<Object> gppParametrizacions;
 	
-	public ParametrizacionService(){}
-
 	public boolean actualizarParametrizacion(Integer idParam, String nombreParam, String valorParam, String descripcionParam) {
 		estadoOperacion = false;
 		try{			

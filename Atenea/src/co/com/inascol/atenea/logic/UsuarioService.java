@@ -13,8 +13,6 @@ public class UsuarioService implements IUsuarioService {
 	private GppUsuarioDAO gppUsuarioDAO;
 	private GppUsuario gppUsuario;
 	private List<Object> gppUsuarios;
-	
-	public UsuarioService(){}
 
 	public boolean actualizarUsuario(Integer idUsuario, String nombreUsuario, String loginUsuario, String emailUsuario, String telefonoUsuario, String activoUsuario) {
 		estadoOperacion = false;

@@ -76,7 +76,7 @@ public class GppInstitucionDAO implements DAO{
 		try{
 			gppInstitucionRowMapper = new GppInstitucionRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_institucion order by ins_vinstitucion asc";
+			sentenciaSQL = "select * from gpp_institucion order by ins_nidinstitucion asc";
 			gppInstituciones = (List) jdbcTemplate.query(sentenciaSQL, gppInstitucionRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();
@@ -88,7 +88,6 @@ public class GppInstitucionDAO implements DAO{
 		estadoOperation = false;
 		try{
 			gppInstitucion = (GppInstitucion) obj;
-			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_institucion " +
 							"(ins_vinstitucion, ins_vusucrea, ins_dfeccrea) " +

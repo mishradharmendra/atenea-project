@@ -88,7 +88,6 @@ public class GppPerfilequivalenteDAO implements DAO{
 		estadoOperation = false;
 		try{
 			gppPerfilequivalente = (GppPerfilequivalente) obj;
-			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_perfilequivalente " +
 							"(peq_vperfileq, peq_vusucrea, peq_dfeccrea)" +

@@ -14,8 +14,6 @@ public class DepartamentoService implements IDepartamentoService {
 	private GppDepartamento gppDepartamento;
 	private List<Object> gppDepartamentos;
 	
-	public DepartamentoService(){}
-
 	public boolean actualizarDepartamento(String idDepto, String nombreDepto, String idPais) {
 		estadoOperacion = false;
 		try{			

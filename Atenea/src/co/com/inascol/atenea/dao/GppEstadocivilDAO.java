@@ -76,7 +76,7 @@ public class GppEstadocivilDAO implements DAO{
 		try{
 			gppEstadocivilRowMapper = new GppEstadocivilRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_estadocivil order by esc_vestadocivil asc";
+			sentenciaSQL = "select * from gpp_estadocivil order by esc_nidestadocivil asc";
 			gppEstadosCiviles = (List) jdbcTemplate.query(sentenciaSQL, gppEstadocivilRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();
@@ -88,7 +88,6 @@ public class GppEstadocivilDAO implements DAO{
 		estadoOperation = false;
 		try{
 			gppEstadocivil = (GppEstadocivil) obj;
-			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_estadocivil " +
 							"(esc_vestadocivil, esc_vusucrea, esc_dfeccrea) " +

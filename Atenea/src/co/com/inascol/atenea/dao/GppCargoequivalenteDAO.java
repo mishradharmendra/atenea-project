@@ -76,7 +76,7 @@ public class GppCargoequivalenteDAO implements DAO{
 		try{
 			gppCargoequivalenteRowMapper = new GppCargoequivalenteRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_cargoequivalente order by ceq_vcargoeq asc";
+			sentenciaSQL = "select * from gpp_cargoequivalente order by ceq_nidcargoeq asc";
 			gppCargosequivalentes = (List) jdbcTemplate.query(sentenciaSQL, gppCargoequivalenteRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();
@@ -88,7 +88,6 @@ public class GppCargoequivalenteDAO implements DAO{
 		estadoOperation = false;
 		try{
 			gppCargoequivalente = (GppCargoequivalente) obj;
-			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_cargoequivalente " +
 							"(ceq_vcargoeq, ceq_vusucrea, ceq_dfeccrea) " +

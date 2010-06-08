@@ -14,8 +14,6 @@ public class InstitucionService implements IInstitucionService {
 	private GppInstitucion gppInstitucion;
 	private List<Object> gppInstituciones;
 	
-	public InstitucionService(){}
-	
 	public boolean actualizarInstitucion(Integer idInstitucion, String nombreInstitucion) {
 		estadoOperacion = false;
 		try{			

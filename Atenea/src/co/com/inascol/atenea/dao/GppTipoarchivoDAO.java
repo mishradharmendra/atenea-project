@@ -91,16 +91,12 @@ public class GppTipoarchivoDAO implements DAO {
 			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_tipoarchivo " +
-							"( tar_vtipoarchivo, tar_vusucrea, tar_dfeccrea, tar_vusumodifica, tar_dfecmodifica)" +
-							"values ( ?, ?, ?, ?, ?)";	
+							"( tar_vtipoarchivo, tar_vusucrea, tar_dfeccrea)" +
+							"values ( ?, ?, ? )";	
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppTipoarchivo.getTarVtipoarchivo(),
 															gppTipoarchivo.getTarVusucrea(),
-															gppTipoarchivo.getTarDfeccrea(),
-															gppTipoarchivo.getTarVusumodifica(),
-															gppTipoarchivo.getTarDfecmodifica()},
+															gppTipoarchivo.getTarDfeccrea()},
 															new int[] {Types.VARCHAR,
-																		Types.VARCHAR,
-																		Types.DATE,
 																		Types.VARCHAR,
 																		Types.DATE});
 			estadoOperation = true;

@@ -85,7 +85,6 @@ public class GppServicioDAO implements DAO {
 		estadoOperation = false;
 		try{
 			gppServicio = (GppServicio) obj;
-			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_servicio " +
 							"( ser_nidservicio, ser_vnombre, ser_vruta, ser_vusucrea, ser_dfeccrea)" +

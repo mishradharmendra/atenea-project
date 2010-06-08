@@ -88,19 +88,14 @@ public class GppIdiomaDAO implements DAO {
 		estadoOperation = false;
 		try{
 			gppIdioma = (GppIdioma) obj;
-			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_idioma " +
-							"( idi_vidioma, idi_vusucrea, idi_dfeccrea, idi_vusumodifica, idi_dfecmodifica)" +
-							"values (?, ?, ?, ?, ?)";	
+							"(idi_vidioma, idi_vusucrea, idi_dfeccrea)" +
+							"values (?, ?, ?)";	
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppIdioma.getIdiVidioma(),
 															gppIdioma.getIdiVusucrea(),
-															gppIdioma.getIdiDfeccrea(),
-															gppIdioma.getIdiVusumodifica(),
-															gppIdioma.getIdiDfecmodifica()},
+															gppIdioma.getIdiDfeccrea()},
 															new int[] {Types.VARCHAR,
-																		Types.VARCHAR,
-																		Types.DATE,
 																		Types.VARCHAR,
 																		Types.DATE});
 			estadoOperation = true;

@@ -16,9 +16,6 @@ public class ServiciorolService implements IServiciorolService {
 	private GppServiciorolId gppServiciorolId;	
 	private List<Object> gppServiciorols;
 	
-	
-	public ServiciorolService(){}
-
 	public boolean actualizarServiciorol(Integer idServicio, Integer idRol) {
 		estadoOperacion = false;
 		try{			
