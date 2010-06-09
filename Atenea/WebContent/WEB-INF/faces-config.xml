@@ -40,6 +40,17 @@
         <managed-bean-class>co.com.inascol.atenea.managed.bean.InstitucionMB</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+	<managed-bean>
+        <managed-bean-name>MunicipioMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.MunicipioMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+	<managed-bean>
+        <managed-bean-name>TituloequivalenteMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.TituloequivalenteMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
 
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
@@ -185,4 +196,52 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>HOME_MUNICIPIO</from-outcome>
+			<to-view-id>/web/faces/admin/municipio_home.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/municipio_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>DETALLE_MUNICIPIO</from-outcome>
+			<to-view-id>/web/faces/admin/municipio_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/municipio_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>CREAR_MUNICIPIO</from-outcome>
+			<to-view-id>/web/faces/admin/municipio_crear.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>HOME_TITULOEQUIVALENTE</from-outcome>
+			<to-view-id>/web/faces/admin/tituloequivalente_home.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/tituloequivalente_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>DETALLE_TITULOEQUIVALENTE</from-outcome>
+			<to-view-id>/web/faces/admin/tituloequivalente_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/tituloequivalente_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>CREAR_TITULOEQUIVALENTE</from-outcome>
+			<to-view-id>/web/faces/admin/tituloequivalente_crear.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
 </faces-config>
