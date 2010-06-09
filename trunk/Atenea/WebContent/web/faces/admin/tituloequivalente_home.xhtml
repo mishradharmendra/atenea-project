@@ -14,18 +14,18 @@
 					<tr>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN"></h:outputLabel></td>
 						<td align="left"><h:outputLabel value=">>"></h:outputLabel></td>
-						<td align="left"><h:outputLabel value="Tablas de Refencia - Idioma"></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="Tablas de Refencia - Titulos Equivalentes"></h:outputLabel></td>
 					</tr>
 				</table>
 				<br/><br/>
 				<h:form>	
 				<table>
 					<tr>
-						<td><h:outputLabel value="Consulta de Idiomas: "></h:outputLabel></td>
-						<td><h:inputText value="#{IdiomaMB.nombreIdioma}"></h:inputText></td>					
+						<td><h:outputLabel value="Consulta de Titulos Equivalentes: "></h:outputLabel></td>
+						<td><h:inputText value="#{TituloequivalenteMB.nombreTitulo}"></h:inputText></td>					
 						<td width="100px"></td>
 						<td><h:outputLabel value="Estado"></h:outputLabel></td>
-						<td><h:selectOneMenu value="#{IdiomaMB.estadoIdioma}">
+						<td><h:selectOneMenu value="#{TituloequivalenteMB.estadoTituloequivalente}">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
 								<f:selectItem itemValue="Activo" itemLabel="Activo"/>
 								<f:selectItem itemValue="Desactivo" itemLabel="Desactivo"/>
@@ -35,9 +35,9 @@
 				<br/>				
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{IdiomaMB.getBuscarIdiomaPorNombre}" value="Buscar"/></td>
+						<td><h:commandButton action="#{TituloequivalenteMB.getBuscarTituloequivalentePorNombre}" value="Buscar"/></td>
 						<td width="20px"></td>
-						<td><h:commandButton action="#{IdiomaMB.getAgregarIdioma}" value="Agregar Registro"/></td>
+						<td><h:commandButton action="#{TituloequivalenteMB.getAgregarTituloequivalente}" value="Agregar Registro"/></td>
 					</tr>
 				</table>
 				</h:form>								
@@ -45,24 +45,24 @@
 				<h:outputLabel value="Resultados de Búsqueda"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaIdioma" value="#{IdiomaMB.idiomas}" var="Idioma" width="600px" height="300px">
+				<rich:extendedDataTable id="tablaTituloequivalente" value="#{TituloequivalenteMB.titulosequivalentes}" var="tituloequivalente" width="600px" height="300px">
 					<rich:column width="100px">
 						<f:facet name="header">
-							<h:outputLabel value="Id Idioma"></h:outputLabel>
+							<h:outputLabel value="Id Titulo Equivalente"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{Idioma.idiNididioma}"></h:outputLabel>
+						<h:outputLabel value="#{tituloequivalente.teqNidtituloeq}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="300px">
 						<f:facet name="header">
-							<h:outputLabel value="Nombre Idioma"></h:outputLabel>
+							<h:outputLabel value="Nombre Titulo Equivalente"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{Idioma.idiVidioma}"></h:outputLabel>
+						<h:outputLabel value="#{tituloequivalente.teqVtituloeq}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="100px">
 						<f:facet name="header">
 							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>
-						<a4j:commandLink id="modificar" onclick="procesarSolicitud('#{idioma.idiNididioma}')">
+						<a4j:commandLink id="modificar" onclick="procesarSolicitud('#{tituloequivalente.teqNidtituloeq}')">
                             <h:graphicImage url="../../imagenes/editar.png"/>
                         </a4j:commandLink>
 					</rich:column>
@@ -76,8 +76,8 @@
 				</h:form>					
 			</rich:panel>
         	<a4j:form>
-	            <a4j:jsFunction name="procesarSolicitud" action="#{IdiomaMB.getSeleccionarIdioma}" >
-	                <a4j:actionparam name="p1" assignTo="#{IdiomaMB.idIdioma}" />                
+	            <a4j:jsFunction name="procesarSolicitud" action="#{TituloequivalenteMB.getSeleccionarTituloequivalente}" >
+	                <a4j:actionparam name="p1" assignTo="#{TituloequivalenteMB.idTituloequivalente}" />                
             	</a4j:jsFunction>
         	</a4j:form>								
 		</ui:define>
