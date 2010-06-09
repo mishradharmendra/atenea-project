@@ -14,18 +14,18 @@
 					<tr>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN"></h:outputLabel></td>
 						<td align="left"><h:outputLabel value=">>"></h:outputLabel></td>
-						<td align="left"><h:outputLabel value="Tablas de Refencia - Idioma"></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="Tablas de Refencia - Municipios"></h:outputLabel></td>
 					</tr>
 				</table>
 				<br/><br/>
 				<h:form>	
 				<table>
 					<tr>
-						<td><h:outputLabel value="Consulta de Idiomas: "></h:outputLabel></td>
-						<td><h:inputText value="#{IdiomaMB.nombreIdioma}"></h:inputText></td>					
+						<td><h:outputLabel value="Consulta de Municipios: "></h:outputLabel></td>
+						<td><h:inputText value="#{MunicipioMB.nombreMunicipio}"></h:inputText></td>					
 						<td width="100px"></td>
 						<td><h:outputLabel value="Estado"></h:outputLabel></td>
-						<td><h:selectOneMenu value="#{IdiomaMB.estadoIdioma}">
+						<td><h:selectOneMenu value="#{MunicipioMB.estadoMunicipio}">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
 								<f:selectItem itemValue="Activo" itemLabel="Activo"/>
 								<f:selectItem itemValue="Desactivo" itemLabel="Desactivo"/>
@@ -35,9 +35,9 @@
 				<br/>				
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{IdiomaMB.getBuscarIdiomaPorNombre}" value="Buscar"/></td>
+						<td><h:commandButton action="#{MunicipioMB.getBuscarMunicipioPorNombre}" value="Buscar"/></td>
 						<td width="20px"></td>
-						<td><h:commandButton action="#{IdiomaMB.getAgregarIdioma}" value="Agregar Registro"/></td>
+						<td><h:commandButton action="#{MunicipioMB.getAgregarMunicipio}" value="Agregar Registro"/></td>
 					</tr>
 				</table>
 				</h:form>								
@@ -45,24 +45,24 @@
 				<h:outputLabel value="Resultados de Búsqueda"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaIdioma" value="#{IdiomaMB.idiomas}" var="Idioma" width="600px" height="300px">
+				<rich:extendedDataTable id="tablaMunicipios" value="#{MunicipioMB.municipios}" var="municipio" width="600px" height="300px">
 					<rich:column width="100px">
 						<f:facet name="header">
-							<h:outputLabel value="Id Idioma"></h:outputLabel>
+							<h:outputLabel value="Id Municipios"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{Idioma.idiNididioma}"></h:outputLabel>
+						<h:outputLabel value="#{municipio.munVidmunicipio}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="300px">
 						<f:facet name="header">
-							<h:outputLabel value="Nombre Idioma"></h:outputLabel>
+							<h:outputLabel value="Nombre Municipios"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{Idioma.idiVidioma}"></h:outputLabel>
+						<h:outputLabel value="#{municipio.munVmunicipio}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="100px">
 						<f:facet name="header">
 							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>
-						<a4j:commandLink id="modificar" onclick="procesarSolicitud('#{idioma.idiNididioma}')">
+						<a4j:commandLink id="modificar" onclick="procesarSolicitud('#{municipio.munVidmunicipio}')">
                             <h:graphicImage url="../../imagenes/editar.png"/>
                         </a4j:commandLink>
 					</rich:column>
@@ -76,8 +76,8 @@
 				</h:form>					
 			</rich:panel>
         	<a4j:form>
-	            <a4j:jsFunction name="procesarSolicitud" action="#{IdiomaMB.getSeleccionarIdioma}" >
-	                <a4j:actionparam name="p1" assignTo="#{IdiomaMB.idIdioma}" />                
+	            <a4j:jsFunction name="procesarSolicitud" action="#{MunicipioMB.getSeleccionarMunicipio}" >
+	                <a4j:actionparam name="p1" assignTo="#{MunicipioMB.idMunicipio}" />                
             	</a4j:jsFunction>
         	</a4j:form>								
 		</ui:define>
