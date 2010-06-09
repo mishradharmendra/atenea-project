@@ -26,5 +26,12 @@ public class ConstantesFaces {
 	public static final String DETALLE_INSTITUCION = "DETALLE_INSTITUCION";
 	public static final String CREAR_INSTITUCION = "CREAR_INSTITUCION";
 	
+	public static final String HOME_MUNICIPIO = "HOME_MUNICIPIO";
+	public static final String DETALLE_MUNICIPIO = "DETALLE_MUNICIPIO";
+	public static final String CREAR_MUNICIPIO = "CREAR_MUNICIPIO";
+
+	public static final String HOME_TITULOEQUIVALENTE = "HOME_TITULOEQUIVALENTE";
+	public static final String DETALLE_TITULOEQUIVALENTE = "DETALLE_TITULOEQUIVALENTE";
+	public static final String CREAR_TITULOEQUIVALENTE = "CREAR_TITULOEQUIVALENTE";
 	
 }
