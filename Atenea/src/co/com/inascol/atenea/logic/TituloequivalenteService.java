@@ -69,8 +69,8 @@ public class TituloequivalenteService implements ITituloequivalenteService{
 			gppTituloequivalenteDAO = new GppTituloequivalenteDAO();
 			gppTituloequivalente = new GppTituloequivalente();
 			gppTituloequivalente.setTeqVtituloeq(nombreTituloEquivalente);
-			gppTituloequivalente.setTeqVusumodifica("MEMO");
-			gppTituloequivalente.setTeqDfecmodifica(new Date());
+			gppTituloequivalente.setTeqVusucrea("MEMO");
+			gppTituloequivalente.setTeqDfeccrea(new Date());
 			estadoOperacion = gppTituloequivalenteDAO.crear(gppTituloequivalente);
 		} catch (Exception ex){
 			ex.printStackTrace();
