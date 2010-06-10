@@ -50,6 +50,26 @@
         <managed-bean-class>co.com.inascol.atenea.managed.bean.TituloequivalenteMB</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+	<managed-bean>
+        <managed-bean-name>CargoequivalenteMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.CargoequivalenteMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+	<managed-bean>
+        <managed-bean-name>TipodocumentoMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.TipodocumentoMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+	<managed-bean>
+        <managed-bean-name>PerfilequivalenteMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.PerfilequivalenteMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+	<managed-bean>
+        <managed-bean-name>EstadocivilMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.EstadocivilMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 
 
 	<navigation-rule>
@@ -244,4 +264,100 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>		
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>HOME_CARGOEQUIVALENTE</from-outcome>
+			<to-view-id>/web/faces/admin/cargoequivalente_home.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/cargoequivalente_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>DETALLE_CARGOEQUIVALENTE</from-outcome>
+			<to-view-id>/web/faces/admin/cargoequivalente_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/cargoequivalente_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>CREAR_CARGOEQUIVALENTE</from-outcome>
+			<to-view-id>/web/faces/admin/cargoequivalente_crear.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>HOME_TIPODOCUMENTO</from-outcome>
+			<to-view-id>/web/faces/admin/tipodocumento_home.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/tipodocumento_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>DETALLE_TIPODOCUMENTO</from-outcome>
+			<to-view-id>/web/faces/admin/tipodocumento_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/tipodocumento_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>CREAR_TIPODOCUMENTO</from-outcome>
+			<to-view-id>/web/faces/admin/tipodocumento_crear.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>HOME_PERFILEQUIVALENTE</from-outcome>
+			<to-view-id>/web/faces/admin/perfilequivalente_home.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/perfilequivalente_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>DETALLE_PERFILEQUIVALENTE</from-outcome>
+			<to-view-id>/web/faces/admin/perfilequivalente_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/perfilequivalente_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>CREAR_PERFILEQUIVALENTE</from-outcome>
+			<to-view-id>/web/faces/admin/perfilequivalente_crear.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>HOME_ESTADOCIVIL</from-outcome>
+			<to-view-id>/web/faces/admin/estadocivil_home.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/estadocivil_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>DETALLE_ESTADOCIVIL</from-outcome>
+			<to-view-id>/web/faces/admin/estadocivil_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/estadocivil_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>CREAR_ESTADOCIVIL</from-outcome>
+			<to-view-id>/web/faces/admin/estadocivil_crear.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
 </faces-config>
