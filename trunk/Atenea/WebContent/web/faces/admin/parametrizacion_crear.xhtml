@@ -14,26 +14,36 @@
 					<tr>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN"></h:outputLabel></td>
 						<td align="left"><h:outputLabel value=">>"></h:outputLabel></td>
-						<td align="left"><h:outputLabel value="Tablas de Referencia - Titulos Equivalentes"></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="Parametrizaciones"></h:outputLabel></td>
 					</tr>
 				</table>
 				<br/><br/>	
 				<h:form>
-				<h:outputLabel value="AgregarTituloequivalente"></h:outputLabel>
+				<h:outputLabel value="Agregar Parametrizacion"></h:outputLabel>
 				<br/><br/>					
 				<table>
 					<tr>
-						<td><h:outputLabel value="Titulo Equivalente: "></h:outputLabel></td>
-						<td><h:inputText value="#{TituloequivalenteMB.nombreTitulo}"></h:inputText></td>					
+						<td><h:outputLabel value="Nombre: "></h:outputLabel></td>
+						<td><h:inputText value="#{ParametrizacionMB.nombreParametrizacion}"></h:inputText></td>					
 						<td width="100px"></td>
 					</tr>
+					<tr>
+						<td><h:outputLabel value="Descripcion: "></h:outputLabel></td>
+						<td><h:inputText value="#{ParametrizacionMB.descripcionParametrizacion}"></h:inputText></td>					
+						<td width="100px"></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Valor: "></h:outputLabel></td>
+						<td><h:inputText value="#{ParametrizacionMB.valorParametrizacion}"></h:inputText></td>					
+						<td width="100px"></td>
+					</tr>					
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{TituloequivalenteMB.getCrearTituloequivalente}" value="Aceptar"/></td>
+						<td><h:commandButton action="#{ParametrizacionMB.getCrearParametrizacion}" value="Aceptar"/></td>
 						<td width="20px"></td>
-						<td><h:commandButton action="#{TituloequivalenteMB.getCancelar}" value="Cancelar"/></td>
+						<td><h:commandButton action="#{ParametrizacionMB.getCancelar}" value="Cancelar"/></td>
 					</tr>
 				</table>
 				</h:form>								
