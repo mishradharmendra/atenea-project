@@ -1,0 +1,298 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
+	  xmlns:a4j="http://richfaces.org/a4j">
+<body>
+	<ui:composition template="../../template.xhtml">
+		<ui:define name="cuerpo">
+			<rich:panel>
+				<rich:tabPanel switchType="ajax">
+					<script type="text/javascript" src="../../swf/calendario.js"></script>
+					<rich:tab label="Datos Personales">
+					<table>
+						<tr>
+							<td><h:outputLabel value="Datos Personales"></h:outputLabel></td>
+						</tr>
+					</table>
+					<br/>
+					<h:form>
+					<table align="center">
+						<tr>
+							<td><h:outputLabel value="Nombres"></h:outputLabel></td>
+							<td><h:inputText value="#{PersonaMB.persona.perVnombres}" required="true" requiredMessage="Ingrese Nombres"></h:inputText></td>
+							<td width="200px"></td>			
+							<td><h:outputLabel value="Apellidos"></h:outputLabel></td>
+							<td><h:inputText value="#{PersonaMB.persona.perVapellidos}" required="true" requiredMessage="Ingrese Apellidos"></h:inputText></td>							
+						</tr>
+						<tr>
+							<td><rich:message for="perVnombres"/></td>
+							<td width="200px"></td>			
+							<td><rich:message for="perVapellidos"/></td>							
+						</tr>						
+						<tr>
+							<td><h:outputLabel value="Tipo de Identificación"></h:outputLabel></td>
+							<td><h:selectOneMenu value="#{PersonaMB.persona.tdcNidtipodoc}">
+								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
+								<f:selectItems value="#{PersonaMB.tiposIdentificacion}"/>
+							</h:selectOneMenu></td>
+							<td width="200px"></td>			
+							<td><h:outputLabel value="Identificación" required="true" requiredMessage="Ingrese Identificación"></h:outputLabel></td>
+							<td><h:inputText value="#{PersonaMB.persona.perNidentificacion}"></h:inputText></td>							
+						</tr>		
+						<tr>
+							<td><rich:message for="perNidentificacion"/></td>							
+						</tr>							
+						<tr>
+							<td><h:outputLabel value="Sexo"></h:outputLabel></td>
+							<td><h:selectOneMenu value="#{PersonaMB.persona.perVsexo}">
+								<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
+								<f:selectItem itemValue="H" itemLabel="Hombre"/>
+								<f:selectItem itemValue="M" itemLabel="Mujer"/>
+							</h:selectOneMenu></td>
+							<td width="200px"></td>			
+							<td><h:outputLabel value="Estado Civil"></h:outputLabel></td>
+							<td><h:selectOneMenu value="#{PersonaMB.persona.escNidestadocivil}">
+								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
+								<f:selectItems value="#{PersonaMB.estadosCiviles}"/>
+							</h:selectOneMenu></td>						
+						</tr>								
+						<tr>
+							<td><h:outputLabel value="Fecha de Nacimiento"></h:outputLabel></td>
+							<td><rich:calendar value="#{PersonaMB.persona.perDfecnacimiento}" datePattern="dd/MM/yyyy" id="perDfecnacimiento" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Nacimiento"/></td>
+							<td width="200px"></td>			
+							<td><h:outputLabel value="País"></h:outputLabel></td>
+							<td><h:selectOneMenu value="">
+								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
+								<f:selectItems value="#{PersonaMB.paises}"/>
+							</h:selectOneMenu></td>						
+						</tr>	
+						<tr>
+							<td><rich:message for="perDfecnacimiento"/></td>				
+						</tr>							
+						<tr>
+							<td><h:outputLabel value="Departamento"></h:outputLabel></td>
+							<td><h:selectOneMenu value="">
+								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
+								<f:selectItems value="#{PersonaMB.departamentos}"/>
+							</h:selectOneMenu></td>
+							<td width="200px"></td>			
+							<td><h:outputLabel value="Municipio"></h:outputLabel></td>
+							<td><h:selectOneMenu value="#{PersonaMB.persona.munVidmunicipio}">
+								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
+								<f:selectItems value="#{PersonaMB.municipios}"/>
+							</h:selectOneMenu></td>					
+						</tr>	
+						<tr>
+							<td><rich:message for="departamentos"/></td>
+							<td width="200px"></td>			
+							<td><rich:message for="municipios"/></td>							
+						</tr>																															
+					</table>
+					<br/><br/>
+					<table>
+						<tr>
+							<td><h:outputLabel value="Datos Contacto"></h:outputLabel></td>
+						</tr>
+					</table>					
+					<br/>
+					<table align="center">
+						<tr>
+							<td><h:outputLabel value="Movil"></h:outputLabel></td>
+							<td><h:inputText value="#{PersonaMB.persona.perVmovil}"></h:inputText></td>
+							<td width="200px"></td>	
+							<td><h:outputLabel value="Correo Electrónico"></h:outputLabel></td>
+							<td><h:inputText value="#{PersonaMB.persona.perVemail}"></h:inputText></td>							
+						</tr>						
+					</table>
+					<br/>
+					<table align="center">
+						<tr>
+							<td><h:outputLabel value="Adjuntar Hoja de Vida"></h:outputLabel></td>
+						</tr>
+						<tr>
+							<td><rich:fileUpload id="subirArchivo1" required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="jpg,bmp,png,pdf" ajaxSingle="true" maxFilesQuantity="10" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
+						</tr>												                   
+					</table>					
+					<br/><br/>
+					<table align="right">
+						<tr>
+							<td><h:commandButton action="#{PersonaMB.getGuardarPersona}" value="Guardar"/></td>
+							<td width="20px"></td>
+							<td><h:commandButton action="HOME_HV" value="Siguiente"/></td>						
+						</tr>
+					</table>
+					</h:form>					
+					</rich:tab>
+					<rich:tab label="Formación Académica">
+						<rich:extendedDataTable id="tablaFormacionesAcademicas" align="center" value="#{PersonaMB.formacionesAcademicas}" var="formacion" width="800px" height="200px">
+							<rich:column width="200px">
+								<f:facet name="header">
+									<h:outputLabel value="Tipo Estudio"></h:outputLabel>
+								</f:facet>
+								<h:outputLabel value="#{formacion.nacNidnivelac}"></h:outputLabel>
+							</rich:column>
+							<rich:column width="200px">
+								<f:facet name="header">
+									<h:outputLabel value="Institución"></h:outputLabel>
+								</f:facet>
+								<h:outputLabel value="#{formacion.insNidinstitucion}"></h:outputLabel>
+							</rich:column>
+							<rich:column width="100px">
+								<f:facet name="header">
+									<h:outputLabel value="Título"></h:outputLabel>
+								</f:facet>
+								<h:outputLabel value="#{formacion.forVtitulo}"></h:outputLabel>
+							</rich:column>						
+							<rich:column width="100px">
+								<f:facet name="header">
+									<h:outputLabel value="Fecha de Grado"></h:outputLabel>
+								</f:facet>
+								<h:outputLabel value="#{formacion.forDfecgrado}"></h:outputLabel>
+							</rich:column>								
+							<rich:column width="100px">
+								<f:facet name="header">
+									<h:outputLabel value="Modificar"></h:outputLabel>
+								</f:facet>
+								<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{formacion.forNidformacion}')">
+		                            <h:graphicImage url="../../imagenes/editar.png"/>
+		                        </a4j:commandLink>
+							</rich:column>		
+							<rich:column width="100px">
+								<f:facet name="header">
+									<h:outputLabel value="Eliminar"></h:outputLabel>
+								</f:facet>
+								<a4j:commandLink id="eliminar" onclick="procesarSolicitudEliminar('#{formacion.forNidformacion}')">
+		                            <h:graphicImage url="../../imagenes/Delete.png"/>
+		                        </a4j:commandLink>
+							</rich:column>												
+						</rich:extendedDataTable>
+				      	<a4j:form>
+							<a4j:jsFunction name="procesarSolicitudModificar" action="#{PersonaMB.getSeleccionarFormacion}" >
+					        	<a4j:actionparam name="p1" assignTo="#{PersonaMB.idFormacion}" />                
+							</a4j:jsFunction>
+						</a4j:form>	
+				      	<a4j:form>
+				            <a4j:jsFunction name="procesarSolicitudEliminar" action="#{PersonaMB.getBorrarFormacion}" >
+				                <a4j:actionparam name="p1" assignTo="#{PersonaMB.idFormacion}" />                
+			            	</a4j:jsFunction>
+			        	</a4j:form>	   
+						<br/>
+						<table align="center">
+							<tr>
+								<td><h:outputLabel value="Consolidado Soportes de Estudios"></h:outputLabel></td>
+							</tr>
+							<tr>
+								<td><rich:fileUpload id="subirArchivo2" required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="jpg,bmp,png,pdf" ajaxSingle="true" maxFilesQuantity="10" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+	                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
+							</tr>												                   
+						</table>					
+						<br/><br/>
+						<table align="right">
+							<tr>
+								<td><h:commandButton action="#{PersonaMB.getGuardarFormacion}" value="Guardar"/></td>
+								<td width="20px"></td>
+								<td><h:commandButton action="HOME_HV" value="Siguiente"/></td>						
+							</tr>
+						</table>			        	     							
+					</rich:tab>
+					<rich:tab label="Experiencia Laboral">
+						<rich:extendedDataTable id="tablaExperienciaLaboral" align="center" value="#{PersonaMB.experienciaLaboral}" var="exp" width="800px" height="200px">
+							<rich:column width="200px">
+								<f:facet name="header">
+									<h:outputLabel value="Empresa"></h:outputLabel>
+								</f:facet>
+								<h:outputLabel value="#{exp.expVnomempresa}"></h:outputLabel>
+							</rich:column>
+							<rich:column width="200px">
+								<f:facet name="header">
+									<h:outputLabel value="Ciudad"></h:outputLabel>
+								</f:facet>
+								<h:outputLabel value="#{exp.munVidmunicipio}"></h:outputLabel>
+							</rich:column>
+							<rich:column width="100px">
+								<f:facet name="header">
+									<h:outputLabel value="Teléfono"></h:outputLabel>
+								</f:facet>
+								<h:outputLabel value="#{exp.expVtelempresa}"></h:outputLabel>
+							</rich:column>						
+							<rich:column width="100px">
+								<f:facet name="header">
+									<h:outputLabel value="Cargo"></h:outputLabel>
+								</f:facet>
+								<h:outputLabel value="#{exp.expVcargo}"></h:outputLabel>
+							</rich:column>
+							<rich:column width="100px">
+								<f:facet name="header">
+									<h:outputLabel value="Fecha Ingreso"></h:outputLabel>
+								</f:facet>
+								<h:outputLabel value="#{exp.expDfecingreso}"></h:outputLabel>
+							</rich:column>
+							<rich:column width="100px">
+								<f:facet name="header">
+									<h:outputLabel value="Fecha Retiro"></h:outputLabel>
+								</f:facet>
+								<h:outputLabel value="#{exp.expDfecretiro}"></h:outputLabel>
+							</rich:column>																								
+							<rich:column width="100px">
+								<f:facet name="header">
+									<h:outputLabel value="Modificar"></h:outputLabel>
+								</f:facet>
+								<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{exp.expNidexplaboral}')">
+		                            <h:graphicImage url="../../imagenes/editar.png"/>
+		                        </a4j:commandLink>
+							</rich:column>		
+							<rich:column width="100px">
+								<f:facet name="header">
+									<h:outputLabel value="Eliminar"></h:outputLabel>
+								</f:facet>
+								<a4j:commandLink id="eliminar" onclick="procesarSolicitudEliminar('#{exp.expNidexplaboral}')">
+		                            <h:graphicImage url="../../imagenes/Delete.png"/>
+		                        </a4j:commandLink>
+							</rich:column>												
+						</rich:extendedDataTable>
+				      	<a4j:form>
+							<a4j:jsFunction name="procesarSolicitudModificar" action="#{PersonaMB.getSeleccionarFormacion}" >
+					        	<a4j:actionparam name="p1" assignTo="#{PersonaMB.idFormacion}" />                
+							</a4j:jsFunction>
+						</a4j:form>	
+				      	<a4j:form>
+				            <a4j:jsFunction name="procesarSolicitudEliminar" action="#{PersonaMB.getBorrarFormacion}" >
+				                <a4j:actionparam name="p1" assignTo="#{PersonaMB.idFormacion}" />                
+			            	</a4j:jsFunction>
+			        	</a4j:form>	   
+						<br/>
+						<table align="center">
+							<tr>
+								<td><h:outputLabel value="Consolidado Certificaciones"></h:outputLabel></td>
+							</tr>
+							<tr>
+								<td><rich:fileUpload id="subirArchivo3" required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="jpg,bmp,png,pdf" ajaxSingle="true" maxFilesQuantity="10" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+	                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
+							</tr>												                   
+						</table>					
+						<br/><br/>
+						<table align="right">
+							<tr>
+								<td><h:commandButton action="#{PersonaMB.getGuardarFormacion}" value="Guardar"/></td>
+								<td width="20px"></td>
+								<td><h:commandButton action="HOME_HV" value="Siguiente"/></td>						
+							</tr>
+						</table>					
+					</rich:tab>
+					<rich:tab label="Perfíl Profesional">
+					
+					</rich:tab>
+					<rich:tab label="Soportes">
+					
+					</rich:tab>
+				</rich:tabPanel>
+			</rich:panel>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

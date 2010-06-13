@@ -10,7 +10,7 @@ import java.util.Date;
 public class GppPersona {
 
 	private Integer perNidpersona;
-	private String gppMunicipioMunVidmunicipio;
+	private String munVidmunicipio;
 	private String perVnombres;
 	private String perVapellidos;
 	private int tdcNidtipodoc;
@@ -38,13 +38,12 @@ public class GppPersona {
 		this.perNidpersona = perNidpersona;
 	}
 
-	public String getGppMunicipioMunVidmunicipio() {
-		return this.gppMunicipioMunVidmunicipio;
+	public String getMunVidmunicipio() {
+		return munVidmunicipio;
 	}
 
-	public void setGppMunicipioMunVidmunicipio(
-			String gppMunicipioMunVidmunicipio) {
-		this.gppMunicipioMunVidmunicipio = gppMunicipioMunVidmunicipio;
+	public void setMunVidmunicipio(String munVidmunicipio) {
+		this.munVidmunicipio = munVidmunicipio;
 	}
 
 	public String getPerVnombres() {
@@ -174,5 +173,4 @@ public class GppPersona {
 	public void setPerDfecmodifica(Date perDfecmodifica) {
 		this.perDfecmodifica = perDfecmodifica;
 	}
-
 }

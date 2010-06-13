@@ -70,6 +70,42 @@
         <managed-bean-class>co.com.inascol.atenea.managed.bean.EstadocivilMB</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+	<managed-bean>
+        <managed-bean-name>PersonaMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.PersonaMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	<navigation-rule>
@@ -263,7 +299,7 @@
 			<to-view-id>/web/faces/admin/tituloequivalente_crear.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
-	</navigation-rule>		
+	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -360,4 +396,20 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>HOME_HV</from-outcome>
+			<to-view-id>/web/faces/hv/hv_home.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
+	<navigation-rule>
+		<from-view-id>/web/faces/hv/hv_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>CREAR_HV</from-outcome>
+			<to-view-id>/web/faces/hv/hv_crear.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>
