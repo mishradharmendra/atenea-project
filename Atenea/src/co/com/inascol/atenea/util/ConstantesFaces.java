@@ -50,4 +50,66 @@ public class ConstantesFaces {
 	public static final String DETALLE_ESTADOCIVIL = "DETALLE_ESTADOCIVIL";
 	public static final String CREAR_ESTADOCIVIL = "CREAR_ESTADOCIVIL";
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static final String HOME_HV = "HOME_HV";
+	public static final String CREAR_HV = "CREAR_HV";
+	
 }
