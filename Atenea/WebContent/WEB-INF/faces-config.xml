@@ -71,43 +71,25 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 	<managed-bean>
+        <managed-bean-name>ParametrizacionMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.ParametrizacionMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+	<managed-bean>
         <managed-bean-name>PersonaMB</managed-bean-name>
         <managed-bean-class>co.com.inascol.atenea.managed.bean.PersonaMB</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<managed-bean>
+        <managed-bean-name>ServicioMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.ServicioMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>      
+	<managed-bean>
+        <managed-bean-name>RolMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.RolMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>      
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -399,6 +381,30 @@
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
+			<from-outcome>HOME_PARAMETRIZACION</from-outcome>
+			<to-view-id>/web/faces/admin/parametrizacion_home.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/parametrizacion_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>DETALLE_PARAMETRIZACION</from-outcome>
+			<to-view-id>/web/faces/admin/parametrizacion_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/parametrizacion_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>CREAR_PARAMETRIZACION</from-outcome>
+			<to-view-id>/web/faces/admin/parametrizacion_crear.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
 			<from-outcome>HOME_HV</from-outcome>
 			<to-view-id>/web/faces/hv/hv_home.jsf</to-view-id>
 			<redirect/>
@@ -412,4 +418,52 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>HOME_SERVICIO</from-outcome>
+			<to-view-id>/web/faces/admin/servicio_home.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/servicio_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>DETALLE_SERVICIO</from-outcome>
+			<to-view-id>/web/faces/admin/servicio_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/servicio_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>CREAR_SERVICIO</from-outcome>
+			<to-view-id>/web/faces/admin/servicio_crear.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>HOME_ROL</from-outcome>
+			<to-view-id>/web/faces/admin/rol_home.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/rol_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>DETALLE_ROL</from-outcome>
+			<to-view-id>/web/faces/admin/servicio_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/rol_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>CREAR_ROL</from-outcome>
+			<to-view-id>/web/faces/admin/rol_crear.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
 </faces-config>
