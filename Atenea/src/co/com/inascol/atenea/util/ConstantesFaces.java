@@ -50,66 +50,20 @@ public class ConstantesFaces {
 	public static final String DETALLE_ESTADOCIVIL = "DETALLE_ESTADOCIVIL";
 	public static final String CREAR_ESTADOCIVIL = "CREAR_ESTADOCIVIL";
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public static final String HOME_PARAMETRIZACION = "HOME_PARAMETRIZACION";
+	public static final String DETALLE_PARAMETRIZACION = "DETALLE_PARAMETRIZACION";
+	public static final String CREAR_PARAMETRIZACION = "CREAR_PARAMETRIZACION";
 	
 	public static final String HOME_HV = "HOME_HV";
 	public static final String CREAR_HV = "CREAR_HV";
+	
+	public static final String HOME_SERVICIO = "HOME_SERVICIO";
+	public static final String DETALLE_SERVICIO = "DETALLE_SERVICIO";
+	public static final String CREAR_SERVICIO = "CREAR_SERVICIO";
+	
+	public static final String HOME_ROL = "HOME_ROL";
+	public static final String DETALLE_ROL = "DETALLE_ROL";
+	public static final String CREAR_ROL = "CREAR_ROL";
+	
 	
 }
