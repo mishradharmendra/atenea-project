@@ -16,4 +16,5 @@ public interface IFormacionService {
 	public boolean borrarFormacion(Integer idFormacion);
 	public GppFormacion buscarFormacionPorId(Integer idFormacion);
 	public List<Object> buscarFormaciones();
+	public List<Object> buscarFormacionPersona(Integer idPersona);
 }

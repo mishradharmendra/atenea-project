@@ -10,10 +10,10 @@
 	<ui:composition template="../template.xhtml">
 		<ui:define name="encabezado">
 			<table width="940">
-				<tr>
+				<tr><h:inputTextarea></h:inputTextarea>
 					<td height="20" valign="middle" bgcolor="#0093DD" class="PrimerNivel" align="right">
 					<table border="0" align="right" cellpadding="0" cellspacing="0" class="PrimerNivel">
-						<tr>
+						<tr><rich:message for="tdcNidtipodoc" />
 							<td width="10">&nbsp;</td>
 							<td><h:outputLink value="" rendered="true">
 								<img src="../web/imagenes/home.png" alt="Salir" title="Salir" width="16" height="16" border="0" />

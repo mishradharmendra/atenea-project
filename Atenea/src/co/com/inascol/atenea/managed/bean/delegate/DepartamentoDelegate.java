@@ -11,26 +11,26 @@ import co.com.inascol.atenea.logic.interfaces.IDepartamentoService;
 public class DepartamentoDelegate {
 
 	private IDepartamentoService departamentoService;
-	private List departamentos;
+	private List<Object> departamentos;
 	private GppDepartamento departamento;
 	
 	public DepartamentoDelegate(){}
 	
-	public List getListaDeptos(){
+	public List<Object> getListaDeptos(){
 		departamentoService = new DepartamentoService();
 		departamentos = departamentoService.buscarDepartamentos();
 		return departamentos;
 	}
 	
-	public List getDeptoPorNombre(String nombreDepto){
+	public List<Object> getDeptoPorNombre(String nombreDepto){
 		departamentoService = new DepartamentoService();
 		departamentos = departamentoService.buscarDepartamentos();		
-		List departamentosConsultados = new ArrayList();
+		List<Object> departamentosConsultados = new ArrayList();
 		if(departamentos.size()>0){
 			if(nombreDepto.equalsIgnoreCase("")){
 				departamentosConsultados = departamentos;
 			} else {
-				Iterator it = departamentos.iterator();
+				Iterator<Object> it = departamentos.iterator();
 				while(it.hasNext()){
 					departamento = (GppDepartamento) it.next();
 					if(departamento.getDptVdepto().equalsIgnoreCase(nombreDepto)){
@@ -47,7 +47,7 @@ public class DepartamentoDelegate {
 		departamentoService = new DepartamentoService();
 		departamentos = departamentoService.buscarDepartamentos();
 		if(departamentos.size()>0){
-			Iterator it = departamentos.iterator();
+			Iterator<Object> it = departamentos.iterator();
 			while(it.hasNext()){
 				departamento = (GppDepartamento) it.next();
 				if(departamento.getDptViddepto().equalsIgnoreCase(idDepto)){

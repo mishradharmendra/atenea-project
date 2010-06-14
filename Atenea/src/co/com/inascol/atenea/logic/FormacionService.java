@@ -109,4 +109,15 @@ public class FormacionService implements IFormacionService{
 		}
 		return estadoOperacion;
 	}
+
+	public List<Object> buscarFormacionPersona(Integer idPersona) {
+		gppFormaciones = null;
+		try{			
+			gppFormacionDAO = new GppFormacionDAO();
+			gppFormaciones = gppFormacionDAO.buscarFormacionesPersona(idPersona);
+		} catch (Exception ex){
+			ex.printStackTrace();
+		}
+		return gppFormaciones;
+	}
 }

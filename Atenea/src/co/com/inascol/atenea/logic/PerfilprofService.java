@@ -101,4 +101,15 @@ public class PerfilprofService implements IPerfilprofService{
 		}
 		return estadoOperacion;	
 	}
+
+	public GppPerfilprof buscarPerfilProfesionarPersona(Integer idPersona) {
+		gppPerfilprof = null;
+		try{
+			gppPerfilproDAO = new GppPerfilproDAO();
+			gppPerfilprof = (GppPerfilprof) gppPerfilproDAO.buscarPerfilPersona(idPersona);
+		} catch (Exception ex){
+			ex.printStackTrace();
+		}
+		return gppPerfilprof;
+	}		
 }
