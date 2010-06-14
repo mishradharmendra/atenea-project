@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
+	  xmlns:a4j="http://richfaces.org/a4j">
+<body>
+	<ui:composition template="../../template.xhtml">
+		<ui:define name="cuerpo">
+			<rich:panel>
+				<table align="left">
+					<tr>
+						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> ROLES"></h:outputLabel></td>
+					</tr>
+				</table>
+				<br/><br/>	
+				<h:form>
+				<h:outputLabel value="AGREGAR ROL"></h:outputLabel>
+				<br/><br/>					
+				<table>
+					<tr>
+						<td><h:outputLabel value="Nombre: "></h:outputLabel></td>
+						<td><h:inputText value="#{RolMB.nombreRol}"></h:inputText></td>					
+						<td width="100px"></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Descripcion: "></h:outputLabel></td>
+						<td><h:inputTextarea value="#{RolMB.descripcionRol}" size="50"></h:inputTextarea></td>					
+						<td width="100px"></td>
+					</tr>									
+				</table>
+				<br/>				
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{RolMB.getCrearRol}" value="Aceptar"/></td>
+						<td width="20px"></td>
+						<td><h:commandButton action="#{RolMB.getCancelar}" value="Cancelar"/></td>
+					</tr>
+				</table>
+				</h:form>	
+				<br/><br/>
+				<h:form>	
+				<rich:extendedDataTable id="tablaServicioRol" value="#{RolMB.servicios}" var="servicio" width="900px" height="300px">
+					<rich:column width="100px">
+						<f:facet name="header">
+							<h:outputLabel value="Activar"></h:outputLabel>
+						</f:facet>
+						<h:selectBooleanCheckbox id="id_#{servicio.serNidservicio}"></h:selectBooleanCheckbox>
+					</rich:column>				
+					<rich:column width="300px">
+						<f:facet name="header">
+							<h:outputLabel value="Nombre Servicio"></h:outputLabel>
+						</f:facet>
+						<h:outputLabel value="#{servicio.serVnombre}"></h:outputLabel>
+					</rich:column>
+					<rich:column width="300px">
+						<f:facet name="header">
+							<h:outputLabel value="Ruta"></h:outputLabel>
+						</f:facet>
+						<h:outputLabel value="#{servicio.serVruta}"></h:outputLabel>
+					</rich:column>														
+				</rich:extendedDataTable>
+				<h:inputHidden id="functioncheck" validator="#{RolMB.validateFunctions}" value="needed"/>
+				</h:form>					
+			</rich:panel>																
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
