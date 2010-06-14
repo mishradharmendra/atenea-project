@@ -158,4 +158,17 @@ public class GppFormacionDAO implements DAO{
 		} 
 		return estadoOperation;
 	}
+	
+	public List<Object> buscarFormacionesPersona(Object idObj){
+		gppFormaciones = null;
+		try{
+			gppFormacionRowMapper = new GppFormacionRowMapper();
+			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
+			sentenciaSQL = "select * from gpp_formacion where per_nidpersona = ? order by for_nidformacion asc";
+			gppFormaciones = (List) jdbcTemplate.query(sentenciaSQL, new Object[] {idObj}, gppFormacionRowMapper);
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return gppFormaciones;	
+	}
 }

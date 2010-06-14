@@ -79,7 +79,22 @@
         <managed-bean-name>PersonaMB</managed-bean-name>
         <managed-bean-class>co.com.inascol.atenea.managed.bean.PersonaMB</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>    
+    </managed-bean>
+	<managed-bean>
+        <managed-bean-name>FormacionMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.FormacionMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>  
+	<managed-bean>
+        <managed-bean-name>ExperienciaMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.ExperienciaMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>       
+	<managed-bean>
+        <managed-bean-name>PerfilprofesionalMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.PerfilprofesionalMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>              
 	<managed-bean>
         <managed-bean-name>ServicioMB</managed-bean-name>
         <managed-bean-class>co.com.inascol.atenea.managed.bean.ServicioMB</managed-bean-class>
@@ -411,13 +426,45 @@
 		</navigation-case>
 	</navigation-rule>	
 	<navigation-rule>
-		<from-view-id>/web/faces/hv/hv_home.xhtml</from-view-id>
+		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>CREAR_HV</from-outcome>
 			<to-view-id>/web/faces/hv/hv_crear.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/hv/hv_crear.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>CREAR_FORMACION</from-outcome>
+			<to-view-id>/web/faces/hv/formacion_crear.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/hv/hv_crear.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>MODIFICAR_FORMACION</from-outcome>
+			<to-view-id>/web/faces/hv/formacion_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/hv/hv_crear.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>CREAR_EXPERIENCIA</from-outcome>
+			<to-view-id>/web/faces/hv/experiencia_crear.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/hv/hv_crear.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>MODIFICAR_EXPERIENCIA</from-outcome>
+			<to-view-id>/web/faces/hv/experiencia_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>	
+	</navigation-rule>	
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>

@@ -12,5 +12,6 @@ public interface IPerfilprofService {
 												String motoresBD, Integer idPerfilEquivalente, Integer idPersona, Integer idIdioma1, Integer idIdioma2);
 	public boolean borrarPerfilProfesional(Integer idPerfilProfesional);
 	public GppPerfilprof buscarPerfilProfesionarlPorId(Integer idPerfilProfesional);
-	public List<Object> buscarPerfilesProfesionales(); 
+	public List<Object> buscarPerfilesProfesionales();
+	public GppPerfilprof buscarPerfilProfesionarPersona(Integer idPersona);
 }

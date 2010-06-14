@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
+	  xmlns:a4j="http://richfaces.org/a4j">
+<body>
+	<ui:composition template="../../template.xhtml">
+		<ui:define name="cuerpo">
+			<rich:panel>
+				<script type="text/javascript" src="../../swf/calendario.js"></script>
+				<table>
+					<tr>
+						<td><h:outputLabel value="Formación Académica #{PersonaMB.persona.perVnombres}"></h:outputLabel></td>
+					</tr>
+				</table>
+				<br/>
+				<h:form>
+				<table align="center">
+					<tr>
+						<td><h:outputLabel value="Título Obtenido"></h:outputLabel></td>
+						<td><h:inputText id="forVtitulo" value="#{FormacionMB.formacion.forVtitulo}" required="true" requiredMessage="Ingrese Título Obtenido"></h:inputText></td>
+						<td width="200px"></td>			
+						<td><h:outputLabel value="Nivel Académico"></h:outputLabel></td>
+						<td><h:selectOneMenu value="#{FormacionMB.formacion.nacNidnivelac}" id="nacNidnivelac" required="true" requiredMessage="Ingrese Nivel Académico">
+							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
+							<f:selectItems value="#{FormacionMB.nivelesAcademicos}"/>
+						</h:selectOneMenu></td>							
+					</tr>
+					<tr>
+						<td align="center" colspan="2"><rich:message for="forVtitulo" style="color:red"/></td>
+						<td width="200px"></td>			
+						<td align="center" colspan="2"><rich:message for="nacNidnivelac" style="color:red"/></td>							
+					</tr>						
+					<tr>
+						<td><h:outputLabel value="Institución"></h:outputLabel></td>
+						<td><h:selectOneMenu value="#{FormacionMB.formacion.insNidinstitucion}" id="insNidinstitucion" required="true" requiredMessage="Ingrese Institución">
+							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
+							<f:selectItems value="#{FormacionMB.instituciones}"/>
+						</h:selectOneMenu></td>
+						<td width="200px"></td>			
+						<td><h:outputLabel value="Fecha de Grado"></h:outputLabel></td>
+						<td><rich:calendar value="#{FormacionMB.formacion.forDfecgrado}" datePattern="dd/MM/yyyy" id="forDfecgrado" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Grado"/></td>							
+					</tr>		
+					<tr>
+						<td align="center" colspan="2"><rich:message for="insNidinstitucion" style="color:red"/></td>
+						<td width="200px"></td>	
+						<td align="center" colspan="2"><rich:message for="forDfecgrado" style="color:red"/></td>							
+					</tr>							
+					<tr>
+						<td><h:outputLabel value="Título Equivalente"></h:outputLabel></td>
+						<td><h:selectOneMenu id="teqNidtituloeq" value="#{FormacionMB.formacion.teqNidtituloeq}" required="true" requiredMessage="Ingrese Título Equivalente">
+							<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
+							<f:selectItems value="#{FormacionMB.titulosEquivalentes}"/>
+						</h:selectOneMenu></td>
+						<td width="200px"></td>			
+						<td><h:outputLabel value="Duración (Años)"></h:outputLabel></td>
+						<td><h:selectOneMenu id="forNduracionmes" value="#{FormacionMB.formacion.forNduracionmes}" required="true" requiredMessage="Ingrese Duración">
+							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
+							<f:selectItems value="#{FormacionMB.duraciones}"/>
+						</h:selectOneMenu></td>						
+					</tr>		
+					<tr>
+						<td align="center" colspan="2"><rich:message for="teqNidtituloeq" style="color:red"/></td>
+						<td width="200px"></td>	
+						<td align="center" colspan="2"><rich:message for="forNduracionmes" style="color:red"/></td>							
+					</tr>													
+					<tr>
+						<td><h:outputLabel value="Tarjeta Profesional"></h:outputLabel></td>
+						<td><h:inputText value="#{FormacionMB.formacion.forVtarjetaprof}" required="true" requiredMessage="Ingrese Tarjeta Profesional"></h:inputText></td>
+						<td width="200px"></td>			
+						<td><h:outputLabel value="Fecha de Expedición"></h:outputLabel></td>
+						<td><rich:calendar value="#{FormacionMB.formacion.forDfectarjeta}" datePattern="dd/MM/yyyy" id="forDfectarjeta" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Expedición"/></td>						
+					</tr>	
+					<tr>
+						<td align="center" colspan="2"><rich:message for="forVtarjetaprof" style="color:red"/></td>				
+						<td width="200px"></td>	
+						<td align="center" colspan="2"><rich:message for="forDfectarjeta" style="color:red"/></td>							
+					</tr>													
+				</table>
+				<br/>
+				<table align="center">
+					<tr>
+						<td align="center"><h:outputLabel value="Diploma"></h:outputLabel></td>
+						<td width="200px"></td>	
+						<td align="center"><h:outputLabel value="Acta de Grado"></h:outputLabel></td>							
+					</tr>				
+					<tr>
+						<td><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirDiploma}" acceptedTypes="jpg,bmp,png,pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
+						<td width="200px"></td>	
+						<td><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirActaGrado}" acceptedTypes="jpg,bmp,png,pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
+					</tr>																																																							
+				</table>
+				<br/><br/>
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{FormacionMB.getGuardarFormacion}" value="Guardar"/></td>
+						<td width="20px"></td>
+						<td><h:commandButton action="#{FormacionMB.getCancelar}" value="Cancelar"/></td>						 					
+					</tr>
+				</table>
+				</h:form>					
+			</rich:panel>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

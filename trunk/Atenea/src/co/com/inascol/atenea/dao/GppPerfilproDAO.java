@@ -143,4 +143,17 @@ public class GppPerfilproDAO implements DAO{
 		} 
 		return estadoOperation;
 	}
+	
+	public GppPerfilprof buscarPerfilPersona(Object idObj){
+		gppPerfilprof = null;
+		try{
+			gppPerfilprofRowMapper = new GppPerfilprofRowMapper();
+			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
+			sentenciaSQL = "select * from gpp_perfilprof where per_nidpersona = ?";
+			gppPerfilprof = (GppPerfilprof) jdbcTemplate.queryForObject(sentenciaSQL, new Object[] {idObj}, gppPerfilprofRowMapper);
+		} catch (Exception ex){
+			ex.printStackTrace();
+		}
+		return gppPerfilprof;
+	}
 }

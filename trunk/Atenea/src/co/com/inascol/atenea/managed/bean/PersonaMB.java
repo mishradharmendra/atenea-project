@@ -1,10 +1,5 @@
 package co.com.inascol.atenea.managed.bean;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -40,9 +35,7 @@ public class PersonaMB {
 	
 	public PersonaMB(){
 		personaDelegate = new PersonaDelegate();
-		personas = personaDelegate.getListaPersonas();
-		formacionesAcademicas = personaDelegate.getListaFormaciones();
-		experienciaLaboral = personaDelegate.getListaExperiencia();
+		persona = new GppPersona();
 	}
 
 	public Integer getIdPersona() {
@@ -106,69 +99,43 @@ public class PersonaMB {
 		this.experienciaLaboral = experienciaLaboral;
 	}
 
-	public List<SelectItem> getPaises(){
-		List<SelectItem> listadoPaises = new ArrayList<SelectItem>();
-		List<Object> paises = personaDelegate.getListaPaises();
-		if(paises.size()>0){
-			Iterator<Object> it = paises.iterator();
-			while(it.hasNext()){
-				GppPais gppPais = (GppPais) it.next();
-				listadoPaises.add(new SelectItem(gppPais.getPaiVidpais(),gppPais.getPaiVpais()));
-			}
-        }
-		return listadoPaises;
-	}
-
 	public List<SelectItem> getTiposIdentificacion(){
-		List<SelectItem> listadoPaises = new ArrayList<SelectItem>();
+		List<SelectItem> listadoTipos = new ArrayList<SelectItem>();
 		List<Object> tiposIdentificacion = personaDelegate.getListaTipoIndentificacion();
 		if(tiposIdentificacion.size()>0){
 			Iterator<Object> it = tiposIdentificacion.iterator();
 			while(it.hasNext()){
 				GppTipodoc gTipodoc = (GppTipodoc) it.next();
-				listadoPaises.add(new SelectItem(gTipodoc.getTdcNidtipodoc(),gTipodoc.getTdcVnombre()));
+				listadoTipos.add(new SelectItem(gTipodoc.getTdcNidtipodoc(),gTipodoc.getTdcVnombre()));
 			}
         }
-		return listadoPaises;
+		return listadoTipos;
 	}	
 	
 	public List<SelectItem> getEstadosCiviles(){
-		List<SelectItem> listadoPaises = new ArrayList<SelectItem>();
+		List<SelectItem> listadoEstadosCiviles = new ArrayList<SelectItem>();
 		List<Object> estadosCivilces = personaDelegate.getListaEstadosCiviles();
 		if(estadosCivilces.size()>0){
 			Iterator<Object> it = estadosCivilces.iterator();
 			while(it.hasNext()){
 				GppEstadocivil gppEstadocivil = (GppEstadocivil) it.next();
-				listadoPaises.add(new SelectItem(gppEstadocivil.getEscNidestadocivil(),gppEstadocivil.getEscVestadocivil()));
+				listadoEstadosCiviles.add(new SelectItem(gppEstadocivil.getEscNidestadocivil(),gppEstadocivil.getEscVestadocivil()));
 			}
         }
-		return listadoPaises;
-	}	
-
-	public List<SelectItem> getDepartamentos(){
-		List<SelectItem> listadoPaises = new ArrayList<SelectItem>();
-		List<Object> deptos = personaDelegate.getListaDepartamentos();
-		if(deptos.size()>0){
-			Iterator<Object> it = deptos.iterator();
-			while(it.hasNext()){
-				GppDepartamento gppDepartamento = (GppDepartamento) it.next();
-				listadoPaises.add(new SelectItem(gppDepartamento.getDptViddepto(),gppDepartamento.getDptVdepto()));
-			}
-        }
-		return listadoPaises;
+		return listadoEstadosCiviles;
 	}	
 	
 	public List<SelectItem> getMunicipios(){
-		List<SelectItem> listadoPaises = new ArrayList<SelectItem>();
+		List<SelectItem> listadoMunicipios = new ArrayList<SelectItem>();
 		List<Object> mpios = personaDelegate.getListaMunicipios();
 		if(mpios.size()>0){
 			Iterator<Object> it = mpios.iterator();
 			while(it.hasNext()){
 				GppMunicipio gppMunicipio = (GppMunicipio) it.next();
-				listadoPaises.add(new SelectItem(gppMunicipio.getMunVidmunicipio(),gppMunicipio.getMunVmunicipio()));
+				listadoMunicipios.add(new SelectItem(gppMunicipio.getMunVidmunicipio(),gppMunicipio.getMunVmunicipio()));
 			}
         }
-		return listadoPaises;
+		return listadoMunicipios;
 	}		
 	
 	public String getBuscarPersona(){
@@ -182,8 +149,7 @@ public class PersonaMB {
 	}
 	
 	public String getAgregarHojaVida(){
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
-		persona = new GppPersona();
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");		
 		return ConstantesFaces.CREAR_HV;
 	}
 
@@ -191,16 +157,9 @@ public class PersonaMB {
     	personaDelegate.getSubirDocumentoHojaVida(event);
     }
 		
-	public void getGuardarPersona(){
+	public String getGuardarPersona(){
 		personaDelegate.getGuardarPersona(persona);
 		idPersona = ( (GppPersona) personaDelegate.getBuscarPersonaPorCedula(persona.getPerNidentificacion()) ).getPerNidpersona();
-	}
-	
-	public void getBorrarFormacion(){
-		
-	}
-	
-	public void getSeleccionarFormacion(){
-		
+		return ConstantesFaces.CREAR_HV;
 	}
 }

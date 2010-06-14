@@ -15,7 +15,7 @@
 					<rich:tab label="Datos Personales">
 					<table>
 						<tr>
-							<td><h:outputLabel value="Datos Personales"></h:outputLabel></td>
+							<td><h:outputLabel value="Datos Personales #{PersonaMB.persona.perVnombres}"></h:outputLabel></td>
 						</tr>
 					</table>
 					<br/>
@@ -23,74 +23,69 @@
 					<table align="center">
 						<tr>
 							<td><h:outputLabel value="Nombres"></h:outputLabel></td>
-							<td><h:inputText value="#{PersonaMB.persona.perVnombres}" required="true" requiredMessage="Ingrese Nombres"></h:inputText></td>
+							<td><h:inputText id="perVnombres" value="#{PersonaMB.persona.perVnombres}" required="true" requiredMessage="Ingrese Nombres"></h:inputText></td>
 							<td width="200px"></td>			
 							<td><h:outputLabel value="Apellidos"></h:outputLabel></td>
-							<td><h:inputText value="#{PersonaMB.persona.perVapellidos}" required="true" requiredMessage="Ingrese Apellidos"></h:inputText></td>							
+							<td><h:inputText id="perVapellidos" value="#{PersonaMB.persona.perVapellidos}" required="true" requiredMessage="Ingrese Apellidos"></h:inputText></td>							
 						</tr>
 						<tr>
-							<td><rich:message for="perVnombres"/></td>
+							<td align="center" colspan="2"><rich:message for="perVnombres" style="color:red"/></td>
 							<td width="200px"></td>			
-							<td><rich:message for="perVapellidos"/></td>							
+							<td align="center" colspan="2"><rich:message for="perVapellidos" style="color:red"/></td>							
 						</tr>						
 						<tr>
 							<td><h:outputLabel value="Tipo de Identificación"></h:outputLabel></td>
-							<td><h:selectOneMenu value="#{PersonaMB.persona.tdcNidtipodoc}">
+							<td><h:selectOneMenu value="#{PersonaMB.persona.tdcNidtipodoc}" id="tdcNidtipodoc" required="true" requiredMessage="Ingrese Tipo de Identificación">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.tiposIdentificacion}"/>
 							</h:selectOneMenu></td>
 							<td width="200px"></td>			
-							<td><h:outputLabel value="Identificación" required="true" requiredMessage="Ingrese Identificación"></h:outputLabel></td>
-							<td><h:inputText value="#{PersonaMB.persona.perNidentificacion}"></h:inputText></td>							
+							<td><h:outputLabel value="Identificación"></h:outputLabel></td>
+							<td><h:inputText id="perNidentificacion" value="#{PersonaMB.persona.perNidentificacion}" required="true" requiredMessage="Ingrese Identificación"></h:inputText></td>							
 						</tr>		
 						<tr>
-							<td><rich:message for="perNidentificacion"/></td>							
+							<td align="center" colspan="2"><rich:message for="tdcNidtipodoc" style="color:red"/></td>
+							<td width="200px"></td>	
+							<td align="center" colspan="2"><rich:message for="perNidentificacion" style="color:red"/></td>							
 						</tr>							
 						<tr>
 							<td><h:outputLabel value="Sexo"></h:outputLabel></td>
-							<td><h:selectOneMenu value="#{PersonaMB.persona.perVsexo}">
+							<td><h:selectOneMenu id="perVsexo" value="#{PersonaMB.persona.perVsexo}" required="true" requiredMessage="Ingrese Sexo">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
 								<f:selectItem itemValue="H" itemLabel="Hombre"/>
 								<f:selectItem itemValue="M" itemLabel="Mujer"/>
 							</h:selectOneMenu></td>
 							<td width="200px"></td>			
 							<td><h:outputLabel value="Estado Civil"></h:outputLabel></td>
-							<td><h:selectOneMenu value="#{PersonaMB.persona.escNidestadocivil}">
+							<td><h:selectOneMenu id="escNidestadocivil" value="#{PersonaMB.persona.escNidestadocivil}" required="true" requiredMessage="Ingrese Estado Civil">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.estadosCiviles}"/>
 							</h:selectOneMenu></td>						
-						</tr>								
+						</tr>		
+						<tr>
+							<td align="center" colspan="2"><rich:message for="perVsexo" style="color:red"/></td>
+							<td width="200px"></td>	
+							<td align="center" colspan="2"><rich:message for="escNidestadocivil" style="color:red"/></td>							
+						</tr>													
 						<tr>
 							<td><h:outputLabel value="Fecha de Nacimiento"></h:outputLabel></td>
-							<td><rich:calendar value="#{PersonaMB.persona.perDfecnacimiento}" datePattern="dd/MM/yyyy" id="perDfecnacimiento" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Nacimiento"/></td>
+							<td><rich:calendar value="#{PersonaMB.persona.perDfecnacimiento}" datePattern="dd/MM/yyyy" id="perDfecnacimiento" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll"/></td>
 							<td width="200px"></td>			
-							<td><h:outputLabel value="País"></h:outputLabel></td>
-							<td><h:selectOneMenu value="">
+							<td><h:outputLabel value="Municipio"></h:outputLabel></td>
+							<td><h:selectOneMenu id="munVidmunicipio" value="#{PersonaMB.persona.munVidmunicipio}" required="true" requiredMessage="Ingrese Municipio">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
-								<f:selectItems value="#{PersonaMB.paises}"/>
+								<f:selectItems value="#{PersonaMB.municipios}"/>
 							</h:selectOneMenu></td>						
 						</tr>	
 						<tr>
-							<td><rich:message for="perDfecnacimiento"/></td>				
-						</tr>							
+							<td colspan="2"/>
+							<td width="200px"></td>	
+							<td align="center" colspan="2"><rich:message for="munVidmunicipio" style="color:red"/></td>							
+						</tr>													
 						<tr>
-							<td><h:outputLabel value="Departamento"></h:outputLabel></td>
-							<td><h:selectOneMenu value="">
-								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
-								<f:selectItems value="#{PersonaMB.departamentos}"/>
-							</h:selectOneMenu></td>
-							<td width="200px"></td>			
-							<td><h:outputLabel value="Municipio"></h:outputLabel></td>
-							<td><h:selectOneMenu value="#{PersonaMB.persona.munVidmunicipio}">
-								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
-								<f:selectItems value="#{PersonaMB.municipios}"/>
-							</h:selectOneMenu></td>					
-						</tr>	
-						<tr>
-							<td><rich:message for="departamentos"/></td>
-							<td width="200px"></td>			
-							<td><rich:message for="municipios"/></td>							
-						</tr>																															
+							<td><h:outputLabel value="Libreta Militar"></h:outputLabel></td>
+							<td><h:inputText value="#{PersonaMB.persona.perVlibretamilitar}"></h:inputText></td>
+						</tr>																																																	
 					</table>
 					<br/><br/>
 					<table>
@@ -102,11 +97,18 @@
 					<table align="center">
 						<tr>
 							<td><h:outputLabel value="Movil"></h:outputLabel></td>
-							<td><h:inputText value="#{PersonaMB.persona.perVmovil}"></h:inputText></td>
+							<td><h:inputText id="perVmovil" value="#{PersonaMB.persona.perVmovil}"></h:inputText></td>
 							<td width="200px"></td>	
 							<td><h:outputLabel value="Correo Electrónico"></h:outputLabel></td>
-							<td><h:inputText value="#{PersonaMB.persona.perVemail}"></h:inputText></td>							
-						</tr>						
+							<td><h:inputText id="perVemail" value="#{PersonaMB.persona.perVemail}"></h:inputText></td>							
+						</tr>								
+						<tr>
+							<td><h:outputLabel value="Teléfono Fijo"></h:outputLabel></td>
+							<td><h:inputText id="perVtelefono" value="#{PersonaMB.persona.perVtelefono}"></h:inputText></td>
+							<td width="200px"></td>	
+							<td><h:outputLabel value="Dirección"></h:outputLabel></td>
+							<td><h:inputText id="perVdireccion" value="#{PersonaMB.persona.perVdireccion}"></h:inputText></td>							
+						</tr>																	
 					</table>
 					<br/>
 					<table align="center">
@@ -114,22 +116,27 @@
 							<td><h:outputLabel value="Adjuntar Hoja de Vida"></h:outputLabel></td>
 						</tr>
 						<tr>
-							<td><rich:fileUpload id="subirArchivo1" required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="jpg,bmp,png,pdf" ajaxSingle="true" maxFilesQuantity="10" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+							<td><rich:fileUpload required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="jpg,bmp,png,pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
                           		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 						</tr>												                   
 					</table>					
 					<br/><br/>
 					<table align="right">
 						<tr>
-							<td><h:commandButton action="#{PersonaMB.getGuardarPersona}" value="Guardar"/></td>
-							<td width="20px"></td>
-							<td><h:commandButton action="HOME_HV" value="Siguiente"/></td>						
+							<td><h:commandButton action="#{PersonaMB.getGuardarPersona}" value="Guardar"/></td>					
 						</tr>
 					</table>
 					</h:form>					
 					</rich:tab>
 					<rich:tab label="Formación Académica">
-						<rich:extendedDataTable id="tablaFormacionesAcademicas" align="center" value="#{PersonaMB.formacionesAcademicas}" var="formacion" width="800px" height="200px">
+						<table>
+							<tr>
+								<td><h:outputLabel value="Formación Académica #{PersonaMB.persona.perVnombres}"></h:outputLabel></td>
+							</tr>
+						</table>				
+						<br/><br/>	
+						<h:form>
+						<rich:extendedDataTable id="tablaFormacionesAcademicas" align="center" value="#{FormacionMB.formacionesAcademicas}" var="formacion" width="800px" height="200px">
 							<rich:column width="200px">
 								<f:facet name="header">
 									<h:outputLabel value="Tipo Estudio"></h:outputLabel>
@@ -172,36 +179,42 @@
 							</rich:column>												
 						</rich:extendedDataTable>
 				      	<a4j:form>
-							<a4j:jsFunction name="procesarSolicitudModificar" action="#{PersonaMB.getSeleccionarFormacion}" >
-					        	<a4j:actionparam name="p1" assignTo="#{PersonaMB.idFormacion}" />                
+							<a4j:jsFunction name="procesarSolicitudModificarFormacion" action="#{FormacionMB.getSeleccionarFormacion}" >
+					        	<a4j:actionparam name="p1" assignTo="#{FormacionMB.idFormacion}" />                
 							</a4j:jsFunction>
 						</a4j:form>	
 				      	<a4j:form>
-				            <a4j:jsFunction name="procesarSolicitudEliminar" action="#{PersonaMB.getBorrarFormacion}" >
-				                <a4j:actionparam name="p1" assignTo="#{PersonaMB.idFormacion}" />                
+				            <a4j:jsFunction name="procesarSolicitudEliminarFormacion" action="#{FormacionMB.getBorrarFormacion}" >
+				                <a4j:actionparam name="p1" assignTo="#{FormacionMB.idFormacion}" />                
 			            	</a4j:jsFunction>
 			        	</a4j:form>	   
 						<br/>
 						<table align="center">
 							<tr>
+								<td><h:commandButton action="#{FormacionMB.getAgregarFormacion}" value="Agregar Estudio"/></td>
+							</tr>
+						</table>			
+						<br/>		
+						<table align="center">
+							<tr>
 								<td><h:outputLabel value="Consolidado Soportes de Estudios"></h:outputLabel></td>
 							</tr>
 							<tr>
-								<td><rich:fileUpload id="subirArchivo2" required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="jpg,bmp,png,pdf" ajaxSingle="true" maxFilesQuantity="10" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+								<td><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirSoportesAcademicos}" acceptedTypes="jpg,bmp,png,pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 	                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 							</tr>												                   
-						</table>					
-						<br/><br/>
-						<table align="right">
-							<tr>
-								<td><h:commandButton action="#{PersonaMB.getGuardarFormacion}" value="Guardar"/></td>
-								<td width="20px"></td>
-								<td><h:commandButton action="HOME_HV" value="Siguiente"/></td>						
-							</tr>
-						</table>			        	     							
+						</table>										
+						</h:form>	        	     							
 					</rich:tab>
 					<rich:tab label="Experiencia Laboral">
-						<rich:extendedDataTable id="tablaExperienciaLaboral" align="center" value="#{PersonaMB.experienciaLaboral}" var="exp" width="800px" height="200px">
+						<table>
+							<tr>
+								<td><h:outputLabel value="Experiencia Laboral #{PersonaMB.persona.perVnombres}"></h:outputLabel></td>
+							</tr>
+						</table>				
+						<br/><br/>	
+						<h:form>
+						<rich:extendedDataTable id="tablaExperienciaLaboral" align="center" value="#{ExperienciaMB.experienciasLaborales}" var="exp" width="800px" height="200px">
 							<rich:column width="200px">
 								<f:facet name="header">
 									<h:outputLabel value="Empresa"></h:outputLabel>
@@ -242,7 +255,7 @@
 								<f:facet name="header">
 									<h:outputLabel value="Modificar"></h:outputLabel>
 								</f:facet>
-								<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{exp.expNidexplaboral}')">
+								<a4j:commandLink id="modificar" onclick="procesarSolicitudModificarExperiencia('#{exp.expNidexplaboral}')">
 		                            <h:graphicImage url="../../imagenes/editar.png"/>
 		                        </a4j:commandLink>
 							</rich:column>		
@@ -250,45 +263,122 @@
 								<f:facet name="header">
 									<h:outputLabel value="Eliminar"></h:outputLabel>
 								</f:facet>
-								<a4j:commandLink id="eliminar" onclick="procesarSolicitudEliminar('#{exp.expNidexplaboral}')">
+								<a4j:commandLink id="eliminar" onclick="procesarSolicitudEliminarExperiencia('#{exp.expNidexplaboral}')">
 		                            <h:graphicImage url="../../imagenes/Delete.png"/>
 		                        </a4j:commandLink>
 							</rich:column>												
 						</rich:extendedDataTable>
 				      	<a4j:form>
-							<a4j:jsFunction name="procesarSolicitudModificar" action="#{PersonaMB.getSeleccionarFormacion}" >
-					        	<a4j:actionparam name="p1" assignTo="#{PersonaMB.idFormacion}" />                
+							<a4j:jsFunction name="procesarSolicitudModificarExperiencia" action="#{ExperienciaMB.getSeleccionarExperiencia}" >
+					        	<a4j:actionparam name="p1" assignTo="#{ExperienciaMB.idExperiencia}" />                
 							</a4j:jsFunction>
 						</a4j:form>	
 				      	<a4j:form>
-				            <a4j:jsFunction name="procesarSolicitudEliminar" action="#{PersonaMB.getBorrarFormacion}" >
-				                <a4j:actionparam name="p1" assignTo="#{PersonaMB.idFormacion}" />                
+				            <a4j:jsFunction name="procesarSolicitudEliminarExperiencia" action="#{ExperienciaMB.getBorrarExperiencia}" >
+				                <a4j:actionparam name="p1" assignTo="#{ExperienciaMB.idExperiencia}" />                
 			            	</a4j:jsFunction>
 			        	</a4j:form>	   
 						<br/>
 						<table align="center">
 							<tr>
+								<td><h:commandButton action="#{ExperienciaMB.getAgregarExperiencia}" value="Agregar Experiencia"/></td>
+							</tr>
+						</table>			
+						<br/>						
+						<table align="center">
+							<tr>
 								<td><h:outputLabel value="Consolidado Certificaciones"></h:outputLabel></td>
 							</tr>
 							<tr>
-								<td><rich:fileUpload id="subirArchivo3" required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="jpg,bmp,png,pdf" ajaxSingle="true" maxFilesQuantity="10" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+								<td><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificaciones}" acceptedTypes="jpg,bmp,png,pdf" ajaxSingle="true" maxFilesQuantity="10" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 	                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 							</tr>												                   
 						</table>					
+						</h:form>									
+					</rich:tab>
+					<rich:tab label="Perfíl Profesional">
+						<table>
+							<tr>
+								<td><h:outputLabel value="Perfíl Profesional #{PersonaMB.nombrePersona}"></h:outputLabel></td>
+							</tr>
+						</table>	
+						<h:form>
+						<table align="center">
+							<tr>
+								<td><h:outputLabel value="Perfil Profesional"></h:outputLabel></td>
+								<td width="20px"></td>
+								<td><h:selectOneMenu value="#{PerfilprofesionalMB.perfilProfesional.peqNidperfileq}" id="peqNidperfileq" required="true" requiredMessage="Ingrese Perfil Profesional">
+										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
+										<f:selectItems value="#{PerfilprofesionalMB.perfilesProfesionales}"/>
+										</h:selectOneMenu></td>
+							</tr>
+							<tr>
+								<td align="center" colspan="3"><rich:message for="peqNidperfileq" style="color:red"/></td>
+							</tr>								
+							<tr>
+								<td><h:outputLabel value="Descripción"></h:outputLabel></td>
+							</tr>
+							<tr>
+								<td colspan="3"><h:inputTextarea value="#{PerfilprofesionalMB.perfilProfesional.pprVperfil}" id="pprVperfil" required="true" requiredMessage="Ingrese Descripción"></h:inputTextarea></td>
+							</tr>
+							<tr>
+								<td align="center" colspan="3"><rich:message for="pprVperfil" style="color:red"/></td>
+							</tr>								
+						</table>	
+						<br/>
+						<table align="center">
+							<tr>
+								<td><h:outputLabel value="Idioma"></h:outputLabel></td>
+							</tr>
+						</table>
+						<br/><br/>
+						<table align="center">
+							<tr>
+								<td><h:outputLabel value="Idioma 1"></h:outputLabel></td>							
+								<td><h:selectOneMenu value="#{PerfilprofesionalMB.perfilProfesional.idiNididioma1}">
+										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
+										<f:selectItems value="#{PerfilprofesionalMB.idiomas}"/>
+										</h:selectOneMenu></td>
+								<td width="20px"></td>
+								<td><h:outputLabel value="Dominio (%)"></h:outputLabel></td>
+								<td><h:inputText value="#{PerfilprofesionalMB.perfilProfesional.pprNnivelidi1}"></h:inputText></td>
+							</tr>
+							<tr>
+								<td><h:outputLabel value="Idioma 2"></h:outputLabel></td>							
+								<td><h:selectOneMenu value="#{PerfilprofesionalMB.perfilProfesional.idiNididioma2}">
+										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
+										<f:selectItems value="#{PerfilprofesionalMB.idiomas}"/>
+										</h:selectOneMenu></td>
+								<td width="20px"></td>										
+								<td><h:outputLabel value="Dominio (%)"></h:outputLabel></td>
+								<td><h:inputText value="#{PerfilprofesionalMB.perfilProfesional.pprNnivelidi2}"></h:inputText></td>
+							</tr>							
+						</table>
+						<br/><br/>
+						<table align="center">
+							<tr>
+								<td><h:outputLabel value="Herramientas de Software"></h:outputLabel></td>
+								<td width="200px"></td>
+								<td><h:outputLabel value="Motores de Bases de Datos"></h:outputLabel></td>
+							</tr>
+							<tr>
+								<td><h:inputTextarea value="#{PerfilprofesionalMB.perfilProfesional.pprVherrasw}"></h:inputTextarea></td>
+								<td width="200px"></td>
+								<td><h:inputTextarea value="#{PerfilprofesionalMB.perfilProfesional.pprVmotorbd}"></h:inputTextarea></td>
+							</tr>							
+						</table>
 						<br/><br/>
 						<table align="right">
 							<tr>
-								<td><h:commandButton action="#{PersonaMB.getGuardarFormacion}" value="Guardar"/></td>
+								<td><h:commandButton action="#{PerfilprofesionalMB.getGuardarPerfil}" value="Guardar"/></td>
 								<td width="20px"></td>
-								<td><h:commandButton action="HOME_HV" value="Siguiente"/></td>						
+								<td><h:commandButton action="#{PerfilprofesionalMB.getCancelar}" value="Cancelar"/></td>						
 							</tr>
-						</table>					
-					</rich:tab>
-					<rich:tab label="Perfíl Profesional">
-					
+						</table>	
+						</h:form>											
 					</rich:tab>
 					<rich:tab label="Soportes">
-					
+						<ui:include src="./experiencia_crear.xhtml"/>	
 					</rich:tab>
 				</rich:tabPanel>
 			</rich:panel>

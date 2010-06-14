@@ -64,6 +64,11 @@ public class ConstantesFaces {
 	public static final String HOME_ROL = "HOME_ROL";
 	public static final String DETALLE_ROL = "DETALLE_ROL";
 	public static final String CREAR_ROL = "CREAR_ROL";
-	
-	
+		
+	public static final String CREAR_FORMACION = "CREAR_FORMACION";
+	public static final String MODIFICAR_FORMACION = "MODIFICAR_FORMACION";
+
+	public static final String CREAR_EXPERIENCIA = "CREAR_EXPERIENCIA";
+	public static final String MODIFICAR_EXPERIENCIA = "MODIFICAR_EXPERIENCIA";
+
 }

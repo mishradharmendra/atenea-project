@@ -39,7 +39,7 @@ public class TestExperienciaService {
 			Integer idDepto = 1; 
 			Integer idMunicipio = 1; 
 			Integer cargoEquivalente = 1;
-			estadoOperacion = experienciaService.crearExperiencia(nombreEmpresa, telefonoEmpresa, nombreContacto, emailContacto, nombreCargo, fechaIngreso, fechaRetiro, herramientasSoftware, funcionesLogros, docCertificacion1, docCertificacion2, idDepto, idMunicipio, cargoEquivalente);
+			estadoOperacion = experienciaService.crearExperiencia(nombreEmpresa, telefonoEmpresa, nombreContacto, emailContacto, nombreCargo, fechaIngreso, fechaRetiro, herramientasSoftware, funcionesLogros, docCertificacion1, docCertificacion2, idMunicipio, cargoEquivalente);
 			System.out.println(estadoOperacion);
 		}
 	}
@@ -63,7 +63,7 @@ public class TestExperienciaService {
 			Integer idDepto = 1; 
 			Integer idMunicipio = 1; 
 			Integer cargoEquivalente = 1;
-			estadoOperacion = experienciaService.actualizarExperiencia(idExperiencia, nombreEmpresa, telefonoEmpresa, nombreContacto, emailContacto, nombreCargo, fechaIngreso, fechaRetiro, herramientasSoftware, funcionesLogros, docCertificacion1, docCertificacion2, idDepto, idMunicipio, cargoEquivalente);
+			estadoOperacion = experienciaService.actualizarExperiencia(idExperiencia, nombreEmpresa, telefonoEmpresa, nombreContacto, emailContacto, nombreCargo, fechaIngreso, fechaRetiro, herramientasSoftware, funcionesLogros, docCertificacion1, docCertificacion2, idMunicipio, cargoEquivalente);
 			System.out.println(estadoOperacion);
 		}		
 	}
