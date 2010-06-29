@@ -48,9 +48,22 @@ public class ExperienciaDelegate {
 		return cargoequivalenteService.buscarCargosEquivalentes();
 	}
 	
-	public GppExperiencia getSeleccionarExperiencia(Integer idExperiencia){
+	public Boolean getGuardarExperiencia(GppExperiencia experiencia){
 		experienciaService = new ExperienciaService();
-		List<Object> experiencias = experienciaService.buscarExperienciasLaborales();
+		return experienciaService.crearExperiencia(experiencia.getExpVnomempresa(), experiencia.getExpVtelempresa(), experiencia.getExpVnomcontacto(), experiencia.getExpVemailcontacto(), experiencia.getExpVcargo(), experiencia.getExpDfecingreso(), experiencia.getExpDfecretiro(), experiencia.getExpVherrasw(), experiencia.getExpVfuncionlogro(), experiencia.getDocNcertifica1(), experiencia.getDocNcertifica2(), experiencia.getMunVidmunicipio(), experiencia.getCeqNidcargoeq());
+	}
+	
+	public Boolean getActualizarExperiencia(GppExperiencia experiencia){
+		experienciaService = new ExperienciaService();
+		return experienciaService.actualizarExperiencia(experiencia.getExpNidexplaboral(), experiencia.getExpVnomempresa(), experiencia.getExpVtelempresa(), experiencia.getExpVnomcontacto(), experiencia.getExpVemailcontacto(), experiencia.getExpVcargo(), experiencia.getExpDfecingreso(), experiencia.getExpDfecretiro(), experiencia.getExpVherrasw(), experiencia.getExpVfuncionlogro(), experiencia.getDocNcertifica1(), experiencia.getDocNcertifica2(), experiencia.getMunVidmunicipio(), experiencia.getCeqNidcargoeq());		
+	}
+	
+	public Boolean getBorrarExperiencia(Integer idExperiencia){
+		experienciaService = new ExperienciaService();
+		return experienciaService.borrarExperiencia(idExperiencia);
+	}
+	
+	public GppExperiencia getSeleccionarExperiencia(List<Object> experiencias, Integer idExperiencia){
 		if(experiencias.size()>0){
 			Iterator<Object> it = experiencias.iterator();
 			while(it.hasNext()){
@@ -61,12 +74,7 @@ public class ExperienciaDelegate {
 			}
 		}
 		return experiencia;
-	}
-	
-	public boolean getBorrarExperiencia(Integer idExperiencia){
-		experienciaService = new ExperienciaService();
-		return experienciaService.borrarExperiencia(idExperiencia);
-	}
+	}	
 	
 	public void getSubirCertificaciones(UploadEvent event) throws IOException {
 	    if (event != null) {
@@ -92,10 +100,5 @@ public class ExperienciaDelegate {
 	            bos.close();
 	        }
 	    }
-	}
-	
-	public boolean getGuardarExperiencia(GppExperiencia experiencia){
-		experienciaService = new ExperienciaService();
-		return experienciaService.crearExperiencia(experiencia.getExpVnomempresa(), experiencia.getExpVtelempresa(), experiencia.getExpVnomcontacto(), experiencia.getExpVemailcontacto(), experiencia.getExpVcargo(), experiencia.getExpDfecingreso(), experiencia.getExpDfecretiro(), experiencia.getExpVherrasw(), experiencia.getExpVfuncionlogro(), experiencia.getDocNcertifica1(), experiencia.getDocNcertifica2(), experiencia.getMunVidmunicipio(), experiencia.getCeqNidcargoeq());
 	}
 }

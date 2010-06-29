@@ -1,6 +1,7 @@
 package co.com.inascol.atenea.dao;
 
 import java.sql.Types;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -8,6 +9,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppFormacion;
+import co.com.inascol.atenea.entity.GppInstitucion;
+import co.com.inascol.atenea.entity.GppNivelacademico;
 import co.com.inascol.atenea.entity.rowmapper.GppFormacionRowMapper;
 
 public class GppFormacionDAO implements DAO{
@@ -110,7 +113,7 @@ public class GppFormacionDAO implements DAO{
 			gppFormacionRowMapper = new GppFormacionRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "select * from gpp_formacion order by for_nidformacion asc";
-			gppFormaciones = (List) jdbcTemplate.query(sentenciaSQL, gppFormacionRowMapper);
+			gppFormaciones = (List) jdbcTemplate.query(sentenciaSQL, gppFormacionRowMapper);			
 		} catch(Exception ex){
 			ex.printStackTrace();
 		}
@@ -166,6 +169,16 @@ public class GppFormacionDAO implements DAO{
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "select * from gpp_formacion where per_nidpersona = ? order by for_nidformacion asc";
 			gppFormaciones = (List) jdbcTemplate.query(sentenciaSQL, new Object[] {idObj}, gppFormacionRowMapper);
+			if(gppFormaciones.size()>0){
+				GppInstitucionDAO gppInstitucionDAO = new GppInstitucionDAO();
+				GppNivelacademicoDAO gppNivelacademicoDAO = new GppNivelacademicoDAO();
+				Iterator<Object> it = gppFormaciones.iterator();				
+				while(it.hasNext()){
+					gppFormacion = (GppFormacion) it.next();
+					gppFormacion.setGppInstitucion((GppInstitucion)gppInstitucionDAO.buscarPorId(gppFormacion.getInsNidinstitucion()));
+					gppFormacion.setGppNivelacademico(((GppNivelacademico)gppNivelacademicoDAO.buscarPorId(gppFormacion.getNacNidnivelac())));
+				}
+			}
 		} catch(Exception ex){
 			ex.printStackTrace();
 		}

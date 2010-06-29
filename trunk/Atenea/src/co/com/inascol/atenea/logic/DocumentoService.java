@@ -91,4 +91,14 @@ public class DocumentoService implements IDocumentoService{
 		}
 		return estadoOperacion;
 	}
+	
+	public List<Object> buscarDocumentosPorPersona(Integer idPersona){
+		try{			
+			gppDocumentoDAO = new GppDocumentoDAO();
+			gppDocumentos = gppDocumentoDAO.buscarDocumentosPorPersona(idPersona);
+		} catch (Exception ex){
+			ex.printStackTrace();
+		}
+		return gppDocumentos;
+	}
 }

@@ -167,4 +167,9 @@ public class RolMB {
 			throw new ValidatorException(message);
 		}
 	}
+	
+	public String getHomeRol(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("RolMB");
+		return ConstantesFaces.HOME_ROL;
+	}
 }

@@ -118,4 +118,9 @@ public class DepartamentoMB {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
 		return ConstantesFaces.HOME_DEPTO;
 	}
+	
+	public String getHomeDepartamento(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
+		return ConstantesFaces.HOME_DEPTO;
+	}
 }

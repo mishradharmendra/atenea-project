@@ -95,4 +95,9 @@ public class EstadocivilMB {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("EstadocivilMB");
 		return ConstantesFaces.HOME_ESTADOCIVIL;
 	}
+	
+	public String getHomeEstadocivil(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("EstadocivilMB");
+		return ConstantesFaces.HOME_ESTADOCIVIL;
+	}
 }

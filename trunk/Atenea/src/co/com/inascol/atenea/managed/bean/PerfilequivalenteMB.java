@@ -95,4 +95,9 @@ public class PerfilequivalenteMB {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PerfilequivalenteMB");
 		return ConstantesFaces.HOME_PERFILEQUIVALENTE;
 	}
+	
+	public String getHomePerfilequivalente(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PerfilequivalenteMB");
+		return ConstantesFaces.HOME_PERFILEQUIVALENTE;
+	}
 }

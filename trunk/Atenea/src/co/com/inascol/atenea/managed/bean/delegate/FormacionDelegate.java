@@ -45,31 +45,6 @@ public class FormacionDelegate {
 		return formaciones;
 	}
 	
-	public boolean getGuardarFormacion(GppFormacion formacion){
-		formacionService = new FormacionService();
-		return formacionService.crearFormacion(formacion.getForVtitulo(), formacion.getForDfecgrado(), formacion.getForNduracionmes(), formacion.getForVtarjetaprof(), formacion.getForDfectarjeta(), formacion.getPerNidpersona(), formacion.getNacNidnivelac(), formacion.getInsNidinstitucion(), formacion.getTeqNidtituloeq(), formacion.getDocNtarjetaprof(), formacion.getDocNactagrado(), formacion.getDocNidiploma());
-	}
-	
-	public GppFormacion getSeleccionarFormacion(Integer idFormacion){
-		formacionService = new FormacionService();
-		List<Object> listadoFormaciones = formacionService.buscarFormaciones();
-		if(listadoFormaciones.size()>0){
-			Iterator<Object> it = listadoFormaciones.iterator();
-			while(it.hasNext()){
-				formacion = (GppFormacion) it.next();
-				if(formacion.getForNidformacion()==idFormacion){
-					break;
-				}
-			}
-		}
-		return formacion;
-	}
-	
-	public boolean getBorrarFormacion(Integer idFormacion){
-		formacionService = new FormacionService();
-		return formacionService.borrarFormacion(idFormacion);
-	}
-	
 	public List<Object> getNivelesAcademicos(){
 		nivelacademicoService = new NivelacademicoService();
 		return nivelacademicoService.buscarNivelesAcademicos();
@@ -85,6 +60,34 @@ public class FormacionDelegate {
 		return tituloequivalenteService.buscarTitulosEquivalentes();
 	}
 	
+	public Boolean getGuardarFormacion(GppFormacion formacion){
+		formacionService = new FormacionService();
+		return formacionService.crearFormacion(formacion.getForVtitulo(), formacion.getForDfecgrado(), formacion.getForNduracionmes(), formacion.getForVtarjetaprof(), formacion.getForDfectarjeta(), formacion.getPerNidpersona(), formacion.getNacNidnivelac(), formacion.getInsNidinstitucion(), formacion.getTeqNidtituloeq(), formacion.getDocNtarjetaprof(), formacion.getDocNactagrado(), formacion.getDocNidiploma());
+	}
+	
+	public Boolean getActualizarFormacion(GppFormacion formacion){
+		formacionService = new FormacionService();
+		return formacionService.actualizarFormacion(formacion.getForNidformacion(), formacion.getForVtitulo(), formacion.getForDfecgrado(), formacion.getForNduracionmes(), formacion.getForVtarjetaprof(), formacion.getForDfectarjeta(), formacion.getPerNidpersona(), formacion.getNacNidnivelac(), formacion.getInsNidinstitucion(), formacion.getTeqNidtituloeq(), formacion.getDocNtarjetaprof(), formacion.getDocNactagrado(), formacion.getDocNidiploma());
+	}
+	
+	public Boolean getBorrarFormacion(Integer idFormacion){
+		formacionService = new FormacionService();
+		return formacionService.borrarFormacion(idFormacion);
+	}
+	
+	public GppFormacion getSeleccionarFormacion(List<Object> formaciones, Integer idFormacion){
+		if(formaciones.size()>0){
+			Iterator<Object> it = formaciones.iterator();
+			while(it.hasNext()){
+				formacion = (GppFormacion) it.next();
+				if(formacion.getForNidformacion()==idFormacion){
+					break;
+				}
+			}
+		}
+		return formacion;
+	}
+		
 	public void getSubirDiploma(UploadEvent event) throws IOException {
 	    if (event != null) {
 	        UploadItem item = event.getUploadItem();
@@ -161,5 +164,5 @@ public class FormacionDelegate {
 	            bos.close();
 	        }
 	    }
-	}	
+	}
 }

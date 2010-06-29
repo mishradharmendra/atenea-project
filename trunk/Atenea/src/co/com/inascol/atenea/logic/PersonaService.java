@@ -79,7 +79,7 @@ public class PersonaService implements IPersonaService{
 		return gppPersonas;
 	}
 
-	public boolean crearPerson(String nombrePersona, String apellidoPersona,
+	public boolean crearPersona(String nombrePersona, String apellidoPersona,
 			Integer numeroIdentificacion, String sexo, Date fechaNacimiento,
 			String libretaMilitar, String celular, String email,
 			String direccion, String telefono, String idMunicipio,
@@ -110,9 +110,9 @@ public class PersonaService implements IPersonaService{
 		return estadoOperacion;
 	}
 
-	public GppPersona buscarPersonaPorCedula(Integer numeroCedula) {
+	public List<Object> buscarPersonaPorCriterios(List<Object> criteriosBusqueda) {
 		gppPersonaDAO = new GppPersonaDAO();
-		gppPersona = gppPersonaDAO.buscarPersonaPorCedula(numeroCedula);
-		return gppPersona;
+		gppPersonas = gppPersonaDAO.buscarPersonaPorCriterios(criteriosBusqueda);
+		return gppPersonas;
 	}		
 }

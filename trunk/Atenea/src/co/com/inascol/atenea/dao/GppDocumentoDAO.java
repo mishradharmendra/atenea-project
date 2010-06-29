@@ -1,6 +1,7 @@
 package co.com.inascol.atenea.dao;
 
 import java.sql.Types;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,6 +10,7 @@ import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppDocumento;
 import co.com.inascol.atenea.entity.GppDocumentoRowMapper;
+import co.com.inascol.atenea.entity.GppTipoarchivo;
 
 public class GppDocumentoDAO implements DAO{
 
@@ -128,5 +130,26 @@ public class GppDocumentoDAO implements DAO{
 			ex.printStackTrace();
 		} 
 		return estadoOperation;
+	}
+	
+	public List<Object> buscarDocumentosPorPersona(Integer idPersona){
+		gppDocumentos = null;
+		try{
+			gppDocumentoRowMapper = new GppDocumentoRowMapper();
+			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
+			sentenciaSQL = "select * from gpp_documento where per_nidpersona = ?";
+			gppDocumentos = (List) jdbcTemplate.query(sentenciaSQL, new Object[]{idPersona}, gppDocumentoRowMapper);
+			if(gppDocumentos.size()>0){
+				GppTipoarchivoDAO gppTipoarchivoDAO = new GppTipoarchivoDAO();
+				Iterator<Object> it = gppDocumentos.iterator();
+				while(it.hasNext()){
+					gppDocumento = (GppDocumento) it.next();
+					gppDocumento.setGppTipoarchivo((GppTipoarchivo) gppTipoarchivoDAO.buscarPorId(gppDocumento.getTarNidtipoarchivo()));
+				}
+			}
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return gppDocumentos;		
 	}
 }

@@ -8,7 +8,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import co.com.inascol.atenea.entity.GppIdioma;
-import co.com.inascol.atenea.entity.GppPais;
 import co.com.inascol.atenea.entity.GppPerfilequivalente;
 import co.com.inascol.atenea.entity.GppPerfilprof;
 import co.com.inascol.atenea.managed.bean.delegate.PerfilprofesionalDelegate;
@@ -20,10 +19,19 @@ public class PerfilprofesionalMB {
 	private Integer idPerfilProfesional;
 	private Integer idPersona;
 	private GppPerfilprof perfilProfesional;
+	private List<Object> perfilesProfesionales;
+	private Boolean estadoOperacion;
 	
 	public PerfilprofesionalMB(){
 		perfilprofesionalDelegate = new PerfilprofesionalDelegate();
 		perfilProfesional = new GppPerfilprof();
+		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
+			idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();
+			perfilesProfesionales = perfilprofesionalDelegate.getBuscarPerfilesProfesionalesPersona(idPersona);
+			if(perfilesProfesionales.size()==1){
+				perfilProfesional = (GppPerfilprof) perfilesProfesionales.get(0);	
+			}
+		}			
 	}
 
 	public Integer getIdPerfilProfesional() {
@@ -43,6 +51,9 @@ public class PerfilprofesionalMB {
 	}
 	public void setPerfilProfesional(GppPerfilprof perfilProfesional) {
 		this.perfilProfesional = perfilProfesional;
+	}	
+	public void setPerfilesProfesionales(List<Object> perfilesProfesionales) {
+		this.perfilesProfesionales = perfilesProfesionales;
 	}
 	
 	public List<SelectItem> getPerfilesProfesionales(){
@@ -72,15 +83,36 @@ public class PerfilprofesionalMB {
 	}
 	
 	public String getGuardarPerfil(){
-		idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getIdPersona();
-		perfilProfesional.setPerNidpersona(idPersona);
-		perfilprofesionalDelegate.getGuardarPerfil(perfilProfesional);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PerfilprofesionalMB");
-		return ConstantesFaces.CREAR_HV;
+		setTabPanel();
+		estadoOperacion = false;
+		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
+			idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();
+			perfilProfesional.setPerNidpersona(idPersona);
+			estadoOperacion = perfilprofesionalDelegate.getGuardarPerfil(perfilProfesional);
+		}
+		if(estadoOperacion==true){
+			perfilesProfesionales = perfilprofesionalDelegate.getBuscarPerfilesProfesionalesPersona(idPersona);
+			if(perfilesProfesionales.size()==1){
+				perfilProfesional = (GppPerfilprof) perfilesProfesionales.get(0);	
+			}			
+			return ConstantesFaces.ESTADO_OK;
+		} else {
+			return ConstantesFaces.ESTADO_ERROR;
+		}
 	}
-
-	public String getCancelar(){
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PerfilprofesionalMB");
-		return ConstantesFaces.CREAR_HV;	
-	}	
+	
+	public String getActualizarPerfil(){
+		setTabPanel();
+		estadoOperacion = false;
+		estadoOperacion = perfilprofesionalDelegate.getActualizarPerfil(perfilProfesional);
+		if(estadoOperacion==true){		
+			return ConstantesFaces.ESTADO_OK;
+		} else {
+			return ConstantesFaces.ESTADO_ERROR;
+		}		
+	}
+	
+	public void setTabPanel(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_PERFIL);
+	}
 }

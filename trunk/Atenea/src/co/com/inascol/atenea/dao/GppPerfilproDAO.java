@@ -1,8 +1,10 @@
 package co.com.inascol.atenea.dao;
 
+import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import co.com.inascol.atenea.dao.utils.DAO;
@@ -144,16 +146,16 @@ public class GppPerfilproDAO implements DAO{
 		return estadoOperation;
 	}
 	
-	public GppPerfilprof buscarPerfilPersona(Object idObj){
-		gppPerfilprof = null;
+	public List<Object> buscarPerfilesPersona(Object idObj){
+		gppPerfilesprofesionales = null;
 		try{
 			gppPerfilprofRowMapper = new GppPerfilprofRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "select * from gpp_perfilprof where per_nidpersona = ?";
-			gppPerfilprof = (GppPerfilprof) jdbcTemplate.queryForObject(sentenciaSQL, new Object[] {idObj}, gppPerfilprofRowMapper);
+			gppPerfilesprofesionales = (List<Object>) jdbcTemplate.query(sentenciaSQL, new Object[] {idObj}, gppPerfilprofRowMapper);
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}
-		return gppPerfilprof;
+		return gppPerfilesprofesionales;
 	}
 }

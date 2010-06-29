@@ -10,10 +10,8 @@ import javax.faces.model.SelectItem;
 
 import org.richfaces.event.UploadEvent;
 
-import co.com.inascol.atenea.entity.GppDepartamento;
 import co.com.inascol.atenea.entity.GppEstadocivil;
 import co.com.inascol.atenea.entity.GppMunicipio;
-import co.com.inascol.atenea.entity.GppPais;
 import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.entity.GppTipodoc;
 import co.com.inascol.atenea.managed.bean.delegate.PersonaDelegate;
@@ -32,9 +30,11 @@ public class PersonaMB {
 	private GppPersona persona;
 	private List<Object> formacionesAcademicas;
 	private List<Object> experienciaLaboral;
+	private Boolean estadoOperacion;
+	private String tabPanel;
 	
 	public PersonaMB(){
-		personaDelegate = new PersonaDelegate();
+		personaDelegate = new PersonaDelegate();		
 		persona = new GppPersona();
 	}
 
@@ -98,6 +98,12 @@ public class PersonaMB {
 	public void setExperienciaLaboral(List<Object> experienciaLaboral) {
 		this.experienciaLaboral = experienciaLaboral;
 	}
+	public String getTabPanel() {
+		return tabPanel;
+	}
+	public void setTabPanel(String tabPanel) {
+		this.tabPanel = tabPanel;
+	}
 
 	public List<SelectItem> getTiposIdentificacion(){
 		List<SelectItem> listadoTipos = new ArrayList<SelectItem>();
@@ -114,9 +120,9 @@ public class PersonaMB {
 	
 	public List<SelectItem> getEstadosCiviles(){
 		List<SelectItem> listadoEstadosCiviles = new ArrayList<SelectItem>();
-		List<Object> estadosCivilces = personaDelegate.getListaEstadosCiviles();
-		if(estadosCivilces.size()>0){
-			Iterator<Object> it = estadosCivilces.iterator();
+		List<Object> estadosCiviles = personaDelegate.getListaEstadosCiviles();
+		if(estadosCiviles.size()>0){
+			Iterator<Object> it = estadosCiviles.iterator();
 			while(it.hasNext()){
 				GppEstadocivil gppEstadocivil = (GppEstadocivil) it.next();
 				listadoEstadosCiviles.add(new SelectItem(gppEstadocivil.getEscNidestadocivil(),gppEstadocivil.getEscVestadocivil()));
@@ -138,8 +144,14 @@ public class PersonaMB {
 		return listadoMunicipios;
 	}		
 	
-	public String getBuscarPersona(){
+	public String getHomeHojaVida(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
+		getLimpiarSession();
+		return ConstantesFaces.HOME_HV; 
+	}
+	
+	public String getBusquedaBasicaPersona(){
+		personas = personaDelegate.getBusquedaBasicaPersona(nombrePersona, apellidoPersona, identificacionPersona);
 		return ConstantesFaces.HOME_HV;
 	}
 	
@@ -149,17 +161,57 @@ public class PersonaMB {
 	}
 	
 	public String getAgregarHojaVida(){
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
+		getLimpiarSession();			
 		return ConstantesFaces.CREAR_HV;
 	}
+	
+	public String getSeleccionarPersona(){
+		setTabPanel();
+		persona = personaDelegate.getSeleccionarPersona(personas, idPersona);
+		getLimpiarSession();
+		return ConstantesFaces.CREAR_HV;		
+	}
+	
+	public String getGuardarPersona(){
+		setTabPanel();
+		estadoOperacion = false;
+		estadoOperacion = personaDelegate.getGuardarPersona(persona);
+		if(estadoOperacion==true){
+			personas = (List<Object>) personaDelegate.getBusquedaBasicaPersona("" , "", String.valueOf(persona.getPerNidentificacion()));
+			if(personas.size()==1){
+				persona = (GppPersona) personas.get(0);
+				personaDelegate.getGuardarHojaVida(persona);
+			}
+			return ConstantesFaces.ESTADO_OK;
+		} else {
+			return ConstantesFaces.ESTADO_ERROR;
+		}
+	}	
+	
+	public String getActualizarPersona(){
+		setTabPanel();
+		estadoOperacion = false;
+		estadoOperacion = personaDelegate.getActualizarPersona(persona);
+		if(estadoOperacion==true){
+			return ConstantesFaces.ESTADO_OK;
+		} else {
+			return ConstantesFaces.ESTADO_ERROR;
+		}		
+	}
 
-    public void getSubirDocumentoHojaVida(UploadEvent event) throws IOException {
+    public void getSubirDocumentoHojaVida(UploadEvent event) throws IOException {       
     	personaDelegate.getSubirDocumentoHojaVida(event);
     }
-		
-	public String getGuardarPersona(){
-		personaDelegate.getGuardarPersona(persona);
-		idPersona = ( (GppPersona) personaDelegate.getBuscarPersonaPorCedula(persona.getPerNidentificacion()) ).getPerNidpersona();
-		return ConstantesFaces.CREAR_HV;
+	
+	public void getLimpiarSession(){		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PerfilprofesionalMB");
+	}
+	
+	public void setTabPanel(){
+		tabPanel = ConstantesFaces.TAB_PANEL_PERSONA;
 	}
 }

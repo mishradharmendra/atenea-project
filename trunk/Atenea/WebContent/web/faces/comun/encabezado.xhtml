@@ -1,40 +1,38 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core">
+<head>      
+<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+</head>
 <body>
 	<table width="940">
 		<tr>
-			<td height="20" valign="middle" bgcolor="#0093DD" class="PrimerNivel" align="right">
+			<td height="20" valign="middle" bgcolor="#0093DD" class="PrimerNivel" align="right">			
 			<table border="0" align="right" cellpadding="0" cellspacing="0" class="PrimerNivel">
+			<c:if test="#{AutenticacionMB.usuarioAutenticado == true}">
+				<h:form>
 				<tr>
 					<td width="10"></td>
 					<td>
-						<h:outputLink value="" rendered="true">
-							<img src="/web/imagenes/home.png" alt="Salir" title="Salir" width="16" height="16" border="0" />
+						<h:outputLink action="#{AutenticacionMB.getIniciarAplicacion}">
+							<img src="#{AutenticacionMB.fullContextPath}/web/imagenes/home.png" alt="Salir" title="Salir" width="16" height="16" border="0" />
 						</h:outputLink>
 					</td>
 					<td width="5"></td>
 					<td>
-						<h:outputLink value="/web/faces/comun/home.xhtml" styleClass="PrimerNivel">Inicio</h:outputLink>
+						<h:outputLink action="#{PersonanMB.getHomeHojaVida}" styleClass="PrimerNivel">Inicio</h:outputLink>
 					</td>
 					<td width="10"></td>
 				</tr>
-			</table>
+				</h:form>
+			</c:if>
+			</table>			
 			</td>
 		</tr>
 		<tr>
-			<td height="80" bgcolor="#000000">
-<!--			<script type="text/javascript">
-					AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0','width','900','height','80','hspace','0','vspace','0','src','/web/swf/menuNuevo','quality','high','pluginspage','http://www.macromedia.com/go/getflashplayer','movie','/web/swf/menuNuevo' );
-				</script>
--->				
-				<noscript>
-					<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="900" height="80" hspace="0" vspace="0">
-					<param name="movie" value="/web/swf/menuNuevo.swf" />
-					<param name="quality" value="high" />
-					<embed src="/web/swf/menuNuevo.swf" width="900" height="80" hspace="0" vspace="0" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash"></embed> 
-					</object>
-				</noscript>
+			<td height="80" align="center">
+				<object type="application/x-shockwave-flash" data="#{AutenticacionMB.fullContextPath}/web/swf/menuNuevo.swf" width="940" height="80"></object>				
 			</td>
 		</tr>
 	</table>		

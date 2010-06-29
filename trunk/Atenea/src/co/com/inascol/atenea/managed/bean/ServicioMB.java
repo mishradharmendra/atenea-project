@@ -102,4 +102,9 @@ public class ServicioMB {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ServicioMB");
 		return ConstantesFaces.HOME_SERVICIO;
 	}
+	
+	public String getHomeServicio(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ServicioMB");
+		return ConstantesFaces.HOME_SERVICIO;
+	}
 }

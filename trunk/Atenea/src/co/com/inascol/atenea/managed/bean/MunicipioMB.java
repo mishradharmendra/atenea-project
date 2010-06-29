@@ -118,4 +118,9 @@ public class MunicipioMB {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("MunicipioMB");
 		return ConstantesFaces.HOME_MUNICIPIO;
 	}
+
+	public String getHomeMunicipio(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("MunicipioMB");
+		return ConstantesFaces.HOME_MUNICIPIO;
+	}
 }

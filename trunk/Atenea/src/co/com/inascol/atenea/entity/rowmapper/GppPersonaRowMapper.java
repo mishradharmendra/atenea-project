@@ -3,6 +3,8 @@ package co.com.inascol.atenea.entity.rowmapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 import co.com.inascol.atenea.entity.GppPersona;
@@ -10,7 +12,7 @@ import co.com.inascol.atenea.entity.GppPersona;
 public class GppPersonaRowMapper implements RowMapper{
 
 	GppPersona gppPersona;
-	
+
 	public Object mapRow(ResultSet rs, int index) throws SQLException {
 		gppPersona = new GppPersona();
 		gppPersona.setPerNidpersona(rs.getInt("per_nidpersona"));
