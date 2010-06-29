@@ -117,7 +117,7 @@
 							<td><h:outputLabel value="Adjuntar Hoja de Vida"></h:outputLabel></td>
 						</tr>
 						<tr>
-							<td><rich:fileUpload required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="jpg,bmp,png,pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+							<td><rich:fileUpload required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
                           		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 						</tr>												                   
 					</table>					
@@ -218,7 +218,7 @@
 								<td><h:outputLabel value="Consolidado Soportes de Estudios"></h:outputLabel></td>
 							</tr>
 							<tr>
-								<td><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirSoportesAcademicos}" acceptedTypes="jpg,bmp,png,pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+								<td><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirSoportesAcademicos}" acceptedTypes="zip,rar" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 	                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 							</tr>												                   
 						</table>										
@@ -316,7 +316,7 @@
 								<td><h:outputLabel value="Consolidado Certificaciones"></h:outputLabel></td>
 							</tr>
 							<tr>
-								<td><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificaciones}" acceptedTypes="jpg,bmp,png,pdf" ajaxSingle="true" maxFilesQuantity="10" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+								<td><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificaciones}" acceptedTypes="zip,rar" ajaxSingle="true" maxFilesQuantity="10" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 	                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 							</tr>												                   
 						</table>					
@@ -448,7 +448,7 @@
 								<td><h:outputLabel value="Adjuntar Archivo"></h:outputLabel></td>
 							</tr>
 							<tr>
-								<td><rich:fileUpload required="true" fileUploadListener="#{DocumentoMB.getSubirSoporte}" acceptedTypes="jpg,bmp,png,pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+								<td><rich:fileUpload required="true" fileUploadListener="#{DocumentoMB.getSubirSoporte}" acceptedTypes="pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 	                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 							</tr>								
 						</table>
@@ -471,24 +471,30 @@
 							<tr>
 								<td align="center">									
 									<rich:extendedDataTable id="tablaSoportes" align="center" value="#{DocumentoMB.soportes}" var="docu" width="700px" height="200px">
-										<rich:column width="150px">
+										<rich:column width="100px">
 											<f:facet name="header">
 												<h:outputLabel value="Tipo Archivo"></h:outputLabel>
 											</f:facet>
 											<h:outputLabel value="#{docu.gppTipoarchivo.tarVtipoarchivo}"></h:outputLabel>
 										</rich:column>
-										<rich:column width="150px">
+										<rich:column width="100px">
 											<f:facet name="header">
 												<h:outputLabel value="Fecha Expedición"></h:outputLabel>
 											</f:facet>
 											<h:outputLabel value="#{docu.docDfecexpide}"></h:outputLabel>
 										</rich:column>
-										<rich:column width="300px">
+										<rich:column width="200px">
 											<f:facet name="header">
 												<h:outputLabel value="Archivo"></h:outputLabel>
 											</f:facet>
 											<h:outputLabel value="#{docu.docVarchivo}"></h:outputLabel>
-										</rich:column>						
+										</rich:column>
+										<rich:column width="200px">
+											<f:facet name="header">
+												<h:outputLabel value="Nombre"></h:outputLabel>
+											</f:facet>
+											<h:outputLabel value="#{docu.docVnombre}"></h:outputLabel>
+										</rich:column>																		
 										<rich:column width="100px">
 											<f:facet name="header">
 												<h:outputLabel value="Eliminar"></h:outputLabel>

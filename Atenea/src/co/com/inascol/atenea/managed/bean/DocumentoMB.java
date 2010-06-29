@@ -92,7 +92,7 @@ public class DocumentoMB {
 		setTabPanel();
 		estadoOperacion = false;
 		estadoOperacion = documentoDelegate.getBorrarSoporte(idDocumentoSoporte);
-		if(estadoOperacion==true){	
+		if(estadoOperacion==true){				
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 			return ConstantesFaces.ESTADO_OK;
 		} else {

@@ -194,6 +194,7 @@ public class PersonaMB {
 		estadoOperacion = false;
 		estadoOperacion = personaDelegate.getActualizarPersona(persona);
 		if(estadoOperacion==true){
+			personaDelegate.getGuardarHojaVida(persona);
 			return ConstantesFaces.ESTADO_OK;
 		} else {
 			return ConstantesFaces.ESTADO_ERROR;
