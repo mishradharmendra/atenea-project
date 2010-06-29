@@ -6,39 +6,37 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+
+import javax.faces.context.FacesContext;
 
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
 import co.com.inascol.atenea.entity.GppPersona;
-import co.com.inascol.atenea.logic.DepartamentoService;
 import co.com.inascol.atenea.logic.DocumentoService;
 import co.com.inascol.atenea.logic.EstadocivilService;
-import co.com.inascol.atenea.logic.ExperienciaService;
-import co.com.inascol.atenea.logic.FormacionService;
 import co.com.inascol.atenea.logic.MunicipioService;
-import co.com.inascol.atenea.logic.PaisService;
 import co.com.inascol.atenea.logic.PersonaService;
 import co.com.inascol.atenea.logic.TipodocService;
-import co.com.inascol.atenea.logic.interfaces.IDepartamentoService;
 import co.com.inascol.atenea.logic.interfaces.IDocumentoService;
 import co.com.inascol.atenea.logic.interfaces.IEstadocivilService;
 import co.com.inascol.atenea.logic.interfaces.IMunicipioService;
-import co.com.inascol.atenea.logic.interfaces.IPaisService;
 import co.com.inascol.atenea.logic.interfaces.IPersonaService;
 import co.com.inascol.atenea.logic.interfaces.ITipodocService;
 
 public class PersonaDelegate {
 
-	private IPersonaService personaService;
-	private IPaisService iPaisService;
+	private IPersonaService personaService;	
 	private ITipodocService tipodocService;
-	private IDepartamentoService departamentoService;
 	private IMunicipioService municipioService;
 	private IEstadocivilService estadocivilService;
 	private IDocumentoService documentoService;
 	private List<Object> personas;
+	private GppPersona persona;
 	private String urlArchivo;
 	private String nombreArchivo;
 	
@@ -48,16 +46,6 @@ public class PersonaDelegate {
 		personaService = new PersonaService();
 		personas = personaService.buscarPersonas();
 		return personas;
-	}
-	
-	public List<Object> getListaPaises(){
-		iPaisService = new PaisService();
-		return iPaisService.buscarPaises();
-	}
-	
-	public List<Object> getListaDepartamentos(){
-		departamentoService = new DepartamentoService();
-		return departamentoService.buscarDepartamentos();
 	}
 	
 	public List<Object> getListaMunicipios(){
@@ -75,14 +63,42 @@ public class PersonaDelegate {
 		return estadocivilService.buscarEstadosCiviles();
 	}	
 	
-	public boolean getGuardarPersona(GppPersona persona){
-		personaService = new PersonaService();
-		return personaService.crearPerson(persona.getPerVnombres(), persona.getPerVapellidos(), persona.getPerNidentificacion(), persona.getPerVsexo(), persona.getPerDfecnacimiento(), persona.getPerVlibretamilitar(), persona.getPerVmovil(), persona.getPerVemail(), persona.getPerVdireccion(), persona.getPerVtelefono(), persona.getMunVidmunicipio(), persona.getTdcNidtipodoc(), persona.getEscNidestadocivil());
+	public List<Object> getBusquedaBasicaPersona(String nombrePersona, String apellidoPersona, String identificacionPersona){
+		if(!nombrePersona.equalsIgnoreCase("") || !apellidoPersona.equalsIgnoreCase("") || !identificacionPersona.equalsIgnoreCase("")){
+			personaService = new PersonaService();
+			List<Object> criteriosBusqueda = new ArrayList<Object>();							
+			if(!nombrePersona.equalsIgnoreCase(""))
+				criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
+			if(!apellidoPersona.equalsIgnoreCase("")) 
+				criteriosBusqueda.add("per_vapellidos"+"|"+apellidoPersona);
+			if(!identificacionPersona.equalsIgnoreCase(""))
+				criteriosBusqueda.add("per_nidentificacion"+"|"+identificacionPersona);
+			personas = personaService.buscarPersonaPorCriterios(criteriosBusqueda);
+		}		
+		return personas;
 	}
 	
-	public GppPersona getBuscarPersonaPorCedula(Integer numeroCedula){
+	public Boolean getGuardarPersona(GppPersona persona){
 		personaService = new PersonaService();
-		return personaService.buscarPersonaPorCedula(numeroCedula);
+		return personaService.crearPersona(persona.getPerVnombres(), persona.getPerVapellidos(), persona.getPerNidentificacion(), persona.getPerVsexo(), persona.getPerDfecnacimiento(), persona.getPerVlibretamilitar(), persona.getPerVmovil(), persona.getPerVemail(), persona.getPerVdireccion(), persona.getPerVtelefono(), persona.getMunVidmunicipio(), persona.getTdcNidtipodoc(), persona.getEscNidestadocivil());
+	}
+	
+	public Boolean getActualizarPersona(GppPersona persona){
+		personaService = new PersonaService();
+		return personaService.actualizarPersona(persona.getPerNidpersona(), persona.getPerVnombres(), persona.getPerVapellidos(), persona.getPerNidentificacion(), persona.getPerVsexo(), persona.getPerDfecnacimiento(), persona.getPerVlibretamilitar(), persona.getPerVmovil(), persona.getPerVemail(), persona.getPerVdireccion(), persona.getPerVtelefono(), persona.getMunVidmunicipio(), persona.getTdcNidtipodoc(), persona.getEscNidestadocivil());		
+	}
+	
+	public GppPersona getSeleccionarPersona(List<Object> personas, Integer idPersona){
+		if(personas.size()>0){
+			Iterator<Object> it = personas.iterator();
+			while(it.hasNext()){
+				persona = (GppPersona) it.next();
+				if(persona.getPerNidpersona()==idPersona){
+					break;
+				}
+			}		
+		}
+		return persona;
 	}
 	
 	public void getSubirDocumentoHojaVida(UploadEvent event) throws IOException {
@@ -109,5 +125,12 @@ public class PersonaDelegate {
 	            bos.close();
 	        }
 	    }
+	}
+	
+	public void getGuardarHojaVida(GppPersona persona){
+		documentoService = new DocumentoService();
+		String nombreDocumento = "Hoja de Vida-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
+		documentoService.crearDocumento(nombreDocumento, nombreArchivo, urlArchivo, new Date(), persona.getPerNidpersona(), 1);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}
 }

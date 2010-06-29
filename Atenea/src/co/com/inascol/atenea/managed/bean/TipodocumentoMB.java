@@ -95,4 +95,9 @@ public class TipodocumentoMB {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipodocumentoMB");
 		return ConstantesFaces.HOME_TIPODOCUMENTO;
 	}
+	
+	public String getHomeTipodocumento(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipodocumentoMB");
+		return ConstantesFaces.HOME_TIPODOCUMENTO;
+	}
 }

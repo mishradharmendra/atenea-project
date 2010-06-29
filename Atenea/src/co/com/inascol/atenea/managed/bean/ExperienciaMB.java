@@ -14,7 +14,6 @@ import co.com.inascol.atenea.entity.GppCargoequivalente;
 import co.com.inascol.atenea.entity.GppExperiencia;
 import co.com.inascol.atenea.entity.GppMunicipio;
 import co.com.inascol.atenea.managed.bean.delegate.ExperienciaDelegate;
-import co.com.inascol.atenea.managed.bean.delegate.FormacionDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
 
 public class ExperienciaMB {
@@ -24,6 +23,7 @@ public class ExperienciaMB {
 	private Integer idPersona;
 	private List<Object> experienciasLaborales;
 	private GppExperiencia experiencia;
+	private Boolean estadoOperacion;
 	
 	public ExperienciaMB(){
 		experienciaDelegate = new ExperienciaDelegate();
@@ -81,32 +81,63 @@ public class ExperienciaMB {
 		return listadoCargos;
 	}	
 	
+	public String getAgregarExperiencia(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
+		return ConstantesFaces.CREAR_EXPERIENCIA;
+	}
+	
 	public String getSeleccionarExperiencia(){
-		experiencia = experienciaDelegate.getSeleccionarExperiencia(idExperiencia);
+		experiencia = experienciaDelegate.getSeleccionarExperiencia(experienciasLaborales, idExperiencia);
 		return ConstantesFaces.MODIFICAR_EXPERIENCIA;
 	}
 	
-	public String getBorrarExperiencia(){
-		experienciaDelegate.getBorrarExperiencia(idExperiencia);
+	public String getCancelar(){
+		setTabPanel();
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
 		return ConstantesFaces.CREAR_HV;
 	}
 	
-	public String getAgregarExperiencia(){
-		return ConstantesFaces.CREAR_EXPERIENCIA;
+	public String getGuardarExperiencia(){
+		setTabPanel();
+		estadoOperacion = false;
+		estadoOperacion = experienciaDelegate.getGuardarExperiencia(experiencia);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
+			return ConstantesFaces.ESTADO_OK;
+		} else {
+			return ConstantesFaces.ESTADO_ERROR;
+		}
+	}
+	
+	public String getBorrarExperiencia(){ 
+		setTabPanel();
+		estadoOperacion = false;
+		estadoOperacion = experienciaDelegate.getBorrarExperiencia(idExperiencia);
+		if(estadoOperacion==true){	
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
+			return ConstantesFaces.ESTADO_OK;
+		} else {
+			return ConstantesFaces.ESTADO_ERROR;
+		}
+	}
+	
+	public String getActualizarExperiencia(){
+		setTabPanel();
+		estadoOperacion = false;
+		estadoOperacion = experienciaDelegate.getActualizarExperiencia(experiencia);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
+			return ConstantesFaces.ESTADO_OK;
+		} else {
+			return ConstantesFaces.ESTADO_ERROR;
+		}			
 	}
 	
 	public void getSubirCertificaciones(UploadEvent event) throws IOException {
 		experienciaDelegate.getSubirCertificaciones(event);
 	}
 
-	public String getGuardarExperiencia(){
-		experienciaDelegate.getGuardarExperiencia(experiencia);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
-		return ConstantesFaces.CREAR_HV;
-	}
-	
-	public String getCancelar(){
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
-		return ConstantesFaces.CREAR_HV;
+	public void setTabPanel(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_EXPERIENCIA);
 	}
 }

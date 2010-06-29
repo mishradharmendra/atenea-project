@@ -38,7 +38,7 @@ public class TestPersonaService {
 			String idMunicipio = "1";
 			Integer tipoDocumento = 1;
 			Integer idEstadoCivil = 1;
-			estadoOperacion = personaService.crearPerson(nombrePersona, apellidoPersona, numeroIdentificacion, sexo, fechaNacimiento, libretaMilitar, celular, email, direccion, telefono, idMunicipio, tipoDocumento, idEstadoCivil);
+			estadoOperacion = personaService.crearPersona(nombrePersona, apellidoPersona, numeroIdentificacion, sexo, fechaNacimiento, libretaMilitar, celular, email, direccion, telefono, idMunicipio, tipoDocumento, idEstadoCivil);
 			System.out.println(estadoOperacion);
 		}		
 	}

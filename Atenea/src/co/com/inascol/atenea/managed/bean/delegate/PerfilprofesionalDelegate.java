@@ -15,14 +15,14 @@ public class PerfilprofesionalDelegate {
 	private IPerfilprofService perfilprofService;
 	private IIdiomaService idiomaService;
 	private IPerfilequivalenteService perfilequivalenteService;
-	private GppPerfilprof perfilProfesional;
+	private List<Object> perfilesProfesionales;
 	
 	public PerfilprofesionalDelegate(){}
 	
-	public GppPerfilprof getBuscarPerfilProfesionalPersona(Integer idPersona){
+	public List<Object> getBuscarPerfilesProfesionalesPersona(Integer idPersona){
 		perfilprofService = new PerfilprofService();
-		perfilProfesional = perfilprofService.buscarPerfilProfesionarPersona(idPersona);
-		return perfilProfesional;
+		perfilesProfesionales = perfilprofService.buscarPerfilesProfesionalesPersona(idPersona);
+		return perfilesProfesionales;
 	}
 	
 	public List<Object> getPerfilesProfesionalesEquivalente(){
@@ -35,8 +35,13 @@ public class PerfilprofesionalDelegate {
 		return idiomaService.buscarIdiomas();
 	}
 	
-	public void getGuardarPerfil(GppPerfilprof perfilProfesional){
+	public Boolean getGuardarPerfil(GppPerfilprof perfilProfesional){
 		perfilprofService = new PerfilprofService();
-		perfilprofService.crearPerfilProfesional(perfilProfesional.getPprVperfil(), perfilProfesional.getPprNnivelidi1(), perfilProfesional.getPprNnivelidi2(), perfilProfesional.getPprVherrasw(), perfilProfesional.getPprVmotorbd(), perfilProfesional.getPeqNidperfileq(), perfilProfesional.getPerNidpersona(), perfilProfesional.getIdiNididioma1(), perfilProfesional.getIdiNididioma2());
+		return perfilprofService.crearPerfilProfesional(perfilProfesional.getPprVperfil(), perfilProfesional.getPprNnivelidi1(), perfilProfesional.getPprNnivelidi2(), perfilProfesional.getPprVherrasw(), perfilProfesional.getPprVmotorbd(), perfilProfesional.getPeqNidperfileq(), perfilProfesional.getPerNidpersona(), perfilProfesional.getIdiNididioma1(), perfilProfesional.getIdiNididioma2());
+	}
+	
+	public Boolean getActualizarPerfil(GppPerfilprof perfilProfesional){
+		perfilprofService = new PerfilprofService();
+		return perfilprofService.actualizarPerfilProfesional(perfilProfesional.getPprNidperfilprof(), perfilProfesional.getPprVperfil(), perfilProfesional.getPprNnivelidi1(), perfilProfesional.getPprNnivelidi2(), perfilProfesional.getPprVherrasw(), perfilProfesional.getPprVmotorbd(), perfilProfesional.getPeqNidperfileq(), perfilProfesional.getPerNidpersona(), perfilProfesional.getIdiNididioma1(), perfilProfesional.getIdiNididioma2());		
 	}
 }

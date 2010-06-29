@@ -40,7 +40,7 @@
 				<br/>				
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{PersonaMB.getBuscarPersona}" value="Buscar"/></td>
+						<td><h:commandButton action="#{PersonaMB.getBusquedaBasicaPersona}" value="Buscar"/></td>
 						<td width="20px"></td>
 						<td><h:commandButton action="#{PersonaMB.getBusquedaAvanzada}" value="Busqueda Avanzada"/></td>
 						<td width="20px"></td>
@@ -65,27 +65,25 @@
 						<f:facet name="header">
 							<h:outputLabel value="Profesión"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{persona.perVsexo}"></h:outputLabel>
+						<h:outputLabel value="#{persona.gppFormacion.forVtitulo}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="150px">
 						<f:facet name="header">
 							<h:outputLabel value="Conocimientos"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{persona.perVlibretamilitar}"></h:outputLabel>
+						<h:outputLabel value="#{persona.gppPerfilprofesional.pprVperfil}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="100px">
 						<f:facet name="header">
 							<h:outputLabel value="Certificación"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{persona.perVmovil}"></h:outputLabel>
+						<h:outputLabel value="#{persona.gppFormacion.gppNivelacademico.nacVnivelac}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="100px">
 						<f:facet name="header">
-							<h:outputLabel value="Tarjeta"></h:outputLabel>
-							<br/>
-							<h:outputLabel value="Profesional"></h:outputLabel>
+							<h:outputLabel value="Tarjeta Profesional"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{persona.perDfecnacimiento}"></h:outputLabel>
+						<h:outputLabel value="#{persona.gppFormacion.forDfectarjeta}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="50px">
 						<f:facet name="header">
@@ -98,7 +96,7 @@
 							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="modificar" onclick="procesarSolicitud('#{persona.perNidpersona}')">
-                            <h:graphicImage url="../../imagenes/editar.png"/>
+                            <h:graphicImage align="center" url="../../imagenes/editar.png"/>
                         </a4j:commandLink>
 					</rich:column>
 					<rich:column width="50px">

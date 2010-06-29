@@ -13,5 +13,5 @@ public interface IPerfilprofService {
 	public boolean borrarPerfilProfesional(Integer idPerfilProfesional);
 	public GppPerfilprof buscarPerfilProfesionarlPorId(Integer idPerfilProfesional);
 	public List<Object> buscarPerfilesProfesionales();
-	public GppPerfilprof buscarPerfilProfesionarPersona(Integer idPersona);
+	public List<Object> buscarPerfilesProfesionalesPersona(Integer idPersona);
 }

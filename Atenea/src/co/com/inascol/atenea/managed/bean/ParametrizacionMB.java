@@ -103,4 +103,9 @@ public class ParametrizacionMB {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ParametrizacionMB");
 		return ConstantesFaces.HOME_PARAMETRIZACION;
 	}
+	
+	public String getHomeParametrizacion(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ParametrizacionMB");
+		return ConstantesFaces.HOME_PARAMETRIZACION;
+	}
 }

@@ -12,7 +12,6 @@ import org.richfaces.event.UploadEvent;
 
 import co.com.inascol.atenea.entity.GppFormacion;
 import co.com.inascol.atenea.entity.GppInstitucion;
-import co.com.inascol.atenea.entity.GppMunicipio;
 import co.com.inascol.atenea.entity.GppNivelacademico;
 import co.com.inascol.atenea.entity.GppTituloequivalente;
 import co.com.inascol.atenea.managed.bean.delegate.FormacionDelegate;
@@ -25,12 +24,17 @@ public class FormacionMB {
 	private Integer idPersona;
 	private List<Object> formacionesAcademicas;
 	private GppFormacion formacion;
+	private Boolean estadoOperacion;
 	
 	public FormacionMB(){
 		formacionDelegate = new FormacionDelegate();
-		formacion = new GppFormacion();		
-		formacionesAcademicas = formacionDelegate.getBuscarFormacionesPersona(idPersona);		
+		formacion = new GppFormacion();
+		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
+			idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();
+			formacionesAcademicas = formacionDelegate.getBuscarFormacionesPersona(idPersona);		
+		}				
 	}
+	
 	public Integer getIdFormacion() {
 		return idFormacion;
 	}
@@ -103,26 +107,60 @@ public class FormacionMB {
 		return listadoDuraciones;
 	}
 	
-	public String getSeleccionarFormacion(){
-		formacion = formacionDelegate.getSeleccionarFormacion(idFormacion);
-		return ConstantesFaces.MODIFICAR_FORMACION;
-	}
-	
-	public String getBorrarFormacion(){
-		formacionDelegate.getBorrarFormacion(idFormacion);
-		return ConstantesFaces.CREAR_HV;
-	}
-
 	public String getAgregarFormacion(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
 		return ConstantesFaces.CREAR_FORMACION;
 	}
 	
-	public String getGuardarFormacion(){
-		idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB") ).getIdPersona();		
-		formacion.setPerNidpersona(idPersona);
-		formacionDelegate.getGuardarFormacion(formacion);
+	public String getSeleccionarFormacion(){
+		formacion = formacionDelegate.getSeleccionarFormacion(formacionesAcademicas, idFormacion);
+		return ConstantesFaces.MODIFICAR_FORMACION;
+	}
+	
+	public String getCancelar(){
+		setTabPanel();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
 		return ConstantesFaces.CREAR_HV;
+	}
+	
+	public String getGuardarFormacion(){
+		setTabPanel();
+		estadoOperacion = false;
+		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
+			idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();						
+			formacion.setPerNidpersona(idPersona);
+			estadoOperacion = formacionDelegate.getGuardarFormacion(formacion);
+		}
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
+			return ConstantesFaces.ESTADO_OK;
+		} else {
+			return ConstantesFaces.ESTADO_ERROR;
+		}	
+	}
+	
+	public String getBorrarFormacion(){
+		setTabPanel();
+		estadoOperacion = false;
+		estadoOperacion = formacionDelegate.getBorrarFormacion(idFormacion);
+		if(estadoOperacion==true){	
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
+			return ConstantesFaces.ESTADO_OK;
+		} else {
+			return ConstantesFaces.ESTADO_ERROR;
+		}
+	}
+	
+	public String getActualizarFormacion(){
+		setTabPanel();
+		estadoOperacion = false;			
+		estadoOperacion = formacionDelegate.getActualizarFormacion(formacion);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
+			return ConstantesFaces.ESTADO_OK;
+		} else {
+			return ConstantesFaces.ESTADO_ERROR;
+		}				
 	}
 	
 	public void getSubirDiploma(UploadEvent event) throws IOException {
@@ -137,8 +175,7 @@ public class FormacionMB {
 		formacionDelegate.getSubirSoportesAcademicos(event);
 	}
 		
-	public String getCancelar(){
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
-		return ConstantesFaces.CREAR_HV;
+	public void setTabPanel(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_FORMACION);
 	}
 }

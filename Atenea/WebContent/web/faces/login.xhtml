@@ -11,9 +11,31 @@
 		<ui:define name="cuerpo">
 			<rich:panel>
 				<h:form>
-				<table>
+				<table align="center">
 					<tr>
-						<td><h:commandButton action="HOME_INSTITUCION" value="Login"/></td>
+						<td align="center"><h:outputLabel value="GESTIÓN DE PERFILES PROFESIONALES - ATENEA"></h:outputLabel></td>
+					</tr>	
+					<tr>
+						<td height="20"/>
+					</tr>								
+					<tr>
+						<td><object type="application/x-shockwave-flash" data="#{AutenticacionMB.fullContextPath}/web/swf/Pub1.swf" width="800" height="300"></object></td>
+					</tr>
+				</table>
+				<br/>
+				<table align="center">
+					<tr>				
+						<td align="left"><h:outputLabel value="Login"/></td>
+						<td><h:inputText size="30" value="#{AutenticacionMB.login}" id="login" required="true" requiredMessage="Ingrese Login de Usuario"/></td>
+						<td align="left"><rich:message for="login" style="color:red"/></td>
+					</tr>
+					<tr>				
+						<td align="left"><h:outputLabel value="Password"/></td>
+						<td><h:inputSecret size="30" value="#{AutenticacionMB.password}" id="password" required="true" requiredMessage="Ingrese Password"/></td>
+						<td align="left"><rich:message for="password" style="color:red"/></td>
+					</tr>				
+					<tr>				
+						<td colspan="3" align="center"><h:commandButton action="#{AutenticacionMB.getVerificarPermisos}" value="Login"/></td>
 					</tr>
 				</table>
 				</h:form>

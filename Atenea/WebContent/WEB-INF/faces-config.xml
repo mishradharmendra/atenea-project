@@ -104,7 +104,28 @@
         <managed-bean-name>RolMB</managed-bean-name>
         <managed-bean-class>co.com.inascol.atenea.managed.bean.RolMB</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>      
+    </managed-bean>
+	<managed-bean>
+        <managed-bean-name>DocumentoMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.DocumentoMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>         
+    	<managed-bean>
+        <managed-bean-name>AutenticacionMB</managed-bean-name>
+        <managed-bean-class>co.com.inascol.atenea.managed.bean.AutenticacionMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean> 
+      
+      
+      
+   	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>LOGIN</from-outcome>
+			<to-view-id>/web/faces/login.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	   
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -512,5 +533,37 @@
 			<to-view-id>/web/faces/admin/rol_crear.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_OK</from-outcome>
+			<to-view-id>/web/faces/hv/ok.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_ERROR</from-outcome>
+			<to-view-id>/web/faces/hv/error.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
 	</navigation-rule>		
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_AUTENTICACION_ERROR</from-outcome>
+			<to-view-id>/web/faces/comun/error_autenticacion.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_PERMISOS_ERROR</from-outcome>
+			<to-view-id>/web/faces/comun/error_permisos.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>				
 </faces-config>

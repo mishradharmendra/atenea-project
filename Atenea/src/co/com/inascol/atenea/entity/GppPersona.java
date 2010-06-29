@@ -27,6 +27,9 @@ public class GppPersona {
 	private Date perDfeccrea;
 	private String perVusumodifica;
 	private Date perDfecmodifica;
+	
+	private GppFormacion gppFormacion;
+	private GppPerfilprof gppPerfilprofesional;
 
 	public GppPersona() {}
 
@@ -173,4 +176,20 @@ public class GppPersona {
 	public void setPerDfecmodifica(Date perDfecmodifica) {
 		this.perDfecmodifica = perDfecmodifica;
 	}
+
+	public GppFormacion getGppFormacion() {
+		return gppFormacion;
+	}
+
+	public void setGppFormacion(GppFormacion gppFormacion) {
+		this.gppFormacion = gppFormacion;
+	}
+
+	public GppPerfilprof getGppPerfilprofesional() {
+		return gppPerfilprofesional;
+	}
+
+	public void setGppPerfilprofesional(GppPerfilprof gppPerfilprofesional) {
+		this.gppPerfilprofesional = gppPerfilprofesional;
+	}		
 }

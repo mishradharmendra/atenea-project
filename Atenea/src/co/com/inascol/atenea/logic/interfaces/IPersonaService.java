@@ -7,7 +7,7 @@ import co.com.inascol.atenea.entity.GppPersona;
 
 public interface IPersonaService {
 
-	public boolean crearPerson(String nombrePersona, String apellidoPersona, Integer numeroIdentificacion, String sexo, Date fechaNacimiento,
+	public boolean crearPersona(String nombrePersona, String apellidoPersona, Integer numeroIdentificacion, String sexo, Date fechaNacimiento,
 								String libretaMilitar, String celular, String email, String direccion, String telefono, String idMunicipio,
 								Integer tipoDocumento, Integer idEstadoCivil);
 	public boolean actualizarPersona(Integer idPersona, String nombrePersona, String apellidoPersona, Integer numeroIdentificacion, String sexo, Date fechaNacimiento,
@@ -16,5 +16,5 @@ public interface IPersonaService {
 	public boolean borrarPersona(Integer idPersona);
 	public GppPersona buscarPersonaPorId(Integer idPersona);
 	public List<Object> buscarPersonas();
-	public GppPersona buscarPersonaPorCedula(Integer numeroCedula);
+	public List<Object> buscarPersonaPorCriterios(List<Object> criteriosBusqueda);
 }

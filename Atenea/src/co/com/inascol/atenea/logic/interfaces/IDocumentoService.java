@@ -14,4 +14,5 @@ public interface IDocumentoService {
 	public boolean borrarDocumento(Integer idDocumento);
 	public GppDocumento buscarDocumentoPorId(Integer idDocumento);
 	public List<Object> buscarDocumentos();
+	public List<Object> buscarDocumentosPorPersona(Integer idDocumento);
 }

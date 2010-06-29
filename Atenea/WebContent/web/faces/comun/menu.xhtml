@@ -6,13 +6,16 @@
       xmlns:rich="http://richfaces.org/rich"
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
 	  xmlns:a4j="http://richfaces.org/a4j">
+<head>      
+<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+</head>	  
 <body>
 <h:form>
 	<rich:toolBar>
     	<rich:dropDownMenu>
         	<f:facet name="label"> 
             	<h:panelGroup>
-					<a4j:commandLink id="hv" action="HOME_HV">
+					<a4j:commandLink id="hv" action="#{PersonaMB.getHomeHojaVida}">
                     	<h:outputText value="Hojas de Vida"/>
                     </a4j:commandLink>                    
 				</h:panelGroup>
@@ -21,7 +24,7 @@
     	<rich:dropDownMenu>
         	<f:facet name="label"> 
             	<h:panelGroup>
-					<a4j:commandLink id="reportes" action="HOME_HV">
+					<a4j:commandLink id="reportes" action="#{PersonaMB.getHomeHojaVida}">
                     	<h:outputText value="Reportes"/>
                     </a4j:commandLink>   
 				</h:panelGroup>
@@ -33,23 +36,23 @@
                     <h:outputText value="Administrador"/>
 				</h:panelGroup>
 			</f:facet>		
-			<rich:menuItem submitMode="ajax" value="Roles" action="HOME_ROL"/>
+			<rich:menuItem submitMode="ajax" value="Roles" action="#{RolMB.getHomeRol}"/>
 			<rich:menuItem submitMode="ajax" value="Usuarios" action="1"/>
-			<rich:menuItem submitMode="ajax" value="Servicios" action="HOME_SERVICIO"/>			
+			<rich:menuItem submitMode="ajax" value="Servicios" action="#{ServicioMB.getHomeServicio}"/>			
 			<rich:menuItem submitMode="ajax" value="Permisos" action="1"/>
-			<rich:menuItem submitMode="ajax" value="Parametrización" action="HOME_PARAMETRIZACION"/>			
+			<rich:menuItem submitMode="ajax" value="Parametrización" action="#{ParametrizacionMB.getHomeParametrizacion}"/>			
 			<rich:menuGroup value="Tablas de Referencia">
-				<rich:menuItem submitMode="ajax" value="Departamentos" action="HOME_DEPTO"/>
-				<rich:menuItem submitMode="ajax" value="Estado Civil" action="HOME_ESTADOCIVIL"/>
-				<rich:menuItem submitMode="ajax" value="Idioma" action="HOME_IDIOMA"/>			
-				<rich:menuItem submitMode="ajax" value="Institución" action="HOME_INSTITUCION"/>
-				<rich:menuItem submitMode="ajax" value="Municipios" action="HOME_MUNICIPIO"/>			
-				<rich:menuItem submitMode="ajax" value="Nivel Académico" action="HOME_NIVELACADEMICO"/>								
-				<rich:menuItem submitMode="ajax" value="Países" action="HOME_PAIS"/>
-				<rich:menuItem submitMode="ajax" value="Perfíl Profesional" action="HOME_PERFILEQUIVALENTE"/>
+				<rich:menuItem submitMode="ajax" value="Departamentos" action="#{DepartamentoMB.getHomeDepartamento}"/>
+				<rich:menuItem submitMode="ajax" value="Estado Civil" action="#{EstadocivilMB.getHomeEstadocivil}"/>
+				<rich:menuItem submitMode="ajax" value="Idioma" action="#{IdiomaMB.getHomeIdioma}"/>			
+				<rich:menuItem submitMode="ajax" value="Institución" action="#{InstitucionMB.getHomeInstitucion}"/>
+				<rich:menuItem submitMode="ajax" value="Municipios" action="#{MunicipioMB.getHomeMunicipio}"/>			
+				<rich:menuItem submitMode="ajax" value="Nivel Académico" action="#{NivelacademicoMB.getHomeNivelacademico}"/>								
+				<rich:menuItem submitMode="ajax" value="Países" action="#{PaisMB.getHomePais}"/>
+				<rich:menuItem submitMode="ajax" value="Perfíl Profesional" action="#{PerfilequivalenteMB.getHomePerfilequivalente}"/>
 				<rich:menuItem submitMode="ajax" value="Profesiones" action="1"/>								
-				<rich:menuItem submitMode="ajax" value="Tipo Archivo" action="HOME_TIPOARCHIVO"/>						
-				<rich:menuItem submitMode="ajax" value="Tipo Documento" action="HOME_TIPODOCUMENTO"/>
+				<rich:menuItem submitMode="ajax" value="Tipo Archivo" action="#{TipoarchivoMB.getHomeTipoarchivo}"/>						
+				<rich:menuItem submitMode="ajax" value="Tipo Documento" action="#{TipodocumentoMB.getHomeTipodocumento}"/>
 			</rich:menuGroup>						
 		</rich:dropDownMenu>
 		<rich:toolBarGroup location="right">

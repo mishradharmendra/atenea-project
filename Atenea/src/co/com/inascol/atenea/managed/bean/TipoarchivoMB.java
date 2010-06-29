@@ -95,4 +95,9 @@ public class TipoarchivoMB {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipoarchivoMB");
 		return ConstantesFaces.HOME_TIPOARCHIVO;
 	}
+	
+	public String getHomeTipoarchivo(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipoarchivoMB");
+		return ConstantesFaces.HOME_TIPOARCHIVO;
+	}
 }

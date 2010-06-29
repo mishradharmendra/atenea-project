@@ -1,12 +1,15 @@
 package co.com.inascol.atenea.dao;
 
 import java.sql.Types;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
+import co.com.inascol.atenea.entity.GppFormacion;
+import co.com.inascol.atenea.entity.GppPerfilprof;
 import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.entity.rowmapper.GppPersonaRowMapper;
 
@@ -113,7 +116,7 @@ public class GppPersonaDAO implements DAO{
 			gppPersonaRowMapper = new GppPersonaRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "select * from gpp_persona order by per_vnombres asc";
-			gppPersonas = (List) jdbcTemplate.query(sentenciaSQL, gppPersonaRowMapper);
+			gppPersonas = (List<Object>) jdbcTemplate.query(sentenciaSQL, gppPersonaRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();
 		}
@@ -164,16 +167,49 @@ public class GppPersonaDAO implements DAO{
 		return estadoOperation;
 	}
 	
-	public GppPersona buscarPersonaPorCedula(Object numeroCedula){
-		gppPersona = null;
+	public List<Object> buscarPersonaPorCriterios(List<Object> criteriosBusqueda){
+		gppPersonas = null;
 		try{
 			gppPersonaRowMapper = new GppPersonaRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_persona where per_nidentificacion = ?";
-			gppPersona = (GppPersona) jdbcTemplate.queryForObject(sentenciaSQL, new Object[] {numeroCedula}, gppPersonaRowMapper);
+			String criterioConsulta = "";
+			if(criteriosBusqueda.size()>0){
+				String [] criterios;
+				Iterator<Object> it = criteriosBusqueda.iterator();
+				int contadorCriterios = 1;
+				while(it.hasNext()){
+					if(contadorCriterios == 1){
+						criterios = ( (String) it.next() ).split("\\|");
+						criterioConsulta = " WHERE " + criterios[0] + " LIKE '%" + criterios[1] + "%'";
+					}else{
+						criterios = ( (String) it.next() ).split("\\|");
+						criterioConsulta = criterioConsulta + " AND " + criterios[0] + " LIKE '%" + criterios[1] + "%'";
+					}
+					contadorCriterios++;
+				}
+			}
+			sentenciaSQL = "select * from gpp_persona " +
+							criterioConsulta;
+			gppPersonas = (List) jdbcTemplate.query(sentenciaSQL, gppPersonaRowMapper);
+			if(gppPersonas.size()>0){
+				GppFormacionDAO gppFormacionDAO = new GppFormacionDAO();
+				GppPerfilproDAO gppPerfilproDAO = new GppPerfilproDAO();
+				Iterator<Object> it = gppPersonas.iterator();
+				while(it.hasNext()){
+					gppPersona = (GppPersona) it.next();
+					List<Object> gppFormaciones = gppFormacionDAO.buscarFormacionesPersona(gppPersona.getPerNidpersona());
+					List<Object> gppPerfiles = gppPerfilproDAO.buscarPerfilesPersona(gppPersona.getPerNidpersona());
+					if(gppFormaciones.size()>0){
+						gppPersona.setGppFormacion((GppFormacion) gppFormaciones.get(0));
+					}
+					if(gppPerfiles.size()==1){
+						gppPersona.setGppPerfilprofesional((GppPerfilprof) gppPerfiles.get(0));
+					}
+				}
+			}
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}
-		return gppPersona;
+		return gppPersonas;
 	}
 }

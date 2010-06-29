@@ -2,6 +2,8 @@ package co.com.inascol.atenea.util;
 
 public class ConstantesFaces {
 
+	public static final String LOGIN = "LOGIN";
+	
 	public static final String HOME_DEPTO = "HOME_DEPTO";
 	public static final String DETALLE_DEPTO = "DETALLE_DEPTO";
 	public static final String CREAR_DEPTO = "CREAR_DEPTO";
@@ -70,5 +72,15 @@ public class ConstantesFaces {
 
 	public static final String CREAR_EXPERIENCIA = "CREAR_EXPERIENCIA";
 	public static final String MODIFICAR_EXPERIENCIA = "MODIFICAR_EXPERIENCIA";
-
+	
+	public static final String ESTADO_OK = "ESTADO_OK";
+	public static final String ESTADO_ERROR = "ESTADO_ERROR";
+	public static final String ESTADO_AUTENTICACION_ERROR = "ESTADO_AUTENTICACION_ERROR";
+	public static final String ESTADO_PERMISOS_ERROR = "ESTADO_PERMISOS_ERROR";
+	
+	public static final String TAB_PANEL_PERSONA = "TAB_PANEL_PERSONA";
+	public static final String TAB_PANEL_FORMACION = "TAB_PANEL_FORMACION";
+	public static final String TAB_PANEL_EXPERIENCIA = "TAB_PANEL_EXPERIENCIA";
+	public static final String TAB_PANEL_PERFIL = "TAB_PANEL_PERFIL";
+	public static final String TAB_PANEL_SOPORTES = "TAB_PANEL_SOPORTES";	
 }

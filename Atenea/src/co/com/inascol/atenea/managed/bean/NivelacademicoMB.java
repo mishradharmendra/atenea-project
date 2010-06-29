@@ -95,4 +95,9 @@ public class NivelacademicoMB {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("NivelacademicoMB");
 		return ConstantesFaces.HOME_NIVELACADEMICO;
 	}
+	
+	public String getHomeNivelacademico(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("NivelacademicoMB");
+		return ConstantesFaces.HOME_NIVELACADEMICO;
+	}
 }

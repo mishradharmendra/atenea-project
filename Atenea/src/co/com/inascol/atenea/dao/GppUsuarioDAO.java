@@ -3,6 +3,7 @@ package co.com.inascol.atenea.dao;
 import java.sql.Types;
 import java.util.List;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import co.com.inascol.atenea.dao.utils.DAO;
@@ -136,8 +137,9 @@ public class GppUsuarioDAO implements DAO {
 			GppUsuariorolDAO gppUsuariorol = new GppUsuariorolDAO(); 
 			List <Object> usuarioRoles = gppUsuariorol.buscarTodosRolesUsuario(Integer.valueOf(gppUsuario.getUsuNidusuario()));
 			gppUsuario.setGppRoles(usuarioRoles);
-		} catch (Exception ex){
-			ex.printStackTrace();
+		} catch (EmptyResultDataAccessException ex){
+			System.out.println("Usuario y Password no Encontrados.");
+			//ex.printStackTrace();
 		}
 		return gppUsuario;
 	} 		

@@ -21,6 +21,8 @@ public class GppDocumento {
 	private String docVusumodifica;
 	private Date docDfecmodifica;
 
+	private GppTipoarchivo gppTipoarchivo;
+	
 	public GppDocumento() {}
 
 	public Integer getDocNiddocumento() {
@@ -111,4 +113,10 @@ public class GppDocumento {
 		this.docDfecmodifica = docDfecmodifica;
 	}
 
+	public GppTipoarchivo getGppTipoarchivo() {
+		return gppTipoarchivo;
+	}
+	public void setGppTipoarchivo(GppTipoarchivo gppTipoarchivo) {
+		this.gppTipoarchivo = gppTipoarchivo;
+	}
 }

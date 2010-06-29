@@ -27,6 +27,9 @@ public class GppFormacion {
 	private String forVusumodifica;
 	private Date forDfecmodifica;
 
+	private GppInstitucion gppInstitucion;
+	private GppNivelacademico gppNivelacademico;
+	
 	public GppFormacion() {}
 
 	public Integer getForNidformacion() {
@@ -165,4 +168,19 @@ public class GppFormacion {
 		this.forDfecmodifica = forDfecmodifica;
 	}
 
+	public GppInstitucion getGppInstitucion() {
+		return gppInstitucion;
+	}
+
+	public void setGppInstitucion(GppInstitucion gppInstitucion) {
+		this.gppInstitucion = gppInstitucion;
+	}
+
+	public GppNivelacademico getGppNivelacademico() {
+		return gppNivelacademico;
+	}
+
+	public void setGppNivelacademico(GppNivelacademico gppNivelacademico) {
+		this.gppNivelacademico = gppNivelacademico;
+	}	
 }

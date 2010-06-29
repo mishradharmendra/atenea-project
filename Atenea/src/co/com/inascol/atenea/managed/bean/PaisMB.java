@@ -95,4 +95,9 @@ public class PaisMB {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PaisMB");
 		return ConstantesFaces.HOME_PAIS;
 	}
+	
+	public String getHomePais(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PaisMB");
+		return ConstantesFaces.HOME_PAIS;
+	}
 }

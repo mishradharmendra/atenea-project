@@ -95,4 +95,9 @@ public class IdiomaMB {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("IdiomaMB");
 		return ConstantesFaces.HOME_IDIOMA;
 	}
+	
+	public String getHomeIdioma(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("IdiomaMB");
+		return ConstantesFaces.HOME_IDIOMA;
+	}
 }

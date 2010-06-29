@@ -5,12 +5,15 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:rich="http://richfaces.org/rich"
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
-	  xmlns:a4j="http://richfaces.org/a4j">
+	  xmlns:a4j="http://richfaces.org/a4j"
+	  xmlns:c="http://java.sun.com/jstl/core">
 <body>
 	<ui:composition template="../template.xhtml">
 		<ui:define name="encabezado">
 			<table width="940">
-				<tr><h:inputTextarea></h:inputTextarea>
+				<tr><richfaces:tabPanel style="background-image:"></richfaces:tabPanel>
+					<c:forEach items="" var="">
+					</c:forEach><h:inputSecret></h:inputSecret>
 					<td height="20" valign="middle" bgcolor="#0093DD" class="PrimerNivel" align="right">
 					<table border="0" align="right" cellpadding="0" cellspacing="0" class="PrimerNivel">
 						<tr><rich:message for="tdcNidtipodoc" />
