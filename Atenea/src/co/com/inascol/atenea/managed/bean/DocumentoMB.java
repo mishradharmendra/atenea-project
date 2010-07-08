@@ -84,6 +84,11 @@ public class DocumentoMB {
 		return ConstantesFaces.CREAR_HV;
 	}
 	
+	public String getAnteriorDetalle(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_PERFIL);
+		return ConstantesFaces.DETALLE_HV;
+	}
+	
 	public String getGuardarSoporte(){
 		setTabPanel();
 		estadoOperacion = false;

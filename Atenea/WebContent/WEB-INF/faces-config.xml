@@ -769,6 +769,14 @@
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
+			<from-outcome>DETALLE_HV</from-outcome>
+			<to-view-id>/web/faces/hv/hv_detalle.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
 			<from-outcome>ESTADO_HV_OK</from-outcome>
 			<to-view-id>/web/faces/hv/hv_ok.jsf</to-view-id>
 			<redirect/>
