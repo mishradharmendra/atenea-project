@@ -97,6 +97,7 @@ public class ConstantesFaces {
 	
 	public static final String HOME_HV = "HOME_HV";
 	public static final String CREAR_HV = "CREAR_HV";
+	public static final String DETALLE_HV = "DETALLE_HV";
 	public static final String ESTADO_HV_OK = "ESTADO_HV_OK";
 	public static final String ESTADO_HV_ERROR = "ESTADO_HV_ERROR";
 	

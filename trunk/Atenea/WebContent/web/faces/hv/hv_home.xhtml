@@ -68,9 +68,11 @@
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Completo"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{persona.perVnombres}"></h:outputLabel>
-						<br/>
-						<h:outputLabel value="#{persona.perVapellidos}"></h:outputLabel>
+						<a4j:commandLink id="persona" onclick="procesarSolicitudPersonaDetalle('#{persona.perNidpersona}')">
+							<h:outputLabel value="#{persona.perVnombres}"></h:outputLabel>
+							<br/>
+							<h:outputLabel value="#{persona.perVapellidos}"></h:outputLabel>
+						</a4j:commandLink>	
 					</rich:column>
 					<rich:column width="150px">
 						<f:facet name="header">
@@ -119,6 +121,11 @@
 				</rich:extendedDataTable>
 				</h:form>					
 			</rich:panel>
+        	<a4j:form>
+	            <a4j:jsFunction name="procesarSolicitudPersonaDetalle" action="#{PersonaMB.getSeleccionarPersonaDetalle}" >
+	                <a4j:actionparam name="p1" assignTo="#{PersonaMB.idPersona}" />                
+            	</a4j:jsFunction>
+        	</a4j:form>				
         	<a4j:form>
 	            <a4j:jsFunction name="procesarSolicitudEditarPersona" action="#{PersonaMB.getSeleccionarPersona}" >
 	                <a4j:actionparam name="p1" assignTo="#{PersonaMB.idPersona}" />                

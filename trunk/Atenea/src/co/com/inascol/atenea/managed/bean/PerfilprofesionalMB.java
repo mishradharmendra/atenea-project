@@ -92,6 +92,15 @@ public class PerfilprofesionalMB {
 		return ConstantesFaces.CREAR_HV;
 	}
 	
+	public String getAnteriorDetalle(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_EXPERIENCIA);
+		return ConstantesFaces.DETALLE_HV;
+	}
+	
+	public String getSiguienteDetalle(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_SOPORTES);
+		return ConstantesFaces.DETALLE_HV;
+	}
 	public String getGuardarPerfil(){
 		setTabPanel();
 		estadoOperacion = false;

@@ -166,6 +166,16 @@ public class ExperienciaMB {
 		return ConstantesFaces.CREAR_HV;
 	}
 	
+	public String getAnteriorDetalle(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_FORMACION);
+		return ConstantesFaces.DETALLE_HV;
+	}
+	
+	public String getSiguienteDetalle(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_PERFIL);
+		return ConstantesFaces.DETALLE_HV;
+	}
+	
 	public String getAgregarExperiencia(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
 		return ConstantesFaces.CREAR_EXPERIENCIA;

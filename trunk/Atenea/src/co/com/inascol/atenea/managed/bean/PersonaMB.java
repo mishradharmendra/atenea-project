@@ -247,6 +247,11 @@ public class PersonaMB {
 		return ConstantesFaces.CREAR_HV;
 	}
 	
+	public String getSiguienteDetalle(){
+		tabPanel = ConstantesFaces.TAB_PANEL_FORMACION;
+		return ConstantesFaces.DETALLE_HV;
+	}
+	
 	public String getHomeHojaVida(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		getLimpiarSession();
@@ -276,6 +281,14 @@ public class PersonaMB {
 		getLimpiarSession();
 		tabDeshabilitados = false;
 		return ConstantesFaces.CREAR_HV;		
+	}
+	
+	public String getSeleccionarPersonaDetalle(){
+		setTabPanel();
+		persona = personaDelegate.getSeleccionarPersona(personas, idPersona);
+		getLimpiarSession();
+		tabDeshabilitados = false;
+		return ConstantesFaces.DETALLE_HV;		
 	}
 	
 	public String getCambiarEstadoPersona(){
