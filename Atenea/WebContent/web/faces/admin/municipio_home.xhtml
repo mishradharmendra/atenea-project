@@ -19,17 +19,10 @@
 				</table>
 				<br/><br/>
 				<h:form>	
-				<table>
+				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Consulta de Municipios: "></h:outputLabel></td>
 						<td><h:inputText value="#{MunicipioMB.nombreMunicipio}"></h:inputText></td>					
-						<td width="100px"></td>
-						<td><h:outputLabel value="Estado"></h:outputLabel></td>
-						<td><h:selectOneMenu value="#{MunicipioMB.estadoMunicipio}">
-								<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
-								<f:selectItem itemValue="Activo" itemLabel="Activo"/>
-								<f:selectItem itemValue="Desactivo" itemLabel="Desactivo"/>
-							</h:selectOneMenu></td>
 					</tr>
 				</table>
 				<br/>				
@@ -50,36 +43,50 @@
 						<f:facet name="header">
 							<h:outputLabel value="Id Municipios"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{municipio.munVidmunicipio}"></h:outputLabel>
+						<h:outputLabel value="#{municipio.munNidmunicipio}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="300px">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Municipios"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{municipio.munVmunicipio}"></h:outputLabel>
+						<a4j:commandLink id="munVmunicipio" onclick="procesarSolicitudDetalle('#{municipio.munNidmunicipio}')">
+							<h:outputLabel value="#{municipio.munVmunicipio}"></h:outputLabel>
+						</a4j:commandLink>
 					</rich:column>
 					<rich:column width="100px">
 						<f:facet name="header">
 							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>
-						<a4j:commandLink id="modificar" onclick="procesarSolicitud('#{municipio.munVidmunicipio}')">
+						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{municipio.munNidmunicipio}')">
                             <h:graphicImage url="../../imagenes/editar.png"/>
                         </a4j:commandLink>
 					</rich:column>
 					<rich:column width="100px">
 						<f:facet name="header">
-							<h:outputLabel value="Activar"></h:outputLabel>
+							<h:outputLabel value="Eliminar"></h:outputLabel>
 						</f:facet>
-						<h:selectBooleanCheckbox></h:selectBooleanCheckbox>
+						<a4j:commandLink id="eliminar" onclick="aceptar = confirm('Esta seguro que quiere eliminar el elemento seleccionado?'); if(aceptar==true){procesarSolicitudEliminar('#{municipio.munNidmunicipio}');} return false;">
+                            <h:graphicImage url="../../imagenes/Delete.png"/>
+                        </a4j:commandLink>
 					</rich:column>									
 				</rich:extendedDataTable>
 				</h:form>					
 			</rich:panel>
         	<a4j:form>
-	            <a4j:jsFunction name="procesarSolicitud" action="#{MunicipioMB.getSeleccionarMunicipio}" >
+	            <a4j:jsFunction name="procesarSolicitudDetalle" action="#{MunicipioMB.getSeleccionarMunicipioDetalle}" >
 	                <a4j:actionparam name="p1" assignTo="#{MunicipioMB.idMunicipio}" />                
             	</a4j:jsFunction>
-        	</a4j:form>								
+        	</a4j:form>				
+        	<a4j:form>
+	            <a4j:jsFunction name="procesarSolicitudModificar" action="#{MunicipioMB.getSeleccionarMunicipio}" >
+	                <a4j:actionparam name="p1" assignTo="#{MunicipioMB.idMunicipio}" />                
+            	</a4j:jsFunction>
+        	</a4j:form>		
+        	<a4j:form>
+	            <a4j:jsFunction name="procesarSolicitudEliminar" action="#{MunicipioMB.getEliminarMunicipio}" >
+	                <a4j:actionparam name="p1" assignTo="#{MunicipioMB.idMunicipio}" />                
+            	</a4j:jsFunction>
+        	</a4j:form>		        							
 		</ui:define>
 	</ui:composition>
 </body>

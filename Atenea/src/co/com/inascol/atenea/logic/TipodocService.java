@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppTipodocDAO;
 import co.com.inascol.atenea.entity.GppTipodoc;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.ITipodocService;
 
 public class TipodocService implements ITipodocService{
@@ -14,14 +15,14 @@ public class TipodocService implements ITipodocService{
 	private GppTipodoc gppTipodoc;
 	private List<Object> gppTipoDocumentos;
 	
-	public boolean actualizarTipoDocumento(Integer idTipoDocumento,	String nombreTipoDocumento) {
+	public boolean actualizarTipoDocumento(Integer idTipoDocumento,	String nombreTipoDocumento, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppTipodocDAO = new GppTipodocDAO();
 			gppTipodoc = new GppTipodoc();
 			gppTipodoc.setTdcNidtipodoc(idTipoDocumento);
 			gppTipodoc.setTdcVnombre(nombreTipoDocumento);
-			gppTipodoc.setTdcVusumodifica("memo");
+			gppTipodoc.setTdcVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppTipodoc.setTdcDfecmodifica(new Date());
 			estadoOperacion = gppTipodocDAO.actualizar(gppTipodoc);
 		} catch (Exception ex){
@@ -63,13 +64,13 @@ public class TipodocService implements ITipodocService{
 		return gppTipoDocumentos;
 	}
 
-	public boolean crearTipoDocumento(String nombreTipoDocumento) {
+	public boolean crearTipoDocumento(String nombreTipoDocumento, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppTipodocDAO = new GppTipodocDAO();
 			gppTipodoc = new GppTipodoc();
 			gppTipodoc.setTdcVnombre(nombreTipoDocumento);
-			gppTipodoc.setTdcVusucrea("memo");
+			gppTipodoc.setTdcVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppTipodoc.setTdcDfeccrea(new Date());
 			estadoOperacion = gppTipodocDAO.crear(gppTipodoc);
 		} catch (Exception ex){

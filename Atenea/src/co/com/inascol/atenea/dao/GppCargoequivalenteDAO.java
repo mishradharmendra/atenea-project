@@ -76,7 +76,7 @@ public class GppCargoequivalenteDAO implements DAO{
 		try{
 			gppCargoequivalenteRowMapper = new GppCargoequivalenteRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_cargoequivalente order by ceq_nidcargoeq asc";
+			sentenciaSQL = "select * from gpp_cargoequivalente order by ceq_vcargoeq asc";
 			gppCargosequivalentes = (List) jdbcTemplate.query(sentenciaSQL, gppCargoequivalenteRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();

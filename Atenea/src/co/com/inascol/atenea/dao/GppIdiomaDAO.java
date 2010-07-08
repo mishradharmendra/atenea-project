@@ -76,7 +76,7 @@ public class GppIdiomaDAO implements DAO {
 		try{
 			gppIdiomaRowMapper = new GppIdiomaRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_idioma order by idi_nididioma asc";
+			sentenciaSQL = "select * from gpp_idioma order by idi_vidioma asc";
 			gppIdiomas = (List) jdbcTemplate.query(sentenciaSQL, gppIdiomaRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();

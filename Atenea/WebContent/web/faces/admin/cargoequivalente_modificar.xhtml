@@ -24,20 +24,28 @@
 				<table>
 					<tr>
 						<td><h:inputHidden value="#{CargoequivalenteMB.cargoequivalente.ceqNidcargoeq}"></h:inputHidden></td>
-						<td><h:outputLabel value="Nombre de Cargos Equivalentes: "></h:outputLabel></td>
-						<td><h:inputText value="#{CargoequivalenteMB.cargoequivalente.ceqVcargoeq}"></h:inputText></td>					
-						<td width="100px"></td>
+						<td><h:outputLabel value="Nombre de Cargo Equivalente: "></h:outputLabel></td>
+						<td><h:inputText id="nombreCargo" size="30" value="#{CargoequivalenteMB.cargoequivalente.ceqVcargoeq}" required="true" requiredMessage="Ingrese Cargo Equivalente"></h:inputText></td>					
 					</tr>
+					<tr>
+						<td align="center" colspan="3"><rich:message for="nombreCargo" style="color:red"/></td>							
+					</tr>					
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{CargoequivalenteMB.getModificarCargoequivalente}" value="Aceptar"/></td>
-						<td width="20px"></td>
-						<td><h:commandButton action="#{CargoequivalenteMB.getCancelar}" value="Cancelar"/></td>
 					</tr>
 				</table>
-				</h:form>								
+				</h:form>
+				<h:form>
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{CargoequivalenteMB.getCancelar}" value="Cancelar"/></td>
+						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>												
 			</rich:panel>						
 		</ui:define>
 	</ui:composition>

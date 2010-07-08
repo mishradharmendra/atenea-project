@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppInstitucionDAO;
 import co.com.inascol.atenea.entity.GppInstitucion;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IInstitucionService;
 
 public class InstitucionService implements IInstitucionService {
@@ -14,14 +15,14 @@ public class InstitucionService implements IInstitucionService {
 	private GppInstitucion gppInstitucion;
 	private List<Object> gppInstituciones;
 	
-	public boolean actualizarInstitucion(Integer idInstitucion, String nombreInstitucion) {
+	public boolean actualizarInstitucion(Integer idInstitucion, String nombreInstitucion, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppInstitucionDAO = new GppInstitucionDAO();
 			gppInstitucion = new GppInstitucion();
 			gppInstitucion.setInsNidinstitucion(idInstitucion);
 			gppInstitucion.setInsVinstitucion(nombreInstitucion);
-			gppInstitucion.setInsVusumodifica("memo");
+			gppInstitucion.setInsVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppInstitucion.setInsDfecmodifica(new Date());
 			estadoOperacion = gppInstitucionDAO.actualizar(gppInstitucion);
 		} catch (Exception ex){
@@ -63,13 +64,13 @@ public class InstitucionService implements IInstitucionService {
 		return gppInstitucion;
 	}
 
-	public boolean crearInstitucion(String nombreInstitucion) {
+	public boolean crearInstitucion(String nombreInstitucion, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppInstitucionDAO = new GppInstitucionDAO();
 			gppInstitucion = new GppInstitucion();
 			gppInstitucion.setInsVinstitucion(nombreInstitucion);
-			gppInstitucion.setInsVusucrea("memo");
+			gppInstitucion.setInsVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppInstitucion.setInsDfeccrea(new Date());
 			estadoOperacion = gppInstitucionDAO.crear(gppInstitucion);
 		} catch (Exception ex){

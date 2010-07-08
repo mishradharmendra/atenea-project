@@ -6,13 +6,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.faces.context.FacesContext;
 
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
 import co.com.inascol.atenea.entity.GppDocumento;
 import co.com.inascol.atenea.entity.GppParametrizacion;
+import co.com.inascol.atenea.entity.GppPersona;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.DocumentoService;
 import co.com.inascol.atenea.logic.ParametrizacionService;
 import co.com.inascol.atenea.logic.TipoarchivoService;
@@ -28,6 +34,8 @@ public class DocumentoDelegate {
 	private String nombreArchivoSoporte;
 	private String urlArchivoSoporte;
 	private GppDocumento documento;
+	private SimpleDateFormat dateFormat;
+	private GppUsuario usuarioAutenticado;
 	
 	public DocumentoDelegate(){}
 	
@@ -45,6 +53,7 @@ public class DocumentoDelegate {
 	public void getSubirSoporte(UploadEvent event) throws IOException {
 	    if (event != null) {
 	    	parametrizacionService = new ParametrizacionService();
+	    	dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	        UploadItem item = event.getUploadItem();
 	        File file = item.getFile();
 	        nombreArchivoSoporte = item.getFileName();	        
@@ -52,7 +61,7 @@ public class DocumentoDelegate {
 	        if(urlArchivoSoporte==null){
 	        	urlArchivoSoporte = "/home/memo/Temp-Directory/";
 	        }else{
-	        	urlArchivoSoporte = urlArchivoSoporte + "HV_" + System.currentTimeMillis() + "_" + nombreArchivoSoporte;
+	        	urlArchivoSoporte = urlArchivoSoporte + "DOCUMENTOS_" + dateFormat.format(new Date()) + "_" + nombreArchivoSoporte;
 		        FileInputStream fis = new FileInputStream(file.getPath());
 		        BufferedInputStream bis = new BufferedInputStream(fis);
 		        FileOutputStream fos = new FileOutputStream(urlArchivoSoporte);
@@ -74,9 +83,11 @@ public class DocumentoDelegate {
 	    }
 	}
 	
-	public Boolean getGuardarSoporte(GppDocumento documento){
+	public Boolean getGuardarSoporte(GppDocumento documento, GppPersona persona){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
-		return documentoService.crearDocumento("docu", "nombre", "url", documento.getDocDfecexpide(), documento.getPerNidpersona(), documento.getTarNidtipoarchivo());
+		String nombreDocumento = "Documento-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();		
+		return documentoService.crearDocumento(nombreDocumento, nombreArchivoSoporte, urlArchivoSoporte, documento.getDocDfecexpide(), documento.getPerNidpersona(), documento.getTarNidtipoarchivo(), usuarioAutenticado);
 	}
 	
 	public List<Object> getSoportesPorIdPersona(Integer idPersona){

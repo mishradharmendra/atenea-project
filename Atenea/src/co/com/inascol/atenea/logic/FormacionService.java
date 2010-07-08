@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppFormacionDAO;
 import co.com.inascol.atenea.entity.GppFormacion;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IFormacionService;
 
 public class FormacionService implements IFormacionService{
@@ -19,7 +20,7 @@ public class FormacionService implements IFormacionService{
 										Date fechaTarjetaProfecional, Integer idPersona,
 										Integer idNivelAcademico, Integer idInstitucion,
 										Integer idTituloEquivalente, Integer idDocumentoTarjeta,
-										Integer idActaGrado, Integer idDocumentoDiploma) {
+										Integer idActaGrado, Integer idDocumentoDiploma, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppFormacionDAO = new GppFormacionDAO();
@@ -37,7 +38,7 @@ public class FormacionService implements IFormacionService{
 			gppFormacion.setDocNidiploma(idDocumentoDiploma);
 			gppFormacion.setDocNactagrado(idActaGrado);
 			gppFormacion.setDocNtarjetaprof(idDocumentoTarjeta);
-			gppFormacion.setForVusumodifica("Memo");
+			gppFormacion.setForVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppFormacion.setForDfecmodifica(new Date());
 			estadoOperacion = gppFormacionDAO.actualizar(gppFormacion);
 		} catch (Exception ex){
@@ -84,7 +85,7 @@ public class FormacionService implements IFormacionService{
 									Date fechaTarjetaProfecional, Integer idPersona,
 									Integer idNivelAcademico, Integer idInstitucion,
 									Integer idTituloEquivalente, Integer idDocumentoTarjeta,
-									Integer idActaGrado, Integer idDocumentoDiploma) {
+									Integer idActaGrado, Integer idDocumentoDiploma, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppFormacionDAO = new GppFormacionDAO();
@@ -101,7 +102,7 @@ public class FormacionService implements IFormacionService{
 			gppFormacion.setDocNidiploma(idDocumentoDiploma);
 			gppFormacion.setDocNactagrado(idActaGrado);
 			gppFormacion.setDocNtarjetaprof(idDocumentoTarjeta);
-			gppFormacion.setForVusucrea("Memo");
+			gppFormacion.setForVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppFormacion.setForDfeccrea(new Date());
 			estadoOperacion = gppFormacionDAO.crear(gppFormacion);
 		} catch (Exception ex){

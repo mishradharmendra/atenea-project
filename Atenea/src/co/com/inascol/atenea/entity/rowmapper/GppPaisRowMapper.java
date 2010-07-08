@@ -13,7 +13,7 @@ public class GppPaisRowMapper implements RowMapper{
 	
 	public Object mapRow(ResultSet rs, int index) throws SQLException {
 		gppPais = new GppPais();
-		gppPais.setPaiVidpais(rs.getString("pai_vidpais"));
+		gppPais.setPaiNidpais(rs.getInt("pai_nidpais"));
 		gppPais.setPaiVpais(rs.getString("pai_vpais"));
 		gppPais.setPaiVusucrea(rs.getString("pai_vusucrea"));
 		gppPais.setPaiDfeccrea(rs.getDate("pai_dfeccrea"));

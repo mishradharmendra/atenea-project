@@ -6,20 +6,31 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.faces.context.FacesContext;
 
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
 import co.com.inascol.atenea.entity.GppFormacion;
+import co.com.inascol.atenea.entity.GppParametrizacion;
+import co.com.inascol.atenea.entity.GppPersona;
+import co.com.inascol.atenea.entity.GppUsuario;
+import co.com.inascol.atenea.logic.DocumentoService;
 import co.com.inascol.atenea.logic.FormacionService;
 import co.com.inascol.atenea.logic.InstitucionService;
 import co.com.inascol.atenea.logic.NivelacademicoService;
+import co.com.inascol.atenea.logic.ParametrizacionService;
 import co.com.inascol.atenea.logic.TituloequivalenteService;
+import co.com.inascol.atenea.logic.interfaces.IDocumentoService;
 import co.com.inascol.atenea.logic.interfaces.IFormacionService;
 import co.com.inascol.atenea.logic.interfaces.IInstitucionService;
 import co.com.inascol.atenea.logic.interfaces.INivelacademicoService;
+import co.com.inascol.atenea.logic.interfaces.IParametrizacionService;
 import co.com.inascol.atenea.logic.interfaces.ITituloequivalenteService;
 
 public class FormacionDelegate {
@@ -28,6 +39,8 @@ public class FormacionDelegate {
 	private INivelacademicoService nivelacademicoService;
 	private IInstitucionService institucionService;
 	private ITituloequivalenteService tituloequivalenteService;
+	private IParametrizacionService parametrizacionService;
+	private IDocumentoService documentoService;
 	private GppFormacion formacion;
 	private String nombreArchivoSoportes;
 	private String urlArchivoSoportes;	
@@ -36,13 +49,15 @@ public class FormacionDelegate {
 	private String nombreArchivoActa;
 	private String urlArchivoActa;	
 	private List<Object> formaciones;
+	private SimpleDateFormat dateFormat; 
+	private GppUsuario usuarioAutenticado;
 	
 	public FormacionDelegate(){}
 	
 	public List<Object> getBuscarFormacionesPersona(Integer idPersona){
 		formacionService = new FormacionService();
 		formaciones = formacionService.buscarFormacionPersona(idPersona);
-		return formaciones;
+		return formaciones;		
 	}
 	
 	public List<Object> getNivelesAcademicos(){
@@ -61,13 +76,15 @@ public class FormacionDelegate {
 	}
 	
 	public Boolean getGuardarFormacion(GppFormacion formacion){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		formacionService = new FormacionService();
-		return formacionService.crearFormacion(formacion.getForVtitulo(), formacion.getForDfecgrado(), formacion.getForNduracionmes(), formacion.getForVtarjetaprof(), formacion.getForDfectarjeta(), formacion.getPerNidpersona(), formacion.getNacNidnivelac(), formacion.getInsNidinstitucion(), formacion.getTeqNidtituloeq(), formacion.getDocNtarjetaprof(), formacion.getDocNactagrado(), formacion.getDocNidiploma());
+		return formacionService.crearFormacion(formacion.getForVtitulo(), formacion.getForDfecgrado(), formacion.getForNduracionmes(), formacion.getForVtarjetaprof(), formacion.getForDfectarjeta(), formacion.getPerNidpersona(), formacion.getNacNidnivelac(), formacion.getInsNidinstitucion(), formacion.getTeqNidtituloeq(), formacion.getDocNtarjetaprof(), formacion.getDocNactagrado(), formacion.getDocNidiploma(), usuarioAutenticado);
 	}
 	
 	public Boolean getActualizarFormacion(GppFormacion formacion){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		formacionService = new FormacionService();
-		return formacionService.actualizarFormacion(formacion.getForNidformacion(), formacion.getForVtitulo(), formacion.getForDfecgrado(), formacion.getForNduracionmes(), formacion.getForVtarjetaprof(), formacion.getForDfectarjeta(), formacion.getPerNidpersona(), formacion.getNacNidnivelac(), formacion.getInsNidinstitucion(), formacion.getTeqNidtituloeq(), formacion.getDocNtarjetaprof(), formacion.getDocNactagrado(), formacion.getDocNidiploma());
+		return formacionService.actualizarFormacion(formacion.getForNidformacion(), formacion.getForVtitulo(), formacion.getForDfecgrado(), formacion.getForNduracionmes(), formacion.getForVtarjetaprof(), formacion.getForDfectarjeta(), formacion.getPerNidpersona(), formacion.getNacNidnivelac(), formacion.getInsNidinstitucion(), formacion.getTeqNidtituloeq(), formacion.getDocNtarjetaprof(), formacion.getDocNactagrado(), formacion.getDocNidiploma(), usuarioAutenticado);
 	}
 	
 	public Boolean getBorrarFormacion(Integer idFormacion){
@@ -90,79 +107,124 @@ public class FormacionDelegate {
 		
 	public void getSubirDiploma(UploadEvent event) throws IOException {
 	    if (event != null) {
+	    	parametrizacionService = new ParametrizacionService();
+	    	dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	        UploadItem item = event.getUploadItem();
 	        File file = item.getFile();
 	        nombreArchivoDiploma = item.getFileName();
-	        urlArchivoDiploma = "/home/memo/TEMP/" + System.currentTimeMillis() + "_" + nombreArchivoDiploma;
-	        FileInputStream fis = new FileInputStream(file.getPath());
-	        BufferedInputStream bis = new BufferedInputStream(fis);
-	        FileOutputStream fos = new FileOutputStream(urlArchivoDiploma);
-	        BufferedOutputStream bos = new BufferedOutputStream(fos);
-	        try {
-	            byte[] array = new byte[100];
-	            int leidos = bis.read(array);
-	            while (leidos > 0) {
-	                bos.write(array, 0, leidos);
-	                leidos = bis.read(array);
-	            }
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } finally {
-	            bis.close();
-	            bos.close();
+	        urlArchivoDiploma = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
+	        if(urlArchivoDiploma==null){
+	        	urlArchivoDiploma = "/home/memo/Temp-Directory/";
+	        }else{	
+		        urlArchivoDiploma = urlArchivoDiploma + "DIPLOMA_" + dateFormat.format(new Date()) + "_" + nombreArchivoDiploma;
+		        FileInputStream fis = new FileInputStream(file.getPath());
+		        BufferedInputStream bis = new BufferedInputStream(fis);
+		        FileOutputStream fos = new FileOutputStream(urlArchivoDiploma);
+		        BufferedOutputStream bos = new BufferedOutputStream(fos);
+		        try {
+		            byte[] array = new byte[100];
+		            int leidos = bis.read(array);
+		            while (leidos > 0) {
+		                bos.write(array, 0, leidos);
+		                leidos = bis.read(array);
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        } finally {
+		            bis.close();
+		            bos.close();
+		        }
 	        }
 	    }
 	}
 	
 	public void getSubirActaGrado(UploadEvent event) throws IOException {
 	    if (event != null) {
+	    	parametrizacionService = new ParametrizacionService();
+	    	dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	        UploadItem item = event.getUploadItem();
 	        File file = item.getFile();
 	        nombreArchivoActa = item.getFileName();
-	        urlArchivoActa = "/home/memo/TEMP/" + System.currentTimeMillis() + "_" + nombreArchivoActa;
-	        FileInputStream fis = new FileInputStream(file.getPath());
-	        BufferedInputStream bis = new BufferedInputStream(fis);
-	        FileOutputStream fos = new FileOutputStream(urlArchivoActa);
-	        BufferedOutputStream bos = new BufferedOutputStream(fos);
-	        try {
-	            byte[] array = new byte[100];
-	            int leidos = bis.read(array);
-	            while (leidos > 0) {
-	                bos.write(array, 0, leidos);
-	                leidos = bis.read(array);
-	            }
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } finally {
-	            bis.close();
-	            bos.close();
+	        urlArchivoActa = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
+	        if(urlArchivoActa==null){
+	        	urlArchivoActa = "/home/memo/Temp-Directory/";
+	        }else{	
+	        	urlArchivoActa = urlArchivoActa + "ACTA_" + dateFormat.format(new Date()) + "_" + nombreArchivoActa;
+		        FileInputStream fis = new FileInputStream(file.getPath());
+		        BufferedInputStream bis = new BufferedInputStream(fis);
+		        FileOutputStream fos = new FileOutputStream(urlArchivoActa);
+		        BufferedOutputStream bos = new BufferedOutputStream(fos);
+		        try {
+		            byte[] array = new byte[100];
+		            int leidos = bis.read(array);
+		            while (leidos > 0) {
+		                bos.write(array, 0, leidos);
+		                leidos = bis.read(array);
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        } finally {
+		            bis.close();
+		            bos.close();
+		        }
 	        }
 	    }
 	}	
 	
 	public void getSubirSoportesAcademicos(UploadEvent event) throws IOException {
 	    if (event != null) {
+	    	parametrizacionService = new ParametrizacionService();
+	    	dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	        UploadItem item = event.getUploadItem();
 	        File file = item.getFile();
 	        nombreArchivoSoportes = item.getFileName();
-	        urlArchivoSoportes = "/home/memo/TEMP/" + System.currentTimeMillis() + "_" + nombreArchivoSoportes;
-	        FileInputStream fis = new FileInputStream(file.getPath());
-	        BufferedInputStream bis = new BufferedInputStream(fis);
-	        FileOutputStream fos = new FileOutputStream(urlArchivoSoportes);
-	        BufferedOutputStream bos = new BufferedOutputStream(fos);
-	        try {
-	            byte[] array = new byte[100];
-	            int leidos = bis.read(array);
-	            while (leidos > 0) {
-	                bos.write(array, 0, leidos);
-	                leidos = bis.read(array);
-	            }
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } finally {
-	            bis.close();
-	            bos.close();
+	        urlArchivoSoportes = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
+	        if(urlArchivoSoportes==null){
+	        	urlArchivoSoportes = "/home/memo/Temp-Directory/";
+	        }else{		        
+	        	urlArchivoSoportes = urlArchivoSoportes + "SOPORTES_" + dateFormat.format(new Date()) + "_" + nombreArchivoSoportes;
+		        FileInputStream fis = new FileInputStream(file.getPath());
+		        BufferedInputStream bis = new BufferedInputStream(fis);
+		        FileOutputStream fos = new FileOutputStream(urlArchivoSoportes);
+		        BufferedOutputStream bos = new BufferedOutputStream(fos);
+		        try {
+		            byte[] array = new byte[100];
+		            int leidos = bis.read(array);
+		            while (leidos > 0) {
+		                bos.write(array, 0, leidos);
+		                leidos = bis.read(array);
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        } finally {
+		            bis.close();
+		            bos.close();
+		        }
 	        }
 	    }
+	}
+	
+	public void getGuardarSoporte(GppPersona persona){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
+		documentoService = new DocumentoService();
+		String nombreDocumento = "Consolidado-Soportes-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
+		documentoService.crearDocumento(nombreDocumento, nombreArchivoSoportes, urlArchivoSoportes, new Date(), persona.getPerNidpersona(), 1, usuarioAutenticado);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
+	}
+	
+	public void getGuardarDiploma(GppPersona persona, GppFormacion formacion){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
+		documentoService = new DocumentoService();
+		String nombreDocumento = "Diploma-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
+		documentoService.crearDocumento(nombreDocumento, nombreArchivoDiploma, urlArchivoDiploma, formacion.getForDfecgrado(), persona.getPerNidpersona(), 1, usuarioAutenticado);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
+	}
+	
+	public void getGuardarActa(GppPersona persona, GppFormacion formacion){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
+		documentoService = new DocumentoService();
+		String nombreDocumento = "Acta-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
+		documentoService.crearDocumento(nombreDocumento, nombreArchivoActa, urlArchivoActa, formacion.getForDfecgrado(), persona.getPerNidpersona(), 1, usuarioAutenticado);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}
 }

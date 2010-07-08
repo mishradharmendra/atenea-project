@@ -18,13 +18,14 @@ public class MunicipioMB {
 
 	private MunicipioDelegate municipioDelegate;
     private DepartamentoDelegate departamentoDelegate;
-    private String idMunicipio;
+    private Integer idMunicipio;
 	private String nombreMunicipio;
 	private String estadoMunicipio;
-	private String idDepto;
+	private Integer idDepto;
 	private String controlNavegacion;
-	private List municipios;
+	private List<Object> municipios;
 	private GppMunicipio municipio;
+	private Boolean estadoOperacion;
 	
 	public MunicipioMB(){
 		municipioDelegate = new MunicipioDelegate();
@@ -49,22 +50,22 @@ public class MunicipioMB {
 	public void setMunicipio(GppMunicipio municipio) {
 		this.municipio = municipio;
 	}
-	public List getMunicipios() {
+	public List<Object> getMunicipios() {
 		return municipios;
 	}
-	public void setMunicipios(List municipios) {
+	public void setMunicipios(List<Object> municipios) {
 		this.municipios = municipios;
 	}
-	public String getIdMunicipio() {
+	public Integer getIdMunicipio() {
 		return idMunicipio;
 	}
-	public void setIdMunicipio(String idMunicipio) {
+	public void setIdMunicipio(Integer idMunicipio) {
 		this.idMunicipio = idMunicipio;
 	}
-	public String getIdDepto() {
+	public Integer getIdDepto() {
 		return idDepto;
 	}
-	public void setIdDepto(String idDepto) {
+	public void setIdDepto(Integer idDepto) {
 		this.idDepto = idDepto;
 	}
 	public String getControlNavegacion() {
@@ -81,12 +82,12 @@ public class MunicipioMB {
 	public List<SelectItem> getDepartamentos(){
 		departamentoDelegate = new DepartamentoDelegate();
 		List<SelectItem> listadoDepartamentos = new ArrayList<SelectItem>();
-		List departamentos = departamentoDelegate.getListaDeptos();
+		List<Object> departamentos = departamentoDelegate.getListaDeptos();
 		if(departamentos.size()>0){
-			Iterator it = departamentos.iterator();
+			Iterator<Object> it = departamentos.iterator();
 			while(it.hasNext()){
 				GppDepartamento gppDepto = (GppDepartamento) it.next();
-				listadoDepartamentos.add(new SelectItem(gppDepto.getDptViddepto(),gppDepto.getDptVdepto()));
+				listadoDepartamentos.add(new SelectItem(gppDepto.getDptNiddepto(),gppDepto.getDptVdepto()));
 			}
         }
 		return listadoDepartamentos;
@@ -97,21 +98,47 @@ public class MunicipioMB {
 		return ConstantesFaces.CREAR_MUNICIPIO;
 	}	
 	
-	public String getCrearMunicipio() {		
-		municipioDelegate.getCrearMunicipio(idMunicipio, nombreMunicipio, idDepto);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("MunicipioMB");
-		return ConstantesFaces.HOME_MUNICIPIO;
+	public String getCrearMunicipio() {
+		estadoOperacion = false;
+		estadoOperacion = municipioDelegate.getCrearMunicipio(nombreMunicipio, idDepto);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("MunicipioMB");
+			return ConstantesFaces.ESTADO_MP_OK;
+		}else{
+			return ConstantesFaces.ESTADO_MP_ERROR;
+		}
 	}
 	
 	public String getSeleccionarMunicipio(){
+		municipio = municipioDelegate.getSeleccionarMunicipio(idMunicipio);
+		return ConstantesFaces.MODIFICAR_MUNICIPIO;
+	}
+	
+	public String getSeleccionarMunicipioDetalle(){
 		municipio = municipioDelegate.getSeleccionarMunicipio(idMunicipio);
 		return ConstantesFaces.DETALLE_MUNICIPIO;
 	}
 	
 	public String getModificarMunicipio(){
-		municipioDelegate.getModificarMunicipio(municipio.getDptViddepto(), municipio.getMunVmunicipio(), municipio.getMunVidmunicipio());
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("MunicipioMB");
-		return ConstantesFaces.HOME_MUNICIPIO;
+		estadoOperacion = false;
+		estadoOperacion = municipioDelegate.getModificarMunicipio(municipio.getMunNidmunicipio(), municipio.getMunVmunicipio(), municipio.getDptNiddepto());
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("MunicipioMB");
+			return ConstantesFaces.ESTADO_MP_OK;
+		}else{
+			return ConstantesFaces.ESTADO_MP_ERROR;
+		}
+	}
+	
+	public String getEliminarMunicipio(){
+		estadoOperacion = false;
+		estadoOperacion = municipioDelegate.getEliminarMunicipio(idMunicipio);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("MunicipioMB");
+			return ConstantesFaces.ESTADO_MP_OK;
+		}else{
+			return ConstantesFaces.ESTADO_MP_ERROR;
+		}
 	}
 	
 	public String getCancelar(){

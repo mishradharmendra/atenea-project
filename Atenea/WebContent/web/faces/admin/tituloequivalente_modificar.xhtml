@@ -21,23 +21,31 @@
 				<h:form>
 				<h:outputLabel value="Modificación de Datos de Titulos Equivalentes"></h:outputLabel>
 				<br/><br/>					
-				<table>
+				<table align="center">
 					<tr>
 						<td><h:inputHidden value="#{TituloequivalenteMB.tituloequivalente.teqNidtituloeq}"></h:inputHidden></td>
 						<td><h:outputLabel value="Nombre de Titulos Equivalentes: "></h:outputLabel></td>
-						<td><h:inputText value="#{TituloequivalenteMB.tituloequivalente.teqVtituloeq}"></h:inputText></td>					
-						<td width="100px"></td>
+						<td><h:inputText id="nombreTitulo" size="30" value="#{TituloequivalenteMB.tituloequivalente.teqVtituloeq}" required="true" requiredMessage="Ingrese Titulo Equivalente"></h:inputText></td>					
 					</tr>
+					<tr>
+						<td align="center" colspan="3"><rich:message for="nombreTitulo" style="color:red"/></td>							
+					</tr>							
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{TituloequivalenteMB.getModificarTituloequivalente}" value="Aceptar"/></td>
-						<td width="20px"></td>
-						<td><h:commandButton action="#{TituloequivalenteMB.getCancelar}" value="Cancelar"/></td>
 					</tr>
 				</table>
-				</h:form>								
+				</h:form>	
+				<h:form>	
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{TituloequivalenteMB.getCancelar}" value="Cancelar"/></td>
+						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>											
 			</rich:panel>						
 		</ui:define>
 	</ui:composition>

@@ -21,22 +21,30 @@
 				<h:form>
 				<h:outputLabel value="Agregar Tipo de Documento"></h:outputLabel>
 				<br/><br/>					
-				<table>
+				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Nombre de Tipo de Documento: "></h:outputLabel></td>
-						<td><h:inputText value="#{TipodocumentoMB.nombreTipodoc}"></h:inputText></td>					
-						<td width="100px"></td>
+						<td><h:inputText id="nombreTipodoc" size="30" value="#{TipodocumentoMB.nombreTipodoc}" required="true" requiredMessage="Ingrese Nombre de Tipo de Documento"></h:inputText></td>					
 					</tr>
+					<tr>
+						<td align="center" colspan="2"><rich:message for="nombreTipodoc" style="color:red"/></td>							
+					</tr>						
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{TipodocumentoMB.getCrearTipodoc}" value="Aceptar"/></td>
-						<td width="20px"></td>
-						<td><h:commandButton action="#{TipodocumentoMB.getCancelar}" value="Cancelar"/></td>
+						<td><h:commandButton action="#{TipodocumentoMB.getCrearTipodoc}" value="Aceptar"/></td>						
 					</tr>
 				</table>
-				</h:form>								
+				</h:form>
+				<h:form>	
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{TipodocumentoMB.getCancelar}" value="Cancelar"/></td>
+						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>											
 			</rich:panel>						
 		</ui:define>
 	</ui:composition>

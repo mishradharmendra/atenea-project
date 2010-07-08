@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppExperienciaDAO;
 import co.com.inascol.atenea.entity.GppExperiencia;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IExperienciaService;
 
 public class ExperienciaService implements IExperienciaService{
@@ -20,7 +21,7 @@ public class ExperienciaService implements IExperienciaService{
 			Date fechaIngreso, Date fechaRetiro, String herramientasSoftware,
 			String funcionesLogros, Integer docCertificacion1,
 			Integer docCertificacion2, Integer idMunicipio,
-			Integer cargoEquivalente) {
+			Integer cargoEquivalente, Integer idPersona, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{
 			gppExperienciaDAO = new GppExperienciaDAO();
@@ -37,10 +38,10 @@ public class ExperienciaService implements IExperienciaService{
 			gppExperiencia.setExpVfuncionlogro(funcionesLogros);
 			gppExperiencia.setDocNcertifica1(docCertificacion1);
 			gppExperiencia.setDocNcertifica2(docCertificacion2);
-//			DEPTO
 			gppExperiencia.setMunVidmunicipio(idMunicipio);
 			gppExperiencia.setCeqNidcargoeq(cargoEquivalente);
-			gppExperiencia.setExpVusumodifica("MEMO");
+			gppExperiencia.setPerNidpersona(idPersona);
+			gppExperiencia.setExpVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppExperiencia.setExpDfecmodifica(new Date());
 			estadoOperacion = gppExperienciaDAO.actualizar(gppExperiencia);
 		} catch (Exception ex){
@@ -88,7 +89,7 @@ public class ExperienciaService implements IExperienciaService{
 			Date fechaRetiro, String herramientasSoftware,
 			String funcionesLogros, Integer docCertificacion1,
 			Integer docCertificacion2, Integer idMunicipio,
-			Integer cargoEquivalente) {
+			Integer cargoEquivalente, Integer idPersona, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{
 			gppExperienciaDAO = new GppExperienciaDAO();
@@ -104,15 +105,26 @@ public class ExperienciaService implements IExperienciaService{
 			gppExperiencia.setExpVfuncionlogro(funcionesLogros);
 			gppExperiencia.setDocNcertifica1(docCertificacion1);
 			gppExperiencia.setDocNcertifica2(docCertificacion2);
-//			DEPTO
 			gppExperiencia.setMunVidmunicipio(idMunicipio);
 			gppExperiencia.setCeqNidcargoeq(cargoEquivalente);
-			gppExperiencia.setExpVusucrea("MEMO");
+			gppExperiencia.setPerNidpersona(idPersona);
+			gppExperiencia.setExpVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppExperiencia.setExpDfeccrea(new Date());
 			estadoOperacion = gppExperienciaDAO.crear(gppExperiencia);
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}
 		return estadoOperacion;
+	}
+	
+	public List<Object> buscarExperienciasPersona(Integer idPersona){
+		gppExperienciasLaborales = null;
+		try{
+			gppExperienciaDAO =  new GppExperienciaDAO();
+			gppExperienciasLaborales = gppExperienciaDAO.buscarExperienciasPersona(idPersona);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return gppExperienciasLaborales;
 	}
 }

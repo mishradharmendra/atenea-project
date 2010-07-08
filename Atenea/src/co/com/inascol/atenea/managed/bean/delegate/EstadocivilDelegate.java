@@ -4,38 +4,42 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import co.com.inascol.atenea.entity.GppEstadocivil;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.EstadocivilService;
 import co.com.inascol.atenea.logic.interfaces.IEstadocivilService;
 
 public class EstadocivilDelegate {
 
 	private IEstadocivilService estadocivilService;
-	private List estadociviles;
+	private List<Object> estadociviles;
 	private GppEstadocivil estadocivil;
+	private GppUsuario usuarioAutenticado;
 	
 	public EstadocivilDelegate(){}
 	
-	public List getListaEstadocivils(){
+	public List<Object> getListaEstadocivils(){
 		estadocivilService = new EstadocivilService();
 		estadociviles = estadocivilService.buscarEstadosCiviles();
 		return estadociviles;
 	}
 	
-	public List getEstadocivilPorNombre(String nombreEstadocivil){
+	public List<Object> getEstadocivilPorNombre(String nombreEstadocivil){
 		estadocivilService = new EstadocivilService();
 		estadociviles = estadocivilService.buscarEstadosCiviles();		
-		List estadocivilsConsultados = new ArrayList();
+		List<Object> estadocivilsConsultados = new ArrayList<Object>();
+		CharSequence nombre = nombreEstadocivil.toLowerCase();
 		if(estadociviles.size()>0){
 			if(nombreEstadocivil.equalsIgnoreCase("")){
 				estadocivilsConsultados = estadociviles;
 			} else {
-				Iterator it = estadociviles.iterator();
+				Iterator<Object> it = estadociviles.iterator();
 				while(it.hasNext()){
 					estadocivil = (GppEstadocivil) it.next();
-					if(estadocivil.getEscVestadocivil().equalsIgnoreCase(nombreEstadocivil)){
+					if(estadocivil.getEscVestadocivil().toLowerCase().contains(nombre)){
 						estadocivilsConsultados.add(estadocivil);			
-						break;
 					}
 				}
 			}
@@ -43,11 +47,11 @@ public class EstadocivilDelegate {
 		return estadocivilsConsultados;
 	}
 	
-	public GppEstadocivil getSeleccionarEstadocivil(int idEstadocivil){
+	public GppEstadocivil getSeleccionarEstadocivil(Integer idEstadocivil){
 		estadocivilService = new EstadocivilService();
 		estadociviles = estadocivilService.buscarEstadosCiviles();
 		if(estadociviles.size()>0){
-			Iterator it = estadociviles.iterator();
+			Iterator<Object> it = estadociviles.iterator();
 			while(it.hasNext()){
 				estadocivil = (GppEstadocivil) it.next();
 				if(estadocivil.getEscNidestadocivil() == idEstadocivil){
@@ -58,13 +62,20 @@ public class EstadocivilDelegate {
 		return estadocivil;
 	}
 	
-	public boolean getModificarEstadocivil(int idEstadocivil, String nombreEstadocivil){
+	public Boolean getModificarEstadocivil(Integer idEstadocivil, String nombreEstadocivil){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		estadocivilService = new EstadocivilService();
-		return estadocivilService.actualizarEstadoCivil(idEstadocivil, nombreEstadocivil);
+		return estadocivilService.actualizarEstadoCivil(idEstadocivil, nombreEstadocivil, usuarioAutenticado);
 	}
 	
-	public boolean getCrearEstadocivil(String nombreEstadocivil){
+	public Boolean getCrearEstadocivil(String nombreEstadocivil){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		estadocivilService = new EstadocivilService();
-		return estadocivilService.crearEstadoCivil(nombreEstadocivil);
+		return estadocivilService.crearEstadoCivil(nombreEstadocivil, usuarioAutenticado);
 	}
+	
+	public Boolean getEliminarEstadocivil(Integer idEstadocivil){
+		estadocivilService = new EstadocivilService();
+		return estadocivilService.borrarEstadoCivil(idEstadocivil);
+	}	
 }

@@ -3,6 +3,7 @@ package co.com.inascol.atenea.test;
 import java.util.Iterator;
 import java.util.List;
 
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.entity.GppUsuariorol;
 import co.com.inascol.atenea.logic.UsuariorolService;
 import co.com.inascol.atenea.logic.interfaces.IUsuariorolService;
@@ -11,6 +12,7 @@ public class TestUsuariorolService {
 
 	private static IUsuariorolService serviciorolService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String argss[]){
 //		crear();
@@ -25,7 +27,7 @@ public class TestUsuariorolService {
 		serviciorolService = new UsuariorolService();
 		int idUsuario = 2;
 		int idRol = 1;
-		estadoOperacion = serviciorolService.crearUsuariorol(idUsuario, idRol);
+		estadoOperacion = serviciorolService.crearUsuariorol(idUsuario, idRol, usuarioAutenticado);
 		System.out.println(estadoOperacion);		
 	}
 	
@@ -34,7 +36,7 @@ public class TestUsuariorolService {
 		serviciorolService = new UsuariorolService();
 		int idUsuario = 1;
 		int idRol = 1;
-		estadoOperacion = serviciorolService.actualizarUsuariorol(idUsuario, idRol);
+		estadoOperacion = serviciorolService.actualizarUsuariorol(idUsuario, idRol, usuarioAutenticado);
 		System.out.println(estadoOperacion);
 	}
 	

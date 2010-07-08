@@ -19,17 +19,10 @@
 				</table>
 				<br/><br/>
 				<h:form>	
-				<table>
+				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Consulta de Departamentos: "></h:outputLabel></td>
 						<td><h:inputText value="#{DepartamentoMB.nombreDepartamento}"></h:inputText></td>					
-						<td width="100px"></td>
-						<td><h:outputLabel value="Estado"></h:outputLabel></td>
-						<td><h:selectOneMenu value="#{DepartamentoMB.estadoDepartamento}">
-								<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
-								<f:selectItem itemValue="Activo" itemLabel="Activo"/>
-								<f:selectItem itemValue="Desactivo" itemLabel="Desactivo"/>
-							</h:selectOneMenu></td>
 					</tr>
 				</table>
 				<br/>				
@@ -50,36 +43,50 @@
 						<f:facet name="header">
 							<h:outputLabel value="Id Departamento"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{depto.dptViddepto}"></h:outputLabel>
+						<h:outputLabel value="#{depto.dptNiddepto}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="300px">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Departamento"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{depto.dptVdepto}"></h:outputLabel>
+						<a4j:commandLink id="dptVdepto" onclick="procesarSolicitudDetalle('#{depto.dptNiddepto}')">
+							<h:outputLabel value="#{depto.dptVdepto}"></h:outputLabel>
+						</a4j:commandLink>
 					</rich:column>
 					<rich:column width="100px">
 						<f:facet name="header">
 							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>
-						<a4j:commandLink id="modificar" onclick="procesarSolicitud('#{depto.dptViddepto}')">
+						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{depto.dptNiddepto}')">
                             <h:graphicImage url="../../imagenes/editar.png"/>
                         </a4j:commandLink>
 					</rich:column>
 					<rich:column width="100px">
 						<f:facet name="header">
-							<h:outputLabel value="Activar"></h:outputLabel>
+							<h:outputLabel value="Eliminar"></h:outputLabel>
 						</f:facet>
-						<h:selectBooleanCheckbox></h:selectBooleanCheckbox>
+						<a4j:commandLink id="eliminar" onclick="aceptar = confirm('Esta seguro que quiere eliminar el elemento seleccionado?'); if(aceptar==true){procesarSolicitudEliminar('#{depto.dptNiddepto}');} return false;">
+                            <h:graphicImage url="../../imagenes/Delete.png"/>
+                        </a4j:commandLink>
 					</rich:column>									
 				</rich:extendedDataTable>
 				</h:form>					
 			</rich:panel>
         	<a4j:form>
-	            <a4j:jsFunction name="procesarSolicitud" action="#{DepartamentoMB.getSeleccionarDepto}" >
+	            <a4j:jsFunction name="procesarSolicitudDetalle" action="#{DepartamentoMB.getSeleccionarDeptoDetalle}" >
 	                <a4j:actionparam name="p1" assignTo="#{DepartamentoMB.idDepartamento}" />                
             	</a4j:jsFunction>
-        	</a4j:form>								
+        	</a4j:form>				
+        	<a4j:form>
+	            <a4j:jsFunction name="procesarSolicitudModificar" action="#{DepartamentoMB.getSeleccionarDepto}" >
+	                <a4j:actionparam name="p1" assignTo="#{DepartamentoMB.idDepartamento}" />                
+            	</a4j:jsFunction>
+        	</a4j:form>	
+        	<a4j:form>
+	            <a4j:jsFunction name="procesarSolicitudEliminar" action="#{DepartamentoMB.getEliminarDepto}" >
+	                <a4j:actionparam name="p1" assignTo="#{DepartamentoMB.idDepartamento}" />                
+            	</a4j:jsFunction>
+        	</a4j:form>		        								
 		</ui:define>
 	</ui:composition>
 </body>

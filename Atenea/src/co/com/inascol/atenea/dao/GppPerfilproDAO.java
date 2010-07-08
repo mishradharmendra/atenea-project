@@ -152,7 +152,7 @@ public class GppPerfilproDAO implements DAO{
 			gppPerfilprofRowMapper = new GppPerfilprofRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "select * from gpp_perfilprof where per_nidpersona = ?";
-			gppPerfilesprofesionales = (List<Object>) jdbcTemplate.query(sentenciaSQL, new Object[] {idObj}, gppPerfilprofRowMapper);
+			gppPerfilesprofesionales = (List) jdbcTemplate.query(sentenciaSQL, new Object[] {idObj}, gppPerfilprofRowMapper);
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}

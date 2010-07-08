@@ -5,7 +5,8 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:rich="http://richfaces.org/rich"
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
-	  xmlns:a4j="http://richfaces.org/a4j">
+	  xmlns:a4j="http://richfaces.org/a4j"
+	  xmlns:c="http://java.sun.com/jstl/core">
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
@@ -30,7 +31,20 @@
 						<td align="center" colspan="2"><rich:message for="expVnomempresa" style="color:red"/></td>
 						<td width="150px"></td>			
 						<td align="center" colspan="2"><rich:message for="expVtelempresa" style="color:red"/></td>							
-					</tr>						
+					</tr>
+					<tr>
+						<td><h:outputLabel value="País"></h:outputLabel></td>
+						<td><h:selectOneMenu id="idPais" valueChangeListener="#{ExperienciaMB.getDeptos}" onchange="submit()">
+							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
+							<f:selectItems value="#{ExperienciaMB.paises}"/>
+						</h:selectOneMenu></td>
+						<td width="150px"></td>	
+						<td><h:outputLabel value="Departamento"></h:outputLabel></td>
+						<td><h:selectOneMenu id="idDepto" valueChangeListener="#{ExperienciaMB.getMpios}" onchange="submit()">
+							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
+							<f:selectItems value="#{PersonaMB.departamentosPais}"/>
+						</h:selectOneMenu></td>
+					</tr>
 					<tr>
 						<td><h:outputLabel value="Municipio"></h:outputLabel></td>
 						<td><h:selectOneMenu id="munVidmunicipio" value="#{ExperienciaMB.experiencia.munVidmunicipio}" required="true" requiredMessage="Ingrese Municipio">
@@ -73,7 +87,14 @@
 						<td><rich:calendar value="#{ExperienciaMB.experiencia.expDfecingreso}" datePattern="dd/MM/yyyy" id="expDfecingreso" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Ingreso"/></td>
 						<td width="150px"></td>
 						<td><h:outputLabel value="Fecha de Retiro"></h:outputLabel></td>
-						<td><rich:calendar value="#{ExperienciaMB.experiencia.expDfecretiro}" datePattern="dd/MM/yyyy" id="expDfecretiro" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Retiro"/></td>															
+						<td><rich:calendar value="#{ExperienciaMB.experiencia.expDfecretiro}" datePattern="dd/MM/yyyy" id="expDfecretiro" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll"/></td>
+					</tr>
+					<tr>
+						<td/>
+						<td/>
+						<td width="150px"></td>
+						<td><h:outputLabel value="Actual"></h:outputLabel></td>
+						<td><h:selectBooleanCheckbox value="#{ExperienciaMB.fechaActual}" id="fechaActual" onclick="if(getElementById('j_id57:fechaActual').checked==true){getElementById('j_id57:expDfecretiroInputDate').disabled=true;getElementById('j_id57:j_id57:expDfecretiroPopupButton').disabled=true;}else{getElementById('j_id57:expDfecretiroInputDate').disabled=false;getElementById('j_id57:j_id57:expDfecretiroPopupButton').disabled=false;};"></h:selectBooleanCheckbox></td>															
 					</tr>
 					<tr>
 						<td align="center" colspan="2"><rich:message for="expDfecingreso" style="color:red"/></td>				
@@ -82,16 +103,12 @@
 					</tr>	
 					<tr>
 						<td><h:outputLabel value="Herramientas de Desarrollo Utilizadas"></h:outputLabel></td>
-						<td><h:inputTextarea cols="40" id="expVherrasw" value="#{ExperienciaMB.experiencia.expVherrasw}" required="true" requiredMessage="Ingrese Herramientas de Desarrollo Utilizadas"></h:inputTextarea></td>
-						<td width="150px"></td>
-						<td><h:outputLabel value="Funciones y Logros"></h:outputLabel></td>
-						<td><h:inputTextarea cols="40" id="expVfuncionlogro" value="#{ExperienciaMB.experiencia.expVfuncionlogro}" required="true" requiredMessage="Ingrese Fecha de Retiro"></h:inputTextarea></td>															
-					</tr>	
+						<td colspan="4"><h:inputTextarea cols="90" id="expVherrasw" value="#{ExperienciaMB.experiencia.expVherrasw}"></h:inputTextarea></td>
+					</tr>
 					<tr>
-						<td align="center" colspan="2"><rich:message for="expVherrasw" style="color:red"/></td>				
-						<td width="150px"></td>	
-						<td align="center" colspan="2"><rich:message for="expVfuncionlogro" style="color:red"/></td>							
-					</tr>																											
+						<td><h:outputLabel value="Funciones y Logros"></h:outputLabel></td>
+						<td colspan="4"><h:inputTextarea cols="90" id="expVfuncionlogro" value="#{ExperienciaMB.experiencia.expVfuncionlogro}"></h:inputTextarea></td>															
+					</tr>	
 				</table>
 				<br/>
 				<table align="center">
@@ -101,19 +118,28 @@
 						<td align="center"><h:outputLabel value="Certificado Laboral 2"></h:outputLabel></td>							
 					</tr>				
 					<tr>
-						<td><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado1}" acceptedTypes="pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+						<td><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado1}" acceptedTypes="pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
 						<td width="150px"></td>	
-						<td><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado2}" acceptedTypes="pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="50px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+						<td><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado2}" acceptedTypes="pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 					</tr>																																																							
 				</table>
 				<br/><br/>
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{ExperienciaMB.getGuardarExperiencia}" value="Guardar"/></td>					 					
+						<c:if test="#{ExperienciaMB.experiencia.expNidexplaboral == null}">
+						<td><h:commandButton action="#{ExperienciaMB.getGuardarExperiencia}" value="Guardar"/></td>
+						</c:if>					 					
 					</tr>
 				</table>
+				<table align="right">
+					<tr>
+						<c:if test="#{ExperienciaMB.experiencia.expNidexplaboral != null}">
+						<td><h:commandButton action="#{ExperienciaMB.getActualizarExperiencia}" value="Actualizar"/></td>
+						</c:if>					 					
+					</tr>
+				</table>				
 				</h:form>	
 				<h:form>
 					<table align="right">

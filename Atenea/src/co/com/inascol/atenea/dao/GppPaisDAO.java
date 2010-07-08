@@ -28,15 +28,15 @@ public class GppPaisDAO implements DAO {
 							"set pai_vpais = ?, " +
 							"pai_vusumodifica = ?, " +
 							"pai_dfecmodifica = ? " +							
-							"where pai_vidpais = ?";	
+							"where pai_nidpais = ?";	
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppPais.getPaiVpais(),
 															gppPais.getPaiVusumodifica(),
 															gppPais.getPaiDfecmodifica(),
-															gppPais.getPaiVidpais()},
+															gppPais.getPaiNidpais()},
 															new int[] {Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.DATE,
-																		Types.VARCHAR});	
+																		Types.INTEGER});	
 			estadoOperation = true;
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -49,8 +49,8 @@ public class GppPaisDAO implements DAO {
 		try{	
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "delete from gpp_pais " +
-							"where pai_vidpais = ? ";	
-			jdbcTemplate.update(sentenciaSQL, new Object[] {idObj}, new int[] {Types.VARCHAR});	
+							"where pai_nidpais = ? ";	
+			jdbcTemplate.update(sentenciaSQL, new Object[] {idObj}, new int[] {Types.INTEGER});	
 			estadoOperation = true;
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -63,7 +63,7 @@ public class GppPaisDAO implements DAO {
 		try{
 			gppPaisRowMapper = new GppPaisRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_pais where pai_vidpais = ?";
+			sentenciaSQL = "select * from gpp_pais where pai_nidpais = ?";
 			gppPais = (GppPais) jdbcTemplate.queryForObject(sentenciaSQL, new Object[] {idObj}, gppPaisRowMapper);
 		} catch (Exception ex){
 			ex.printStackTrace();
@@ -91,14 +91,12 @@ public class GppPaisDAO implements DAO {
 			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_pais " +
-							"(pai_vidpais, pai_vpais, pai_vusucrea, pai_dfeccrea)" +
-							"values (?, ?, ?, ?)";	
-			jdbcTemplate.update(sentenciaSQL, new Object[]{gppPais.getPaiVidpais(),
-					 										gppPais.getPaiVpais(),
+							"(pai_vpais, pai_vusucrea, pai_dfeccrea)" +
+							"values (?, ?, ?)";	
+			jdbcTemplate.update(sentenciaSQL, new Object[]{gppPais.getPaiVpais(),
 															gppPais.getPaiVusucrea(),
 															gppPais.getPaiDfeccrea()},
 															new int[] {Types.VARCHAR,
-																		Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.DATE});
 			estadoOperation = true;

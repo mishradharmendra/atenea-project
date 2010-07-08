@@ -18,13 +18,14 @@ public class DepartamentoMB {
 
 	private DepartamentoDelegate departamentoDelegate;
 	private PaisDelegate paisDelegate;
-	private String idDepartamento;
+	private Integer idDepartamento;
 	private String nombreDepartamento;
 	private String estadoDepartamento;
-	private String idPais;
+	private Integer idPais;
 	private String controlNavegacion;
-	private List departamentos;
+	private List<Object> departamentos;
 	private GppDepartamento departamento;
+	private Boolean estadoOperacion;
 	
 	public DepartamentoMB(){
 		departamentoDelegate = new DepartamentoDelegate();
@@ -49,22 +50,22 @@ public class DepartamentoMB {
 	public void setDepartamento(GppDepartamento departamento) {
 		this.departamento = departamento;
 	}
-	public List getDepartamentos() {
+	public List<Object> getDepartamentos() {
 		return departamentos;
 	}
-	public void setDepartamentos(List departamentos) {
+	public void setDepartamentos(List<Object> departamentos) {
 		this.departamentos = departamentos;
 	}
-	public String getIdDepartamento() {
+	public Integer getIdDepartamento() {
 		return idDepartamento;
 	}
-	public void setIdDepartamento(String idDepartamento) {
+	public void setIdDepartamento(Integer idDepartamento) {
 		this.idDepartamento = idDepartamento;
 	}
-	public String getIdPais() {
+	public Integer getIdPais() {
 		return idPais;
 	}
-	public void setIdPais(String idPais) {
+	public void setIdPais(Integer idPais) {
 		this.idPais = idPais;
 	}
 	public String getControlNavegacion() {
@@ -81,12 +82,12 @@ public class DepartamentoMB {
 	public List<SelectItem> getPaises(){
 		paisDelegate = new PaisDelegate();
 		List<SelectItem> listadoPaises = new ArrayList<SelectItem>();
-		List paises = paisDelegate.getListaPaises();
+		List<Object> paises = paisDelegate.getListaPaises();
 		if(paises.size()>0){
-			Iterator it = paises.iterator();
+			Iterator<Object> it = paises.iterator();
 			while(it.hasNext()){
 				GppPais gppPais = (GppPais) it.next();
-				listadoPaises.add(new SelectItem(gppPais.getPaiVidpais(),gppPais.getPaiVpais()));
+				listadoPaises.add(new SelectItem(gppPais.getPaiNidpais(),gppPais.getPaiVpais()));
 			}
         }
 		return listadoPaises;
@@ -97,21 +98,47 @@ public class DepartamentoMB {
 		return ConstantesFaces.CREAR_DEPTO;
 	}	
 	
-	public String getCrearDepto() {		
-		departamentoDelegate.getCrearDepto(idDepartamento, nombreDepartamento, idPais);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
-		return ConstantesFaces.HOME_DEPTO;
+	public String getCrearDepto() {	
+		estadoOperacion = false;
+		estadoOperacion = departamentoDelegate.getCrearDepto(nombreDepartamento, idPais);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
+			return ConstantesFaces.ESTADO_DT_OK;
+		}else{
+			return ConstantesFaces.ESTADO_DT_ERROR;
+		}
 	}
 	
 	public String getSeleccionarDepto(){
+		departamento = departamentoDelegate.getSeleccionarDepto(idDepartamento);
+		return ConstantesFaces.MODIFICAR_DEPTO;
+	}
+	
+	public String getSeleccionarDeptoDetalle(){
 		departamento = departamentoDelegate.getSeleccionarDepto(idDepartamento);
 		return ConstantesFaces.DETALLE_DEPTO;
 	}
 	
 	public String getModificarDepto(){
-		departamentoDelegate.getModificarDepto(departamento.getDptViddepto(), departamento.getDptVdepto(), departamento.getPaiVidpais());
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
-		return ConstantesFaces.HOME_DEPTO;
+		estadoOperacion = false;
+		estadoOperacion = departamentoDelegate.getModificarDepto(departamento.getDptNiddepto(), departamento.getDptVdepto(), departamento.getPaiNidpais());
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
+			return ConstantesFaces.ESTADO_DT_OK;
+		}else{
+			return ConstantesFaces.ESTADO_DT_ERROR;
+		}
+	}
+	
+	public String getEliminarDepto(){
+		estadoOperacion = false;
+		estadoOperacion = departamentoDelegate.getEliminarDepto(idDepartamento);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
+			return ConstantesFaces.ESTADO_DT_OK;
+		}else{
+			return ConstantesFaces.ESTADO_DT_ERROR;
+		}
 	}
 	
 	public String getCancelar(){

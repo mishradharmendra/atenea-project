@@ -4,38 +4,42 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import co.com.inascol.atenea.entity.GppInstitucion;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.InstitucionService;
 import co.com.inascol.atenea.logic.interfaces.IInstitucionService;
 
 public class InstitucionDelegate {
 
 	private IInstitucionService institucionService;
-	private List instituciones;
+	private List<Object> instituciones;
 	private GppInstitucion institucion;
+	private GppUsuario usuarioAutenticado;
 	
 	public InstitucionDelegate(){}
 	
-	public List getListaInstituciones(){
+	public List<Object> getListaInstituciones(){
 		institucionService = new InstitucionService();
 		instituciones = institucionService.buscarInstituciones();
 		return instituciones;
 	}
 	
-	public List getInstitucionPorNombre(String nombreInstitucion){
+	public List<Object> getInstitucionPorNombre(String nombreInstitucion){
 		institucionService = new InstitucionService();
 		instituciones = institucionService.buscarInstituciones();		
-		List institucionesConsultados = new ArrayList();
+		List<Object> institucionesConsultados = new ArrayList<Object>();
+		CharSequence nombre = nombreInstitucion.toLowerCase();
 		if(instituciones.size()>0){
 			if(nombreInstitucion.equalsIgnoreCase("")){
 				institucionesConsultados = instituciones;
 			} else {
-				Iterator it = instituciones.iterator();
+				Iterator<Object> it = instituciones.iterator();
 				while(it.hasNext()){
 					institucion = (GppInstitucion) it.next();
-					if(institucion.getInsVinstitucion().equalsIgnoreCase(nombreInstitucion)){
+					if(institucion.getInsVinstitucion().toLowerCase().contains(nombre)){
 						institucionesConsultados.add(institucion);			
-						break;
 					}
 				}
 			}
@@ -43,14 +47,14 @@ public class InstitucionDelegate {
 		return institucionesConsultados;
 	}
 	
-	public GppInstitucion getSeleccionarInstitucion(int idInstitucion){
+	public GppInstitucion getSeleccionarInstitucion(Integer idInstitucion){
 		institucionService = new InstitucionService();
 		instituciones = institucionService.buscarInstituciones();
 		if(instituciones.size()>0){
-			Iterator it = instituciones.iterator();
+			Iterator<Object> it = instituciones.iterator();
 			while(it.hasNext()){
 				institucion = (GppInstitucion) it.next();
-				if(institucion.getInsNidinstitucion().equals(idInstitucion)){
+				if(institucion.getInsNidinstitucion() == idInstitucion){
 					break;
 				}
 			}					
@@ -58,13 +62,20 @@ public class InstitucionDelegate {
 		return institucion;
 	}
 	
-	public boolean getModificarInstitucion(int idInstitucion, String nombreInstitucion){
+	public Boolean getModificarInstitucion(Integer idInstitucion, String nombreInstitucion){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		institucionService = new InstitucionService();
-		return institucionService.actualizarInstitucion(idInstitucion, nombreInstitucion);
+		return institucionService.actualizarInstitucion(idInstitucion, nombreInstitucion, usuarioAutenticado);
 	}
 	
-	public boolean getCrearInstitucion(String nombreInstitucion){
+	public Boolean getCrearInstitucion(String nombreInstitucion){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		institucionService = new InstitucionService();
-		return institucionService.crearInstitucion(nombreInstitucion);
+		return institucionService.crearInstitucion(nombreInstitucion, usuarioAutenticado);
+	}	
+	
+	public Boolean getEliminarInstitucion(Integer idInstitucion){
+		institucionService = new InstitucionService();
+		return institucionService.borrarInstitucion(idInstitucion);
 	}	
 }

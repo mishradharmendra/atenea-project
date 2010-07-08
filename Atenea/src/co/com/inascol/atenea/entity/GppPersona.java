@@ -13,10 +13,10 @@ public class GppPersona {
 	private String munVidmunicipio;
 	private String perVnombres;
 	private String perVapellidos;
-	private int tdcNidtipodoc;
-	private int perNidentificacion;
+	private Integer tdcNidtipodoc;
+	private Integer perNidentificacion;
 	private String perVsexo;
-	private int escNidestadocivil;
+	private Integer escNidestadocivil;
 	private Date perDfecnacimiento;
 	private String perVlibretamilitar;
 	private String perVmovil;
@@ -27,6 +27,9 @@ public class GppPersona {
 	private Date perDfeccrea;
 	private String perVusumodifica;
 	private Date perDfecmodifica;
+	private Integer paiNpaisresidencia;
+	private Integer munNmpioresidencia;
+	private Boolean perBactivo;
 	
 	private GppFormacion gppFormacion;
 	private GppPerfilprof gppPerfilprofesional;
@@ -65,19 +68,19 @@ public class GppPersona {
 		this.perVapellidos = perVapellidos;
 	}
 
-	public int getTdcNidtipodoc() {
+	public Integer getTdcNidtipodoc() {
 		return this.tdcNidtipodoc;
 	}
 
-	public void setTdcNidtipodoc(int tdcNidtipodoc) {
+	public void setTdcNidtipodoc(Integer tdcNidtipodoc) {
 		this.tdcNidtipodoc = tdcNidtipodoc;
 	}
 
-	public int getPerNidentificacion() {
+	public Integer getPerNidentificacion() {
 		return this.perNidentificacion;
 	}
 
-	public void setPerNidentificacion(int perNidentificacion) {
+	public void setPerNidentificacion(Integer perNidentificacion) {
 		this.perNidentificacion = perNidentificacion;
 	}
 
@@ -89,11 +92,11 @@ public class GppPersona {
 		this.perVsexo = perVsexo;
 	}
 
-	public int getEscNidestadocivil() {
+	public Integer getEscNidestadocivil() {
 		return this.escNidestadocivil;
 	}
 
-	public void setEscNidestadocivil(int escNidestadocivil) {
+	public void setEscNidestadocivil(Integer escNidestadocivil) {
 		this.escNidestadocivil = escNidestadocivil;
 	}
 
@@ -191,5 +194,26 @@ public class GppPersona {
 
 	public void setGppPerfilprofesional(GppPerfilprof gppPerfilprofesional) {
 		this.gppPerfilprofesional = gppPerfilprofesional;
-	}		
+	}
+
+	public Integer getPaiNpaisresidencia() {
+		return paiNpaisresidencia;
+	}
+
+	public void setPaiNpaisresidencia(Integer paiNpaisresidencia) {
+		this.paiNpaisresidencia = paiNpaisresidencia;
+	}
+
+	public Integer getMunNmpioresidencia() {
+		return munNmpioresidencia;
+	}
+	public void setMunNmpioresidencia(Integer munNmpioresidencia) {
+		this.munNmpioresidencia = munNmpioresidencia;
+	}
+	public Boolean getPerBactivo() {
+		return perBactivo;
+	}
+	public void setPerBactivo(Boolean perBactivo) {
+		this.perBactivo = perBactivo;
+	}
 }

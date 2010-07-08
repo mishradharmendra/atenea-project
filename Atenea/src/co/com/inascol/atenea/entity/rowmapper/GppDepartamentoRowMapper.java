@@ -13,9 +13,9 @@ public class GppDepartamentoRowMapper implements RowMapper{
 	
 	public Object mapRow(ResultSet rs, int index) throws SQLException {
 		gppDepartamento = new GppDepartamento();
-		gppDepartamento.setDptViddepto(rs.getString("dpt_viddepto"));
+		gppDepartamento.setDptNiddepto(rs.getInt("dpt_niddepto"));
 		gppDepartamento.setDptVdepto(rs.getString("dpt_vdepto"));
-		gppDepartamento.setPaiVidpais(rs.getString("pai_vidpais"));
+		gppDepartamento.setPaiNidpais(rs.getInt("pai_nidpais"));
 		gppDepartamento.setDptVusucrea(rs.getString("dpt_vusucrea"));
 		gppDepartamento.setDptDfeccrea(rs.getDate("dpt_dfeccrea"));
 		gppDepartamento.setDptVusumodifica(rs.getString("dpt_vusumodifica"));

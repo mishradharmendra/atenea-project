@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppRol;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.RolService;
 import co.com.inascol.atenea.logic.interfaces.IRolService;
 
@@ -12,6 +13,7 @@ public class TestRolService {
 
 	private static IRolService rolService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String argss[]){
 		crear();
@@ -30,7 +32,7 @@ public class TestRolService {
 		List <Object> listaServicios= new ArrayList<Object>();
 		listaServicios.add(1);
 		listaServicios.add(2);    
-		estadoOperacion = rolService.crearRol(nombreRol, descripcionRol, activoRol, listaServicios);
+		estadoOperacion = rolService.crearRol(nombreRol, descripcionRol, activoRol, listaServicios, usuarioAutenticado);
 		System.out.println(estadoOperacion);		
 	}
 	
@@ -41,7 +43,7 @@ public class TestRolService {
 		String nombreRol = "Administradores";
 		String descripcionRol = "Administran la aplicaci�n de Hojas de Vida";
 		String activoRol ="SI";
-		estadoOperacion = rolService.actualizarRol(idRol, nombreRol, descripcionRol, activoRol);
+		estadoOperacion = rolService.actualizarRol(idRol, nombreRol, descripcionRol, activoRol, usuarioAutenticado);
 		System.out.println(estadoOperacion);
 	}
 	

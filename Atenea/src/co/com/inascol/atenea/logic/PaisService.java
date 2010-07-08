@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppPaisDAO;
 import co.com.inascol.atenea.entity.GppPais;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IPaisService;
 
 public class PaisService implements IPaisService {
@@ -14,15 +15,14 @@ public class PaisService implements IPaisService {
 	private GppPais gppPais;
 	private List<Object> gppPaiss;
 	
-	public boolean actualizarPais(String idPais, String nombrePais) {
+	public boolean actualizarPais(Integer idPais, String nombrePais, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppPaisDAO = new GppPaisDAO();
 			gppPais = new GppPais();
-			gppPais.setPaiVidpais(idPais);
+			gppPais.setPaiNidpais(idPais);
 			gppPais.setPaiVpais(nombrePais);
-			gppPais.setPaiVidpais(idPais);
-			gppPais.setPaiVusumodifica("ANGIE");
+			gppPais.setPaiVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppPais.setPaiDfecmodifica(new Date());
 			estadoOperacion = gppPaisDAO.actualizar(gppPais);
 		} catch (Exception ex){
@@ -31,7 +31,7 @@ public class PaisService implements IPaisService {
 		return estadoOperacion;
 	}
 
-	public boolean borrarPais(String idPais) {
+	public boolean borrarPais(Integer idPais) {
 		estadoOperacion = false;
 		try{			
 			gppPaisDAO = new GppPaisDAO();
@@ -53,7 +53,7 @@ public class PaisService implements IPaisService {
 		return gppPaiss;
 	}
 
-	public GppPais buscarPorIdPais(String idPais) {
+	public GppPais buscarPorIdPais(Integer idPais) {
 		gppPais = null;
 		try{			
 			gppPaisDAO = new GppPaisDAO();
@@ -64,14 +64,13 @@ public class PaisService implements IPaisService {
 		return gppPais;
 	}
 
-	public boolean crearPais(String idPais, String nombrePais) {
+	public boolean crearPais(String nombrePais, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppPaisDAO = new GppPaisDAO();
 			gppPais = new GppPais();
-			gppPais.setPaiVidpais(idPais);
 			gppPais.setPaiVpais(nombrePais);
-			gppPais.setPaiVusucrea("MI MEMO");
+			gppPais.setPaiVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppPais.setPaiDfeccrea(new Date());
 			estadoOperacion = gppPaisDAO.crear(gppPais);
 		} catch (Exception ex){

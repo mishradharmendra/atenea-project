@@ -1,11 +1,8 @@
 package co.com.inascol.atenea.managed.bean;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 
 import co.com.inascol.atenea.entity.GppTipodoc;
 import co.com.inascol.atenea.managed.bean.delegate.TipodocumentoDelegate;
@@ -15,12 +12,13 @@ import co.com.inascol.atenea.util.ConstantesFaces;
 public class TipodocumentoMB {
 
 	private TipodocumentoDelegate tipodocDelegate;
-	private int idTipodoc;
+	private Integer idTipodoc;
 	private String nombreTipodoc;
 	private String estadoTipodoc;
 	private String controlNavegacion;
-	private List tipodocs;
+	private List<Object> tipodocs;
 	private GppTipodoc tipodoc;
+	private Boolean estadoOperacion;
 	
 	public TipodocumentoMB(){
 		tipodocDelegate = new TipodocumentoDelegate();
@@ -45,10 +43,10 @@ public class TipodocumentoMB {
 	public void setTipodocumento(GppTipodoc tipodoc) {
 		this.tipodoc = tipodoc;
 	}
-	public List getTipodocs() {
+	public List<Object> getTipodocs() {
 		return tipodocs;
 	}
-	public void setTipodocs(List tipodocs) {
+	public void setTipodocs(List<Object> tipodocs) {
 		this.tipodocs = tipodocs;
 	}
 	public int getIdTipodoc() {
@@ -74,21 +72,47 @@ public class TipodocumentoMB {
 		return ConstantesFaces.CREAR_TIPODOCUMENTO;
 	}	
 	
-	public String getCrearTipodoc() {		
-		tipodocDelegate.getCrearTipodocumento(nombreTipodoc);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipodocumentoMB");
-		return ConstantesFaces.HOME_TIPODOCUMENTO;
+	public String getCrearTipodoc() {	
+		estadoOperacion = false;
+		estadoOperacion = tipodocDelegate.getCrearTipodocumento(nombreTipodoc);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipodocumentoMB");
+			return ConstantesFaces.ESTADO_TD_OK;
+		} else {
+			return ConstantesFaces.ESTADO_TD_ERROR;
+		}
 	}
 	
 	public String getSeleccionarTipodoc(){
+		tipodoc = tipodocDelegate.getSeleccionarTipodocumento(idTipodoc);
+		return ConstantesFaces.MODIFICAR_TIPODOCUMENTO;
+	}
+
+	public String getSeleccionarTipodocDetalle(){
 		tipodoc = tipodocDelegate.getSeleccionarTipodocumento(idTipodoc);
 		return ConstantesFaces.DETALLE_TIPODOCUMENTO;
 	}
 	
 	public String getModificarTipodoc(){
-		tipodocDelegate.getModificarTipodocumento(tipodoc.getTdcNidtipodoc(), tipodoc.getTdcVnombre());
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipodocumentoMB");
-		return ConstantesFaces.HOME_TIPODOCUMENTO;
+		estadoOperacion = false;
+		estadoOperacion = tipodocDelegate.getModificarTipodocumento(tipodoc.getTdcNidtipodoc(), tipodoc.getTdcVnombre());
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipodocumentoMB");
+			return ConstantesFaces.ESTADO_TD_OK;
+		} else {
+			return ConstantesFaces.ESTADO_TD_ERROR;
+		}
+	}
+	
+	public String getEliminarTipodoc(){
+		estadoOperacion = false;
+		estadoOperacion = tipodocDelegate.getEliminarTipodoc(idTipodoc);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipodocumentoMB");
+			return ConstantesFaces.ESTADO_TD_OK;
+		} else {
+			return ConstantesFaces.ESTADO_TD_ERROR;
+		}
 	}
 	
 	public String getCancelar(){

@@ -13,7 +13,7 @@ public class AutenticacionDelegate {
 	
 	public AutenticacionDelegate(){}
 	
-	public Boolean getVerificarPermisos(String login, String password){
+	public Boolean getVerificarPermisos(String login){
 		usuarioService = new UsuarioService();
 		usuario = usuarioService.buscarPorLogin(login);
 		if(usuario!=null){

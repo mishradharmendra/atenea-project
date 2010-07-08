@@ -3,8 +3,6 @@ package co.com.inascol.atenea.entity.rowmapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 import co.com.inascol.atenea.entity.GppPersona;
@@ -33,6 +31,9 @@ public class GppPersonaRowMapper implements RowMapper{
 		gppPersona.setPerDfeccrea(rs.getDate("per_dfeccrea"));
 		gppPersona.setPerVusumodifica(rs.getString("per_vusumodifica"));
 		gppPersona.setPerDfecmodifica(rs.getDate("per_dfecmodifica"));
+		gppPersona.setPaiNpaisresidencia(rs.getInt("pai_npaisresidencia"));
+		gppPersona.setMunNmpioresidencia(rs.getInt("mun_nmpioresidencia"));
+		gppPersona.setPerBactivo(rs.getBoolean("per_vactivo"));
 		return gppPersona;
 	}
 }

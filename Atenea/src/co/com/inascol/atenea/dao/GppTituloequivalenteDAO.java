@@ -76,7 +76,7 @@ public class GppTituloequivalenteDAO implements DAO{
 		try{
 			gppTituloequivalenteRowMapper = new GppTituloequivalenteRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_tituloequivalente order by teq_nidtituloeq asc";
+			sentenciaSQL = "select * from gpp_tituloequivalente order by teq_vtituloeq asc";
 			gppTitulosEquivalentes = (List) jdbcTemplate.query(sentenciaSQL, gppTituloequivalenteRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();

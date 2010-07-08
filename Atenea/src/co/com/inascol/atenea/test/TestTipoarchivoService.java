@@ -12,7 +12,7 @@ public class TestTipoarchivoService {
 
 	private static ITipoarchivoService tipoarchivoService;
 	private static GppUsuario usuarioAutenticado;
-	private static Boolean estadoOperacion;
+	private static Boolean estadoOperacion;	
 	
 	public static void main(String argss[]){
 		crear();
@@ -28,7 +28,7 @@ public class TestTipoarchivoService {
 		String nombreTipoarchivo = "Acrobat";
 		usuarioAutenticado = new GppUsuario();
 		usuarioAutenticado.setUsuVlogin("memotoro");
-		estadoOperacion = tipoarchivoService.crearTipoarchivo(nombreTipoarchivo);
+		estadoOperacion = tipoarchivoService.crearTipoarchivo(nombreTipoarchivo, usuarioAutenticado);
 		System.out.println(estadoOperacion);		
 	}
 	
@@ -39,7 +39,7 @@ public class TestTipoarchivoService {
 		String nombreTipoarchivo = "WORD";
 		usuarioAutenticado = new GppUsuario();
 		usuarioAutenticado.setUsuVlogin("memotoro");
-		estadoOperacion = tipoarchivoService.actualizarTipoarchivo(idTipoarchivo, nombreTipoarchivo);
+		estadoOperacion = tipoarchivoService.actualizarTipoarchivo(idTipoarchivo, nombreTipoarchivo, usuarioAutenticado);
 		System.out.println(estadoOperacion);
 	}
 	

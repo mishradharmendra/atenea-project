@@ -10,7 +10,6 @@ public class AutenticacionMB {
 
 	private AutenticacionDelegate autenticacionDelegate;
 	private String login;
-	private String password;
 	private Boolean estadoOperacion;
 	private String fullContextPath;
 	private Boolean usuarioAutenticado;
@@ -26,12 +25,6 @@ public class AutenticacionMB {
 	public void setLogin(String login) {
 		this.login = login;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}		
 	public String getFullContextPath() {
 		return fullContextPath;
 	}
@@ -47,7 +40,7 @@ public class AutenticacionMB {
 
 	public String getVerificarPermisos(){
 		estadoOperacion = false;
-		estadoOperacion = autenticacionDelegate.getVerificarPermisos(login, password);
+		estadoOperacion = autenticacionDelegate.getVerificarPermisos(login);
 		if(estadoOperacion==true){
 			usuarioAutenticado = true;
 			return ConstantesFaces.HOME_HV;

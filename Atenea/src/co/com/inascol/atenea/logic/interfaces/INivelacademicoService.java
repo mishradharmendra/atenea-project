@@ -3,11 +3,12 @@ package co.com.inascol.atenea.logic.interfaces;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppNivelacademico;
+import co.com.inascol.atenea.entity.GppUsuario;
 
 public interface INivelacademicoService {
 
-	public boolean crearNivelAcademico(String nombreNivelAcademico);
-	public boolean actualizarNivelAcademico(Integer idNivelAcademico, String nombreNivelAcademico);
+	public boolean crearNivelAcademico(String nombreNivelAcademico, GppUsuario usuarioAutenticado);
+	public boolean actualizarNivelAcademico(Integer idNivelAcademico, String nombreNivelAcademico, GppUsuario usuarioAutenticado);
 	public boolean borrarNivelAcademico(Integer idNivelAcademico);
 	public GppNivelacademico buscarPorIdNivelAcademico(Integer idNivelAcademico);
 	public List<Object> buscarNivelesAcademicos();

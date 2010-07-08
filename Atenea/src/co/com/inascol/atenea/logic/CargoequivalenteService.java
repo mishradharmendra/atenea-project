@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppCargoequivalenteDAO;
 import co.com.inascol.atenea.entity.GppCargoequivalente;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.ICargoequivalenteService;
 
 public class CargoequivalenteService implements ICargoequivalenteService {
@@ -14,14 +15,14 @@ public class CargoequivalenteService implements ICargoequivalenteService {
 	private GppCargoequivalente gppCargoequivalente;
 	private List<Object> gppCargosequivalentes;
 	
-	public boolean actualizarCargoEquivalente(Integer idCargoEquivalente, String nombreCargoEquivalente) {
+	public boolean actualizarCargoEquivalente(Integer idCargoEquivalente, String nombreCargoEquivalente, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{
 			gppCargoequivalenteDAO = new GppCargoequivalenteDAO();
 			gppCargoequivalente = new GppCargoequivalente();
 			gppCargoequivalente.setCeqNidcargoeq(idCargoEquivalente);
 			gppCargoequivalente.setCeqVcargoeq(nombreCargoEquivalente);
-			gppCargoequivalente.setCeqVusumodifica("MEMO");
+			gppCargoequivalente.setCeqVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppCargoequivalente.setCeqDfecmodifica(new Date());
 			estadoOperacion = gppCargoequivalenteDAO.actualizar(gppCargoequivalente);
 		} catch (Exception ex){
@@ -63,13 +64,13 @@ public class CargoequivalenteService implements ICargoequivalenteService {
 		return gppCargosequivalentes;	
 	}
 
-	public boolean crearCargoEquivalente(String nombreCargoEquivalente) {
+	public boolean crearCargoEquivalente(String nombreCargoEquivalente, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{
 			gppCargoequivalenteDAO = new GppCargoequivalenteDAO();
 			gppCargoequivalente = new GppCargoequivalente();
 			gppCargoequivalente.setCeqVcargoeq(nombreCargoEquivalente);
-			gppCargoequivalente.setCeqVusucrea("MEMO");
+			gppCargoequivalente.setCeqVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppCargoequivalente.setCeqDfeccrea(new Date());
 			estadoOperacion = gppCargoequivalenteDAO.crear(gppCargoequivalente);
 		} catch (Exception ex){

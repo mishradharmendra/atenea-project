@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class GppPais {
 
-	private String paiVidpais;
+	private Integer paiNidpais;
 	private String paiVpais;
 	private String paiVusucrea;
 	private Date paiDfeccrea;
@@ -18,12 +18,12 @@ public class GppPais {
 
 	public GppPais() {}
 
-	public String getPaiVidpais() {
-		return this.paiVidpais;
+	public Integer getPaiNidpais() {
+		return paiNidpais;
 	}
 
-	public void setPaiVidpais(String paiVidpais) {
-		this.paiVidpais = paiVidpais;
+	public void setPaiNidpais(Integer paiNidpais) {
+		this.paiNidpais = paiNidpais;
 	}
 
 	public String getPaiVpais() {

@@ -1,11 +1,8 @@
 package co.com.inascol.atenea.managed.bean;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 
 import co.com.inascol.atenea.entity.GppIdioma;
 import co.com.inascol.atenea.managed.bean.delegate.IdiomaDelegate;
@@ -15,12 +12,13 @@ import co.com.inascol.atenea.util.ConstantesFaces;
 public class IdiomaMB {
 
 	private IdiomaDelegate idiomaDelegate;
-	private int idIdioma;
+	private Integer idIdioma;
 	private String nombreIdioma;
 	private String estadoIdioma;
 	private String controlNavegacion;
-	private List idiomas;
+	private List<Object> idiomas;
 	private GppIdioma idioma;
+	private Boolean estadoOperacion;
 	
 	public IdiomaMB(){
 		idiomaDelegate = new IdiomaDelegate();
@@ -45,10 +43,10 @@ public class IdiomaMB {
 	public void setIdioma(GppIdioma idioma) {
 		this.idioma = idioma;
 	}
-	public List getIdiomas() {
+	public List<Object> getIdiomas() {
 		return idiomas;
 	}
-	public void setIdiomas(List idiomas) {
+	public void setIdiomas(List<Object> idiomas) {
 		this.idiomas = idiomas;
 	}
 	public int getIdIdioma() {
@@ -68,27 +66,52 @@ public class IdiomaMB {
 		idiomas = idiomaDelegate.getIdiomaPorNombre(nombreIdioma);
 	}
 	
-
 	public String getAgregarIdioma() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("IdiomaMB");
 		return ConstantesFaces.CREAR_IDIOMA;
 	}	
 	
 	public String getCrearIdioma() {		
-		idiomaDelegate.getCrearIdioma(nombreIdioma);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("IdiomaMB");
-		return ConstantesFaces.HOME_IDIOMA;
+		estadoOperacion = false;
+		estadoOperacion = idiomaDelegate.getCrearIdioma(nombreIdioma);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("IdiomaMB");
+			return ConstantesFaces.ESTADO_ID_OK;
+		}else{
+			return ConstantesFaces.ESTADO_ID_ERROR;
+		}
 	}
 	
 	public String getSeleccionarIdioma(){
+		idioma = idiomaDelegate.getSeleccionarIdioma(idIdioma);
+		return ConstantesFaces.MODIFICAR_IDIOMA;
+	}
+	
+	public String getSeleccionarIdiomaDetalle(){
 		idioma = idiomaDelegate.getSeleccionarIdioma(idIdioma);
 		return ConstantesFaces.DETALLE_IDIOMA;
 	}
 	
 	public String getModificarIdioma(){
-		idiomaDelegate.getModificarIdioma(idioma.getIdiNididioma(), idioma.getIdiVidioma());
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("IdiomaMB");
-		return ConstantesFaces.HOME_IDIOMA;
+		estadoOperacion = false;
+		estadoOperacion = idiomaDelegate.getModificarIdioma(idioma.getIdiNididioma(), idioma.getIdiVidioma());
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("IdiomaMB");
+			return ConstantesFaces.ESTADO_ID_OK;
+		}else{
+			return ConstantesFaces.ESTADO_ID_ERROR;
+		}
+	}
+	
+	public String getEliminarIdioma(){
+		estadoOperacion = false;
+		estadoOperacion = idiomaDelegate.getEliminarIdioma(idIdioma);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("IdiomaMB");
+			return ConstantesFaces.ESTADO_ID_OK;
+		}else{
+			return ConstantesFaces.ESTADO_ID_ERROR;
+		}
 	}
 	
 	public String getCancelar(){

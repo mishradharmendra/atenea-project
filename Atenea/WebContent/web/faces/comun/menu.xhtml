@@ -42,15 +42,16 @@
 			<rich:menuItem submitMode="ajax" value="Permisos" action="1"/>
 			<rich:menuItem submitMode="ajax" value="Parametrización" action="#{ParametrizacionMB.getHomeParametrizacion}"/>			
 			<rich:menuGroup value="Tablas de Referencia">
-				<rich:menuItem submitMode="ajax" value="Departamentos" action="#{DepartamentoMB.getHomeDepartamento}"/>
 				<rich:menuItem submitMode="ajax" value="Estado Civil" action="#{EstadocivilMB.getHomeEstadocivil}"/>
 				<rich:menuItem submitMode="ajax" value="Idioma" action="#{IdiomaMB.getHomeIdioma}"/>			
 				<rich:menuItem submitMode="ajax" value="Institución" action="#{InstitucionMB.getHomeInstitucion}"/>
-				<rich:menuItem submitMode="ajax" value="Municipios" action="#{MunicipioMB.getHomeMunicipio}"/>			
-				<rich:menuItem submitMode="ajax" value="Nivel Académico" action="#{NivelacademicoMB.getHomeNivelacademico}"/>								
 				<rich:menuItem submitMode="ajax" value="Países" action="#{PaisMB.getHomePais}"/>
-				<rich:menuItem submitMode="ajax" value="Perfíl Profesional" action="#{PerfilequivalenteMB.getHomePerfilequivalente}"/>
-				<rich:menuItem submitMode="ajax" value="Profesiones" action="1"/>								
+				<rich:menuItem submitMode="ajax" value="Departamentos" action="#{DepartamentoMB.getHomeDepartamento}"/>				
+				<rich:menuItem submitMode="ajax" value="Municipios" action="#{MunicipioMB.getHomeMunicipio}"/>			
+				<rich:menuItem submitMode="ajax" value="Nivel Académico" action="#{NivelacademicoMB.getHomeNivelacademico}"/>
+				<rich:menuItem submitMode="ajax" value="Cargo Equivalente" action="#{CargoequivalenteMB.getHomeCargoequivalente}"/>
+				<rich:menuItem submitMode="ajax" value="Perfíl Equivalente" action="#{PerfilequivalenteMB.getHomePerfilequivalente}"/>
+				<rich:menuItem submitMode="ajax" value="Título Equivalente" action="#{TituloequivalenteMB.getHomeTituloequivalente}"/>								
 				<rich:menuItem submitMode="ajax" value="Tipo Archivo" action="#{TipoarchivoMB.getHomeTipoarchivo}"/>						
 				<rich:menuItem submitMode="ajax" value="Tipo Documento" action="#{TipodocumentoMB.getHomeTipodocumento}"/>
 			</rich:menuGroup>						

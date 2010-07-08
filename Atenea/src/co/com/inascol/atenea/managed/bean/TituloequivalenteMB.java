@@ -1,11 +1,8 @@
 package co.com.inascol.atenea.managed.bean;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 
 import co.com.inascol.atenea.entity.GppTituloequivalente;
 import co.com.inascol.atenea.managed.bean.delegate.TituloequivalenteDelegate;
@@ -15,12 +12,13 @@ import co.com.inascol.atenea.util.ConstantesFaces;
 public class TituloequivalenteMB {
 
 	private TituloequivalenteDelegate tituloequivalenteDelegate;
-	private int idTituloequivalente;
+	private Integer idTituloequivalente;
 	private String nombreTitulo;
 	private String estadoTituloequivalente;
 	private String controlNavegacion;
-	private List titulosequivalentes;
+	private List<Object> titulosequivalentes;
 	private GppTituloequivalente tituloequivalente;
+	private Boolean estadoOperacion;
 	
 	public TituloequivalenteMB(){
 		tituloequivalenteDelegate = new TituloequivalenteDelegate();
@@ -45,10 +43,10 @@ public class TituloequivalenteMB {
 	public void setTituloequivalente(GppTituloequivalente tituloequivalente) {
 		this.tituloequivalente = tituloequivalente;
 	}
-	public List getTitulosequivalentes() {
+	public List<Object> getTitulosequivalentes() {
 		return titulosequivalentes;
 	}
-	public void setTitulosequivalentes(List titulosequivalentes) {
+	public void setTitulosequivalentes(List<Object> titulosequivalentes) {
 		this.titulosequivalentes = titulosequivalentes;
 	}
 	public int getIdTituloequivalente() {
@@ -67,7 +65,6 @@ public class TituloequivalenteMB {
 	public void getBuscarTituloequivalentePorNombre() {
 		titulosequivalentes = tituloequivalenteDelegate.getTituloequivalentePorNombre(nombreTitulo);
 	}
-	
 
 	public String getAgregarTituloequivalente() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TituloequivalenteMB");
@@ -75,24 +72,55 @@ public class TituloequivalenteMB {
 	}	
 	
 	public String getCrearTituloequivalente() {		
-		tituloequivalenteDelegate.getCrearTituloequivalente(nombreTitulo);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TituloequivalenteMB");
-		return ConstantesFaces.HOME_TITULOEQUIVALENTE;
+		estadoOperacion = false;
+		estadoOperacion = tituloequivalenteDelegate.getCrearTituloequivalente(nombreTitulo);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TituloequivalenteMB");
+			return ConstantesFaces.ESTADO_TE_OK;
+		} else {
+			return ConstantesFaces.ESTADO_TE_ERROR;
+		}
 	}
 	
 	public String getSeleccionarTituloequivalente(){
+		tituloequivalente = tituloequivalenteDelegate.getSeleccionarTituloequivalente(idTituloequivalente);
+		return ConstantesFaces.MODIFICAR_TITULOEQUIVALENTE;
+	}
+
+	public String getSeleccionarTituloequivalenteDetalle(){
 		tituloequivalente = tituloequivalenteDelegate.getSeleccionarTituloequivalente(idTituloequivalente);
 		return ConstantesFaces.DETALLE_TITULOEQUIVALENTE;
 	}
 	
 	public String getModificarTituloequivalente(){
-		tituloequivalenteDelegate.getModificarTituloequivalente(tituloequivalente.getTeqNidtituloeq(), tituloequivalente.getTeqVtituloeq());
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TituloequivalenteMB");
-		return ConstantesFaces.HOME_TITULOEQUIVALENTE;
+		estadoOperacion = false;
+		estadoOperacion = tituloequivalenteDelegate.getModificarTituloequivalente(tituloequivalente.getTeqNidtituloeq(), tituloequivalente.getTeqVtituloeq());
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TituloequivalenteMB");
+			return ConstantesFaces.ESTADO_TE_OK;
+		} else {
+			return ConstantesFaces.ESTADO_TE_ERROR;
+		}
+	}
+	
+	public String getEliminarTituloequivalente(){
+		estadoOperacion = false;
+		estadoOperacion = tituloequivalenteDelegate.getEliminarTituloequivalente(idTituloequivalente);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TituloequivalenteMB");
+			return ConstantesFaces.ESTADO_TE_OK;
+		} else {
+			return ConstantesFaces.ESTADO_TE_ERROR;
+		}
 	}
 	
 	public String getCancelar(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TituloequivalenteMB");
 		return ConstantesFaces.HOME_TITULOEQUIVALENTE;
 	}
+	
+	public String getHomeTituloequivalente(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TituloequivalenteMB");
+		return ConstantesFaces.HOME_TITULOEQUIVALENTE;
+	}	
 }

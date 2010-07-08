@@ -76,7 +76,7 @@ public class GppInstitucionDAO implements DAO{
 		try{
 			gppInstitucionRowMapper = new GppInstitucionRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_institucion order by ins_nidinstitucion asc";
+			sentenciaSQL = "select * from gpp_institucion order by ins_vinstitucion asc";
 			gppInstituciones = (List) jdbcTemplate.query(sentenciaSQL, gppInstitucionRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();

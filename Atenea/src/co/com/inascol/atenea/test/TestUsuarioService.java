@@ -21,6 +21,7 @@ public class TestUsuarioService {
 	private static IRolService rolService;
 	private static IServicioService servicioService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String argss[]){
 //		crear();
@@ -34,12 +35,12 @@ public class TestUsuarioService {
 	static void crear(){
 		estadoOperacion = false;
 		usuarioService = new UsuarioService();
-		String nombreUsuario = "Lady García";
+		String nombreUsuario = "Lady Garcï¿½a";
 		String loginUsuario = "lady.garcia";
 		String emailUsuario = "lady.garcia@inascol.com";
 		String telefonoUsuario = "3405407";
 		String activoUsuario ="SI";
-		estadoOperacion = usuarioService.crearUsuario(nombreUsuario, loginUsuario, emailUsuario, telefonoUsuario, activoUsuario);
+		estadoOperacion = usuarioService.crearUsuario(nombreUsuario, loginUsuario, emailUsuario, telefonoUsuario, activoUsuario, usuarioAutenticado);
 		System.out.println(estadoOperacion);		
 	}
 	
@@ -47,12 +48,12 @@ public class TestUsuarioService {
 		estadoOperacion = false;
 		usuarioService = new UsuarioService();
 		int idUsuario = 1;
-		String nombreUsuario = "Sandra Liliana Briñez";
+		String nombreUsuario = "Sandra Liliana Briï¿½ez";
 		String loginUsuario = "sandra.barajas";
 		String emailUsuario = "sandra.barajas@inascol.com";
 		String telefonoUsuario = "3405407";
 		String activoUsuario ="NO";
-		estadoOperacion = usuarioService.actualizarUsuario(idUsuario, nombreUsuario, loginUsuario, emailUsuario, telefonoUsuario, activoUsuario);
+		estadoOperacion = usuarioService.actualizarUsuario(idUsuario, nombreUsuario, loginUsuario, emailUsuario, telefonoUsuario, activoUsuario, usuarioAutenticado);
 		System.out.println(estadoOperacion);
 	}
 	

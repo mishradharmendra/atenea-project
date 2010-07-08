@@ -1,11 +1,8 @@
 package co.com.inascol.atenea.managed.bean;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 
 import co.com.inascol.atenea.entity.GppTipoarchivo;
 import co.com.inascol.atenea.managed.bean.delegate.TipoarchivoDelegate;
@@ -15,12 +12,13 @@ import co.com.inascol.atenea.util.ConstantesFaces;
 public class TipoarchivoMB {
 
 	private TipoarchivoDelegate tipoarchivoDelegate;
-	private int idTipoarchivo;
+	private Integer idTipoarchivo;
 	private String nombreTipoarchivo;
 	private String estadoTipoarchivo;
 	private String controlNavegacion;
-	private List tipoarchivos;
+	private List<Object> tipoarchivos;
 	private GppTipoarchivo tipoarchivo;
+	private Boolean estadoOperacion;
 	
 	public TipoarchivoMB(){
 		tipoarchivoDelegate = new TipoarchivoDelegate();
@@ -45,10 +43,10 @@ public class TipoarchivoMB {
 	public void setTipoarchivo(GppTipoarchivo tipoarchivo) {
 		this.tipoarchivo = tipoarchivo;
 	}
-	public List getTipoarchivos() {
+	public List<Object> getTipoarchivos() {
 		return tipoarchivos;
 	}
-	public void setTipoarchivos(List tipoarchivos) {
+	public void setTipoarchivos(List<Object> tipoarchivos) {
 		this.tipoarchivos = tipoarchivos;
 	}
 	public int getIdTipoarchivo() {
@@ -68,27 +66,52 @@ public class TipoarchivoMB {
 		tipoarchivos = tipoarchivoDelegate.getTipoarchivoPorNombre(nombreTipoarchivo);
 	}
 	
-
 	public String getAgregarTipoarchivo() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipoarchivoMB");
 		return ConstantesFaces.CREAR_TIPOARCHIVO;
 	}	
 	
-	public String getCrearTipoarchivo() {		
-		tipoarchivoDelegate.getCrearTipoarchivo(nombreTipoarchivo);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipoarchivoMB");
-		return ConstantesFaces.HOME_TIPOARCHIVO;
+	public String getCrearTipoarchivo() {
+		estadoOperacion = false;
+		estadoOperacion = tipoarchivoDelegate.getCrearTipoarchivo(nombreTipoarchivo);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipoarchivoMB");
+			return ConstantesFaces.ESTADO_TA_OK;
+		} else {
+			return ConstantesFaces.ESTADO_TA_ERROR;
+		}	
 	}
 	
 	public String getSeleccionarTipoarchivo(){
+		tipoarchivo = tipoarchivoDelegate.getSeleccionarTipoarchivo(idTipoarchivo);
+		return ConstantesFaces.MODIFICAR_TIPOARCHIVO;
+	}
+	
+	public String getSeleccionarTipoarchivoDetalle(){
 		tipoarchivo = tipoarchivoDelegate.getSeleccionarTipoarchivo(idTipoarchivo);
 		return ConstantesFaces.DETALLE_TIPOARCHIVO;
 	}
 	
 	public String getModificarTipoarchivo(){
-		tipoarchivoDelegate.getModificarTipoarchivo(tipoarchivo.getTarNidtipoarchivo(), tipoarchivo.getTarVtipoarchivo());
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipoarchivoMB");
-		return ConstantesFaces.HOME_TIPOARCHIVO;
+		estadoOperacion = false;
+		estadoOperacion = tipoarchivoDelegate.getModificarTipoarchivo(tipoarchivo.getTarNidtipoarchivo(), tipoarchivo.getTarVtipoarchivo());
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipoarchivoMB");
+			return ConstantesFaces.ESTADO_TA_OK;
+		} else {
+			return ConstantesFaces.ESTADO_TA_ERROR;
+		}		
+	}
+	
+	public String getEliminarTipoarchivo(){
+		estadoOperacion = false;
+		estadoOperacion = tipoarchivoDelegate.getEliminarTipoarchivo(idTipoarchivo);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipoarchivoMB");
+			return ConstantesFaces.ESTADO_TA_OK;
+		} else {
+			return ConstantesFaces.ESTADO_TA_ERROR;
+		}		
 	}
 	
 	public String getCancelar(){

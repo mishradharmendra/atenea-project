@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppPersonaDAO;
 import co.com.inascol.atenea.entity.GppPersona;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IPersonaService;
 
 public class PersonaService implements IPersonaService{
@@ -18,7 +19,8 @@ public class PersonaService implements IPersonaService{
 			String apellidoPersona, Integer numeroIdentificacion, String sexo,
 			Date fechaNacimiento, String libretaMilitar, String celular,
 			String email, String direccion, String telefono,
-			String idMunicipio, Integer tipoDocumento, Integer idEstadoCivil) {
+			String idMunicipio, Integer tipoDocumento, Integer idEstadoCivil,
+			Integer idPaisResidencia, Integer idMunicipioResidencia, Boolean usuarioActivo, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppPersonaDAO = new GppPersonaDAO();
@@ -37,7 +39,10 @@ public class PersonaService implements IPersonaService{
 			gppPersona.setMunVidmunicipio(idMunicipio);
 			gppPersona.setTdcNidtipodoc(tipoDocumento);
 			gppPersona.setEscNidestadocivil(idEstadoCivil);
-			gppPersona.setPerVusumodifica("Memo");
+			gppPersona.setPaiNpaisresidencia(idPaisResidencia);
+			gppPersona.setMunNmpioresidencia(idMunicipioResidencia);
+			gppPersona.setPerBactivo(usuarioActivo);
+			gppPersona.setPerVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppPersona.setPerDfecmodifica(new Date());
 			estadoOperacion = gppPersonaDAO.actualizar(gppPersona);
 		} catch (Exception ex){
@@ -83,7 +88,8 @@ public class PersonaService implements IPersonaService{
 			Integer numeroIdentificacion, String sexo, Date fechaNacimiento,
 			String libretaMilitar, String celular, String email,
 			String direccion, String telefono, String idMunicipio,
-			Integer tipoDocumento, Integer idEstadoCivil) {
+			Integer tipoDocumento, Integer idEstadoCivil,
+			Integer idPaisResidencia, Integer idMunicipioResidencia, Boolean usuarioActivo, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppPersonaDAO = new GppPersonaDAO();
@@ -101,7 +107,10 @@ public class PersonaService implements IPersonaService{
 			gppPersona.setMunVidmunicipio(idMunicipio);
 			gppPersona.setTdcNidtipodoc(tipoDocumento);
 			gppPersona.setEscNidestadocivil(idEstadoCivil);
-			gppPersona.setPerVusucrea("Memo");
+			gppPersona.setPaiNpaisresidencia(idPaisResidencia);
+			gppPersona.setMunNmpioresidencia(idMunicipioResidencia);
+			gppPersona.setPerBactivo(usuarioActivo);			
+			gppPersona.setPerVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppPersona.setPerDfeccrea(new Date());
 			estadoOperacion = gppPersonaDAO.crear(gppPersona);
 		} catch (Exception ex){

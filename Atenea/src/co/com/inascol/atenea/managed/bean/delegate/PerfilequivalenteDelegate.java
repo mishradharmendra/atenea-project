@@ -4,38 +4,42 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import co.com.inascol.atenea.entity.GppPerfilequivalente;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.PerfilequivalenteService;
 import co.com.inascol.atenea.logic.interfaces.IPerfilequivalenteService;
 
 public class PerfilequivalenteDelegate {
 
 	private IPerfilequivalenteService perfilequivalenteService;
-	private List perfilequivalentes;
+	private List<Object> perfilequivalentes;
 	private GppPerfilequivalente perfilequivalente;
+	private GppUsuario usuarioAutenticado;
 	
 	public PerfilequivalenteDelegate(){}
 	
-	public List getListaPerfilequivalentes(){
+	public List<Object> getListaPerfilequivalentes(){
 		perfilequivalenteService = new PerfilequivalenteService();
 		perfilequivalentes = perfilequivalenteService.buscarPerfilesEquivalentes();
 		return perfilequivalentes;
 	}
 	
-	public List getPerfilequivalentePorNombre(String nombrePerfilequivalente){
+	public List<Object> getPerfilequivalentePorNombre(String nombrePerfilequivalente){
 		perfilequivalenteService = new PerfilequivalenteService();
 		perfilequivalentes = perfilequivalenteService.buscarPerfilesEquivalentes();		
-		List perfilequivalentesConsultados = new ArrayList();
+		List<Object> perfilequivalentesConsultados = new ArrayList<Object>();
+		CharSequence nombre = nombrePerfilequivalente.toLowerCase();
 		if(perfilequivalentes.size()>0){
 			if(nombrePerfilequivalente.equalsIgnoreCase("")){
 				perfilequivalentesConsultados = perfilequivalentes;
 			} else {
-				Iterator it = perfilequivalentes.iterator();
+				Iterator<Object> it = perfilequivalentes.iterator();
 				while(it.hasNext()){
 					perfilequivalente = (GppPerfilequivalente) it.next();
-					if(perfilequivalente.getPeqVperfileq().equalsIgnoreCase(nombrePerfilequivalente)){
+					if(perfilequivalente.getPeqVperfileq().toLowerCase().contains(nombre)){
 						perfilequivalentesConsultados.add(perfilequivalente);			
-						break;
 					}
 				}
 			}
@@ -47,10 +51,10 @@ public class PerfilequivalenteDelegate {
 		perfilequivalenteService = new PerfilequivalenteService();
 		perfilequivalentes = perfilequivalenteService.buscarPerfilesEquivalentes();
 		if(perfilequivalentes.size()>0){
-			Iterator it = perfilequivalentes.iterator();
+			Iterator<Object> it = perfilequivalentes.iterator();
 			while(it.hasNext()){
 				perfilequivalente = (GppPerfilequivalente) it.next();
-				if(perfilequivalente.getPeqNidperfileq()== idPerfilequivalente){
+				if(perfilequivalente.getPeqNidperfileq() == idPerfilequivalente){
 					break;
 				}
 			}					
@@ -58,13 +62,20 @@ public class PerfilequivalenteDelegate {
 		return perfilequivalente;
 	}
 	
-	public boolean getModificarPerfilequivalente(int idPerfilequivalente, String nombrePerfilequivalente){
+	public Boolean getModificarPerfilequivalente(Integer idPerfilequivalente, String nombrePerfilequivalente){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		perfilequivalenteService = new PerfilequivalenteService();
-		return perfilequivalenteService.actualizarPerfilEquivalente(idPerfilequivalente, nombrePerfilequivalente);
+		return perfilequivalenteService.actualizarPerfilEquivalente(idPerfilequivalente, nombrePerfilequivalente, usuarioAutenticado);
 	}
 	
-	public boolean getCrearPerfilequivalente(String nombrePerfilequivalente){
+	public Boolean getCrearPerfilequivalente(String nombrePerfilequivalente){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		perfilequivalenteService = new PerfilequivalenteService();
-		return perfilequivalenteService.crearPerfilEquivalente(nombrePerfilequivalente);
+		return perfilequivalenteService.crearPerfilEquivalente(nombrePerfilequivalente, usuarioAutenticado);
+	}
+	
+	public Boolean getEliminarPerfilequivalente(Integer idPerfilequivalente){
+		perfilequivalenteService = new PerfilequivalenteService();
+		return perfilequivalenteService.borrarPerfilEquivalente(idPerfilequivalente);
 	}
 }

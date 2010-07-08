@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppDepartamentoDAO;
 import co.com.inascol.atenea.entity.GppDepartamento;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IDepartamentoService;
 
 public class DepartamentoService implements IDepartamentoService {
@@ -14,15 +15,15 @@ public class DepartamentoService implements IDepartamentoService {
 	private GppDepartamento gppDepartamento;
 	private List<Object> gppDepartamentos;
 	
-	public boolean actualizarDepartamento(String idDepto, String nombreDepto, String idPais) {
+	public boolean actualizarDepartamento(Integer idDepto, String nombreDepto, Integer idPais, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppDepartamentoDAO = new GppDepartamentoDAO();
 			gppDepartamento = new GppDepartamento();
-			gppDepartamento.setDptViddepto(idDepto);
+			gppDepartamento.setDptNiddepto(idDepto);
 			gppDepartamento.setDptVdepto(nombreDepto);
-			gppDepartamento.setPaiVidpais(idPais);
-			gppDepartamento.setDptVusumodifica("memo");
+			gppDepartamento.setPaiNidpais(idPais);
+			gppDepartamento.setDptVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppDepartamento.setDptDfecmodifica(new Date());
 			estadoOperacion = gppDepartamentoDAO.actualizar(gppDepartamento);
 		} catch (Exception ex){
@@ -31,7 +32,7 @@ public class DepartamentoService implements IDepartamentoService {
 		return estadoOperacion;
 	}
 
-	public boolean borrarDepartamento(String idDepto) {
+	public boolean borrarDepartamento(Integer idDepto) {
 		estadoOperacion = false;
 		try{			
 			gppDepartamentoDAO = new GppDepartamentoDAO();
@@ -53,7 +54,7 @@ public class DepartamentoService implements IDepartamentoService {
 		return gppDepartamentos;
 	}
 
-	public GppDepartamento buscarPorIdDepartamento(String idDepto) {
+	public GppDepartamento buscarPorIdDepartamento(Integer idDepto) {
 		gppDepartamento = null;
 		try{			
 			gppDepartamentoDAO = new GppDepartamentoDAO();
@@ -64,15 +65,14 @@ public class DepartamentoService implements IDepartamentoService {
 		return gppDepartamento;
 	}
 
-	public boolean crearDepartamento(String idDepto, String nombreDepto, String idPais) {
+	public boolean crearDepartamento(String nombreDepto, Integer idPais, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppDepartamentoDAO = new GppDepartamentoDAO();
 			gppDepartamento = new GppDepartamento();
-			gppDepartamento.setDptViddepto(idDepto);
 			gppDepartamento.setDptVdepto(nombreDepto);
-			gppDepartamento.setPaiVidpais(idPais);
-			gppDepartamento.setDptVusucrea("memo");
+			gppDepartamento.setPaiNidpais(idPais);
+			gppDepartamento.setDptVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppDepartamento.setDptDfeccrea(new Date());
 			estadoOperacion = gppDepartamentoDAO.crear(gppDepartamento);
 		} catch (Exception ex){

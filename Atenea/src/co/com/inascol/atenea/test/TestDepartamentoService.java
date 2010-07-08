@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppDepartamento;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.DepartamentoService;
 import co.com.inascol.atenea.logic.interfaces.IDepartamentoService;
 
@@ -11,6 +12,7 @@ public class TestDepartamentoService {
 
 	private static IDepartamentoService departamentoService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String argss[]){
 //		crear();
@@ -23,39 +25,38 @@ public class TestDepartamentoService {
 	static void crear(){
 		estadoOperacion = false;
 		departamentoService = new DepartamentoService();
-		String idDepto = "3";
 		String nombreDepto = "Atlantico";
-		String idPais = "1";
-		estadoOperacion = departamentoService.crearDepartamento(idDepto, nombreDepto, idPais);
+		Integer idPais = 1;
+		estadoOperacion = departamentoService.crearDepartamento(nombreDepto, idPais, usuarioAutenticado);
 		System.out.println(estadoOperacion);		
 	}
 	
 	static void actualizar(){
 		estadoOperacion = false;
 		departamentoService = new DepartamentoService();
-		String idDepto = "1";
+		Integer idDepto = 1;
 		String nombreDepto = "META";
-		String idPais = "2";
-		estadoOperacion = departamentoService.actualizarDepartamento(idDepto, nombreDepto, idPais);
+		Integer idPais = 2;
+		estadoOperacion = departamentoService.actualizarDepartamento(idDepto, nombreDepto, idPais, usuarioAutenticado);
 		System.out.println(estadoOperacion);
 	}
 	
 	static void borrar(){
 		estadoOperacion = false;
 		departamentoService = new DepartamentoService();
-		String idDepto = "1";
+		Integer idDepto = 1;
 		estadoOperacion = departamentoService.borrarDepartamento(idDepto);
 		System.out.println(estadoOperacion);		 
 	}
 	
 	static void buscarPorId(){
 		departamentoService = new DepartamentoService();
-		String idDepto = "1";
+		Integer idDepto = 1;
 		GppDepartamento gppDepartamento = departamentoService.buscarPorIdDepartamento(idDepto);
 		if(gppDepartamento!=null){
-			System.out.println(gppDepartamento.getDptViddepto());
+			System.out.println(gppDepartamento.getDptNiddepto());
 			System.out.println(gppDepartamento.getDptVdepto());
-			System.out.println(gppDepartamento.getPaiVidpais());
+			System.out.println(gppDepartamento.getPaiNidpais());
 			System.out.println(gppDepartamento.getDptVusucrea());
 			System.out.println(gppDepartamento.getDptDfeccrea());
 			System.out.println(gppDepartamento.getDptVusumodifica());
@@ -73,9 +74,9 @@ public class TestDepartamentoService {
 			Iterator<Object> it = gppDepartamentos.iterator();
 			while(it.hasNext()){
 				gppDepartamento = (GppDepartamento) it.next(); 
-				System.out.println(gppDepartamento.getDptViddepto());
+				System.out.println(gppDepartamento.getDptNiddepto());
 				System.out.println(gppDepartamento.getDptVdepto());
-				System.out.println(gppDepartamento.getPaiVidpais());
+				System.out.println(gppDepartamento.getPaiNidpais());
 				System.out.println(gppDepartamento.getDptVusucrea());
 				System.out.println(gppDepartamento.getDptDfeccrea());
 				System.out.println(gppDepartamento.getDptVusumodifica());

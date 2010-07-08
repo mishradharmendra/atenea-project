@@ -21,23 +21,31 @@
 				<h:form>
 				<h:outputLabel value="Modificación de Datos de Instituciones"></h:outputLabel>
 				<br/><br/>					
-				<table>
+				<table align="center">
 					<tr>
 						<td><h:inputHidden value="#{InstitucionMB.institucion.insNidinstitucion}"></h:inputHidden></td>
 						<td><h:outputLabel value="Nombre de Institucion: "></h:outputLabel></td>
-						<td><h:inputText value="#{InstitucionMB.institucion.insVinstitucion}"></h:inputText></td>					
-						<td width="100px"></td>
+						<td><h:inputText id="nombreInstitucion" size="40" value="#{InstitucionMB.institucion.insVinstitucion}" required="true" requiredMessage="Ingrese Nombre de Institucion"></h:inputText></td>					
 					</tr>
+					<tr>
+						<td align="center" colspan="3"><rich:message for="nombreInstitucion" style="color:red"/></td>							
+					</tr>						
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{InstitucionMB.getModificarInstitucion}" value="Aceptar"/></td>
-						<td width="20px"></td>
-						<td><h:commandButton action="#{InstitucionMB.getCancelar}" value="Cancelar"/></td>
 					</tr>
 				</table>
-				</h:form>								
+				</h:form>
+				<h:form>
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{InstitucionMB.getCancelar}" value="Cancelar"/></td>
+						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>													
 			</rich:panel>						
 		</ui:define>
 	</ui:composition>

@@ -13,9 +13,9 @@ public class GppMunicipioRowMapper implements RowMapper{
 	
 	public Object mapRow(ResultSet rs, int index) throws SQLException {
 		gppMunicipio = new GppMunicipio();
-		gppMunicipio.setMunVidmunicipio(rs.getString("mun_vidmunicipio"));
+		gppMunicipio.setMunNidmunicipio(rs.getInt("mun_nidmunicipio"));
 		gppMunicipio.setMunVmunicipio(rs.getString("mun_vmunicipio"));
-		gppMunicipio.setDptViddepto(rs.getString("dpt_viddepto"));
+		gppMunicipio.setDptNiddepto(rs.getInt("dpt_niddepto"));
 		gppMunicipio.setMunVusucrea(rs.getString("mun_vusucrea"));
 		gppMunicipio.setMunDfeccrea(rs.getDate("mun_dfeccrea"));
 		gppMunicipio.setMunVusumodifica(rs.getString("mun_vusumodifica"));

@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppCargoequivalente;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.CargoequivalenteService;
 import co.com.inascol.atenea.logic.interfaces.ICargoequivalenteService;
 
@@ -11,6 +12,7 @@ public class TestCargoequivalenteService {
 
 	private static ICargoequivalenteService cargoequivalenteService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String argss[]){
 //		crear();
@@ -25,7 +27,7 @@ public class TestCargoequivalenteService {
 		cargoequivalenteService = new CargoequivalenteService();
 		for(int i =1; i<10;i++){
 			String nombreCargoEquivalente = "Ingeniero Desarrolador "+i;
-			estadoOperacion = cargoequivalenteService.crearCargoEquivalente(nombreCargoEquivalente);
+			estadoOperacion = cargoequivalenteService.crearCargoEquivalente(nombreCargoEquivalente,usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}
@@ -36,7 +38,7 @@ public class TestCargoequivalenteService {
 		for(int i =1; i<10;i++){
 			Integer idCargoEquivalente = i;
 			String nombreCargoEquivalente = "Ingeniero Desarrolador "+i;
-			estadoOperacion = cargoequivalenteService.actualizarCargoEquivalente(idCargoEquivalente, nombreCargoEquivalente);
+			estadoOperacion = cargoequivalenteService.actualizarCargoEquivalente(idCargoEquivalente, nombreCargoEquivalente,usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}

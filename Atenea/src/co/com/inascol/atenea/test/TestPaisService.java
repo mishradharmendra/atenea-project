@@ -25,39 +25,38 @@ public class TestPaisService {
 	static void crear(){
 		estadoOperacion = false;
 		paisService = new PaisService();
-		String idPais = "10";
 		String nombrePais = "Chile";
 		usuarioAutenticado = new GppUsuario();
 		usuarioAutenticado.setUsuVlogin("memotoro");
-		estadoOperacion = paisService.crearPais(idPais, nombrePais);
+		estadoOperacion = paisService.crearPais(nombrePais, usuarioAutenticado);
 		System.out.println(estadoOperacion);		
 	}
 	
 	static void actualizar(){
 		estadoOperacion = false;
 		paisService = new PaisService();
-		String idPais = "1";
+		Integer idPais = 1;
 		String nombrePais = "Estados Unidos";
 		usuarioAutenticado = new GppUsuario();
 		usuarioAutenticado.setUsuVlogin("memotoro");
-		estadoOperacion = paisService.actualizarPais(idPais, nombrePais);
+		estadoOperacion = paisService.actualizarPais(idPais, nombrePais, usuarioAutenticado);
 		System.out.println(estadoOperacion);
 	}
 	
 	static void borrar(){
 		estadoOperacion = false;
 		paisService = new PaisService();
-		String idPais = "1";
+		Integer idPais = 1;
 		estadoOperacion = paisService.borrarPais(idPais);
 		System.out.println(estadoOperacion);		 
 	}
 	
 	static void buscarPorId(){
 		paisService = new PaisService();
-		String idPais = "1";
+		Integer idPais = 1;
 		GppPais gppPais = paisService.buscarPorIdPais(idPais);
 		if(gppPais!=null){
-			System.out.println(gppPais.getPaiVidpais());
+			System.out.println(gppPais.getPaiNidpais());
 			System.out.println(gppPais.getPaiVpais());
 			System.out.println(gppPais.getPaiVusucrea());
 			System.out.println(gppPais.getPaiDfeccrea());
@@ -76,7 +75,7 @@ public class TestPaisService {
 			Iterator<Object> it = gppPaiss.iterator();
 			while(it.hasNext()){
 				gppPais = (GppPais) it.next(); 
-				System.out.println(gppPais.getPaiVidpais());
+				System.out.println(gppPais.getPaiNidpais());
 				System.out.println(gppPais.getPaiVpais());
 				System.out.println(gppPais.getPaiVusucrea());
 				System.out.println(gppPais.getPaiDfeccrea());

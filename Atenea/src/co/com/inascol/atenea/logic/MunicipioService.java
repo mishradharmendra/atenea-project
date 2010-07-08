@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppMunicipioDAO;
 import co.com.inascol.atenea.entity.GppMunicipio;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IMunicipioService;
 
 public class MunicipioService implements IMunicipioService{
@@ -14,15 +15,15 @@ public class MunicipioService implements IMunicipioService{
 	private GppMunicipio gppMunicipio;
 	private List<Object> gppMunicipios;
 	
-	public boolean actualizarMunicipio(String idMunicipio, String nombreMunicipio, String idDepto) {
+	public boolean actualizarMunicipio(Integer idMunicipio, String nombreMunicipio, Integer idDepto, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppMunicipioDAO = new GppMunicipioDAO();
 			gppMunicipio = new GppMunicipio();
-			gppMunicipio.setMunVidmunicipio(idMunicipio);
+			gppMunicipio.setMunNidmunicipio(idMunicipio);
 			gppMunicipio.setMunVmunicipio(nombreMunicipio);
-			gppMunicipio.setDptViddepto(idDepto);
-			gppMunicipio.setMunVusumodifica("memo");
+			gppMunicipio.setDptNiddepto(idDepto);
+			gppMunicipio.setMunVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppMunicipio.setMunDfecmodifica(new Date());
 			estadoOperacion = gppMunicipioDAO.actualizar(gppMunicipio);
 		} catch (Exception ex){
@@ -31,7 +32,7 @@ public class MunicipioService implements IMunicipioService{
 		return estadoOperacion;
 	}
 
-	public boolean borrarMunicipio(String idMunicipio) {
+	public boolean borrarMunicipio(Integer idMunicipio) {
 		estadoOperacion = false;
 		try{			
 			gppMunicipioDAO = new GppMunicipioDAO();
@@ -53,7 +54,7 @@ public class MunicipioService implements IMunicipioService{
 		return gppMunicipios;
 	}
 
-	public GppMunicipio buscarPorIdMunicipio(String idMunicipio) {
+	public GppMunicipio buscarPorIdMunicipio(Integer idMunicipio) {
 		gppMunicipio = null;
 		try{			
 			gppMunicipioDAO = new GppMunicipioDAO();
@@ -64,15 +65,14 @@ public class MunicipioService implements IMunicipioService{
 		return gppMunicipio;
 	}
 
-	public boolean crearMunicipio(String idMunicipio, String nombreMunicipio, String idDepto) {
+	public boolean crearMunicipio(String nombreMunicipio, Integer idDepto, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppMunicipioDAO = new GppMunicipioDAO();
 			gppMunicipio = new GppMunicipio();
-			gppMunicipio.setMunVidmunicipio(idMunicipio);
 			gppMunicipio.setMunVmunicipio(nombreMunicipio);
-			gppMunicipio.setDptViddepto(idDepto);
-			gppMunicipio.setMunVusucrea("memo");
+			gppMunicipio.setDptNiddepto(idDepto);
+			gppMunicipio.setMunVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppMunicipio.setMunDfeccrea(new Date());
 			estadoOperacion = gppMunicipioDAO.crear(gppMunicipio);
 		} catch (Exception ex){

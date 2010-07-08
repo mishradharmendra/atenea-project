@@ -21,23 +21,31 @@
 				<h:form>
 				<h:outputLabel value="Modificación de Datos de Estado Civil"></h:outputLabel>
 				<br/><br/>					
-				<table>
+				<table align="center">
 					<tr>
 						<td><h:inputHidden value="#{EstadocivilMB.estadocivil.escNidestadocivil}"></h:inputHidden></td>
 						<td><h:outputLabel value="Nombre de Estadocivil: "></h:outputLabel></td>
-						<td><h:inputText value="#{EstadocivilMB.estadocivil.escVestadocivil}"></h:inputText></td>					
-						<td width="100px"></td>
+						<td><h:inputText id="nombreEstadocivil" size="30" value="#{EstadocivilMB.estadocivil.escVestadocivil}" required="true" requiredMessage="Ingrese Estado Civil"></h:inputText></td>					
 					</tr>
+					<tr>
+						<td align="center" colspan="3"><rich:message for="nombreEstadocivil" style="color:red"/></td>							
+					</tr>						
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{EstadocivilMB.getModificarEstadocivil}" value="Aceptar"/></td>
-						<td width="20px"></td>
-						<td><h:commandButton action="#{EstadocivilMB.getCancelar}" value="Cancelar"/></td>
 					</tr>
 				</table>
-				</h:form>								
+				</h:form>		
+				<h:form>		
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{EstadocivilMB.getCancelar}" value="Cancelar"/></td>
+						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>											
 			</rich:panel>						
 		</ui:define>
 	</ui:composition>

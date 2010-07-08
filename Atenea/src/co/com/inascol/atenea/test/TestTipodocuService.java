@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppTipodoc;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.TipodocService;
 import co.com.inascol.atenea.logic.interfaces.ITipodocService;
 
@@ -11,6 +12,7 @@ public class TestTipodocuService {
 
 	private static ITipodocService tipodocService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String argss[]){
 //		crear();
@@ -25,7 +27,7 @@ public class TestTipodocuService {
 		tipodocService = new TipodocService();
 		for(int i =1; i<10;i++){
 			String nombreTipoDocumento = "Documento Tipo "+i;
-			estadoOperacion = tipodocService.crearTipoDocumento(nombreTipoDocumento);
+			estadoOperacion = tipodocService.crearTipoDocumento(nombreTipoDocumento, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}
@@ -36,7 +38,7 @@ public class TestTipodocuService {
 		for(int i =1; i<10;i++){
 			Integer idTipoDocumento = i;
 			String nombreTipoDocumento = "Documento Tipo "+i;
-			estadoOperacion = tipodocService.actualizarTipoDocumento(idTipoDocumento, nombreTipoDocumento);
+			estadoOperacion = tipodocService.actualizarTipoDocumento(idTipoDocumento, nombreTipoDocumento, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}

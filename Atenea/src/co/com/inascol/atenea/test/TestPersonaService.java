@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppPersona;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.PersonaService;
 import co.com.inascol.atenea.logic.interfaces.IPersonaService;
 
@@ -12,6 +13,7 @@ public class TestPersonaService {
 
 	private static IPersonaService personaService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String argss[]){
 //		crear();
@@ -38,7 +40,10 @@ public class TestPersonaService {
 			String idMunicipio = "1";
 			Integer tipoDocumento = 1;
 			Integer idEstadoCivil = 1;
-			estadoOperacion = personaService.crearPersona(nombrePersona, apellidoPersona, numeroIdentificacion, sexo, fechaNacimiento, libretaMilitar, celular, email, direccion, telefono, idMunicipio, tipoDocumento, idEstadoCivil);
+			Integer idPaisResidencia = 1;
+			Integer idMunicipioResidencia = 1;
+			Boolean usuarioActivo = true;
+			estadoOperacion = personaService.crearPersona(nombrePersona, apellidoPersona, numeroIdentificacion, sexo, fechaNacimiento, libretaMilitar, celular, email, direccion, telefono, idMunicipio, tipoDocumento, idEstadoCivil, idPaisResidencia, idMunicipioResidencia, usuarioActivo, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}		
 	}
@@ -60,8 +65,11 @@ public class TestPersonaService {
 			String telefono = "4567890"+i+i;
 			String idMunicipio = "1";
 			Integer tipoDocumento = 1;
-			Integer idEstadoCivil = 1;			
-			estadoOperacion = personaService.actualizarPersona(idPersona, nombrePersona, apellidoPersona, numeroIdentificacion, sexo, fechaNacimiento, libretaMilitar, celular, email, direccion, telefono, idMunicipio, tipoDocumento, idEstadoCivil);
+			Integer idEstadoCivil = 1;	
+			Integer idPaisResidencia = 1;
+			Integer idMunicipioResidencia = 1;
+			Boolean usuarioActivo = true;
+			estadoOperacion = personaService.actualizarPersona(idPersona, nombrePersona, apellidoPersona, numeroIdentificacion, sexo, fechaNacimiento, libretaMilitar, celular, email, direccion, telefono, idMunicipio, tipoDocumento, idEstadoCivil, idPaisResidencia, idMunicipioResidencia, usuarioActivo, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}

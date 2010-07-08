@@ -76,7 +76,7 @@ public class GppTipodocDAO implements DAO{
 		try{
 			gppTipodocRowMapper = new GppTipodocRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_tipodoc order by tdc_nidtipodoc asc";
+			sentenciaSQL = "select * from gpp_tipodoc order by tdc_vnombre asc";
 			gppTipoDocumentos = (List) jdbcTemplate.query(sentenciaSQL, gppTipodocRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();

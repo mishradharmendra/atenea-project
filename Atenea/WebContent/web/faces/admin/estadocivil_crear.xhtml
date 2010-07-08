@@ -21,22 +21,30 @@
 				<h:form>
 				<h:outputLabel value="Agregar Estado Civil"></h:outputLabel>
 				<br/><br/>					
-				<table>
+				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Estado Civil: "></h:outputLabel></td>
-						<td><h:inputText value="#{EstadocivilMB.nombreEstadocivil}"></h:inputText></td>					
-						<td width="100px"></td>
+						<td><h:inputText id="nombreEstadocivil" size="30" value="#{EstadocivilMB.nombreEstadocivil}" required="true" requiredMessage="Ingrese Estado Civil"></h:inputText></td>					
 					</tr>
+					<tr>
+						<td align="center" colspan="2"><rich:message for="nombreEstadocivil" style="color:red"/></td>							
+					</tr>						
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{EstadocivilMB.getCrearEstadocivil}" value="Aceptar"/></td>
-						<td width="20px"></td>
-						<td><h:commandButton action="#{EstadocivilMB.getCancelar}" value="Cancelar"/></td>
 					</tr>
 				</table>
-				</h:form>								
+				</h:form>
+				<h:form>		
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{EstadocivilMB.getCancelar}" value="Cancelar"/></td>
+						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>												
 			</rich:panel>						
 		</ui:define>
 	</ui:composition>

@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppExperiencia;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.ExperienciaService;
 import co.com.inascol.atenea.logic.interfaces.IExperienciaService;
 
@@ -12,6 +13,7 @@ public class TestExperienciaService {
 
 	private static IExperienciaService experienciaService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String[] args){
 //		crear();
@@ -39,7 +41,8 @@ public class TestExperienciaService {
 			Integer idDepto = 1; 
 			Integer idMunicipio = 1; 
 			Integer cargoEquivalente = 1;
-			estadoOperacion = experienciaService.crearExperiencia(nombreEmpresa, telefonoEmpresa, nombreContacto, emailContacto, nombreCargo, fechaIngreso, fechaRetiro, herramientasSoftware, funcionesLogros, docCertificacion1, docCertificacion2, idMunicipio, cargoEquivalente);
+			Integer idPersona = 1;
+			estadoOperacion = experienciaService.crearExperiencia(nombreEmpresa, telefonoEmpresa, nombreContacto, emailContacto, nombreCargo, fechaIngreso, fechaRetiro, herramientasSoftware, funcionesLogros, docCertificacion1, docCertificacion2, idMunicipio, cargoEquivalente, idPersona, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}
@@ -63,7 +66,8 @@ public class TestExperienciaService {
 			Integer idDepto = 1; 
 			Integer idMunicipio = 1; 
 			Integer cargoEquivalente = 1;
-			estadoOperacion = experienciaService.actualizarExperiencia(idExperiencia, nombreEmpresa, telefonoEmpresa, nombreContacto, emailContacto, nombreCargo, fechaIngreso, fechaRetiro, herramientasSoftware, funcionesLogros, docCertificacion1, docCertificacion2, idMunicipio, cargoEquivalente);
+			Integer idPersona = 1;
+			estadoOperacion = experienciaService.actualizarExperiencia(idExperiencia, nombreEmpresa, telefonoEmpresa, nombreContacto, emailContacto, nombreCargo, fechaIngreso, fechaRetiro, herramientasSoftware, funcionesLogros, docCertificacion1, docCertificacion2, idMunicipio, cargoEquivalente, idPersona, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}		
 	}

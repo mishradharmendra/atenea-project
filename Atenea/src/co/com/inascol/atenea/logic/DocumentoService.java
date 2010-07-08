@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppDocumentoDAO;
 import co.com.inascol.atenea.entity.GppDocumento;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IDocumentoService;
 
 public class DocumentoService implements IDocumentoService{
@@ -16,7 +17,7 @@ public class DocumentoService implements IDocumentoService{
 	
 	public boolean actualizarDocumento(Integer idDocumento,
 			String nombreDocumento, String nombreArchivo, String urlArchivo,
-			Date fechaExpedicion, Integer idPersona, Integer idTipoArchivo) {
+			Date fechaExpedicion, Integer idPersona, Integer idTipoArchivo, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppDocumentoDAO = new GppDocumentoDAO();
@@ -28,7 +29,7 @@ public class DocumentoService implements IDocumentoService{
 			gppDocumento.setDocDfecexpide(fechaExpedicion);
 			gppDocumento.setPerNidpersona(idPersona);
 			gppDocumento.setTarNidtipoarchivo(idTipoArchivo);
-			gppDocumento.setDocVusumodifica("Memo");
+			gppDocumento.setDocVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppDocumento.setDocDfecmodifica(new Date());	
 			estadoOperacion = gppDocumentoDAO.actualizar(gppDocumento);
 		} catch (Exception ex){
@@ -72,7 +73,7 @@ public class DocumentoService implements IDocumentoService{
 
 	public boolean crearDocumento(String nombreDocumento, String nombreArchivo,
 			String urlArchivo, Date fechaExpedicion, Integer idPersona,
-			Integer idTipoArchivo) {
+			Integer idTipoArchivo, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppDocumentoDAO = new GppDocumentoDAO();
@@ -83,7 +84,7 @@ public class DocumentoService implements IDocumentoService{
 			gppDocumento.setDocDfecexpide(fechaExpedicion);
 			gppDocumento.setPerNidpersona(idPersona);
 			gppDocumento.setTarNidtipoarchivo(idTipoArchivo);
-			gppDocumento.setDocVusucrea("Memo");
+			gppDocumento.setDocVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppDocumento.setDocDfeccrea(new Date());	
 			estadoOperacion = gppDocumentoDAO.crear(gppDocumento);
 		} catch (Exception ex){

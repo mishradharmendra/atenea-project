@@ -128,7 +128,7 @@ public class GppRolDAO implements DAO {
 					GppServiciorol gppServiciorol = new GppServiciorol();
 					gppServiciorol.setId(gppServiciorolId);
 					gppServiciorol.setSrlDfeccrea(new Date());
-					gppServiciorol.setSrlVusucrea("mi memo crea");
+					gppServiciorol.setSrlVusucrea(gppRol.getRolVusucrea());
 					GppServiciorolDAO gppServiciorolDAO = new GppServiciorolDAO();					
 					estadoOperation = gppServiciorolDAO.crear(gppServiciorol);
 				}

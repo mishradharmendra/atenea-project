@@ -11,6 +11,7 @@ import javax.faces.model.SelectItem;
 import org.richfaces.event.UploadEvent;
 
 import co.com.inascol.atenea.entity.GppDocumento;
+import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.entity.GppTipoarchivo;
 import co.com.inascol.atenea.managed.bean.delegate.DocumentoDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
@@ -23,6 +24,7 @@ public class DocumentoMB {
 	private GppDocumento documento;
 	private Integer idPersona;
 	private Boolean estadoOperacion;	
+	private String urlDescargaArchivo;
 	
 	public DocumentoMB(){
 		documentoDelegate = new DocumentoDelegate();	
@@ -57,9 +59,14 @@ public class DocumentoMB {
 	public void setIdPersona(Integer idPersona) {
 		this.idPersona = idPersona;
 	}
+	public String getUrlDescargaArchivo() {
+		return urlDescargaArchivo;
+	}
+	public void setUrlDescargaArchivo(String urlDescargaArchivo) {
+		this.urlDescargaArchivo = urlDescargaArchivo;
+	}
 
 	public List<SelectItem> getTiposArchivos(){
-		documentoDelegate = new DocumentoDelegate();
 		List<SelectItem> listadoTipos = new ArrayList<SelectItem>();
 		List<Object> tipos = documentoDelegate.getListaTiposArchivos();
 		if(tipos.size()>0){
@@ -72,13 +79,18 @@ public class DocumentoMB {
 		return listadoTipos;
 	}
 	
+	public String getAnterior(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_PERFIL);
+		return ConstantesFaces.CREAR_HV;
+	}
+	
 	public String getGuardarSoporte(){
 		setTabPanel();
 		estadoOperacion = false;
 		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB")!=null){
-			idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();
-			documento.setPerNidpersona(idPersona);
-			estadoOperacion = documentoDelegate.getGuardarSoporte(documento);
+			GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+			documento.setPerNidpersona(persona.getPerNidpersona());
+			estadoOperacion = documentoDelegate.getGuardarSoporte(documento , persona);
 		}
 		if(estadoOperacion==true){
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
@@ -103,7 +115,7 @@ public class DocumentoMB {
 	public void getSubirSoporte(UploadEvent event) throws IOException {
 		documentoDelegate.getSubirSoporte(event);
 	}
-		
+	
 	public void setTabPanel(){
 		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_SOPORTES);
 	}

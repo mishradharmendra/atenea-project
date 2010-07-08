@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppIdiomaDAO;
 import co.com.inascol.atenea.entity.GppIdioma;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IIdiomaService;
 
 public class IdiomaService implements IIdiomaService {
@@ -14,14 +15,14 @@ public class IdiomaService implements IIdiomaService {
 	private GppIdioma gppIdioma;
 	private List<Object> gppIdiomas;
 	
-	public boolean actualizarIdioma(Integer idIdioma, String nombreIdioma) {
+	public boolean actualizarIdioma(Integer idIdioma, String nombreIdioma, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppIdiomaDAO = new GppIdiomaDAO();
 			gppIdioma = new GppIdioma();
 			gppIdioma.setIdiNididioma(idIdioma);
 			gppIdioma.setIdiVidioma(nombreIdioma);
-			gppIdioma.setIdiVusumodifica("mi memo");
+			gppIdioma.setIdiVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppIdioma.setIdiDfecmodifica(new Date());
 			estadoOperacion = gppIdiomaDAO.actualizar(gppIdioma);
 		} catch (Exception ex){
@@ -63,13 +64,13 @@ public class IdiomaService implements IIdiomaService {
 		return gppIdioma;
 	}
 
-	public boolean crearIdioma(String nombreIdioma) {
+	public boolean crearIdioma(String nombreIdioma, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppIdiomaDAO = new GppIdiomaDAO();
 			gppIdioma = new GppIdioma();
 			gppIdioma.setIdiVidioma(nombreIdioma);
-			gppIdioma.setIdiVusucrea("ANGIE");
+			gppIdioma.setIdiVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppIdioma.setIdiDfeccrea(new Date());
 			estadoOperacion = gppIdiomaDAO.crear(gppIdioma);
 		} catch (Exception ex){

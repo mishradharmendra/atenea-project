@@ -19,17 +19,10 @@
 				</table>
 				<br/><br/>
 				<h:form>	
-				<table>
+				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Consulta de Tipos de Documento: "></h:outputLabel></td>
 						<td><h:inputText value="#{TipodocumentoMB.nombreTipodoc}"></h:inputText></td>					
-						<td width="100px"></td>
-						<td><h:outputLabel value="Estado"></h:outputLabel></td>
-						<td><h:selectOneMenu value="#{TipodocumentoMB.estadoTipodoc}">
-								<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
-								<f:selectItem itemValue="Activo" itemLabel="Activo"/>
-								<f:selectItem itemValue="Desactivo" itemLabel="Desactivo"/>
-							</h:selectOneMenu></td>
 					</tr>
 				</table>
 				<br/>				
@@ -45,8 +38,8 @@
 				<h:outputLabel value="Resultados de Búsqueda"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaTipodocumento" value="#{TipodocumentoMB.tipodocs}" var="tipoarchivo" width="600px" height="300px">
-					<rich:column width="100px">
+				<rich:extendedDataTable id="tablaTipodocumento" value="#{TipodocumentoMB.tipodocs}" var="tipoarchivo" width="650px" height="300px">
+					<rich:column width="150px">
 						<f:facet name="header">
 							<h:outputLabel value="Id Tipo de Documento"></h:outputLabel>
 						</f:facet>
@@ -56,30 +49,44 @@
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Tipo Archivo"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{tipoarchivo.tdcVnombre}"></h:outputLabel>
+						<a4j:commandLink id="tdcVnombre" onclick="procesarSolicitudDetalle('#{tipoarchivo.tdcNidtipodoc}')">
+							<h:outputLabel value="#{tipoarchivo.tdcVnombre}"></h:outputLabel>
+						</a4j:commandLink>
 					</rich:column>
 					<rich:column width="100px">
 						<f:facet name="header">
 							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>
-						<a4j:commandLink id="modificar" onclick="procesarSolicitud('#{tipoarchivo.tdcNidtipodoc}')">
+						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{tipoarchivo.tdcNidtipodoc}')">
                             <h:graphicImage url="../../imagenes/editar.png"/>
                         </a4j:commandLink>
 					</rich:column>
 					<rich:column width="100px">
 						<f:facet name="header">
-							<h:outputLabel value="Activar"></h:outputLabel>
+							<h:outputLabel value="Eliminar"></h:outputLabel>
 						</f:facet>
-						<h:selectBooleanCheckbox></h:selectBooleanCheckbox>
-					</rich:column>									
+						<a4j:commandLink id="eliminar" onclick="aceptar = confirm('Esta seguro que quiere eliminar el elemento seleccionado?'); if(aceptar==true){procesarSolicitudEliminar('#{tipoarchivo.tdcNidtipodoc}');} return false;">
+                            <h:graphicImage url="../../imagenes/Delete.png"/>
+                        </a4j:commandLink>
+					</rich:column>					
 				</rich:extendedDataTable>
 				</h:form>					
 			</rich:panel>
         	<a4j:form>
-	            <a4j:jsFunction name="procesarSolicitud" action="#{TipodocumentoMB.getSeleccionarTipodoc}" >
+	            <a4j:jsFunction name="procesarSolicitudDetalle" action="#{TipodocumentoMB.getSeleccionarTipodocDetalle}" >
 	                <a4j:actionparam name="p1" assignTo="#{TipodocumentoMB.idTipodoc}" />                
             	</a4j:jsFunction>
-        	</a4j:form>								
+        	</a4j:form>					
+        	<a4j:form>
+	            <a4j:jsFunction name="procesarSolicitudModificar" action="#{TipodocumentoMB.getSeleccionarTipodoc}" >
+	                <a4j:actionparam name="p1" assignTo="#{TipodocumentoMB.idTipodoc}" />                
+            	</a4j:jsFunction>
+        	</a4j:form>			
+        	<a4j:form>
+	            <a4j:jsFunction name="procesarSolicitudEliminar" action="#{TipodocumentoMB.getEliminarTipodoc}" >
+	                <a4j:actionparam name="p1" assignTo="#{TipodocumentoMB.idTipodoc}" />                
+            	</a4j:jsFunction>
+        	</a4j:form>		        						
 		</ui:define>
 	</ui:composition>
 </body>

@@ -21,22 +21,30 @@
 				<h:form>
 				<h:outputLabel value="AgregarPerfilequivalente"></h:outputLabel>
 				<br/><br/>					
-				<table>
+				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Perfil Equivalente: "></h:outputLabel></td>
-						<td><h:inputText value="#{PerfilequivalenteMB.nombrePerfil}"></h:inputText></td>					
-						<td width="100px"></td>
+						<td><h:inputText id="nombrePerfil" size="30" value="#{PerfilequivalenteMB.nombrePerfil}" required="true" requiredMessage="Ingrese Perfil Equivalente"></h:inputText></td>					
 					</tr>
+					<tr>
+						<td align="center" colspan="2"><rich:message for="nombrePerfil" style="color:red"/></td>							
+					</tr>						
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{PerfilequivalenteMB.getCrearPerfilequivalente}" value="Aceptar"/></td>
-						<td width="20px"></td>
-						<td><h:commandButton action="#{PerfilequivalenteMB.getCancelar}" value="Cancelar"/></td>
 					</tr>
 				</table>
-				</h:form>								
+				</h:form>
+				<h:form>		
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{PerfilequivalenteMB.getCancelar}" value="Cancelar"/></td>
+						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>												
 			</rich:panel>						
 		</ui:define>
 	</ui:composition>

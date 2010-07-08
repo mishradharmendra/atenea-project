@@ -1,11 +1,8 @@
 package co.com.inascol.atenea.managed.bean;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 
 import co.com.inascol.atenea.entity.GppParametrizacion;
 import co.com.inascol.atenea.managed.bean.delegate.ParametrizacionDelegate;
@@ -15,13 +12,14 @@ import co.com.inascol.atenea.util.ConstantesFaces;
 public class ParametrizacionMB {
 
 	private ParametrizacionDelegate parametrizacionDelegate;
-	private int idParametrizacion;
+	private Integer idParametrizacion;
 	private String nombreParametrizacion;
 	private String valorParametrizacion;
 	private String descripcionParametrizacion;
 	private String controlNavegacion;
-	private List parametrizaciones;
+	private List<Object> parametrizaciones;
 	private GppParametrizacion parametrizacion;
+	private Boolean estadoOperacion;
 	
 	public ParametrizacionMB(){
 		parametrizacionDelegate = new ParametrizacionDelegate();
@@ -52,10 +50,10 @@ public class ParametrizacionMB {
 	public void setParametrizacion(GppParametrizacion parametrizacion) {
 		this.parametrizacion = parametrizacion;
 	}
-	public List getParametrizaciones() {
+	public List<Object> getParametrizaciones() {
 		return parametrizaciones;
 	}
-	public void setParametrizaciones(List parametrizacionse) {
+	public void setParametrizaciones(List<Object> parametrizaciones) {
 		this.parametrizaciones = parametrizaciones;
 	}
 	public int getIdParametrizacion() {
@@ -74,29 +72,42 @@ public class ParametrizacionMB {
 	public void getBuscarParametrizacionPorNombre() {
 		parametrizaciones = parametrizacionDelegate.getParametrizacionPorNombre(nombreParametrizacion);
 	}
-	
 
 	public String getAgregarParametrizacion() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ParametrizacionMB");
 		return ConstantesFaces.CREAR_PARAMETRIZACION;
 	}	
 	
-	public String getCrearParametrizacion() {		
-		parametrizacionDelegate.getCrearParametrizacion(nombreParametrizacion, valorParametrizacion, descripcionParametrizacion); 
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ParametrizacionMB");
-		return ConstantesFaces.HOME_PARAMETRIZACION;
+	public String getCrearParametrizacion() {
+		estadoOperacion = false;
+		estadoOperacion = parametrizacionDelegate.getCrearParametrizacion(nombreParametrizacion, valorParametrizacion, descripcionParametrizacion);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ParametrizacionMB");
+			return ConstantesFaces.ESTADO_PM_OK;
+		}else{
+			return ConstantesFaces.ESTADO_PM_ERROR;
+		}
 	}
 	
 	public String getSeleccionarParametrizacion(){
+		parametrizacion = parametrizacionDelegate.getSeleccionarParametrizacion(idParametrizacion);
+		return ConstantesFaces.MODIFICAR_PARAMETRIZACION;
+	}
+
+	public String getSeleccionarParametrizacionDetalle(){
 		parametrizacion = parametrizacionDelegate.getSeleccionarParametrizacion(idParametrizacion);
 		return ConstantesFaces.DETALLE_PARAMETRIZACION;
 	}
 	
 	public String getModificarParametrizacion(){
-		parametrizacion.setParVvalor(valorParametrizacion);
-		parametrizacionDelegate.getModificarParametrizacion(parametrizacion.getParNidparam(), parametrizacion.getParVnombre(),parametrizacion.getParVvalor(), parametrizacion.getParVdescripcion());
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ParametrizacionMB");
-		return ConstantesFaces.HOME_PARAMETRIZACION;
+		estadoOperacion = false;
+		estadoOperacion = parametrizacionDelegate.getModificarParametrizacion(parametrizacion.getParNidparam(), parametrizacion.getParVnombre(),parametrizacion.getParVvalor(), parametrizacion.getParVdescripcion());		
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ParametrizacionMB");
+			return ConstantesFaces.ESTADO_PM_OK;
+		}else{
+			return ConstantesFaces.ESTADO_PM_ERROR;
+		}
 	}
 	
 	public String getCancelar(){

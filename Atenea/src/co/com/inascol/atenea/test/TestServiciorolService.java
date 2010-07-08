@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppServiciorol;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.ServiciorolService;
 import co.com.inascol.atenea.logic.interfaces.IServiciorolService;
 
@@ -11,6 +12,7 @@ public class TestServiciorolService {
 
 	private static IServiciorolService serviciorolService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String argss[]){
 //		crear();
@@ -25,7 +27,7 @@ public class TestServiciorolService {
 		serviciorolService = new ServiciorolService();
 		int idServicio = 4;
 		int idRol = 1;
-		estadoOperacion = serviciorolService.crearServiciorol(idServicio, idRol);
+		estadoOperacion = serviciorolService.crearServiciorol(idServicio, idRol, usuarioAutenticado);
 		System.out.println(estadoOperacion);		
 	}
 	
@@ -34,7 +36,7 @@ public class TestServiciorolService {
 		serviciorolService = new ServiciorolService();
 		int idServicio = 1;
 		int idRol = 1;
-		estadoOperacion = serviciorolService.actualizarServiciorol(idServicio, idRol);
+		estadoOperacion = serviciorolService.actualizarServiciorol(idServicio, idRol, usuarioAutenticado);
 		System.out.println(estadoOperacion);
 	}
 	

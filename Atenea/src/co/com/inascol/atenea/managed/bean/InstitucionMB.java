@@ -1,11 +1,8 @@
 package co.com.inascol.atenea.managed.bean;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 
 import co.com.inascol.atenea.entity.GppInstitucion;
 import co.com.inascol.atenea.managed.bean.delegate.InstitucionDelegate;
@@ -15,12 +12,13 @@ import co.com.inascol.atenea.util.ConstantesFaces;
 public class InstitucionMB {
 
 	private InstitucionDelegate institucionDelegate;
-	private int idInstitucion;
+	private Integer idInstitucion;
 	private String nombreInstitucion;
 	private String estadoInstitucion;
 	private String controlNavegacion;
-	private List instituciones;
+	private List<Object> instituciones;
 	private GppInstitucion institucion;
+	private Boolean estadoOperacion;
 	
 	public InstitucionMB(){
 		institucionDelegate = new InstitucionDelegate();
@@ -45,10 +43,10 @@ public class InstitucionMB {
 	public void setInstitucion(GppInstitucion institucion) {
 		this.institucion = institucion;
 	}
-	public List getInstituciones() {
+	public List<Object> getInstituciones() {
 		return instituciones;
 	}
-	public void setInstitucions(List instituciones) {
+	public void setInstitucions(List<Object> instituciones) {
 		this.instituciones = instituciones;
 	}
 	public int getIdInstitucion() {
@@ -67,28 +65,53 @@ public class InstitucionMB {
 	public void getBuscarInstitucionPorNombre() {
 		instituciones = institucionDelegate.getInstitucionPorNombre(nombreInstitucion);
 	}
-	
 
 	public String getAgregarInstitucion() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("InstitucionMB");
 		return ConstantesFaces.CREAR_INSTITUCION;
 	}	
 	
-	public String getCrearInstitucion() {		
-		institucionDelegate.getCrearInstitucion(nombreInstitucion);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("InstitucionMB");
-		return ConstantesFaces.HOME_INSTITUCION;
+	public String getCrearInstitucion() {
+		estadoOperacion = false;
+		estadoOperacion = institucionDelegate.getCrearInstitucion(nombreInstitucion);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("InstitucionMB");
+			return ConstantesFaces.ESTADO_IN_OK;
+		}else{
+			return ConstantesFaces.ESTADO_IN_ERROR;
+		}
 	}
 	
 	public String getSeleccionarInstitucion(){
+		institucion = institucionDelegate.getSeleccionarInstitucion(idInstitucion);
+		return ConstantesFaces.MODIFICAR_INSTITUCION;
+	}
+	
+	public String getSeleccionarInstitucionDetalle(){
 		institucion = institucionDelegate.getSeleccionarInstitucion(idInstitucion);
 		return ConstantesFaces.DETALLE_INSTITUCION;
 	}
 	
 	public String getModificarInstitucion(){
-		institucionDelegate.getModificarInstitucion(institucion.getInsNidinstitucion(), institucion.getInsVinstitucion());
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("InstitucionMB");
-		return ConstantesFaces.HOME_INSTITUCION;
+		estadoOperacion = false;
+		estadoOperacion = institucionDelegate.getModificarInstitucion(institucion.getInsNidinstitucion(), institucion.getInsVinstitucion());
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("InstitucionMB");
+			return ConstantesFaces.ESTADO_IN_OK;
+		}else{
+			return ConstantesFaces.ESTADO_IN_ERROR;
+		}
+	}
+	
+	public String getEliminarInstitucion(){
+		estadoOperacion = false;
+		estadoOperacion = institucionDelegate.getEliminarInstitucion(idInstitucion);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("InstitucionMB");
+			return ConstantesFaces.ESTADO_IN_OK;
+		}else{
+			return ConstantesFaces.ESTADO_IN_ERROR;
+		}
 	}
 	
 	public String getCancelar(){

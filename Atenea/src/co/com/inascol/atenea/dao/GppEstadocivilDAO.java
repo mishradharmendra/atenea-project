@@ -76,7 +76,7 @@ public class GppEstadocivilDAO implements DAO{
 		try{
 			gppEstadocivilRowMapper = new GppEstadocivilRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_estadocivil order by esc_nidestadocivil asc";
+			sentenciaSQL = "select * from gpp_estadocivil order by esc_vestadocivil asc";
 			gppEstadosCiviles = (List) jdbcTemplate.query(sentenciaSQL, gppEstadocivilRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();

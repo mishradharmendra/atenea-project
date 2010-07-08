@@ -1,11 +1,8 @@
 package co.com.inascol.atenea.managed.bean;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 
 import co.com.inascol.atenea.entity.GppEstadocivil;
 import co.com.inascol.atenea.managed.bean.delegate.EstadocivilDelegate;
@@ -15,12 +12,13 @@ import co.com.inascol.atenea.util.ConstantesFaces;
 public class EstadocivilMB {
 
 	private EstadocivilDelegate estadocivilDelegate;
-	private int idEstadocivil;
+	private Integer idEstadocivil;
 	private String nombreEstadocivil;
 	private String estadoEstadocivil;
 	private String controlNavegacion;
-	private List estadociviles;
+	private List<Object> estadociviles;
 	private GppEstadocivil estadocivil;
+	private Boolean estadoOperacion;
 	
 	public EstadocivilMB(){
 		estadocivilDelegate = new EstadocivilDelegate();
@@ -45,10 +43,10 @@ public class EstadocivilMB {
 	public void setEstadocivil(GppEstadocivil estadocivil) {
 		this.estadocivil = estadocivil;
 	}
-	public List getEstadociviles() {
+	public List<Object> getEstadociviles() {
 		return estadociviles;
 	}
-	public void setEstadociviles(List estadociviles) {
+	public void setEstadociviles(List<Object> estadociviles) {
 		this.estadociviles = estadociviles;
 	}
 	public int getIdEstadocivil() {
@@ -68,27 +66,52 @@ public class EstadocivilMB {
 		estadociviles = estadocivilDelegate.getEstadocivilPorNombre(nombreEstadocivil);
 	}
 	
-
 	public String getAgregarEstadocivil() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("EstadocivilMB");
 		return ConstantesFaces.CREAR_ESTADOCIVIL;
 	}	
 	
-	public String getCrearEstadocivil() {		
-		estadocivilDelegate.getCrearEstadocivil(nombreEstadocivil);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("EstadocivilMB");
-		return ConstantesFaces.HOME_ESTADOCIVIL;
+	public String getCrearEstadocivil() {	
+		estadoOperacion = false;
+		estadoOperacion = estadocivilDelegate.getCrearEstadocivil(nombreEstadocivil);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("EstadocivilMB");
+			return ConstantesFaces.ESTADO_EC_OK;
+		}else{
+			return ConstantesFaces.ESTADO_EC_ERROR;
+		}
 	}
 	
 	public String getSeleccionarEstadocivil(){
+		estadocivil = estadocivilDelegate.getSeleccionarEstadocivil(idEstadocivil);
+		return ConstantesFaces.MODIFICAR_ESTADOCIVIL;
+	}
+	
+	public String getSeleccionarEstadocivilDetalle(){
 		estadocivil = estadocivilDelegate.getSeleccionarEstadocivil(idEstadocivil);
 		return ConstantesFaces.DETALLE_ESTADOCIVIL;
 	}
 	
 	public String getModificarEstadocivil(){
-		estadocivilDelegate.getModificarEstadocivil(estadocivil.getEscNidestadocivil(), estadocivil.getEscVestadocivil());
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("EstadocivilMB");
-		return ConstantesFaces.HOME_ESTADOCIVIL;
+		estadoOperacion = false;
+		estadoOperacion = estadocivilDelegate.getModificarEstadocivil(estadocivil.getEscNidestadocivil(), estadocivil.getEscVestadocivil());
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("EstadocivilMB");
+			return ConstantesFaces.ESTADO_EC_OK;
+		}else{
+			return ConstantesFaces.ESTADO_EC_ERROR;
+		}
+	}
+	
+	public String getEliminarEstadocivil(){
+		estadoOperacion = false;
+		estadoOperacion = estadocivilDelegate.getEliminarEstadocivil(idEstadocivil);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("EstadocivilMB");
+			return ConstantesFaces.ESTADO_EC_OK;
+		}else{
+			return ConstantesFaces.ESTADO_EC_ERROR;
+		}
 	}
 	
 	public String getCancelar(){
