@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppNivelacademico;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.NivelacademicoService;
 import co.com.inascol.atenea.logic.interfaces.INivelacademicoService;
 
@@ -11,6 +12,7 @@ public class TestNivelacademicoService {
 	
 	private static INivelacademicoService nivelacademicoService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String args[]){
 //		crear();
@@ -24,7 +26,7 @@ public class TestNivelacademicoService {
 		estadoOperacion = false;
 		nivelacademicoService = new NivelacademicoService();
 		String nombreNivelAcademico= "MSc";
-		estadoOperacion = nivelacademicoService.crearNivelAcademico(nombreNivelAcademico);
+		estadoOperacion = nivelacademicoService.crearNivelAcademico(nombreNivelAcademico, usuarioAutenticado);
 		System.out.println(estadoOperacion);
 	}
 	
@@ -33,7 +35,7 @@ public class TestNivelacademicoService {
 		nivelacademicoService = new NivelacademicoService();
 		Integer idNivelAcademico = 1;
 		String nombreNivelAcademico= "PhD-Actualizado";
-		estadoOperacion = nivelacademicoService.actualizarNivelAcademico(idNivelAcademico, nombreNivelAcademico);
+		estadoOperacion = nivelacademicoService.actualizarNivelAcademico(idNivelAcademico, nombreNivelAcademico, usuarioAutenticado);
 		System.out.println(estadoOperacion);		
 	}
 	

@@ -42,7 +42,10 @@ public class GppPersonaDAO implements DAO{
 							"tdc_nidtipodoc = ?, " +	
 							"esc_nidestadocivil = ?, " +
 							"per_vusumodifica = ?, " +
-							"per_dfecmodifica = ? " +								
+							"per_dfecmodifica = ?, " +								
+							"pai_npaisresidencia = ?, " +
+							"mun_nmpioresidencia = ?, " +
+							"per_vactivo = ? " +
 							"where per_nidpersona = ?";	
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppPersona.getPerVnombres(),
 															gppPersona.getPerVapellidos(),
@@ -59,6 +62,9 @@ public class GppPersonaDAO implements DAO{
 															gppPersona.getEscNidestadocivil(),
 															gppPersona.getPerVusumodifica(),
 															gppPersona.getPerDfecmodifica(),
+															gppPersona.getPaiNpaisresidencia(),
+															gppPersona.getMunNmpioresidencia(),
+															gppPersona.getPerBactivo(),
 															gppPersona.getPerNidpersona()},
 															new int[] {Types.VARCHAR,
 																		Types.VARCHAR,
@@ -75,6 +81,9 @@ public class GppPersonaDAO implements DAO{
 																		Types.INTEGER,
 																		Types.VARCHAR,
 																		Types.DATE,
+																		Types.INTEGER,
+																		Types.INTEGER,
+																		Types.VARCHAR,
 																		Types.INTEGER});	
 			estadoOperation = true;
 		} catch (Exception ex) {
@@ -128,8 +137,8 @@ public class GppPersonaDAO implements DAO{
 		try{
 			gppPersona = (GppPersona) obj;			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "insert into gpp_persona (per_vnombres, per_vapellidos, per_nidentificacion, per_vsexo, per_dfecnacimiento, per_vlibretamilitar, per_vmovil, per_vemail, per_vdireccion, per_vtelefono, gpp_municipio_mun_vidmunicipio, tdc_nidtipodoc, esc_nidestadocivil, per_vusucrea, per_dfeccrea) " +								
-							"values (? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,?)";	
+			sentenciaSQL = "insert into gpp_persona (per_vnombres, per_vapellidos, per_nidentificacion, per_vsexo, per_dfecnacimiento, per_vlibretamilitar, per_vmovil, per_vemail, per_vdireccion, per_vtelefono, gpp_municipio_mun_vidmunicipio, tdc_nidtipodoc, esc_nidestadocivil, per_vusucrea, per_dfeccrea, pai_npaisresidencia, mun_nmpioresidencia, per_vactivo) " +								
+							"values (? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,?, ?, ?, ?)";	
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppPersona.getPerVnombres(),
 															gppPersona.getPerVapellidos(),
 															gppPersona.getPerNidentificacion(),
@@ -144,7 +153,10 @@ public class GppPersonaDAO implements DAO{
 															gppPersona.getTdcNidtipodoc(),
 															gppPersona.getEscNidestadocivil(),
 															gppPersona.getPerVusucrea(),
-															gppPersona.getPerDfeccrea()},
+															gppPersona.getPerDfeccrea(),
+															gppPersona.getPaiNpaisresidencia(),
+															gppPersona.getMunNmpioresidencia(),
+															gppPersona.getPerBactivo()},
 															new int[] {Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.INTEGER,
@@ -159,7 +171,10 @@ public class GppPersonaDAO implements DAO{
 																		Types.INTEGER,
 																		Types.INTEGER,
 																		Types.VARCHAR,
-																		Types.DATE});	
+																		Types.DATE,
+																		Types.INTEGER,
+																		Types.INTEGER,
+																		Types.VARCHAR});	
 			estadoOperation = true;
 		} catch (Exception ex) {
 			ex.printStackTrace();

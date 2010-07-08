@@ -26,20 +26,20 @@ public class GppDepartamentoDAO implements DAO {
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "update gpp_departamento " +
 							"set dpt_vdepto = ?, " +
-							"pai_vidpais = ?, " +
+							"pai_nidpais = ?, " +
 							"dpt_vusumodifica = ?, " +
 							"dpt_dfecmodifica = ? " +							
-							"where dpt_viddepto = ?";	
+							"where dpt_niddepto = ?";	
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppDepartamento.getDptVdepto(),
-															gppDepartamento.getPaiVidpais(),
+															gppDepartamento.getPaiNidpais(),
 															gppDepartamento.getDptVusumodifica(),
 															gppDepartamento.getDptDfecmodifica(),
-															gppDepartamento.getDptViddepto()},
+															gppDepartamento.getDptNiddepto()},
 															new int[] {Types.VARCHAR,
-																		Types.VARCHAR,
+																		Types.INTEGER,
 																		Types.VARCHAR,																		
 																		Types.DATE,
-																		Types.VARCHAR});	
+																		Types.INTEGER});	
 			estadoOperation = true;
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -52,8 +52,8 @@ public class GppDepartamentoDAO implements DAO {
 		try{	
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "delete from gpp_departamento " +
-							"where dpt_viddepto = ? ";	
-			jdbcTemplate.update(sentenciaSQL, new Object[] {idObj}, new int[] {Types.VARCHAR});	
+							"where dpt_niddepto = ? ";	
+			jdbcTemplate.update(sentenciaSQL, new Object[] {idObj}, new int[] {Types.INTEGER});	
 			estadoOperation = true;
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -66,7 +66,7 @@ public class GppDepartamentoDAO implements DAO {
 		try{
 			gppDepartamentoRowMapper = new GppDepartamentoRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_departamento where dpt_viddepto = ?";
+			sentenciaSQL = "select * from gpp_departamento where dpt_niddepto = ?";
 			gppDepartamento = (GppDepartamento) jdbcTemplate.queryForObject(sentenciaSQL, new Object[] {idObj}, gppDepartamentoRowMapper);
 		} catch (Exception ex){
 			ex.printStackTrace();
@@ -93,16 +93,14 @@ public class GppDepartamentoDAO implements DAO {
 			gppDepartamento = (GppDepartamento) obj;
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_departamento " +
-							"(dpt_viddepto, dpt_vdepto, pai_vidpais, dpt_vusucrea, dpt_dfeccrea) " +
-							"values (?, ?, ?, ?, ?)";	
-			jdbcTemplate.update(sentenciaSQL, new Object[]{gppDepartamento.getDptViddepto(),
-					 										gppDepartamento.getDptVdepto(),
-					 										gppDepartamento.getPaiVidpais(),
+							"(dpt_vdepto, pai_nidpais, dpt_vusucrea, dpt_dfeccrea) " +
+							"values (?, ?, ?, ?)";	
+			jdbcTemplate.update(sentenciaSQL, new Object[]{gppDepartamento.getDptVdepto(),
+					 										gppDepartamento.getPaiNidpais(),
 															gppDepartamento.getDptVusucrea(),
 															gppDepartamento.getDptDfeccrea()},
 															new int[] {Types.VARCHAR,
-																		Types.VARCHAR,
-																		Types.VARCHAR,
+																		Types.INTEGER,
 																		Types.VARCHAR,
 																		Types.DATE});
 			estadoOperation = true;

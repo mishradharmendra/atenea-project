@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppInstitucion;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.InstitucionService;
 import co.com.inascol.atenea.logic.interfaces.IInstitucionService;
 
@@ -11,6 +12,7 @@ public class TestInstitucionService {
 
 	private static IInstitucionService iInstitucionService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String args[]){
 //		crear();
@@ -24,7 +26,7 @@ public class TestInstitucionService {
 		estadoOperacion = false;
 		iInstitucionService = new InstitucionService();	
 		String nombreInstitucion = "UNIVERSIDAD NACIONAL";
-		estadoOperacion = iInstitucionService.crearInstitucion(nombreInstitucion);
+		estadoOperacion = iInstitucionService.crearInstitucion(nombreInstitucion, usuarioAutenticado);
 		System.out.println(estadoOperacion);
 	}
 	
@@ -33,7 +35,7 @@ public class TestInstitucionService {
 		iInstitucionService = new InstitucionService();
 		Integer idInstitucion = 1;
 		String nombreInstitucion = "UNIVERSIDAD DISTRITAL-DC";
-		estadoOperacion = iInstitucionService.actualizarInstitucion(idInstitucion, nombreInstitucion);
+		estadoOperacion = iInstitucionService.actualizarInstitucion(idInstitucion, nombreInstitucion, usuarioAutenticado);
 		System.out.println(estadoOperacion);	
 	}
 	

@@ -76,7 +76,7 @@ public class GppTipoarchivoDAO implements DAO {
 		try{
 			gppTipoarchivoRowMapper = new GppTipoarchivoRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_tipoarchivo order by tar_nidtipoarchivo asc";
+			sentenciaSQL = "select * from gpp_tipoarchivo order by tar_vtipoarchivo asc";
 			gppTipoarchivos = (List) jdbcTemplate.query(sentenciaSQL, gppTipoarchivoRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();
@@ -91,7 +91,7 @@ public class GppTipoarchivoDAO implements DAO {
 			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_tipoarchivo " +
-							"( tar_vtipoarchivo, tar_vusucrea, tar_dfeccrea)" +
+							"(tar_vtipoarchivo, tar_vusucrea, tar_dfeccrea)" +
 							"values ( ?, ?, ? )";	
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppTipoarchivo.getTarVtipoarchivo(),
 															gppTipoarchivo.getTarVusucrea(),

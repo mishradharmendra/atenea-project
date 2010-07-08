@@ -19,24 +19,32 @@
 				</table>
 				<br/><br/>	
 				<h:form>
-				<h:outputLabel value="AgregarCargoequivalente"></h:outputLabel>
+				<h:outputLabel value="Agregar Cargo Equivalente"></h:outputLabel>
 				<br/><br/>					
 				<table>
 					<tr>
 						<td><h:outputLabel value="Cargo Equivalente: "></h:outputLabel></td>
-						<td><h:inputText value="#{CargoequivalenteMB.nombreCargo}"></h:inputText></td>					
-						<td width="100px"></td>
+						<td><h:inputText id="nombreCargo" size="30" value="#{CargoequivalenteMB.nombreCargo}" required="true" requiredMessage="Ingrese Cargo Equivalente"></h:inputText></td>					
 					</tr>
+					<tr>
+						<td align="center" colspan="2"><rich:message for="nombreCargo" style="color:red"/></td>							
+					</tr>						
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{CargoequivalenteMB.getCrearCargoequivalente}" value="Aceptar"/></td>
-						<td width="20px"></td>
-						<td><h:commandButton action="#{CargoequivalenteMB.getCancelar}" value="Cancelar"/></td>
 					</tr>
 				</table>
-				</h:form>								
+				</h:form>
+				<h:form>
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{CargoequivalenteMB.getCancelar}" value="Cancelar"/></td>
+						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>												
 			</rich:panel>						
 		</ui:define>
 	</ui:composition>

@@ -30,12 +30,17 @@
 						<td><h:inputText value="#{PersonaMB.identificacionPersona}"></h:inputText></td>
 						<td width="100px"></td>											
 						<td><h:outputLabel value="Activo : "></h:outputLabel></td>
-						<td><h:selectOneMenu value="#{PersonaMB.estadoPersona}">
-								<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
-								<f:selectItem itemValue="Activo" itemLabel="Activo"/>
-								<f:selectItem itemValue="Desactivo" itemLabel="Desactivo"/>
+						<td><h:selectOneMenu id="estadoPersona" value="#{PersonaMB.estadoPersona}" required="true" requiredMessage="Seleccione un Estado e Ingrese uno o más Criterios de Búsqueda">
+								<f:selectItem itemValue="" itemLabel="Seleccione..."/>
+								<f:selectItem itemValue="true" itemLabel="Activo"/>
+								<f:selectItem itemValue="false" itemLabel="Desactivo"/>						
 							</h:selectOneMenu></td>
 					</tr>
+					<tr>
+						<td align="center" colspan="2"></td>
+						<td width="100px"></td>			
+						<td align="center" colspan="2"><rich:message for="estadoPersona" style="color:red"/></td>							
+					</tr>						
 				</table>
 				<br/>				
 				<table align="right">
@@ -43,16 +48,22 @@
 						<td><h:commandButton action="#{PersonaMB.getBusquedaBasicaPersona}" value="Buscar"/></td>
 						<td width="20px"></td>
 						<td><h:commandButton action="#{PersonaMB.getBusquedaAvanzada}" value="Busqueda Avanzada"/></td>
-						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>
+				<br/><br/>
+				<h:form>
+				<table align="right">
+					<tr>
 						<td><h:commandButton action="#{PersonaMB.getAgregarHojaVida}" value="Agregar Hoja de Vida"/></td>						
 					</tr>
 				</table>
-				</h:form>								
+				</h:form>												
 				<br/><br/>
 				<h:outputLabel value="Resultados de Búsqueda"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="300px" width="800px">
+				<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="300px" width="900px">
 					<rich:column width="150px">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Completo"></h:outputLabel>
@@ -61,7 +72,7 @@
 						<br/>
 						<h:outputLabel value="#{persona.perVapellidos}"></h:outputLabel>
 					</rich:column>
-					<rich:column width="100px">
+					<rich:column width="150px">
 						<f:facet name="header">
 							<h:outputLabel value="Profesión"></h:outputLabel>
 						</f:facet>
@@ -73,13 +84,13 @@
 						</f:facet>
 						<h:outputLabel value="#{persona.gppPerfilprofesional.pprVperfil}"></h:outputLabel>
 					</rich:column>
-					<rich:column width="100px">
+					<rich:column width="150px">
 						<f:facet name="header">
 							<h:outputLabel value="Certificación"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{persona.gppFormacion.gppNivelacademico.nacVnivelac}"></h:outputLabel>
 					</rich:column>
-					<rich:column width="100px">
+					<rich:column width="120px">
 						<f:facet name="header">
 							<h:outputLabel value="Tarjeta Profesional"></h:outputLabel>
 						</f:facet>
@@ -95,7 +106,7 @@
 						<f:facet name="header">
 							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>
-						<a4j:commandLink id="modificar" onclick="procesarSolicitud('#{persona.perNidpersona}')">
+						<a4j:commandLink id="modificar" onclick="procesarSolicitudEditarPersona('#{persona.perNidpersona}')"> 
                             <h:graphicImage align="center" url="../../imagenes/editar.png"/>
                         </a4j:commandLink>
 					</rich:column>
@@ -103,16 +114,22 @@
 						<f:facet name="header">
 							<h:outputLabel value="Activar"></h:outputLabel>
 						</f:facet>
-						<h:selectBooleanCheckbox></h:selectBooleanCheckbox>
+						<h:selectBooleanCheckbox value="#{persona.perBactivo}" onclick="aceptar = confirm('Esta seguro que quiere cambiar el estado del elemento seleccionado?'); if(aceptar==true){procesarSolicitudEstadoPersona('#{persona.perNidpersona}','#{persona.perBactivo}');} return false;"></h:selectBooleanCheckbox>
 					</rich:column>									
 				</rich:extendedDataTable>
 				</h:form>					
 			</rich:panel>
         	<a4j:form>
-	            <a4j:jsFunction name="procesarSolicitud" action="#{PersonaMB.getSeleccionarPersona}" >
+	            <a4j:jsFunction name="procesarSolicitudEditarPersona" action="#{PersonaMB.getSeleccionarPersona}" >
 	                <a4j:actionparam name="p1" assignTo="#{PersonaMB.idPersona}" />                
             	</a4j:jsFunction>
-        	</a4j:form>								
+        	</a4j:form>	
+        	<a4j:form>
+	            <a4j:jsFunction name="procesarSolicitudEstadoPersona" action="#{PersonaMB.getCambiarEstadoPersona}" >
+	                <a4j:actionparam name="p1" assignTo="#{PersonaMB.idPersona}" />                
+	                <a4j:actionparam name="p2" assignTo="#{PersonaMB.estadoPersona}" />
+            	</a4j:jsFunction>
+        	</a4j:form>	        								
 		</ui:define>
 	</ui:composition>
 </body>

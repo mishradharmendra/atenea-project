@@ -21,22 +21,30 @@
 				<h:form>
 				<h:outputLabel value="Agregar Tipo de Archivo"></h:outputLabel>
 				<br/><br/>					
-				<table>
+				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Nombre de Tipo de Archivo: "></h:outputLabel></td>
-						<td><h:inputText value="#{TipoarchivoMB.nombreTipoarchivo}"></h:inputText></td>					
-						<td width="100px"></td>
+						<td><h:inputText id="nombreTipoarchivo" size="30" value="#{TipoarchivoMB.nombreTipoarchivo}" required="true" requiredMessage="Ingrese Nombre de Tipo de Archivo"></h:inputText></td>					
 					</tr>
+					<tr>
+						<td align="center" colspan="2"><rich:message for="nombreTipoarchivo" style="color:red"/></td>							
+					</tr>						
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{TipoarchivoMB.getCrearTipoarchivo}" value="Aceptar"/></td>
-						<td width="20px"></td>
-						<td><h:commandButton action="#{TipoarchivoMB.getCancelar}" value="Cancelar"/></td>
 					</tr>
 				</table>
-				</h:form>								
+				</h:form>
+				<h:form>	
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{TipoarchivoMB.getCancelar}" value="Cancelar"/></td>
+						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>											
 			</rich:panel>						
 		</ui:define>
 	</ui:composition>

@@ -6,6 +6,7 @@ import java.util.List;
 import co.com.inascol.atenea.dao.GppServiciorolDAO;
 import co.com.inascol.atenea.entity.GppServiciorolId;
 import co.com.inascol.atenea.entity.GppServiciorol;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IServiciorolService;
 
 public class ServiciorolService implements IServiciorolService {
@@ -16,7 +17,7 @@ public class ServiciorolService implements IServiciorolService {
 	private GppServiciorolId gppServiciorolId;	
 	private List<Object> gppServiciorols;
 	
-	public boolean actualizarServiciorol(Integer idServicio, Integer idRol) {
+	public boolean actualizarServiciorol(Integer idServicio, Integer idRol, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 		} catch (Exception ex){
@@ -72,7 +73,7 @@ public class ServiciorolService implements IServiciorolService {
 		return gppServiciorol;
 	}
 
-	public boolean crearServiciorol(Integer idServicio, Integer idRol) {
+	public boolean crearServiciorol(Integer idServicio, Integer idRol, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppServiciorolId = new GppServiciorolId();
@@ -81,7 +82,7 @@ public class ServiciorolService implements IServiciorolService {
 			
 			gppServiciorol = new GppServiciorol();			
 			gppServiciorol.setId(gppServiciorolId);
-			gppServiciorol.setSrlVusucrea("memmo crea");
+			gppServiciorol.setSrlVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppServiciorol.setSrlDfeccrea(new Date());
 			
 			gppServiciorolDAO = new GppServiciorolDAO();

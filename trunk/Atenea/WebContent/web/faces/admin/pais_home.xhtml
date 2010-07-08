@@ -19,17 +19,10 @@
 				</table>
 				<br/><br/>
 				<h:form>	
-				<table>
+				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Consulta de Paises: "></h:outputLabel></td>
 						<td><h:inputText value="#{PaisMB.nombrePais}"></h:inputText></td>					
-						<td width="100px"></td>
-						<td><h:outputLabel value="Estado"></h:outputLabel></td>
-						<td><h:selectOneMenu value="#{PaisMB.estadoPais}">
-								<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
-								<f:selectItem itemValue="Activo" itemLabel="Activo"/>
-								<f:selectItem itemValue="Desactivo" itemLabel="Desactivo"/>
-							</h:selectOneMenu></td>
 					</tr>
 				</table>
 				<br/>				
@@ -50,36 +43,50 @@
 						<f:facet name="header">
 							<h:outputLabel value="Id Pais"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{pais.paiVidpais}"></h:outputLabel>
+						<h:outputLabel value="#{pais.paiNidpais}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="300px">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Pais"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{pais.paiVpais}"></h:outputLabel>
+						<a4j:commandLink id="paiVpais" onclick="procesarSolicitudDetalle('#{pais.paiNidpais}')">
+							<h:outputLabel value="#{pais.paiVpais}"></h:outputLabel>
+						</a4j:commandLink>
 					</rich:column>
 					<rich:column width="100px">
 						<f:facet name="header">
 							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>
-						<a4j:commandLink id="modificar" onclick="procesarSolicitud('#{pais.paiVidpais}')">
+						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{pais.paiNidpais}')">
                             <h:graphicImage url="../../imagenes/editar.png"/>
                         </a4j:commandLink>
 					</rich:column>
 					<rich:column width="100px">
 						<f:facet name="header">
-							<h:outputLabel value="Activar"></h:outputLabel>
+							<h:outputLabel value="Eliminar"></h:outputLabel>
 						</f:facet>
-						<h:selectBooleanCheckbox></h:selectBooleanCheckbox>
+						<a4j:commandLink id="eliminar" onclick="aceptar = confirm('Esta seguro que quiere eliminar el elemento seleccionado?'); if(aceptar==true){procesarSolicitudEliminar('#{pais.paiNidpais}');} return false;">
+                            <h:graphicImage url="../../imagenes/Delete.png"/>
+                        </a4j:commandLink>
 					</rich:column>									
 				</rich:extendedDataTable>
 				</h:form>					
 			</rich:panel>
         	<a4j:form>
-	            <a4j:jsFunction name="procesarSolicitud" action="#{PaisMB.getSeleccionarPais}" >
+	            <a4j:jsFunction name="procesarSolicitudDetalle" action="#{PaisMB.getSeleccionarPaisDetalle}" >
 	                <a4j:actionparam name="p1" assignTo="#{PaisMB.idPais}" />                
             	</a4j:jsFunction>
-        	</a4j:form>								
+        	</a4j:form>				
+        	<a4j:form>
+	            <a4j:jsFunction name="procesarSolicitudModificar" action="#{PaisMB.getSeleccionarPais}" >
+	                <a4j:actionparam name="p1" assignTo="#{PaisMB.idPais}" />                
+            	</a4j:jsFunction>
+        	</a4j:form>	
+        	<a4j:form>
+	            <a4j:jsFunction name="procesarSolicitudEliminar" action="#{PaisMB.getEliminarPais}" >
+	                <a4j:actionparam name="p1" assignTo="#{PaisMB.idPais}" />                
+            	</a4j:jsFunction>
+        	</a4j:form>	        								
 		</ui:define>
 	</ui:composition>
 </body>

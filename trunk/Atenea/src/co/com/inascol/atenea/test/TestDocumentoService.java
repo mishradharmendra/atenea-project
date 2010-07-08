@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppDocumento;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.DocumentoService;
 import co.com.inascol.atenea.logic.interfaces.IDocumentoService;
 
@@ -12,6 +13,7 @@ public class TestDocumentoService {
 	
 	private static IDocumentoService documentoService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String argss[]){
 //		crear();
@@ -31,7 +33,7 @@ public class TestDocumentoService {
 			Date fechaExpedicion  = new Date();
 			Integer idPersona  = i;
 			Integer idTipoArchivo  = i;
-			estadoOperacion = documentoService.crearDocumento(nombreDocumento, nombreArchivo, urlArchivo, fechaExpedicion, idPersona, idTipoArchivo);
+			estadoOperacion = documentoService.crearDocumento(nombreDocumento, nombreArchivo, urlArchivo, fechaExpedicion, idPersona, idTipoArchivo, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}
@@ -47,7 +49,7 @@ public class TestDocumentoService {
 			Date fechaExpedicion  = new Date();
 			Integer idPersona  = i;
 			Integer idTipoArchivo  = i;
-			estadoOperacion = documentoService.actualizarDocumento(idDocumento, nombreDocumento, nombreArchivo, urlArchivo, fechaExpedicion, idPersona, idTipoArchivo);
+			estadoOperacion = documentoService.actualizarDocumento(idDocumento, nombreDocumento, nombreArchivo, urlArchivo, fechaExpedicion, idPersona, idTipoArchivo, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}

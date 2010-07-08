@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import co.com.inascol.atenea.dao.GppUsuariorolDAO;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.entity.GppUsuariorolId;
 import co.com.inascol.atenea.entity.GppUsuariorol;
 import co.com.inascol.atenea.logic.interfaces.IUsuariorolService;
@@ -16,7 +17,7 @@ public class UsuariorolService implements IUsuariorolService {
 	private List<Object> gppUsuarioroles;
 	private GppUsuariorol gppUsuariorol;
 
-	public boolean actualizarUsuariorol(Integer idUsuario, Integer idRol) {
+	public boolean actualizarUsuariorol(Integer idUsuario, Integer idRol, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 		} catch (Exception ex){
@@ -72,7 +73,7 @@ public class UsuariorolService implements IUsuariorolService {
 		return gppUsuariorol;
 	}
 
-	public boolean crearUsuariorol(Integer idUsuario, Integer idRol) {
+	public boolean crearUsuariorol(Integer idUsuario, Integer idRol, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppUsuariorolId = new GppUsuariorolId();
@@ -81,7 +82,7 @@ public class UsuariorolService implements IUsuariorolService {
 			
 			gppUsuariorol = new GppUsuariorol();			
 			gppUsuariorol.setId(gppUsuariorolId);
-			gppUsuariorol.setUrlVusucrea("memmo crea");
+			gppUsuariorol.setUrlVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppUsuariorol.setUrlDfeccrea(new Date());
 			
 			gppUsuariorolDAO = new GppUsuariorolDAO();

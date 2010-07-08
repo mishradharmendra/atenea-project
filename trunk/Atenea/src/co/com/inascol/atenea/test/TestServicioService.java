@@ -26,10 +26,10 @@ public class TestServicioService {
 		estadoOperacion = false;
 		ServicioService = new ServicioService();
 		String nombreServicio = "srvConsultaRoles";
-		String rutaServicio = "Consultar roles dentro del módulo de administración";
+		String rutaServicio = "Consultar roles dentro del mï¿½dulo de administraciï¿½n";
 		usuarioAutenticado = new GppUsuario();
 		usuarioAutenticado.setUsuVlogin("memotoro");
-		estadoOperacion = ServicioService.crearServicio(nombreServicio, rutaServicio);
+		estadoOperacion = ServicioService.crearServicio(nombreServicio, rutaServicio, usuarioAutenticado);
 		System.out.println(estadoOperacion);		
 	}
 	
@@ -38,7 +38,7 @@ public class TestServicioService {
 		ServicioService = new ServicioService();
 		int idServicio = 1;
 		String nombreServicio = "srvConsultaRoles";
-		String rutaServicio = "Consultar roles módulo de administración";		
+		String rutaServicio = "Consultar roles mï¿½dulo de administraciï¿½n";		
 		usuarioAutenticado = new GppUsuario();
 		usuarioAutenticado.setUsuVlogin("memotoro");
 		estadoOperacion = ServicioService.actualizarServicio(idServicio, nombreServicio, rutaServicio);

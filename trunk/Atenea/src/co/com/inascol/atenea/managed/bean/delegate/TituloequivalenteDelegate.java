@@ -4,38 +4,42 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import co.com.inascol.atenea.entity.GppTituloequivalente;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.TituloequivalenteService;
 import co.com.inascol.atenea.logic.interfaces.ITituloequivalenteService;
 
 public class TituloequivalenteDelegate {
 
 	private ITituloequivalenteService tituloequivalenteService;
-	private List tituloequivalentes;
+	private List<Object> tituloequivalentes;
 	private GppTituloequivalente tituloequivalente;
+	private GppUsuario usuarioAutenticado;
 	
 	public TituloequivalenteDelegate(){}
 	
-	public List getListaTituloequivalentes(){
+	public List<Object> getListaTituloequivalentes(){
 		tituloequivalenteService = new TituloequivalenteService();
 		tituloequivalentes = tituloequivalenteService.buscarTitulosEquivalentes();
 		return tituloequivalentes;
 	}
 	
-	public List getTituloequivalentePorNombre(String nombreTituloequivalente){
+	public List<Object> getTituloequivalentePorNombre(String nombreTituloequivalente){
 		tituloequivalenteService = new TituloequivalenteService();
 		tituloequivalentes = tituloequivalenteService.buscarTitulosEquivalentes();		
-		List tituloequivalentesConsultados = new ArrayList();
+		List<Object> tituloequivalentesConsultados = new ArrayList<Object>();
+		CharSequence nombre = nombreTituloequivalente.toLowerCase();
 		if(tituloequivalentes.size()>0){
 			if(nombreTituloequivalente.equalsIgnoreCase("")){
 				tituloequivalentesConsultados = tituloequivalentes;
 			} else {
-				Iterator it = tituloequivalentes.iterator();
+				Iterator<Object> it = tituloequivalentes.iterator();
 				while(it.hasNext()){
 					tituloequivalente = (GppTituloequivalente) it.next();
-					if(tituloequivalente.getTeqVtituloeq().equalsIgnoreCase(nombreTituloequivalente)){
+					if(tituloequivalente.getTeqVtituloeq().toLowerCase().contains(nombre)){
 						tituloequivalentesConsultados.add(tituloequivalente);			
-						break;
 					}
 				}
 			}
@@ -47,10 +51,10 @@ public class TituloequivalenteDelegate {
 		tituloequivalenteService = new TituloequivalenteService();
 		tituloequivalentes = tituloequivalenteService.buscarTitulosEquivalentes();
 		if(tituloequivalentes.size()>0){
-			Iterator it = tituloequivalentes.iterator();
+			Iterator<Object> it = tituloequivalentes.iterator();
 			while(it.hasNext()){
 				tituloequivalente = (GppTituloequivalente) it.next();
-				if(tituloequivalente.getTeqNidtituloeq()== idTituloequivalente){
+				if(tituloequivalente.getTeqNidtituloeq() == idTituloequivalente){
 					break;
 				}
 			}					
@@ -58,13 +62,20 @@ public class TituloequivalenteDelegate {
 		return tituloequivalente;
 	}
 	
-	public boolean getModificarTituloequivalente(int idTituloequivalente, String nombreTituloequivalente){
+	public Boolean getModificarTituloequivalente(Integer idTituloequivalente, String nombreTituloequivalente){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		tituloequivalenteService = new TituloequivalenteService();
-		return tituloequivalenteService.actualizarTituloEquivalente(idTituloequivalente, nombreTituloequivalente);
+		return tituloequivalenteService.actualizarTituloEquivalente(idTituloequivalente, nombreTituloequivalente, usuarioAutenticado);
 	}
 	
-	public boolean getCrearTituloequivalente(String nombreTituloequivalente){
+	public Boolean getCrearTituloequivalente(String nombreTituloequivalente){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		tituloequivalenteService = new TituloequivalenteService();
-		return tituloequivalenteService.crearTituloEquivalente(nombreTituloequivalente);
+		return tituloequivalenteService.crearTituloEquivalente(nombreTituloequivalente, usuarioAutenticado);
+	}
+	
+	public Boolean getEliminarTituloequivalente(Integer idTituloequivalente){
+		tituloequivalenteService = new TituloequivalenteService();
+		return tituloequivalenteService.borrarTituloEquivalente(idTituloequivalente);
 	}
 }

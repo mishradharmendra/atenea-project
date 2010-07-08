@@ -4,38 +4,42 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import co.com.inascol.atenea.entity.GppMunicipio;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.MunicipioService;
 import co.com.inascol.atenea.logic.interfaces.IMunicipioService;
 
 public class MunicipioDelegate {
 
 	private IMunicipioService municipioService;
-	private List municipios;
+	private List<Object> municipios;
 	private GppMunicipio municipio;
+	private GppUsuario usuarioAutenticado;
 	
 	public MunicipioDelegate(){}
 	
-	public List getListaMunicipios(){
+	public List<Object> getListaMunicipios(){
 		municipioService = new MunicipioService();
 		municipios = municipioService.buscarMunicipios();
 		return municipios;
 	}
 	
-	public List getMunicipioPorNombre(String nombreMunicipio){
+	public List<Object> getMunicipioPorNombre(String nombreMunicipio){
 		municipioService = new MunicipioService();
 		municipios = municipioService.buscarMunicipios();		
-		List municipiosConsultados = new ArrayList();
+		List<Object> municipiosConsultados = new ArrayList<Object>();
+		CharSequence nombre = nombreMunicipio.toLowerCase();
 		if(municipios.size()>0){
 			if(nombreMunicipio.equalsIgnoreCase("")){
 				municipiosConsultados = municipios;
 			} else {
-				Iterator it = municipios.iterator();
+				Iterator<Object> it = municipios.iterator();
 				while(it.hasNext()){
 					municipio = (GppMunicipio) it.next();
-					if(municipio.getMunVmunicipio().equalsIgnoreCase(nombreMunicipio)){
+					if(municipio.getMunVmunicipio().toLowerCase().contains(nombre)){
 						municipiosConsultados.add(municipio);			
-						break;
 					}
 				}
 			}
@@ -43,14 +47,14 @@ public class MunicipioDelegate {
 		return municipiosConsultados;
 	}
 	
-	public GppMunicipio getSeleccionarMunicipio(String idMunicipio){
+	public GppMunicipio getSeleccionarMunicipio(Integer idMunicipio){
 		municipioService = new MunicipioService();
 		municipios = municipioService.buscarMunicipios();
 		if(municipios.size()>0){
-			Iterator it = municipios.iterator();
+			Iterator<Object> it = municipios.iterator();
 			while(it.hasNext()){
 				municipio = (GppMunicipio) it.next();
-				if(municipio.getMunVidmunicipio().equalsIgnoreCase(idMunicipio)){
+				if(municipio.getMunNidmunicipio()==idMunicipio){
 					break;
 				}
 			}					
@@ -58,13 +62,20 @@ public class MunicipioDelegate {
 		return municipio;
 	}
 	
-	public boolean getModificarMunicipio(String idMunicipio, String nombreMunicipio, String idDepto){
+	public Boolean getModificarMunicipio(Integer idMunicipio, String nombreMunicipio, Integer idDepto){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		municipioService = new MunicipioService();
-		return municipioService.actualizarMunicipio(idMunicipio, nombreMunicipio, idDepto);
+		return municipioService.actualizarMunicipio(idMunicipio, nombreMunicipio, idDepto, usuarioAutenticado);
 	}
 	
-	public boolean getCrearMunicipio(String idMunicipio, String nombreMunicipio, String idDepto){
+	public Boolean getCrearMunicipio(String nombreMunicipio, Integer idDepto){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		municipioService = new MunicipioService();
-		return municipioService.crearMunicipio(idMunicipio, nombreMunicipio, idDepto);
+		return municipioService.crearMunicipio(nombreMunicipio, idDepto, usuarioAutenticado);
+	}
+	
+	public Boolean getEliminarMunicipio(Integer idMunicipio){
+		municipioService = new MunicipioService();
+		return municipioService.borrarMunicipio(idMunicipio);
 	}
 }

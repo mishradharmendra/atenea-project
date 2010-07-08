@@ -23,22 +23,30 @@
 				<br/><br/>					
 				<table>
 					<tr>
-						<td><h:inputText value="#{DepartamentoMB.idDepartamento}"></h:inputText></td>
 						<td><h:outputLabel value="Nombre de Departamento: "></h:outputLabel></td>
-						<td><h:inputText value="#{DepartamentoMB.nombreDepartamento}"></h:inputText></td>					
+						<td><h:inputText id="nombreDepartamento" size="30" value="#{DepartamentoMB.nombreDepartamento}" required="true" requiredMessage="Ingrese Nombre de Departamento:"></h:inputText></td>					
 						<td width="100px"></td>
 						<td><h:outputLabel value="País"></h:outputLabel></td>
 						<td><h:selectOneMenu value="#{DepartamentoMB.idPais}">
 								<f:selectItems value="#{DepartamentoMB.paises}"/>
 							</h:selectOneMenu></td>
 					</tr>
+					<tr>
+						<td align="center" colspan="2"><rich:message for="nombreDepartamento" style="color:red"/></td>							
+					</tr>						
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{DepartamentoMB.getCrearDepto}" value="Aceptar"/></td>
-						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>
+				<h:form>
+				<table align="right">
+					<tr>
 						<td><h:commandButton action="#{DepartamentoMB.getCancelar}" value="Cancelar"/></td>
+						<td width="20px"></td>
 					</tr>
 				</table>
 				</h:form>								

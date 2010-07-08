@@ -11,14 +11,14 @@ public class GppExperiencia {
 
 	private Integer expNidexplaboral;
 	private Integer munVidmunicipio;
-	private int docNcertifica1;
-	private int docNcertifica2;
+	private Integer docNcertifica1;
+	private Integer docNcertifica2;
 	private String expVnomempresa;
 	private String expVtelempresa;
 	private String expVnomcontacto;
 	private String expVemailcontacto;
 	private String expVcargo;
-	private int ceqNidcargoeq;
+	private Integer ceqNidcargoeq;
 	private Date expDfecingreso;
 	private Date expDfecretiro;
 	private String expVherrasw;
@@ -27,7 +27,10 @@ public class GppExperiencia {
 	private Date expDfeccrea;
 	private String expVusumodifica;
 	private Date expDfecmodifica;
+	private Integer perNidpersona;
 
+	private GppMunicipio gppMunicipio;
+	
 	public GppExperiencia() {}
 
 	public Integer getExpNidexplaboral() {
@@ -46,19 +49,19 @@ public class GppExperiencia {
 		this.munVidmunicipio = munVidmunicipio;
 	}
 
-	public int getDocNcertifica1() {
+	public Integer getDocNcertifica1() {
 		return this.docNcertifica1;
 	}
 
-	public void setDocNcertifica1(int docNcertifica1) {
+	public void setDocNcertifica1(Integer docNcertifica1) {
 		this.docNcertifica1 = docNcertifica1;
 	}
 
-	public int getDocNcertifica2() {
+	public Integer getDocNcertifica2() {
 		return this.docNcertifica2;
 	}
 
-	public void setDocNcertifica2(int docNcertifica2) {
+	public void setDocNcertifica2(Integer docNcertifica2) {
 		this.docNcertifica2 = docNcertifica2;
 	}
 
@@ -102,11 +105,11 @@ public class GppExperiencia {
 		this.expVcargo = expVcargo;
 	}
 
-	public int getCeqNidcargoeq() {
+	public Integer getCeqNidcargoeq() {
 		return this.ceqNidcargoeq;
 	}
 
-	public void setCeqNidcargoeq(int ceqNidcargoeq) {
+	public void setCeqNidcargoeq(Integer ceqNidcargoeq) {
 		this.ceqNidcargoeq = ceqNidcargoeq;
 	}
 
@@ -174,4 +177,19 @@ public class GppExperiencia {
 		this.expDfecmodifica = expDfecmodifica;
 	}
 
+	public Integer getPerNidpersona() {
+		return perNidpersona;
+	}
+
+	public void setPerNidpersona(Integer perNidpersona) {
+		this.perNidpersona = perNidpersona;
+	}
+
+	public GppMunicipio getGppMunicipio() {
+		return gppMunicipio;
+	}
+
+	public void setGppMunicipio(GppMunicipio gppMunicipio) {
+		this.gppMunicipio = gppMunicipio;
+	}
 }

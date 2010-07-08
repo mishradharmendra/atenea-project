@@ -1,11 +1,8 @@
 package co.com.inascol.atenea.managed.bean;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 
 import co.com.inascol.atenea.entity.GppPerfilequivalente;
 import co.com.inascol.atenea.managed.bean.delegate.PerfilequivalenteDelegate;
@@ -15,12 +12,13 @@ import co.com.inascol.atenea.util.ConstantesFaces;
 public class PerfilequivalenteMB {
 
 	private PerfilequivalenteDelegate perfilequivalenteDelegate;
-	private int idPerfilequivalente;
+	private Integer idPerfilequivalente;
 	private String nombrePerfil;
 	private String estadoPerfilequivalente;
 	private String controlNavegacion;
-	private List perfilesequivalentes;
+	private List<Object> perfilesequivalentes;
 	private GppPerfilequivalente perfilequivalente;
+	private Boolean estadoOperacion;
 	
 	public PerfilequivalenteMB(){
 		perfilequivalenteDelegate = new PerfilequivalenteDelegate();
@@ -45,10 +43,10 @@ public class PerfilequivalenteMB {
 	public void setPerfilequivalente(GppPerfilequivalente perfilequivalente) {
 		this.perfilequivalente = perfilequivalente;
 	}
-	public List getPerfilesequivalentes() {
+	public List<Object> getPerfilesequivalentes() {
 		return perfilesequivalentes;
 	}
-	public void setPerfilesequivalentes(List perfilesequivalentes) {
+	public void setPerfilesequivalentes(List<Object> perfilesequivalentes) {
 		this.perfilesequivalentes = perfilesequivalentes;
 	}
 	public int getIdPerfilequivalente() {
@@ -68,27 +66,52 @@ public class PerfilequivalenteMB {
 		perfilesequivalentes = perfilequivalenteDelegate.getPerfilequivalentePorNombre(nombrePerfil);
 	}
 	
-
 	public String getAgregarPerfilequivalente() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PerfilequivalenteMB");
 		return ConstantesFaces.CREAR_PERFILEQUIVALENTE;
 	}	
 	
-	public String getCrearPerfilequivalente() {		
-		perfilequivalenteDelegate.getCrearPerfilequivalente(nombrePerfil);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PerfilequivalenteMB");
-		return ConstantesFaces.HOME_PERFILEQUIVALENTE;
+	public String getCrearPerfilequivalente() {
+		estadoOperacion = false;
+		estadoOperacion = perfilequivalenteDelegate.getCrearPerfilequivalente(nombrePerfil);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PerfilequivalenteMB");
+			return ConstantesFaces.ESTADO_PE_OK;
+		}else{
+			return ConstantesFaces.ESTADO_PE_ERROR;	
+		}
 	}
 	
 	public String getSeleccionarPerfilequivalente(){
+		perfilequivalente = perfilequivalenteDelegate.getSeleccionarPerfilequivalente(idPerfilequivalente);
+		return ConstantesFaces.MODIFICAR_PERFILEQUIVALENTE;
+	}
+
+	public String getSeleccionarPerfilequivalenteDetalle(){
 		perfilequivalente = perfilequivalenteDelegate.getSeleccionarPerfilequivalente(idPerfilequivalente);
 		return ConstantesFaces.DETALLE_PERFILEQUIVALENTE;
 	}
 	
 	public String getModificarPerfilequivalente(){
-		perfilequivalenteDelegate.getModificarPerfilequivalente(perfilequivalente.getPeqNidperfileq(), perfilequivalente.getPeqVperfileq());
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PerfilequivalenteMB");
-		return ConstantesFaces.HOME_PERFILEQUIVALENTE;
+		estadoOperacion = false;
+		estadoOperacion = perfilequivalenteDelegate.getModificarPerfilequivalente(perfilequivalente.getPeqNidperfileq(), perfilequivalente.getPeqVperfileq());
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PerfilequivalenteMB");
+			return ConstantesFaces.ESTADO_PE_OK;
+		}else{
+			return ConstantesFaces.ESTADO_PE_ERROR;	
+		}
+	}
+	
+	public String getEliminarPerfilequivalente(){
+		estadoOperacion = false;
+		estadoOperacion = perfilequivalenteDelegate.getEliminarPerfilequivalente(idPerfilequivalente);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PerfilequivalenteMB");
+			return ConstantesFaces.ESTADO_PE_OK;
+		}else{
+			return ConstantesFaces.ESTADO_PE_ERROR;	
+		}
 	}
 	
 	public String getCancelar(){

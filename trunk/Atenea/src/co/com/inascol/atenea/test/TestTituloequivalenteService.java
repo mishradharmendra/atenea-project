@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppTituloequivalente;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.TituloequivalenteService;
 import co.com.inascol.atenea.logic.interfaces.ITituloequivalenteService;
 
@@ -11,6 +12,7 @@ public class TestTituloequivalenteService {
 
 	private static ITituloequivalenteService tituloequivalenteService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String argss[]){
 //		crear();
@@ -25,7 +27,7 @@ public class TestTituloequivalenteService {
 		tituloequivalenteService = new TituloequivalenteService();
 		for(int i =1; i<10;i++){
 			String nombreTituloEquivalente = "Titulo Equivalente "+i;
-			estadoOperacion = tituloequivalenteService.crearTituloEquivalente(nombreTituloEquivalente);
+			estadoOperacion = tituloequivalenteService.crearTituloEquivalente(nombreTituloEquivalente, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}
@@ -36,7 +38,7 @@ public class TestTituloequivalenteService {
 		for(int i =1; i<10;i++){
 			Integer idTituloEquivalente = i;
 			String nombreTituloEquivalente = "Titulo Equivalente "+i+i;
-			estadoOperacion = tituloequivalenteService.actualizarTituloEquivalente(idTituloEquivalente, nombreTituloEquivalente);
+			estadoOperacion = tituloequivalenteService.actualizarTituloEquivalente(idTituloEquivalente, nombreTituloEquivalente, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}

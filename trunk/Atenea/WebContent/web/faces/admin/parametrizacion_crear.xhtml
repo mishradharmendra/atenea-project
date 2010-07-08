@@ -21,32 +21,38 @@
 				<h:form>
 				<h:outputLabel value="Agregar Parametrizacion"></h:outputLabel>
 				<br/><br/>					
-				<table>
+				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Nombre: "></h:outputLabel></td>
-						<td><h:inputText value="#{ParametrizacionMB.nombreParametrizacion}"></h:inputText></td>					
-						<td width="100px"></td>
+						<td><h:inputText id="nombreParametrizacion" size="30" value="#{ParametrizacionMB.nombreParametrizacion}" required="true" requiredMessage="Ingrese Nombre de Parametro"></h:inputText></td>
+						<td align="center"><rich:message for="nombreParametrizacion" style="color:red"/></td>					
 					</tr>
 					<tr>
 						<td><h:outputLabel value="Descripcion: "></h:outputLabel></td>
-						<td><h:inputText value="#{ParametrizacionMB.descripcionParametrizacion}"></h:inputText></td>					
-						<td width="100px"></td>
+						<td><h:inputText id="descripcionParametrizacion" size="30" value="#{ParametrizacionMB.descripcionParametrizacion}" required="true" requiredMessage="Ingrese Descripcion"></h:inputText></td>
+						<td align="center"><rich:message for="descripcionParametrizacion" style="color:red"/></td>					
 					</tr>
 					<tr>
 						<td><h:outputLabel value="Valor: "></h:outputLabel></td>
-						<td><h:inputText value="#{ParametrizacionMB.valorParametrizacion}"></h:inputText></td>					
-						<td width="100px"></td>
-					</tr>					
+						<td><h:inputText id="valorParametrizacion" size="30" value="#{ParametrizacionMB.valorParametrizacion}" required="true" requiredMessage="Ingrese Valor"></h:inputText></td>
+						<td align="center"><rich:message for="valorParametrizacion" style="color:red"/></td>					
+					</tr>	
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{ParametrizacionMB.getCrearParametrizacion}" value="Aceptar"/></td>
-						<td width="20px"></td>
-						<td><h:commandButton action="#{ParametrizacionMB.getCancelar}" value="Cancelar"/></td>
 					</tr>
 				</table>
-				</h:form>								
+				</h:form>
+				<h:form>		
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{ParametrizacionMB.getCancelar}" value="Cancelar"/></td>
+						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>												
 			</rich:panel>						
 		</ui:define>
 	</ui:composition>

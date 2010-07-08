@@ -13,6 +13,7 @@ import org.richfaces.event.UploadEvent;
 import co.com.inascol.atenea.entity.GppFormacion;
 import co.com.inascol.atenea.entity.GppInstitucion;
 import co.com.inascol.atenea.entity.GppNivelacademico;
+import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.entity.GppTituloequivalente;
 import co.com.inascol.atenea.managed.bean.delegate.FormacionDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
@@ -25,10 +26,14 @@ public class FormacionMB {
 	private List<Object> formacionesAcademicas;
 	private GppFormacion formacion;
 	private Boolean estadoOperacion;
+	private Boolean documentoCargadoDiploma;
+	private Boolean documentoCargadoActa;
 	
 	public FormacionMB(){
 		formacionDelegate = new FormacionDelegate();
 		formacion = new GppFormacion();
+		documentoCargadoDiploma = false;
+		documentoCargadoActa = false;
 		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
 			idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();
 			formacionesAcademicas = formacionDelegate.getBuscarFormacionesPersona(idPersona);		
@@ -107,6 +112,16 @@ public class FormacionMB {
 		return listadoDuraciones;
 	}
 	
+	public String getAnterior(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_PERSONA);
+		return ConstantesFaces.CREAR_HV;
+	}
+	
+	public String getSiguiente(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_EXPERIENCIA);
+		return ConstantesFaces.CREAR_HV;
+	}
+	
 	public String getAgregarFormacion(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
 		return ConstantesFaces.CREAR_FORMACION;
@@ -132,6 +147,16 @@ public class FormacionMB {
 			estadoOperacion = formacionDelegate.getGuardarFormacion(formacion);
 		}
 		if(estadoOperacion==true){
+			if(documentoCargadoDiploma == true){
+				GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+				formacionDelegate.getGuardarDiploma(persona, formacion);
+				documentoCargadoDiploma = false;
+			}
+			if(documentoCargadoActa == true){
+				GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+				formacionDelegate.getGuardarActa(persona, formacion);
+				documentoCargadoActa = false;
+			}
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
 			return ConstantesFaces.ESTADO_OK;
 		} else {
@@ -156,6 +181,16 @@ public class FormacionMB {
 		estadoOperacion = false;			
 		estadoOperacion = formacionDelegate.getActualizarFormacion(formacion);
 		if(estadoOperacion==true){
+			if(documentoCargadoDiploma == true){
+				GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+				formacionDelegate.getGuardarDiploma(persona, formacion);
+				documentoCargadoDiploma = false;
+			}
+			if(documentoCargadoActa == true){
+				GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+				formacionDelegate.getGuardarActa(persona, formacion);
+				documentoCargadoActa = false;
+			}
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
 			return ConstantesFaces.ESTADO_OK;
 		} else {
@@ -164,15 +199,21 @@ public class FormacionMB {
 	}
 	
 	public void getSubirDiploma(UploadEvent event) throws IOException {
+		documentoCargadoDiploma = true;
 		formacionDelegate.getSubirDiploma(event);
 	}
 	
 	public void getSubirActaGrado(UploadEvent event) throws IOException {
+		documentoCargadoActa = true;
 		formacionDelegate.getSubirActaGrado(event);
 	}
 
 	public void getSubirSoportesAcademicos(UploadEvent event) throws IOException {
 		formacionDelegate.getSubirSoportesAcademicos(event);
+		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
+			GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+			formacionDelegate.getGuardarSoporte(persona);
+		}
 	}
 		
 	public void setTabPanel(){

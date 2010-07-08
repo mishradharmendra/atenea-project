@@ -23,6 +23,7 @@ public class GppExperienciaRowMapper implements RowMapper{
 		gppExperiencia.setExpDfecretiro(rs.getDate("exp_dfecretiro"));
 		gppExperiencia.setExpVherrasw(rs.getString("exp_vherrasw"));
 		gppExperiencia.setExpVfuncionlogro(rs.getString("exp_vfuncionlogro"));
+		gppExperiencia.setPerNidpersona(rs.getInt("per_nidpersona"));
 		gppExperiencia.setDocNcertifica1(rs.getInt("doc_ncertifica1"));
 		gppExperiencia.setDocNcertifica2(rs.getInt("doc_ncertifica2"));
 		gppExperiencia.setMunVidmunicipio(rs.getInt("gpp_municipio_mun_vidmunicipio"));

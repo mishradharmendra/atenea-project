@@ -8,8 +8,8 @@ import java.util.Date;
  */
 public class GppDepartamento {
 
-	private String dptViddepto;
-	private String paiVidpais;
+	private Integer dptNiddepto;
+	private Integer paiNidpais;
 	private String dptVdepto;
 	private String dptVusucrea;
 	private Date dptDfeccrea;
@@ -18,20 +18,20 @@ public class GppDepartamento {
 
 	public GppDepartamento() {}
 
-	public String getDptViddepto() {
-		return this.dptViddepto;
+	public Integer getDptNiddepto() {
+		return dptNiddepto;
 	}
 
-	public void setDptViddepto(String dptViddepto) {
-		this.dptViddepto = dptViddepto;
+	public void setDptNiddepto(Integer dptNiddepto) {
+		this.dptNiddepto = dptNiddepto;
 	}
 
-	public String getPaiVidpais() {
-		return this.paiVidpais;
+	public Integer getPaiNidpais() {
+		return paiNidpais;
 	}
 
-	public void setPaiVidpais(String paiVidpais) {
-		this.paiVidpais = paiVidpais;
+	public void setPaiNidpais(Integer paiNidpais) {
+		this.paiNidpais = paiNidpais;
 	}
 
 	public String getDptVdepto() {

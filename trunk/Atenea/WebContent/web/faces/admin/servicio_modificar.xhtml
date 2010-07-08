@@ -21,18 +21,16 @@
 				<h:form>
 				<h:outputLabel value="Modificación de Datos de Servicio"></h:outputLabel>
 				<br/><br/>					
-				<table>
+				<table align="center">
 					<tr>
 						<td><h:inputHidden value="#{ServicioMB.servicio.serNidservicio}"></h:inputHidden></td>
 						<td><h:outputLabel value="Nombre de Servicio: "></h:outputLabel></td>
-						<td><h:inputText value="#{ServicioMB.servicio.serVnombre}" ></h:inputText></td>					
-						<td width="100px"></td>
+						<td><h:inputText size="30" value="#{ServicioMB.servicio.serVnombre}" ></h:inputText></td>					
 					</tr>
 					<tr>
 					    <td width="100px"></td>
 						<td><h:outputLabel value="Ruta de Servicio: "></h:outputLabel></td>
 						<td width="400px"><h:inputText value="#{ServicioMB.servicio.serVruta}" size="50"></h:inputText></td>					
-						<td width="100px"></td>
 					</tr>					
 				</table>
 				<br/>				

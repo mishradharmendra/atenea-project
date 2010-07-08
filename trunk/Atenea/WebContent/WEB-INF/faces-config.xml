@@ -138,10 +138,18 @@
 		<from-view-id>/web/faces/admin/departamento_home.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>DETALLE_DEPTO</from-outcome>
-			<to-view-id>/web/faces/admin/departamento_modificar.jsf</to-view-id>
+			<to-view-id>/web/faces/admin/departamento_detalle.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/departamento_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>MODIFICAR_DEPTO</from-outcome>
+			<to-view-id>/web/faces/admin/departamento_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
 	<navigation-rule>
 		<from-view-id>/web/faces/admin/departamento_home.xhtml</from-view-id>
 		<navigation-case>
@@ -150,6 +158,22 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_DT_OK</from-outcome>
+			<to-view-id>/web/faces/admin/departamento_ok.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_DT_ERROR</from-outcome>
+			<to-view-id>/web/faces/admin/departamento_error.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -162,10 +186,18 @@
 		<from-view-id>/web/faces/admin/tipoarchivo_home.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>DETALLE_TIPOARCHIVO</from-outcome>
-			<to-view-id>/web/faces/admin/tipoarchivo_modificar.jsf</to-view-id>
+			<to-view-id>/web/faces/admin/tipoarchivo_detalle.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/tipoarchivo_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>MODIFICAR_TIPOARCHIVO</from-outcome>
+			<to-view-id>/web/faces/admin/tipoarchivo_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
 	<navigation-rule>
 		<from-view-id>/web/faces/admin/tipoarchivo_home.xhtml</from-view-id>
 		<navigation-case>
@@ -174,6 +206,22 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_TA_OK</from-outcome>
+			<to-view-id>/web/faces/admin/tipoarchivo_ok.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_TA_ERROR</from-outcome>
+			<to-view-id>/web/faces/admin/tipoarchivo_error.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -186,10 +234,18 @@
 		<from-view-id>/web/faces/admin/idioma_home.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>DETALLE_IDIOMA</from-outcome>
-			<to-view-id>/web/faces/admin/idioma_modificar.jsf</to-view-id>
+			<to-view-id>/web/faces/admin/idioma_detalle.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/idioma_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>MODIFICAR_IDIOMA</from-outcome>
+			<to-view-id>/web/faces/admin/idioma_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
 	<navigation-rule>
 		<from-view-id>/web/faces/admin/idioma_home.xhtml</from-view-id>
 		<navigation-case>
@@ -198,6 +254,22 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_ID_OK</from-outcome>
+			<to-view-id>/web/faces/admin/idioma_ok.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_ID_ERROR</from-outcome>
+			<to-view-id>/web/faces/admin/idioma_error.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -210,10 +282,18 @@
 		<from-view-id>/web/faces/admin/pais_home.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>DETALLE_PAIS</from-outcome>
-			<to-view-id>/web/faces/admin/pais_modificar.jsf</to-view-id>
+			<to-view-id>/web/faces/admin/pais_detalle.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/pais_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>MODIFICAR_PAIS</from-outcome>
+			<to-view-id>/web/faces/admin/pais_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
 	<navigation-rule>
 		<from-view-id>/web/faces/admin/pais_home.xhtml</from-view-id>
 		<navigation-case>
@@ -222,6 +302,22 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_PA_OK</from-outcome>
+			<to-view-id>/web/faces/admin/pais_ok.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_PA_ERROR</from-outcome>
+			<to-view-id>/web/faces/admin/pais_error.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -234,10 +330,18 @@
 		<from-view-id>/web/faces/admin/nivelacademico_home.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>DETALLE_NIVELACADEMICO</from-outcome>
-			<to-view-id>/web/faces/admin/nivelacademico_modificar.jsf</to-view-id>
+			<to-view-id>/web/faces/admin/nivelacademico_detalle.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/nivelacademico_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>MODIFICAR_NIVELACADEMICO</from-outcome>
+			<to-view-id>/web/faces/admin/nivelacademico_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
 	<navigation-rule>
 		<from-view-id>/web/faces/admin/nivelacademico_home.xhtml</from-view-id>
 		<navigation-case>
@@ -246,6 +350,22 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_NA_OK</from-outcome>
+			<to-view-id>/web/faces/admin/nivelacademico_ok.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_NA_ERROR</from-outcome>
+			<to-view-id>/web/faces/admin/nivelacademico_error.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -258,10 +378,18 @@
 		<from-view-id>/web/faces/admin/institucion_home.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>DETALLE_INSTITUCION</from-outcome>
-			<to-view-id>/web/faces/admin/institucion_modificar.jsf</to-view-id>
+			<to-view-id>/web/faces/admin/institucion_detalle.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/institucion_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>MODIFICAR_INSTITUCION</from-outcome>
+			<to-view-id>/web/faces/admin/institucion_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
 	<navigation-rule>
 		<from-view-id>/web/faces/admin/institucion_home.xhtml</from-view-id>
 		<navigation-case>
@@ -270,6 +398,22 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+		<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_IN_OK</from-outcome>
+			<to-view-id>/web/faces/admin/institucion_ok.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_IN_ERROR</from-outcome>
+			<to-view-id>/web/faces/admin/institucion_error.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -282,10 +426,18 @@
 		<from-view-id>/web/faces/admin/municipio_home.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>DETALLE_MUNICIPIO</from-outcome>
-			<to-view-id>/web/faces/admin/municipio_modificar.jsf</to-view-id>
+			<to-view-id>/web/faces/admin/municipio_detalle.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/municipio_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>MODIFICAR_MUNICIPIO</from-outcome>
+			<to-view-id>/web/faces/admin/municipio_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
 	<navigation-rule>
 		<from-view-id>/web/faces/admin/municipio_home.xhtml</from-view-id>
 		<navigation-case>
@@ -294,6 +446,22 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_MP_OK</from-outcome>
+			<to-view-id>/web/faces/admin/municipio_ok.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_MP_ERROR</from-outcome>
+			<to-view-id>/web/faces/admin/municipio_error.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -306,10 +474,18 @@
 		<from-view-id>/web/faces/admin/tituloequivalente_home.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>DETALLE_TITULOEQUIVALENTE</from-outcome>
-			<to-view-id>/web/faces/admin/tituloequivalente_modificar.jsf</to-view-id>
+			<to-view-id>/web/faces/admin/tituloequivalente_detalle.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/tituloequivalente_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>MODIFICAR_TITULOEQUIVALENTE</from-outcome>
+			<to-view-id>/web/faces/admin/tituloequivalente_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
 	<navigation-rule>
 		<from-view-id>/web/faces/admin/tituloequivalente_home.xhtml</from-view-id>
 		<navigation-case>
@@ -318,6 +494,22 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_TE_OK</from-outcome>
+			<to-view-id>/web/faces/admin/tituloequivalente_ok.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_TE_ERROR</from-outcome>
+			<to-view-id>/web/faces/admin/tituloequivalente_error.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -330,10 +522,18 @@
 		<from-view-id>/web/faces/admin/cargoequivalente_home.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>DETALLE_CARGOEQUIVALENTE</from-outcome>
-			<to-view-id>/web/faces/admin/cargoequivalente_modificar.jsf</to-view-id>
+			<to-view-id>/web/faces/admin/cargoequivalente_detalle.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/cargoequivalente_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>MODIFICAR_CARGOEQUIVALENTE</from-outcome>
+			<to-view-id>/web/faces/admin/cargoequivalente_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
 	<navigation-rule>
 		<from-view-id>/web/faces/admin/cargoequivalente_home.xhtml</from-view-id>
 		<navigation-case>
@@ -342,6 +542,22 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_CE_OK</from-outcome>
+			<to-view-id>/web/faces/admin/cargoequivalente_ok.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_CE_ERROR</from-outcome>
+			<to-view-id>/web/faces/admin/cargoequivalente_error.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -354,10 +570,18 @@
 		<from-view-id>/web/faces/admin/tipodocumento_home.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>DETALLE_TIPODOCUMENTO</from-outcome>
-			<to-view-id>/web/faces/admin/tipodocumento_modificar.jsf</to-view-id>
+			<to-view-id>/web/faces/admin/tipodocumento_detalle.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/tipodocumento_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>MODIFICAR_TIPODOCUMENTO</from-outcome>
+			<to-view-id>/web/faces/admin/tipodocumento_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
 	<navigation-rule>
 		<from-view-id>/web/faces/admin/tipodocumento_home.xhtml</from-view-id>
 		<navigation-case>
@@ -366,6 +590,22 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_TD_OK</from-outcome>
+			<to-view-id>/web/faces/admin/tipodocumento_ok.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_TD_ERROR</from-outcome>
+			<to-view-id>/web/faces/admin/tipodocumento_error.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -378,10 +618,18 @@
 		<from-view-id>/web/faces/admin/perfilequivalente_home.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>DETALLE_PERFILEQUIVALENTE</from-outcome>
-			<to-view-id>/web/faces/admin/perfilequivalente_modificar.jsf</to-view-id>
+			<to-view-id>/web/faces/admin/perfilequivalente_detalle.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/perfilequivalente_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>MODIFICAR_PERFILEQUIVALENTE</from-outcome>
+			<to-view-id>/web/faces/admin/perfilequivalente_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
 	<navigation-rule>
 		<from-view-id>/web/faces/admin/perfilequivalente_home.xhtml</from-view-id>
 		<navigation-case>
@@ -389,7 +637,23 @@
 			<to-view-id>/web/faces/admin/perfilequivalente_crear.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
-	</navigation-rule>	
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_PE_OK</from-outcome>
+			<to-view-id>/web/faces/admin/perfilequivalente_ok.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_PE_ERROR</from-outcome>
+			<to-view-id>/web/faces/admin/perfilequivalente_error.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>			
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -402,10 +666,18 @@
 		<from-view-id>/web/faces/admin/estadocivil_home.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>DETALLE_ESTADOCIVIL</from-outcome>
-			<to-view-id>/web/faces/admin/estadocivil_modificar.jsf</to-view-id>
+			<to-view-id>/web/faces/admin/estadocivil_detalle.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/estadocivil_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>MODIFICAR_ESTADOCIVIL</from-outcome>
+			<to-view-id>/web/faces/admin/estadocivil_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
 	<navigation-rule>
 		<from-view-id>/web/faces/admin/estadocivil_home.xhtml</from-view-id>
 		<navigation-case>
@@ -414,6 +686,22 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_EC_OK</from-outcome>
+			<to-view-id>/web/faces/admin/estadocivil_ok.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_EC_ERROR</from-outcome>
+			<to-view-id>/web/faces/admin/estadocivil_error.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -426,10 +714,18 @@
 		<from-view-id>/web/faces/admin/parametrizacion_home.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>DETALLE_PARAMETRIZACION</from-outcome>
-			<to-view-id>/web/faces/admin/parametrizacion_modificar.jsf</to-view-id>
+			<to-view-id>/web/faces/admin/parametrizacion_detalle.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/web/faces/admin/parametrizacion_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>MODIFICAR_PARAMETRIZACION</from-outcome>
+			<to-view-id>/web/faces/admin/parametrizacion_modificar.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
 	<navigation-rule>
 		<from-view-id>/web/faces/admin/parametrizacion_home.xhtml</from-view-id>
 		<navigation-case>
@@ -437,7 +733,23 @@
 			<to-view-id>/web/faces/admin/parametrizacion_crear.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
-	</navigation-rule>		
+	</navigation-rule>	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_PM_OK</from-outcome>
+			<to-view-id>/web/faces/admin/parametrizacion_ok.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_PM_ERROR</from-outcome>
+			<to-view-id>/web/faces/admin/parametrizacion_error.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>			
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -455,6 +767,22 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_HV_OK</from-outcome>
+			<to-view-id>/web/faces/hv/hv_ok.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>ESTADO_HV_ERROR</from-outcome>
+			<to-view-id>/web/faces/hv/hv_error.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
+	<navigation-rule>
 		<from-view-id>/web/faces/hv/hv_crear.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>CREAR_FORMACION</from-outcome>
@@ -466,7 +794,7 @@
 		<from-view-id>/web/faces/hv/hv_crear.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>MODIFICAR_FORMACION</from-outcome>
-			<to-view-id>/web/faces/hv/formacion_modificar.jsf</to-view-id>
+			<to-view-id>/web/faces/hv/formacion_crear.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
@@ -482,7 +810,7 @@
 		<from-view-id>/web/faces/hv/hv_crear.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>MODIFICAR_EXPERIENCIA</from-outcome>
-			<to-view-id>/web/faces/hv/experiencia_modificar.jsf</to-view-id>
+			<to-view-id>/web/faces/hv/experiencia_crear.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>	
 	</navigation-rule>	
@@ -565,5 +893,5 @@
 			<to-view-id>/web/faces/comun/error_permisos.jsf</to-view-id>
 			<redirect/>
 		</navigation-case>
-	</navigation-rule>				
+	</navigation-rule>		
 </faces-config>

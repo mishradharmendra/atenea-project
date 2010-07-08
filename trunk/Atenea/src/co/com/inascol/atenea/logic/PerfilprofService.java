@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppPerfilproDAO;
 import co.com.inascol.atenea.entity.GppPerfilprof;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IPerfilprofService;
 
 public class PerfilprofService implements IPerfilprofService{
@@ -18,7 +19,7 @@ public class PerfilprofService implements IPerfilprofService{
 												String perfilProfesional, Integer nivelIdioma1, Integer nivelIdioma2,
 												String herramientasSoftware, String motoresBD,
 												Integer idPerfilEquivalente, Integer idPersona, Integer idIdioma1,
-												Integer idIdioma2) {
+												Integer idIdioma2, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{
 			gppPerfilproDAO = new GppPerfilproDAO();
@@ -33,7 +34,7 @@ public class PerfilprofService implements IPerfilprofService{
 			gppPerfilprof.setPerNidpersona(idPersona);
 			gppPerfilprof.setIdiNididioma1(idIdioma1);
 			gppPerfilprof.setIdiNididioma2(idIdioma2);			
-			gppPerfilprof.setPprVusumodifica("MEMO");
+			gppPerfilprof.setPprVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppPerfilprof.setPprDfecmodifica(new Date());
 			estadoOperacion = gppPerfilproDAO.actualizar(gppPerfilprof);
 		} catch (Exception ex){
@@ -79,7 +80,7 @@ public class PerfilprofService implements IPerfilprofService{
 											Integer nivelIdioma1, Integer nivelIdioma2,
 											String herramientasSoftware, String motoresBD,
 											Integer idPerfilEquivalente, Integer idPersona, Integer idIdioma1,
-											Integer idIdioma2) {
+											Integer idIdioma2, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{
 			gppPerfilproDAO = new GppPerfilproDAO();
@@ -93,7 +94,7 @@ public class PerfilprofService implements IPerfilprofService{
 			gppPerfilprof.setPerNidpersona(idPersona);
 			gppPerfilprof.setIdiNididioma1(idIdioma1);
 			gppPerfilprof.setIdiNididioma2(idIdioma2);			
-			gppPerfilprof.setPprVusucrea("MEMO");
+			gppPerfilprof.setPprVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppPerfilprof.setPprDfeccrea(new Date());
 			estadoOperacion = gppPerfilproDAO.crear(gppPerfilprof);
 		} catch (Exception ex){

@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppServicioDAO;
 import co.com.inascol.atenea.entity.GppServicio;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IServicioService;
 
 public class ServicioService implements IServicioService {
@@ -65,14 +66,14 @@ public class ServicioService implements IServicioService {
 		return gppServicio;
 	}
 
-	public boolean crearServicio(String nombreServicio, String rutaServicio) {
+	public boolean crearServicio(String nombreServicio, String rutaServicio, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppServicioDAO = new GppServicioDAO();
 			gppServicio = new GppServicio();
 			gppServicio.setSerVnombre(nombreServicio);
 			gppServicio.setSerVruta(rutaServicio);
-			gppServicio.setSerVusucrea(" mi memo");
+			gppServicio.setSerVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppServicio.setSerDfeccrea(new Date());
 			estadoOperacion = gppServicioDAO.crear(gppServicio);
 		} catch (Exception ex){

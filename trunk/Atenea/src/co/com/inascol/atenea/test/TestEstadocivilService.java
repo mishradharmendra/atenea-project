@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppEstadocivil;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.EstadocivilService;
 import co.com.inascol.atenea.logic.interfaces.IEstadocivilService;
 
@@ -11,6 +12,7 @@ public class TestEstadocivilService {
 
 	private static IEstadocivilService estadocivilService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String argss[]){
 //		crear();
@@ -25,7 +27,7 @@ public class TestEstadocivilService {
 		estadocivilService = new EstadocivilService();
 		for(int i =1; i<10;i++){
 			String nombreEstadoCivil = "Casado "+i;
-			estadoOperacion = estadocivilService.crearEstadoCivil(nombreEstadoCivil);
+			estadoOperacion = estadocivilService.crearEstadoCivil(nombreEstadoCivil, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}
@@ -36,7 +38,7 @@ public class TestEstadocivilService {
 		for(int i =1; i<10;i++){
 			Integer idEstadoCivil = i;
 			String nombreEstadoCivil = "Casado "+i+i;
-			estadoOperacion = estadocivilService.actualizarEstadoCivil(idEstadoCivil, nombreEstadoCivil);
+			estadoOperacion = estadocivilService.actualizarEstadoCivil(idEstadoCivil, nombreEstadoCivil, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}

@@ -19,7 +19,7 @@
 				</table>
 				<br/><br/>
 				<h:form>	
-				<table>
+				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Consulta de Parametrizacions: "></h:outputLabel></td>
 					</tr>
@@ -47,7 +47,9 @@
 						<f:facet name="header">
 							<h:outputLabel value="Parametro"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{parametrizacion.parVnombre}"></h:outputLabel>
+						<a4j:commandLink id="parVnombre" onclick="procesarSolicitudDetalle('#{parametrizacion.parNidparam}')">
+							<h:outputLabel value="#{parametrizacion.parVnombre}"></h:outputLabel>
+						</a4j:commandLink>
 					</rich:column>
 					<rich:column width="300px">
 						<f:facet name="header">
@@ -72,6 +74,11 @@
 				</rich:extendedDataTable>
 				</h:form>					
 			</rich:panel>
+        	<a4j:form>
+	            <a4j:jsFunction name="procesarSolicitudDetalle" action="#{ParametrizacionMB.getSeleccionarParametrizacionDetalle}" >
+	                <a4j:actionparam name="p1" assignTo="#{ParametrizacionMB.idParametrizacion}" />                
+            	</a4j:jsFunction>
+        	</a4j:form>				
         	<a4j:form>
 	            <a4j:jsFunction name="procesarSolicitud" action="#{ParametrizacionMB.getSeleccionarParametrizacion}" >
 	                <a4j:actionparam name="p1" assignTo="#{ParametrizacionMB.idParametrizacion}" />                

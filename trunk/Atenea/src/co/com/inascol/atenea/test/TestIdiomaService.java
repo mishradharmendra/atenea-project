@@ -28,7 +28,7 @@ public class TestIdiomaService {
 		String nombreIdioma = "Frances";
 		usuarioAutenticado = new GppUsuario();
 		usuarioAutenticado.setUsuVlogin("memotoro");
-		estadoOperacion = IdiomaService.crearIdioma(nombreIdioma);
+		estadoOperacion = IdiomaService.crearIdioma(nombreIdioma, usuarioAutenticado);
 		System.out.println(estadoOperacion);		
 	}
 	
@@ -39,7 +39,7 @@ public class TestIdiomaService {
 		String nombreIdioma = "Frances";
 		usuarioAutenticado = new GppUsuario();
 		usuarioAutenticado.setUsuVlogin("memotoro");
-		estadoOperacion = IdiomaService.actualizarIdioma(idIdioma, nombreIdioma);
+		estadoOperacion = IdiomaService.actualizarIdioma(idIdioma, nombreIdioma, usuarioAutenticado);
 		System.out.println(estadoOperacion);
 	}
 	

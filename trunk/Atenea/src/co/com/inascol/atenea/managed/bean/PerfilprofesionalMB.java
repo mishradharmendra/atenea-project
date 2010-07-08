@@ -82,6 +82,16 @@ public class PerfilprofesionalMB {
 		return listadoIdiomas;
 	}
 	
+	public String getAnterior(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_EXPERIENCIA);
+		return ConstantesFaces.CREAR_HV;
+	}
+	
+	public String getSiguiente(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_SOPORTES);
+		return ConstantesFaces.CREAR_HV;
+	}
+	
 	public String getGuardarPerfil(){
 		setTabPanel();
 		estadoOperacion = false;

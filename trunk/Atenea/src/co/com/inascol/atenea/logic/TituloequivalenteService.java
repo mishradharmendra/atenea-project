@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppTituloequivalenteDAO;
 import co.com.inascol.atenea.entity.GppTituloequivalente;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.ITituloequivalenteService;
 
 public class TituloequivalenteService implements ITituloequivalenteService{
@@ -14,14 +15,14 @@ public class TituloequivalenteService implements ITituloequivalenteService{
 	private GppTituloequivalente gppTituloequivalente;
 	private List<Object> gppTitulosequivalentes;
 	
-	public boolean actualizarTituloEquivalente(Integer idTituloEquivalente,	String nombreTituloEquivalente) {
+	public boolean actualizarTituloEquivalente(Integer idTituloEquivalente,	String nombreTituloEquivalente, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{
 			gppTituloequivalenteDAO = new GppTituloequivalenteDAO();
 			gppTituloequivalente = new GppTituloequivalente();
 			gppTituloequivalente.setTeqNidtituloeq(idTituloEquivalente);
 			gppTituloequivalente.setTeqVtituloeq(nombreTituloEquivalente);
-			gppTituloequivalente.setTeqVusumodifica("MEMO");
+			gppTituloequivalente.setTeqVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppTituloequivalente.setTeqDfecmodifica(new Date());
 			estadoOperacion = gppTituloequivalenteDAO.actualizar(gppTituloequivalente);
 		} catch (Exception ex){
@@ -63,13 +64,13 @@ public class TituloequivalenteService implements ITituloequivalenteService{
 		return gppTitulosequivalentes;
 	}	
 	
-	public boolean crearTituloEquivalente(String nombreTituloEquivalente) {
+	public boolean crearTituloEquivalente(String nombreTituloEquivalente, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{
 			gppTituloequivalenteDAO = new GppTituloequivalenteDAO();
 			gppTituloequivalente = new GppTituloequivalente();
 			gppTituloequivalente.setTeqVtituloeq(nombreTituloEquivalente);
-			gppTituloequivalente.setTeqVusucrea("MEMO");
+			gppTituloequivalente.setTeqVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppTituloequivalente.setTeqDfeccrea(new Date());
 			estadoOperacion = gppTituloequivalenteDAO.crear(gppTituloequivalente);
 		} catch (Exception ex){

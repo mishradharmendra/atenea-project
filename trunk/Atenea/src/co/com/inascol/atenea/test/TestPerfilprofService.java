@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppPerfilprof;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.PerfilprofService;
 import co.com.inascol.atenea.logic.interfaces.IPerfilprofService;
 
@@ -11,6 +12,7 @@ public class TestPerfilprofService {
 
 	private static IPerfilprofService perfilprofService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String argss[]){
 //		crear();
@@ -33,7 +35,7 @@ public class TestPerfilprofService {
 			Integer idPersona = 1;
 			Integer idIdioma1 = 1;
 			Integer idIdioma2 = 2;
-			estadoOperacion = perfilprofService.crearPerfilProfesional(perfilProfesional, nivelIdioma1, nivelIdioma2, herramientasSoftware, motoresBD, idPerfilEquivalente, idPersona, idIdioma1, idIdioma2);
+			estadoOperacion = perfilprofService.crearPerfilProfesional(perfilProfesional, nivelIdioma1, nivelIdioma2, herramientasSoftware, motoresBD, idPerfilEquivalente, idPersona, idIdioma1, idIdioma2, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}
@@ -52,7 +54,7 @@ public class TestPerfilprofService {
 			Integer idPersona = 1;
 			Integer idIdioma1 = 1;
 			Integer idIdioma2 = 2;
-			estadoOperacion = perfilprofService.actualizarPerfilProfesional(idPerfilProfesional, perfilProfesional, nivelIdioma1, nivelIdioma2, herramientasSoftware, motoresBD, idPerfilEquivalente, idPersona, idIdioma1, idIdioma2);
+			estadoOperacion = perfilprofService.actualizarPerfilProfesional(idPerfilProfesional, perfilProfesional, nivelIdioma1, nivelIdioma2, herramientasSoftware, motoresBD, idPerfilEquivalente, idPersona, idIdioma1, idIdioma2, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}

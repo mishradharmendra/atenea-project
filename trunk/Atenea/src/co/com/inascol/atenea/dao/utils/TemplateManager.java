@@ -1,6 +1,5 @@
 package co.com.inascol.atenea.dao.utils;
 
-import java.io.FileInputStream;
 import java.util.Properties;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,7 +13,7 @@ public class TemplateManager {
 	private final String fieldPassword = "Password";
 	private final String fieldURL = "Url";
 	private final String fieldDriver = "Driver";
-	private final String Database_PropertiesFile = "/usr/local/jboss-5.0.0.GA/server/default/Database.properties";
+	private final String Database_PropertiesFile = "/co/com/inascol/atenea/dao/utils/Database.properties";
 	
 	public TemplateManager() {}
 	
@@ -32,7 +31,7 @@ public class TemplateManager {
 	public DriverManagerDataSource getDataSource(){				
 		try {
 			propertiesFile = new Properties();
-			propertiesFile.load(new FileInputStream(Database_PropertiesFile));
+			propertiesFile.load(TemplateManager.class.getResourceAsStream(Database_PropertiesFile));
 			DriverManagerDataSource dataSource = new DriverManagerDataSource();
 			dataSource.setDriverClassName(propertiesFile.getProperty(fieldDriver));
 			dataSource.setUsername(propertiesFile.getProperty(fieldUsername));

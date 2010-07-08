@@ -26,13 +26,10 @@
 				<table align="center">
 					<tr>				
 						<td align="left"><h:outputLabel value="Login"/></td>
-						<td><h:inputText size="30" value="#{AutenticacionMB.login}" id="login" required="true" requiredMessage="Ingrese Login de Usuario"/></td>
-						<td align="left"><rich:message for="login" style="color:red"/></td>
+						<td><h:inputText size="30" value="#{AutenticacionMB.login}" id="login" required="true" requiredMessage="Ingrese Login de Usuario"/></td>						
 					</tr>
-					<tr>				
-						<td align="left"><h:outputLabel value="Password"/></td>
-						<td><h:inputSecret size="30" value="#{AutenticacionMB.password}" id="password" required="true" requiredMessage="Ingrese Password"/></td>
-						<td align="left"><rich:message for="password" style="color:red"/></td>
+					<tr>
+						<td align="center" colspan="2"><rich:message for="login" style="color:red"/></td>
 					</tr>				
 					<tr>				
 						<td colspan="3" align="center"><h:commandButton action="#{AutenticacionMB.getVerificarPermisos}" value="Login"/></td>

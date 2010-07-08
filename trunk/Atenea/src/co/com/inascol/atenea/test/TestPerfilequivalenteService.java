@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppPerfilequivalente;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.PerfilequivalenteService;
 import co.com.inascol.atenea.logic.interfaces.IPerfilequivalenteService;
 
@@ -11,6 +12,7 @@ public class TestPerfilequivalenteService {
 	
 	private static IPerfilequivalenteService perfilequivalenteService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String argss[]){
 //		crear();
@@ -25,7 +27,7 @@ public class TestPerfilequivalenteService {
 		perfilequivalenteService = new PerfilequivalenteService();
 		for(int i =1; i<10;i++){
 			String nombrePerfilEquivalente = "Developer "+i;
-			estadoOperacion = perfilequivalenteService.crearPerfilEquivalente(nombrePerfilEquivalente);
+			estadoOperacion = perfilequivalenteService.crearPerfilEquivalente(nombrePerfilEquivalente, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}
@@ -36,7 +38,7 @@ public class TestPerfilequivalenteService {
 		for(int i =1; i<10;i++){
 			Integer idPerfilEquivalente = i;
 			String nombrePerfilEquivalente = "Developer "+i;
-			estadoOperacion = perfilequivalenteService.actualizarPerfilEquivalente(idPerfilEquivalente, nombrePerfilEquivalente);
+			estadoOperacion = perfilequivalenteService.actualizarPerfilEquivalente(idPerfilEquivalente, nombrePerfilEquivalente, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}

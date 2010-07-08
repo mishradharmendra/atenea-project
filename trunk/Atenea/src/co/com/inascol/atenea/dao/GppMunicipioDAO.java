@@ -26,20 +26,20 @@ public class GppMunicipioDAO implements DAO{
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "update gpp_municipio " +
 							"set mun_vmunicipio = ?, " +
-							"dpt_viddepto = ?, " +
+							"dpt_niddepto = ?, " +
 							"mun_vusumodifica = ?, " +
 							"mun_dfecmodifica = ? " +							
-							"where mun_vidmunicipio = ?";	
+							"where mun_nidmunicipio = ?";	
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppMunicipio.getMunVmunicipio(),
-															gppMunicipio.getDptViddepto(),
+															gppMunicipio.getDptNiddepto(),
 															gppMunicipio.getMunVusumodifica(),
 															gppMunicipio.getMunDfecmodifica(),
-															gppMunicipio.getMunVidmunicipio()},
+															gppMunicipio.getMunNidmunicipio()},
 															new int[] {Types.VARCHAR,
-																		Types.VARCHAR,
+																		Types.INTEGER,
 																		Types.VARCHAR,																		
 																		Types.DATE,
-																		Types.VARCHAR});	
+																		Types.INTEGER});	
 			estadoOperation = true;
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -52,8 +52,8 @@ public class GppMunicipioDAO implements DAO{
 		try{	
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "delete from gpp_municipio " +
-							"where mun_vidmunicipio = ? ";	
-			jdbcTemplate.update(sentenciaSQL, new Object[] {idObj}, new int[] {Types.VARCHAR});	
+							"where mun_nidmunicipio = ? ";	
+			jdbcTemplate.update(sentenciaSQL, new Object[] {idObj}, new int[] {Types.INTEGER});	
 			estadoOperation = true;
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -66,7 +66,7 @@ public class GppMunicipioDAO implements DAO{
 		try{
 			gppMunicipioRowMapper = new GppMunicipioRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_municipio where mun_vidmunicipio = ?";
+			sentenciaSQL = "select * from gpp_municipio where mun_nidmunicipio = ?";
 			gppMunicipio = (GppMunicipio) jdbcTemplate.queryForObject(sentenciaSQL, new Object[] {idObj}, gppMunicipioRowMapper);
 		} catch (Exception ex){
 			ex.printStackTrace();
@@ -93,16 +93,14 @@ public class GppMunicipioDAO implements DAO{
 			gppMunicipio = (GppMunicipio) obj;
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_municipio " +
-							"(mun_vidmunicipio, mun_vmunicipio, dpt_viddepto, mun_vusucrea, mun_dfeccrea) " +
-							"values (?, ?, ?, ?, ?)";	
-			jdbcTemplate.update(sentenciaSQL, new Object[]{gppMunicipio.getMunVidmunicipio(),
-															gppMunicipio.getMunVmunicipio(),
-															gppMunicipio.getDptViddepto(),
+							"(mun_vmunicipio, dpt_niddepto, mun_vusucrea, mun_dfeccrea) " +
+							"values (?, ?, ?, ?)";	
+			jdbcTemplate.update(sentenciaSQL, new Object[]{gppMunicipio.getMunVmunicipio(),
+															gppMunicipio.getDptNiddepto(),
 															gppMunicipio.getMunVusucrea(),
 															gppMunicipio.getMunDfeccrea()},
 															new int[] {Types.VARCHAR,
-																		Types.VARCHAR,
-																		Types.VARCHAR,																		
+																		Types.INTEGER,																		
 																		Types.VARCHAR,
 																		Types.DATE});
 			estadoOperation = true;

@@ -21,22 +21,30 @@
 				<h:form>
 				<h:outputLabel value="Agregar Idioma"></h:outputLabel>
 				<br/><br/>					
-				<table>
+				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Idioma: "></h:outputLabel></td>
-						<td><h:inputText value="#{IdiomaMB.nombreIdioma}"></h:inputText></td>					
-						<td width="100px"></td>
+						<td><h:inputText id="nombreIdioma" size="30" value="#{IdiomaMB.nombreIdioma}" required="true" requiredMessage="Ingrese Idioma"></h:inputText></td>					
 					</tr>
+					<tr>
+						<td align="center" colspan="2"><rich:message for="nombreIdioma" style="color:red"/></td>							
+					</tr>						
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{IdiomaMB.getCrearIdioma}" value="Aceptar"/></td>
-						<td width="20px"></td>
-						<td><h:commandButton action="#{IdiomaMB.getCancelar}" value="Cancelar"/></td>
 					</tr>
 				</table>
-				</h:form>								
+				</h:form>
+				<h:form>		
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{IdiomaMB.getCancelar}" value="Cancelar"/></td>
+						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>										
 			</rich:panel>						
 		</ui:define>
 	</ui:composition>

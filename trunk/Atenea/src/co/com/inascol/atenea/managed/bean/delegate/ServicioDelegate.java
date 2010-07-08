@@ -4,38 +4,42 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import co.com.inascol.atenea.entity.GppServicio;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.ServicioService;
 import co.com.inascol.atenea.logic.interfaces.IServicioService;
 
 public class ServicioDelegate {
 
 	private IServicioService servicioService;
-	private List servicios;
+	private List<Object> servicios;
 	private GppServicio servicio;
+	private GppUsuario usuarioAutenticado;
 	
 	public ServicioDelegate(){}
 	
-	public List getListaServicios(){
+	public List<Object> getListaServicios(){
 		servicioService = new ServicioService();
 		servicios = servicioService.buscarServicios();
 		return servicios;
 	}
 	
-	public List getServicioPorNombre(String nombreServicio){
+	public List<Object> getServicioPorNombre(String nombreServicio){
 		servicioService = new ServicioService();
 		servicios = servicioService.buscarServicios();		
-		List serviciosConsultados = new ArrayList();
+		List<Object> serviciosConsultados = new ArrayList<Object>();
+		CharSequence nombre = nombreServicio;
 		if(servicios.size()>0){
 			if(nombreServicio.equalsIgnoreCase("")){
 				serviciosConsultados = servicios;
 			} else {
-				Iterator it = servicios.iterator();
+				Iterator<Object> it = servicios.iterator();
 				while(it.hasNext()){
 					servicio = (GppServicio) it.next();
-					if(servicio.getSerVnombre().equalsIgnoreCase(nombreServicio)){
+					if(servicio.getSerVnombre().contains(nombre)){
 						serviciosConsultados.add(servicio);			
-						break;
 					}
 				}
 			}
@@ -47,7 +51,7 @@ public class ServicioDelegate {
 		servicioService = new ServicioService();
 		servicios = servicioService.buscarServicios();
 		if(servicios.size()>0){
-			Iterator it = servicios.iterator();
+			Iterator<Object> it = servicios.iterator();
 			while(it.hasNext()){
 				servicio = (GppServicio) it.next();
 				if(servicio.getSerNidservicio() == idServicio){
@@ -64,7 +68,8 @@ public class ServicioDelegate {
 	}
 	
 	public boolean getCrearServicio(String nombreServicio, String rutaServicio){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		servicioService = new ServicioService();
-		return servicioService.crearServicio(nombreServicio, rutaServicio);
+		return servicioService.crearServicio(nombreServicio, rutaServicio, usuarioAutenticado);
 	}
 }

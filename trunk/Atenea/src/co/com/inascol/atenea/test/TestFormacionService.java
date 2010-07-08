@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppFormacion;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.FormacionService;
 import co.com.inascol.atenea.logic.interfaces.IFormacionService;
 
@@ -12,6 +13,7 @@ public class TestFormacionService {
 
 	private static IFormacionService formacionService;
 	private static Boolean estadoOperacion;
+	private static GppUsuario usuarioAutenticado;
 	
 	public static void main(String argss[]){
 //		crear();
@@ -37,7 +39,7 @@ public class TestFormacionService {
 			Integer idDocumentoTarjeta = i;
 			Integer idActaGrado = i;
 			Integer idDocumentoDiploma = i;
-			estadoOperacion = formacionService.crearFormacion(titulo, fechaGrado, duracionMeses, tarjetaProfesional, fechaTarjetaProfecional, idPersona, idNivelAcademico, idInstitucion, idTituloEquivalente, idDocumentoTarjeta, idActaGrado, idDocumentoDiploma);			
+			estadoOperacion = formacionService.crearFormacion(titulo, fechaGrado, duracionMeses, tarjetaProfesional, fechaTarjetaProfecional, idPersona, idNivelAcademico, idInstitucion, idTituloEquivalente, idDocumentoTarjeta, idActaGrado, idDocumentoDiploma, usuarioAutenticado);			
 			System.out.println(estadoOperacion);
 		}
 	}
@@ -59,7 +61,7 @@ public class TestFormacionService {
 			Integer idDocumentoTarjeta = i+i;
 			Integer idActaGrado = i+i;
 			Integer idDocumentoDiploma = i+i;
-			estadoOperacion = formacionService.actualizarFormacion(idFormacion, titulo, fechaGrado, duracionMeses, tarjetaProfesional, fechaTarjetaProfecional, idPersona, idNivelAcademico, idInstitucion, idTituloEquivalente, idDocumentoTarjeta, idActaGrado, idDocumentoDiploma);
+			estadoOperacion = formacionService.actualizarFormacion(idFormacion, titulo, fechaGrado, duracionMeses, tarjetaProfesional, fechaTarjetaProfecional, idPersona, idNivelAcademico, idInstitucion, idTituloEquivalente, idDocumentoTarjeta, idActaGrado, idDocumentoDiploma, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}

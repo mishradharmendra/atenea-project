@@ -9,8 +9,8 @@ import java.util.Date;
  */
 public class GppMunicipio {
 
-	private String munVidmunicipio;
-	private String dptViddepto;
+	private Integer munNidmunicipio;
+	private Integer dptNiddepto;
 	private String munVmunicipio;
 	private String munVusucrea;
 	private Date munDfeccrea;
@@ -19,20 +19,20 @@ public class GppMunicipio {
 
 	public GppMunicipio() {}
 
-	public String getMunVidmunicipio() {
-		return this.munVidmunicipio;
+	public Integer getMunNidmunicipio() {
+		return munNidmunicipio;
 	}
 
-	public void setMunVidmunicipio(String munVidmunicipio) {
-		this.munVidmunicipio = munVidmunicipio;
+	public void setMunNidmunicipio(Integer munNidmunicipio) {
+		this.munNidmunicipio = munNidmunicipio;
 	}
 
-	public String getDptViddepto() {
-		return this.dptViddepto;
+	public Integer getDptNiddepto() {
+		return dptNiddepto;
 	}
 
-	public void setDptViddepto(String dptViddepto) {
-		this.dptViddepto = dptViddepto;
+	public void setDptNiddepto(Integer dptNiddepto) {
+		this.dptNiddepto = dptNiddepto;
 	}
 
 	public String getMunVmunicipio() {

@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppPerfilequivalenteDAO;
 import co.com.inascol.atenea.entity.GppPerfilequivalente;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IPerfilequivalenteService;
 
 public class PerfilequivalenteService implements IPerfilequivalenteService{
@@ -14,14 +15,14 @@ public class PerfilequivalenteService implements IPerfilequivalenteService{
 	private GppPerfilequivalente gppPerfilequivalente;
 	private List<Object> gppPerfilesEquivalentes;
 	
-	public boolean actualizarPerfilEquivalente(Integer idPerfilEquivalente, String nombrePerfilEquivalente) {
+	public boolean actualizarPerfilEquivalente(Integer idPerfilEquivalente, String nombrePerfilEquivalente, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppPerfilequivalenteDAO = new GppPerfilequivalenteDAO();
 			gppPerfilequivalente = new GppPerfilequivalente();
 			gppPerfilequivalente.setPeqNidperfileq(idPerfilEquivalente);
 			gppPerfilequivalente.setPeqVperfileq(nombrePerfilEquivalente);
-			gppPerfilequivalente.setPeqVusumodifica("memo");
+			gppPerfilequivalente.setPeqVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppPerfilequivalente.setPeqDfecmodifica(new Date());
 			estadoOperacion = gppPerfilequivalenteDAO.actualizar(gppPerfilequivalente);
 		} catch (Exception ex){
@@ -63,13 +64,13 @@ public class PerfilequivalenteService implements IPerfilequivalenteService{
 		return gppPerfilesEquivalentes;
 	}
 
-	public boolean crearPerfilEquivalente(String nombrePerfilEquivalente) {
+	public boolean crearPerfilEquivalente(String nombrePerfilEquivalente, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppPerfilequivalenteDAO = new GppPerfilequivalenteDAO();
 			gppPerfilequivalente = new GppPerfilequivalente();
 			gppPerfilequivalente.setPeqVperfileq(nombrePerfilEquivalente);
-			gppPerfilequivalente.setPeqVusucrea("memo");
+			gppPerfilequivalente.setPeqVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppPerfilequivalente.setPeqDfeccrea(new Date());
 			estadoOperacion = gppPerfilequivalenteDAO.crear(gppPerfilequivalente);
 		} catch (Exception ex){

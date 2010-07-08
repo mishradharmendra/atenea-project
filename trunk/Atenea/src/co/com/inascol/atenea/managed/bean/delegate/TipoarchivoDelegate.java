@@ -4,38 +4,42 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import co.com.inascol.atenea.entity.GppTipoarchivo;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.TipoarchivoService;
 import co.com.inascol.atenea.logic.interfaces.ITipoarchivoService;
 
 public class TipoarchivoDelegate {
 
 	private ITipoarchivoService tipoarchivoService;
-	private List tipoarchivos;
+	private List<Object> tipoarchivos;
 	private GppTipoarchivo tipoarchivo;
+	private GppUsuario usuarioAutenticado;
 	
 	public TipoarchivoDelegate(){}
 	
-	public List getListaTipoarchivos(){
+	public List<Object> getListaTipoarchivos(){
 		tipoarchivoService = new TipoarchivoService();
 		tipoarchivos = tipoarchivoService.buscarTipoarchivos();
 		return tipoarchivos;
 	}
 	
-	public List getTipoarchivoPorNombre(String nombreTipoarchivo){
+	public List<Object> getTipoarchivoPorNombre(String nombreTipoarchivo){
 		tipoarchivoService = new TipoarchivoService();
 		tipoarchivos = tipoarchivoService.buscarTipoarchivos();		
-		List tipoarchivosConsultados = new ArrayList();
+		List<Object> tipoarchivosConsultados = new ArrayList<Object>();
+		CharSequence nombre = nombreTipoarchivo.toLowerCase();
 		if(tipoarchivos.size()>0){
 			if(nombreTipoarchivo.equalsIgnoreCase("")){
 				tipoarchivosConsultados = tipoarchivos;
 			} else {
-				Iterator it = tipoarchivos.iterator();
+				Iterator<Object> it = tipoarchivos.iterator();
 				while(it.hasNext()){
 					tipoarchivo = (GppTipoarchivo) it.next();
-					if(tipoarchivo.getTarVtipoarchivo().equalsIgnoreCase(nombreTipoarchivo)){
+					if(tipoarchivo.getTarVtipoarchivo().toLowerCase().contains(nombre)){
 						tipoarchivosConsultados.add(tipoarchivo);			
-						break;
 					}
 				}
 			}
@@ -47,7 +51,7 @@ public class TipoarchivoDelegate {
 		tipoarchivoService = new TipoarchivoService();
 		tipoarchivos = tipoarchivoService.buscarTipoarchivos();
 		if(tipoarchivos.size()>0){
-			Iterator it = tipoarchivos.iterator();
+			Iterator<Object> it = tipoarchivos.iterator();
 			while(it.hasNext()){
 				tipoarchivo = (GppTipoarchivo) it.next();
 				if(tipoarchivo.getTarNidtipoarchivo() == idTipoarchivo){
@@ -58,13 +62,20 @@ public class TipoarchivoDelegate {
 		return tipoarchivo;
 	}
 	
-	public boolean getModificarTipoarchivo(int idTipoarchivo, String nombreTipoarchivo){
+	public Boolean getModificarTipoarchivo(Integer idTipoarchivo, String nombreTipoarchivo){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		tipoarchivoService = new TipoarchivoService();
-		return tipoarchivoService.actualizarTipoarchivo(idTipoarchivo, nombreTipoarchivo);
+		return tipoarchivoService.actualizarTipoarchivo(idTipoarchivo, nombreTipoarchivo, usuarioAutenticado);
 	}
 	
-	public boolean getCrearTipoarchivo(String nombreTipoarchivo){
+	public Boolean getCrearTipoarchivo(String nombreTipoarchivo){
+		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		tipoarchivoService = new TipoarchivoService();
-		return tipoarchivoService.crearTipoarchivo(nombreTipoarchivo);
+		return tipoarchivoService.crearTipoarchivo(nombreTipoarchivo, usuarioAutenticado);
+	}
+	
+	public Boolean getEliminarTipoarchivo(Integer idTipoarchivo){
+		tipoarchivoService = new TipoarchivoService();
+		return tipoarchivoService.borrarTipoarchivo(idTipoarchivo);
 	}
 }

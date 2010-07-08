@@ -23,25 +23,33 @@
 				<br/><br/>					
 				<table>
 					<tr>
-						<td><h:inputText value="#{MunicipioMB.idMunicipio}"></h:inputText></td>
 						<td><h:outputLabel value="Nombre de Municipio: "></h:outputLabel></td>
-						<td><h:inputText value="#{MunicipioMB.nombreMunicipio}"></h:inputText></td>					
+						<td><h:inputText id="nombreMunicipio" size="30" value="#{MunicipioMB.nombreMunicipio}" required="true" requiredMessage="Ingrese Nombre de Municipio"></h:inputText></td>					
 						<td width="100px"></td>
 						<td><h:outputLabel value="Departamento:"></h:outputLabel></td>
 						<td><h:selectOneMenu value="#{MunicipioMB.idDepto}">
 								<f:selectItems value="#{MunicipioMB.departamentos}"/>
 							</h:selectOneMenu></td>
 					</tr>
+					<tr>
+						<td align="center" colspan="2"><rich:message for="nombreMunicipio" style="color:red"/></td>							
+					</tr>						
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{MunicipioMB.getCrearMunicipio}" value="Aceptar"/></td>
-						<td width="20px"></td>
-						<td><h:commandButton action="#{MunicipioMB.getCancelar}" value="Cancelar"/></td>
 					</tr>
 				</table>
-				</h:form>								
+				</h:form>
+				<h:form>		
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{MunicipioMB.getCancelar}" value="Cancelar"/></td>
+						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>										
 			</rich:panel>						
 		</ui:define>
 	</ui:composition>

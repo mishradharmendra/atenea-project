@@ -1,6 +1,7 @@
 package co.com.inascol.atenea.dao;
 
 import java.sql.Types;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -8,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppExperiencia;
+import co.com.inascol.atenea.entity.GppMunicipio;
 import co.com.inascol.atenea.entity.rowmapper.GppExperienciaRowMapper;
 
 public class GppExperienciaDAO implements DAO{
@@ -39,7 +41,8 @@ public class GppExperienciaDAO implements DAO{
 							"gpp_municipio_mun_vidmunicipio = ?, " +
 							"ceq_nidcargoeq = ?, " +
 							"exp_vusumodifica = ?, " +
-							"exp_dfecmodifica = ? " +
+							"exp_dfecmodifica = ?, " +
+							"per_nidpersona = ? " +
 							"where exp_nidexplaboral = ?";
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppExperiencia.getExpVnomempresa(),
 															gppExperiencia.getExpVtelempresa(),
@@ -56,6 +59,7 @@ public class GppExperienciaDAO implements DAO{
 															gppExperiencia.getCeqNidcargoeq(),
 															gppExperiencia.getExpVusumodifica(),
 															gppExperiencia.getExpDfecmodifica(),
+															gppExperiencia.getPerNidpersona(),
 															gppExperiencia.getExpNidexplaboral()},
 															new int[]{Types.VARCHAR,
 																		Types.VARCHAR,
@@ -72,6 +76,7 @@ public class GppExperienciaDAO implements DAO{
 																		Types.INTEGER,
 																		Types.VARCHAR,
 																		Types.DATE,
+																		Types.INTEGER,
 																		Types.INTEGER});
 			estadoOperation = true;			
 		} catch (Exception ex){
@@ -125,8 +130,8 @@ public class GppExperienciaDAO implements DAO{
 			gppExperiencia = (GppExperiencia) obj;
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "insert into gpp_experiencia " +
-							"(exp_vnomempresa, exp_vtelempresa, exp_vnomcontacto, exp_vemailcontacto, exp_vcargo, exp_dfecingreso, exp_dfecretiro, exp_vherrasw, exp_vfuncionlogro, doc_ncertifica1, doc_ncertifica2, gpp_municipio_mun_vidmunicipio, ceq_nidcargoeq, exp_vusucrea, exp_dfeccrea) " +
-							"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+							"(exp_vnomempresa, exp_vtelempresa, exp_vnomcontacto, exp_vemailcontacto, exp_vcargo, exp_dfecingreso, exp_dfecretiro, exp_vherrasw, exp_vfuncionlogro, doc_ncertifica1, doc_ncertifica2, gpp_municipio_mun_vidmunicipio, ceq_nidcargoeq, exp_vusucrea, exp_dfeccrea, per_nidpersona) " +
+							"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppExperiencia.getExpVnomempresa(),
 															gppExperiencia.getExpVtelempresa(),
 															gppExperiencia.getExpVnomcontacto(),
@@ -141,7 +146,8 @@ public class GppExperienciaDAO implements DAO{
 															gppExperiencia.getMunVidmunicipio(),
 															gppExperiencia.getCeqNidcargoeq(),
 															gppExperiencia.getExpVusucrea(),
-															gppExperiencia.getExpDfeccrea()},
+															gppExperiencia.getExpDfeccrea(),
+															gppExperiencia.getPerNidpersona()},
 															new int[]{Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.VARCHAR,
@@ -156,11 +162,33 @@ public class GppExperienciaDAO implements DAO{
 																		Types.INTEGER,
 																		Types.INTEGER,
 																		Types.VARCHAR,
-																		Types.DATE});
+																		Types.DATE,
+																		Types.INTEGER});
 			estadoOperation = true;			
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}
 		return estadoOperation;
+	}
+	
+	public List<Object> buscarExperienciasPersona(Object idObj){
+		gppExperienciasLaborales = null;
+		try{
+			gppExperienciaRowMapper = new GppExperienciaRowMapper();
+			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
+			sentenciaSQL = "select * from gpp_experiencia where per_nidpersona = ? order by exp_nidexplaboral asc";
+			gppExperienciasLaborales = (List) jdbcTemplate.query(sentenciaSQL, new Object[] {idObj}, gppExperienciaRowMapper);
+			if(gppExperienciasLaborales.size()>0){
+				GppMunicipioDAO gppMunicipioDAO = new GppMunicipioDAO();
+				Iterator<Object> it = gppExperienciasLaborales.iterator();				
+				while(it.hasNext()){
+					gppExperiencia = (GppExperiencia) it.next();
+					gppExperiencia.setGppMunicipio((GppMunicipio)gppMunicipioDAO.buscarPorId(gppExperiencia.getMunVidmunicipio()));
+				}
+			}
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return gppExperienciasLaborales;	
 	}
 }

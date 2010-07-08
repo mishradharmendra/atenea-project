@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.com.inascol.atenea.dao.GppRolDAO;
 import co.com.inascol.atenea.entity.GppRol;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IRolService;
 
 public class RolService implements IRolService {
@@ -14,7 +15,7 @@ public class RolService implements IRolService {
 	private GppRol gppRol;
 	private List<Object> gppRols;
 	
-	public boolean actualizarRol(Integer idRol, String nombreRol, String descripcionRol, String activoRol) {
+	public boolean actualizarRol(Integer idRol, String nombreRol, String descripcionRol, String activoRol, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppRolDAO = new GppRolDAO();
@@ -22,7 +23,7 @@ public class RolService implements IRolService {
 			gppRol.setRolNidrol(idRol);
 			gppRol.setRolVnombre(nombreRol);
 			gppRol.setRolVdescripcion(descripcionRol);
-			gppRol.setRolVusumodifica("mi memo");
+			gppRol.setRolVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppRol.setRolDfecmodifica(new Date());
 			gppRol.setRolVactivo(activoRol);
 			estadoOperacion = gppRolDAO.actualizar(gppRol);
@@ -65,14 +66,14 @@ public class RolService implements IRolService {
 		return gppRol;
 	}
 
-	public boolean crearRol(String nombreRol, String descripcionRol, String activoRol, List <Object> listaServicios) {
+	public boolean crearRol(String nombreRol, String descripcionRol, String activoRol, List <Object> listaServicios, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppRolDAO = new GppRolDAO();
 			gppRol = new GppRol();
 			gppRol.setRolVnombre(nombreRol);
 			gppRol.setRolVdescripcion(descripcionRol);
-			gppRol.setRolVusucrea("mi memo crea");
+			gppRol.setRolVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppRol.setRolDfeccrea(new Date());
 			gppRol.setRolVactivo(activoRol);
 			gppRol.setRolServicios(listaServicios);

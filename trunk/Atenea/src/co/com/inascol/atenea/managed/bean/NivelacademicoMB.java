@@ -1,11 +1,8 @@
 package co.com.inascol.atenea.managed.bean;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 
 import co.com.inascol.atenea.entity.GppNivelacademico;
 import co.com.inascol.atenea.managed.bean.delegate.NivelacademicoDelegate;
@@ -15,12 +12,13 @@ import co.com.inascol.atenea.util.ConstantesFaces;
 public class NivelacademicoMB {
 
 	private NivelacademicoDelegate nivelacademicoDelegate;
-	private int idNivelacademico;
+	private Integer idNivelacademico;
 	private String nombreNivelacademico;
 	private String estadoNivelacademico;
 	private String controlNavegacion;
-	private List nivelesacademicos;
+	private List<Object> nivelesacademicos;
 	private GppNivelacademico nivelacademico;
+	private Boolean estadoOperacion;
 	
 	public NivelacademicoMB(){
 		nivelacademicoDelegate = new NivelacademicoDelegate();
@@ -45,10 +43,10 @@ public class NivelacademicoMB {
 	public void setNivelacademico(GppNivelacademico nivelacademico) {
 		this.nivelacademico = nivelacademico;
 	}
-	public List getNivelesacademicos() {
+	public List<Object> getNivelesacademicos() {
 		return nivelesacademicos;
 	}
-	public void setNivelesacademicos(List nivelesacademicos) {
+	public void setNivelesacademicos(List<Object> nivelesacademicos) {
 		this.nivelesacademicos = nivelesacademicos;
 	}
 	public int getIdNivelacademico() {
@@ -68,27 +66,52 @@ public class NivelacademicoMB {
 		nivelesacademicos = nivelacademicoDelegate.getNivelacademicoPorNombre(nombreNivelacademico);
 	}
 	
-
 	public String getAgregarNivelacademico() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("NivelacademicoMB");
 		return ConstantesFaces.CREAR_NIVELACADEMICO;
 	}	
 	
-	public String getCrearNivelacademico() {		
-		nivelacademicoDelegate.getCrearNivelacademico(nombreNivelacademico);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("NivelacademicoMB");
-		return ConstantesFaces.HOME_NIVELACADEMICO;
+	public String getCrearNivelacademico() {	
+		estadoOperacion = false;
+		estadoOperacion = nivelacademicoDelegate.getCrearNivelacademico(nombreNivelacademico);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("NivelacademicoMB");
+			return ConstantesFaces.ESTADO_NA_OK;
+		}else{
+			return ConstantesFaces.ESTADO_NA_ERROR;
+		}
 	}
 	
 	public String getSeleccionarNivelacademico(){
+		nivelacademico = nivelacademicoDelegate.getSeleccionarNivelacademico(idNivelacademico);
+		return ConstantesFaces.MODIFICAR_NIVELACADEMICO;
+	}
+	
+	public String getSeleccionarNivelacademicoDetalle(){
 		nivelacademico = nivelacademicoDelegate.getSeleccionarNivelacademico(idNivelacademico);
 		return ConstantesFaces.DETALLE_NIVELACADEMICO;
 	}
 	
 	public String getModificarNivelacademico(){
-		nivelacademicoDelegate.getModificarNivelacademico(nivelacademico.getNacNidnivelac(), nivelacademico.getNacVnivelac());
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("NivelacademicoMB");
-		return ConstantesFaces.HOME_NIVELACADEMICO;
+		estadoOperacion = false;
+		estadoOperacion = nivelacademicoDelegate.getModificarNivelacademico(nivelacademico.getNacNidnivelac(), nivelacademico.getNacVnivelac());
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("NivelacademicoMB");
+			return ConstantesFaces.ESTADO_NA_OK;
+		}else{
+			return ConstantesFaces.ESTADO_NA_ERROR;
+		}
+	}
+	
+	public String getEliminarNivelacademico(){
+		estadoOperacion = false;
+		estadoOperacion = nivelacademicoDelegate.getEliminarNivelacademico(idNivelacademico);
+		if(estadoOperacion==true){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("NivelacademicoMB");
+			return ConstantesFaces.ESTADO_NA_OK;
+		}else{
+			return ConstantesFaces.ESTADO_NA_ERROR;
+		}
 	}
 	
 	public String getCancelar(){

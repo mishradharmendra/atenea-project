@@ -4,13 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppDocumento;
+import co.com.inascol.atenea.entity.GppUsuario;
 
 public interface IDocumentoService {
 
 	public boolean crearDocumento(String nombreDocumento, String nombreArchivo, String urlArchivo, Date fechaExpedicion, Integer idPersona,
-									Integer idTipoArchivo);
+									Integer idTipoArchivo, GppUsuario usuarioAutenticado);
 	public boolean actualizarDocumento(Integer idDocumento, String nombreDocumento, String nombreArchivo, String urlArchivo, 
-										Date fechaExpedicion, Integer idPersona, Integer idTipoArchivo);
+										Date fechaExpedicion, Integer idPersona, Integer idTipoArchivo, GppUsuario usuarioAutenticado);
 	public boolean borrarDocumento(Integer idDocumento);
 	public GppDocumento buscarDocumentoPorId(Integer idDocumento);
 	public List<Object> buscarDocumentos();
