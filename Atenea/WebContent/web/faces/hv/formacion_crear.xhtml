@@ -7,17 +7,20 @@
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
 	  xmlns:a4j="http://richfaces.org/a4j"
 	  xmlns:c="http://java.sun.com/jstl/core">
+<head>
+	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+</head>	  
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel>
+			<rich:panel style="width:940px;height:440px;background-color:#EEE;">
 				<script type="text/javascript" src="../../swf/calendario.js"></script>
 				<table>
 					<tr>
-						<td><h:outputLabel value="Formación Académica #{PersonaMB.persona.perVnombres}"></h:outputLabel></td>
+						<td><h:outputLabel value="Formación Académica #{PersonaMB.persona.perVnombres}" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/>
+				<br/><br/>
 				<h:form>
 				<table align="center">
 					<tr>
@@ -76,12 +79,12 @@
 						<td><rich:calendar value="#{FormacionMB.formacion.forDfectarjeta}" datePattern="dd/MM/yyyy" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll"/></td>						
 					</tr>													
 				</table>
-				<br/>
+				<br/><br/><br/>
 				<table align="center">
 					<tr>
-						<td align="center"><h:outputLabel value="Diploma"></h:outputLabel></td>
+						<td align="center"><h:outputLabel value="Diploma" styleClass="TituloContenido"></h:outputLabel></td>
 						<td width="200px"></td>	
-						<td align="center"><h:outputLabel value="Acta de Grado"></h:outputLabel></td>							
+						<td align="center"><h:outputLabel value="Acta de Grado" styleClass="TituloContenido"></h:outputLabel></td>							
 					</tr>				
 					<tr>
 						<td><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirDiploma}" acceptedTypes="pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">

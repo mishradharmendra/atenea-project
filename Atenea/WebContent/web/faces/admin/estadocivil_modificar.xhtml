@@ -6,20 +6,21 @@
       xmlns:rich="http://richfaces.org/rich"
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
 	  xmlns:a4j="http://richfaces.org/a4j">
+<head>
+	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+</head>	 	  
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel>
+			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
-						<td align="left"><h:outputLabel value="ADMINISTRACIÓN"></h:outputLabel></td>
-						<td align="left"><h:outputLabel value=">>"></h:outputLabel></td>
-						<td align="left"><h:outputLabel value="Tablas de Referencia - Estado Civil"></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Tablas de Referencia - Estadocivil" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/>	
+				<br/><br/><br/><br/>
 				<h:form>
-				<h:outputLabel value="Modificación de Datos de Estado Civil"></h:outputLabel>
+				<h:outputLabel value="Modificación de Datos de Estado Civil" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>					
 				<table align="center">
 					<tr>

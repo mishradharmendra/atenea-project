@@ -6,18 +6,19 @@
       xmlns:rich="http://richfaces.org/rich"
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
 	  xmlns:a4j="http://richfaces.org/a4j">
+<head>
+	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+</head>	 	  
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel>
+			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
-						<td align="left"><h:outputLabel value="ADMINISTRACIÓN"></h:outputLabel></td>
-						<td align="left"><h:outputLabel value=">>"></h:outputLabel></td>
-						<td align="left"><h:outputLabel value="Tablas de Referencia - Instituciones"></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Tablas de Referencia - Instituciones" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/>
+				<br/><br/><br/><br/>
 				<h:form>	
 				<table align="center">
 					<tr>
@@ -35,10 +36,10 @@
 				</table>
 				</h:form>								
 				<br/><br/>
-				<h:outputLabel value="Resultados de Búsqueda"></h:outputLabel>
+				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaInstituciones" value="#{InstitucionMB.instituciones}" var="institucion" width="600px" height="300px">
+				<rich:extendedDataTable id="tablaInstituciones" value="#{InstitucionMB.instituciones}" var="institucion" width="600px" height="250px">
 					<rich:column width="100px">
 						<f:facet name="header">
 							<h:outputLabel value="Id Institucion"></h:outputLabel>

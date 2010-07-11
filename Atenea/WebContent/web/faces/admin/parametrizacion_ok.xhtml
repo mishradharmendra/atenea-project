@@ -6,26 +6,35 @@
       xmlns:rich="http://richfaces.org/rich"
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
 	  xmlns:a4j="http://richfaces.org/a4j">
+<head>
+	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+</head>	 	  
 <body>
 	<ui:composition template="../../template_login.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel>
+			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="center">
 					<tr>
-						<td align="center"><h:outputLabel value="El proceso se ejecutó de manera Correcta"></h:outputLabel></td>
+						<td align="center" height="50px"/>
+					</tr>				
+					<tr>
+						<td align="center"><h:outputLabel value="El proceso se ejecutó de manera Correcta" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>					
 					<tr>
-						<td height="10"/>
-					</tr>			
+						<td align="center" height="50px"/>
+					</tr>		
 					<tr>
 						<td align="center"><img src="#{AutenticacionMB.fullContextPath}/web/imagenes/check.png" width="100" height="100"></img></td>
 					</tr>
 					<tr>
-						<td height="10"/>
-					</tr>														
+						<td align="center" height="50px"/>
+					</tr>													
 					<tr>
-						<td align="center"><h:outputLabel value="Continue con el diligenciamiento de la información dando clic en Aceptar"></h:outputLabel></td>
-					</tr>					
+						<td align="center"><h:outputLabel value="Continue con el diligenciamiento de la información dando clic en Aceptar" styleClass="TituloContenido"></h:outputLabel></td>
+					</tr>		
+					<tr>
+						<td align="center" height="50px"/>
+					</tr>								
 				</table>
 				<br/>
 				<h:form>

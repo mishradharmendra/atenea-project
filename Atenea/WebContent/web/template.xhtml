@@ -5,34 +5,28 @@
       xmlns:h="http://java.sun.com/jsf/html">
     <head>
         <title><h:outputText value="Inascol Ltda."></h:outputText></title>
+        <link rel="icon" href="#{AutenticacionMB.fullContextPath}/web/imagenes/icono.gif" type="image"/>
+        <link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
     </head>
-    <body background="./imagenes/fondopagina.png">
-		<table border="0" align="center" width="940" cellspacing="0">
+    <body>
+		<table align="center" width="940px">
 			<tr>
-				<td width="940" colspan="3">
+				<td width="940px" align="center">
 					<ui:include src="../web/faces/comun/encabezado.xhtml"/>
 				</td>
 			</tr>
 			<tr>
-				<td width="940" colspan="3">
+				<td width="940px" align="center">
 					<ui:include src="../web/faces/comun/menu.xhtml"/>
 				</td>
 			</tr>
 			<tr>
-				<td>
-				<table>
-					<tr>
-						<td width="20"></td>
-						<td width="900" align="center">
-							<ui:insert name="cuerpo"/>
-						</td>
-						<td width="20"></td>
-					</tr>
-				</table>
+				<td width="940px" align="center">
+					<ui:insert name="cuerpo"/>
 				</td>
 			</tr>
 			<tr>
-				<td width="940" colspan="3">
+				<td width="940px" align="center">
 					<ui:include src="../web/faces/comun/pie.xhtml"/>
 				</td>
 			</tr>

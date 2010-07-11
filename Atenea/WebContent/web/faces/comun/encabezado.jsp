@@ -10,7 +10,7 @@
 <body>
 	<ui:composition template="../template.xhtml">
 		<ui:define name="encabezado">
-			<table width="940">
+			<table width="940"><c:forEach var="" items=""></c:forEach>
 				<tr><richfaces:tabPanel style="background-image:"></richfaces:tabPanel>
 					<c:forEach items="" var="">
 					</c:forEach><h:inputSecret></h:inputSecret>

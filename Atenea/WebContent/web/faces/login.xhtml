@@ -6,18 +6,21 @@
       xmlns:rich="http://richfaces.org/rich"
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
 	  xmlns:a4j="http://richfaces.org/a4j">
+    <head>
+        <link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+    </head>	  
 <body>
 	<ui:composition template="../template_login.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel>
+			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png);">
 				<h:form>
 				<table align="center">
 					<tr>
-						<td align="center"><h:outputLabel value="GESTIÓN DE PERFILES PROFESIONALES - ATENEA"></h:outputLabel></td>
-					</tr>	
-					<tr>
 						<td height="20"/>
 					</tr>								
+					<tr>
+						<td align="center"><h:outputLabel value="GESTIÓN DE PERFILES PROFESIONALES - ATENEA" styleClass="TituloContenido"></h:outputLabel></td>
+					</tr>	
 					<tr>
 						<td><object type="application/x-shockwave-flash" data="#{AutenticacionMB.fullContextPath}/web/swf/Pub1.swf" width="800" height="300"></object></td>
 					</tr>
@@ -34,6 +37,9 @@
 					<tr>				
 						<td colspan="3" align="center"><h:commandButton action="#{AutenticacionMB.getVerificarPermisos}" value="Login"/></td>
 					</tr>
+					<tr>
+						<td height="20"/>
+					</tr>					
 				</table>
 				</h:form>
 			</rich:panel>						
