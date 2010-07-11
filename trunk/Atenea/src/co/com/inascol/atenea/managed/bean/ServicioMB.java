@@ -1,11 +1,8 @@
 package co.com.inascol.atenea.managed.bean;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 
 import co.com.inascol.atenea.entity.GppServicio;
 import co.com.inascol.atenea.managed.bean.delegate.ServicioDelegate;
@@ -15,12 +12,12 @@ import co.com.inascol.atenea.util.ConstantesFaces;
 public class ServicioMB {
 
 	private ServicioDelegate servicioDelegate;
-	private int idServicio;
+	private Integer idServicio;
 	private String nombreServicio;
 	private String estadoServicio;
 	private String rutaServicio;
 	private String controlNavegacion;
-	private List servicios;
+	private List<Object> servicios;
 	private GppServicio servicio;
 	
 	public ServicioMB(){
@@ -52,16 +49,16 @@ public class ServicioMB {
 	public void setServicio(GppServicio servicio) {
 		this.servicio = servicio;
 	}
-	public List getServicios() {
+	public List<Object> getServicios() {
 		return servicios;
 	}
-	public void setServicios(List servicios) {
+	public void setServicios(List<Object> servicios) {
 		this.servicios = servicios;
 	}
-	public int getIdServicio() {
+	public Integer getIdServicio() {
 		return idServicio;
 	}
-	public void setIdServicio(int idServicio) {
+	public void setIdServicio(Integer idServicio) {
 		this.idServicio = idServicio;
 	}
 	public String getControlNavegacion() {

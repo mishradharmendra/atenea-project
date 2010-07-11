@@ -7,16 +7,19 @@
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
 	  xmlns:a4j="http://richfaces.org/a4j"
 	  xmlns:c="http://java.sun.com/jstl/core">
+<head>
+	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+</head>		  
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel>
-					<rich:tabPanel switchType="ajax" selectedTab="#{PersonaMB.tabPanel}">
+			<rich:panel style="width:940px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
+				<rich:tabPanel switchType="ajax" selectedTab="#{PersonaMB.tabPanel}" style="background-color:#EEE;">
 					<script type="text/javascript" src="../../swf/calendario.js"></script>					
-					<rich:tab label="Datos Personales" name="TAB_PANEL_PERSONA">					
+					<rich:tab label="Datos Personales" name="TAB_PANEL_PERSONA" style="background-color:#EEE;">					
 					<table align="left">
 						<tr>
-							<td><h:outputLabel value="Datos Personales #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}"></h:outputLabel></td>
+							<td><h:outputLabel value="Datos Personales #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 						</tr>
 					</table>
 					<br/><br/>
@@ -102,12 +105,12 @@
 						</tr>																																																	
 					</table>
 					<br/><br/>
-					<table>
+					<table align="left">
 						<tr>
-							<td><h:outputLabel value="Datos Contacto"></h:outputLabel></td>
+							<td><h:outputLabel value="Datos Contacto" styleClass="TituloContenido"></h:outputLabel></td>
 						</tr>
 					</table>					
-					<br/>
+					<br/><br/>
 					<table align="center">
 						<tr>
 							<td><h:outputLabel value="País Residencia"></h:outputLabel></td>
@@ -129,7 +132,7 @@
 						</tr>											
 						<tr>
 							<td><h:outputLabel value="Movil"></h:outputLabel></td>
-							<td><h:inputText size="40" id="perVmovil" value="#{PersonaMB.persona.perVmovil}"></h:inputText></td>
+							<td><h:inputText size="30" id="perVmovil" value="#{PersonaMB.persona.perVmovil}"></h:inputText></td>
 							<td width="150px"></td>	
 							<td><h:outputLabel value="Correo Electrónico"></h:outputLabel></td>
 							<td><h:inputText size="30" id="perVemail" value="#{PersonaMB.persona.perVemail}"></h:inputText></td>							
@@ -145,7 +148,7 @@
 					<br/>
 					<table align="center">
 						<tr>
-							<td><h:outputLabel value="Adjuntar Hoja de Vida"></h:outputLabel></td>
+							<td align="center"><h:outputLabel value="Adjuntar Hoja de Vida" styleClass="TituloContenido"></h:outputLabel></td>
 						</tr>
 						<tr>
 							<td><rich:fileUpload required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
@@ -179,16 +182,16 @@
 					</table>
 					</h:form>																		
 					</rich:tab>
-					<rich:tab label="Formación Académica" name="TAB_PANEL_FORMACION" disabled="#{PersonaMB.tabDeshabilitados}">
+					<rich:tab label="Formación Académica" name="TAB_PANEL_FORMACION" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;">
 						<table align="left">
 							<tr>
-								<td><h:outputLabel value="Formación Académica  #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}"></h:outputLabel></td>
+								<td><h:outputLabel value="Formación Académica  #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>				
 						<br/><br/>
 						<table align="center">
 							<tr>
-								<td align="center"><h:outputLabel value="Formaciones Académicas"></h:outputLabel></td>
+								<td align="center"><h:outputLabel value="Formaciones Académicas" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>	
 						<br/><br/>										
@@ -256,7 +259,7 @@
 						<br/>		
 						<table align="center">
 							<tr>
-								<td><h:outputLabel value="Consolidado Soportes de Estudios"></h:outputLabel></td>
+								<td align="center"><h:outputLabel value="Consolidado Soportes de Estudios" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 							<tr>
 								<td><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirSoportesAcademicos}" acceptedTypes="zip,rar" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
@@ -282,16 +285,16 @@
 						</table>
 						</h:form>								        	     							
 					</rich:tab>
-					<rich:tab label="Experiencia Laboral" name="TAB_PANEL_EXPERIENCIA" disabled="#{PersonaMB.tabDeshabilitados}">
+					<rich:tab label="Experiencia Laboral" name="TAB_PANEL_EXPERIENCIA" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;">
 						<table align="left">
 							<tr>
-								<td><h:outputLabel value="Experiencia Laboral #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}"></h:outputLabel></td>
+								<td><h:outputLabel value="Experiencia Laboral #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>				
 						<br/><br/>
 						<table align="center">
 							<tr>
-								<td align="center"><h:outputLabel value="Experiencias Laborales"></h:outputLabel></td>
+								<td align="center"><h:outputLabel value="Experiencias Laborales" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>
 						<br/><br/>							
@@ -331,12 +334,8 @@
 								<f:facet name="header">
 									<h:outputLabel value="Fecha Retiro"></h:outputLabel>
 								</f:facet>
-								<c:if test="#{exp.expDfecretiro != null}">
-									<h:outputLabel value="#{exp.expDfecretiro}"></h:outputLabel>
-								</c:if>
-								<c:if test="#{exp.expDfecretiro == null}">
-									<h:outputLabel value="Actual"></h:outputLabel>
-								</c:if>								
+									<h:outputLabel value="#{exp.expDfecretiro}" rendered="#{exp.expDfecretiro != null}"></h:outputLabel>
+									<h:outputLabel value="Actual" rendered="#{exp.expDfecretiro == null}"></h:outputLabel>
 							</rich:column>																								
 							<rich:column width="100px">
 								<f:facet name="header">
@@ -376,7 +375,7 @@
 						<br/>						
 						<table align="center">
 							<tr>
-								<td><h:outputLabel value="Consolidado Certificaciones"></h:outputLabel></td>
+								<td align="center"><h:outputLabel value="Consolidado Certificaciones" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 							<tr>
 								<td><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificaciones}" acceptedTypes="zip,rar" ajaxSingle="true" maxFilesQuantity="10" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
@@ -402,10 +401,10 @@
 						</table>
 						</h:form>															
 					</rich:tab>
-					<rich:tab label="Perfíl Profesional" name="TAB_PANEL_PERFIL" disabled="#{PersonaMB.tabDeshabilitados}">
+					<rich:tab label="Perfíl Profesional" name="TAB_PANEL_PERFIL" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;">
 						<table align="left">
 							<tr>
-								<td><h:outputLabel value="Perfíl Profesional #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}"></h:outputLabel></td>
+								<td><h:outputLabel value="Perfíl Profesional #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>	
 						<br/><br/>
@@ -424,9 +423,7 @@
 							</tr>								
 							<tr>
 								<td><h:outputLabel value="Descripción"></h:outputLabel></td>
-							</tr>
-							<tr>
-								<td colspan="3"><h:inputTextarea cols="40" value="#{PerfilprofesionalMB.perfilProfesional.pprVperfil}" id="pprVperfil" required="true" requiredMessage="Ingrese Descripción"></h:inputTextarea></td>
+								<td><h:inputTextarea cols="40" value="#{PerfilprofesionalMB.perfilProfesional.pprVperfil}" id="pprVperfil" required="true" requiredMessage="Ingrese Descripción"></h:inputTextarea></td>
 							</tr>
 							<tr>
 								<td align="center" colspan="3"><rich:message for="pprVperfil" style="color:red"/></td>
@@ -438,7 +435,7 @@
 								<td><h:outputLabel value="Idioma"></h:outputLabel></td>
 							</tr>
 						</table>
-						<br/><br/>
+						<br/>
 						<table align="center">
 							<tr>
 								<td><h:outputLabel value="Idioma 1"></h:outputLabel></td>							
@@ -464,9 +461,9 @@
 						<br/><br/>
 						<table align="center">
 							<tr>
-								<td><h:outputLabel value="Herramientas de Software"></h:outputLabel></td>
+								<td><h:outputLabel value="Herramientas de Software" styleClass="TituloContenido"></h:outputLabel></td>
 								<td width="150px"></td>
-								<td><h:outputLabel value="Motores de Bases de Datos"></h:outputLabel></td>
+								<td><h:outputLabel value="Motores de Bases de Datos" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 							<tr>
 								<td><h:inputTextarea cols="40" value="#{PerfilprofesionalMB.perfilProfesional.pprVherrasw}"></h:inputTextarea></td>
@@ -508,16 +505,16 @@
 						</table>
 						</h:form>														
 					</rich:tab>
-					<rich:tab label="Soportes" name="TAB_PANEL_SOPORTES" disabled="#{PersonaMB.tabDeshabilitados}">
+					<rich:tab label="Soportes" name="TAB_PANEL_SOPORTES" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;">
 						<table align="left">
 							<tr>
-								<td><h:outputLabel value="Archivos Relacionados #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}"></h:outputLabel></td>
+								<td><h:outputLabel value="Archivos Relacionados #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>	
 						<br/><br/>						
 						<table align="center">
 							<tr>
-								<td><h:outputLabel value="Archivos Relacionados"></h:outputLabel></td>
+								<td><h:outputLabel value="Archivos Relacionados" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>	
 						<br/><br/>						
@@ -542,7 +539,7 @@
 						<br/>
 						<table align="center">
 							<tr>
-								<td><h:outputLabel value="Adjuntar Archivo"></h:outputLabel></td>
+								<td align="center"><h:outputLabel value="Adjuntar Archivo" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 							<tr>
 								<td><rich:fileUpload required="true" fileUploadListener="#{DocumentoMB.getSubirSoporte}" acceptedTypes="pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
@@ -560,7 +557,7 @@
 						<br/><br/>						
 						<table align="center">
 							<tr>
-								<td align="center"><h:outputLabel value="Listado de Soportes"></h:outputLabel></td>
+								<td align="center"><h:outputLabel value="Listado de Soportes" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>	
 						<h:form>											
@@ -580,13 +577,13 @@
 											</f:facet>
 											<h:outputLabel value="#{docu.docDfecexpide}"></h:outputLabel>
 										</rich:column>
-										<rich:column width="200px">
+										<rich:column width="150px">
 											<f:facet name="header">
 												<h:outputLabel value="Archivo"></h:outputLabel>
 											</f:facet>
 											<h:outputLabel value="#{docu.docVarchivo}"></h:outputLabel>
 										</rich:column>
-										<rich:column width="200px">
+										<rich:column width="150px">
 											<f:facet name="header">
 												<h:outputLabel value="Nombre"></h:outputLabel>
 											</f:facet>

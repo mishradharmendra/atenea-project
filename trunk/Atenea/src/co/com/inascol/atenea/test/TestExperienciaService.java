@@ -38,7 +38,6 @@ public class TestExperienciaService {
 			String funcionesLogros = "Logro "+i;
 			Integer docCertificacion1 = 1; 
 			Integer docCertificacion2 = 2; 
-			Integer idDepto = 1; 
 			Integer idMunicipio = 1; 
 			Integer cargoEquivalente = 1;
 			Integer idPersona = 1;
@@ -63,7 +62,6 @@ public class TestExperienciaService {
 			String funcionesLogros = "Logro "+i+i;
 			Integer docCertificacion1 = 1; 
 			Integer docCertificacion2 = 2; 
-			Integer idDepto = 1; 
 			Integer idMunicipio = 1; 
 			Integer cargoEquivalente = 1;
 			Integer idPersona = 1;

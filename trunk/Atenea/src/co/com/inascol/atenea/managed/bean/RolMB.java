@@ -27,15 +27,15 @@ public class RolMB {
 
 	private RolDelegate rolDelegate;
 	private ServicioDelegate servicioDelegate;
-	private int idRol;
+	private Integer idRol;
 	private String nombreRol;
 	private String estadoRol;
 	private String activoRol;
 	private String descripcionRol;
 	private String controlNavegacion;
-	private List roles;
-	private List serviciosRoles;
-	private List servicios;
+	private List<Object> roles;
+	private List<Object> serviciosRoles;
+	private List<Object> servicios;
 	private GppRol rol;
 	private GppServicio servicio;
 	
@@ -75,22 +75,22 @@ public class RolMB {
 	public void setRol(GppRol rol) {
 		this.rol = rol;
 	}
-	public List getRoles() {
+	public List<Object> getRoles() {
 		return roles;
 	}
-	public void setRoles(List roles) {
+	public void setRoles(List<Object> roles) {
 		this.roles = roles;
 	}
-	public List getServiciosRoles() {
+	public List<Object> getServiciosRoles() {
 		return serviciosRoles;
 	}
-	public void setServiciosRoles(List serviciosRoles) {
+	public void setServiciosRoles(List<Object> serviciosRoles) {
 		this.serviciosRoles = serviciosRoles;
 	}	
-	public int getIdRol() {
+	public Integer getIdRol() {
 		return idRol;
 	}
-	public void setIdRol(int idRol) {
+	public void setIdRol(Integer idRol) {
 		this.idRol = idRol;
 	}
 	public String getControlNavegacion() {
@@ -128,9 +128,9 @@ public class RolMB {
 		return ConstantesFaces.HOME_ROL;
 	}
 	
-	public List getServicios(){
+	public List<Object> getServicios(){
 		servicioDelegate = new ServicioDelegate();
-		List listadoServicios = servicioDelegate.getListaServicios();
+		List<Object> listadoServicios = servicioDelegate.getListaServicios();
 		return listadoServicios;
 	}	
 	

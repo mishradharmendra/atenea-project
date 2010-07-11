@@ -7,124 +7,121 @@
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
 	  xmlns:a4j="http://richfaces.org/a4j"
 	  xmlns:c="http://java.sun.com/jstl/core">
+<head>
+	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+</head>	  
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel>
-					<rich:tabPanel switchType="ajax" selectedTab="#{PersonaMB.tabPanel}">
-					<script type="text/javascript" src="../../swf/calendario.js"></script>					
-					<rich:tab label="Datos Personales" name="TAB_PANEL_PERSONA">					
+			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
+				<rich:tabPanel switchType="ajax" selectedTab="#{PersonaMB.tabPanel}" >
+					<rich:tab label="Datos Personales" name="TAB_PANEL_PERSONA" style="background-color:#EEE;height:400px;">					
 					<table align="left">
 						<tr>
-							<td><h:outputLabel value="Datos Personales #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}"></h:outputLabel></td>
+							<td><h:outputLabel value="Datos Personales #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 						</tr>
 					</table>
-					<br/><br/>
+					<br/><br/><br/><br/>
 					<table align="center">
 						<tr>
-							<td><h:outputLabel value="Nombres"></h:outputLabel></td>
+							<td><h:outputLabel value="Nombres:"></h:outputLabel></td>
 							<td><h:outputLabel id="perVnombres" value="#{PersonaMB.persona.perVnombres}" required="true" requiredMessage="Ingrese Nombres"></h:outputLabel></td>
 							<td width="150px"></td>			
-							<td><h:outputLabel value="Apellidos"></h:outputLabel></td>
+							<td><h:outputLabel value="Apellidos:"></h:outputLabel></td>
 							<td><h:outputLabel size="30" id="perVapellidos" value="#{PersonaMB.persona.perVapellidos}" required="true" requiredMessage="Ingrese Apellidos"></h:outputLabel></td>							
 						</tr>
 						<tr>
-							<td align="center" colspan="2"><rich:message for="perVnombres" style="color:red"/></td>
+							<td><h:outputLabel value="Tipo de Identificación:"></h:outputLabel></td>
+							<td>
+							<c:forEach var="tipoId" items="#{PersonaMB.tiposIdentificacion}">
+								<c:if test="#{PersonaMB.persona.tdcNidtipodoc == tipoId.value}">
+									<h:outputLabel value="#{tipoId.label}"/>
+								</c:if>
+							</c:forEach>
+							</td>
 							<td width="150px"></td>			
-							<td align="center" colspan="2"><rich:message for="perVapellidos" style="color:red"/></td>							
-						</tr>						
-						<tr>
-							<td><h:outputLabel value="Tipo de Identificación"></h:outputLabel></td>
-							<td><h:selectOneMenu value="#{PersonaMB.persona.tdcNidtipodoc}" id="tdcNidtipodoc" required="true" requiredMessage="Ingrese Tipo de Identificación" disabled="true">
-								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
-								<f:selectItems value="#{PersonaMB.tiposIdentificacion}"/>
-							</h:selectOneMenu></td>
-							<td width="150px"></td>			
-							<td><h:outputLabel value="Identificación"></h:outputLabel></td>
+							<td><h:outputLabel value="Identificación:"></h:outputLabel></td>
 							<td><h:outputLabel size="30" id="perNidentificacion" value="#{PersonaMB.persona.perNidentificacion}" required="true" requiredMessage="Ingrese Identificación"></h:outputLabel></td>							
 						</tr>		
 						<tr>
-							<td align="center" colspan="2"><rich:message for="tdcNidtipodoc" style="color:red"/></td>
-							<td width="150px"></td>	
-							<td align="center" colspan="2"><rich:message for="perNidentificacion" style="color:red"/></td>							
-						</tr>							
-						<tr>
-							<td><h:outputLabel value="Sexo"></h:outputLabel></td>
-							<td><h:selectOneMenu id="perVsexo" value="#{PersonaMB.persona.perVsexo}" required="true" requiredMessage="Ingrese Sexo" disabled="true">
-								<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
-								<f:selectItem itemValue="H" itemLabel="Hombre"/>
-								<f:selectItem itemValue="M" itemLabel="Mujer"/>
-							</h:selectOneMenu></td>
+							<td><h:outputLabel value="Sexo:"></h:outputLabel></td>
+							<td>
+							<c:choose>
+								<c:when test="#{PersonaMB.persona.perVsexo == 'H'}">
+									<h:outputLabel value="Hombre"></h:outputLabel>
+								</c:when>
+								<c:when test="#{PersonaMB.persona.perVsexo == 'M'}">
+									<h:outputLabel value="Mujer"></h:outputLabel>
+								</c:when>
+							</c:choose>
+							</td>
 							<td width="150px"></td>			
-							<td><h:outputLabel value="Estado Civil"></h:outputLabel></td>
-							<td><h:selectOneMenu id="escNidestadocivil" value="#{PersonaMB.persona.escNidestadocivil}" required="true" requiredMessage="Ingrese Estado Civil"  disabled="true">
-								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
-								<f:selectItems value="#{PersonaMB.estadosCiviles}"/>
-							</h:selectOneMenu></td>						
+							<td><h:outputLabel value="Estado Civil:"></h:outputLabel></td>
+							<td>
+							<c:forEach var="tipoEstadoCivil" items="#{PersonaMB.estadosCiviles}">
+								<c:if test="#{PersonaMB.persona.escNidestadocivil == tipoEstadoCivil.value}">
+									<h:outputLabel value="#{tipoEstadoCivil.label}"/>
+								</c:if>
+							</c:forEach>
+							</td>						
 						</tr>		
 						<tr>
-							<td align="center" colspan="2"><rich:message for="perVsexo" style="color:red"/></td>
-							<td width="150px"></td>	
-							<td align="center" colspan="2"><rich:message for="escNidestadocivil" style="color:red"/></td>							
-						</tr>													
-						<tr>
-							<td><h:outputLabel value="Fecha de Nacimiento"></h:outputLabel></td>
-							<td><rich:calendar value="#{PersonaMB.persona.perDfecnacimiento}" datePattern="dd/MM/yyyy" id="perDfecnacimiento" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll"/></td>
+							<td><h:outputLabel value="Fecha de Nacimiento:"></h:outputLabel></td>
+							<td><h:outputLabel value="#{PersonaMB.persona.perDfecnacimiento}" datePattern="dd/MM/yyyy"/></td>
 							<td width="150px"></td>			
-							<td><h:outputLabel value="Municipio"></h:outputLabel></td>
-							<td><h:selectOneMenu id="munVidmunicipio" value="#{PersonaMB.persona.munVidmunicipio}" required="true" requiredMessage="Seleccione un Municipio"  disabled="true">
-								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
-								<f:selectItems value="#{PersonaMB.municipios}"/>
-							</h:selectOneMenu></td>	
+							<td><h:outputLabel value="Municipio:"></h:outputLabel></td>
+							<td>
+							<c:forEach var="mpio" items="#{PersonaMB.municipios}">
+								<c:if test="#{PersonaMB.persona.munVidmunicipio == mpio.value}">
+									<h:outputLabel value="#{mpio.label}"/>
+								</c:if>
+							</c:forEach>							
+							</td>	
 						</tr>										
-						<tr>
-							<td colspan="2"></td>	
-							<td width="150px"></td>	
-							<td align="center" colspan="2"><rich:message for="munVidmunicipio" style="color:red"/></td>							
-						</tr>							
 						<tr>				
-							<td><h:outputLabel value="Libreta Militar"></h:outputLabel></td>
+							<td><h:outputLabel value="Libreta Militar:"></h:outputLabel></td>
 							<td><h:outputLabel size="30" value="#{PersonaMB.persona.perVlibretamilitar}"></h:outputLabel></td>
 						</tr>																																																	
 					</table>
 					<br/><br/>
-					<table>
+					<table align="left">
 						<tr>
-							<td><h:outputLabel value="Datos Contacto"></h:outputLabel></td>
+							<td><h:outputLabel value="Datos Contacto" styleClass="TituloContenido"></h:outputLabel></td>
 						</tr>
 					</table>					
-					<br/>
+					<br/><br/><br/><br/>
 					<table align="center">
 						<tr>
-							<td><h:outputLabel value="País Residencia"></h:outputLabel></td>
-							<td><h:selectOneMenu id="idPaisResidencia" value="#{PersonaMB.persona.paiNpaisresidencia}" required="true" requiredMessage="Seleccione un Pais de Residencia" disabled="true">
-								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
-								<f:selectItems value="#{PersonaMB.paises}"/>
-								</h:selectOneMenu></td>
+							<td><h:outputLabel value="País Residencia:"></h:outputLabel></td>
+							<td>
+							<c:forEach var="paisResid" items="#{PersonaMB.paises}">
+								<c:if test="#{PersonaMB.persona.paiNpaisresidencia == paisResid.value}">
+									<h:outputLabel value="#{paisResid.label}"/>
+								</c:if>
+							</c:forEach>								
+							</td>
 							<td width="150px"></td>	
-							<td><h:outputLabel value="Municipio Residencia"></h:outputLabel></td>
-							<td><h:selectOneMenu id="mpio" value="#{PersonaMB.persona.munNmpioresidencia}" disabled="true">
-								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
-								<f:selectItems value="#{PersonaMB.municipiosResidencia}"/>
-								</h:selectOneMenu></td>							
+							<td><h:outputLabel value="Municipio Residencia:"></h:outputLabel></td>
+							<td>
+							<c:forEach var="mpioResi" items="#{PersonaMB.municipiosResidencia}">
+								<c:if test="#{PersonaMB.persona.munNmpioresidencia == mpioResi.value}">
+									<h:outputLabel value="#{mpioResi.label}"/>
+								</c:if>
+							</c:forEach>
+							</td>							
 						</tr>	
 						<tr>
-							<td align="center" colspan="2"><rich:message for="idPaisResidencia" style="color:red"/></td>
+							<td><h:outputLabel value="Movil:"></h:outputLabel></td>
+							<td><h:outputLabel size="30" id="perVmovil" value="#{PersonaMB.persona.perVmovil}"></h:outputLabel></td>
 							<td width="150px"></td>	
-							<td colspan="2"/>							
-						</tr>											
-						<tr>
-							<td><h:outputLabel value="Movil"></h:outputLabel></td>
-							<td><h:outputLabel size="40" id="perVmovil" value="#{PersonaMB.persona.perVmovil}"></h:outputLabel></td>
-							<td width="150px"></td>	
-							<td><h:outputLabel value="Correo Electrónico"></h:outputLabel></td>
+							<td><h:outputLabel value="Correo Electrónico:"></h:outputLabel></td>
 							<td><h:outputLabel size="30" id="perVemail" value="#{PersonaMB.persona.perVemail}"></h:outputLabel></td>							
 						</tr>								
 						<tr>
-							<td><h:outputLabel value="Teléfono Fijo"></h:outputLabel></td>
+							<td><h:outputLabel value="Teléfono Fijo:"></h:outputLabel></td>
 							<td><h:outputLabel size="30" id="perVtelefono" value="#{PersonaMB.persona.perVtelefono}"></h:outputLabel></td>
 							<td width="150px"></td>	
-							<td><h:outputLabel value="Dirección"></h:outputLabel></td>
+							<td><h:outputLabel value="Dirección:"></h:outputLabel></td>
 							<td><h:outputLabel size="30" id="perVdireccion" value="#{PersonaMB.persona.perVdireccion}"></h:outputLabel></td>							
 						</tr>																	
 					</table>
@@ -140,19 +137,19 @@
 					</table>
 					</h:form>																		
 					</rich:tab>
-					<rich:tab label="Formación Académica" name="TAB_PANEL_FORMACION" disabled="#{PersonaMB.tabDeshabilitados}">
+					<rich:tab label="Formación Académica" name="TAB_PANEL_FORMACION" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:400px;">
 						<table align="left">
 							<tr>
-								<td><h:outputLabel value="Formación Académica  #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}"></h:outputLabel></td>
+								<td><h:outputLabel value="Formación Académica  #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>				
-						<br/><br/>
+						<br/><br/><br/><br/>
 						<table align="center">
 							<tr>
-								<td align="center"><h:outputLabel value="Formaciones Académicas"></h:outputLabel></td>
+								<td align="center"><h:outputLabel value="Formaciones Académicas" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>	
-						<br/><br/>		
+						<br/><br/><br/><br/>	
 						<table align="center">	
 						<tr>
 						<td align="center">							
@@ -203,19 +200,19 @@
 						</table>
 						</h:form>								        	     							
 					</rich:tab>
-					<rich:tab label="Experiencia Laboral" name="TAB_PANEL_EXPERIENCIA" disabled="#{PersonaMB.tabDeshabilitados}">
+					<rich:tab label="Experiencia Laboral" name="TAB_PANEL_EXPERIENCIA" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:400px;">
 						<table align="left">
 							<tr>
-								<td><h:outputLabel value="Experiencia Laboral #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}"></h:outputLabel></td>
+								<td><h:outputLabel value="Experiencia Laboral #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>				
-						<br/><br/>
+						<br/><br/><br/><br/>
 						<table align="center">
 							<tr>
-								<td align="center"><h:outputLabel value="Experiencias Laborales"></h:outputLabel></td>
+								<td align="center"><h:outputLabel value="Experiencias Laborales" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>
-						<br/><br/>	
+						<br/><br/><br/><br/>	
 						<table align="center">	
 						<tr>
 						<td align="center">							
@@ -254,12 +251,8 @@
 								<f:facet name="header">
 									<h:outputLabel value="Fecha Retiro"></h:outputLabel>
 								</f:facet>
-								<c:if test="#{exp.expDfecretiro != null}">
-									<h:outputLabel value="#{exp.expDfecretiro}"></h:outputLabel>
-								</c:if>
-								<c:if test="#{exp.expDfecretiro == null}">
-									<h:outputLabel value="Actual"></h:outputLabel>
-								</c:if>								
+								<h:outputLabel value="#{exp.expDfecretiro}" rendered="#{exp.expDfecretiro != null}"></h:outputLabel>
+								<h:outputLabel value="Actual" rendered="#{exp.expDfecretiro == null}"></h:outputLabel>
 							</rich:column>																								
 						</rich:extendedDataTable>
 						</td>
@@ -283,10 +276,10 @@
 						</table>
 						</h:form>															
 					</rich:tab>
-					<rich:tab label="Perfíl Profesional" name="TAB_PANEL_PERFIL" disabled="#{PersonaMB.tabDeshabilitados}">
+					<rich:tab label="Perfíl Profesional" name="TAB_PANEL_PERFIL" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:400px;">
 						<table align="left">
 							<tr>
-								<td><h:outputLabel value="Perfíl Profesional #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}"></h:outputLabel></td>
+								<td><h:outputLabel value="Perfíl Profesional #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>	
 						<br/><br/>
@@ -300,17 +293,11 @@
 										</h:selectOneMenu></td>
 							</tr>
 							<tr>
-								<td align="center" colspan="3"><rich:message for="peqNidperfileq" style="color:red"/></td>
-							</tr>								
-							<tr>
-								<td><h:outputLabel value="Descripción"></h:outputLabel></td>
+								<td><h:outputLabel value="Descripción:"></h:outputLabel></td>
 							</tr>
 							<tr>
-								<td colspan="3"><h:inputTextarea cols="40" value="#{PerfilprofesionalMB.perfilProfesional.pprVperfil}" id="pprVperfil" required="true" requiredMessage="Ingrese Descripción" disabled="true"></h:inputTextarea></td>
+								<td colspan="3"><h:outputLabel value="#{PerfilprofesionalMB.perfilProfesional.pprVperfil}" id="pprVperfil" required="true" requiredMessage="Ingrese Descripción" disabled="true"></h:outputLabel></td>
 							</tr>
-							<tr>
-								<td align="center" colspan="3"><rich:message for="pprVperfil" style="color:red"/></td>
-							</tr>								
 						</table>	
 						<br/>
 						<table align="center">
@@ -318,7 +305,7 @@
 								<td><h:outputLabel value="Idioma"></h:outputLabel></td>
 							</tr>
 						</table>
-						<br/><br/>
+						<br/>
 						<table align="center">
 							<tr>
 								<td><h:outputLabel value="Idioma 1"></h:outputLabel></td>							
@@ -344,14 +331,14 @@
 						<br/><br/>
 						<table align="center">
 							<tr>
-								<td><h:outputLabel value="Herramientas de Software"></h:outputLabel></td>
+								<td><h:outputLabel value="Herramientas de Software" styleClass="TituloContenido"></h:outputLabel></td>
 								<td width="150px"></td>
-								<td><h:outputLabel value="Motores de Bases de Datos"></h:outputLabel></td>
+								<td><h:outputLabel value="Motores de Bases de Datos" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 							<tr>
-								<td><h:inputTextarea cols="40" value="#{PerfilprofesionalMB.perfilProfesional.pprVherrasw}" disabled="true"></h:inputTextarea></td>
+								<td><h:outputLabel value="#{PerfilprofesionalMB.perfilProfesional.pprVherrasw}" disabled="true"></h:outputLabel></td>
 								<td width="150px"></td>
-								<td><h:inputTextarea cols="40" value="#{PerfilprofesionalMB.perfilProfesional.pprVmotorbd}" disabled="true"></h:inputTextarea></td>
+								<td><h:outputLabel value="#{PerfilprofesionalMB.perfilProfesional.pprVmotorbd}" disabled="true"></h:outputLabel></td>
 							</tr>							
 						</table>
 						<br/><br/>
@@ -372,22 +359,22 @@
 						</table>
 						</h:form>														
 					</rich:tab>
-					<rich:tab label="Soportes" name="TAB_PANEL_SOPORTES" disabled="#{PersonaMB.tabDeshabilitados}">
+					<rich:tab label="Soportes" name="TAB_PANEL_SOPORTES" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:400px;">
 						<table align="left">
 							<tr>
-								<td><h:outputLabel value="Archivos Relacionados #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}"></h:outputLabel></td>
+								<td><h:outputLabel value="Archivos Relacionados #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>	
-						<br/><br/>						
+						<br/><br/><br/><br/>						
 						<table align="center">
 							<tr>
-								<td><h:outputLabel value="Archivos Relacionados"></h:outputLabel></td>
+								<td><h:outputLabel value="Archivos Relacionados" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>	
-						<br/><br/>						
+						<br/><br/><br/>					
 						<table align="center">
 							<tr>
-								<td align="center"><h:outputLabel value="Listado de Soportes"></h:outputLabel></td>
+								<td align="center"><h:outputLabel value="Listado de Soportes" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>	
 						<table align="center">
@@ -427,7 +414,8 @@
 									</rich:extendedDataTable>
 								</td>
 							</tr>
-						</table>	
+						</table>
+						<br/><br/>	
 						<h:form>
 						<table align="left">
 							<tr>

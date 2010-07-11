@@ -6,13 +6,16 @@
       xmlns:rich="http://richfaces.org/rich"
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
 	  xmlns:a4j="http://richfaces.org/a4j">
+<head>
+	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+</head>		  
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel>
+			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
-						<td align="left"><h:outputLabel value="BÚSQUEDA DE HOJAS DE VIDA"></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="BÚSQUEDA DE HOJAS DE VIDA" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
 				<br/><br/>
@@ -29,7 +32,7 @@
 						<td><h:outputLabel value="Identificación : "></h:outputLabel></td>
 						<td><h:inputText value="#{PersonaMB.identificacionPersona}"></h:inputText></td>
 						<td width="100px"></td>											
-						<td><h:outputLabel value="Activo : "></h:outputLabel></td>
+						<td><h:outputLabel value="Activo (*) : "></h:outputLabel></td>
 						<td><h:selectOneMenu id="estadoPersona" value="#{PersonaMB.estadoPersona}" required="true" requiredMessage="Seleccione un Estado e Ingrese uno o más Criterios de Búsqueda">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>
 								<f:selectItem itemValue="true" itemLabel="Activo"/>
@@ -60,13 +63,13 @@
 				</table>
 				</h:form>												
 				<br/><br/>
-				<h:outputLabel value="Resultados de Búsqueda"></h:outputLabel>
+				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="300px" width="900px">
+				<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="250px" width="850px" style="backgroundColor:#0093DD">
 					<rich:column width="150px">
 						<f:facet name="header">
-							<h:outputLabel value="Nombre Completo"></h:outputLabel>
+							<h:outputLabel value="Nombre Completo" class="PrimerNivel" style="background-color:#0093DD;"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="persona" onclick="procesarSolicitudPersonaDetalle('#{persona.perNidpersona}')">
 							<h:outputLabel value="#{persona.perVnombres}"></h:outputLabel>
@@ -76,37 +79,37 @@
 					</rich:column>
 					<rich:column width="150px">
 						<f:facet name="header">
-							<h:outputLabel value="Profesión"></h:outputLabel>
+							<h:outputLabel value="Profesión" class="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{persona.gppFormacion.forVtitulo}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="150px">
 						<f:facet name="header">
-							<h:outputLabel value="Conocimientos"></h:outputLabel>
+							<h:outputLabel value="Conocimientos" class="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{persona.gppPerfilprofesional.pprVperfil}"></h:outputLabel>
 					</rich:column>
-					<rich:column width="150px">
+					<rich:column width="100px">
 						<f:facet name="header">
-							<h:outputLabel value="Certificación"></h:outputLabel>
+							<h:outputLabel value="Certificación" class="PrimerNivel" style="background-color:#0093DD;"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{persona.gppFormacion.gppNivelacademico.nacVnivelac}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="120px">
 						<f:facet name="header">
-							<h:outputLabel value="Tarjeta Profesional"></h:outputLabel>
+							<h:outputLabel value="Tarjeta Profesional" class="PrimerNivel" style="background-color:#0093DD;"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{persona.gppFormacion.forDfectarjeta}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="50px">
 						<f:facet name="header">
-							<h:outputLabel value="Puntaje"></h:outputLabel>
+							<h:outputLabel value="Puntaje" class="PrimerNivel" style="background-color:#0093DD;"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{persona.perNidpersona}"></h:outputLabel>
 					</rich:column>										
-					<rich:column width="100px">
+					<rich:column width="80px">
 						<f:facet name="header">
-							<h:outputLabel value="Modificar"></h:outputLabel>
+							<h:outputLabel value="Modificar" class="PrimerNivel" style="background-color:#0093DD;"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="modificar" onclick="procesarSolicitudEditarPersona('#{persona.perNidpersona}')"> 
                             <h:graphicImage align="center" url="../../imagenes/editar.png"/>
@@ -114,7 +117,7 @@
 					</rich:column>
 					<rich:column width="50px">
 						<f:facet name="header">
-							<h:outputLabel value="Activar"></h:outputLabel>
+							<h:outputLabel value="Activar" class="PrimerNivel" style="background-color:#0093DD;"></h:outputLabel>
 						</f:facet>
 						<h:selectBooleanCheckbox value="#{persona.perBactivo}" onclick="aceptar = confirm('Esta seguro que quiere cambiar el estado del elemento seleccionado?'); if(aceptar==true){procesarSolicitudEstadoPersona('#{persona.perNidpersona}','#{persona.perBactivo}');} return false;"></h:selectBooleanCheckbox>
 					</rich:column>									
