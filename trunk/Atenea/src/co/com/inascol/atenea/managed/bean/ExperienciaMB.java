@@ -193,65 +193,80 @@ public class ExperienciaMB {
 	}
 	
 	public String getGuardarExperiencia(){
+		getHomePageValueHV();
 		setTabPanel();
 		estadoOperacion = false;
-		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
-			idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();
-			experiencia.setPerNidpersona(idPersona);
-			if(fechaActual==true){
-				experiencia.setExpDfecretiro(null);
+		if(getValidarPermisosServicio("srvAgregarExperiencia")){
+			if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
+				idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();
+				experiencia.setPerNidpersona(idPersona);
+				if(fechaActual==true){
+					experiencia.setExpDfecretiro(null);
+				}
+				estadoOperacion = experienciaDelegate.getGuardarExperiencia(experiencia);
 			}
-			estadoOperacion = experienciaDelegate.getGuardarExperiencia(experiencia);
-		}
-		if(estadoOperacion==true){
-			if(documentoCargadoCertificacion1==true){
-				GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
-				experienciaDelegate.getGuardarCertificacion1(persona);
-				documentoCargadoCertificacion1 = false;
+			if(estadoOperacion==true){
+				if(documentoCargadoCertificacion1==true){
+					GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+					experienciaDelegate.getGuardarCertificacion1(persona);
+					documentoCargadoCertificacion1 = false;
+				}
+				if(documentoCargadoCertificacion2==true){
+					GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+					experienciaDelegate.getGuardarCertificacion2(persona);
+					documentoCargadoCertificacion2 = false;
+				}
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
 			}
-			if(documentoCargadoCertificacion2==true){
-				GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
-				experienciaDelegate.getGuardarCertificacion2(persona);
-				documentoCargadoCertificacion2 = false;
-			}
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
-			return ConstantesFaces.ESTADO_OK;
-		} else {
-			return ConstantesFaces.ESTADO_ERROR;
-		}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}				
 	}
 	
-	public String getBorrarExperiencia(){ 
+	public String getBorrarExperiencia(){
+		getHomePageValueHV();
 		setTabPanel();
 		estadoOperacion = false;
-		estadoOperacion = experienciaDelegate.getBorrarExperiencia(idExperiencia);
-		if(estadoOperacion==true){	
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
-			return ConstantesFaces.ESTADO_OK;
-		} else {
-			return ConstantesFaces.ESTADO_ERROR;
-		}
+		if(getValidarPermisosServicio("srvEliminarExperiencia")){
+			estadoOperacion = experienciaDelegate.getBorrarExperiencia(idExperiencia);
+			if(estadoOperacion==true){	
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
+			}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}				
 	}
 	
 	public String getActualizarExperiencia(){
+		getHomePageValueHV();
 		setTabPanel();
 		estadoOperacion = false;
-		estadoOperacion = experienciaDelegate.getActualizarExperiencia(experiencia);
-		if(estadoOperacion==true){
-			if(documentoCargadoCertificacion1==true){
-				GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
-				experienciaDelegate.getGuardarCertificacion1(persona);
-				documentoCargadoCertificacion1 = false;
+		if(getValidarPermisosServicio("srvModificarExperiencia")){
+			estadoOperacion = experienciaDelegate.getActualizarExperiencia(experiencia);
+			if(estadoOperacion==true){
+				if(documentoCargadoCertificacion1==true){
+					GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+					experienciaDelegate.getGuardarCertificacion1(persona);
+					documentoCargadoCertificacion1 = false;
+				}
+				if(documentoCargadoCertificacion2==true){
+					GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+					experienciaDelegate.getGuardarCertificacion2(persona);
+					documentoCargadoCertificacion2 = false;
+				}
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
 			}
-			if(documentoCargadoCertificacion2==true){
-				GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
-				experienciaDelegate.getGuardarCertificacion2(persona);
-				documentoCargadoCertificacion2 = false;
-			}
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
-			return ConstantesFaces.ESTADO_OK;
-		} else {
-			return ConstantesFaces.ESTADO_ERROR;
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}			
 	}
 	
@@ -275,5 +290,13 @@ public class ExperienciaMB {
 
 	public void setTabPanel(){
 		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_EXPERIENCIA);
+	}
+	
+	public void getHomePageValueHV(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.CREAR_HV);
+	}
+	
+	public Boolean getValidarPermisosServicio(String nombreServicio){
+		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}
 }

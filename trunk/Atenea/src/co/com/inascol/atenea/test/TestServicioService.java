@@ -15,7 +15,7 @@ public class TestServicioService {
 	private static Boolean estadoOperacion;
 	
 	public static void main(String argss[]){
-//		crear();
+		crear();
 //		actualizar();
 //		borrar();
 //		buscarPorId();
@@ -25,12 +25,14 @@ public class TestServicioService {
 	static void crear(){
 		estadoOperacion = false;
 		ServicioService = new ServicioService();
-		String nombreServicio = "srvConsultaRoles";
-		String rutaServicio = "Consultar roles dentro del m�dulo de administraci�n";
-		usuarioAutenticado = new GppUsuario();
-		usuarioAutenticado.setUsuVlogin("memotoro");
-		estadoOperacion = ServicioService.crearServicio(nombreServicio, rutaServicio, usuarioAutenticado);
-		System.out.println(estadoOperacion);		
+		for (int i = 0; i < 20; i++) {
+			String nombreServicio = "srvConsultaRoles"+i;
+			String rutaServicio = "Consultar roles dentro del modulo de administracion";
+			usuarioAutenticado = new GppUsuario();
+			usuarioAutenticado.setUsuVlogin("memotoro");
+			estadoOperacion = ServicioService.crearServicio(nombreServicio, rutaServicio, usuarioAutenticado);
+			System.out.println(estadoOperacion);
+		}
 	}
 	
 	static void actualizar(){

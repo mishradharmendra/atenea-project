@@ -32,10 +32,10 @@ public class GppPersona {
 	private Integer munNmpioresidencia;
 	private Boolean perBactivo;
 	
-	private GppFormacion gppFormacion;
 	private GppPerfilprof gppPerfilprofesional;
 	private List<Object> gppFormaciones;
 	private List<Object> gppCertificaciones;
+	private Integer perNpuntaje;
 	
 	public GppPersona() {}
 
@@ -183,14 +183,6 @@ public class GppPersona {
 		this.perDfecmodifica = perDfecmodifica;
 	}
 
-	public GppFormacion getGppFormacion() {
-		return gppFormacion;
-	}
-
-	public void setGppFormacion(GppFormacion gppFormacion) {
-		this.gppFormacion = gppFormacion;
-	}
-
 	public GppPerfilprof getGppPerfilprofesional() {
 		return gppPerfilprofesional;
 	}
@@ -230,5 +222,11 @@ public class GppPersona {
 	}
 	public void setGppCertificaciones(List<Object> gppCertificaciones) {
 		this.gppCertificaciones = gppCertificaciones;
+	}
+	public Integer getPerNpuntaje() {
+		return perNpuntaje;
+	}
+	public void setPerNpuntaje(Integer perNpuntaje) {
+		this.perNpuntaje = perNpuntaje;
 	}
 }

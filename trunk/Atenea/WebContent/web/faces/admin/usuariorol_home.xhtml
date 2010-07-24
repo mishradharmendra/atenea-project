@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
+	  xmlns:a4j="http://richfaces.org/a4j">
+<head>
+	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+</head>	 	  
+<body>
+	<ui:composition template="../../template.xhtml">
+		<ui:define name="cuerpo">
+			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
+				<table align="left">
+					<tr>
+						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Permisos" styleClass="TituloContenido"></h:outputLabel></td>
+					</tr>
+				</table>
+				<br/><br/><br/><br/>
+				<h:form>	
+				<table align="center">
+					<tr>
+						<td><h:outputLabel value="Consulta de Usuario" styleClass="TituloContenido"></h:outputLabel></td>
+					</tr>
+				</table>
+				<br/>
+				<table align="center">
+					<tr>
+						<td><h:outputLabel value="Login"></h:outputLabel></td>
+						<td><h:inputText value="#{UsuariorolMB.loginUsuario}"></h:inputText></td>
+						<td width="20px"/>
+						<td><h:outputLabel value="Nombre de Usuario"></h:outputLabel></td>
+						<td><h:inputText value="#{UsuariorolMB.nombreUsuario}"></h:inputText></td>					
+					</tr>
+				</table>
+				<br/>				
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{UsuariorolMB.getBuscarUsuarioPorNombre}" value="Buscar"/></td>
+					</tr>
+				</table>
+				</h:form>								
+				<br/><br/>
+				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
+				<br/><br/>
+				<h:form>	
+				<rich:extendedDataTable id="tablaUsuarioRol" value="#{UsuariorolMB.usuarios}" var="usuario" width="500px" height="200px">
+					<rich:column width="100px" sortable="true" sortBy="#{usuario.usuNidusuario}" label="Id usuario">
+						<f:facet name="header">
+							<h:outputLabel value="Id usuario"></h:outputLabel>
+						</f:facet>
+						<h:outputLabel value="#{usuario.usuNidusuario}"></h:outputLabel>
+					</rich:column>
+					<rich:column width="300px" sortable="true" sortBy="#{usuario.usuVnombre}" label="Nombre del Usuario">
+						<f:facet name="header">
+							<h:outputLabel value="Nombre del Usuario"></h:outputLabel>
+						</f:facet>
+						<a4j:commandLink id="usuVnombre" onclick="procesarSolicitudDetalle('#{usuario.usuNidusuario}')">
+							<h:outputLabel value="#{usuario.usuVnombre}"></h:outputLabel>
+						</a4j:commandLink>
+					</rich:column>
+					<rich:column width="100px" label="Modificar">
+						<f:facet name="header">
+							<h:outputLabel value="Modificar"></h:outputLabel>
+						</f:facet>
+						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{usuario.usuNidusuario}')">
+                            <h:graphicImage url="../../imagenes/editar.png"/>
+                        </a4j:commandLink>
+					</rich:column>
+				</rich:extendedDataTable>
+				</h:form>					
+			</rich:panel>
+        	<a4j:form>
+	            <a4j:jsFunction name="procesarSolicitudDetalle" action="#{UsuariorolMB.getSeleccionarUsuarioDetalle}" >
+	                <a4j:actionparam name="p1" assignTo="#{UsuariorolMB.idUsuario}" />                
+            	</a4j:jsFunction>
+        	</a4j:form>				
+        	<a4j:form>
+	            <a4j:jsFunction name="procesarSolicitudModificar" action="#{UsuariorolMB.getSeleccionarUsuarioModificar}" >
+	                <a4j:actionparam name="p1" assignTo="#{UsuariorolMB.idUsuario}" />                
+            	</a4j:jsFunction>
+        	</a4j:form>		
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

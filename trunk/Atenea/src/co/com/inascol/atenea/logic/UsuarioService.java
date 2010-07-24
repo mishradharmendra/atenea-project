@@ -14,7 +14,7 @@ public class UsuarioService implements IUsuarioService {
 	private GppUsuario gppUsuario;
 	private List<Object> gppUsuarios;
 
-	public boolean actualizarUsuario(Integer idUsuario, String nombreUsuario, String loginUsuario, String emailUsuario, String telefonoUsuario, String activoUsuario, GppUsuario usuarioAutenticado) {
+	public boolean actualizarUsuario(Integer idUsuario, String nombreUsuario, String loginUsuario, String emailUsuario, String telefonoUsuario, Boolean activoUsuario, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppUsuarioDAO = new GppUsuarioDAO();
@@ -26,7 +26,7 @@ public class UsuarioService implements IUsuarioService {
 			gppUsuario.setUsuVtelefono(telefonoUsuario);
 			gppUsuario.setUsuVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppUsuario.setUsuDfecmodifica(new Date());
-			gppUsuario.setUsuVactivo(activoUsuario);
+			gppUsuario.setUsuBactivo(activoUsuario);
 			estadoOperacion = gppUsuarioDAO.actualizar(gppUsuario);
 		} catch (Exception ex){
 			ex.printStackTrace();
@@ -78,7 +78,7 @@ public class UsuarioService implements IUsuarioService {
 		return gppUsuario;
 	}
 	
-	public boolean crearUsuario(String nombreUsuario, String loginUsuario, String emailUsuario, String telefonoUsuario, String activoUsuario, GppUsuario usuarioAutenticado) {
+	public boolean crearUsuario(String nombreUsuario, String loginUsuario, String emailUsuario, String telefonoUsuario, Boolean activoUsuario, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppUsuarioDAO = new GppUsuarioDAO();
@@ -89,7 +89,7 @@ public class UsuarioService implements IUsuarioService {
 			gppUsuario.setUsuVtelefono(telefonoUsuario);
 			gppUsuario.setUsuVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppUsuario.setUsuDfeccrea(new Date());
-			gppUsuario.setUsuVactivo(activoUsuario);			
+			gppUsuario.setUsuBactivo(activoUsuario);			
 			estadoOperacion = gppUsuarioDAO.crear(gppUsuario);
 		} catch (Exception ex){
 			ex.printStackTrace();

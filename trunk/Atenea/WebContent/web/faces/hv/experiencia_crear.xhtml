@@ -13,7 +13,7 @@
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel style="width:940px;background-color:#EEE;">
+			<rich:panel style="width:940px;height:510px;background-color:#EEE;">
 				<script type="text/javascript" src="../../swf/calendario.js"></script>
 				<table>
 					<tr>
@@ -97,7 +97,7 @@
 						<td/>
 						<td width="150px"></td>
 						<td><h:outputLabel value="Actual"></h:outputLabel></td>
-						<td><h:selectBooleanCheckbox value="#{ExperienciaMB.fechaActual}" id="fechaActual" onclick="if(getElementById('j_id57:fechaActual').checked==true){getElementById('j_id57:expDfecretiroInputDate').disabled=true;getElementById('j_id57:j_id57:expDfecretiroPopupButton').disabled=true;}else{getElementById('j_id57:expDfecretiroInputDate').disabled=false;getElementById('j_id57:j_id57:expDfecretiroPopupButton').disabled=false;};"></h:selectBooleanCheckbox></td>															
+						<td><h:selectBooleanCheckbox name="fechaActual" value="#{ExperienciaMB.fechaActual}" id="fechaActual" ></h:selectBooleanCheckbox></td>															
 					</tr>
 					<tr>
 						<td align="center" colspan="2"><rich:message for="expDfecingreso" style="color:red"/></td>				
@@ -121,14 +121,14 @@
 						<td align="center"><h:outputLabel value="Certificado Laboral 2" styleClass="TituloContenido"></h:outputLabel></td>							
 					</tr>				
 					<tr>
-						<td><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado1}" acceptedTypes="pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+						<td><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado1}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
 						<td width="150px"></td>	
-						<td><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado2}" acceptedTypes="pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+						<td><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado2}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 					</tr>																																																							
 				</table>
-				<br/><br/>
+				<br/>
 				<table align="right">
 					<tr>
 						<c:if test="#{ExperienciaMB.experiencia.expNidexplaboral == null}">

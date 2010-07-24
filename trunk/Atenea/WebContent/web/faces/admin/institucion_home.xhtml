@@ -40,21 +40,21 @@
 				<br/><br/>
 				<h:form>	
 				<rich:extendedDataTable id="tablaInstituciones" value="#{InstitucionMB.instituciones}" var="institucion" width="600px" height="250px">
-					<rich:column width="100px">
+					<rich:column width="100px" sortable="true" sortBy="#{institucion.insNidinstitucion}" label="Id Institución">
 						<f:facet name="header">
-							<h:outputLabel value="Id Institucion"></h:outputLabel>
+							<h:outputLabel value="Id Institución"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{institucion.insNidinstitucion}"></h:outputLabel>
 					</rich:column>
-					<rich:column width="300px">
+					<rich:column width="300px" sortable="true" sortBy="#{institucion.insVinstitucion}" label="Nombre Institución">
 						<f:facet name="header">
-							<h:outputLabel value="Nombre Institucion"></h:outputLabel>
+							<h:outputLabel value="Nombre Institución"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="insVinstitucion" onclick="procesarSolicitudDetalle('#{institucion.insNidinstitucion}')">
 							<h:outputLabel value="#{institucion.insVinstitucion}"></h:outputLabel>
 						</a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px">
+					<rich:column width="100px" label="Modificar">
 						<f:facet name="header">
 							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>
@@ -62,7 +62,7 @@
                             <h:graphicImage url="../../imagenes/editar.png"/>
                         </a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px">
+					<rich:column width="100px" label="Eliminar">
 						<f:facet name="header">
 							<h:outputLabel value="Eliminar"></h:outputLabel>
 						</f:facet>

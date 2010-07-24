@@ -39,7 +39,7 @@ public class TestUsuarioService {
 		String loginUsuario = "lady.garcia";
 		String emailUsuario = "lady.garcia@inascol.com";
 		String telefonoUsuario = "3405407";
-		String activoUsuario ="SI";
+		Boolean activoUsuario = true;
 		estadoOperacion = usuarioService.crearUsuario(nombreUsuario, loginUsuario, emailUsuario, telefonoUsuario, activoUsuario, usuarioAutenticado);
 		System.out.println(estadoOperacion);		
 	}
@@ -52,7 +52,7 @@ public class TestUsuarioService {
 		String loginUsuario = "sandra.barajas";
 		String emailUsuario = "sandra.barajas@inascol.com";
 		String telefonoUsuario = "3405407";
-		String activoUsuario ="NO";
+		Boolean activoUsuario = false;
 		estadoOperacion = usuarioService.actualizarUsuario(idUsuario, nombreUsuario, loginUsuario, emailUsuario, telefonoUsuario, activoUsuario, usuarioAutenticado);
 		System.out.println(estadoOperacion);
 	}
@@ -79,7 +79,7 @@ public class TestUsuarioService {
 			System.out.println(gppUsuario.getUsuDfeccrea());
 			System.out.println(gppUsuario.getUsuVusumodifica());
 			System.out.println(gppUsuario.getUsuDfecmodifica());
-			System.out.println(gppUsuario.getUsuVactivo());
+			System.out.println(gppUsuario.getUsuBactivo());
 			
 		}else{
 			System.out.println("error");
@@ -103,7 +103,7 @@ public class TestUsuarioService {
 				System.out.println(gppUsuario.getUsuDfeccrea());
 				System.out.println(gppUsuario.getUsuVusumodifica());
 				System.out.println(gppUsuario.getUsuDfecmodifica());
-				System.out.println(gppUsuario.getUsuVactivo());
+				System.out.println(gppUsuario.getUsuBactivo());
 			}
 		}else{
 			System.out.println("error");
@@ -125,7 +125,7 @@ public class TestUsuarioService {
 			System.out.println(gppUsuario.getUsuDfeccrea());
 			System.out.println(gppUsuario.getUsuVusumodifica());
 			System.out.println(gppUsuario.getUsuDfecmodifica());
-			System.out.println(gppUsuario.getUsuVactivo());
+			System.out.println(gppUsuario.getUsuBactivo());
 			List<Object> gppUsuarioRoles = gppUsuario.getGppRoles();
 			GppUsuariorol gppUsuariorol;
 			if(gppUsuarioRoles!=null){
@@ -141,7 +141,7 @@ public class TestUsuarioService {
 					System.out.println("-----ROLES-----");
 					System.out.println(gppRol.getRolVnombre());
 					System.out.println(gppRol.getRolVdescripcion());
-					List<Object> gppServicios = gppRol.getRolServicios();
+					List<Object> gppServicios = gppRol.getServicios();
 					GppServiciorol gppServiciorol;
 					if(gppServicios!=null){
 						Iterator<Object> itServicios = gppServicios.iterator();

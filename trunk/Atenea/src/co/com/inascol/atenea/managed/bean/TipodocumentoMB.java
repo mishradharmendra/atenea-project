@@ -66,21 +66,25 @@ public class TipodocumentoMB {
 		tipodocs = tipodocDelegate.getTipodocPorNombre(nombreTipodoc);
 	}
 	
-
 	public String getAgregarTipodoc() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipodocumentoMB");
 		return ConstantesFaces.CREAR_TIPODOCUMENTO;
 	}	
 	
-	public String getCrearTipodoc() {	
+	public String getCrearTipodoc() {
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = tipodocDelegate.getCrearTipodocumento(nombreTipodoc);
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipodocumentoMB");
-			return ConstantesFaces.ESTADO_TD_OK;
-		} else {
-			return ConstantesFaces.ESTADO_TD_ERROR;
-		}
+		if(getValidarPermisosServicio("srvAgregarTipoDocumento")){
+			estadoOperacion = tipodocDelegate.getCrearTipodocumento(nombreTipodoc);
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipodocumentoMB");
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
+			}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}			
 	}
 	
 	public String getSeleccionarTipodoc(){
@@ -94,25 +98,35 @@ public class TipodocumentoMB {
 	}
 	
 	public String getModificarTipodoc(){
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = tipodocDelegate.getModificarTipodocumento(tipodoc.getTdcNidtipodoc(), tipodoc.getTdcVnombre());
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipodocumentoMB");
-			return ConstantesFaces.ESTADO_TD_OK;
-		} else {
-			return ConstantesFaces.ESTADO_TD_ERROR;
-		}
+		if(getValidarPermisosServicio("srvModificarTipoDocumento")){
+			estadoOperacion = tipodocDelegate.getModificarTipodocumento(tipodoc.getTdcNidtipodoc(), tipodoc.getTdcVnombre());
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipodocumentoMB");
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
+			}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}			
 	}
 	
 	public String getEliminarTipodoc(){
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = tipodocDelegate.getEliminarTipodoc(idTipodoc);
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipodocumentoMB");
-			return ConstantesFaces.ESTADO_TD_OK;
-		} else {
-			return ConstantesFaces.ESTADO_TD_ERROR;
-		}
+		if(getValidarPermisosServicio("srvEliminarTipoDocumento")){
+			estadoOperacion = tipodocDelegate.getEliminarTipodoc(idTipodoc);
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipodocumentoMB");
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
+			}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}				
 	}
 	
 	public String getCancelar(){
@@ -123,5 +137,13 @@ public class TipodocumentoMB {
 	public String getHomeTipodocumento(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipodocumentoMB");
 		return ConstantesFaces.HOME_TIPODOCUMENTO;
+	}
+	
+	public void getHomePageValue(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_TIPODOCUMENTO);
+	}
+	
+	public Boolean getValidarPermisosServicio(String nombreServicio){
+		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}
 }

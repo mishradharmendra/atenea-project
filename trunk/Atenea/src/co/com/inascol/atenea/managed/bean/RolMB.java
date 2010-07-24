@@ -4,40 +4,31 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIData;
-import javax.faces.component.UIForm;
-import javax.faces.component.UISelectBoolean;
 import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.model.SelectItem;
-import javax.faces.validator.ValidatorException;
 
-import co.com.inascol.atenea.entity.GppPais;
 import co.com.inascol.atenea.entity.GppRol;
 import co.com.inascol.atenea.entity.GppServicio;
-import co.com.inascol.atenea.managed.bean.delegate.PaisDelegate;
 import co.com.inascol.atenea.managed.bean.delegate.RolDelegate;
 import co.com.inascol.atenea.managed.bean.delegate.ServicioDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
 
 public class RolMB {
 
 	private RolDelegate rolDelegate;
 	private ServicioDelegate servicioDelegate;
 	private Integer idRol;
+	private Integer idServicio;
 	private String nombreRol;
 	private String estadoRol;
-	private String activoRol;
+	private Boolean activoRol;
 	private String descripcionRol;
 	private String controlNavegacion;
 	private List<Object> roles;
 	private List<Object> serviciosRoles;
-	private List<Object> servicios;
+	private Boolean estadoCheck;
 	private GppRol rol;
 	private GppServicio servicio;
+	private Boolean estadoOperacion;
 	
 	public RolMB(){
 		rolDelegate = new RolDelegate();
@@ -57,12 +48,12 @@ public class RolMB {
 	public void setDescripcionRol(String descripcionRol) {
 		this.descripcionRol = descripcionRol;
 	}	
-	public String getActivoRol() {
+	public Boolean getActivoRol() {
 		return activoRol;
 	}
-	public void setActivoRol(String activoRol) {
+	public void setActivoRol(Boolean activoRol) {
 		this.activoRol = activoRol;
-	}	
+	}
 	public String getEstadoRol() {
 		return estadoRol;
 	}
@@ -99,28 +90,150 @@ public class RolMB {
 	public void setControlNavegacion(String controlNavegacion) {
 		this.controlNavegacion = controlNavegacion;
 	}
+	public Integer getIdServicio() {
+		return idServicio;
+	}
+	public void setIdServicio(Integer idServicio) {
+		this.idServicio = idServicio;
+	}
+	public GppServicio getServicio() {
+		return servicio;
+	}
+	public void setServicio(GppServicio servicio) {
+		this.servicio = servicio;
+	}
+	public Boolean getEstadoCheck() {
+		return estadoCheck;
+	}
+	public void setEstadoCheck(Boolean estadoCheck) {
+		this.estadoCheck = estadoCheck;
+	}
+
 	public void getBuscarRolPorNombre() {
 		roles = rolDelegate.getRolPorNombre(nombreRol);
 	}
+	
 	public String getAgregarRol() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("RolMB");
 		return ConstantesFaces.CREAR_ROL;
-	}	
-	public String getCrearRol() {	
-		activoRol = "S";
-		rolDelegate.getCrearRol(nombreRol, descripcionRol, activoRol, serviciosRoles);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("RolMB");
-		return ConstantesFaces.HOME_ROL;
 	}
-	public String getSeleccionarRol(){
+	
+	public String getCrearRol() {	
+		getHomePageValue();
+		activoRol = true;	
+		estadoOperacion = false;
+		if(getValidarPermisosServicio("srvAgregarRol")){
+			estadoOperacion = rolDelegate.getCrearRol(nombreRol, descripcionRol, activoRol, serviciosRoles);
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("RolMB");
+				return ConstantesFaces.ESTADO_OK;
+			}else{
+				return ConstantesFaces.ESTADO_ERROR;
+			}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}				
+	}
+	
+	public String getSeleccionarRolModificar(){
+		rol = rolDelegate.getSeleccionarRol(idRol);
+		return ConstantesFaces.MODIFICAR_ROL;
+	}
+	
+	public String getSeleccionarRolDetalle(){
 		rol = rolDelegate.getSeleccionarRol(idRol);
 		return ConstantesFaces.DETALLE_ROL;
 	}
 	
+	public String getModificarBorrarRol() {
+		return ConstantesFaces.MODIFICAR_BORRAR_ROL;
+	}
+	
 	public String getModificarRol(){
-		rolDelegate.getModificarRol(rol.getRolNidrol(), rol.getRolVnombre(), rol.getRolVdescripcion(), rol.getRolVactivo());
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("RolMB");
-		return ConstantesFaces.HOME_ROL;
+		getHomePageValue();
+		estadoOperacion = false;
+		if(getValidarPermisosServicio("srvModificarRol")){
+			if(serviciosRoles==null){
+				serviciosRoles = new ArrayList<Object>();
+			}
+			if(rol.getGppServicios()!=null){
+				Iterator<Object> itServiciosAsignados = rol.getGppServicios().iterator();
+				while(itServiciosAsignados.hasNext()){
+					Integer idServicioAsignado = ( (Integer) ( (GppServicio) itServiciosAsignados.next() ).getSerNidservicio() );
+					if(serviciosRoles.contains(idServicioAsignado)==false){
+						serviciosRoles.add(idServicioAsignado);
+					}
+				}
+			}
+			rol.setServicios(serviciosRoles);
+			estadoOperacion = rolDelegate.getModificarRol(rol.getRolNidrol(), rol.getRolVnombre(), rol.getRolVdescripcion(), rol.getRolBactivo(), rol.getServicios());
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("RolMB");
+				return ConstantesFaces.ESTADO_OK;
+			}else{
+				return ConstantesFaces.ESTADO_ERROR;
+			}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}				
+	}
+	
+	public String getBorrarServicios(){
+		getHomePageValue();
+		estadoOperacion = false;
+		if(getValidarPermisosServicio("srvModificarRol")){
+			List<Object> idsAsignados = new ArrayList<Object>();
+			if(serviciosRoles==null){
+				serviciosRoles = new ArrayList<Object>();
+			}
+			if(rol.getGppServicios()!=null){
+				Iterator<Object> itGppServicios = rol.getGppServicios().iterator();
+				while(itGppServicios.hasNext()){
+					Integer idAsignado = ( (Integer) ( (GppServicio) itGppServicios.next()).getSerNidservicio());
+					idsAsignados.add(idAsignado);
+				}
+				Iterator<Object> itServiciosEliminados = serviciosRoles.iterator();
+				while(itServiciosEliminados.hasNext()){
+					Integer idServicioEliminado = (Integer) itServiciosEliminados.next();
+					if(idsAsignados.contains(idServicioEliminado)==true){
+						idsAsignados.remove(idServicioEliminado);
+					}
+				}
+			}		
+			rol.setServicios(idsAsignados);
+			estadoOperacion = rolDelegate.getModificarRol(rol.getRolNidrol(), rol.getRolVnombre(), rol.getRolVdescripcion(), rol.getRolBactivo(), rol.getServicios());
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("RolMB");
+				return ConstantesFaces.ESTADO_OK;
+			}else{
+				return ConstantesFaces.ESTADO_ERROR;
+			}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}				
+	}
+	
+	public String getCambiarEstadoRol(){
+		getHomePageValue();
+		estadoOperacion = false;
+		if(getValidarPermisosServicio("srvModificarRol")){
+			rol = rolDelegate.getSeleccionarRol(idRol);
+			if(estadoCheck==true){
+				rol.setRolBactivo(false);
+			} else {
+				rol.setRolBactivo(true);
+			}
+			estadoCheck = null;
+			estadoOperacion = rolDelegate.getModificarRol(rol.getRolNidrol(), rol.getRolVnombre(), rol.getRolVdescripcion(), rol.getRolBactivo(), rol.getServicios());
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("RolMB");
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
+			}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}				
 	}
 	
 	public String getCancelar(){
@@ -134,42 +247,25 @@ public class RolMB {
 		return listadoServicios;
 	}	
 	
-	public void  validateFunctions(FacesContext context, UIComponent component, Object value) {
-	      String id = component.getClientId(context);
-	      UIComponent parent = component;
-	      while (!(parent instanceof UIForm)) parent = parent.getParent();
-	      String formId = parent.getClientId(context);
-	 
-	      String dataTableId = (String) component.getAttributes().get("tablaServicioRol");
-	      Integer a = (Integer) component.getAttributes().get("showpages");
-	      int showpages = a == null ? 0 : a.intValue();      
-	 
-	      // find the component with the given ID
-	 
-	      UIData data = (UIData) component.findComponent(dataTableId);
-		int count = data.getRowCount();
-		System.out.println(count);
-		boolean checked = false;
-		Iterator it = servicios.iterator();
-		for (int i=0; i < count; i++) {
-			GppServicio gppServicio = (GppServicio) it.next();
-			data.setRowIndex(i);
-			UISelectBoolean box = (UISelectBoolean)data.findComponent("id_"+gppServicio.getSerNidservicio().toString());
-			value = box.getValue();
-			if (value instanceof Boolean) {
-					checked |= ((Boolean)value).booleanValue();
-			}
-		}
-		if (!checked) {
-			FacesMessage message = new FacesMessage(
-		"Validation Error. ", "At least one checkbox must be selected. ");
-			message.setSeverity(FacesMessage.SEVERITY_ERROR);
-			throw new ValidatorException(message);
-		}
+	public void getIdServiciosAsignar(){
+		if(serviciosRoles==null)
+			serviciosRoles = new ArrayList<Object>();
+		if(serviciosRoles.contains(idServicio)==false)
+			serviciosRoles.add(idServicio);
+		else
+			serviciosRoles.remove(idServicio);
 	}
 	
 	public String getHomeRol(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("RolMB");
 		return ConstantesFaces.HOME_ROL;
+	}
+	
+	public void getHomePageValue(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_ROL);
+	}
+	
+	public Boolean getValidarPermisosServicio(String nombreServicio){
+		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}
 }

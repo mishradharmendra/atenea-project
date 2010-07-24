@@ -77,5 +77,5 @@ public class DepartamentoDelegate {
 	public Boolean getEliminarDepto(Integer idDepto){
 		departamentoService = new DepartamentoService();
 		return departamentoService.borrarDepartamento(idDepto);
-	}	
+	}
 }

@@ -88,20 +88,18 @@ public class PersonaDelegate {
 	}	
 	
 	public List<Object> getBusquedaBasicaPersona(String nombrePersona, String apellidoPersona, String identificacionPersona, Boolean estadoPersona){
-		if(!nombrePersona.equalsIgnoreCase("") || !apellidoPersona.equalsIgnoreCase("") || !identificacionPersona.equalsIgnoreCase("")){
-			personaService = new PersonaService();
-			List<Object> criteriosBusqueda = new ArrayList<Object>();							
-			if(!nombrePersona.equalsIgnoreCase(""))
-				criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
-			if(!apellidoPersona.equalsIgnoreCase("")) 
-				criteriosBusqueda.add("per_vapellidos"+"|"+apellidoPersona);
-			if(!identificacionPersona.equalsIgnoreCase(""))
-				criteriosBusqueda.add("per_nidentificacion"+"|"+identificacionPersona);
-			if(estadoPersona!=null){
-				criteriosBusqueda.add("per_vactivo"+"|"+estadoPersona);
-			}
-			personas = personaService.buscarPersonaPorCriterios(criteriosBusqueda);
-		}		
+		personaService = new PersonaService();
+		List<Object> criteriosBusqueda = new ArrayList<Object>();							
+		if(!nombrePersona.equalsIgnoreCase(""))
+			criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
+		if(!apellidoPersona.equalsIgnoreCase("")) 
+			criteriosBusqueda.add("per_vapellidos"+"|"+apellidoPersona);
+		if(!identificacionPersona.equalsIgnoreCase(""))
+			criteriosBusqueda.add("per_nidentificacion"+"|"+identificacionPersona);
+		if(estadoPersona!=null){
+			criteriosBusqueda.add("per_vactivo"+"|"+estadoPersona);
+		}
+		personas = personaService.buscarPersonaPorCriterios(criteriosBusqueda);
 		return personas;
 	}
 	
@@ -140,25 +138,24 @@ public class PersonaDelegate {
 	        urlArchivo = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivo==null){
 	        	urlArchivo = "/home/memo/Temp-Directory/";
-	        }else{	        
-		        urlArchivo = urlArchivo + "HV_" + dateFormat.format(new Date()) + "_" + nombreArchivo;
-		        FileInputStream fis = new FileInputStream(file.getPath());
-		        BufferedInputStream bis = new BufferedInputStream(fis);
-		        FileOutputStream fos = new FileOutputStream(urlArchivo);
-		        BufferedOutputStream bos = new BufferedOutputStream(fos);
-		        try {
-		            byte[] array = new byte[100];
-		            int leidos = bis.read(array);
-		            while (leidos > 0) {
-		                bos.write(array, 0, leidos);
-		                leidos = bis.read(array);
-		            }
-		        } catch (Exception e) {
-		            e.printStackTrace();
-		        } finally {
-		            bis.close();
-		            bos.close();
-		        }
+	        }	        
+	        urlArchivo = urlArchivo + "HV_" + dateFormat.format(new Date()) + "_" + nombreArchivo;
+	        FileInputStream fis = new FileInputStream(file.getPath());
+	        BufferedInputStream bis = new BufferedInputStream(fis);
+	        FileOutputStream fos = new FileOutputStream(urlArchivo);
+	        BufferedOutputStream bos = new BufferedOutputStream(fos);
+	        try {
+	            byte[] array = new byte[100];
+	            int leidos = bis.read(array);
+	            while (leidos > 0) {
+	                bos.write(array, 0, leidos);
+	                leidos = bis.read(array);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            bis.close();
+	            bos.close();
 	        }
 	    }
 	}
@@ -167,7 +164,13 @@ public class PersonaDelegate {
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
 		String nombreDocumento = "Hoja de Vida-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
-		documentoService.crearDocumento(nombreDocumento, nombreArchivo, urlArchivo, new Date(), persona.getPerNidpersona(), 1, usuarioAutenticado);
+		Integer tipoDocumento = 1;
+		if(nombreArchivo.toLowerCase().endsWith(".pdf")){
+			tipoDocumento = 1;
+		}else if(nombreArchivo.toLowerCase().endsWith(".zip") || nombreArchivo.toLowerCase().endsWith(".rar")){
+			tipoDocumento = 4;
+		}
+		documentoService.crearDocumento(nombreDocumento, nombreArchivo, urlArchivo, new Date(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}
 }

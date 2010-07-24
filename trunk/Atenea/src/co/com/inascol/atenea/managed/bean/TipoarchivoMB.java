@@ -72,14 +72,19 @@ public class TipoarchivoMB {
 	}	
 	
 	public String getCrearTipoarchivo() {
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = tipoarchivoDelegate.getCrearTipoarchivo(nombreTipoarchivo);
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipoarchivoMB");
-			return ConstantesFaces.ESTADO_TA_OK;
-		} else {
-			return ConstantesFaces.ESTADO_TA_ERROR;
-		}	
+		if(getValidarPermisosServicio("srvAgregarTipoArchivo")){
+			estadoOperacion = tipoarchivoDelegate.getCrearTipoarchivo(nombreTipoarchivo);
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipoarchivoMB");
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
+			}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}			
 	}
 	
 	public String getSeleccionarTipoarchivo(){
@@ -93,25 +98,36 @@ public class TipoarchivoMB {
 	}
 	
 	public String getModificarTipoarchivo(){
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = tipoarchivoDelegate.getModificarTipoarchivo(tipoarchivo.getTarNidtipoarchivo(), tipoarchivo.getTarVtipoarchivo());
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipoarchivoMB");
-			return ConstantesFaces.ESTADO_TA_OK;
-		} else {
-			return ConstantesFaces.ESTADO_TA_ERROR;
-		}		
+		if(getValidarPermisosServicio("srvModificarTipoArchivo")){
+			estadoOperacion = tipoarchivoDelegate.getModificarTipoarchivo(tipoarchivo.getTarNidtipoarchivo(), tipoarchivo.getTarVtipoarchivo());
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipoarchivoMB");
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
+			}		
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}			
 	}
 	
 	public String getEliminarTipoarchivo(){
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = tipoarchivoDelegate.getEliminarTipoarchivo(idTipoarchivo);
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipoarchivoMB");
-			return ConstantesFaces.ESTADO_TA_OK;
-		} else {
-			return ConstantesFaces.ESTADO_TA_ERROR;
-		}		
+		if(getValidarPermisosServicio("srvEliminarTipoArchivo")){
+			estadoOperacion = tipoarchivoDelegate.getEliminarTipoarchivo(idTipoarchivo);
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipoarchivoMB");
+				
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
+			}	
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}			
 	}
 	
 	public String getCancelar(){
@@ -122,5 +138,13 @@ public class TipoarchivoMB {
 	public String getHomeTipoarchivo(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TipoarchivoMB");
 		return ConstantesFaces.HOME_TIPOARCHIVO;
+	}
+	
+	public void getHomePageValue(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_TIPOARCHIVO);
+	}
+	
+	public Boolean getValidarPermisosServicio(String nombreServicio){
+		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}
 }

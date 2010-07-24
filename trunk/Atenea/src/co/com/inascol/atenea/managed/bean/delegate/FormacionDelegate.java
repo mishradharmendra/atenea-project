@@ -115,25 +115,24 @@ public class FormacionDelegate {
 	        urlArchivoDiploma = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoDiploma==null){
 	        	urlArchivoDiploma = "/home/memo/Temp-Directory/";
-	        }else{	
-		        urlArchivoDiploma = urlArchivoDiploma + "DIPLOMA_" + dateFormat.format(new Date()) + "_" + nombreArchivoDiploma;
-		        FileInputStream fis = new FileInputStream(file.getPath());
-		        BufferedInputStream bis = new BufferedInputStream(fis);
-		        FileOutputStream fos = new FileOutputStream(urlArchivoDiploma);
-		        BufferedOutputStream bos = new BufferedOutputStream(fos);
-		        try {
-		            byte[] array = new byte[100];
-		            int leidos = bis.read(array);
-		            while (leidos > 0) {
-		                bos.write(array, 0, leidos);
-		                leidos = bis.read(array);
-		            }
-		        } catch (Exception e) {
-		            e.printStackTrace();
-		        } finally {
-		            bis.close();
-		            bos.close();
-		        }
+	        }	
+	        urlArchivoDiploma = urlArchivoDiploma + "DIPLOMA_" + dateFormat.format(new Date()) + "_" + nombreArchivoDiploma;
+	        FileInputStream fis = new FileInputStream(file.getPath());
+	        BufferedInputStream bis = new BufferedInputStream(fis);
+	        FileOutputStream fos = new FileOutputStream(urlArchivoDiploma);
+	        BufferedOutputStream bos = new BufferedOutputStream(fos);
+	        try {
+	            byte[] array = new byte[100];
+	            int leidos = bis.read(array);
+	            while (leidos > 0) {
+	                bos.write(array, 0, leidos);
+	                leidos = bis.read(array);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            bis.close();
+	            bos.close();
 	        }
 	    }
 	}
@@ -148,25 +147,24 @@ public class FormacionDelegate {
 	        urlArchivoActa = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoActa==null){
 	        	urlArchivoActa = "/home/memo/Temp-Directory/";
-	        }else{	
-	        	urlArchivoActa = urlArchivoActa + "ACTA_" + dateFormat.format(new Date()) + "_" + nombreArchivoActa;
-		        FileInputStream fis = new FileInputStream(file.getPath());
-		        BufferedInputStream bis = new BufferedInputStream(fis);
-		        FileOutputStream fos = new FileOutputStream(urlArchivoActa);
-		        BufferedOutputStream bos = new BufferedOutputStream(fos);
-		        try {
-		            byte[] array = new byte[100];
-		            int leidos = bis.read(array);
-		            while (leidos > 0) {
-		                bos.write(array, 0, leidos);
-		                leidos = bis.read(array);
-		            }
-		        } catch (Exception e) {
-		            e.printStackTrace();
-		        } finally {
-		            bis.close();
-		            bos.close();
-		        }
+	        }
+        	urlArchivoActa = urlArchivoActa + "ACTA_" + dateFormat.format(new Date()) + "_" + nombreArchivoActa;
+	        FileInputStream fis = new FileInputStream(file.getPath());
+	        BufferedInputStream bis = new BufferedInputStream(fis);
+	        FileOutputStream fos = new FileOutputStream(urlArchivoActa);
+	        BufferedOutputStream bos = new BufferedOutputStream(fos);
+	        try {
+	            byte[] array = new byte[100];
+	            int leidos = bis.read(array);
+	            while (leidos > 0) {
+	                bos.write(array, 0, leidos);
+	                leidos = bis.read(array);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            bis.close();
+	            bos.close();
 	        }
 	    }
 	}	
@@ -181,25 +179,24 @@ public class FormacionDelegate {
 	        urlArchivoSoportes = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoSoportes==null){
 	        	urlArchivoSoportes = "/home/memo/Temp-Directory/";
-	        }else{		        
-	        	urlArchivoSoportes = urlArchivoSoportes + "SOPORTES_" + dateFormat.format(new Date()) + "_" + nombreArchivoSoportes;
-		        FileInputStream fis = new FileInputStream(file.getPath());
-		        BufferedInputStream bis = new BufferedInputStream(fis);
-		        FileOutputStream fos = new FileOutputStream(urlArchivoSoportes);
-		        BufferedOutputStream bos = new BufferedOutputStream(fos);
-		        try {
-		            byte[] array = new byte[100];
-		            int leidos = bis.read(array);
-		            while (leidos > 0) {
-		                bos.write(array, 0, leidos);
-		                leidos = bis.read(array);
-		            }
-		        } catch (Exception e) {
-		            e.printStackTrace();
-		        } finally {
-		            bis.close();
-		            bos.close();
-		        }
+	        }		        
+        	urlArchivoSoportes = urlArchivoSoportes + "SOPORTES_" + dateFormat.format(new Date()) + "_" + nombreArchivoSoportes;
+	        FileInputStream fis = new FileInputStream(file.getPath());
+	        BufferedInputStream bis = new BufferedInputStream(fis);
+	        FileOutputStream fos = new FileOutputStream(urlArchivoSoportes);
+	        BufferedOutputStream bos = new BufferedOutputStream(fos);
+	        try {
+	            byte[] array = new byte[100];
+	            int leidos = bis.read(array);
+	            while (leidos > 0) {
+	                bos.write(array, 0, leidos);
+	                leidos = bis.read(array);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            bis.close();
+	            bos.close();
 	        }
 	    }
 	}
@@ -208,7 +205,8 @@ public class FormacionDelegate {
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
 		String nombreDocumento = "Consolidado-Soportes-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
-		documentoService.crearDocumento(nombreDocumento, nombreArchivoSoportes, urlArchivoSoportes, new Date(), persona.getPerNidpersona(), 1, usuarioAutenticado);
+		Integer tipoDocumento = 4;
+		documentoService.crearDocumento(nombreDocumento, nombreArchivoSoportes, urlArchivoSoportes, new Date(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}
 	
@@ -216,7 +214,17 @@ public class FormacionDelegate {
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
 		String nombreDocumento = "Diploma-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
-		documentoService.crearDocumento(nombreDocumento, nombreArchivoDiploma, urlArchivoDiploma, formacion.getForDfecgrado(), persona.getPerNidpersona(), 1, usuarioAutenticado);
+		Integer tipoDocumento = 1;
+		if(nombreArchivoDiploma.toLowerCase().endsWith(".pdf")){
+			tipoDocumento = 1;
+		}else if(nombreArchivoDiploma.toLowerCase().endsWith(".zip") || nombreArchivoDiploma.toLowerCase().endsWith(".rar")){
+			tipoDocumento = 4;
+		}else if(nombreArchivoDiploma.toLowerCase().endsWith(".jpeg") || nombreArchivoDiploma.toLowerCase().endsWith(".jpg") ||
+					nombreArchivoDiploma.toLowerCase().endsWith(".bmp") || nombreArchivoDiploma.toLowerCase().endsWith(".tif") ||
+						nombreArchivoDiploma.toLowerCase().endsWith(".tiff") || nombreArchivoDiploma.toLowerCase().endsWith(".png")){
+			tipoDocumento = 6;
+		}
+		documentoService.crearDocumento(nombreDocumento, nombreArchivoDiploma, urlArchivoDiploma, formacion.getForDfecgrado(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}
 	
@@ -224,7 +232,17 @@ public class FormacionDelegate {
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
 		String nombreDocumento = "Acta-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
-		documentoService.crearDocumento(nombreDocumento, nombreArchivoActa, urlArchivoActa, formacion.getForDfecgrado(), persona.getPerNidpersona(), 1, usuarioAutenticado);
+		Integer tipoDocumento = 1;
+		if(nombreArchivoActa.toLowerCase().endsWith(".pdf")){
+			tipoDocumento = 1;
+		}else if(nombreArchivoActa.toLowerCase().endsWith(".zip") || nombreArchivoActa.toLowerCase().endsWith(".rar")){
+			tipoDocumento = 4;
+		}else if(nombreArchivoActa.toLowerCase().endsWith(".jpeg") || nombreArchivoActa.toLowerCase().endsWith(".jpg") ||
+					nombreArchivoActa.toLowerCase().endsWith(".bmp") || nombreArchivoActa.toLowerCase().endsWith(".tif") ||
+						nombreArchivoActa.toLowerCase().endsWith(".tiff") || nombreArchivoActa.toLowerCase().endsWith(".png")){
+			tipoDocumento = 6;
+		}		
+		documentoService.crearDocumento(nombreDocumento, nombreArchivoActa, urlArchivoActa, formacion.getForDfecgrado(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}
 }

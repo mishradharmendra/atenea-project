@@ -90,31 +90,41 @@ public class DocumentoMB {
 	}
 	
 	public String getGuardarSoporte(){
+		getHomePageValueHV();
 		setTabPanel();
 		estadoOperacion = false;
-		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB")!=null){
-			GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
-			documento.setPerNidpersona(persona.getPerNidpersona());
-			estadoOperacion = documentoDelegate.getGuardarSoporte(documento , persona);
-		}
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
-			return ConstantesFaces.ESTADO_OK;
-		} else {
-			return ConstantesFaces.ESTADO_ERROR;
+		if(getValidarPermisosServicio("srvAgregarDocumento")){
+			if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB")!=null){
+				GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+				documento.setPerNidpersona(persona.getPerNidpersona());
+				estadoOperacion = documentoDelegate.getGuardarSoporte(documento , persona);
+			}
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
+			}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
 	}
 	
 	public String getBorrarSoporte(){
+		getHomePageValueHV();
 		setTabPanel();
 		estadoOperacion = false;
-		estadoOperacion = documentoDelegate.getBorrarSoporte(idDocumentoSoporte);
-		if(estadoOperacion==true){				
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
-			return ConstantesFaces.ESTADO_OK;
-		} else {
-			return ConstantesFaces.ESTADO_ERROR;
-		}
+		if(getValidarPermisosServicio("srvEliminarDocumento")){
+			estadoOperacion = documentoDelegate.getBorrarSoporte(idDocumentoSoporte);
+			if(estadoOperacion==true){				
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
+			}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}			
 	}
 	
 	public void getSubirSoporte(UploadEvent event) throws IOException {
@@ -123,5 +133,13 @@ public class DocumentoMB {
 	
 	public void setTabPanel(){
 		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_SOPORTES);
+	}
+	
+	public void getHomePageValueHV(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.CREAR_HV);
+	}
+	
+	public Boolean getValidarPermisosServicio(String nombreServicio){
+		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}
 }

@@ -102,36 +102,54 @@ public class PerfilprofesionalMB {
 		return ConstantesFaces.DETALLE_HV;
 	}
 	public String getGuardarPerfil(){
+		getHomePageValueHV();
 		setTabPanel();
 		estadoOperacion = false;
-		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
-			idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();
-			perfilProfesional.setPerNidpersona(idPersona);
-			estadoOperacion = perfilprofesionalDelegate.getGuardarPerfil(perfilProfesional);
-		}
-		if(estadoOperacion==true){
-			perfilesProfesionales = perfilprofesionalDelegate.getBuscarPerfilesProfesionalesPersona(idPersona);
-			if(perfilesProfesionales.size()==1){
-				perfilProfesional = (GppPerfilprof) perfilesProfesionales.get(0);	
-			}			
-			return ConstantesFaces.ESTADO_OK;
-		} else {
-			return ConstantesFaces.ESTADO_ERROR;
-		}
+		if(getValidarPermisosServicio("srvAgregarPerfilProfesional")){
+			if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
+				idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();
+				perfilProfesional.setPerNidpersona(idPersona);
+				estadoOperacion = perfilprofesionalDelegate.getGuardarPerfil(perfilProfesional);
+			}
+			if(estadoOperacion==true){
+				perfilesProfesionales = perfilprofesionalDelegate.getBuscarPerfilesProfesionalesPersona(idPersona);
+				if(perfilesProfesionales.size()==1){
+					perfilProfesional = (GppPerfilprof) perfilesProfesionales.get(0);	
+				}			
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
+			}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}			
 	}
 	
 	public String getActualizarPerfil(){
+		getHomePageValueHV();
 		setTabPanel();
 		estadoOperacion = false;
-		estadoOperacion = perfilprofesionalDelegate.getActualizarPerfil(perfilProfesional);
-		if(estadoOperacion==true){		
-			return ConstantesFaces.ESTADO_OK;
-		} else {
-			return ConstantesFaces.ESTADO_ERROR;
+		if(getValidarPermisosServicio("srvModificarPerfilProfesional")){			
+			estadoOperacion = perfilprofesionalDelegate.getActualizarPerfil(perfilProfesional);
+			if(estadoOperacion==true){		
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
+			}	
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}		
 	}
 	
 	public void setTabPanel(){
 		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_PERFIL);
+	}
+	
+	public void getHomePageValueHV(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.CREAR_HV);
+	}
+	
+	public Boolean getValidarPermisosServicio(String nombreServicio){
+		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}
 }

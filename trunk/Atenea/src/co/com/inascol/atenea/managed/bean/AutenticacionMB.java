@@ -1,8 +1,14 @@
 package co.com.inascol.atenea.managed.bean;
 
+import java.util.Iterator;
+import java.util.List;
+
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import co.com.inascol.atenea.entity.GppRol;
+import co.com.inascol.atenea.entity.GppServicio;
+import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.managed.bean.delegate.AutenticacionDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
 
@@ -13,6 +19,7 @@ public class AutenticacionMB {
 	private Boolean estadoOperacion;
 	private String fullContextPath;
 	private Boolean usuarioAutenticado;
+	private String homePage;
 	
 	public AutenticacionMB() throws Exception{
 		autenticacionDelegate = new AutenticacionDelegate();
@@ -37,6 +44,12 @@ public class AutenticacionMB {
 	public void setUsuarioAutenticado(Boolean usuarioAutenticado) {
 		this.usuarioAutenticado = usuarioAutenticado;
 	}
+	public String getHomePage() {
+		return homePage;
+	}
+	public void setHomePage(String homePage) {
+		this.homePage = homePage;
+	}
 
 	public String getVerificarPermisos(){
 		estadoOperacion = false;
@@ -51,6 +64,8 @@ public class AutenticacionMB {
 	
 	public String getIniciarAplicacion(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("usuarioAutenticado");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("AutenticacionMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.LOGIN;
 	}
 	
@@ -59,5 +74,37 @@ public class AutenticacionMB {
 		requestURL = ( (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest() ).getRequestURL();
 		fullContextPath = ( (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest() ).getServletPath();
 		fullContextPath = (requestURL.toString()).split(fullContextPath)[0];
+	}
+
+	public Boolean validarPermisosServicio(String nombreServicio){
+		try{
+			GppUsuario usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
+			List<Object> roles = usuarioAutenticado.getGppRoles();
+			if(roles!=null){
+				if(roles.size()>0){
+					Iterator<Object> itRoles = roles.iterator();
+					while(itRoles.hasNext()){
+						GppRol rol = (GppRol) itRoles.next();
+						List<Object> servicios = rol.getGppServicios();
+						if(servicios.size()>0){
+							Iterator<Object> itServicios = servicios.iterator();
+							while(itServicios.hasNext()){
+								GppServicio servicio = (GppServicio) itServicios.next();
+								if(servicio.getSerVnombre().equalsIgnoreCase(nombreServicio)){
+									return true;
+								}
+							}
+						}
+					}
+				}
+			}
+		} catch (Exception ex){
+			return false;
+		}
+		return false;
+	}
+	
+	public String getHomePageValue(){
+		return getHomePage();
 	}
 }

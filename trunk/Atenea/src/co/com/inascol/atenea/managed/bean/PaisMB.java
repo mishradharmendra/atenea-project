@@ -72,14 +72,19 @@ public class PaisMB {
 	}	
 	
 	public String getCrearPais() {		
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = paisDelegate.getCrearPais(nombrePais);
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PaisMB");
-			return ConstantesFaces.ESTADO_PA_OK;
+		if(getValidarPermisosServicio("srvAgregarPais")){
+			estadoOperacion = paisDelegate.getCrearPais(nombrePais);
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PaisMB");
+				return ConstantesFaces.ESTADO_OK;
+			}else{
+				return ConstantesFaces.ESTADO_ERROR;
+			}
 		}else{
-			return ConstantesFaces.ESTADO_PA_ERROR;
-		}
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}			
 	}
 	
 	public String getSeleccionarPais(){
@@ -93,25 +98,35 @@ public class PaisMB {
 	}
 	
 	public String getModificarPais(){
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = paisDelegate.getModificarPais(pais.getPaiNidpais(), pais.getPaiVpais());
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PaisMB");
-			return ConstantesFaces.ESTADO_PA_OK;
+		if(getValidarPermisosServicio("srvModificarPais")){
+			estadoOperacion = paisDelegate.getModificarPais(pais.getPaiNidpais(), pais.getPaiVpais());
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PaisMB");
+				return ConstantesFaces.ESTADO_OK;
+			}else{
+				return ConstantesFaces.ESTADO_ERROR;
+			}
 		}else{
-			return ConstantesFaces.ESTADO_PA_ERROR;
-		}
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}				
 	}
 	
 	public String getEliminarPais(){
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = paisDelegate.getEliminarPais(idPais);
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PaisMB");
-			return ConstantesFaces.ESTADO_PA_OK;
+		if(getValidarPermisosServicio("srvEliminarPais")){
+			estadoOperacion = paisDelegate.getEliminarPais(idPais);
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PaisMB");
+				return ConstantesFaces.ESTADO_OK;
+			}else{
+				return ConstantesFaces.ESTADO_ERROR;
+			}
 		}else{
-			return ConstantesFaces.ESTADO_PA_ERROR;
-		}
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}		
 	}
 
 	public String getCancelar(){
@@ -122,5 +137,13 @@ public class PaisMB {
 	public String getHomePais(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PaisMB");
 		return ConstantesFaces.HOME_PAIS;
+	}
+	
+	public void getHomePageValue(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_PAIS);
+	}
+	
+	public Boolean getValidarPermisosServicio(String nombreServicio){
+		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}
 }

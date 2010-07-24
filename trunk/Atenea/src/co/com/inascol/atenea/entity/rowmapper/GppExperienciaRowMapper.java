@@ -16,7 +16,7 @@ public class GppExperienciaRowMapper implements RowMapper{
 		gppExperiencia.setExpNidexplaboral(rs.getInt("exp_nidexplaboral"));
 		gppExperiencia.setExpVnomempresa(rs.getString("exp_vnomempresa"));
 		gppExperiencia.setExpVtelempresa(rs.getString("exp_vtelempresa"));
-		gppExperiencia.setExpVnomcontacto("exp_vnomcontacto");
+		gppExperiencia.setExpVnomcontacto(rs.getString("exp_vnomcontacto"));
 		gppExperiencia.setExpVemailcontacto(rs.getString("exp_vemailcontacto"));
 		gppExperiencia.setExpVcargo(rs.getString("exp_vcargo"));
 		gppExperiencia.setExpDfecingreso(rs.getDate("exp_dfecingreso"));

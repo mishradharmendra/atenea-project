@@ -40,29 +40,29 @@
 				<br/><br/>
 				<h:form>	
 				<rich:extendedDataTable id="tablaMunicipios" value="#{MunicipioMB.municipios}" var="municipio" width="600px" height="250px">
-					<rich:column width="100px">
+					<rich:column width="100px" sortable="true" sortBy="#{municipio.munNidmunicipio}" label="Id Municipio"> 
 						<f:facet name="header">
-							<h:outputLabel value="Id Municipios"></h:outputLabel>
+							<h:outputLabel value="Id Municipio"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{municipio.munNidmunicipio}"></h:outputLabel>
 					</rich:column>
-					<rich:column width="300px">
+					<rich:column width="300px" sortable="true" sortBy="#{municipio.munVmunicipio}" label="Nombre Municipio">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Municipios"></h:outputLabel>
 						</f:facet>
-						<a4j:commandLink id="munVmunicipio" onclick="procesarSolicitudDetalle('#{municipio.munNidmunicipio}')">
+						<a4j:commandLink id="munVmunicipio" onclick="procesarSolicitudDetalle('#{municipio.munVmunicipio}')">
 							<h:outputLabel value="#{municipio.munVmunicipio}"></h:outputLabel>
 						</a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px">
+					<rich:column width="100px" label="Modificar">
 						<f:facet name="header">
 							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>
-						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{municipio.munNidmunicipio}')">
+						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{municipio.munVmunicipio}')">
                             <h:graphicImage url="../../imagenes/editar.png"/>
                         </a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px">
+					<rich:column width="100px" label="Eliminar">
 						<f:facet name="header">
 							<h:outputLabel value="Eliminar"></h:outputLabel>
 						</f:facet>
@@ -75,12 +75,12 @@
 			</rich:panel>
         	<a4j:form>
 	            <a4j:jsFunction name="procesarSolicitudDetalle" action="#{MunicipioMB.getSeleccionarMunicipioDetalle}" >
-	                <a4j:actionparam name="p1" assignTo="#{MunicipioMB.idMunicipio}" />                
+	                <a4j:actionparam name="p1" assignTo="#{MunicipioMB.nombreMunicipio}" />                
             	</a4j:jsFunction>
         	</a4j:form>				
         	<a4j:form>
 	            <a4j:jsFunction name="procesarSolicitudModificar" action="#{MunicipioMB.getSeleccionarMunicipio}" >
-	                <a4j:actionparam name="p1" assignTo="#{MunicipioMB.idMunicipio}" />                
+	                <a4j:actionparam name="p1" assignTo="#{MunicipioMB.nombreMunicipio}" />                
             	</a4j:jsFunction>
         	</a4j:form>		
         	<a4j:form>

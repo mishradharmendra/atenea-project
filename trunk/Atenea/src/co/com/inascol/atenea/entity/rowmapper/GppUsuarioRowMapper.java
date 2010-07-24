@@ -22,7 +22,7 @@ public class GppUsuarioRowMapper implements RowMapper{
 		gppUsuario.setUsuDfeccrea(rs.getDate("usu_dfeccrea"));
 		gppUsuario.setUsuVusumodifica(rs.getString("usu_vusumodifica"));
 		gppUsuario.setUsuDfecmodifica(rs.getDate("usu_dfecmodifica"));
-		gppUsuario.setUsuVactivo(rs.getString("usu_vactivo"));
+		gppUsuario.setUsuBactivo(rs.getBoolean("usu_vactivo"));
 		return gppUsuario;
 	}
 }

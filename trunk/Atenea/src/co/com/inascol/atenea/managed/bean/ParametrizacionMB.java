@@ -79,14 +79,19 @@ public class ParametrizacionMB {
 	}	
 	
 	public String getCrearParametrizacion() {
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = parametrizacionDelegate.getCrearParametrizacion(nombreParametrizacion, valorParametrizacion, descripcionParametrizacion);
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ParametrizacionMB");
-			return ConstantesFaces.ESTADO_PM_OK;
+		if(getValidarPermisosServicio("srvAgregarParametrizacion")){
+			estadoOperacion = parametrizacionDelegate.getCrearParametrizacion(nombreParametrizacion, valorParametrizacion, descripcionParametrizacion);
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ParametrizacionMB");
+				return ConstantesFaces.ESTADO_OK;
+			}else{
+				return ConstantesFaces.ESTADO_ERROR;
+			}
 		}else{
-			return ConstantesFaces.ESTADO_PM_ERROR;
-		}
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}			
 	}
 	
 	public String getSeleccionarParametrizacion(){
@@ -100,14 +105,19 @@ public class ParametrizacionMB {
 	}
 	
 	public String getModificarParametrizacion(){
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = parametrizacionDelegate.getModificarParametrizacion(parametrizacion.getParNidparam(), parametrizacion.getParVnombre(),parametrizacion.getParVvalor(), parametrizacion.getParVdescripcion());		
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ParametrizacionMB");
-			return ConstantesFaces.ESTADO_PM_OK;
+		if(getValidarPermisosServicio("srvModificarParametrizacion")){
+			estadoOperacion = parametrizacionDelegate.getModificarParametrizacion(parametrizacion.getParNidparam(), parametrizacion.getParVnombre(),parametrizacion.getParVvalor(), parametrizacion.getParVdescripcion());		
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ParametrizacionMB");
+				return ConstantesFaces.ESTADO_OK;
+			}else{
+				return ConstantesFaces.ESTADO_ERROR;
+			}
 		}else{
-			return ConstantesFaces.ESTADO_PM_ERROR;
-		}
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}				
 	}
 	
 	public String getCancelar(){
@@ -118,5 +128,13 @@ public class ParametrizacionMB {
 	public String getHomeParametrizacion(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ParametrizacionMB");
 		return ConstantesFaces.HOME_PARAMETRIZACION;
+	}
+	
+	public void getHomePageValue(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_PARAMETRIZACION);
+	}
+	
+	public Boolean getValidarPermisosServicio(String nombreServicio){
+		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}
 }

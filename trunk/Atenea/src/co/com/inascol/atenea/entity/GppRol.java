@@ -13,13 +13,14 @@ public class GppRol  {
 	private Integer rolNidrol;
 	private String rolVnombre;
 	private String rolVdescripcion;
-	private String rolVactivo;
+	private Boolean rolBactivo;
 	private String rolVusucrea;
 	private Date rolDfeccrea;
 	private String rolVusumodifica;
 	private Date rolDfecmodifica;
-	private List <Object> serServicio;
-
+	private List <Object> servicios;
+	private List <Object> gppServicios;
+	
 	public GppRol() {}
 
 	public Integer getRolNidrol() {
@@ -46,12 +47,12 @@ public class GppRol  {
 		this.rolVdescripcion = rolVdescripcion;
 	}
 
-	public String getRolVactivo() {
-		return this.rolVactivo;
+	public Boolean getRolBactivo() {
+		return rolBactivo;
 	}
 
-	public void setRolVactivo(String rolVactivo) {
-		this.rolVactivo = rolVactivo;
+	public void setRolBactivo(Boolean rolBactivo) {
+		this.rolBactivo = rolBactivo;
 	}
 
 	public String getRolVusucrea() {
@@ -86,12 +87,19 @@ public class GppRol  {
 		this.rolDfecmodifica = rolDfecmodifica;
 	}
 
-	public void setRolServicios(List <Object> serServicio) {
-		this.serServicio = serServicio;
+	public List<Object> getGppServicios() {
+		return gppServicios;
 	}
 
-	public List <Object> getRolServicios() {
-		return serServicio;
+	public void setGppServicios(List<Object> gppServicios) {
+		this.gppServicios = gppServicios;
 	}
 
+	public List<Object> getServicios() {
+		return servicios;
+	}
+
+	public void setServicios(List<Object> servicios) {
+		this.servicios = servicios;
+	}
 }

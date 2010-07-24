@@ -13,7 +13,7 @@ public class GppUsuario {
 	private Integer usuNidusuario;
 	private String usuVnombre;
 	private String usuVlogin;
-	private String usuVactivo;
+	private Boolean usuBactivo;
 	private String usuVemail;
 	private String usuVtelefono;
 	private String usuVusucrea;
@@ -21,6 +21,7 @@ public class GppUsuario {
 	private String usuVusumodifica;
 	private Date usuDfecmodifica;
 	private List<Object> gppRoles;
+	private List<Object> roles;
 	
 	public GppUsuario() {}
 
@@ -48,12 +49,12 @@ public class GppUsuario {
 		this.usuVlogin = usuVlogin;
 	}
 
-	public String getUsuVactivo() {
-		return this.usuVactivo;
+	public Boolean getUsuBactivo() {
+		return usuBactivo;
 	}
 
-	public void setUsuVactivo(String usuVactivo) {
-		this.usuVactivo = usuVactivo;
+	public void setUsuBactivo(Boolean usuBactivo) {
+		this.usuBactivo = usuBactivo;
 	}
 
 	public String getUsuVemail() {
@@ -112,4 +113,11 @@ public class GppUsuario {
 		return gppRoles;
 	}
 
+	public List<Object> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Object> roles) {
+		this.roles = roles;
+	}
 }
