@@ -47,14 +47,14 @@ public class MunicipioDelegate {
 		return municipiosConsultados;
 	}
 	
-	public GppMunicipio getSeleccionarMunicipio(Integer idMunicipio){
+	public GppMunicipio getSeleccionarMunicipio(String nombreMunicipio){
 		municipioService = new MunicipioService();
 		municipios = municipioService.buscarMunicipios();
 		if(municipios.size()>0){
 			Iterator<Object> it = municipios.iterator();
 			while(it.hasNext()){
 				municipio = (GppMunicipio) it.next();
-				if(municipio.getMunNidmunicipio()==idMunicipio){
+				if(municipio.getMunVmunicipio().equalsIgnoreCase(nombreMunicipio)){
 					break;
 				}
 			}					

@@ -25,46 +25,60 @@
 				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Nombre: "></h:outputLabel></td>
-						<td><h:inputText size="30" value="#{RolMB.nombreRol}"></h:inputText></td>					
+						<td><h:inputText id="nombreRol" size="30" value="#{RolMB.nombreRol}" required="true" requiredMessage="Ingrese Nombre del Rol"></h:inputText></td>
+						<td><rich:message for="nombreRol" style="color:red"/></td>					
 					</tr>
 					<tr>
-						<td><h:outputLabel value="Descripcion: "></h:outputLabel></td>
-						<td><h:inputTextarea size="30" value="#{RolMB.descripcionRol}" size="50"></h:inputTextarea></td>					
-					</tr>									
+						<td><h:outputLabel value="Descripción: "></h:outputLabel></td>
+						<td><h:inputTextarea id="descripcionRol" value="#{RolMB.descripcionRol}" cols="30" required="true" requiredMessage="Ingrese Descripción del Rol"></h:inputTextarea></td>
+						<td><rich:message for="descripcionRol" style="color:red"/></td>					
+					</tr>		
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{RolMB.getCrearRol}" value="Aceptar"/></td>
-						<td width="20px"></td>
-						<td><h:commandButton action="#{RolMB.getCancelar}" value="Cancelar"/></td>
 					</tr>
 				</table>
-				</h:form>	
+				</h:form>
+				<h:form>
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{RolMB.getCancelar}" value="Cancelar"/></td>
+						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>					
+				<br/><br/>
+				<h:outputLabel value="Listado de Servicios" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaServicioRol" value="#{RolMB.servicios}" var="servicio" width="900px" height="250px">
-					<rich:column width="100px">
+				<rich:extendedDataTable id="tablaServicioRol" value="#{RolMB.servicios}" var="servicio" width="600px" height="200px">
+					<rich:column width="100px" label="Seleccionar">
 						<f:facet name="header">
-							<h:outputLabel value="Activar"></h:outputLabel>
+							<h:outputLabel value="Seleccionar"></h:outputLabel>
 						</f:facet>
-						<h:selectBooleanCheckbox id="id_#{servicio.serNidservicio}"></h:selectBooleanCheckbox>
+						<h:selectBooleanCheckbox id="servicio" onclick="procesarSolicitudServicioAsignado('#{servicio.serNidservicio}');"></h:selectBooleanCheckbox>
 					</rich:column>				
-					<rich:column width="300px">
+					<rich:column width="200px" sortable="true" sortBy="#{servicio.serVnombre}" label="Nombre Servicio">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Servicio"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{servicio.serVnombre}"></h:outputLabel>
 					</rich:column>
-					<rich:column width="300px">
+					<rich:column width="300px" sortable="true" sortBy="#{servicio.serVruta}" label="Descripción">
 						<f:facet name="header">
-							<h:outputLabel value="Ruta"></h:outputLabel>
+							<h:outputLabel value="Descripción"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{servicio.serVruta}"></h:outputLabel>
 					</rich:column>														
 				</rich:extendedDataTable>
-				<h:inputHidden id="functioncheck" validator="#{RolMB.validateFunctions}" value="needed"/>
-				</h:form>					
+				</h:form>
+				<a4j:form>
+		            <a4j:jsFunction name="procesarSolicitudServicioAsignado" action="#{RolMB.getIdServiciosAsignar}" >
+		                <a4j:actionparam name="p1" assignTo="#{RolMB.idServicio}" />                
+	            	</a4j:jsFunction>
+        		</a4j:form>							
 			</rich:panel>																
 		</ui:define>
 	</ui:composition>

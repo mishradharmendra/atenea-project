@@ -123,25 +123,24 @@ public class ExperienciaDelegate {
 	        urlArchivoCertificaciones = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoCertificaciones==null){
 	        	urlArchivoCertificaciones = "/home/memo/Temp-Directory/";
-	        }else{		        
-		        urlArchivoCertificaciones = urlArchivoCertificaciones + "CERT_" + dateFormat.format(new Date()) + "_" + nombreArchivoCertificaciones;
-		        FileInputStream fis = new FileInputStream(file.getPath());
-		        BufferedInputStream bis = new BufferedInputStream(fis);
-		        FileOutputStream fos = new FileOutputStream(urlArchivoCertificaciones);
-		        BufferedOutputStream bos = new BufferedOutputStream(fos);
-		        try {
-		            byte[] array = new byte[100];
-		            int leidos = bis.read(array);
-		            while (leidos > 0) {
-		                bos.write(array, 0, leidos);
-		                leidos = bis.read(array);
-		            }
-		        } catch (Exception e) {
-		            e.printStackTrace();
-		        } finally {
-		            bis.close();
-		            bos.close();
-		        }
+	        }		        
+	        urlArchivoCertificaciones = urlArchivoCertificaciones + "CERT_" + dateFormat.format(new Date()) + "_" + nombreArchivoCertificaciones;
+	        FileInputStream fis = new FileInputStream(file.getPath());
+	        BufferedInputStream bis = new BufferedInputStream(fis);
+	        FileOutputStream fos = new FileOutputStream(urlArchivoCertificaciones);
+	        BufferedOutputStream bos = new BufferedOutputStream(fos);
+	        try {
+	            byte[] array = new byte[100];
+	            int leidos = bis.read(array);
+	            while (leidos > 0) {
+	                bos.write(array, 0, leidos);
+	                leidos = bis.read(array);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            bis.close();
+	            bos.close();
 	        }
 	    }
 	}
@@ -156,25 +155,24 @@ public class ExperienciaDelegate {
 	        urlArchivoCertificado1 = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoCertificado1==null){
 	        	urlArchivoCertificado1 = "/home/memo/Temp-Directory/";
-	        }else{		        
-	        	urlArchivoCertificado1 = urlArchivoCertificado1 + "CERT_" + dateFormat.format(new Date()) + "_" + nombreArchivoCertificado1;
-		        FileInputStream fis = new FileInputStream(file.getPath());
-		        BufferedInputStream bis = new BufferedInputStream(fis);
-		        FileOutputStream fos = new FileOutputStream(urlArchivoCertificado1);
-		        BufferedOutputStream bos = new BufferedOutputStream(fos);
-		        try {
-		            byte[] array = new byte[100];
-		            int leidos = bis.read(array);
-		            while (leidos > 0) {
-		                bos.write(array, 0, leidos);
-		                leidos = bis.read(array);
-		            }
-		        } catch (Exception e) {
-		            e.printStackTrace();
-		        } finally {
-		            bis.close();
-		            bos.close();
-		        }
+	        }	        
+        	urlArchivoCertificado1 = urlArchivoCertificado1 + "CERT_" + dateFormat.format(new Date()) + "_" + nombreArchivoCertificado1;
+	        FileInputStream fis = new FileInputStream(file.getPath());
+	        BufferedInputStream bis = new BufferedInputStream(fis);
+	        FileOutputStream fos = new FileOutputStream(urlArchivoCertificado1);
+	        BufferedOutputStream bos = new BufferedOutputStream(fos);
+	        try {
+	            byte[] array = new byte[100];
+	            int leidos = bis.read(array);
+	            while (leidos > 0) {
+	                bos.write(array, 0, leidos);
+	                leidos = bis.read(array);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            bis.close();
+	            bos.close();
 	        }
 	    }
 	}
@@ -189,34 +187,34 @@ public class ExperienciaDelegate {
 	        urlArchivoCertificado2 = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoCertificado2==null){
 	        	urlArchivoCertificado2 = "/home/memo/Temp-Directory/";
-	        }else{		        
-	        	urlArchivoCertificado2 = urlArchivoCertificado2 + "CERT_" + dateFormat.format(new Date()) + "_" + nombreArchivoCertificado2;
-		        FileInputStream fis = new FileInputStream(file.getPath());
-		        BufferedInputStream bis = new BufferedInputStream(fis);
-		        FileOutputStream fos = new FileOutputStream(urlArchivoCertificado2);
-		        BufferedOutputStream bos = new BufferedOutputStream(fos);
-		        try {
-		            byte[] array = new byte[100];
-		            int leidos = bis.read(array);
-		            while (leidos > 0) {
-		                bos.write(array, 0, leidos);
-		                leidos = bis.read(array);
-		            }
-		        } catch (Exception e) {
-		            e.printStackTrace();
-		        } finally {
-		            bis.close();
-		            bos.close();
-		        }
+	        }	        
+        	urlArchivoCertificado2 = urlArchivoCertificado2 + "CERT_" + dateFormat.format(new Date()) + "_" + nombreArchivoCertificado2;
+	        FileInputStream fis = new FileInputStream(file.getPath());
+	        BufferedInputStream bis = new BufferedInputStream(fis);
+	        FileOutputStream fos = new FileOutputStream(urlArchivoCertificado2);
+	        BufferedOutputStream bos = new BufferedOutputStream(fos);
+	        try {
+	            byte[] array = new byte[100];
+	            int leidos = bis.read(array);
+	            while (leidos > 0) {
+	                bos.write(array, 0, leidos);
+	                leidos = bis.read(array);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            bis.close();
+	            bos.close();
 	        }
-	    }
+        }
 	}
 	
 	public void getGuardarCertificaciones(GppPersona persona){
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
 		String nombreDocumento = "Consolidado-Certificaciones-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
-		documentoService.crearDocumento(nombreDocumento, nombreArchivoCertificaciones, urlArchivoCertificaciones, new Date(), persona.getPerNidpersona(), 1, usuarioAutenticado);
+		Integer tipoDocumento = 4;
+		documentoService.crearDocumento(nombreDocumento, nombreArchivoCertificaciones, urlArchivoCertificaciones, new Date(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}
 	
@@ -224,7 +222,17 @@ public class ExperienciaDelegate {
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
 		String nombreDocumento = "Certificacion-1-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
-		documentoService.crearDocumento(nombreDocumento, nombreArchivoCertificado1, urlArchivoCertificado1, new Date(), persona.getPerNidpersona(), 1, usuarioAutenticado);
+		Integer tipoDocumento = 1;
+		if(nombreArchivoCertificado1.toLowerCase().endsWith(".pdf")){
+			tipoDocumento = 1;
+		}else if(nombreArchivoCertificado1.toLowerCase().endsWith(".zip") || nombreArchivoCertificado1.toLowerCase().endsWith(".rar")){
+			tipoDocumento = 4;
+		}else if(nombreArchivoCertificado1.toLowerCase().endsWith(".jpeg") || nombreArchivoCertificado1.toLowerCase().endsWith(".jpg") ||
+					nombreArchivoCertificado1.toLowerCase().endsWith(".bmp") || nombreArchivoCertificado1.toLowerCase().endsWith(".tif") ||
+						nombreArchivoCertificado1.toLowerCase().endsWith(".tiff") || nombreArchivoCertificado1.toLowerCase().endsWith(".png")){
+			tipoDocumento = 6;
+		}			
+		documentoService.crearDocumento(nombreDocumento, nombreArchivoCertificado1, urlArchivoCertificado1, new Date(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}
 	
@@ -232,7 +240,17 @@ public class ExperienciaDelegate {
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
 		String nombreDocumento = "Certificacion-2-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
-		documentoService.crearDocumento(nombreDocumento, nombreArchivoCertificado2, urlArchivoCertificado2, new Date(), persona.getPerNidpersona(), 1, usuarioAutenticado);
+		Integer tipoDocumento = 1;
+		if(nombreArchivoCertificado2.toLowerCase().endsWith(".pdf")){
+			tipoDocumento = 1;
+		}else if(nombreArchivoCertificado2.toLowerCase().endsWith(".zip") || nombreArchivoCertificado2.toLowerCase().endsWith(".rar")){
+			tipoDocumento = 4;
+		}else if(nombreArchivoCertificado2.toLowerCase().endsWith(".jpeg") || nombreArchivoCertificado2.toLowerCase().endsWith(".jpg") ||
+					nombreArchivoCertificado2.toLowerCase().endsWith(".bmp") || nombreArchivoCertificado2.toLowerCase().endsWith(".tif") ||
+						nombreArchivoCertificado2.toLowerCase().endsWith(".tiff") || nombreArchivoCertificado2.toLowerCase().endsWith(".png")){
+			tipoDocumento = 6;
+		}			
+		documentoService.crearDocumento(nombreDocumento, nombreArchivoCertificado2, urlArchivoCertificado2, new Date(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}
 }

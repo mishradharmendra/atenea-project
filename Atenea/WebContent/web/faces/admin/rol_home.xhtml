@@ -40,46 +40,59 @@
 				<br/><br/>
 				<h:form>	
 				<rich:extendedDataTable id="tablaRol" value="#{RolMB.roles}" var="rol" width="900px" height="250px">
-					<rich:column width="100px">
+					<rich:column width="100px" sortable="true" sortBy="#{rol.rolNidrol}" label="Id Rol">
 						<f:facet name="header">
 							<h:outputLabel value="Id Rol"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{rol.rolNidrol}"></h:outputLabel>
 					</rich:column>
-					<rich:column width="300px">
+					<rich:column width="300px" sortable="true" sortBy="#{rol.rolVnombre}" label="Nombre Rol">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Rol"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{rol.rolVnombre}"></h:outputLabel>
+						<a4j:commandLink id="rolVnombre" onclick="procesarSolicitudDetalle('#{rol.rolNidrol}')">
+							<h:outputLabel value="#{rol.rolVnombre}"></h:outputLabel>
+						</a4j:commandLink>						
 					</rich:column>
-					<rich:column width="300px">
+					<rich:column width="300px" sortable="true" sortBy="#{rol.rolVdescripcion}" label="Descripción">
 						<f:facet name="header">
-							<h:outputLabel value="Descripcion"></h:outputLabel>
+							<h:outputLabel value="Descripción"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{rol.rolVdescripcion}"></h:outputLabel>
 					</rich:column>					
-					<rich:column width="100px">
+					<rich:column width="100px" label="Modificar">
 						<f:facet name="header">
 							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>
-						<a4j:commandLink id="modificar" onclick="procesarSolicitud('#{rol.rolNidrol}')">
+						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{rol.rolNidrol}')">
                             <h:graphicImage url="../../imagenes/editar.png"/>
                         </a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px">
+					<rich:column width="100px" label="Activar">
 						<f:facet name="header">
 							<h:outputLabel value="Activar"></h:outputLabel>
 						</f:facet>
-						<h:selectBooleanCheckbox></h:selectBooleanCheckbox>
+						<h:selectBooleanCheckbox value="#{rol.rolBactivo}" onclick="aceptar = confirm('Esta seguro que quiere cambiar el estado del elemento seleccionado?'); if(aceptar==true){procesarSolicitudEstadoRol('#{rol.rolNidrol}','#{rol.rolBactivo}');} return false;"></h:selectBooleanCheckbox>
 					</rich:column>									
 				</rich:extendedDataTable>
 				</h:form>					
 			</rich:panel>
         	<a4j:form>
-	            <a4j:jsFunction name="procesarSolicitud" action="#{RolMB.getSeleccionarRol}" >
+	            <a4j:jsFunction name="procesarSolicitudDetalle" action="#{RolMB.getSeleccionarRolDetalle}" >
 	                <a4j:actionparam name="p1" assignTo="#{RolMB.idRol}" />                
             	</a4j:jsFunction>
-        	</a4j:form>								
+        	</a4j:form>				
+        	<a4j:form>
+	            <a4j:jsFunction name="procesarSolicitudModificar" action="#{RolMB.getSeleccionarRolModificar}" >
+	                <a4j:actionparam name="p1" assignTo="#{RolMB.idRol}" />                
+            	</a4j:jsFunction>
+        	</a4j:form>
+        	<a4j:form>				
+	            <a4j:jsFunction name="procesarSolicitudEstadoRol" action="#{RolMB.getCambiarEstadoRol}" >
+	                <a4j:actionparam name="p1" assignTo="#{RolMB.idRol}" />                
+	                <a4j:actionparam name="p2" assignTo="#{RolMB.estadoCheck}" />
+	           	</a4j:jsFunction>
+           	</a4j:form>	        						
 		</ui:define>
 	</ui:composition>
 </body>

@@ -40,13 +40,13 @@
 				<br/><br/>
 				<h:form>	
 				<rich:extendedDataTable id="tablaCargoequivalente" value="#{CargoequivalenteMB.cargosequivalentes}" var="cargoequivalente" width="650px" height="250px">
-					<rich:column width="150px">
+					<rich:column width="150px" sortable="true" sortBy="#{cargoequivalente.ceqNidcargoeq}" label="Id Cargo Equivalente">
 						<f:facet name="header">
 							<h:outputLabel value="Id Cargo Equivalente"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{cargoequivalente.ceqNidcargoeq}"></h:outputLabel>
 					</rich:column>
-					<rich:column width="300px">
+					<rich:column width="300px" sortable="true" sortBy="#{cargoequivalente.ceqVcargoeq}" label="Nombre Cargo Equivalente">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Cargo Equivalente"></h:outputLabel>
 						</f:facet>
@@ -54,7 +54,7 @@
 							<h:outputLabel value="#{cargoequivalente.ceqVcargoeq}"></h:outputLabel>
 						</a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px">
+					<rich:column width="100px" label="Modificar">
 						<f:facet name="header">
 							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>
@@ -62,7 +62,7 @@
                             <h:graphicImage url="../../imagenes/editar.png"/>
                         </a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px">
+					<rich:column width="100px" label="Eliminar">
 						<f:facet name="header">
 							<h:outputLabel value="Eliminar"></h:outputLabel>
 						</f:facet>

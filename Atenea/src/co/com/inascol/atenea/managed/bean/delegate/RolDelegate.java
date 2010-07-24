@@ -47,28 +47,19 @@ public class RolDelegate {
 		return rolesConsultados;
 	}
 	
-	public GppRol getSeleccionarRol(int idRol){
+	public GppRol getSeleccionarRol(Integer idRol){
 		rolService = new RolService();
-		roles = rolService.buscarRoles();
-		if(roles.size()>0){
-			Iterator<Object> it = roles.iterator();
-			while(it.hasNext()){
-				rol = (GppRol) it.next();
-				if(rol.getRolNidrol() == idRol){
-					break;
-				}
-			}					
-		}
+		rol = rolService.buscarPorIdRol(idRol);
 		return rol;
 	}
 	
-	public Boolean getModificarRol(Integer idRol, String nombreRol, String descripcionRol, String activoRol){
+	public Boolean getModificarRol(Integer idRol, String nombreRol, String descripcionRol, Boolean activoRol, List<Object> serviciosRol){
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		rolService = new RolService();
-		return rolService.actualizarRol(idRol, nombreRol, descripcionRol, activoRol, usuarioAutenticado);
+		return rolService.actualizarRol(idRol, nombreRol, descripcionRol, activoRol, serviciosRol, usuarioAutenticado);
 	}
 	
-	public Boolean getCrearRol(String nombreRol, String descripcionRol, String activoRol, List<Object> serviciosRol){
+	public Boolean getCrearRol(String nombreRol, String descripcionRol, Boolean activoRol, List<Object> serviciosRol){
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		rolService = new RolService();
 		return rolService.crearRol(nombreRol, descripcionRol, activoRol, serviciosRol, usuarioAutenticado);

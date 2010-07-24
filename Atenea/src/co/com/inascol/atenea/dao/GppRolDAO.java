@@ -1,6 +1,7 @@
 package co.com.inascol.atenea.dao;
 
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -40,14 +41,49 @@ public class GppRolDAO implements DAO {
 															gppRol.getRolVdescripcion(),
 															gppRol.getRolVusumodifica(),
 															gppRol.getRolDfecmodifica(),
-															gppRol.getRolVactivo(),
+															gppRol.getRolBactivo(),
 															gppRol.getRolNidrol()},
 															new int[] {Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.DATE,
 																		Types.VARCHAR,
-																		Types.INTEGER});	
+																		Types.INTEGER});
+			sentenciaSQL = "select ser_nidservicio from gpp_serviciorol where rol_nidrol = ? ";
+			List<Object> idsRegistrados = jdbcTemplate.queryForList(sentenciaSQL, new Object[]{gppRol.getRolNidrol()},new int[] {Types.INTEGER}, Integer.class);
+			if(gppRol.getServicios()!=null){
+				if(gppRol.getServicios().size()>0){
+					Iterator<Object> idsNuevos = gppRol.getServicios().iterator();
+					GppServiciorolDAO gppServiciorolDAO = new GppServiciorolDAO();
+					while(idsNuevos.hasNext()){
+						Integer idNuevo = (Integer) idsNuevos.next();
+						if(idsRegistrados.contains(idNuevo)==false){
+							GppServiciorolId gppServiciorolId= new GppServiciorolId();
+							gppServiciorolId.setRolNidrol(gppRol.getRolNidrol());
+							gppServiciorolId.setSerNidservicio(idNuevo);
+							GppServiciorol gppServiciorol = new GppServiciorol();
+							gppServiciorol.setId(gppServiciorolId);
+							gppServiciorol.setSrlDfeccrea(new Date());
+							gppServiciorol.setSrlVusucrea(gppRol.getRolVusumodifica());
+							estadoOperation = gppServiciorolDAO.crear(gppServiciorol);							
+						}
+					}
+					Iterator<Object> idsViejos = idsRegistrados.iterator();
+					while(idsViejos.hasNext()){
+						Integer idViejo = (Integer) idsViejos.next();
+						if(gppRol.getServicios().contains(idViejo)==false){
+							GppServiciorolId gppServiciorolId= new GppServiciorolId();
+							gppServiciorolId.setRolNidrol(gppRol.getRolNidrol());
+							gppServiciorolId.setSerNidservicio(idViejo);
+							GppServiciorol gppServiciorol = new GppServiciorol();
+							gppServiciorol.setId(gppServiciorolId);
+							gppServiciorol.setSrlDfeccrea(new Date());
+							gppServiciorol.setSrlVusucrea(gppRol.getRolVusumodifica());
+							estadoOperation = gppServiciorolDAO.borrar(gppServiciorol);	
+						}
+					}
+				}
+			}
 			estadoOperation = true;
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -78,7 +114,16 @@ public class GppRolDAO implements DAO {
 			gppRol = (GppRol) jdbcTemplate.queryForObject(sentenciaSQL, new Object[] {idObj}, gppRolRowMapper);
 			GppServiciorolDAO gppServiciorol = new GppServiciorolDAO(); 
 			List <Object> servicioRoles = gppServiciorol.buscarTodosServiciosRoles(Integer.valueOf(gppRol.getRolNidrol()));
-			gppRol.setRolServicios(servicioRoles);		
+			if(servicioRoles.size()>0){
+				Iterator<Object> it = servicioRoles.iterator();
+				GppServicioDAO servicioDAO = new GppServicioDAO();
+				List<Object> gppServicios = new ArrayList<Object>();
+				while(it.hasNext()){
+					GppServiciorol servicioRol = (GppServiciorol) it.next();
+					gppServicios.add(servicioDAO.buscarPorId(servicioRol.getId().getSerNidservicio()));
+				}
+				gppRol.setGppServicios(gppServicios);
+			}
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}
@@ -110,18 +155,19 @@ public class GppRolDAO implements DAO {
 					 										gppRol.getRolVdescripcion(),
 															gppRol.getRolVusucrea(),
 															gppRol.getRolDfeccrea(),
-															gppRol.getRolVactivo()},
+															gppRol.getRolBactivo()},
 															new int[] {Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.DATE,
 																		Types.VARCHAR});
 			sentenciaSQL = "select rol_nidrol from gpp_rol where rol_vnombre = ? ";
-			int gppIdRol = jdbcTemplate.queryForInt(sentenciaSQL, new Object[]{gppRol.getRolVnombre()},	new int[] {Types.VARCHAR});
-			if(gppRol.getRolServicios()!=null){
-				Iterator<Object> it = gppRol.getRolServicios().iterator();
+			Integer gppIdRol = jdbcTemplate.queryForInt(sentenciaSQL, new Object[]{gppRol.getRolVnombre()},	new int[] {Types.VARCHAR});
+			if(gppRol.getServicios()!=null){
+				Iterator<Object> it = gppRol.getServicios().iterator();
+				GppServiciorolDAO gppServiciorolDAO = new GppServiciorolDAO();
 				while(it.hasNext()){ 
-					int idServicio =  (Integer) it.next();
+					Integer idServicio =  (Integer) it.next();
 					GppServiciorolId gppServiciorolId= new GppServiciorolId();
 					gppServiciorolId.setRolNidrol(gppIdRol);
 					gppServiciorolId.setSerNidservicio(idServicio);
@@ -129,11 +175,10 @@ public class GppRolDAO implements DAO {
 					gppServiciorol.setId(gppServiciorolId);
 					gppServiciorol.setSrlDfeccrea(new Date());
 					gppServiciorol.setSrlVusucrea(gppRol.getRolVusucrea());
-					GppServiciorolDAO gppServiciorolDAO = new GppServiciorolDAO();					
 					estadoOperation = gppServiciorolDAO.crear(gppServiciorol);
 				}
 			}else{
-				System.out.println("Rol Sin Servicios");
+				System.out.println("Rol Sin Servicios.");
 			}	
 			estadoOperation = true;
 		} catch (Exception ex) {

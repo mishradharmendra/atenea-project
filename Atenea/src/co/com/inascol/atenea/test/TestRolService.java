@@ -28,7 +28,7 @@ public class TestRolService {
 		rolService = new RolService();
 		String nombreRol = "Gestor Humano";
 		String descripcionRol = "Administra las Hojas de Vida";
-		String activoRol ="SI";
+		Boolean activoRol = true;
 		List <Object> listaServicios= new ArrayList<Object>();
 		listaServicios.add(1);
 		listaServicios.add(2);    
@@ -42,8 +42,11 @@ public class TestRolService {
 		int idRol = 1;
 		String nombreRol = "Administradores";
 		String descripcionRol = "Administran la aplicaci�n de Hojas de Vida";
-		String activoRol ="SI";
-		estadoOperacion = rolService.actualizarRol(idRol, nombreRol, descripcionRol, activoRol, usuarioAutenticado);
+		Boolean activoRol = false;
+		List <Object> listaServicios= new ArrayList<Object>();
+		listaServicios.add(1);
+		listaServicios.add(2); 
+		estadoOperacion = rolService.actualizarRol(idRol, nombreRol, descripcionRol, activoRol, listaServicios, usuarioAutenticado);
 		System.out.println(estadoOperacion);
 	}
 	
@@ -67,7 +70,7 @@ public class TestRolService {
 			System.out.println(gppRol.getRolDfeccrea());
 			System.out.println(gppRol.getRolVusumodifica());
 			System.out.println(gppRol.getRolDfecmodifica());
-			System.out.println(gppRol.getRolVactivo());
+			System.out.println(gppRol.getRolBactivo());
 			
 		}else{
 			System.out.println("error");
@@ -89,7 +92,7 @@ public class TestRolService {
 				System.out.println(gppRol.getRolDfeccrea());
 				System.out.println(gppRol.getRolVusumodifica());
 				System.out.println(gppRol.getRolDfecmodifica());
-				System.out.println(gppRol.getRolVactivo());
+				System.out.println(gppRol.getRolBactivo());
 			}
 		}else{
 			System.out.println("error");

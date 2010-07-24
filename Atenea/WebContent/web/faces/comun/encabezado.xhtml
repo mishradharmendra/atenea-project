@@ -18,13 +18,13 @@
 					<td width="10px"></td>
 					<td>
 						<a4j:commandLink onclick="aceptar = confirm('Esta seguro que quiere salir de la aplicacion?'); if(aceptar==true){procesarSolicitudIniciar();} return false;">
-							<img src="#{AutenticacionMB.fullContextPath}/web/imagenes/home.png" alt="Salir" title="Salir" width="16" height="16" border="0" />
+							<h:outputLabel value="Salir" styleClass="PrimerNivel"/>
 						</a4j:commandLink>
 					</td>
 					<td width="5px"></td>
 					<td>
 						<a4j:commandLink onclick="procesarSolicitudInicio()">
-							<h:outputLabel value="Inicio" styleClass="PrimerNivel"/>
+							<img src="#{AutenticacionMB.fullContextPath}/web/imagenes/home.png" alt="Home" title="Home" width="16" height="16" border="0" />
 						</a4j:commandLink>
 					</td>
 					<td width="10px"></td>

@@ -39,7 +39,7 @@ public class PersonaMB {
 	private Boolean tabDeshabilitados;
 	private Boolean documentoCargado;
 	private Boolean estadoPersona;
-	
+
 	public PersonaMB(){
 		personaDelegate = new PersonaDelegate();		
 		persona = new GppPersona();
@@ -292,55 +292,70 @@ public class PersonaMB {
 	}
 	
 	public String getCambiarEstadoPersona(){
-		persona = personaDelegate.getSeleccionarPersona(personas, idPersona);
+		getHomePageValue();
 		estadoOperacion = false;
-		if(estadoPersona==true){
-			persona.setPerBactivo(false);
-		} else {
-			persona.setPerBactivo(true);
-		}
-		estadoPersona = null;
-		estadoOperacion = personaDelegate.getActualizarPersona(persona);
-		if(estadoOperacion==true){
-			return ConstantesFaces.ESTADO_HV_OK;
-		} else {
-			return ConstantesFaces.ESTADO_HV_ERROR;
-		}
+		if(getValidarPermisosServicio("srvModificarPersona")){
+			persona = personaDelegate.getSeleccionarPersona(personas, idPersona);
+			if(estadoPersona==true){
+				persona.setPerBactivo(false);
+			} else {
+				persona.setPerBactivo(true);
+			}
+			estadoPersona = null;
+			estadoOperacion = personaDelegate.getActualizarPersona(persona);
+			if(estadoOperacion==true){
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
+			}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}			
 	}
 	
 	public String getGuardarPersona(){
+		getHomePageValueHV();
 		setTabPanel();
 		estadoOperacion = false;
-		estadoOperacion = personaDelegate.getGuardarPersona(persona);
-		if(estadoOperacion==true){
-			personas = (List<Object>) personaDelegate.getBusquedaBasicaPersona("" , "", persona.getPerNidentificacion().toString(), null);
-			if(personas.size()==1){
-				persona = (GppPersona) personas.get(0);
-				tabDeshabilitados = false;
-				if(documentoCargado==true){
-					personaDelegate.getGuardarHojaVida(persona);
-					documentoCargado=false;
-				}				
+		if(getValidarPermisosServicio("srvAgregarPersona")){	
+			estadoOperacion = personaDelegate.getGuardarPersona(persona);
+			if(estadoOperacion==true){
+				personas = (List<Object>) personaDelegate.getBusquedaBasicaPersona("" , "", persona.getPerNidentificacion().toString(), null);
+				if(personas.size()==1){
+					persona = (GppPersona) personas.get(0);
+					tabDeshabilitados = false;
+					if(documentoCargado==true){
+						personaDelegate.getGuardarHojaVida(persona);
+						documentoCargado=false;
+					}				
+				}
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
 			}
-			return ConstantesFaces.ESTADO_OK;
-		} else {
-			return ConstantesFaces.ESTADO_ERROR;
-		}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}				
 	}	
 	
 	public String getActualizarPersona(){
+		getHomePageValueHV();
 		setTabPanel();
 		estadoOperacion = false;
-		estadoOperacion = personaDelegate.getActualizarPersona(persona);
-		if(estadoOperacion==true){
-			if(documentoCargado==true){
-				personaDelegate.getGuardarHojaVida(persona);
-				documentoCargado=false;
-			}
-			return ConstantesFaces.ESTADO_OK;
-		} else {
-			return ConstantesFaces.ESTADO_ERROR;
-		}		
+		if(getValidarPermisosServicio("srvModificarPersona")){	
+			estadoOperacion = personaDelegate.getActualizarPersona(persona);
+			if(estadoOperacion==true){
+				if(documentoCargado==true){
+					personaDelegate.getGuardarHojaVida(persona);
+					documentoCargado=false;
+				}
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
+			}	
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}			
 	}
 
     public void getSubirDocumentoHojaVida(UploadEvent event) throws IOException {
@@ -357,5 +372,17 @@ public class PersonaMB {
 	
 	public void setTabPanel(){
 		tabPanel = ConstantesFaces.TAB_PANEL_PERSONA;
+	}
+	
+	public void getHomePageValue(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_HV);
+	}
+	
+	public void getHomePageValueHV(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.CREAR_HV);
+	}
+	
+	public Boolean getValidarPermisosServicio(String nombreServicio){
+		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}
 }

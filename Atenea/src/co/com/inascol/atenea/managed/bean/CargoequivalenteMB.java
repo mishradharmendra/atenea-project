@@ -71,14 +71,19 @@ public class CargoequivalenteMB {
 		return ConstantesFaces.CREAR_CARGOEQUIVALENTE;
 	}	
 	
-	public String getCrearCargoequivalente() {	
+	public String getCrearCargoequivalente() {
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = cargoequivalenteDelegate.getCrearCargoequivalente(nombreCargo);
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("CargoequivalenteMB");
-			return ConstantesFaces.ESTADO_CE_OK;
+		if(getValidarPermisosServicio("srvAgregarCargoEquivalente")){
+			estadoOperacion = cargoequivalenteDelegate.getCrearCargoequivalente(nombreCargo);
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("CargoequivalenteMB");
+				return ConstantesFaces.ESTADO_OK;
+			}else{
+				return ConstantesFaces.ESTADO_ERROR;
+			}
 		}else{
-			return ConstantesFaces.ESTADO_CE_ERROR;
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
 	}
 	
@@ -93,24 +98,34 @@ public class CargoequivalenteMB {
 	}
 	
 	public String getModificarCargoequivalente(){
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = cargoequivalenteDelegate.getModificarCargoequivalente(cargoequivalente.getCeqNidcargoeq(), cargoequivalente.getCeqVcargoeq());
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("CargoequivalenteMB");
-			return ConstantesFaces.ESTADO_CE_OK;
+		if(getValidarPermisosServicio("srvModificarCargoEquivalente")){
+			estadoOperacion = cargoequivalenteDelegate.getModificarCargoequivalente(cargoequivalente.getCeqNidcargoeq(), cargoequivalente.getCeqVcargoeq());
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("CargoequivalenteMB");
+				return ConstantesFaces.ESTADO_OK;
+			}else{
+				return ConstantesFaces.ESTADO_ERROR;
+			}
 		}else{
-			return ConstantesFaces.ESTADO_CE_ERROR;
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
 	}
 	
 	public String getEliminarCargoequivalente(){
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = cargoequivalenteDelegate.getEliminarCargoequivalente(idCargoequivalente);
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("CargoequivalenteMB");
-			return ConstantesFaces.ESTADO_CE_OK;
+		if(getValidarPermisosServicio("srvEliminarCargoEquivalente")){
+			estadoOperacion = cargoequivalenteDelegate.getEliminarCargoequivalente(idCargoequivalente);
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("CargoequivalenteMB");
+				return ConstantesFaces.ESTADO_OK;
+			}else{
+				return ConstantesFaces.ESTADO_ERROR;
+			}
 		}else{
-			return ConstantesFaces.ESTADO_CE_ERROR;
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
 	}
 	
@@ -122,5 +137,13 @@ public class CargoequivalenteMB {
 	public String getHomeCargoequivalente(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("CargoequivalenteMB");
 		return ConstantesFaces.HOME_CARGOEQUIVALENTE;
+	}
+	
+	public void getHomePageValue(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_CARGOEQUIVALENTE);
+	}
+	
+	public Boolean getValidarPermisosServicio(String nombreServicio){
+		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}
 }

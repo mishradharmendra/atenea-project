@@ -87,10 +87,10 @@
 						<td align="center"><h:outputLabel value="Acta de Grado" styleClass="TituloContenido"></h:outputLabel></td>							
 					</tr>				
 					<tr>
-						<td><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirDiploma}" acceptedTypes="pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+						<td><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirDiploma}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
 						<td width="200px"></td>	
-						<td><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirActaGrado}" acceptedTypes="pdf" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+						<td><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirActaGrado}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 					</tr>																																																							
 				</table>

@@ -1,14 +1,18 @@
 package co.com.inascol.atenea.dao;
 
 import java.sql.Types;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppUsuario;
+import co.com.inascol.atenea.entity.GppUsuariorol;
 import co.com.inascol.atenea.dao.GppUsuariorolDAO;
 import co.com.inascol.atenea.entity.rowmapper.GppUsuarioRowMapper;
 
@@ -41,7 +45,7 @@ public class GppUsuarioDAO implements DAO {
 															gppUsuario.getUsuVtelefono(),
 															gppUsuario.getUsuVusumodifica(),
 															gppUsuario.getUsuDfecmodifica(),
-															gppUsuario.getUsuVactivo(),
+															gppUsuario.getUsuBactivo(),
 															gppUsuario.getUsuNidusuario()},
 															new int[] {Types.VARCHAR,
 																		Types.VARCHAR,
@@ -66,9 +70,11 @@ public class GppUsuarioDAO implements DAO {
 							"where usu_nidusuario = ? ";	
 			jdbcTemplate.update(sentenciaSQL, new Object[] {idObj}, new int[] {Types.VARCHAR});	
 			estadoOperation = true;
-		} catch (Exception ex) {
+		} catch (DataIntegrityViolationException ex) {
+			System.out.println("Login Duplicado");
+		} catch (Exception ex){
 			ex.printStackTrace();
-		} 
+		}
 		return estadoOperation;
 	}
 
@@ -79,6 +85,18 @@ public class GppUsuarioDAO implements DAO {
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "select * from gpp_usuario where usu_nidusuario = ?";
 			gppUsuario = (GppUsuario) jdbcTemplate.queryForObject(sentenciaSQL, new Object[] {idObj}, gppUsuarioRowMapper);
+			GppUsuariorolDAO gppUsuariorol = new GppUsuariorolDAO(); 
+			List <Object> usuarioRoles = gppUsuariorol.buscarTodosRolesUsuario(Integer.valueOf(gppUsuario.getUsuNidusuario()));
+			if(usuarioRoles.size()>0){
+				Iterator<Object> itUsuariorol = usuarioRoles.iterator();
+				List<Object> gppRoles = new ArrayList<Object>();
+				GppRolDAO rolDAO = new GppRolDAO();
+				while(itUsuariorol.hasNext()){
+					GppUsuariorol usuariorol = (GppUsuariorol) itUsuariorol.next();
+					gppRoles.add(rolDAO.buscarPorId(usuariorol.getId().getRolNidrol()));
+				}
+				gppUsuario.setGppRoles(gppRoles);
+			}
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}
@@ -112,7 +130,7 @@ public class GppUsuarioDAO implements DAO {
 															gppUsuario.getUsuVtelefono(),
 															gppUsuario.getUsuVusucrea(),
 															gppUsuario.getUsuDfeccrea(),
-															gppUsuario.getUsuVactivo()},
+															gppUsuario.getUsuBactivo()},
 															new int[] {Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.VARCHAR,
@@ -121,9 +139,11 @@ public class GppUsuarioDAO implements DAO {
 																		Types.DATE,
 																		Types.VARCHAR});
 			estadoOperation = true;
-		} catch (Exception ex) {
+		} catch (DataIntegrityViolationException ex) {
+			System.out.println("Login Duplicado");
+		} catch (Exception ex){
 			ex.printStackTrace();
-		} 
+		}
 		return estadoOperation;
 	}
 	
@@ -132,14 +152,22 @@ public class GppUsuarioDAO implements DAO {
 		try{ 
 			gppUsuarioRowMapper = new GppUsuarioRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_usuario where usu_vlogin = ?";
+			sentenciaSQL = "select * from gpp_usuario where usu_vlogin = ? and usu_vactivo = 'true'";
 			gppUsuario = (GppUsuario) jdbcTemplate.queryForObject(sentenciaSQL, new Object[] {idObj}, gppUsuarioRowMapper);
 			GppUsuariorolDAO gppUsuariorol = new GppUsuariorolDAO(); 
 			List <Object> usuarioRoles = gppUsuariorol.buscarTodosRolesUsuario(Integer.valueOf(gppUsuario.getUsuNidusuario()));
-			gppUsuario.setGppRoles(usuarioRoles);
+			if(usuarioRoles.size()>0){
+				Iterator<Object> itUsuariorol = usuarioRoles.iterator();
+				List<Object> gppRoles = new ArrayList<Object>();
+				GppRolDAO rolDAO = new GppRolDAO();
+				while(itUsuariorol.hasNext()){
+					GppUsuariorol usuariorol = (GppUsuariorol) itUsuariorol.next();
+					gppRoles.add(rolDAO.buscarPorId(usuariorol.getId().getRolNidrol()));
+				}
+				gppUsuario.setGppRoles(gppRoles);
+			}
 		} catch (EmptyResultDataAccessException ex){
 			System.out.println("Usuario y Password no Encontrados.");
-			//ex.printStackTrace();
 		}
 		return gppUsuario;
 	} 		

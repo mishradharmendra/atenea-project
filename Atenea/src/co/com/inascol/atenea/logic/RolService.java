@@ -15,7 +15,7 @@ public class RolService implements IRolService {
 	private GppRol gppRol;
 	private List<Object> gppRols;
 	
-	public boolean actualizarRol(Integer idRol, String nombreRol, String descripcionRol, String activoRol, GppUsuario usuarioAutenticado) {
+	public boolean actualizarRol(Integer idRol, String nombreRol, String descripcionRol, Boolean activoRol,  List <Object> listaServicios, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppRolDAO = new GppRolDAO();
@@ -25,7 +25,8 @@ public class RolService implements IRolService {
 			gppRol.setRolVdescripcion(descripcionRol);
 			gppRol.setRolVusumodifica(usuarioAutenticado.getUsuVlogin());
 			gppRol.setRolDfecmodifica(new Date());
-			gppRol.setRolVactivo(activoRol);
+			gppRol.setRolBactivo(activoRol);
+			gppRol.setServicios(listaServicios);
 			estadoOperacion = gppRolDAO.actualizar(gppRol);
 		} catch (Exception ex){
 			ex.printStackTrace();
@@ -66,7 +67,7 @@ public class RolService implements IRolService {
 		return gppRol;
 	}
 
-	public boolean crearRol(String nombreRol, String descripcionRol, String activoRol, List <Object> listaServicios, GppUsuario usuarioAutenticado) {
+	public boolean crearRol(String nombreRol, String descripcionRol, Boolean activoRol, List <Object> listaServicios, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
 			gppRolDAO = new GppRolDAO();
@@ -75,8 +76,8 @@ public class RolService implements IRolService {
 			gppRol.setRolVdescripcion(descripcionRol);
 			gppRol.setRolVusucrea(usuarioAutenticado.getUsuVlogin());
 			gppRol.setRolDfeccrea(new Date());
-			gppRol.setRolVactivo(activoRol);
-			gppRol.setRolServicios(listaServicios);
+			gppRol.setRolBactivo(activoRol);
+			gppRol.setServicios(listaServicios);
 			estadoOperacion = gppRolDAO.crear(gppRol);
 		} catch (Exception ex){
 			ex.printStackTrace();

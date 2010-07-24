@@ -22,7 +22,7 @@
 				<h:form>	
 				<table align="center">
 					<tr>
-						<td><h:outputLabel value="Consulta de Parametrizacions: "></h:outputLabel></td>
+						<td><h:outputLabel value="Consulta de Parametrizaciones: "></h:outputLabel></td>
 					</tr>
 					<tr>
 						<td><h:outputLabel value="Nombre"></h:outputLabel></td>					
@@ -43,28 +43,28 @@
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaParametrizacion" value="#{ParametrizacionMB.parametrizaciones}" var="parametrizacion" width="700px" height="250px">
-					<rich:column width="100px">
+				<rich:extendedDataTable id="tablaParametrizacion" value="#{ParametrizacionMB.parametrizaciones}" var="parametrizacion" width="800px" height="250px">
+					<rich:column width="200px" sortable="true" sortBy="#{parametrizacion.parVnombre}" label="Parámetro">
 						<f:facet name="header">
-							<h:outputLabel value="Parametro"></h:outputLabel>
+							<h:outputLabel value="Parámetro"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="parVnombre" onclick="procesarSolicitudDetalle('#{parametrizacion.parNidparam}')">
 							<h:outputLabel value="#{parametrizacion.parVnombre}"></h:outputLabel>
 						</a4j:commandLink>
 					</rich:column>
-					<rich:column width="300px">
+					<rich:column width="300px" sortable="true" sortBy="#{parametrizacion.parVdescripcion}" label="Descripción">
 						<f:facet name="header">
-							<h:outputLabel value="Descripcion"></h:outputLabel>
+							<h:outputLabel value="Descripción"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{parametrizacion.parVdescripcion}"></h:outputLabel>
 					</rich:column>
-					<rich:column width="200px">
+					<rich:column width="200px" sortable="true" sortBy="#{parametrizacion.parVvalor}" label="Valor">
 						<f:facet name="header">
 							<h:outputLabel value="Valor"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{parametrizacion.parVvalor}"></h:outputLabel>
 					</rich:column>					
-					<rich:column width="100px">
+					<rich:column width="100px" label="Modificar">
 						<f:facet name="header">
 							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>

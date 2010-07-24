@@ -1,17 +1,22 @@
 package co.com.inascol.atenea.dao;
 
 import java.sql.Types;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppFormacion;
+import co.com.inascol.atenea.entity.GppNivelacademico;
 import co.com.inascol.atenea.entity.GppPerfilprof;
 import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.entity.rowmapper.GppPersonaRowMapper;
+import co.com.inascol.atenea.util.Calculos;
 
 public class GppPersonaDAO implements DAO{
 
@@ -86,9 +91,11 @@ public class GppPersonaDAO implements DAO{
 																		Types.VARCHAR,
 																		Types.INTEGER});	
 			estadoOperation = true;
-		} catch (Exception ex) {
+		} catch (DataIntegrityViolationException ex) {
+			System.out.println("Numero de Identificacion Duplicado");
+		} catch (Exception ex){
 			ex.printStackTrace();
-		} 
+		}
 		return estadoOperation;
 	}
 
@@ -176,9 +183,11 @@ public class GppPersonaDAO implements DAO{
 																		Types.INTEGER,
 																		Types.VARCHAR});	
 			estadoOperation = true;
-		} catch (Exception ex) {
+		} catch (DataIntegrityViolationException ex) {
+			System.out.println("Numero de Identificacion Duplicado");
+		} catch (Exception ex){
 			ex.printStackTrace();
-		} 
+		}
 		return estadoOperation;
 	}
 	
@@ -209,17 +218,60 @@ public class GppPersonaDAO implements DAO{
 			if(gppPersonas.size()>0){
 				GppFormacionDAO gppFormacionDAO = new GppFormacionDAO();
 				GppPerfilproDAO gppPerfilproDAO = new GppPerfilproDAO();
+				GppExperienciaDAO gppExperienciaDAO = new GppExperienciaDAO();
+				GppNivelacademicoDAO nivelacademicoDAO = new GppNivelacademicoDAO();
 				Iterator<Object> it = gppPersonas.iterator();
 				while(it.hasNext()){
 					gppPersona = (GppPersona) it.next();
 					List<Object> gppFormaciones = gppFormacionDAO.buscarFormacionesPersona(gppPersona.getPerNidpersona());
 					List<Object> gppPerfiles = gppPerfilproDAO.buscarPerfilesPersona(gppPersona.getPerNidpersona());
+					List<Object> gppExperienciasLaborales = gppExperienciaDAO.buscarExperienciasPersona(gppPersona.getPerNidpersona());
+					List<Object> gppCertificaciones = new ArrayList<Object>();
 					if(gppFormaciones.size()>0){
-						gppPersona.setGppFormacion((GppFormacion) gppFormaciones.get(0));
+						gppPersona.setGppFormaciones(gppFormaciones);
+						Iterator<Object> itFormacion = gppFormaciones.iterator();
+						while(itFormacion.hasNext()){
+							GppFormacion gppFormacion = (GppFormacion) itFormacion.next();
+							GppNivelacademico gppNivelacademico = (GppNivelacademico) nivelacademicoDAO.buscarPorId(gppFormacion.getNacNidnivelac());
+							CharSequence nombreCertificacion = "certifica";
+							if(gppNivelacademico.getNacVnivelac().toLowerCase().contains(nombreCertificacion)){
+								gppCertificaciones.add(gppFormacion);
+							}
+						}
+						gppPersona.setGppCertificaciones(gppCertificaciones);
 					}
 					if(gppPerfiles.size()==1){
 						gppPersona.setGppPerfilprofesional((GppPerfilprof) gppPerfiles.get(0));
 					}
+					gppPersona.setPerNpuntaje(0);
+					Iterator<Object> itFormacion = gppFormaciones.iterator();
+					while(itFormacion.hasNext()){
+						GppFormacion gppFormacion = (GppFormacion) itFormacion.next();
+						if(gppFormacion.getNacNidnivelac()==3){
+							Integer tiempoAnios = Calculos.diferenciaFechasAnio(gppFormacion.getForDfecgrado(), new Date()); 
+							if( tiempoAnios <= 2 ){
+								gppPersona.setPerNpuntaje(4);
+							}else if ( tiempoAnios <= 5 ){
+								gppPersona.setPerNpuntaje(8);
+							}else if ( tiempoAnios <= 10 ){
+								gppPersona.setPerNpuntaje(12);
+							}else if ( tiempoAnios > 10 ){
+								gppPersona.setPerNpuntaje(16);
+							}
+						
+							tiempoAnios = Calculos.diferenciaFechasAnio(gppFormacion.getForDfectarjeta(), new Date());
+							if( tiempoAnios <= 2 ){
+								gppPersona.setPerNpuntaje(gppPersona.getPerNpuntaje()+4);
+							}else if ( tiempoAnios <= 5 ){
+								gppPersona.setPerNpuntaje(gppPersona.getPerNpuntaje()+8);
+							}else if ( tiempoAnios <= 10 ){
+								gppPersona.setPerNpuntaje(gppPersona.getPerNpuntaje()+12);
+							}else if ( tiempoAnios > 10 ){
+								gppPersona.setPerNpuntaje(gppPersona.getPerNpuntaje()+16);
+							}
+						}
+					}
+					
 				}
 			}
 		} catch (Exception ex){

@@ -20,7 +20,7 @@ public class GppRolRowMapper implements RowMapper{
 		gppRol.setRolDfeccrea(rs.getDate("rol_dfeccrea"));
 		gppRol.setRolVusumodifica(rs.getString("rol_vusumodifica"));
 		gppRol.setRolDfecmodifica(rs.getDate("rol_dfecmodifica"));
-		gppRol.setRolVactivo(rs.getString("rol_vactivo"));
+		gppRol.setRolBactivo(rs.getBoolean("rol_vactivo"));
 		return gppRol;
 	}
 }

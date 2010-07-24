@@ -5,7 +5,8 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:rich="http://richfaces.org/rich"
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
-	  xmlns:a4j="http://richfaces.org/a4j">
+	  xmlns:a4j="http://richfaces.org/a4j"
+	  xmlns:c="http://java.sun.com/jstl/core">
 <head>
 	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
 </head>		  
@@ -50,7 +51,7 @@
 					<tr>
 						<td><h:commandButton action="#{PersonaMB.getBusquedaBasicaPersona}" value="Buscar"/></td>
 						<td width="20px"></td>
-						<td><h:commandButton action="#{PersonaMB.getBusquedaAvanzada}" value="Busqueda Avanzada"/></td>
+						<td><h:commandButton action="#{PersonaMB.getBusquedaAvanzada}" value="Búsqueda Avanzada"/></td>
 					</tr>
 				</table>
 				</h:form>
@@ -66,10 +67,10 @@
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="250px" width="850px" style="backgroundColor:#0093DD">
-					<rich:column width="150px">
+				<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="250px" width="900px">
+					<rich:column width="100px" label="Nombre Completo" sortable="true" sortBy="#{persona.perVnombres}">
 						<f:facet name="header">
-							<h:outputLabel value="Nombre Completo" class="PrimerNivel" style="background-color:#0093DD;"></h:outputLabel>
+							<h:outputLabel value="Nombre Completo"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="persona" onclick="procesarSolicitudPersonaDetalle('#{persona.perNidpersona}')">
 							<h:outputLabel value="#{persona.perVnombres}"></h:outputLabel>
@@ -77,47 +78,60 @@
 							<h:outputLabel value="#{persona.perVapellidos}"></h:outputLabel>
 						</a4j:commandLink>	
 					</rich:column>
-					<rich:column width="150px">
+					<rich:column width="250px" label="Profesión" sortable="true" sortBy="#{formacion.forVtitulo}" headerClass="columna">
 						<f:facet name="header">
-							<h:outputLabel value="Profesión" class="PrimerNivel"></h:outputLabel>
+							<h:outputLabel value="Profesión"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{persona.gppFormacion.forVtitulo}"></h:outputLabel>
+						<h:dataTable value="#{persona.gppFormaciones}" var="formacion">
+							<h:column>
+								<h:outputLabel value="#{formacion.forVtitulo} - " rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel>
+								<h:outputLabel value="(#{formacion.forDfecgrado})" rendered="#{formacion.nacNidnivelac == 3}" ></h:outputLabel>
+							</h:column>
+						</h:dataTable>								
 					</rich:column>
-					<rich:column width="150px">
+					<rich:column width="150px" label="Conocimientos" sortable="true" sortBy="#{persona.gppPerfilprofesional.pprVperfil}">
 						<f:facet name="header">
-							<h:outputLabel value="Conocimientos" class="PrimerNivel"></h:outputLabel>
+							<h:outputLabel value="Conocimientos"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{persona.gppPerfilprofesional.pprVperfil}"></h:outputLabel>
 					</rich:column>
-					<rich:column width="100px">
+					<rich:column width="100px" label="Certificación" sortable="true" sortBy="#{certificacion.forVtitulo}">
 						<f:facet name="header">
-							<h:outputLabel value="Certificación" class="PrimerNivel" style="background-color:#0093DD;"></h:outputLabel>
+							<h:outputLabel value="Certificación"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{persona.gppFormacion.gppNivelacademico.nacVnivelac}"></h:outputLabel>
+						<h:dataTable value="#{persona.gppCertificaciones}" var="certificacion">
+							<h:column>
+								<h:outputLabel value="#{certificacion.forVtitulo}"></h:outputLabel>
+							</h:column>
+						</h:dataTable>	
 					</rich:column>
-					<rich:column width="120px">
+					<rich:column width="120px" label="Tarjeta Profesional" sortable="true" sortBy="#{formacion.forVtarjetaprof}">
 						<f:facet name="header">
-							<h:outputLabel value="Tarjeta Profesional" class="PrimerNivel" style="background-color:#0093DD;"></h:outputLabel>
+							<h:outputLabel value="Tarjeta Profesional"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{persona.gppFormacion.forDfectarjeta}"></h:outputLabel>
+						<h:dataTable value="#{persona.gppFormaciones}" var="formacion">						
+							<h:column>
+								<h:outputLabel value="#{formacion.forVtarjetaprof}" rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel>
+							</h:column>
+						</h:dataTable>
 					</rich:column>
-					<rich:column width="50px">
+					<rich:column width="50px" label="Puntaje" sortable="true" sortBy="#{persona.perNpuntaje}">
 						<f:facet name="header">
-							<h:outputLabel value="Puntaje" class="PrimerNivel" style="background-color:#0093DD;"></h:outputLabel>
+							<h:outputLabel value="Puntaje"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{persona.perNidpersona}"></h:outputLabel>
+						<h:outputLabel value="#{persona.perNpuntaje}"></h:outputLabel>
 					</rich:column>										
-					<rich:column width="80px">
+					<rich:column width="80px" label="Modificar">
 						<f:facet name="header">
-							<h:outputLabel value="Modificar" class="PrimerNivel" style="background-color:#0093DD;"></h:outputLabel>
+							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="modificar" onclick="procesarSolicitudEditarPersona('#{persona.perNidpersona}')"> 
                             <h:graphicImage align="center" url="../../imagenes/editar.png"/>
                         </a4j:commandLink>
 					</rich:column>
-					<rich:column width="50px">
+					<rich:column width="50px" label="Activar">
 						<f:facet name="header">
-							<h:outputLabel value="Activar" class="PrimerNivel" style="background-color:#0093DD;"></h:outputLabel>
+							<h:outputLabel value="Activar"></h:outputLabel>
 						</f:facet>
 						<h:selectBooleanCheckbox value="#{persona.perBactivo}" onclick="aceptar = confirm('Esta seguro que quiere cambiar el estado del elemento seleccionado?'); if(aceptar==true){procesarSolicitudEstadoPersona('#{persona.perNidpersona}','#{persona.perBactivo}');} return false;"></h:selectBooleanCheckbox>
 					</rich:column>									

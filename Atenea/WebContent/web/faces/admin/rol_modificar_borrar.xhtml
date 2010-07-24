@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
+	  xmlns:a4j="http://richfaces.org/a4j">
+<head>
+	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+</head>	 	  
+<body>
+	<ui:composition template="../../template.xhtml">
+		<ui:define name="cuerpo">
+			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
+				<table align="left">
+					<tr>
+						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> ROLES" styleClass="TituloContenido"></h:outputLabel></td>
+					</tr>
+				</table>
+				<br/><br/><br/><br/>	
+				<h:outputLabel value="Agregar Rol" styleClass="TituloContenido"></h:outputLabel>
+				<br/><br/>
+				<h:form>					
+				<table align="center">
+					<tr>
+						<td><h:outputLabel value="Nombre: "></h:outputLabel></td>
+						<td><h:outputLabel id="nombreRol" size="30" value="#{RolMB.rol.rolVnombre}"></h:outputLabel ></td>
+						<td><rich:message for="nombreRol" style="color:red"/></td>					
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Descripcion: "></h:outputLabel></td>
+						<td><h:inputTextarea id="descripcionRol" cols="30" value="#{RolMB.rol.rolVdescripcion}" disabled="true" style="color:#000000"></h:inputTextarea></td>	
+						<td><rich:message for="descripcionRol" style="color:red"/></td>				
+					</tr>									
+				</table>
+				<br/>
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{RolMB.getBorrarServicios}" value="Borrar Servicios"/></td>
+					</tr>
+				</table>
+				</h:form>
+				<h:form>
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{RolMB.getCancelar}" value="Cancelar"/></td>
+						<td width="20px"></td>
+					</tr>
+				</table>
+				</h:form>
+				<br/><br/>
+				<table align="center">
+					<tr>
+						<td align="center"><h:outputLabel value="Servicios Asignados" styleClass="TituloContenido"/></td>
+					</tr>
+					<tr>
+						<td align="center">
+							<rich:extendedDataTable id="tablaServicioRolAsignado" value="#{RolMB.rol.gppServicios}" var="servicio" width="550px" height="150px">
+								<rich:column width="100px" label="Seleccionar">
+									<f:facet name="header">
+										<h:outputLabel value="Seleccionar"></h:outputLabel>
+									</f:facet>
+									<h:selectBooleanCheckbox id="servicio" onclick="procesarSolicitudServicioAsignado('#{servicio.serNidservicio}');"></h:selectBooleanCheckbox>
+								</rich:column>									
+								<rich:column width="150px" sortable="true" sortBy="#{servicio.serVnombre}" label="Nombre Servicio">
+									<f:facet name="header">
+										<h:outputLabel value="Nombre Servicio"></h:outputLabel>
+									</f:facet>
+									<h:outputLabel value="#{servicio.serVnombre}"></h:outputLabel>
+								</rich:column>
+								<rich:column width="300px"  sortable="true" sortBy="#{servicio.serVruta}" label="Descripción">
+									<f:facet name="header">
+										<h:outputLabel value="Descripción"></h:outputLabel>
+									</f:facet>
+									<h:outputLabel value="#{servicio.serVruta}"></h:outputLabel>
+								</rich:column>										
+							</rich:extendedDataTable>
+							<a4j:form>
+					            <a4j:jsFunction name="procesarSolicitudServicioAsignado" action="#{RolMB.getIdServiciosAsignar}" >
+					                <a4j:actionparam name="p1" assignTo="#{RolMB.idServicio}" />                
+				            	</a4j:jsFunction>
+			        		</a4j:form>						
+						</td>
+					</tr>
+					<tr>
+						<td height="5px"/>
+					</tr>					
+					<tr>
+						<td colspan="3"><h:outputLabel value="Seleccione del 'Servicios Asignados' los servicios que quiere borrarle al rol."/></td>
+					</tr>					
+				</table>
+			</rich:panel>																
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

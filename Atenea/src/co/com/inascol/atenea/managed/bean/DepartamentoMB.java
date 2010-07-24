@@ -99,13 +99,18 @@ public class DepartamentoMB {
 	}	
 	
 	public String getCrearDepto() {	
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = departamentoDelegate.getCrearDepto(nombreDepartamento, idPais);
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
-			return ConstantesFaces.ESTADO_DT_OK;
+		if(getValidarPermisosServicio("srvAgregarDepartamento")){
+			estadoOperacion = departamentoDelegate.getCrearDepto(nombreDepartamento, idPais);
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
+				return ConstantesFaces.ESTADO_OK;
+			}else{
+				return ConstantesFaces.ESTADO_ERROR;
+			}
 		}else{
-			return ConstantesFaces.ESTADO_DT_ERROR;
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
 	}
 	
@@ -120,25 +125,35 @@ public class DepartamentoMB {
 	}
 	
 	public String getModificarDepto(){
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = departamentoDelegate.getModificarDepto(departamento.getDptNiddepto(), departamento.getDptVdepto(), departamento.getPaiNidpais());
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
-			return ConstantesFaces.ESTADO_DT_OK;
+		if(getValidarPermisosServicio("srvModificarDepartamento")){
+			estadoOperacion = departamentoDelegate.getModificarDepto(departamento.getDptNiddepto(), departamento.getDptVdepto(), departamento.getPaiNidpais());
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
+				return ConstantesFaces.ESTADO_OK;
+			}else{
+				return ConstantesFaces.ESTADO_ERROR;
+			}
 		}else{
-			return ConstantesFaces.ESTADO_DT_ERROR;
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
 	}
 	
 	public String getEliminarDepto(){
+		getHomePageValue();
 		estadoOperacion = false;
-		estadoOperacion = departamentoDelegate.getEliminarDepto(idDepartamento);
-		if(estadoOperacion==true){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
-			return ConstantesFaces.ESTADO_DT_OK;
+		if(getValidarPermisosServicio("srvEliminarDepartamento")){
+			estadoOperacion = departamentoDelegate.getEliminarDepto(idDepartamento);
+			if(estadoOperacion==true){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
+				return ConstantesFaces.ESTADO_OK;
+			}else{
+				return ConstantesFaces.ESTADO_ERROR;
+			}
 		}else{
-			return ConstantesFaces.ESTADO_DT_ERROR;
-		}
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}		
 	}
 	
 	public String getCancelar(){
@@ -149,5 +164,13 @@ public class DepartamentoMB {
 	public String getHomeDepartamento(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
 		return ConstantesFaces.HOME_DEPTO;
+	}
+	
+	public void getHomePageValue(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_DEPTO);
+	}
+	
+	public Boolean getValidarPermisosServicio(String nombreServicio){
+		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}
 }
