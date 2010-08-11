@@ -4,7 +4,10 @@ import java.util.List;
 
 import co.com.inascol.atenea.entity.GppEstadocivil;
 import co.com.inascol.atenea.entity.GppUsuario;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface IEstadocivilService {
 
 	public boolean crearEstadoCivil(String nombreEstadoCivil, GppUsuario usuarioAutenticado);

@@ -5,7 +5,10 @@ import java.util.List;
 
 import co.com.inascol.atenea.entity.GppFormacion;
 import co.com.inascol.atenea.entity.GppUsuario;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface IFormacionService {
 
 	public boolean crearFormacion(String titulo, Date fechaGrado, Integer duracionMeses, String tarjetaProfesional,

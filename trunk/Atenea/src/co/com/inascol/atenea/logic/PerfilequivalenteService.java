@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppPerfilequivalenteDAO;
 import co.com.inascol.atenea.entity.GppPerfilequivalente;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IPerfilequivalenteService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class PerfilequivalenteService implements IPerfilequivalenteService{
 
 	private Boolean estadoOperacion;

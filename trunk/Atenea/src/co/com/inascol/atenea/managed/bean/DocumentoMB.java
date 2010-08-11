@@ -15,7 +15,10 @@ import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.entity.GppTipoarchivo;
 import co.com.inascol.atenea.managed.bean.delegate.DocumentoDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class DocumentoMB {
 	
 	private DocumentoDelegate documentoDelegate;

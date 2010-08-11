@@ -7,7 +7,10 @@ import co.com.inascol.atenea.entity.GppMunicipio;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.MunicipioService;
 import co.com.inascol.atenea.logic.interfaces.IMunicipioService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TestMunicipioService {
 
 	private static IMunicipioService municipioService;

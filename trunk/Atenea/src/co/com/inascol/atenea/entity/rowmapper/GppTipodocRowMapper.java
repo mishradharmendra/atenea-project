@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import co.com.inascol.atenea.entity.GppTipodoc;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppTipodocRowMapper implements RowMapper{
 	
 	private GppTipodoc gppTipodoc;

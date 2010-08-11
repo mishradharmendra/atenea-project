@@ -8,7 +8,10 @@ import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.entity.GppUsuariorolId;
 import co.com.inascol.atenea.entity.GppUsuariorol;
 import co.com.inascol.atenea.logic.interfaces.IUsuariorolService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class UsuariorolService implements IUsuariorolService {
 
 	private Boolean estadoOperacion;

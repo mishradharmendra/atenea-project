@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppInstitucionDAO;
 import co.com.inascol.atenea.entity.GppInstitucion;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IInstitucionService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class InstitucionService implements IInstitucionService {
 
 	private Boolean estadoOperacion;

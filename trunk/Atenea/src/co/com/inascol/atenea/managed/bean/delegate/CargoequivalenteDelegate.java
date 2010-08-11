@@ -10,7 +10,10 @@ import co.com.inascol.atenea.entity.GppCargoequivalente;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.CargoequivalenteService;
 import co.com.inascol.atenea.logic.interfaces.ICargoequivalenteService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class CargoequivalenteDelegate {
 
 	private ICargoequivalenteService cargoequivalenteService;

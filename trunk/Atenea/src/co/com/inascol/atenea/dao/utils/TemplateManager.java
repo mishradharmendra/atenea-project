@@ -4,7 +4,10 @@ import java.util.Properties;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TemplateManager {
 
 	private static TemplateManager templateManager;	

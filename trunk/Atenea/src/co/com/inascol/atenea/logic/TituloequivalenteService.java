@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppTituloequivalenteDAO;
 import co.com.inascol.atenea.entity.GppTituloequivalente;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.ITituloequivalenteService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TituloequivalenteService implements ITituloequivalenteService{
 
 	private Boolean estadoOperacion;

@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppFormacionDAO;
 import co.com.inascol.atenea.entity.GppFormacion;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IFormacionService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class FormacionService implements IFormacionService{
 
 	private Boolean estadoOperacion;

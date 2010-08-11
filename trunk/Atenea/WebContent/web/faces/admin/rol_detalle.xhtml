@@ -37,7 +37,8 @@
 						<td><h:outputLabel value="Servicios del Rol" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/>					
+				<br/>			
+				<h:form>						
 				<rich:extendedDataTable id="tablaServicioRol" value="#{RolMB.rol.gppServicios}" var="servicio" width="500px" height="150px">	
 					<rich:column width="200px" sortable="true" sortBy="#{servicio.serVnombre}" label="Nombre Servicio">
 						<f:facet name="header">
@@ -52,6 +53,7 @@
 						<h:outputLabel value="#{servicio.serVruta}"></h:outputLabel>
 					</rich:column>														
 				</rich:extendedDataTable>
+				</h:form>				
 				<br/><br/>
 				<h:form>			
 				<table align="right">

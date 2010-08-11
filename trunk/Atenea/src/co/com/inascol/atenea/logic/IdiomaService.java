@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppIdiomaDAO;
 import co.com.inascol.atenea.entity.GppIdioma;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IIdiomaService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class IdiomaService implements IIdiomaService {
 
 	private Boolean estadoOperacion;

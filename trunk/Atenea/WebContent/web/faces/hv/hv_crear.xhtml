@@ -89,7 +89,7 @@
 							</h:selectOneMenu></td>		
 							<td width="150px"></td>	
 							<td><h:outputLabel value="Municipio"></h:outputLabel></td>
-							<td><h:selectOneMenu id="munVidmunicipio" value="#{PersonaMB.persona.munVidmunicipio}" required="true" requiredMessage="Seleccione un Municipio">
+							<td><h:selectOneMenu id="munNidmunicipio" value="#{PersonaMB.persona.munNidmunicipio}" required="true" requiredMessage="Seleccione un Municipio">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.municipios}"/>
 							</h:selectOneMenu></td>	
@@ -97,7 +97,7 @@
 						<tr>
 							<td colspan="2"></td>	
 							<td width="150px"></td>	
-							<td align="center" colspan="2"><rich:message for="munVidmunicipio" style="color:red"/></td>							
+							<td align="center" colspan="2"><rich:message for="munNidmunicipio" style="color:red"/></td>							
 						</tr>							
 						<tr>				
 							<td><h:outputLabel value="Libreta Militar"></h:outputLabel></td>
@@ -146,15 +146,17 @@
 						</tr>																	
 					</table>
 					<br/>
+					<c:if test="#{PersonaMB.persona.perNidpersona != null}">
 					<table align="center">
 						<tr>
 							<td align="center"><h:outputLabel value="Adjuntar Hoja de Vida" styleClass="TituloContenido"></h:outputLabel></td>
 						</tr>
 						<tr>
 							<td><rich:fileUpload required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="pdf,zip,rar" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
-                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
+                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
 						</tr>												                   
-					</table>					
+					</table>
+					</c:if>					
 					<br/><br/>
 					<table align="right">
 						<tr>
@@ -188,22 +190,22 @@
 								<td><h:outputLabel value="Formación Académica  #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>				
-						<br/><br/>
+						<br/><br/><br/>
 						<table align="center">
 							<tr>
 								<td align="center"><h:outputLabel value="Formaciones Académicas" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>	
-						<br/><br/>										
+						<br/>								
 						<h:form>
-						<rich:extendedDataTable id="tablaFormacionesAcademicas" align="center" value="#{FormacionMB.formacionesAcademicas}" var="formacion" width="900px" height="200px">
+						<rich:extendedDataTable id="tablaFormacionesAcademicas" align="center" value="#{FormacionMB.formacionesAcademicas}" var="formacion" width="850px" height="200px">
 							<rich:column width="100px" sortable="true" sortBy="#{formacion.gppNivelacademico.nacVnivelac}" label="Tipo Estudio">
 								<f:facet name="header">
 									<h:outputLabel value="Tipo Estudio"></h:outputLabel>
 								</f:facet>
 								<h:outputLabel value="#{formacion.gppNivelacademico.nacVnivelac}"></h:outputLabel>
 							</rich:column>
-							<rich:column width="250px" sortable="true" sortBy="#{formacion.gppInstitucion.insVinstitucion}" label="Institución">
+							<rich:column width="200px" sortable="true" sortBy="#{formacion.gppInstitucion.insVinstitucion}" label="Institución">
 								<f:facet name="header">
 									<h:outputLabel value="Institución"></h:outputLabel>
 								</f:facet>														
@@ -291,15 +293,15 @@
 								<td><h:outputLabel value="Experiencia Laboral #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>				
-						<br/><br/>
+						<br/><br/><br/>
 						<table align="center">
 							<tr>
 								<td align="center"><h:outputLabel value="Experiencias Laborales" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>
-						<br/><br/>							
+						<br/>					
 						<h:form>
-						<rich:extendedDataTable id="tablaExperienciaLaboral" align="center" value="#{ExperienciaMB.experienciasLaborales}" var="exp" width="900px" height="200px">
+						<rich:extendedDataTable id="tablaExperienciaLaboral" align="center" value="#{ExperienciaMB.experienciasLaborales}" var="exp" width="850px" height="200px">
 							<rich:column width="100px" sortable="true" sortBy="#{exp.expVnomempresa}" label="Empresa">
 								<f:facet name="header">
 									<h:outputLabel value="Empresa"></h:outputLabel>
@@ -318,7 +320,7 @@
 								</f:facet>
 								<h:outputLabel value="#{exp.expVtelempresa}"></h:outputLabel>
 							</rich:column>						
-							<rich:column width="200px" sortable="true" sortBy="#{exp.expVcargo}" label="Cargo">
+							<rich:column width="150px" sortable="true" sortBy="#{exp.expVcargo}" label="Cargo">
 								<f:facet name="header">
 									<h:outputLabel value="Cargo"></h:outputLabel>
 								</f:facet>

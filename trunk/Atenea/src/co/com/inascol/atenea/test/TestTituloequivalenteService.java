@@ -7,7 +7,10 @@ import co.com.inascol.atenea.entity.GppTituloequivalente;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.TituloequivalenteService;
 import co.com.inascol.atenea.logic.interfaces.ITituloequivalenteService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TestTituloequivalenteService {
 
 	private static ITituloequivalenteService tituloequivalenteService;

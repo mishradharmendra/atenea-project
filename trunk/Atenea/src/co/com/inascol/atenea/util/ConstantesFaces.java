@@ -1,5 +1,8 @@
 package co.com.inascol.atenea.util;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class ConstantesFaces {
 
 	public static final String LOGIN = "LOGIN";
@@ -70,6 +73,7 @@ public class ConstantesFaces {
 	public static final String CREAR_PARAMETRIZACION = "CREAR_PARAMETRIZACION";
 	
 	public static final String HOME_HV = "HOME_HV";
+	public static final String AVANZADA_HV = "AVANZADA_HV";
 	public static final String CREAR_HV = "CREAR_HV";
 	public static final String DETALLE_HV = "DETALLE_HV";
 	
@@ -99,13 +103,13 @@ public class ConstantesFaces {
 	public static final String ESTADO_ERROR = "ESTADO_ERROR";
 	public static final String ESTADO_AUTENTICACION_ERROR = "ESTADO_AUTENTICACION_ERROR";
 	public static final String ESTADO_PERMISOS_ERROR = "ESTADO_PERMISOS_ERROR";
+
+	public static final String REPORTE_HOME = "REPORTE_HOME";
+	public static final String REPORTE_DETALLE = "REPORTE_DETALLE";
 	
 	public static final String TAB_PANEL_PERSONA = "TAB_PANEL_PERSONA";
 	public static final String TAB_PANEL_FORMACION = "TAB_PANEL_FORMACION";
 	public static final String TAB_PANEL_EXPERIENCIA = "TAB_PANEL_EXPERIENCIA";
 	public static final String TAB_PANEL_PERFIL = "TAB_PANEL_PERFIL";
 	public static final String TAB_PANEL_SOPORTES = "TAB_PANEL_SOPORTES";	
-	
-	public static final String REPORTE_HOME = "REPORTE_HOME";
-	public static final String REPORTE_DETALLE = "REPORTE_DETALLE";
 }

@@ -9,9 +9,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppDocumento;
-import co.com.inascol.atenea.entity.GppDocumentoRowMapper;
 import co.com.inascol.atenea.entity.GppTipoarchivo;
-
+import co.com.inascol.atenea.entity.rowmapper.GppDocumentoRowMapper;
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppDocumentoDAO implements DAO{
 
 	private GppDocumento gppDocumento;
@@ -21,7 +24,6 @@ public class GppDocumentoDAO implements DAO{
 	private String sentenciaSQL;
 	private JdbcTemplate jdbcTemplate;
 	
-
 	public boolean actualizar(Object obj) {
 		estadoOperation = false;
 		try{

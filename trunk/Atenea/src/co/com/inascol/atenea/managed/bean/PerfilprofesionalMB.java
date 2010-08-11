@@ -12,7 +12,10 @@ import co.com.inascol.atenea.entity.GppPerfilequivalente;
 import co.com.inascol.atenea.entity.GppPerfilprof;
 import co.com.inascol.atenea.managed.bean.delegate.PerfilprofesionalDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class PerfilprofesionalMB {
 
 	private PerfilprofesionalDelegate perfilprofesionalDelegate;

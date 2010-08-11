@@ -7,8 +7,10 @@ import javax.faces.context.FacesContext;
 import co.com.inascol.atenea.entity.GppInstitucion;
 import co.com.inascol.atenea.managed.bean.delegate.InstitucionDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class InstitucionMB {
 
 	private InstitucionDelegate institucionDelegate;

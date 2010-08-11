@@ -4,7 +4,10 @@ import java.util.List;
 
 import co.com.inascol.atenea.entity.GppPerfilprof;
 import co.com.inascol.atenea.entity.GppUsuario;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface IPerfilprofService {
 
 	public boolean crearPerfilProfesional(String perfilProfesional, Integer nivelIdioma1, Integer nivelIdioma2, String herramientasSoftware,

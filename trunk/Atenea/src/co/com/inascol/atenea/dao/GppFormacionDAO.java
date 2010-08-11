@@ -12,7 +12,10 @@ import co.com.inascol.atenea.entity.GppFormacion;
 import co.com.inascol.atenea.entity.GppInstitucion;
 import co.com.inascol.atenea.entity.GppNivelacademico;
 import co.com.inascol.atenea.entity.rowmapper.GppFormacionRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppFormacionDAO implements DAO{
 
 	private GppFormacion gppFormacion;

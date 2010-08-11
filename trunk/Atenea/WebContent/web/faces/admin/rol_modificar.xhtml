@@ -19,7 +19,7 @@
 					</tr>
 				</table>
 				<br/><br/><br/><br/>	
-				<h:outputLabel value="Agregar Rol" styleClass="TituloContenido"></h:outputLabel>
+				<h:outputLabel value="Modificar Rol" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>					
 				<table align="center">
@@ -64,6 +64,7 @@
 					</tr>
 					<tr>
 						<td align="center">
+							<h:form>						
 							<rich:extendedDataTable id="tablaServicioRolAsignado" value="#{RolMB.rol.gppServicios}" var="servicio" width="150px" height="150px">	
 								<rich:column width="150px" sortable="true" sortBy="#{servicio.serVnombre}" label="Nombre Servicio">
 									<f:facet name="header">
@@ -72,6 +73,7 @@
 									<h:outputLabel value="#{servicio.serVnombre}"></h:outputLabel>
 								</rich:column>
 							</rich:extendedDataTable>
+							</h:form>
 						</td>
 						<td width="50px"></td>
 						<td align="center">
@@ -108,7 +110,7 @@
 						<td height="5px"/>
 					</tr>
 					<tr>
-						<td colspan="3"><h:outputLabel value="Seleccione del 'Listado los Servicios' los servicios que quiere agregarle al rol."/></td>
+						<td colspan="3" align="center"><h:outputLabel value="Seleccione del 'Listado los Servicios' los servicios que quiere agregarle al rol."/></td>
 					</tr>
 				</table>
 			</rich:panel>																

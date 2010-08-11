@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppPerfilproDAO;
 import co.com.inascol.atenea.entity.GppPerfilprof;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IPerfilprofService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class PerfilprofService implements IPerfilprofService{
 
 	private Boolean estadoOperacion;

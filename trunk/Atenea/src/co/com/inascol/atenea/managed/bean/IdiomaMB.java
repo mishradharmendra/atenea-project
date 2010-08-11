@@ -7,8 +7,10 @@ import javax.faces.context.FacesContext;
 import co.com.inascol.atenea.entity.GppIdioma;
 import co.com.inascol.atenea.managed.bean.delegate.IdiomaDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class IdiomaMB {
 
 	private IdiomaDelegate idiomaDelegate;

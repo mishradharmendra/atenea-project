@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import co.com.inascol.atenea.entity.GppPerfilequivalente;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppPerfilequivalenteRowMapper implements RowMapper{
 
 	private GppPerfilequivalente gppPerfilequivalente;

@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import co.com.inascol.atenea.entity.GppFormacion;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppFormacionRowMapper implements RowMapper{
 
 	private GppFormacion gppFormacion;

@@ -8,7 +8,10 @@ import co.com.inascol.atenea.entity.GppRol;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.RolService;
 import co.com.inascol.atenea.logic.interfaces.IRolService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TestRolService {
 
 	private static IRolService rolService;

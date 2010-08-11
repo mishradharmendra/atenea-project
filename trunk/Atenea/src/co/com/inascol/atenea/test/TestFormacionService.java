@@ -8,7 +8,10 @@ import co.com.inascol.atenea.entity.GppFormacion;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.FormacionService;
 import co.com.inascol.atenea.logic.interfaces.IFormacionService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TestFormacionService {
 
 	private static IFormacionService formacionService;

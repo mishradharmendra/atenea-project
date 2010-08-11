@@ -54,6 +54,7 @@
 				<table align="center">
 					<tr>
 						<td align="center">
+						<h:form>
 						<rich:extendedDataTable id="tablaRolesAsignado" value="#{UsuariorolMB.usuario.gppRoles}" var="rol" width="500px" height="150px">	
 							<rich:column width="200px" sortable="true" sortBy="#{rol.rolVnombre}" label="Nombre Rol">
 								<f:facet name="header">
@@ -68,6 +69,7 @@
 								<h:outputLabel value="#{rol.rolVdescripcion}"></h:outputLabel>
 							</rich:column>														
 						</rich:extendedDataTable>
+						</h:form>
 						</td>
 					</tr>
 				</table>

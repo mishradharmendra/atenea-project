@@ -1,5 +1,8 @@
 package co.com.inascol.atenea.managed.bean.delegate;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

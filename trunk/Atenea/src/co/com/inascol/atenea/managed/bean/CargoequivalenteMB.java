@@ -7,8 +7,10 @@ import javax.faces.context.FacesContext;
 import co.com.inascol.atenea.entity.GppCargoequivalente;
 import co.com.inascol.atenea.managed.bean.delegate.CargoequivalenteDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class CargoequivalenteMB {
 
 	private CargoequivalenteDelegate cargoequivalenteDelegate;

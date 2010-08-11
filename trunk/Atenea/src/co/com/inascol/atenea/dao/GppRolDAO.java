@@ -15,7 +15,10 @@ import co.com.inascol.atenea.dao.GppServiciorolDAO;
 import co.com.inascol.atenea.entity.GppServiciorol;
 import co.com.inascol.atenea.entity.GppServiciorolId;
 import co.com.inascol.atenea.entity.rowmapper.GppRolRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppRolDAO implements DAO {
 	
 	private GppRol gppRol;

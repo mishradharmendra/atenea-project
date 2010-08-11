@@ -26,17 +26,24 @@ import co.com.inascol.atenea.logic.EstadocivilService;
 import co.com.inascol.atenea.logic.MunicipioService;
 import co.com.inascol.atenea.logic.PaisService;
 import co.com.inascol.atenea.logic.ParametrizacionService;
+import co.com.inascol.atenea.logic.PerfilequivalenteService;
 import co.com.inascol.atenea.logic.PersonaService;
 import co.com.inascol.atenea.logic.TipodocService;
+import co.com.inascol.atenea.logic.TituloequivalenteService;
 import co.com.inascol.atenea.logic.interfaces.IDepartamentoService;
 import co.com.inascol.atenea.logic.interfaces.IDocumentoService;
 import co.com.inascol.atenea.logic.interfaces.IEstadocivilService;
 import co.com.inascol.atenea.logic.interfaces.IMunicipioService;
 import co.com.inascol.atenea.logic.interfaces.IPaisService;
 import co.com.inascol.atenea.logic.interfaces.IParametrizacionService;
+import co.com.inascol.atenea.logic.interfaces.IPerfilequivalenteService;
 import co.com.inascol.atenea.logic.interfaces.IPersonaService;
 import co.com.inascol.atenea.logic.interfaces.ITipodocService;
-
+import co.com.inascol.atenea.logic.interfaces.ITituloequivalenteService;
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class PersonaDelegate {
 
 	private IPersonaService personaService;	
@@ -46,12 +53,13 @@ public class PersonaDelegate {
 	private IMunicipioService municipioService;
 	private IEstadocivilService estadocivilService;
 	private IDocumentoService documentoService;
+	private ITituloequivalenteService tituloequivalenteService;
+	private IPerfilequivalenteService perfilequivalenteService;
 	private IParametrizacionService parametrizacionService;
 	private List<Object> personas;
 	private GppPersona persona;
 	private String urlArchivo;
 	private String nombreArchivo;
-	private SimpleDateFormat dateFormat; 
 	private GppUsuario usuarioAutenticado;
 	
 	public PersonaDelegate(){}
@@ -87,32 +95,116 @@ public class PersonaDelegate {
 		return estadocivilService.buscarEstadosCiviles();
 	}	
 	
-	public List<Object> getBusquedaBasicaPersona(String nombrePersona, String apellidoPersona, String identificacionPersona, Boolean estadoPersona){
-		personaService = new PersonaService();
-		List<Object> criteriosBusqueda = new ArrayList<Object>();							
-		if(!nombrePersona.equalsIgnoreCase(""))
-			criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
-		if(!apellidoPersona.equalsIgnoreCase("")) 
-			criteriosBusqueda.add("per_vapellidos"+"|"+apellidoPersona);
-		if(!identificacionPersona.equalsIgnoreCase(""))
-			criteriosBusqueda.add("per_nidentificacion"+"|"+identificacionPersona);
-		if(estadoPersona!=null){
-			criteriosBusqueda.add("per_vactivo"+"|"+estadoPersona);
+	public List<Object> getTitulosEquivalentes(){
+		tituloequivalenteService = new TituloequivalenteService();
+		return tituloequivalenteService.buscarTitulosEquivalentes();
+	}
+	
+	public List<Object> getPerfilesProfesionalesEquivalente(){
+		perfilequivalenteService = new PerfilequivalenteService();
+		return perfilequivalenteService.buscarPerfilesEquivalentes();
+	}
+	
+	public List<Object> getBusquedaBasicaPersona(String nombrePersona, String identificacionPersona){
+		if(!nombrePersona.equalsIgnoreCase("") || !identificacionPersona.equalsIgnoreCase("")){
+			personaService = new PersonaService();
+			String apellidoPersona = "";
+			String [] nombreApellido = nombrePersona.split("\\s+");
+			if(nombreApellido.length==2){
+				nombrePersona = nombreApellido[0];
+				apellidoPersona = nombreApellido[1];
+			}
+			if(nombreApellido.length==3){
+				nombrePersona = nombreApellido[0];
+				apellidoPersona = nombreApellido[1] + " " + nombreApellido[2];
+			}
+			if(nombreApellido.length==4){
+				nombrePersona = nombreApellido[0] + " " + nombreApellido[1];
+				apellidoPersona = nombreApellido[2] + " " + nombreApellido[3];
+			}
+			List<Object> criteriosBusqueda = new ArrayList<Object>();							
+			if(!nombrePersona.equalsIgnoreCase(""))
+				criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
+            if(!apellidoPersona.equalsIgnoreCase("")) 
+                criteriosBusqueda.add("per_vapellidos"+"|"+apellidoPersona);
+			if(!identificacionPersona.equalsIgnoreCase(""))
+				criteriosBusqueda.add("per_nidentificacion"+"|"+identificacionPersona);
+			personas = personaService.buscarPersonaPorCriterios(criteriosBusqueda);
 		}
-		personas = personaService.buscarPersonaPorCriterios(criteriosBusqueda);
+		return personas;
+	}
+	
+	public List<Object> getBusquedaAvanzadaPersona(String nombrePersona, String identificacionPersona, String idPregrado, Date fechaTarjetaProfesional, String idEspecializacion, String idMaestria, String cargo, String bd, String herramientas, String funciones, String idPerfil){
+		if(!nombrePersona.equalsIgnoreCase("") || !identificacionPersona.equalsIgnoreCase("") || !idPregrado.equalsIgnoreCase("") || 
+				!idEspecializacion.equalsIgnoreCase("") || !idMaestria.equalsIgnoreCase("") || !cargo.equalsIgnoreCase("") ||
+					!herramientas.equalsIgnoreCase("") || !bd.equalsIgnoreCase("") || !funciones.equalsIgnoreCase("") || 
+						!idPerfil.equalsIgnoreCase("") || fechaTarjetaProfesional!=null){
+			personaService = new PersonaService();
+			String apellidoPersona = "";			
+			if(!nombrePersona.equalsIgnoreCase("")){				
+				String [] nombreApellido = nombrePersona.split("\\s+");
+				if(nombreApellido.length==2){
+					nombrePersona = nombreApellido[0];
+					apellidoPersona = nombreApellido[1];
+				}
+				if(nombreApellido.length==3){
+					nombrePersona = nombreApellido[0];
+					apellidoPersona = nombreApellido[1] + " " + nombreApellido[2];
+				}
+				if(nombreApellido.length==4){
+					nombrePersona = nombreApellido[0] + " " + nombreApellido[1];
+					apellidoPersona = nombreApellido[2] + " " + nombreApellido[3];
+				}
+			}
+			List<Object> criteriosBusqueda = new ArrayList<Object>();							
+			if(!nombrePersona.equalsIgnoreCase(""))
+				criteriosBusqueda.add("p.per_vnombres LIKE '%"+nombrePersona+"%'");
+            if(!apellidoPersona.equalsIgnoreCase("")) 
+                criteriosBusqueda.add("p.per_vapellidos LIKE '%"+apellidoPersona+"%'");
+			if(!identificacionPersona.equalsIgnoreCase(""))
+				criteriosBusqueda.add("p.per_nidentificacion LIKE '%"+identificacionPersona+"%'");
+			if(!idPregrado.equalsIgnoreCase(""))
+				criteriosBusqueda.add("pre.teq_nidtituloeq = "+idPregrado);
+			if(!idEspecializacion.equalsIgnoreCase(""))
+				criteriosBusqueda.add("esp.teq_nidtituloeq = "+idEspecializacion);
+			if(!idMaestria.equalsIgnoreCase(""))
+				criteriosBusqueda.add("msc.teq_nidtituloeq = "+idMaestria);
+			if(!cargo.equalsIgnoreCase(""))
+				criteriosBusqueda.add("e.exp_vcargo LIKE '%"+cargo+"%'");
+			if(!herramientas.equalsIgnoreCase(""))
+				criteriosBusqueda.add("pp.ppr_vherrasw LIKE '%"+herramientas+"%'");
+			if(!bd.equalsIgnoreCase(""))
+				criteriosBusqueda.add("pp.ppr_vmotorbd LIKE '%"+bd+"%'");
+			if(!funciones.equalsIgnoreCase(""))
+				criteriosBusqueda.add("e.exp_vfuncionlogro LIKE '%"+funciones+"%'");
+			if(!idPerfil.equalsIgnoreCase(""))
+				criteriosBusqueda.add("pp.peq_nidperfileq = "+idPerfil);
+			if(fechaTarjetaProfesional!=null){
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				criteriosBusqueda.add("pre.for_dfectarjeta = '"+dateFormat.format(fechaTarjetaProfesional)+"'");
+			}
+			personas = personaService.buscarPersonaPorCriteriosAvanzados(criteriosBusqueda);
+		}
+		return personas;
+	}
+	
+	public List<Object> getBusquedaRapidaPersona(String criterioBusquedaRapida){
+		personaService = new PersonaService();
+		if(!criterioBusquedaRapida.equalsIgnoreCase(""))
+			personas = personaService.buscarPersonaPorCriterioRapido(criterioBusquedaRapida);
 		return personas;
 	}
 	
 	public Boolean getGuardarPersona(GppPersona persona){
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		personaService = new PersonaService();
-		return personaService.crearPersona(persona.getPerVnombres(), persona.getPerVapellidos(), persona.getPerNidentificacion(), persona.getPerVsexo(), persona.getPerDfecnacimiento(), persona.getPerVlibretamilitar(), persona.getPerVmovil(), persona.getPerVemail(), persona.getPerVdireccion(), persona.getPerVtelefono(), persona.getMunVidmunicipio(), persona.getTdcNidtipodoc(), persona.getEscNidestadocivil(), persona.getPaiNpaisresidencia(), persona.getMunNmpioresidencia(), true, usuarioAutenticado);
+		return personaService.crearPersona(persona.getPerVnombres(), persona.getPerVapellidos(), persona.getPerNidentificacion(), persona.getPerVsexo(), persona.getPerDfecnacimiento(), persona.getPerVlibretamilitar(), persona.getPerVmovil(), persona.getPerVemail(), persona.getPerVdireccion(), persona.getPerVtelefono(), persona.getMunNidmunicipio(), persona.getTdcNidtipodoc(), persona.getEscNidestadocivil(), persona.getPaiNpaisresidencia(), persona.getMunNmpioresidencia(), true, usuarioAutenticado);
 	}
 	
 	public Boolean getActualizarPersona(GppPersona persona){
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		personaService = new PersonaService();
-		return personaService.actualizarPersona(persona.getPerNidpersona(), persona.getPerVnombres(), persona.getPerVapellidos(), persona.getPerNidentificacion(), persona.getPerVsexo(), persona.getPerDfecnacimiento(), persona.getPerVlibretamilitar(), persona.getPerVmovil(), persona.getPerVemail(), persona.getPerVdireccion(), persona.getPerVtelefono(), persona.getMunVidmunicipio(), persona.getTdcNidtipodoc(), persona.getEscNidestadocivil(), persona.getPaiNpaisresidencia(), persona.getMunNmpioresidencia(), persona.getPerBactivo(), usuarioAutenticado);		
+		return personaService.actualizarPersona(persona.getPerNidpersona(), persona.getPerVnombres(), persona.getPerVapellidos(), persona.getPerNidentificacion(), persona.getPerVsexo(), persona.getPerDfecnacimiento(), persona.getPerVlibretamilitar(), persona.getPerVmovil(), persona.getPerVemail(), persona.getPerVdireccion(), persona.getPerVtelefono(), persona.getMunNidmunicipio(), persona.getTdcNidtipodoc(), persona.getEscNidestadocivil(), persona.getPaiNpaisresidencia(), persona.getMunNmpioresidencia(), persona.getPerBactivo(), usuarioAutenticado);		
 	}
 	
 	public GppPersona getSeleccionarPersona(List<Object> personas, Integer idPersona){
@@ -128,10 +220,9 @@ public class PersonaDelegate {
 		return persona;
 	}
 	
-	public void getSubirDocumentoHojaVida(UploadEvent event) throws IOException {
+	public void getSubirDocumentoHojaVida(GppPersona persona, UploadEvent event) throws IOException {
 	    if (event != null) {
 	    	parametrizacionService = new ParametrizacionService();
-	    	dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	        UploadItem item = event.getUploadItem();
 	        File file = item.getFile();
 	        nombreArchivo = item.getFileName();
@@ -139,7 +230,7 @@ public class PersonaDelegate {
 	        if(urlArchivo==null){
 	        	urlArchivo = "/home/memo/Temp-Directory/";
 	        }	        
-	        urlArchivo = urlArchivo + "HV_" + dateFormat.format(new Date()) + "_" + nombreArchivo;
+	        urlArchivo = urlArchivo + "HV_" + persona.getPerNidentificacion() + "_" + nombreArchivo;
 	        FileInputStream fis = new FileInputStream(file.getPath());
 	        BufferedInputStream bis = new BufferedInputStream(fis);
 	        FileOutputStream fos = new FileOutputStream(urlArchivo);

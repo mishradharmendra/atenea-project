@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import co.com.inascol.atenea.entity.GppMunicipio;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppMunicipioRowMapper implements RowMapper{
 
 	private GppMunicipio gppMunicipio;

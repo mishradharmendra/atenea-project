@@ -7,14 +7,16 @@ import javax.faces.context.FacesContext;
 import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.managed.bean.delegate.ReporteDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class ReporteMB {
 
 	private ReporteDelegate reporteDelegate;
 	private GppPersona persona;
 	private Integer idPersona;
 	private String nombrePersona;
-	private String apellidoPersona;
 	private String identificacionPersona;
 	private Boolean estadoPersona;
 	private String tipoReporte;
@@ -52,14 +54,6 @@ public class ReporteMB {
 
 	public void setNombrePersona(String nombrePersona) {
 		this.nombrePersona = nombrePersona;
-	}
-
-	public String getApellidoPersona() {
-		return apellidoPersona;
-	}
-
-	public void setApellidoPersona(String apellidoPersona) {
-		this.apellidoPersona = apellidoPersona;
 	}
 
 	public String getIdentificacionPersona() {
@@ -100,7 +94,7 @@ public class ReporteMB {
 	}
 	
 	public String getBusquedaBasicaPersona(){
-		personas = reporteDelegate.getBusquedaBasicaPersona(nombrePersona, apellidoPersona, identificacionPersona, estadoPersona);
+		personas = reporteDelegate.getBusquedaBasicaPersona(nombrePersona, identificacionPersona);
 		return ConstantesFaces.REPORTE_HOME;
 	}
 	

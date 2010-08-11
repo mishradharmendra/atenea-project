@@ -9,7 +9,10 @@ import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppUsuariorol;
 import co.com.inascol.atenea.entity.rowmapper.GppUsuariorolRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppUsuariorolDAO implements DAO {
 	
 	private GppUsuariorol gppUsuariorol;

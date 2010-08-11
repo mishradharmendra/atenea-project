@@ -17,7 +17,10 @@ import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.entity.GppTituloequivalente;
 import co.com.inascol.atenea.managed.bean.delegate.FormacionDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class FormacionMB {
 
 	private FormacionDelegate formacionDelegate;
@@ -224,19 +227,25 @@ public class FormacionMB {
 	}
 	
 	public void getSubirDiploma(UploadEvent event) throws IOException {
-		documentoCargadoDiploma = true;
-		formacionDelegate.getSubirDiploma(event);
+		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
+			GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+			documentoCargadoDiploma = true;
+			formacionDelegate.getSubirDiploma(persona, event);
+		}
 	}
 	
 	public void getSubirActaGrado(UploadEvent event) throws IOException {
-		documentoCargadoActa = true;
-		formacionDelegate.getSubirActaGrado(event);
+		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
+			GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+			documentoCargadoActa = true;
+			formacionDelegate.getSubirActaGrado(persona, event);
+		}
 	}
 
 	public void getSubirSoportesAcademicos(UploadEvent event) throws IOException {
-		formacionDelegate.getSubirSoportesAcademicos(event);
 		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
 			GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+			formacionDelegate.getSubirSoportesAcademicos(persona, event);
 			formacionDelegate.getGuardarSoporte(persona);
 		}
 	}

@@ -7,8 +7,10 @@ import javax.faces.context.FacesContext;
 import co.com.inascol.atenea.entity.GppTipodoc;
 import co.com.inascol.atenea.managed.bean.delegate.TipodocumentoDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TipodocumentoMB {
 
 	private TipodocumentoDelegate tipodocDelegate;

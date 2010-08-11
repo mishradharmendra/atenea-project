@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppTipoarchivoDAO;
 import co.com.inascol.atenea.entity.GppTipoarchivo;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.ITipoarchivoService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TipoarchivoService implements ITipoarchivoService {
 
 	private Boolean estadoOperacion;

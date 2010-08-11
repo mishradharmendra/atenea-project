@@ -4,7 +4,10 @@ import java.util.List;
 
 import co.com.inascol.atenea.entity.GppMunicipio;
 import co.com.inascol.atenea.entity.GppUsuario;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface IMunicipioService {
 
 	public boolean crearMunicipio(String nombreMunicipio, Integer idDepto, GppUsuario usuarioAutenticado);

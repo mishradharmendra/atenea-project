@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppDepartamentoDAO;
 import co.com.inascol.atenea.entity.GppDepartamento;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IDepartamentoService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class DepartamentoService implements IDepartamentoService {
 
 	private Boolean estadoOperacion;

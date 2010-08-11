@@ -8,7 +8,10 @@ import co.com.inascol.atenea.entity.GppExperiencia;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.ExperienciaService;
 import co.com.inascol.atenea.logic.interfaces.IExperienciaService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TestExperienciaService {
 
 	private static IExperienciaService experienciaService;

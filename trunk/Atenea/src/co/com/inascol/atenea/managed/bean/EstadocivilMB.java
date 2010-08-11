@@ -7,8 +7,10 @@ import javax.faces.context.FacesContext;
 import co.com.inascol.atenea.entity.GppEstadocivil;
 import co.com.inascol.atenea.managed.bean.delegate.EstadocivilDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class EstadocivilMB {
 
 	private EstadocivilDelegate estadocivilDelegate;

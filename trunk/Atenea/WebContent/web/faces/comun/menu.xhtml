@@ -56,12 +56,19 @@
 			</rich:menuGroup>						
 		</rich:dropDownMenu>
 		<rich:toolBarGroup location="right">
-        	<rich:dropDownMenu value="Búsqueda Rápida" direction="bottom-left" jointPoint="br" styleClass="search">
-            	<rich:menuItem submitMode="none">
-                	<h:inputText value="" id="searchinput"/>
-                    <button type="button">Buscar</button>
-				</rich:menuItem>
-			</rich:dropDownMenu>
+			<h:form>
+	       		<h:outputLabel value="Búsqueda Rápida"/>
+	       		<h:inputText value="#{PersonaMB.criterioBusquedaRapida}"/>
+	       		<h:commandButton action="#{PersonaMB.getBusquedaRapidaPersona}" value="Búsqueda Rapida"/>
+        	</h:form>
+        	<h:form>
+				<a4j:commandLink id="rapida" onclick="procesarSolicitudBusquedaRapida();">
+				    <h:graphicImage url="../../imagenes/lupa.png"/>
+				</a4j:commandLink>
+			<a4j:form>
+				<a4j:jsFunction name="procesarSolicitudBusquedaRapida" action="#{PersonaMB.getBusquedaRapidaPersona}" />
+			</a4j:form>
+			</h:form>	        	
 		</rich:toolBarGroup>						
 	</rich:toolBar>
 </h:form>	

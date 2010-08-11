@@ -12,7 +12,10 @@ import co.com.inascol.atenea.logic.PerfilprofService;
 import co.com.inascol.atenea.logic.interfaces.IIdiomaService;
 import co.com.inascol.atenea.logic.interfaces.IPerfilequivalenteService;
 import co.com.inascol.atenea.logic.interfaces.IPerfilprofService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class PerfilprofesionalDelegate {
 	
 	private IPerfilprofService perfilprofService;

@@ -11,7 +11,10 @@ import co.com.inascol.atenea.entity.GppServicio;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.managed.bean.delegate.AutenticacionDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class AutenticacionMB {
 
 	private AutenticacionDelegate autenticacionDelegate;

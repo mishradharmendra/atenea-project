@@ -4,7 +4,10 @@ import java.util.List;
 
 import co.com.inascol.atenea.entity.GppTipoarchivo;
 import co.com.inascol.atenea.entity.GppUsuario;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface ITipoarchivoService {
 
 	public boolean crearTipoarchivo(String nombreTipoarchivo, GppUsuario usuarioAutenticado);

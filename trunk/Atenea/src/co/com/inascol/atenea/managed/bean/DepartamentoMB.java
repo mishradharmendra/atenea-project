@@ -12,8 +12,10 @@ import co.com.inascol.atenea.entity.GppPais;
 import co.com.inascol.atenea.managed.bean.delegate.DepartamentoDelegate;
 import co.com.inascol.atenea.managed.bean.delegate.PaisDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class DepartamentoMB {
 
 	private DepartamentoDelegate departamentoDelegate;

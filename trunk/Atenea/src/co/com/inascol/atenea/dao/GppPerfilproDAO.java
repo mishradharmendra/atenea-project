@@ -1,17 +1,18 @@
 package co.com.inascol.atenea.dao;
 
-import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppPerfilprof;
 import co.com.inascol.atenea.entity.rowmapper.GppPerfilprofRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppPerfilproDAO implements DAO{
 
 	private GppPerfilprof gppPerfilprof;

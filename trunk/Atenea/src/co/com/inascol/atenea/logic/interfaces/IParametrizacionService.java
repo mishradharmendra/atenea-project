@@ -3,7 +3,10 @@ package co.com.inascol.atenea.logic.interfaces;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppParametrizacion;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface IParametrizacionService {
 
 	public boolean crearParametrizacion( String nombreParam, String valorParam, String descripcionParam);

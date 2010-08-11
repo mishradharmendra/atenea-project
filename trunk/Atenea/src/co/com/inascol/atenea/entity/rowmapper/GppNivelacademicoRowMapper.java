@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import co.com.inascol.atenea.entity.GppNivelacademico;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppNivelacademicoRowMapper implements RowMapper{
 
 	private GppNivelacademico gppNivelacademico;

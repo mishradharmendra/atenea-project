@@ -11,7 +11,10 @@ import co.com.inascol.atenea.entity.GppServicio;
 import co.com.inascol.atenea.managed.bean.delegate.RolDelegate;
 import co.com.inascol.atenea.managed.bean.delegate.ServicioDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class RolMB {
 
 	private RolDelegate rolDelegate;

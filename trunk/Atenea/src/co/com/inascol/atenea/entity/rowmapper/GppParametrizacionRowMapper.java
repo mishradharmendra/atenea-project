@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import co.com.inascol.atenea.entity.GppParametrizacion;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppParametrizacionRowMapper implements RowMapper{
 
 	private GppParametrizacion gppParametrizacion;

@@ -9,7 +9,10 @@ import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppCargoequivalente;
 import co.com.inascol.atenea.entity.rowmapper.GppCargoequivalenteRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppCargoequivalenteDAO implements DAO{
 
 	private GppCargoequivalente gppCargoequivalente;

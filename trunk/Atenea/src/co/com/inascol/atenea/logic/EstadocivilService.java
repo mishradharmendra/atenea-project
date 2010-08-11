@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppEstadocivilDAO;
 import co.com.inascol.atenea.entity.GppEstadocivil;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IEstadocivilService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class EstadocivilService implements IEstadocivilService{
 
 	private Boolean estadoOperacion;

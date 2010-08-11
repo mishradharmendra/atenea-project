@@ -7,7 +7,10 @@ import co.com.inascol.atenea.entity.GppTipoarchivo;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.TipoarchivoService;
 import co.com.inascol.atenea.logic.interfaces.ITipoarchivoService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TestTipoarchivoService {
 
 	private static ITipoarchivoService tipoarchivoService;

@@ -8,7 +8,10 @@ import co.com.inascol.atenea.entity.GppServiciorolId;
 import co.com.inascol.atenea.entity.GppServiciorol;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IServiciorolService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class ServiciorolService implements IServiciorolService {
 
 	private Boolean estadoOperacion;

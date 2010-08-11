@@ -9,7 +9,10 @@ import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppMunicipio;
 import co.com.inascol.atenea.entity.rowmapper.GppMunicipioRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppMunicipioDAO implements DAO{
 
 	private GppMunicipio gppMunicipio;

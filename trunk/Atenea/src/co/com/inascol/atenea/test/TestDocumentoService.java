@@ -8,7 +8,10 @@ import co.com.inascol.atenea.entity.GppDocumento;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.DocumentoService;
 import co.com.inascol.atenea.logic.interfaces.IDocumentoService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TestDocumentoService {
 	
 	private static IDocumentoService documentoService;

@@ -2,6 +2,7 @@ package co.com.inascol.atenea.managed.bean;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,18 +16,32 @@ import co.com.inascol.atenea.entity.GppDepartamento;
 import co.com.inascol.atenea.entity.GppEstadocivil;
 import co.com.inascol.atenea.entity.GppMunicipio;
 import co.com.inascol.atenea.entity.GppPais;
+import co.com.inascol.atenea.entity.GppPerfilequivalente;
 import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.entity.GppTipodoc;
+import co.com.inascol.atenea.entity.GppTituloequivalente;
 import co.com.inascol.atenea.managed.bean.delegate.PersonaDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class PersonaMB {
 
 	private PersonaDelegate personaDelegate;
 	private Integer idPersona;
 	private String nombrePersona;
-	private String apellidoPersona;
 	private String identificacionPersona;
+	private String idPregrado;
+	private String idEspecializacion;
+	private String idMaestria;
+	private String idPerfil;
+	private String cargo;
+	private String herramientas;
+	private String bd;
+	private String funciones;
+	private String criterioBusquedaRapida;
+	private Date fechaTarjetaProfesional;
 	private List<Object> personas;
 	private String controlNavegacion;
 	private GppPersona persona;
@@ -39,7 +54,7 @@ public class PersonaMB {
 	private Boolean tabDeshabilitados;
 	private Boolean documentoCargado;
 	private Boolean estadoPersona;
-
+	
 	public PersonaMB(){
 		personaDelegate = new PersonaDelegate();		
 		persona = new GppPersona();
@@ -57,12 +72,6 @@ public class PersonaMB {
 	}
 	public void setNombrePersona(String nombrePersona) {
 		this.nombrePersona = nombrePersona;
-	}
-	public String getApellidoPersona() {
-		return apellidoPersona;
-	}
-	public void setApellidoPersona(String apellidoPersona) {
-		this.apellidoPersona = apellidoPersona;
 	}
 	public List<Object> getPersonas() {
 		return personas;
@@ -117,6 +126,66 @@ public class PersonaMB {
 	}
 	public void setEstadoPersona(Boolean estadoPersona) {
 		this.estadoPersona = estadoPersona;
+	}
+	public String getIdPregrado() {
+		return idPregrado;
+	}
+	public void setIdPregrado(String idPregrado) {
+		this.idPregrado = idPregrado;
+	}
+	public String getIdEspecializacion() {
+		return idEspecializacion;
+	}
+	public void setIdEspecializacion(String idEspecializacion) {
+		this.idEspecializacion = idEspecializacion;
+	}
+	public String getIdMaestria() {
+		return idMaestria;
+	}
+	public void setIdMaestria(String idMaestria) {
+		this.idMaestria = idMaestria;
+	}
+	public String getIdPerfil() {
+		return idPerfil;
+	}
+	public void setIdPerfil(String idPerfil) {
+		this.idPerfil = idPerfil;
+	}
+	public String getCargo() {
+		return cargo;
+	}
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+	public String getHerramientas() {
+		return herramientas;
+	}
+	public void setHerramientas(String herramientas) {
+		this.herramientas = herramientas;
+	}
+	public String getBd() {
+		return bd;
+	}
+	public void setBd(String bd) {
+		this.bd = bd;
+	}
+	public String getFunciones() {
+		return funciones;
+	}
+	public void setFunciones(String funciones) {
+		this.funciones = funciones;
+	}
+	public Date getFechaTarjetaProfesional() {
+		return fechaTarjetaProfesional;
+	}
+	public void setFechaTarjetaProfesional(Date fechaTarjetaProfesional) {
+		this.fechaTarjetaProfesional = fechaTarjetaProfesional;
+	}
+	public String getCriterioBusquedaRapida() {
+		return criterioBusquedaRapida;
+	}
+	public void setCriterioBusquedaRapida(String criterioBusquedaRapida) {
+		this.criterioBusquedaRapida = criterioBusquedaRapida;
 	}
 	
 	public List<SelectItem> getTiposIdentificacion(){
@@ -231,6 +300,32 @@ public class PersonaMB {
 		}
 		return listadoMunicipios;
 	}
+
+	public List<SelectItem> getTitulosEquivalentes(){
+		List<SelectItem> listadoTitulosEquivalentes = new ArrayList<SelectItem>();
+		List<Object> instituciones = personaDelegate.getTitulosEquivalentes();
+		if(instituciones.size()>0){
+			Iterator<Object> it = instituciones.iterator();
+			while(it.hasNext()){
+				GppTituloequivalente gppTituloequivalente = (GppTituloequivalente) it.next();
+				listadoTitulosEquivalentes.add(new SelectItem(gppTituloequivalente.getTeqNidtituloeq(),gppTituloequivalente.getTeqVtituloeq()));
+			}
+        }
+		return listadoTitulosEquivalentes;
+	}	
+	
+	public List<SelectItem> getPerfilesProfesionales(){
+		List<SelectItem> listadoPerfilesProfesionales = new ArrayList<SelectItem>();
+		List<Object> perfilesEquivalente = personaDelegate.getPerfilesProfesionalesEquivalente();
+		if(perfilesEquivalente.size()>0){
+			Iterator<Object> it = perfilesEquivalente.iterator();
+			while(it.hasNext()){
+				GppPerfilequivalente gppPerfilequivalente = (GppPerfilequivalente) it.next();
+				listadoPerfilesProfesionales.add(new SelectItem(gppPerfilequivalente.getPeqNidperfileq(),gppPerfilequivalente.getPeqVperfileq()));
+			}
+        }
+		return listadoPerfilesProfesionales;
+	}	
 	
 	public void getDeptos(ValueChangeEvent evento){
 		idPais = Integer.valueOf((String) evento.getNewValue());
@@ -259,13 +354,23 @@ public class PersonaMB {
 	}
 	
 	public String getBusquedaBasicaPersona(){
-		personas = personaDelegate.getBusquedaBasicaPersona(nombrePersona, apellidoPersona, identificacionPersona, estadoPersona);
+		personas = personaDelegate.getBusquedaBasicaPersona(nombrePersona, identificacionPersona);
 		return ConstantesFaces.HOME_HV;
 	}
 	
 	public String getBusquedaAvanzada(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
-		return ConstantesFaces.HOME_HV;
+		return ConstantesFaces.AVANZADA_HV;
+	}
+	
+	public String getBusquedaRapidaPersona(){
+		personas = personaDelegate.getBusquedaRapidaPersona(criterioBusquedaRapida);
+		return ConstantesFaces.HOME_HV;		
+	}
+	
+	public String getBusquedaAvanzadaPersona(){
+		personas = personaDelegate.getBusquedaAvanzadaPersona(nombrePersona, identificacionPersona, idPregrado, fechaTarjetaProfesional, idEspecializacion, idMaestria, cargo, bd, herramientas, funciones, idPerfil);
+		return ConstantesFaces.AVANZADA_HV;		
 	}
 	
 	public String getAgregarHojaVida(){
@@ -313,6 +418,28 @@ public class PersonaMB {
 		}			
 	}
 	
+	public String getCambiarEstadoPersonaAvanzada(){
+		getHomePageValueAvanzada();
+		estadoOperacion = false;
+		if(getValidarPermisosServicio("srvModificarPersona")){
+			persona = personaDelegate.getSeleccionarPersona(personas, idPersona);
+			if(estadoPersona==true){
+				persona.setPerBactivo(false);
+			} else {
+				persona.setPerBactivo(true);
+			}
+			estadoPersona = null;
+			estadoOperacion = personaDelegate.getActualizarPersona(persona);
+			if(estadoOperacion==true){
+				return ConstantesFaces.ESTADO_OK;
+			} else {
+				return ConstantesFaces.ESTADO_ERROR;
+			}
+		}else{
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+		}			
+	}
+	
 	public String getGuardarPersona(){
 		getHomePageValueHV();
 		setTabPanel();
@@ -320,7 +447,7 @@ public class PersonaMB {
 		if(getValidarPermisosServicio("srvAgregarPersona")){	
 			estadoOperacion = personaDelegate.getGuardarPersona(persona);
 			if(estadoOperacion==true){
-				personas = (List<Object>) personaDelegate.getBusquedaBasicaPersona("" , "", persona.getPerNidentificacion().toString(), null);
+				personas = (List<Object>) personaDelegate.getBusquedaBasicaPersona("" , persona.getPerNidentificacion().toString());
 				if(personas.size()==1){
 					persona = (GppPersona) personas.get(0);
 					tabDeshabilitados = false;
@@ -360,7 +487,7 @@ public class PersonaMB {
 
     public void getSubirDocumentoHojaVida(UploadEvent event) throws IOException {
     	documentoCargado = true;
-    	personaDelegate.getSubirDocumentoHojaVida(event);
+    	personaDelegate.getSubirDocumentoHojaVida(persona, event);
     }
 	
 	public void getLimpiarSession(){		
@@ -376,6 +503,10 @@ public class PersonaMB {
 	
 	public void getHomePageValue(){
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_HV);
+	}
+
+	public void getHomePageValueAvanzada(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.AVANZADA_HV);
 	}
 	
 	public void getHomePageValueHV(){
