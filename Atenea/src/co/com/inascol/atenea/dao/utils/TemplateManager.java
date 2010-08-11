@@ -16,7 +16,7 @@ public class TemplateManager {
 	private final String fieldPassword = "Password";
 	private final String fieldURL = "Url";
 	private final String fieldDriver = "Driver";
-	private final String Database_PropertiesFile = "/co/com/inascol/atenea/dao/utils/Database.properties";
+	private final String Database_PropertiesFile = "./Database.properties";
 	
 	public TemplateManager() {}
 	
