@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppTipodocDAO;
 import co.com.inascol.atenea.entity.GppTipodoc;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.ITipodocService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TipodocService implements ITipodocService{
 
 	private Boolean estadoOperacion;

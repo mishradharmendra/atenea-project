@@ -7,8 +7,10 @@ import javax.faces.context.FacesContext;
 import co.com.inascol.atenea.entity.GppPais;
 import co.com.inascol.atenea.managed.bean.delegate.PaisDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class PaisMB {
 
 	private PaisDelegate paisDelegate;

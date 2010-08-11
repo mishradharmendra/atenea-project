@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import co.com.inascol.atenea.entity.GppEstadocivil;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppEstadocivilRowMapper implements RowMapper{
 
 	private GppEstadocivil gppEstadocivil;

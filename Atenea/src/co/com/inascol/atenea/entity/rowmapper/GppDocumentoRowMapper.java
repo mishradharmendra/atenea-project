@@ -1,10 +1,15 @@
-package co.com.inascol.atenea.entity;
+package co.com.inascol.atenea.entity.rowmapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
+import co.com.inascol.atenea.entity.GppDocumento;
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppDocumentoRowMapper implements RowMapper {
 
 	private GppDocumento gppDocumento;

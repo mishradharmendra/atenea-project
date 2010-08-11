@@ -10,7 +10,10 @@ import co.com.inascol.atenea.entity.GppPerfilequivalente;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.PerfilequivalenteService;
 import co.com.inascol.atenea.logic.interfaces.IPerfilequivalenteService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class PerfilequivalenteDelegate {
 
 	private IPerfilequivalenteService perfilequivalenteService;

@@ -9,7 +9,10 @@ import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppPais;
 import co.com.inascol.atenea.entity.rowmapper.GppPaisRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppPaisDAO implements DAO {
 	
 	private GppPais gppPais;

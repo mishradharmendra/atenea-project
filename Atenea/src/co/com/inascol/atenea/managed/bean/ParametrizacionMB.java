@@ -7,8 +7,10 @@ import javax.faces.context.FacesContext;
 import co.com.inascol.atenea.entity.GppParametrizacion;
 import co.com.inascol.atenea.managed.bean.delegate.ParametrizacionDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class ParametrizacionMB {
 
 	private ParametrizacionDelegate parametrizacionDelegate;

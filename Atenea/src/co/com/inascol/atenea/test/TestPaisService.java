@@ -7,7 +7,10 @@ import co.com.inascol.atenea.entity.GppPais;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.PaisService;
 import co.com.inascol.atenea.logic.interfaces.IPaisService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TestPaisService {
 
 	private static IPaisService paisService;

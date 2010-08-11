@@ -14,7 +14,10 @@ import co.com.inascol.atenea.logic.ServicioService;
 import co.com.inascol.atenea.logic.interfaces.IUsuarioService;
 import co.com.inascol.atenea.logic.interfaces.IRolService;
 import co.com.inascol.atenea.logic.interfaces.IServicioService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TestUsuarioService {
 
 	private static IUsuarioService usuarioService;

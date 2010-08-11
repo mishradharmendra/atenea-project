@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import co.com.inascol.atenea.entity.GppCargoequivalente;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppCargoequivalenteRowMapper implements RowMapper{
 
 	private GppCargoequivalente gppCargoequivalente;

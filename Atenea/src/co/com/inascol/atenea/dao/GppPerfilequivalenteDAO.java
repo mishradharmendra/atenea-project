@@ -9,7 +9,10 @@ import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppPerfilequivalente;
 import co.com.inascol.atenea.entity.rowmapper.GppPerfilequivalenteRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppPerfilequivalenteDAO implements DAO{
 	
 	private GppPerfilequivalente gppPerfilequivalente;

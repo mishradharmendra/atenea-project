@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppPaisDAO;
 import co.com.inascol.atenea.entity.GppPais;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IPaisService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class PaisService implements IPaisService {
 
 	private Boolean estadoOperacion;

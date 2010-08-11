@@ -8,7 +8,10 @@ import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.PersonaService;
 import co.com.inascol.atenea.logic.interfaces.IPersonaService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TestPersonaService {
 
 	private static IPersonaService personaService;
@@ -37,7 +40,7 @@ public class TestPersonaService {
 			String email = "correo-"+i+"@hotmail.com";
 			String direccion = "Carrera "+i;
 			String telefono = "4567890"+i;
-			String idMunicipio = "1";
+			Integer idMunicipio = 1;
 			Integer tipoDocumento = 1;
 			Integer idEstadoCivil = 1;
 			Integer idPaisResidencia = 1;
@@ -63,7 +66,7 @@ public class TestPersonaService {
 			String email = "correo-"+i+i+"@hotmail.com";
 			String direccion = "Carrera "+i+i;
 			String telefono = "4567890"+i+i;
-			String idMunicipio = "1";
+			Integer idMunicipio = 1;
 			Integer tipoDocumento = 1;
 			Integer idEstadoCivil = 1;	
 			Integer idPaisResidencia = 1;
@@ -98,7 +101,7 @@ public class TestPersonaService {
 			System.out.println(gppPersona.getPerVemail());
 			System.out.println(gppPersona.getPerVdireccion());
 			System.out.println(gppPersona.getPerVtelefono());
-			System.out.println(gppPersona.getMunVidmunicipio());
+			System.out.println(gppPersona.getMunNidmunicipio());
 			System.out.println(gppPersona.getTdcNidtipodoc());
 			System.out.println(gppPersona.getEscNidestadocivil());
 			System.out.println(gppPersona.getPerVusucrea());
@@ -129,7 +132,7 @@ public class TestPersonaService {
 				System.out.println(gppPersona.getPerVemail());
 				System.out.println(gppPersona.getPerVdireccion());
 				System.out.println(gppPersona.getPerVtelefono());
-				System.out.println(gppPersona.getMunVidmunicipio());
+				System.out.println(gppPersona.getMunNidmunicipio());
 				System.out.println(gppPersona.getTdcNidtipodoc());
 				System.out.println(gppPersona.getEscNidestadocivil());
 				System.out.println(gppPersona.getPerVusucrea());

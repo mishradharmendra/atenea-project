@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -32,7 +31,10 @@ import co.com.inascol.atenea.logic.interfaces.IInstitucionService;
 import co.com.inascol.atenea.logic.interfaces.INivelacademicoService;
 import co.com.inascol.atenea.logic.interfaces.IParametrizacionService;
 import co.com.inascol.atenea.logic.interfaces.ITituloequivalenteService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class FormacionDelegate {
 
 	private IFormacionService formacionService;
@@ -42,14 +44,13 @@ public class FormacionDelegate {
 	private IParametrizacionService parametrizacionService;
 	private IDocumentoService documentoService;
 	private GppFormacion formacion;
-	private String nombreArchivoSoportes;
-	private String urlArchivoSoportes;	
-	private String nombreArchivoDiploma;
-	private String urlArchivoDiploma;
 	private String nombreArchivoActa;
-	private String urlArchivoActa;	
+	private String urlArchivoActa;
+	private String nombreArchivoDiploma;
+	private String urlArchivoDiploma;	
+	private String nombreArchivoSoportes;
+	private String urlArchivoSoportes;		
 	private List<Object> formaciones;
-	private SimpleDateFormat dateFormat; 
 	private GppUsuario usuarioAutenticado;
 	
 	public FormacionDelegate(){}
@@ -105,10 +106,9 @@ public class FormacionDelegate {
 		return formacion;
 	}
 		
-	public void getSubirDiploma(UploadEvent event) throws IOException {
+	public void getSubirDiploma(GppPersona persona, UploadEvent event) throws IOException {
 	    if (event != null) {
 	    	parametrizacionService = new ParametrizacionService();
-	    	dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	        UploadItem item = event.getUploadItem();
 	        File file = item.getFile();
 	        nombreArchivoDiploma = item.getFileName();
@@ -116,7 +116,7 @@ public class FormacionDelegate {
 	        if(urlArchivoDiploma==null){
 	        	urlArchivoDiploma = "/home/memo/Temp-Directory/";
 	        }	
-	        urlArchivoDiploma = urlArchivoDiploma + "DIPLOMA_" + dateFormat.format(new Date()) + "_" + nombreArchivoDiploma;
+	        urlArchivoDiploma = urlArchivoDiploma + "DIPLOMA_" + persona.getPerNidentificacion() + "_" + nombreArchivoDiploma;
 	        FileInputStream fis = new FileInputStream(file.getPath());
 	        BufferedInputStream bis = new BufferedInputStream(fis);
 	        FileOutputStream fos = new FileOutputStream(urlArchivoDiploma);
@@ -137,10 +137,9 @@ public class FormacionDelegate {
 	    }
 	}
 	
-	public void getSubirActaGrado(UploadEvent event) throws IOException {
+	public void getSubirActaGrado(GppPersona persona, UploadEvent event) throws IOException {
 	    if (event != null) {
 	    	parametrizacionService = new ParametrizacionService();
-	    	dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	        UploadItem item = event.getUploadItem();
 	        File file = item.getFile();
 	        nombreArchivoActa = item.getFileName();
@@ -148,7 +147,7 @@ public class FormacionDelegate {
 	        if(urlArchivoActa==null){
 	        	urlArchivoActa = "/home/memo/Temp-Directory/";
 	        }
-        	urlArchivoActa = urlArchivoActa + "ACTA_" + dateFormat.format(new Date()) + "_" + nombreArchivoActa;
+        	urlArchivoActa = urlArchivoActa + "ACTA_" + persona.getPerNidentificacion() + "_" + nombreArchivoActa;
 	        FileInputStream fis = new FileInputStream(file.getPath());
 	        BufferedInputStream bis = new BufferedInputStream(fis);
 	        FileOutputStream fos = new FileOutputStream(urlArchivoActa);
@@ -169,10 +168,9 @@ public class FormacionDelegate {
 	    }
 	}	
 	
-	public void getSubirSoportesAcademicos(UploadEvent event) throws IOException {
+	public void getSubirSoportesAcademicos(GppPersona persona, UploadEvent event) throws IOException {
 	    if (event != null) {
 	    	parametrizacionService = new ParametrizacionService();
-	    	dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	        UploadItem item = event.getUploadItem();
 	        File file = item.getFile();
 	        nombreArchivoSoportes = item.getFileName();
@@ -180,7 +178,7 @@ public class FormacionDelegate {
 	        if(urlArchivoSoportes==null){
 	        	urlArchivoSoportes = "/home/memo/Temp-Directory/";
 	        }		        
-        	urlArchivoSoportes = urlArchivoSoportes + "SOPORTES_" + dateFormat.format(new Date()) + "_" + nombreArchivoSoportes;
+        	urlArchivoSoportes = urlArchivoSoportes + "SOP_ACADEM_" + persona.getPerNidentificacion() + "_" + nombreArchivoSoportes;
 	        FileInputStream fis = new FileInputStream(file.getPath());
 	        BufferedInputStream bis = new BufferedInputStream(fis);
 	        FileOutputStream fos = new FileOutputStream(urlArchivoSoportes);

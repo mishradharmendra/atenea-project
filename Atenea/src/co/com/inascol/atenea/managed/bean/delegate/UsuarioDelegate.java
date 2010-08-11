@@ -9,7 +9,10 @@ import javax.faces.context.FacesContext;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.UsuarioService;
 import co.com.inascol.atenea.logic.interfaces.IUsuarioService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class UsuarioDelegate {
 
 	private IUsuarioService usuarioService;

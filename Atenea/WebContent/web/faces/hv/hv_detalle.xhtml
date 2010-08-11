@@ -59,7 +59,7 @@
 							<td><h:outputLabel value="#{PersonaMB.persona.perDfecnacimiento}" datePattern="dd/MM/yyyy"/></td>
 							<td width="150px"></td>			
 							<td><h:outputLabel value="Municipio"></h:outputLabel></td>
-							<td><h:selectOneMenu id="munVidmunicipio" value="#{PersonaMB.persona.munVidmunicipio}" required="true" requiredMessage="Seleccione un Municipio" disabled="true" style="color:#000000">
+							<td><h:selectOneMenu id="munNidmunicipio" value="#{PersonaMB.persona.munNidmunicipio}" required="true" requiredMessage="Seleccione un Municipio" disabled="true" style="color:#000000">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.municipios}"/>
 							</h:selectOneMenu></td>	
@@ -123,16 +123,17 @@
 								<td><h:outputLabel value="Formación Académica  #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>				
-						<br/><br/><br/><br/>
+						<br/><br/><br/>
 						<table align="center">
 							<tr>
 								<td align="center"><h:outputLabel value="Formaciones Académicas" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>	
-						<br/><br/><br/><br/>	
+						<br/><br/><br/>	
 						<table align="center">	
 						<tr>
-						<td align="center">							
+						<td align="center">		
+						<h:form>					
 						<rich:extendedDataTable id="tablaFormacionesAcademicas" align="center" value="#{FormacionMB.formacionesAcademicas}" var="formacion" width="800px" height="200px">
 							<rich:column width="100px" sortable="true" sortBy="#{formacion.gppNivelacademico.nacVnivelac}" label="Tipo Estudio">
 								<f:facet name="header">
@@ -159,6 +160,7 @@
 								<h:outputLabel value="#{formacion.forDfecgrado}"></h:outputLabel>
 							</rich:column>								
 						</rich:extendedDataTable>
+						</h:form>
 						</td>
 						</tr>
 						</table>
@@ -186,16 +188,17 @@
 								<td><h:outputLabel value="Experiencia Laboral #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>				
-						<br/><br/><br/><br/>
+						<br/><br/><br/>
 						<table align="center">
 							<tr>
 								<td align="center"><h:outputLabel value="Experiencias Laborales" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>
-						<br/><br/><br/><br/>	
+						<br/><br/><br/>	
 						<table align="center">	
 						<tr>
-						<td align="center">							
+						<td align="center">	
+						<h:form>						
 						<rich:extendedDataTable id="tablaExperienciaLaboral" align="center" value="#{ExperienciaMB.experienciasLaborales}" var="exp" width="850px" height="200px">
 							<rich:column width="200px" sortable="true" sortBy="#{exp.expVnomempresa}" label="Empresa">
 								<f:facet name="header">
@@ -235,6 +238,7 @@
 								<h:outputLabel value="Actual" rendered="#{exp.expDfecretiro == null}"></h:outputLabel>
 							</rich:column>																								
 						</rich:extendedDataTable>
+						</h:form>
 						</td>
 						</tr>
 						</table>
@@ -311,7 +315,7 @@
 								</c:if>
 							</tr>							
 						</table>
-						<br/><br/><br/><br/>
+						<br/><br/>
 						<table align="center">
 							<tr>
 								<td><h:outputLabel value="Herramientas de Software" styleClass="TituloContenido"></h:outputLabel></td>
@@ -348,21 +352,17 @@
 								<td><h:outputLabel value="Archivos Relacionados #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>	
-						<br/><br/><br/><br/>						
-						<table align="center">
-							<tr>
-								<td><h:outputLabel value="Archivos Relacionados" styleClass="TituloContenido"></h:outputLabel></td>
-							</tr>
-						</table>	
-						<br/><br/>				
+						<br/><br/><br/><br/>								
 						<table align="center">
 							<tr>
 								<td align="center"><h:outputLabel value="Listado de Soportes" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
-						</table>	
+						</table>
+						<br/><br/>							
 						<table align="center">
 							<tr>
-								<td align="center">									
+								<td align="center">		
+									<h:form>							
 									<rich:extendedDataTable id="tablaSoportes" align="center" value="#{DocumentoMB.soportes}" var="docu" width="800px" height="200px">
 										<rich:column width="100px"  sortable="true" sortBy="#{docu.gppTipoarchivo.tarVtipoarchivo}" label="Tipo Archivo">
 											<f:facet name="header">
@@ -395,6 +395,7 @@
 											<h:outputLabel value="#{docu.docVurlarchivo}"></h:outputLabel>
 										</rich:column>																												
 									</rich:extendedDataTable>
+									</h:form>
 								</td>
 							</tr>
 						</table>

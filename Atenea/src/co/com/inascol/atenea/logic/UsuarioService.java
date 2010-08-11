@@ -6,7 +6,10 @@ import java.util.List;
 import co.com.inascol.atenea.dao.GppUsuarioDAO;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IUsuarioService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class UsuarioService implements IUsuarioService {
 
 	private Boolean estadoOperacion;

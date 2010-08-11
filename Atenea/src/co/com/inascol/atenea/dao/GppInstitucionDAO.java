@@ -9,7 +9,10 @@ import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppInstitucion;
 import co.com.inascol.atenea.entity.rowmapper.GppInstitucionRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppInstitucionDAO implements DAO{
 
 	private GppInstitucion gppInstitucion;

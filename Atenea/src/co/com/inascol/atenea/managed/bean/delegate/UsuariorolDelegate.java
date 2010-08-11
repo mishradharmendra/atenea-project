@@ -14,7 +14,10 @@ import co.com.inascol.atenea.logic.UsuariorolService;
 import co.com.inascol.atenea.logic.interfaces.IRolService;
 import co.com.inascol.atenea.logic.interfaces.IUsuarioService;
 import co.com.inascol.atenea.logic.interfaces.IUsuariorolService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class UsuariorolDelegate {
 
 	private IUsuariorolService usuariorolService;

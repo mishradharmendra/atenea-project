@@ -10,7 +10,10 @@ import co.com.inascol.atenea.entity.GppNivelacademico;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.NivelacademicoService;
 import co.com.inascol.atenea.logic.interfaces.INivelacademicoService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class NivelacademicoDelegate {
 
 	private INivelacademicoService nivelacademicoService;

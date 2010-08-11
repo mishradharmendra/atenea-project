@@ -19,7 +19,7 @@
 					</tr>
 				</table>
 				<br/><br/><br/><br/>	
-				<h:outputLabel value="Agregar Rol" styleClass="TituloContenido"></h:outputLabel>
+				<h:outputLabel value="Modificar Rol" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>					
 				<table align="center">
@@ -29,7 +29,7 @@
 						<td><rich:message for="nombreRol" style="color:red"/></td>					
 					</tr>
 					<tr>
-						<td><h:outputLabel value="Descripcion: "></h:outputLabel></td>
+						<td><h:outputLabel value="Descripción: "></h:outputLabel></td>
 						<td><h:inputTextarea id="descripcionRol" cols="30" value="#{RolMB.rol.rolVdescripcion}" disabled="true" style="color:#000000"></h:inputTextarea></td>	
 						<td><rich:message for="descripcionRol" style="color:red"/></td>				
 					</tr>									
@@ -56,6 +56,7 @@
 					</tr>
 					<tr>
 						<td align="center">
+							<h:form>
 							<rich:extendedDataTable id="tablaServicioRolAsignado" value="#{RolMB.rol.gppServicios}" var="servicio" width="550px" height="150px">
 								<rich:column width="100px" label="Seleccionar">
 									<f:facet name="header">
@@ -76,6 +77,7 @@
 									<h:outputLabel value="#{servicio.serVruta}"></h:outputLabel>
 								</rich:column>										
 							</rich:extendedDataTable>
+							</h:form>
 							<a4j:form>
 					            <a4j:jsFunction name="procesarSolicitudServicioAsignado" action="#{RolMB.getIdServiciosAsignar}" >
 					                <a4j:actionparam name="p1" assignTo="#{RolMB.idServicio}" />                
@@ -87,7 +89,7 @@
 						<td height="5px"/>
 					</tr>					
 					<tr>
-						<td colspan="3"><h:outputLabel value="Seleccione del 'Servicios Asignados' los servicios que quiere borrarle al rol."/></td>
+						<td colspan="3" align="center"><h:outputLabel value="Seleccione del 'Servicios Asignados' los servicios que quiere borrarle al rol."/></td>
 					</tr>					
 				</table>
 			</rich:panel>																

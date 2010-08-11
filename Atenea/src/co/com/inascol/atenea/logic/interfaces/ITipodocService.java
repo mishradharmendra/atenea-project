@@ -4,7 +4,10 @@ import java.util.List;
 
 import co.com.inascol.atenea.entity.GppTipodoc;
 import co.com.inascol.atenea.entity.GppUsuario;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface ITipodocService {
 
 	public boolean crearTipoDocumento(String nombreTipoDocumento, GppUsuario usuarioAutenticado);

@@ -7,29 +7,44 @@ import java.util.List;
 import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.logic.PersonaService;
 import co.com.inascol.atenea.logic.interfaces.IPersonaService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class ReporteDelegate {
 	
 	private IPersonaService personaService;	
 	private List<Object> personas;
 	private GppPersona persona;
 	private ReporteXLS reporteXLS;
-	private ReportePDF reportePDF;
 	private Boolean estadoOperacion;
 	
-	public List<Object> getBusquedaBasicaPersona(String nombrePersona, String apellidoPersona, String identificacionPersona, Boolean estadoPersona){
-		personaService = new PersonaService();
-		List<Object> criteriosBusqueda = new ArrayList<Object>();							
-		if(!nombrePersona.equalsIgnoreCase(""))
-			criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
-		if(!apellidoPersona.equalsIgnoreCase("")) 
-			criteriosBusqueda.add("per_vapellidos"+"|"+apellidoPersona);
-		if(!identificacionPersona.equalsIgnoreCase(""))
-			criteriosBusqueda.add("per_nidentificacion"+"|"+identificacionPersona);
-		if(estadoPersona!=null){
-			criteriosBusqueda.add("per_vactivo"+"|"+estadoPersona);
+	public List<Object> getBusquedaBasicaPersona(String nombrePersona, String identificacionPersona){
+		if(!nombrePersona.equalsIgnoreCase("") || !identificacionPersona.equalsIgnoreCase("")){
+			personaService = new PersonaService();
+			String apellidoPersona = "";
+			String [] nombreApellido = nombrePersona.split("\\s+");
+			if(nombreApellido.length==2){
+				nombrePersona = nombreApellido[0];
+				apellidoPersona = nombreApellido[1];
+			}
+			if(nombreApellido.length==3){
+				nombrePersona = nombreApellido[0];
+				apellidoPersona = nombreApellido[1] + " " + nombreApellido[2];
+			}
+			if(nombreApellido.length==4){
+				nombrePersona = nombreApellido[0] + " " + nombreApellido[1];
+				apellidoPersona = nombreApellido[2] + " " + nombreApellido[3];
+			}
+			List<Object> criteriosBusqueda = new ArrayList<Object>();							
+			if(!nombrePersona.equalsIgnoreCase(""))
+				criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
+            if(!apellidoPersona.equalsIgnoreCase("")) 
+                criteriosBusqueda.add("per_vapellidos"+"|"+apellidoPersona);
+			if(!identificacionPersona.equalsIgnoreCase(""))
+				criteriosBusqueda.add("per_nidentificacion"+"|"+identificacionPersona);
+			personas = personaService.buscarPersonaPorCriterios(criteriosBusqueda);
 		}
-		personas = personaService.buscarPersonaPorCriterios(criteriosBusqueda);
 		return personas;
 	}
 	
@@ -45,19 +60,23 @@ public class ReporteDelegate {
 		}
 		return persona;
 	}
-	public Boolean getCrearReporte(String tipoReporte, GppPersona persona){
-		this.persona = persona;
+	public Boolean getCrearReporte(String tipoReporte, GppPersona personaSeleccionada){
+		persona = personaSeleccionada;
 		if(tipoReporte.equalsIgnoreCase("Depto-Fun-Publica")){
-			reportePDF = new ReportePDF();
-			estadoOperacion = reporteXLS.generarReporteXLSUpme(this.persona);	
+			reporteXLS = new ReporteXLS();
+			estadoOperacion = reporteXLS.generarReporteXLSFUHV(persona);	
 		}
 		else if(tipoReporte.equalsIgnoreCase("INGEOMINAS")){
 			reporteXLS = new ReporteXLS();
-			estadoOperacion = reporteXLS.generarReporteXLSIngeominas(this.persona);
+			estadoOperacion = reporteXLS.generarReporteXLSIngeominas(persona);
 		}
 		else if(tipoReporte.equalsIgnoreCase("UPME")){
 			reporteXLS = new ReporteXLS();
-			estadoOperacion = reporteXLS.generarReporteXLSUpme(this.persona);
+			estadoOperacion = reporteXLS.generarReporteXLSUpme(persona);
+		}
+		else if(tipoReporte.equalsIgnoreCase("Formato_Formal")){
+			reporteXLS = new ReporteXLS();
+			estadoOperacion = reporteXLS.generarReporteFormal(persona);
 		}
 		return estadoOperacion;
 	}

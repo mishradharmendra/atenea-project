@@ -11,7 +11,10 @@ import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppExperiencia;
 import co.com.inascol.atenea.entity.GppMunicipio;
 import co.com.inascol.atenea.entity.rowmapper.GppExperienciaRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppExperienciaDAO implements DAO{
 
 	private GppExperiencia gppExperiencia;

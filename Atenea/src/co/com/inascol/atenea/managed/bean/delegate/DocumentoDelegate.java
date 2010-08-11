@@ -25,7 +25,10 @@ import co.com.inascol.atenea.logic.TipoarchivoService;
 import co.com.inascol.atenea.logic.interfaces.IDocumentoService;
 import co.com.inascol.atenea.logic.interfaces.IParametrizacionService;
 import co.com.inascol.atenea.logic.interfaces.ITipoarchivoService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class DocumentoDelegate {
 
 	private IDocumentoService documentoService;

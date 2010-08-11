@@ -4,7 +4,10 @@ import java.util.List;
 
 import co.com.inascol.atenea.entity.GppServiciorol;
 import co.com.inascol.atenea.entity.GppUsuario;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface IServiciorolService {
 
 	public boolean crearServiciorol(Integer idServicio, Integer idRol, GppUsuario usuarioAutenticado);

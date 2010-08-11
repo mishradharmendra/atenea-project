@@ -4,7 +4,10 @@ import java.util.List;
 
 import co.com.inascol.atenea.entity.GppNivelacademico;
 import co.com.inascol.atenea.entity.GppUsuario;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface INivelacademicoService {
 
 	public boolean crearNivelAcademico(String nombreNivelAcademico, GppUsuario usuarioAutenticado);

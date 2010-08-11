@@ -9,7 +9,10 @@ import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppServicio;
 import co.com.inascol.atenea.entity.rowmapper.GppServicioRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppServicioDAO implements DAO {
 	
 	private GppServicio gppServicio;

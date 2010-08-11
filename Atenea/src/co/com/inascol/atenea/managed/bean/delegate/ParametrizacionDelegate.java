@@ -7,7 +7,10 @@ import java.util.List;
 import co.com.inascol.atenea.entity.GppParametrizacion;
 import co.com.inascol.atenea.logic.ParametrizacionService;
 import co.com.inascol.atenea.logic.interfaces.IParametrizacionService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class ParametrizacionDelegate {
 
 	private IParametrizacionService parametrizacionService;

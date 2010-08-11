@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import co.com.inascol.atenea.entity.GppPersona;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppPersonaRowMapper implements RowMapper{
 
 	GppPersona gppPersona;
@@ -24,7 +27,7 @@ public class GppPersonaRowMapper implements RowMapper{
 		gppPersona.setPerVemail(rs.getString("per_vemail"));
 		gppPersona.setPerVdireccion(rs.getString("per_vdireccion"));
 		gppPersona.setPerVtelefono(rs.getString("per_vtelefono"));
-		gppPersona.setMunVidmunicipio(rs.getString("gpp_municipio_mun_vidmunicipio"));
+		gppPersona.setMunNidmunicipio(rs.getInt("gpp_municipio_mun_vidmunicipio"));
 		gppPersona.setTdcNidtipodoc(rs.getInt("tdc_nidtipodoc"));
 		gppPersona.setEscNidestadocivil(rs.getInt("esc_nidestadocivil"));
 		gppPersona.setPerVusucrea(rs.getString("per_vusucrea"));

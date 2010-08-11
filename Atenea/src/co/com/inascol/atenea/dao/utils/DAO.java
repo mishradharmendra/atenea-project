@@ -1,7 +1,10 @@
 package co.com.inascol.atenea.dao.utils;
 
 import java.util.List;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface DAO {
 
 	public boolean crear(Object obj);

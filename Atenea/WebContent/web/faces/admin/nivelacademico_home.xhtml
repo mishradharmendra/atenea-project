@@ -54,8 +54,8 @@
 							<h:outputLabel value="#{nivelacademico.nacVnivelac}"></h:outputLabel>
 						</a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px">
-						<f:facet name="header" label="Modificar">
+					<rich:column width="100px" label="Modificar">
+						<f:facet name="header">
 							<h:outputLabel value="Modificar"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{nivelacademico.nacNidnivelac}')">

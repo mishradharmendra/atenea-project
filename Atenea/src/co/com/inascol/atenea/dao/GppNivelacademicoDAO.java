@@ -9,7 +9,10 @@ import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppNivelacademico;
 import co.com.inascol.atenea.entity.rowmapper.GppNivelacademicoRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppNivelacademicoDAO implements DAO{
 	
 	private GppNivelacademico gppNivelacademico;

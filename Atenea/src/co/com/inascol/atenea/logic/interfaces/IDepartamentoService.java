@@ -4,7 +4,10 @@ import java.util.List;
 
 import co.com.inascol.atenea.entity.GppDepartamento;
 import co.com.inascol.atenea.entity.GppUsuario;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface IDepartamentoService {
 
 	public boolean crearDepartamento(String nombreDepto, Integer idPais, GppUsuario usuarioAutenticado);

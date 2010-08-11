@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -34,7 +33,10 @@ import co.com.inascol.atenea.logic.interfaces.IExperienciaService;
 import co.com.inascol.atenea.logic.interfaces.IMunicipioService;
 import co.com.inascol.atenea.logic.interfaces.IPaisService;
 import co.com.inascol.atenea.logic.interfaces.IParametrizacionService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class ExperienciaDelegate {
 
 	private IExperienciaService experienciaService;
@@ -52,7 +54,6 @@ public class ExperienciaDelegate {
 	private String urlArchivoCertificado1;
 	private String nombreArchivoCertificado2;
 	private String urlArchivoCertificado2;		
-	private SimpleDateFormat dateFormat;
 	private GppUsuario usuarioAutenticado;
 	
 	public ExperienciaDelegate(){}
@@ -113,10 +114,9 @@ public class ExperienciaDelegate {
 		return experiencia;
 	}	
 	
-	public void getSubirCertificaciones(UploadEvent event) throws IOException {
+	public void getSubirCertificaciones(GppPersona persona, UploadEvent event) throws IOException {
 	    if (event != null) {
 	    	parametrizacionService = new ParametrizacionService();
-	    	dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	        UploadItem item = event.getUploadItem();
 	        File file = item.getFile();
 	        nombreArchivoCertificaciones = item.getFileName();
@@ -124,7 +124,7 @@ public class ExperienciaDelegate {
 	        if(urlArchivoCertificaciones==null){
 	        	urlArchivoCertificaciones = "/home/memo/Temp-Directory/";
 	        }		        
-	        urlArchivoCertificaciones = urlArchivoCertificaciones + "CERT_" + dateFormat.format(new Date()) + "_" + nombreArchivoCertificaciones;
+	        urlArchivoCertificaciones = urlArchivoCertificaciones + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificaciones;
 	        FileInputStream fis = new FileInputStream(file.getPath());
 	        BufferedInputStream bis = new BufferedInputStream(fis);
 	        FileOutputStream fos = new FileOutputStream(urlArchivoCertificaciones);
@@ -145,10 +145,9 @@ public class ExperienciaDelegate {
 	    }
 	}
 	
-	public void getSubirCertificado1(UploadEvent event) throws IOException {
+	public void getSubirCertificado1(GppPersona persona, UploadEvent event) throws IOException {
 	    if (event != null) {
 	    	parametrizacionService = new ParametrizacionService();
-	    	dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	        UploadItem item = event.getUploadItem();
 	        File file = item.getFile();
 	        nombreArchivoCertificado1 = item.getFileName();
@@ -156,7 +155,7 @@ public class ExperienciaDelegate {
 	        if(urlArchivoCertificado1==null){
 	        	urlArchivoCertificado1 = "/home/memo/Temp-Directory/";
 	        }	        
-        	urlArchivoCertificado1 = urlArchivoCertificado1 + "CERT_" + dateFormat.format(new Date()) + "_" + nombreArchivoCertificado1;
+        	urlArchivoCertificado1 = urlArchivoCertificado1 + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificado1;
 	        FileInputStream fis = new FileInputStream(file.getPath());
 	        BufferedInputStream bis = new BufferedInputStream(fis);
 	        FileOutputStream fos = new FileOutputStream(urlArchivoCertificado1);
@@ -177,10 +176,9 @@ public class ExperienciaDelegate {
 	    }
 	}
 	
-	public void getSubirCertificado2(UploadEvent event) throws IOException {
+	public void getSubirCertificado2(GppPersona persona, UploadEvent event) throws IOException {
 	    if (event != null) {
 	    	parametrizacionService = new ParametrizacionService();
-	    	dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	        UploadItem item = event.getUploadItem();
 	        File file = item.getFile();
 	        nombreArchivoCertificado2 = item.getFileName();
@@ -188,7 +186,7 @@ public class ExperienciaDelegate {
 	        if(urlArchivoCertificado2==null){
 	        	urlArchivoCertificado2 = "/home/memo/Temp-Directory/";
 	        }	        
-        	urlArchivoCertificado2 = urlArchivoCertificado2 + "CERT_" + dateFormat.format(new Date()) + "_" + nombreArchivoCertificado2;
+        	urlArchivoCertificado2 = urlArchivoCertificado2 + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificado2;
 	        FileInputStream fis = new FileInputStream(file.getPath());
 	        BufferedInputStream bis = new BufferedInputStream(fis);
 	        FileOutputStream fos = new FileOutputStream(urlArchivoCertificado2);

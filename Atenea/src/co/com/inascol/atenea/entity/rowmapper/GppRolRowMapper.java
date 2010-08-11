@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import co.com.inascol.atenea.entity.GppRol;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppRolRowMapper implements RowMapper{
 
 	private GppRol gppRol;

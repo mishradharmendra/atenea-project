@@ -9,7 +9,10 @@ import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppParametrizacion;
 import co.com.inascol.atenea.entity.rowmapper.GppParametrizacionRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppParametrizacionDAO implements DAO {
 	
 	private GppParametrizacion gppParametrizacion;

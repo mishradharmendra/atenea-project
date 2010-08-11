@@ -11,13 +11,18 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
+import co.com.inascol.atenea.entity.GppExperiencia;
 import co.com.inascol.atenea.entity.GppFormacion;
 import co.com.inascol.atenea.entity.GppNivelacademico;
 import co.com.inascol.atenea.entity.GppPerfilprof;
 import co.com.inascol.atenea.entity.GppPersona;
+import co.com.inascol.atenea.entity.rowmapper.GppConsultaRapidaRowMapper;
 import co.com.inascol.atenea.entity.rowmapper.GppPersonaRowMapper;
 import co.com.inascol.atenea.util.Calculos;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppPersonaDAO implements DAO{
 
 	private GppPersona gppPersona;
@@ -62,7 +67,7 @@ public class GppPersonaDAO implements DAO{
 															gppPersona.getPerVemail(),
 															gppPersona.getPerVdireccion(),
 															gppPersona.getPerVtelefono(),
-															gppPersona.getMunVidmunicipio(),
+															gppPersona.getMunNidmunicipio(),
 															gppPersona.getTdcNidtipodoc(),
 															gppPersona.getEscNidestadocivil(),
 															gppPersona.getPerVusumodifica(),
@@ -81,7 +86,7 @@ public class GppPersonaDAO implements DAO{
 																		Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.VARCHAR,
-																		Types.VARCHAR,
+																		Types.INTEGER,
 																		Types.INTEGER,
 																		Types.INTEGER,
 																		Types.VARCHAR,
@@ -156,7 +161,7 @@ public class GppPersonaDAO implements DAO{
 															gppPersona.getPerVemail(),
 															gppPersona.getPerVdireccion(),
 															gppPersona.getPerVtelefono(),
-															gppPersona.getMunVidmunicipio(),
+															gppPersona.getMunNidmunicipio(),
 															gppPersona.getTdcNidtipodoc(),
 															gppPersona.getEscNidestadocivil(),
 															gppPersona.getPerVusucrea(),
@@ -174,7 +179,7 @@ public class GppPersonaDAO implements DAO{
 																		Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.VARCHAR,
-																		Types.VARCHAR,
+																		Types.INTEGER,
 																		Types.INTEGER,
 																		Types.INTEGER,
 																		Types.VARCHAR,
@@ -215,68 +220,291 @@ public class GppPersonaDAO implements DAO{
 			sentenciaSQL = "select * from gpp_persona " +
 							criterioConsulta;
 			gppPersonas = (List) jdbcTemplate.query(sentenciaSQL, gppPersonaRowMapper);
-			if(gppPersonas.size()>0){
-				GppFormacionDAO gppFormacionDAO = new GppFormacionDAO();
-				GppPerfilproDAO gppPerfilproDAO = new GppPerfilproDAO();
-				GppExperienciaDAO gppExperienciaDAO = new GppExperienciaDAO();
-				GppNivelacademicoDAO nivelacademicoDAO = new GppNivelacademicoDAO();
-				Iterator<Object> it = gppPersonas.iterator();
-				while(it.hasNext()){
-					gppPersona = (GppPersona) it.next();
-					List<Object> gppFormaciones = gppFormacionDAO.buscarFormacionesPersona(gppPersona.getPerNidpersona());
-					List<Object> gppPerfiles = gppPerfilproDAO.buscarPerfilesPersona(gppPersona.getPerNidpersona());
-					List<Object> gppExperienciasLaborales = gppExperienciaDAO.buscarExperienciasPersona(gppPersona.getPerNidpersona());
-					List<Object> gppCertificaciones = new ArrayList<Object>();
-					if(gppFormaciones.size()>0){
-						gppPersona.setGppFormaciones(gppFormaciones);
-						Iterator<Object> itFormacion = gppFormaciones.iterator();
-						while(itFormacion.hasNext()){
-							GppFormacion gppFormacion = (GppFormacion) itFormacion.next();
-							GppNivelacademico gppNivelacademico = (GppNivelacademico) nivelacademicoDAO.buscarPorId(gppFormacion.getNacNidnivelac());
-							CharSequence nombreCertificacion = "certifica";
-							if(gppNivelacademico.getNacVnivelac().toLowerCase().contains(nombreCertificacion)){
-								gppCertificaciones.add(gppFormacion);
-							}
-						}
-						gppPersona.setGppCertificaciones(gppCertificaciones);
-					}
-					if(gppPerfiles.size()==1){
-						gppPersona.setGppPerfilprofesional((GppPerfilprof) gppPerfiles.get(0));
-					}
-					gppPersona.setPerNpuntaje(0);
-					Iterator<Object> itFormacion = gppFormaciones.iterator();
-					while(itFormacion.hasNext()){
-						GppFormacion gppFormacion = (GppFormacion) itFormacion.next();
-						if(gppFormacion.getNacNidnivelac()==3){
-							Integer tiempoAnios = Calculos.diferenciaFechasAnio(gppFormacion.getForDfecgrado(), new Date()); 
-							if( tiempoAnios <= 2 ){
-								gppPersona.setPerNpuntaje(4);
-							}else if ( tiempoAnios <= 5 ){
-								gppPersona.setPerNpuntaje(8);
-							}else if ( tiempoAnios <= 10 ){
-								gppPersona.setPerNpuntaje(12);
-							}else if ( tiempoAnios > 10 ){
-								gppPersona.setPerNpuntaje(16);
-							}
-						
-							tiempoAnios = Calculos.diferenciaFechasAnio(gppFormacion.getForDfectarjeta(), new Date());
-							if( tiempoAnios <= 2 ){
-								gppPersona.setPerNpuntaje(gppPersona.getPerNpuntaje()+4);
-							}else if ( tiempoAnios <= 5 ){
-								gppPersona.setPerNpuntaje(gppPersona.getPerNpuntaje()+8);
-							}else if ( tiempoAnios <= 10 ){
-								gppPersona.setPerNpuntaje(gppPersona.getPerNpuntaje()+12);
-							}else if ( tiempoAnios > 10 ){
-								gppPersona.setPerNpuntaje(gppPersona.getPerNpuntaje()+16);
-							}
-						}
-					}
-					
-				}
-			}
+			construirDatosPerons(gppPersonas);
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}
 		return gppPersonas;
+	}
+	
+	public List<Object> buscarPersonaPorCriteriosAvanzados(List<Object> criteriosBusqueda){
+		gppPersonas = null;
+		try{
+			gppPersonaRowMapper = new GppPersonaRowMapper();
+			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
+			String criterioConsulta = "";
+			if(criteriosBusqueda.size()>0){
+				String criterios;
+				Iterator<Object> it = criteriosBusqueda.iterator();
+				int contadorCriterios = 1;
+				while(it.hasNext()){
+					criterios = (String) it.next();
+					criterioConsulta += "AND " +criterios+" ";
+					contadorCriterios++;
+				}
+			}
+			sentenciaSQL = "select p.per_nidpersona " +
+							"from gpp_persona p, gpp_perfilprof pp, gpp_experiencia e, gpp_formacion pre, gpp_formacion esp, gpp_formacion msc " +
+							"where p.per_nidpersona = pp.per_nidpersona " +
+							"and p.per_nidpersona = e.per_nidpersona " +
+							"and p.per_nidpersona = pre.per_nidpersona " +
+							"and p.per_nidpersona = esp.per_nidpersona " +
+							"and p.per_nidpersona = msc.per_nidpersona " +
+							criterioConsulta +
+							"group by p.per_nidpersona ";
+			List<Object> idPersonas = (List) jdbcTemplate.queryForList(sentenciaSQL, Integer.class);
+			if(idPersonas.size()>0){
+				Iterator<Object> itPersonas = idPersonas.iterator();
+				List<Object> criteriosConsultaNuevos = new ArrayList<Object>();
+				while(itPersonas.hasNext()){
+					Integer idPersona = (Integer) itPersonas.next();
+					criteriosConsultaNuevos.add("per_nidpersona"+"|"+idPersona);
+				}				
+				if(criteriosConsultaNuevos.size()>0){
+					String [] criterios;
+					Iterator<Object> it = criteriosConsultaNuevos.iterator();
+					int contadorCriterios = 1;
+					while(it.hasNext()){
+						if(contadorCriterios == 1){
+							criterios = ( (String) it.next() ).split("\\|");
+							criterioConsulta = " WHERE " + criterios[0] + " = " + criterios[1];
+						}else{
+							criterios = ( (String) it.next() ).split("\\|");
+							criterioConsulta = criterioConsulta + " OR " + criterios[0] + " = " + criterios[1];
+						}
+						contadorCriterios++;
+					}
+				}
+				sentenciaSQL = "select * from gpp_persona " +
+				criterioConsulta;
+				gppPersonas = (List) jdbcTemplate.query(sentenciaSQL, gppPersonaRowMapper);
+				construirDatosPerons(gppPersonas);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return gppPersonas;
+	}
+	
+	public List<Object> buscarPersonaPorCriterioRapido(String criterioBusquedaRapida){
+		try{
+			GppConsultaRapidaRowMapper gppConsultaRapidaRowMapper = new GppConsultaRapidaRowMapper();
+			gppPersonaRowMapper = new GppPersonaRowMapper();
+			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
+			String criterioConsulta = "";
+			sentenciaSQL = "select * from gpp_consulta_avanzada";
+			List<Object> camposVista = (List) jdbcTemplate.query(sentenciaSQL, gppConsultaRapidaRowMapper);
+			if(camposVista!=null){
+				if(camposVista.size()>0){
+					Iterator<Object> itCampos = camposVista.iterator();
+					Integer control = 1;
+					while(itCampos.hasNext()){
+						if(control==1){
+							criterioConsulta += "WHERE " + (String) itCampos.next() + " LIKE '%" +criterioBusquedaRapida + "%' ";
+							control++;
+						}
+						else
+							criterioConsulta += "OR " + (String) itCampos.next() + " LIKE '%" +criterioBusquedaRapida + "%' ";
+					}
+				}
+				sentenciaSQL = "select per_nidpersona from gpp_consulta_avanzada " +
+								criterioConsulta + " " +
+								"group by per_nidpersona";
+				List<Object> idPersonas = (List) jdbcTemplate.queryForList(sentenciaSQL, Integer.class);
+				if(idPersonas.size()>0){
+					Iterator<Object> itPersonas = idPersonas.iterator();
+					List<Object> criteriosConsultaNuevos = new ArrayList<Object>();
+					while(itPersonas.hasNext()){
+						Integer idPersona = (Integer) itPersonas.next();
+						criteriosConsultaNuevos.add("per_nidpersona"+"|"+idPersona);
+					}				
+					if(criteriosConsultaNuevos.size()>0){
+						String [] criterios;
+						Iterator<Object> it = criteriosConsultaNuevos.iterator();
+						int contadorCriterios = 1;
+						while(it.hasNext()){
+							if(contadorCriterios == 1){
+								criterios = ( (String) it.next() ).split("\\|");
+								criterioConsulta = " WHERE " + criterios[0] + " = " + criterios[1];
+							}else{
+								criterios = ( (String) it.next() ).split("\\|");
+								criterioConsulta = criterioConsulta + " OR " + criterios[0] + " = " + criterios[1];
+							}
+							contadorCriterios++;
+						}
+					}
+					sentenciaSQL = "select * from gpp_persona " +
+					criterioConsulta;
+					gppPersonas = (List) jdbcTemplate.query(sentenciaSQL, gppPersonaRowMapper);
+					construirDatosPerons(gppPersonas);
+				}
+			}
+		}catch (Exception ex){
+			ex.printStackTrace();
+		}
+		return gppPersonas;
+	}
+	
+	public void construirDatosPerons(List<Object> gppPersonas){
+		if(gppPersonas.size()>0){
+			GppFormacionDAO gppFormacionDAO = new GppFormacionDAO();
+			GppPerfilproDAO gppPerfilproDAO = new GppPerfilproDAO();
+			GppExperienciaDAO gppExperienciaDAO = new GppExperienciaDAO();
+			GppNivelacademicoDAO nivelacademicoDAO = new GppNivelacademicoDAO();
+			Iterator<Object> it = gppPersonas.iterator();
+			while(it.hasNext()){
+				gppPersona = (GppPersona) it.next();
+				List<Object> gppFormaciones = gppFormacionDAO.buscarFormacionesPersona(gppPersona.getPerNidpersona());
+				List<Object> gppPerfiles = gppPerfilproDAO.buscarPerfilesPersona(gppPersona.getPerNidpersona());
+				List<Object> gppExperienciasLaborales = gppExperienciaDAO.buscarExperienciasPersona(gppPersona.getPerNidpersona());
+				List<Object> gppCertificaciones = new ArrayList<Object>();
+				if(gppFormaciones.size()>0){
+					gppPersona.setGppFormaciones(organizarFormaciones(gppFormaciones));
+					Iterator<Object> itFormacion = gppFormaciones.iterator();
+					while(itFormacion.hasNext()){
+						GppFormacion gppFormacion = (GppFormacion) itFormacion.next();
+						GppNivelacademico gppNivelacademico = (GppNivelacademico) nivelacademicoDAO.buscarPorId(gppFormacion.getNacNidnivelac());
+						CharSequence nombreCertificacion = "certifica";
+						if(gppNivelacademico.getNacVnivelac().toLowerCase().contains(nombreCertificacion)){
+							gppCertificaciones.add(gppFormacion);
+						}
+					}
+					gppPersona.setGppCertificaciones(gppCertificaciones);
+				}
+				if(gppPerfiles.size()==1){
+					gppPersona.setGppPerfilprofesional((GppPerfilprof) gppPerfiles.get(0));
+				}
+				if(gppExperienciasLaborales.size()>0){
+					gppPersona.setGppExperienciasLaborales(organizarExperiencias(gppExperienciasLaborales));
+				}
+				gppPersona.setPerNpuntaje(getPuntajePersona(gppPersona));
+			}
+		}
+	}
+	
+	public Integer getPuntajePersona(GppPersona gppPersona){
+		Integer puntajeFormacion = 0;
+		Integer puntajeExpe = 0;
+		Date fechaPregrado = null;
+		// Calculo de Otras Formaciones
+		if(gppPersona.getGppFormaciones()!=null){
+			if(gppPersona.getGppFormaciones().size()>0){
+				Iterator<Object> itFormaciones = gppPersona.getGppFormaciones().iterator();
+				GppFormacion gppFormacion = null;
+				Boolean banderaOtros = false;
+				Boolean banderaPregrado = false;
+				Boolean banderaEspe = false;
+				Boolean banderaMSc = false;
+				Boolean banderaPmp = false;
+				Boolean banderaJavaNet = false;
+				// Formacion de Otros
+				while(itFormaciones.hasNext()){
+					gppFormacion = (GppFormacion) itFormaciones.next();
+					if(gppFormacion.getNacNidnivelac()==1 || gppFormacion.getNacNidnivelac()==2){
+						if(banderaOtros==false){
+							puntajeFormacion += 10;
+							banderaOtros = true;
+						}
+					}
+					// Formacion de Pregrado
+					if(gppFormacion.getNacNidnivelac()==3){
+						if(banderaPregrado==false){
+							puntajeFormacion += 20;
+							banderaPregrado=true;
+							fechaPregrado = gppFormacion.getForDfecgrado();
+						}
+						if( (fechaPregrado.getTime() > gppFormacion.getForDfecgrado().getTime()) ){
+							fechaPregrado = gppFormacion.getForDfecgrado();
+						}
+					}
+					// Formacion Especializacion
+					if(gppFormacion.getNacNidnivelac()==4){
+						if(banderaEspe==false){
+							puntajeFormacion += 10;
+							banderaEspe=true;
+						}
+					}
+					// Formacion Maestria
+					if(gppFormacion.getNacNidnivelac()==5){
+						if(banderaMSc==false){
+							puntajeFormacion += 20;
+							banderaMSc = true;
+						}
+					}
+					// Formacion Certificacion PMP
+					if(gppFormacion.getNacNidnivelac()==11){
+						if(banderaPmp==false){
+							puntajeFormacion += 15;
+							banderaPmp = true;
+						}
+					}
+					// Formacion Certificacion Java, .Net
+					if(gppFormacion.getNacNidnivelac()==12 || gppFormacion.getNacNidnivelac()==13){
+						if(banderaJavaNet==false){
+							puntajeFormacion += 15;
+							banderaJavaNet = true;
+						}
+					}
+				}						
+			}
+		}
+		if(gppPersona.getGppExperienciasLaborales()!=null){
+			if(gppPersona.getGppExperienciasLaborales().size()>0){
+				Iterator<Object> itExperiencias = gppPersona.getGppExperienciasLaborales().iterator();
+				GppExperiencia gppExperiencia = null;
+				Double aniosExperiencia = Double.valueOf("0");
+				while(itExperiencias.hasNext()){
+					gppExperiencia = (GppExperiencia) itExperiencias.next();
+					if( (fechaPregrado.getTime() < gppExperiencia.getExpDfecingreso().getTime()) ){
+						aniosExperiencia += Calculos.diferenciaFechasDias(gppExperiencia.getExpDfecingreso(), gppExperiencia.getExpDfecretiro()) / (365) ;
+						if(aniosExperiencia>10){
+							puntajeExpe = 10;
+							break;
+						}else{
+							if(aniosExperiencia>1){
+								puntajeExpe = aniosExperiencia.intValue();
+								if(puntajeExpe>10){
+									puntajeExpe = 10;
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return puntajeFormacion+puntajeExpe;
+	}
+	
+	public List<Object> organizarFormaciones(List<Object> gppFormaciones){
+		if(gppFormaciones.size()>0){
+			GppFormacion temp = new GppFormacion();
+			for (int i = 0; i < gppFormaciones.size(); i++) {
+				for (int j = 0; j < gppFormaciones.size()-1; j++) {
+					if(((GppFormacion) gppFormaciones.get(i)).getForDfecgrado().getTime()<((GppFormacion) gppFormaciones.get(j)).getForDfecgrado().getTime()){
+						temp = (GppFormacion) gppFormaciones.get(i);
+						gppFormaciones.set(i, (GppFormacion) gppFormaciones.get(j));
+						gppFormaciones.set(j, temp);
+					}
+				}
+			}
+		}
+		return gppFormaciones;
+	}
+	
+	public List<Object> organizarExperiencias(List<Object> gppExperienciasLaborales){
+		if(gppExperienciasLaborales.size()>0){
+			GppExperiencia temp = new GppExperiencia();
+			for (int i = 0; i < gppExperienciasLaborales.size(); i++) {
+				for (int j = 0; j < gppExperienciasLaborales.size()-1; j++) {
+					if(((GppExperiencia)gppExperienciasLaborales.get(i)).getExpDfecingreso().getTime()>((GppExperiencia)gppExperienciasLaborales.get(j)).getExpDfecingreso().getTime()){
+						temp = (GppExperiencia)gppExperienciasLaborales.get(i);
+						gppExperienciasLaborales.set(i, (GppExperiencia)gppExperienciasLaborales.get(j));
+						gppExperienciasLaborales.set(j, temp);
+					}
+				}
+			}
+		}
+		return gppExperienciasLaborales;		
 	}
 }

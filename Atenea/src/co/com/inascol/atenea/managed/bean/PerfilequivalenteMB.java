@@ -7,8 +7,10 @@ import javax.faces.context.FacesContext;
 import co.com.inascol.atenea.entity.GppPerfilequivalente;
 import co.com.inascol.atenea.managed.bean.delegate.PerfilequivalenteDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class PerfilequivalenteMB {
 
 	private PerfilequivalenteDelegate perfilequivalenteDelegate;

@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppExperienciaDAO;
 import co.com.inascol.atenea.entity.GppExperiencia;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IExperienciaService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class ExperienciaService implements IExperienciaService{
 
 	private Boolean estadoOperacion;

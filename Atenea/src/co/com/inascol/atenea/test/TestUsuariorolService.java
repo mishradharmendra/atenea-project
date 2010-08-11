@@ -7,7 +7,10 @@ import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.entity.GppUsuariorol;
 import co.com.inascol.atenea.logic.UsuariorolService;
 import co.com.inascol.atenea.logic.interfaces.IUsuariorolService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TestUsuariorolService {
 
 	private static IUsuariorolService serviciorolService;

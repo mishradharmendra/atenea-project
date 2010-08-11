@@ -3,7 +3,10 @@ package co.com.inascol.atenea.logic.interfaces;
 import java.util.List;
 
 import co.com.inascol.atenea.entity.GppUsuario;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface IUsuarioService {
 
 	public boolean crearUsuario(String nombreUsuario, String loginUsuario, String emailUsuario, String telefonoUsuario, Boolean activoUsuario, GppUsuario usuarioAutenticado);

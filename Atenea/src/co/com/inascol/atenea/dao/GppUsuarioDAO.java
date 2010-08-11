@@ -15,7 +15,10 @@ import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.entity.GppUsuariorol;
 import co.com.inascol.atenea.dao.GppUsuariorolDAO;
 import co.com.inascol.atenea.entity.rowmapper.GppUsuarioRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppUsuarioDAO implements DAO {
 	
 	private GppUsuario gppUsuario;
@@ -167,7 +170,7 @@ public class GppUsuarioDAO implements DAO {
 				gppUsuario.setGppRoles(gppRoles);
 			}
 		} catch (EmptyResultDataAccessException ex){
-			System.out.println("Usuario y Password no Encontrados.");
+			System.out.println("Usuario y Password no Encontrados. Datos ingresados: '"+idObj+"'.");
 		}
 		return gppUsuario;
 	} 		

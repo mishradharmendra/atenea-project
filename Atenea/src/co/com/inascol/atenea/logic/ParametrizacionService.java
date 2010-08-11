@@ -5,7 +5,10 @@ import java.util.List;
 import co.com.inascol.atenea.dao.GppParametrizacionDAO;
 import co.com.inascol.atenea.entity.GppParametrizacion;
 import co.com.inascol.atenea.logic.interfaces.IParametrizacionService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class ParametrizacionService implements IParametrizacionService {
 
 	private Boolean estadoOperacion;

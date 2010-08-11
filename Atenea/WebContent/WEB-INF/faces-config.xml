@@ -96,11 +96,6 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>              
 	<managed-bean>
-        <managed-bean-name>ServicioMB</managed-bean-name>
-        <managed-bean-class>co.com.inascol.atenea.managed.bean.ServicioMB</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>      
-	<managed-bean>
         <managed-bean-name>RolMB</managed-bean-name>
         <managed-bean-class>co.com.inascol.atenea.managed.bean.RolMB</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
@@ -563,6 +558,14 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>	
+	<navigation-rule>
+		<from-view-id>/web/faces/hv/hv_home.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>AVANZADA_HV</from-outcome>
+			<to-view-id>/web/faces/hv/hv_avanzada.jsf</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>		
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>

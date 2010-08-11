@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppServicioDAO;
 import co.com.inascol.atenea.entity.GppServicio;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IServicioService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class ServicioService implements IServicioService {
 
 	private Boolean estadoOperacion;

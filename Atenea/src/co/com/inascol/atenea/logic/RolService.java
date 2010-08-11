@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppRolDAO;
 import co.com.inascol.atenea.entity.GppRol;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IRolService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class RolService implements IRolService {
 
 	private Boolean estadoOperacion;

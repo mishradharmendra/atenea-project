@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import co.com.inascol.atenea.entity.GppTituloequivalente;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppTituloequivalenteRowMapper implements RowMapper{
 
 	private GppTituloequivalente gppTituloequivalente;

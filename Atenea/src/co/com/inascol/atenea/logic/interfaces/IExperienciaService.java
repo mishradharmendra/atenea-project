@@ -5,7 +5,10 @@ import java.util.List;
 
 import co.com.inascol.atenea.entity.GppExperiencia;
 import co.com.inascol.atenea.entity.GppUsuario;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface IExperienciaService {
 
 	public boolean crearExperiencia(String nombreEmpresa, String telefonoEmpresa, String nombreContacto, String emailContacto,

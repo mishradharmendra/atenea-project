@@ -7,7 +7,10 @@ import org.springframework.jdbc.core.RowMapper;
 
 import co.com.inascol.atenea.entity.GppUsuariorol;
 import co.com.inascol.atenea.entity.GppUsuariorolId;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppUsuariorolRowMapper implements RowMapper{
 
 	private GppUsuariorol gppUsuariorol;

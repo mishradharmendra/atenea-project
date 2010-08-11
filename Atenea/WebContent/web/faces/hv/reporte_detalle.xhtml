@@ -29,38 +29,35 @@
 						<td align="left"><h:outputLabel value="#{ReporteMB.persona.perVapellidos}"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>
+				<br/><br/><br/><br/><br/><br/>
 				<table align="left">
 					<tr>
-						<td align="left" colspan="2"><h:outputLabel value="Profesión:" styleClass="TituloContenido"></h:outputLabel></td>
+						<td align="left" colspan="2" width="200px"><h:outputLabel value="Profesión:" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 					<tr>
-						<td align="left"><h:dataTable value="#{ReporteMB.persona.gppFormaciones}" var="formacion">
+						<td align="left" width="200px"><h:dataTable value="#{ReporteMB.persona.gppFormaciones}" var="formacion">
 							<h:column>
 								<h:outputLabel value="#{formacion.forVtitulo} - " rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel>
 								<h:outputLabel value="(#{formacion.forDfecgrado})" rendered="#{formacion.nacNidnivelac == 3}" ></h:outputLabel>
 							</h:column>
-						</h:dataTable></td>	
+						</h:dataTable></td>
+						<h:form>	
+						<td align="center"><h:outputLabel value="Formato" styleClass="TituloContenido"></h:outputLabel></td>
+						<td align="center"><h:selectOneMenu id="tipoReporte" value="#{ReporteMB.tipoReporte}" required="true" requiredMessage="Seleccione un Tipo de Reporte">
+								<f:selectItem itemValue="" itemLabel="Seleccione..."/>
+								<f:selectItem itemValue="Formato_Formal" itemLabel="Formato Formal"/>
+								<f:selectItem itemValue="Depto-Fun-Publica" itemLabel="Departamento de la Función Pública"/>
+								<f:selectItem itemValue="INGEOMINAS" itemLabel="Ingeominas"/>						
+								<f:selectItem itemValue="UPME" itemLabel="Upme"/>
+							</h:selectOneMenu></td>
+						<td width="10px"/>
+						<td align="center"><h:commandButton action="#{ReporteMB.getCrearReporte}" value="Generar"/></td>
+						</h:form>	
 					</tr>
-				</table>
-				<br/><br/><br/><br/><br/>
-				<h:form>
-					<table align="center">
-						<tr>
-							<td><h:outputLabel value="Formato" styleClass="TituloContenido"></h:outputLabel></td>
-							<td><h:selectOneMenu id="tipoReporte" value="#{ReporteMB.tipoReporte}" required="true" requiredMessage="Seleccione un Tipo de Reporte">
-									<f:selectItem itemValue="" itemLabel="Seleccione..."/>
-									<f:selectItem itemValue="Depto-Fun-Publica" itemLabel="Departamento de la Funcion Publica (Pdf)"/>
-									<f:selectItem itemValue="INGEOMINAS" itemLabel="Ingeominas (Excel)"/>						
-									<f:selectItem itemValue="UPME" itemLabel="Upme (Excel)"/>
-								</h:selectOneMenu></td>
-							<td><h:commandButton action="#{ReporteMB.getCrearReporte}" value="Generar"/></td>	
-						</tr>
-						<tr>
-							<td align="center" colspan="3"><rich:message for="tipoReporte" style="color:red"/></td>
-						</tr>						
-					</table>
-				</h:form>
+					<tr>
+						<td align="center" colspan="3"><rich:message for="tipoReporte" style="color:red"/></td>
+					</tr>	
+				</table>					
 			</rich:panel>
 		</ui:define>
 	</ui:composition>

@@ -9,7 +9,10 @@ import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppIdioma;
 import co.com.inascol.atenea.entity.rowmapper.GppIdiomaRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppIdiomaDAO implements DAO {
 	
 	private GppIdioma gppIdioma;

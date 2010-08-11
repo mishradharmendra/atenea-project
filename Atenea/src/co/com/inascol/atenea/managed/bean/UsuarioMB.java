@@ -7,7 +7,10 @@ import javax.faces.context.FacesContext;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.managed.bean.delegate.UsuarioDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class UsuarioMB {
 
 	private UsuarioDelegate usuarioDelegate;

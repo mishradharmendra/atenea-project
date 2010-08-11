@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppDocumentoDAO;
 import co.com.inascol.atenea.entity.GppDocumento;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IDocumentoService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class DocumentoService implements IDocumentoService{
 
 	private Boolean estadoOperacion;

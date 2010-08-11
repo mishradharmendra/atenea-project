@@ -4,7 +4,10 @@ import java.util.List;
 
 import co.com.inascol.atenea.entity.GppCargoequivalente;
 import co.com.inascol.atenea.entity.GppUsuario;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface ICargoequivalenteService {
 
 	public boolean crearCargoEquivalente(String nombreCargoEquivalente, GppUsuario usuarioAutenticado);

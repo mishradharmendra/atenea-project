@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import co.com.inascol.atenea.entity.GppIdioma;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppIdiomaRowMapper implements RowMapper{
 
 	private GppIdioma gppIdioma;

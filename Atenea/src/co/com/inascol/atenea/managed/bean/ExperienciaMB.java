@@ -271,21 +271,27 @@ public class ExperienciaMB {
 	}
 	
 	public void getSubirCertificaciones(UploadEvent event) throws IOException {
-		experienciaDelegate.getSubirCertificaciones(event);
 		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
 			GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+			experienciaDelegate.getSubirCertificaciones(persona, event);
 			experienciaDelegate.getGuardarCertificaciones(persona);
 		}
 	}
 	
 	public void getSubirCertificado1(UploadEvent event) throws IOException {
-		documentoCargadoCertificacion1 = true;
-		experienciaDelegate.getSubirCertificado1(event);
+		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
+			GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+			documentoCargadoCertificacion1 = true;
+			experienciaDelegate.getSubirCertificado1(persona, event);
+		}
 	}
 
 	public void getSubirCertificado2(UploadEvent event) throws IOException {
-		documentoCargadoCertificacion2 = true;
-		experienciaDelegate.getSubirCertificado2(event);
+		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
+			GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+			documentoCargadoCertificacion2 = true;
+			experienciaDelegate.getSubirCertificado2(persona, event);
+		}
 	}
 
 	public void setTabPanel(){

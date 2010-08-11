@@ -7,8 +7,10 @@ import javax.faces.context.FacesContext;
 import co.com.inascol.atenea.entity.GppTituloequivalente;
 import co.com.inascol.atenea.managed.bean.delegate.TituloequivalenteDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TituloequivalenteMB {
 
 	private TituloequivalenteDelegate tituloequivalenteDelegate;

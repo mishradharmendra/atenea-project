@@ -4,7 +4,10 @@ import java.util.List;
 
 import co.com.inascol.atenea.entity.GppIdioma;
 import co.com.inascol.atenea.entity.GppUsuario;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface IIdiomaService {
 
 	public boolean crearIdioma(String nombreIdioma, GppUsuario usuarioAutenticado);

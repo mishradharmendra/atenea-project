@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppPersonaDAO;
 import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IPersonaService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class PersonaService implements IPersonaService{
 
 	private Boolean estadoOperacion;
@@ -19,7 +22,7 @@ public class PersonaService implements IPersonaService{
 			String apellidoPersona, Integer numeroIdentificacion, String sexo,
 			Date fechaNacimiento, String libretaMilitar, String celular,
 			String email, String direccion, String telefono,
-			String idMunicipio, Integer tipoDocumento, Integer idEstadoCivil,
+			Integer idMunicipio, Integer tipoDocumento, Integer idEstadoCivil,
 			Integer idPaisResidencia, Integer idMunicipioResidencia, Boolean usuarioActivo, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
 		try{			
@@ -36,7 +39,7 @@ public class PersonaService implements IPersonaService{
 			gppPersona.setPerVemail(email);
 			gppPersona.setPerVdireccion(direccion);
 			gppPersona.setPerVtelefono(telefono);
-			gppPersona.setMunVidmunicipio(idMunicipio);
+			gppPersona.setMunNidmunicipio(idMunicipio);
 			gppPersona.setTdcNidtipodoc(tipoDocumento);
 			gppPersona.setEscNidestadocivil(idEstadoCivil);
 			gppPersona.setPaiNpaisresidencia(idPaisResidencia);
@@ -87,7 +90,7 @@ public class PersonaService implements IPersonaService{
 	public boolean crearPersona(String nombrePersona, String apellidoPersona,
 			Integer numeroIdentificacion, String sexo, Date fechaNacimiento,
 			String libretaMilitar, String celular, String email,
-			String direccion, String telefono, String idMunicipio,
+			String direccion, String telefono, Integer idMunicipio,
 			Integer tipoDocumento, Integer idEstadoCivil,
 			Integer idPaisResidencia, Integer idMunicipioResidencia, Boolean usuarioActivo, GppUsuario usuarioAutenticado) {
 		estadoOperacion = false;
@@ -104,7 +107,7 @@ public class PersonaService implements IPersonaService{
 			gppPersona.setPerVemail(email);
 			gppPersona.setPerVdireccion(direccion);
 			gppPersona.setPerVtelefono(telefono);
-			gppPersona.setMunVidmunicipio(idMunicipio);
+			gppPersona.setMunNidmunicipio(idMunicipio);
 			gppPersona.setTdcNidtipodoc(tipoDocumento);
 			gppPersona.setEscNidestadocivil(idEstadoCivil);
 			gppPersona.setPaiNpaisresidencia(idPaisResidencia);
@@ -123,5 +126,17 @@ public class PersonaService implements IPersonaService{
 		gppPersonaDAO = new GppPersonaDAO();
 		gppPersonas = gppPersonaDAO.buscarPersonaPorCriterios(criteriosBusqueda);
 		return gppPersonas;
-	}		
+	}
+
+	public List<Object> buscarPersonaPorCriteriosAvanzados(List<Object> criteriosBusqueda) {
+		gppPersonaDAO = new GppPersonaDAO();
+		gppPersonas = gppPersonaDAO.buscarPersonaPorCriteriosAvanzados(criteriosBusqueda);
+		return gppPersonas;
+	}
+
+	public List<Object> buscarPersonaPorCriterioRapido(String criterioBusquedaRapida) {
+		gppPersonaDAO = new GppPersonaDAO();
+		gppPersonas = gppPersonaDAO.buscarPersonaPorCriterioRapido(criterioBusquedaRapida);
+		return gppPersonas;
+	}
 }

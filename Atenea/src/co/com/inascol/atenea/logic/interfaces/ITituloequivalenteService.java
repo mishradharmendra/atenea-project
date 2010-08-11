@@ -4,7 +4,10 @@ import java.util.List;
 
 import co.com.inascol.atenea.entity.GppTituloequivalente;
 import co.com.inascol.atenea.entity.GppUsuario;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface ITituloequivalenteService {
 
 	public boolean crearTituloEquivalente(String nombreTituloEquivalente, GppUsuario usuarioAutenticado);

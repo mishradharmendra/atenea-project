@@ -5,7 +5,10 @@ import java.util.List;
 
 import co.com.inascol.atenea.entity.GppDocumento;
 import co.com.inascol.atenea.entity.GppUsuario;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public interface IDocumentoService {
 
 	public boolean crearDocumento(String nombreDocumento, String nombreArchivo, String urlArchivo, Date fechaExpedicion, Integer idPersona,

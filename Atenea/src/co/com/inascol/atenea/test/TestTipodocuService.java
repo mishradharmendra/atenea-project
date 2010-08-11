@@ -7,7 +7,10 @@ import co.com.inascol.atenea.entity.GppTipodoc;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.TipodocService;
 import co.com.inascol.atenea.logic.interfaces.ITipodocService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class TestTipodocuService {
 
 	private static ITipodocService tipodocService;

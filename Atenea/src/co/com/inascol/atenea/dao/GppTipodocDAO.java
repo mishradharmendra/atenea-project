@@ -9,7 +9,10 @@ import co.com.inascol.atenea.dao.utils.DAO;
 import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppTipodoc;
 import co.com.inascol.atenea.entity.rowmapper.GppTipodocRowMapper;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class GppTipodocDAO implements DAO{
 
 	private GppTipodoc gppTipodoc;

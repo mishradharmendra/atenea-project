@@ -7,7 +7,10 @@ import co.com.inascol.atenea.dao.GppMunicipioDAO;
 import co.com.inascol.atenea.entity.GppMunicipio;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IMunicipioService;
-
+/**
+ * @author Guillermo Toro
+ *
+ */
 public class MunicipioService implements IMunicipioService{
 
 	private Boolean estadoOperacion;
