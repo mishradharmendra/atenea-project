@@ -24,18 +24,18 @@
 				<table>
 					<tr>
 						<td><h:outputLabel value="Nombres y Apellidos: "></h:outputLabel></td>
-						<td><h:inputText size="40" value="#{PersonaMB.nombrePersona}"></h:inputText></td>					
+						<td><h:inputText size="30" value="#{PersonaMB.nombrePersona}"></h:inputText></td>					
 						<td width="100px"></td>
 						<td><h:outputLabel value="Identificación : "></h:outputLabel></td>
-						<td><h:inputText value="#{PersonaMB.identificacionPersona}"></h:inputText></td>
+						<td><h:inputText size="30" value="#{PersonaMB.identificacionPersona}"></h:inputText></td>
 					</tr>
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{PersonaMB.getBusquedaBasicaPersona}" value="Buscar"/></td>
+						<td><h:commandButton action="#{PersonaMB.getBusquedaBasicaPersona}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 						<td width="20px"></td>
-						<td><h:commandButton action="#{PersonaMB.getBusquedaAvanzada}" value="Búsqueda Avanzada"/></td>
+						<td><h:commandButton action="#{PersonaMB.getBusquedaAvanzada}" value="Búsqueda Avanzada" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 					</tr>
 				</table>
 				</h:form>
@@ -43,7 +43,7 @@
 				<h:form>
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{PersonaMB.getAgregarHojaVida}" value="Agregar Hoja de Vida"/></td>						
+						<td><h:commandButton action="#{PersonaMB.getAgregarHojaVida}" value="Agregar Hoja de Vida" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>						
 					</tr>
 				</table>
 				</h:form>												

@@ -24,16 +24,16 @@
 				<table>
 					<tr>
 						<td><h:outputLabel value="Nombres y Apellidos: "></h:outputLabel></td>
-						<td><h:inputText size="40" value="#{ReporteMB.nombrePersona}"></h:inputText></td>					
+						<td><h:inputText size="30" value="#{ReporteMB.nombrePersona}"></h:inputText></td>					
 						<td width="100px"></td>
 						<td><h:outputLabel value="Identificación : "></h:outputLabel></td>
-						<td><h:inputText value="#{ReporteMB.identificacionPersona}"></h:inputText></td>
+						<td><h:inputText size="30" value="#{ReporteMB.identificacionPersona}"></h:inputText></td>
 					</tr>
 				</table>
 				<br/>				
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{ReporteMB.getBusquedaBasicaPersona}" value="Buscar"/></td>
+						<td><h:commandButton action="#{ReporteMB.getBusquedaBasicaPersona}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 					</tr>
 				</table>
 				</h:form>

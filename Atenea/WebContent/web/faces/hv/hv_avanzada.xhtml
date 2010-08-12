@@ -24,54 +24,54 @@
 				<h:form>	
 				<table>
 					<tr>
-						<td><h:outputLabel value="Nombres y Apellidos: "></h:outputLabel></td>
-						<td><h:inputText size="40" value="#{PersonaMB.nombrePersona}"></h:inputText></td>					
+						<td align="left"><h:outputLabel value="Nombres y Apellidos: "></h:outputLabel></td>
+						<td align="left"><h:inputText size="30" value="#{PersonaMB.nombrePersona}"></h:inputText></td>					
 						<td width="100px"></td>
-						<td><h:outputLabel value="Identificación : "></h:outputLabel></td>
-						<td><h:inputText value="#{PersonaMB.identificacionPersona}"></h:inputText></td>
+						<td align="left"><h:outputLabel value="Identificación : "></h:outputLabel></td>
+						<td align="left"><h:inputText size="30" value="#{PersonaMB.identificacionPersona}"></h:inputText></td>
 					</tr>
 					<tr>
-						<td><h:outputLabel value="Profesión: "></h:outputLabel></td>
-						<td><h:selectOneMenu value="#{PersonaMB.idPregrado}">
+						<td align="left"><h:outputLabel value="Profesión: "></h:outputLabel></td>
+						<td align="left"><h:selectOneMenu size="30" value="#{PersonaMB.idPregrado}">
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 							<f:selectItems value="#{PersonaMB.titulosEquivalentes}"/>
 						</h:selectOneMenu></td>
 						<td width="100px"></td>
-						<td><h:outputLabel value="Fecha Tarjeta Profesional: "></h:outputLabel></td>
-						<td><rich:calendar value="#{PersonaMB.fechaTarjetaProfesional}" datePattern="dd/MM/yyyy" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll"/></td>						
+						<td align="left"><h:outputLabel value="Fecha Tarjeta Profesional: "></h:outputLabel></td>
+						<td align="left"><rich:calendar size="30" value="#{PersonaMB.fechaTarjetaProfesional}" datePattern="dd/MM/yyyy" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll"/></td>						
 					</tr>
 					<tr>
-						<td><h:outputLabel value="Especialización : "></h:outputLabel></td>
-						<td><h:selectOneMenu value="#{PersonaMB.idEspecializacion}">
+						<td align="left"><h:outputLabel value="Especialización : "></h:outputLabel></td>
+						<td align="left"><h:selectOneMenu size="30" value="#{PersonaMB.idEspecializacion}">
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 							<f:selectItems value="#{PersonaMB.titulosEquivalentes}"/>
 							</h:selectOneMenu></td>
 						<td width="100px"></td>
-						<td><h:outputLabel value="Maestría : "></h:outputLabel></td>
-						<td><h:selectOneMenu value="#{PersonaMB.idMaestria}">
+						<td align="left"><h:outputLabel value="Maestría : "></h:outputLabel></td>
+						<td align="left"><h:selectOneMenu size="30" value="#{PersonaMB.idMaestria}">
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 							<f:selectItems value="#{PersonaMB.titulosEquivalentes}"/>
 							</h:selectOneMenu></td>
 					</tr>					
 					<tr>
-						<td><h:outputLabel value="Cargo : "></h:outputLabel></td>
-						<td><h:inputText value="#{PersonaMB.cargo}"></h:inputText></td>
+						<td align="left"><h:outputLabel value="Cargo : "></h:outputLabel></td>
+						<td align="left"><h:inputText size="30" value="#{PersonaMB.cargo}"></h:inputText></td>
 						<td width="100px"></td>
 						<td colspan="2"/>
 					</tr>
 					<tr>
-						<td><h:outputLabel value="Base de Datos : "></h:outputLabel></td>
-						<td><h:inputText value="#{PersonaMB.bd}"></h:inputText></td>
+						<td align="left"><h:outputLabel value="Base de Datos : "></h:outputLabel></td>
+						<td align="left"><h:inputText size="30" value="#{PersonaMB.bd}"></h:inputText></td>
 						<td width="100px"></td>						
-						<td><h:outputLabel value="Herramientas de Desarrollo : "></h:outputLabel></td>
-						<td><h:inputText value="#{PersonaMB.herramientas}"></h:inputText></td>
+						<td align="left"><h:outputLabel value="Herramientas de Desarrollo : "></h:outputLabel></td>
+						<td align="left"><h:inputText size="30" value="#{PersonaMB.herramientas}"></h:inputText></td>
 					</tr>		
 					<tr>
-						<td><h:outputLabel value="Funciones y Logros : "></h:outputLabel></td>
-						<td><h:inputText value="#{PersonaMB.funciones}"></h:inputText></td>
+						<td align="left"><h:outputLabel value="Funciones y Logros : "></h:outputLabel></td>
+						<td align="left"><h:inputText size="30" value="#{PersonaMB.funciones}"></h:inputText></td>
 						<td width="100px"></td>
-						<td><h:outputLabel value="Perfíl Profesional : "></h:outputLabel></td>
-						<td><h:selectOneMenu value="#{PersonaMB.idPerfil}">
+						<td align="left"><h:outputLabel value="Perfíl Profesional : "></h:outputLabel></td>
+						<td align="left"><h:selectOneMenu size="30" value="#{PersonaMB.idPerfil}">
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 							<f:selectItems value="#{PersonaMB.perfilesProfesionales}"/>
 							</h:selectOneMenu></td>
@@ -80,9 +80,9 @@
 				<br/>				
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{PersonaMB.getBusquedaAvanzadaPersona}" value="Buscar"/></td>						
+						<td><h:commandButton action="#{PersonaMB.getBusquedaAvanzadaPersona}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>						
 						<td width="20px"></td>
-						<td><h:commandButton action="#{PersonaMB.getBusquedaAvanzada}" value="Limpiar Criterios"/></td>
+						<td><h:commandButton action="#{PersonaMB.getBusquedaAvanzada}" value="Limpiar Criterios" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 					</tr>
 				</table>
 				</h:form>

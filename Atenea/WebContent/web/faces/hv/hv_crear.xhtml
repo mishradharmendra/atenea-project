@@ -26,11 +26,11 @@
 					<h:form>
 					<table align="center">
 						<tr>
-							<td><h:outputLabel value="Nombres"></h:outputLabel></td>
-							<td><h:inputText size="30" id="perVnombres" value="#{PersonaMB.persona.perVnombres}" required="true" requiredMessage="Ingrese Nombres"></h:inputText></td>
+							<td align="left"><h:outputLabel value="Nombres"></h:outputLabel></td>
+							<td align="left"><h:inputText size="30" id="perVnombres" value="#{PersonaMB.persona.perVnombres}" required="true" requiredMessage="Ingrese Nombres"></h:inputText></td>
 							<td width="150px"></td>			
-							<td><h:outputLabel value="Apellidos"></h:outputLabel></td>
-							<td><h:inputText size="30" id="perVapellidos" value="#{PersonaMB.persona.perVapellidos}" required="true" requiredMessage="Ingrese Apellidos"></h:inputText></td>							
+							<td align="left"><h:outputLabel value="Apellidos"></h:outputLabel></td>
+							<td align="left"><h:inputText size="30" id="perVapellidos" value="#{PersonaMB.persona.perVapellidos}" required="true" requiredMessage="Ingrese Apellidos"></h:inputText></td>							
 						</tr>
 						<tr>
 							<td align="center" colspan="2"><rich:message for="perVnombres" style="color:red"/></td>
@@ -38,14 +38,14 @@
 							<td align="center" colspan="2"><rich:message for="perVapellidos" style="color:red"/></td>							
 						</tr>						
 						<tr>
-							<td><h:outputLabel value="Tipo de Identificación"></h:outputLabel></td>
-							<td><h:selectOneMenu value="#{PersonaMB.persona.tdcNidtipodoc}" id="tdcNidtipodoc" required="true" requiredMessage="Ingrese Tipo de Identificación">
+							<td align="left"><h:outputLabel value="Tipo de Identificación"></h:outputLabel></td>
+							<td align="left"><h:selectOneMenu size="30" value="#{PersonaMB.persona.tdcNidtipodoc}" id="tdcNidtipodoc" required="true" requiredMessage="Ingrese Tipo de Identificación">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.tiposIdentificacion}"/>
 							</h:selectOneMenu></td>
 							<td width="150px"></td>			
-							<td><h:outputLabel value="Identificación"></h:outputLabel></td>
-							<td><h:inputText size="30" id="perNidentificacion" value="#{PersonaMB.persona.perNidentificacion}" required="true" requiredMessage="Ingrese Identificación"></h:inputText></td>							
+							<td align="left"><h:outputLabel value="Identificación"></h:outputLabel></td>
+							<td align="left"><h:inputText size="30" id="perNidentificacion" value="#{PersonaMB.persona.perNidentificacion}" required="true" requiredMessage="Ingrese Identificación"></h:inputText></td>							
 						</tr>		
 						<tr>
 							<td align="center" colspan="2"><rich:message for="tdcNidtipodoc" style="color:red"/></td>
@@ -53,15 +53,15 @@
 							<td align="center" colspan="2"><rich:message for="perNidentificacion" style="color:red"/></td>							
 						</tr>							
 						<tr>
-							<td><h:outputLabel value="Sexo"></h:outputLabel></td>
-							<td><h:selectOneMenu id="perVsexo" value="#{PersonaMB.persona.perVsexo}" required="true" requiredMessage="Ingrese Sexo">
+							<td align="left"><h:outputLabel value="Sexo"></h:outputLabel></td>
+							<td align="left"><h:selectOneMenu  size="30" id="perVsexo" value="#{PersonaMB.persona.perVsexo}" required="true" requiredMessage="Ingrese Sexo">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
 								<f:selectItem itemValue="H" itemLabel="Hombre"/>
 								<f:selectItem itemValue="M" itemLabel="Mujer"/>
 							</h:selectOneMenu></td>
 							<td width="150px"></td>			
-							<td><h:outputLabel value="Estado Civil"></h:outputLabel></td>
-							<td><h:selectOneMenu id="escNidestadocivil" value="#{PersonaMB.persona.escNidestadocivil}" required="true" requiredMessage="Ingrese Estado Civil">
+							<td align="left"><h:outputLabel value="Estado Civil"></h:outputLabel></td>
+							<td align="left"><h:selectOneMenu  size="30" id="escNidestadocivil" value="#{PersonaMB.persona.escNidestadocivil}" required="true" requiredMessage="Ingrese Estado Civil">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.estadosCiviles}"/>
 							</h:selectOneMenu></td>						
@@ -72,24 +72,24 @@
 							<td align="center" colspan="2"><rich:message for="escNidestadocivil" style="color:red"/></td>							
 						</tr>													
 						<tr>
-							<td><h:outputLabel value="Fecha de Nacimiento"></h:outputLabel></td>
-							<td><rich:calendar value="#{PersonaMB.persona.perDfecnacimiento}" datePattern="dd/MM/yyyy" id="perDfecnacimiento" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll"/></td>
+							<td align="left"><h:outputLabel value="Fecha de Nacimiento"></h:outputLabel></td>
+							<td align="left"><rich:calendar  size="30" value="#{PersonaMB.persona.perDfecnacimiento}" datePattern="dd/MM/yyyy" id="perDfecnacimiento" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll"/></td>
 							<td width="150px"></td>			
-							<td><h:outputLabel value="País"></h:outputLabel></td>
-							<td><h:selectOneMenu id="idPais" valueChangeListener="#{PersonaMB.getDeptos}" onchange="submit()">
+							<td align="left"><h:outputLabel value="País"></h:outputLabel></td>
+							<td align="left"><h:selectOneMenu size="30" id="idPais" valueChangeListener="#{PersonaMB.getDeptos}" onchange="submit()">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.paises}"/>
 							</h:selectOneMenu></td>
 						</tr>										
 						<tr>
-							<td><h:outputLabel value="Departamento"></h:outputLabel></td>
-							<td><h:selectOneMenu id="idDepto" valueChangeListener="#{PersonaMB.getMpios}" onchange="submit()">
+							<td align="left"><h:outputLabel value="Departamento"></h:outputLabel></td>
+							<td align="left"><h:selectOneMenu size="30" id="idDepto" valueChangeListener="#{PersonaMB.getMpios}" onchange="submit()">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.departamentosPais}"/>
 							</h:selectOneMenu></td>		
 							<td width="150px"></td>	
-							<td><h:outputLabel value="Municipio"></h:outputLabel></td>
-							<td><h:selectOneMenu id="munNidmunicipio" value="#{PersonaMB.persona.munNidmunicipio}" required="true" requiredMessage="Seleccione un Municipio">
+							<td align="left"><h:outputLabel value="Municipio"></h:outputLabel></td>
+							<td align="left"><h:selectOneMenu size="30" id="munNidmunicipio" value="#{PersonaMB.persona.munNidmunicipio}" required="true" requiredMessage="Seleccione un Municipio">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.municipios}"/>
 							</h:selectOneMenu></td>	
@@ -100,8 +100,8 @@
 							<td align="center" colspan="2"><rich:message for="munNidmunicipio" style="color:red"/></td>							
 						</tr>							
 						<tr>				
-							<td><h:outputLabel value="Libreta Militar"></h:outputLabel></td>
-							<td><h:inputText size="30" value="#{PersonaMB.persona.perVlibretamilitar}"></h:inputText></td>
+							<td align="left"><h:outputLabel value="Libreta Militar"></h:outputLabel></td>
+							<td align="left"><h:inputText size="30" value="#{PersonaMB.persona.perVlibretamilitar}"></h:inputText></td>
 						</tr>																																																	
 					</table>
 					<br/><br/>
@@ -113,14 +113,14 @@
 					<br/><br/>
 					<table align="center">
 						<tr>
-							<td><h:outputLabel value="País Residencia"></h:outputLabel></td>
-							<td><h:selectOneMenu id="idPaisResidencia" value="#{PersonaMB.persona.paiNpaisresidencia}" required="true" requiredMessage="Seleccione un Pais de Residencia">
+							<td align="left"><h:outputLabel value="País Residencia"></h:outputLabel></td>
+							<td align="left"><h:selectOneMenu size="30" id="idPaisResidencia" value="#{PersonaMB.persona.paiNpaisresidencia}" required="true" requiredMessage="Seleccione un Pais de Residencia">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.paises}"/>
 								</h:selectOneMenu></td>
 							<td width="150px"></td>	
-							<td><h:outputLabel value="Municipio Residencia"></h:outputLabel></td>
-							<td><h:selectOneMenu id="mpio" value="#{PersonaMB.persona.munNmpioresidencia}">
+							<td align="left"h:outputLabel value="Municipio Residencia"></h:outputLabel></td>
+							<td align="left"><h:selectOneMenu size="30" id="mpio" value="#{PersonaMB.persona.munNmpioresidencia}">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.municipiosResidencia}"/>
 								</h:selectOneMenu></td>							
@@ -131,18 +131,18 @@
 							<td colspan="2"/>							
 						</tr>											
 						<tr>
-							<td><h:outputLabel value="Movil"></h:outputLabel></td>
-							<td><h:inputText size="30" id="perVmovil" value="#{PersonaMB.persona.perVmovil}"></h:inputText></td>
+							<td align="left"><h:outputLabel value="Movil"></h:outputLabel></td>
+							<td align="left"><h:inputText size="30" id="perVmovil" value="#{PersonaMB.persona.perVmovil}"></h:inputText></td>
 							<td width="150px"></td>	
-							<td><h:outputLabel value="Correo Electrónico"></h:outputLabel></td>
-							<td><h:inputText size="30" id="perVemail" value="#{PersonaMB.persona.perVemail}"></h:inputText></td>							
+							<td align="left"><h:outputLabel value="Correo Electrónico"></h:outputLabel></td>
+							<td align="left"><h:inputText size="30" id="perVemail" value="#{PersonaMB.persona.perVemail}"></h:inputText></td>							
 						</tr>								
 						<tr>
-							<td><h:outputLabel value="Teléfono Fijo"></h:outputLabel></td>
-							<td><h:inputText size="30" id="perVtelefono" value="#{PersonaMB.persona.perVtelefono}"></h:inputText></td>
+							<td align="left"><h:outputLabel value="Teléfono Fijo"></h:outputLabel></td>
+							<td align="left"><h:inputText size="30" id="perVtelefono" value="#{PersonaMB.persona.perVtelefono}"></h:inputText></td>
 							<td width="150px"></td>	
-							<td><h:outputLabel value="Dirección"></h:outputLabel></td>
-							<td><h:inputText size="30" id="perVdireccion" value="#{PersonaMB.persona.perVdireccion}"></h:inputText></td>							
+							<td align="left"><h:outputLabel value="Dirección"></h:outputLabel></td>
+							<td align="left"><h:inputText size="30" id="perVdireccion" value="#{PersonaMB.persona.perVdireccion}"></h:inputText></td>							
 						</tr>																	
 					</table>
 					<br/>
@@ -161,14 +161,14 @@
 					<table align="right">
 						<tr>
 							<c:if test="#{PersonaMB.persona.perNidpersona == null}">
-							<td><h:commandButton action="#{PersonaMB.getGuardarPersona}" value="Guardar"/></td>
+							<td><h:commandButton action="#{PersonaMB.getGuardarPersona}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 							</c:if>					
 						</tr>
 					</table>
 					<table align="right">
 						<tr>
 							<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-							<td><h:commandButton action="#{PersonaMB.getActualizarPersona}" value="Actualizar"/></td>
+							<td><h:commandButton action="#{PersonaMB.getActualizarPersona}" value="Actualizar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 							</c:if>					
 						</tr>						
 					</table>
@@ -178,7 +178,7 @@
 					<table align="right">
 						<tr>
 							<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-							<td><h:commandButton action="#{PersonaMB.getSiguiente}" value="Siguiente"/></td>
+							<td><h:commandButton action="#{PersonaMB.getSiguiente}" value="Siguiente" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 							</c:if>					
 						</tr>						
 					</table>
@@ -255,7 +255,7 @@
 						<h:form>
 						<table align="center">
 							<tr>
-								<td><h:commandButton action="#{FormacionMB.getAgregarFormacion}" value="Agregar Estudio"/></td>
+								<td><h:commandButton action="#{FormacionMB.getAgregarFormacion}" value="Agregar Estudio" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 							</tr>
 						</table>			
 						<br/>		
@@ -274,14 +274,14 @@
 						<table align="left">
 							<tr>
 								<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-								<td><h:commandButton action="#{FormacionMB.getAnterior}" value="Anterior"/></td>
+								<td><h:commandButton action="#{FormacionMB.getAnterior}" value="Anterior" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 								</c:if>					
 							</tr>						
 						</table>						
 						<table align="right">
 							<tr>
 								<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-								<td><h:commandButton action="#{FormacionMB.getSiguiente}" value="Siguiente"/></td>
+								<td><h:commandButton action="#{FormacionMB.getSiguiente}" value="Siguiente" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 								</c:if>					
 							</tr>						
 						</table>
@@ -371,7 +371,7 @@
 						<h:form>
 						<table align="center">
 							<tr>
-								<td><h:commandButton action="#{ExperienciaMB.getAgregarExperiencia}" value="Agregar Experiencia"/></td>
+								<td><h:commandButton action="#{ExperienciaMB.getAgregarExperiencia}" value="Agregar Experiencia" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 							</tr>
 						</table>			
 						<br/>						
@@ -390,14 +390,14 @@
 						<table align="left">
 							<tr>
 								<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-								<td><h:commandButton action="#{ExperienciaMB.getAnterior}" value="Anterior"/></td>
+								<td><h:commandButton action="#{ExperienciaMB.getAnterior}" value="Anterior" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 								</c:if>					
 							</tr>						
 						</table>						
 						<table align="right">
 							<tr>
 								<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-								<td><h:commandButton action="#{ExperienciaMB.getSiguiente}" value="Siguiente"/></td>
+								<td><h:commandButton action="#{ExperienciaMB.getSiguiente}" value="Siguiente" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 								</c:if>					
 							</tr>						
 						</table>
@@ -413,9 +413,9 @@
 						<h:form>
 						<table align="center">
 							<tr>
-								<td><h:outputLabel value="Perfíl Profesional"></h:outputLabel></td>
+								<td align="left"><h:outputLabel value="Perfíl Profesional"></h:outputLabel></td>
 								<td width="20px"></td>
-								<td><h:selectOneMenu value="#{PerfilprofesionalMB.perfilProfesional.peqNidperfileq}" id="peqNidperfileq" required="true" requiredMessage="Ingrese Perfil Profesional">
+								<td align="left"><h:selectOneMenu  size="30" value="#{PerfilprofesionalMB.perfilProfesional.peqNidperfileq}" id="peqNidperfileq" required="true" requiredMessage="Ingrese Perfil Profesional">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{PerfilprofesionalMB.perfilesProfesionales}"/>
 										</h:selectOneMenu></td>
@@ -424,9 +424,9 @@
 								<td align="center" colspan="3"><rich:message for="peqNidperfileq" style="color:red"/></td>
 							</tr>								
 							<tr>
-								<td><h:outputLabel value="Descripción"></h:outputLabel></td>
+								<td align="left"><h:outputLabel value="Descripción"></h:outputLabel></td>
 								<td width="20px"></td>
-								<td><h:inputTextarea cols="40" value="#{PerfilprofesionalMB.perfilProfesional.pprVperfil}" id="pprVperfil" required="true" requiredMessage="Ingrese Descripción"></h:inputTextarea></td>
+								<td align="left"><h:inputTextarea cols="30" value="#{PerfilprofesionalMB.perfilProfesional.pprVperfil}" id="pprVperfil" required="true" requiredMessage="Ingrese Descripción"></h:inputTextarea></td>
 							</tr>
 							<tr>
 								<td align="center" colspan="3"><rich:message for="pprVperfil" style="color:red"/></td>
@@ -441,24 +441,24 @@
 						<br/>
 						<table align="center">
 							<tr>
-								<td><h:outputLabel value="Idioma 1"></h:outputLabel></td>							
-								<td><h:selectOneMenu value="#{PerfilprofesionalMB.perfilProfesional.idiNididioma1}">
+								<td align="left"><h:outputLabel value="Idioma 1"></h:outputLabel></td>							
+								<td align="left"><h:selectOneMenu size="30" value="#{PerfilprofesionalMB.perfilProfesional.idiNididioma1}">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{PerfilprofesionalMB.idiomas}"/>
 										</h:selectOneMenu></td>
 								<td width="20px"></td>
-								<td><h:outputLabel value="Dominio (%)"></h:outputLabel></td>
-								<td><h:inputText value="#{PerfilprofesionalMB.perfilProfesional.pprNnivelidi1}"></h:inputText></td>
+								<td align="left"><h:outputLabel value="Dominio (%)"></h:outputLabel></td>
+								<td align="left"><h:inputText size="30" value="#{PerfilprofesionalMB.perfilProfesional.pprNnivelidi1}"></h:inputText></td>
 							</tr>
 							<tr>
-								<td><h:outputLabel value="Idioma 2"></h:outputLabel></td>							
-								<td><h:selectOneMenu value="#{PerfilprofesionalMB.perfilProfesional.idiNididioma2}">
+								<td align="left"><h:outputLabel value="Idioma 2"></h:outputLabel></td>							
+								<td align="left"><h:selectOneMenu size="30" value="#{PerfilprofesionalMB.perfilProfesional.idiNididioma2}">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{PerfilprofesionalMB.idiomas}"/>
 										</h:selectOneMenu></td>
 								<td width="20px"></td>										
-								<td><h:outputLabel value="Dominio (%)"></h:outputLabel></td>
-								<td><h:inputText value="#{PerfilprofesionalMB.perfilProfesional.pprNnivelidi2}"></h:inputText></td>
+								<td align="left"><h:outputLabel value="Dominio (%)"></h:outputLabel></td>
+								<td align="left"><h:inputText size="30" value="#{PerfilprofesionalMB.perfilProfesional.pprNnivelidi2}"></h:inputText></td>
 							</tr>							
 						</table>
 						<br/><br/>
@@ -469,23 +469,23 @@
 								<td><h:outputLabel value="Motores de Bases de Datos" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 							<tr>
-								<td><h:inputTextarea cols="40" value="#{PerfilprofesionalMB.perfilProfesional.pprVherrasw}"></h:inputTextarea></td>
+								<td><h:inputTextarea cols="30" value="#{PerfilprofesionalMB.perfilProfesional.pprVherrasw}"></h:inputTextarea></td>
 								<td width="150px"></td>
-								<td><h:inputTextarea cols="40" value="#{PerfilprofesionalMB.perfilProfesional.pprVmotorbd}"></h:inputTextarea></td>
+								<td><h:inputTextarea cols="30" value="#{PerfilprofesionalMB.perfilProfesional.pprVmotorbd}"></h:inputTextarea></td>
 							</tr>							
 						</table>
 						<br/><br/>
 						<table align="right">
 							<tr>
 								<c:if test="#{PerfilprofesionalMB.perfilProfesional.pprNidperfilprof == null}">
-								<td><h:commandButton action="#{PerfilprofesionalMB.getGuardarPerfil}" value="Guardar"/></td>
+								<td><h:commandButton action="#{PerfilprofesionalMB.getGuardarPerfil}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 								</c:if>					
 							</tr>
 						</table>
 						<table align="right">
 							<tr>
 								<c:if test="#{PerfilprofesionalMB.perfilProfesional.pprNidperfilprof != null}">
-								<td><h:commandButton action="#{PerfilprofesionalMB.getActualizarPerfil}" value="Actualizar"/></td>
+								<td><h:commandButton action="#{PerfilprofesionalMB.getActualizarPerfil}" value="Actualizar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 								</c:if>					
 							</tr>							
 						</table>	
@@ -495,14 +495,14 @@
 						<table align="left">
 							<tr>
 								<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-								<td><h:commandButton action="#{PerfilprofesionalMB.getAnterior}" value="Anterior"/></td>
+								<td><h:commandButton action="#{PerfilprofesionalMB.getAnterior}" value="Anterior" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 								</c:if>					
 							</tr>						
 						</table>						
 						<table align="right">
 							<tr>
 								<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-								<td><h:commandButton action="#{PerfilprofesionalMB.getSiguiente}" value="Siguiente"/></td>
+								<td><h:commandButton action="#{PerfilprofesionalMB.getSiguiente}" value="Siguiente" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 								</c:if>					
 							</tr>						
 						</table>
@@ -524,14 +524,14 @@
 						<h:form>
 						<table align="center">
 							<tr>
-								<td><h:outputLabel value="Tipo de Archivo"></h:outputLabel></td>
-								<td><h:selectOneMenu value="#{DocumentoMB.documento.tarNidtipoarchivo}" id="tarNidtipoarchivo" required="true" requiredMessage="Ingrese Tipo de Archivo">
+								<td align="left"><h:outputLabel value="Tipo de Archivo"></h:outputLabel></td>
+								<td align="left"><h:selectOneMenu size="30" value="#{DocumentoMB.documento.tarNidtipoarchivo}" id="tarNidtipoarchivo" required="true" requiredMessage="Ingrese Tipo de Archivo">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{DocumentoMB.tiposArchivos}"/>
 										</h:selectOneMenu></td>
 								<td width="200px"></td>
-								<td><h:outputLabel value="Fecha Expedición"></h:outputLabel></td>
-								<td><rich:calendar value="#{DocumentoMB.documento.docDfecexpide}" datePattern="dd/MM/yyyy" id="docDfecexpide" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha Expedición"/></td>										
+								<td align="left"><h:outputLabel value="Fecha Expedición"></h:outputLabel></td>
+								<td align="left"><rich:calendar size="30" value="#{DocumentoMB.documento.docDfecexpide}" datePattern="dd/MM/yyyy" id="docDfecexpide" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha Expedición"/></td>										
 							</tr>
 							<tr>
 								<td align="center" colspan="2"><rich:message for="tarNidtipoarchivo" style="color:red"/></td>
@@ -553,7 +553,7 @@
 						<br/>
 						<table align="right">
 							<tr>
-								<td><h:commandButton action="#{DocumentoMB.getGuardarSoporte}" value="Guardar"/></td>				
+								<td><h:commandButton action="#{DocumentoMB.getGuardarSoporte}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>				
 							</tr>
 						</table>	
 						</h:form>
@@ -621,7 +621,7 @@
 						<table align="left">
 							<tr>
 								<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-								<td><h:commandButton action="#{DocumentoMB.getAnterior}" value="Anterior"/></td>
+								<td><h:commandButton action="#{DocumentoMB.getAnterior}" value="Anterior" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 								</c:if>					
 							</tr>						
 						</table>						
