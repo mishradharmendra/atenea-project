@@ -16,7 +16,7 @@
         	<f:facet name="label"> 
             	<h:panelGroup style="width:940px;">
 					<a4j:commandLink id="hv" action="#{PersonaMB.getHomeHojaVida}">
-                    	<h:outputText value="Hojas de Vida"/>
+                    	<h:outputText value="Hojas de Vida" style="color:#0093DD"/>
                     </a4j:commandLink>                    
 				</h:panelGroup>
 			</f:facet>
@@ -25,7 +25,7 @@
         	<f:facet name="label"> 
             	<h:panelGroup >
 					<a4j:commandLink id="reportes" action="#{ReporteMB.getHomeReporte}">
-                    	<h:outputText value="Reportes"/>
+                    	<h:outputText value="Reportes" style="color:#0093DD"/>
                     </a4j:commandLink>   
 				</h:panelGroup>
 			</f:facet>
@@ -33,7 +33,7 @@
     	<rich:dropDownMenu>
         	<f:facet name="label"> 
             	<h:panelGroup>
-                    <h:outputText value="Administrador"/>
+                    <h:outputText value="Administración" style="color:#0093DD"/>
 				</h:panelGroup>
 			</f:facet>		
 			<rich:menuItem submitMode="ajax" value="Roles" action="#{RolMB.getHomeRol}"/>
@@ -56,19 +56,18 @@
 			</rich:menuGroup>						
 		</rich:dropDownMenu>
 		<rich:toolBarGroup location="right">
-			<h:form>
-	       		<h:outputLabel value="Búsqueda Rápida"/>
-	       		<h:inputText value="#{PersonaMB.criterioBusquedaRapida}"/>
-	       		<h:commandButton action="#{PersonaMB.getBusquedaRapidaPersona}" value="Búsqueda Rapida"/>
-        	</h:form>
-        	<h:form>
-				<a4j:commandLink id="rapida" onclick="procesarSolicitudBusquedaRapida();">
-				    <h:graphicImage url="../../imagenes/lupa.png"/>
-				</a4j:commandLink>
-			<a4j:form>
-				<a4j:jsFunction name="procesarSolicitudBusquedaRapida" action="#{PersonaMB.getBusquedaRapidaPersona}" />
-			</a4j:form>
-			</h:form>	        	
+           	<h:panelGroup >
+           		<table>
+           			<tr>
+           				<td><h:outputLabel value="Búsqueda Rápida" style="color:#0093DD"/></td>
+           				<td width="5px"/>
+           				<td><h:inputText value="#{PersonaMB.criterioBusquedaRapida}"/></td>
+           				<td><a4j:commandLink id="rapida" action="#{PersonaMB.getBusquedaRapidaPersona}"> 
+								<h:graphicImage align="center" url="../../imagenes/lupa.png" width="17px" heith="17px"/>
+                			</a4j:commandLink></td>
+           			</tr>
+           		</table>
+			</h:panelGroup>		
 		</rich:toolBarGroup>						
 	</rich:toolBar>
 </h:form>	
