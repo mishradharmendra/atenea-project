@@ -43,7 +43,7 @@
 						</h:dataTable></td>
 						<h:form>	
 						<td align="center"><h:outputLabel value="Formato" styleClass="TituloContenido"></h:outputLabel></td>
-						<td align="center"><h:selectOneMenu id="tipoReporte" value="#{ReporteMB.tipoReporte}" required="true" requiredMessage="Seleccione un Tipo de Reporte">
+						<td align="center"><h:selectOneMenu size="30" id="tipoReporte" value="#{ReporteMB.tipoReporte}" required="true" requiredMessage="Seleccione un Tipo de Reporte">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>
 								<f:selectItem itemValue="Formato_Formal" itemLabel="Formato Formal"/>
 								<f:selectItem itemValue="Depto-Fun-Publica" itemLabel="Departamento de la Función Pública"/>
@@ -51,7 +51,7 @@
 								<f:selectItem itemValue="UPME" itemLabel="Upme"/>
 							</h:selectOneMenu></td>
 						<td width="10px"/>
-						<td align="center"><h:commandButton action="#{ReporteMB.getCrearReporte}" value="Generar"/></td>
+						<td align="center"><h:commandButton action="#{ReporteMB.getCrearReporte}" value="Generar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 						</h:form>	
 					</tr>
 					<tr>

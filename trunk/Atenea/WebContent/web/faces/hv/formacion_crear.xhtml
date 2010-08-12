@@ -24,11 +24,11 @@
 				<h:form>
 				<table align="center">
 					<tr>
-						<td><h:outputLabel value="Título Obtenido"></h:outputLabel></td>
-						<td><h:inputText size="40" id="forVtitulo" value="#{FormacionMB.formacion.forVtitulo}" required="true" requiredMessage="Ingrese Título Obtenido"></h:inputText></td>
+						<td align="left"><h:outputLabel value="Título Obtenido"></h:outputLabel></td>
+						<td align="left"><h:inputText size="30" id="forVtitulo" value="#{FormacionMB.formacion.forVtitulo}" required="true" requiredMessage="Ingrese Título Obtenido"></h:inputText></td>
 						<td width="150px"></td>			
-						<td><h:outputLabel value="Nivel Académico"></h:outputLabel></td>
-						<td><h:selectOneMenu value="#{FormacionMB.formacion.nacNidnivelac}" id="nacNidnivelac" required="true" requiredMessage="Ingrese Nivel Académico">
+						<td align="left"><h:outputLabel value="Nivel Académico"></h:outputLabel></td>
+						<td align="left"><h:selectOneMenu size="30" value="#{FormacionMB.formacion.nacNidnivelac}" id="nacNidnivelac" required="true" requiredMessage="Ingrese Nivel Académico">
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 							<f:selectItems value="#{FormacionMB.nivelesAcademicos}"/>
 						</h:selectOneMenu></td>							
@@ -39,14 +39,14 @@
 						<td align="center" colspan="2"><rich:message for="nacNidnivelac" style="color:red"/></td>							
 					</tr>						
 					<tr>
-						<td><h:outputLabel value="Institución"></h:outputLabel></td>
-						<td><h:selectOneMenu value="#{FormacionMB.formacion.insNidinstitucion}" id="insNidinstitucion" required="true" requiredMessage="Ingrese Institución">
+						<td align="left"><h:outputLabel value="Institución"></h:outputLabel></td>
+						<td align="left"><h:selectOneMenu size="30" value="#{FormacionMB.formacion.insNidinstitucion}" id="insNidinstitucion" required="true" requiredMessage="Ingrese Institución">
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 							<f:selectItems value="#{FormacionMB.instituciones}"/>
 						</h:selectOneMenu></td>
 						<td width="150px"></td>			
-						<td><h:outputLabel value="Fecha de Grado"></h:outputLabel></td>
-						<td><rich:calendar value="#{FormacionMB.formacion.forDfecgrado}" datePattern="dd/MM/yyyy" id="forDfecgrado" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Grado"/></td>							
+						<td align="left"><h:outputLabel value="Fecha de Grado"></h:outputLabel></td>
+						<td align="left"><rich:calendar size="30" value="#{FormacionMB.formacion.forDfecgrado}" datePattern="dd/MM/yyyy" id="forDfecgrado" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Grado"/></td>							
 					</tr>		
 					<tr>
 						<td align="center" colspan="2"><rich:message for="insNidinstitucion" style="color:red"/></td>
@@ -54,14 +54,14 @@
 						<td align="center" colspan="2"><rich:message for="forDfecgrado" style="color:red"/></td>							
 					</tr>							
 					<tr>
-						<td><h:outputLabel value="Título Equivalente"></h:outputLabel></td>
-						<td><h:selectOneMenu id="teqNidtituloeq" value="#{FormacionMB.formacion.teqNidtituloeq}" required="true" requiredMessage="Ingrese Título Equivalente">
+						<td align="left"><h:outputLabel value="Título Equivalente"></h:outputLabel></td>
+						<td align="left"><h:selectOneMenu size="30" id="teqNidtituloeq" value="#{FormacionMB.formacion.teqNidtituloeq}" required="true" requiredMessage="Ingrese Título Equivalente">
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
 							<f:selectItems value="#{FormacionMB.titulosEquivalentes}"/>
 						</h:selectOneMenu></td>
 						<td width="150px"></td>			
-						<td><h:outputLabel value="Duración (Años)"></h:outputLabel></td>
-						<td><h:selectOneMenu id="forNduracionmes" value="#{FormacionMB.formacion.forNduracionmes}" required="true" requiredMessage="Ingrese Duración">
+						<td align="left"><h:outputLabel value="Duración (Años)"></h:outputLabel></td>
+						<td align="left"><h:selectOneMenu size="30" id="forNduracionmes" value="#{FormacionMB.formacion.forNduracionmes}" required="true" requiredMessage="Ingrese Duración">
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 							<f:selectItems value="#{FormacionMB.duraciones}"/>
 						</h:selectOneMenu></td>						
@@ -72,11 +72,11 @@
 						<td align="center" colspan="2"><rich:message for="forNduracionmes" style="color:red"/></td>							
 					</tr>													
 					<tr>
-						<td><h:outputLabel value="Tarjeta Profesional"></h:outputLabel></td>
-						<td><h:inputText size="40" value="#{FormacionMB.formacion.forVtarjetaprof}"></h:inputText></td>
+						<td align="left"><h:outputLabel value="Tarjeta Profesional"></h:outputLabel></td>
+						<td align="left"><h:inputText size="30" value="#{FormacionMB.formacion.forVtarjetaprof}"></h:inputText></td>
 						<td width="150px"></td>			
-						<td><h:outputLabel value="Fecha de Expedición"></h:outputLabel></td>
-						<td><rich:calendar value="#{FormacionMB.formacion.forDfectarjeta}" datePattern="dd/MM/yyyy" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll"/></td>						
+						<td align="left"><h:outputLabel value="Fecha de Expedición"></h:outputLabel></td>
+						<td align="left"><rich:calendar size="30" value="#{FormacionMB.formacion.forDfectarjeta}" datePattern="dd/MM/yyyy" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll"/></td>						
 					</tr>													
 				</table>
 				<br/><br/><br/>
@@ -98,14 +98,14 @@
 				<table align="right">
 					<tr>
 						<c:if test="#{FormacionMB.formacion.forNidformacion == null}">
-						<td><h:commandButton action="#{FormacionMB.getGuardarFormacion}" value="Guardar"/></td>
+						<td><h:commandButton action="#{FormacionMB.getGuardarFormacion}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 						</c:if>
 					</tr>
 				</table>				
 				<table align="right">
 					<tr>
 						<c:if test="#{FormacionMB.formacion.forNidformacion != null}">
-						<td><h:commandButton action="#{FormacionMB.getActualizarFormacion}" value="Actualizar"/></td>
+						<td><h:commandButton action="#{FormacionMB.getActualizarFormacion}" value="Actualizar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 						</c:if>
 					</tr>
 				</table>
@@ -113,7 +113,7 @@
 				<h:form>				
 				<table align="right">
 					<tr>						
-						<td><h:commandButton action="#{FormacionMB.getCancelar}" value="Cancelar"/></td>						
+						<td><h:commandButton action="#{FormacionMB.getCancelar}" value="Cancelar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>						
 					</tr>									
 				</table>
 				</h:form>
