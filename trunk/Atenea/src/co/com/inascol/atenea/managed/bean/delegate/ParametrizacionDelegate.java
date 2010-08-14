@@ -37,7 +37,7 @@ public class ParametrizacionDelegate {
 				Iterator<Object> it = parametrizacions.iterator();
 				while(it.hasNext()){
 					parametrizacion = (GppParametrizacion) it.next();
-					if(parametrizacion.getParVnombre().contains(nombre)){
+					if(parametrizacion.getParVnombre().toLowerCase().contains(nombre)){
 						parametrizacionsConsultados.add(parametrizacion);			
 					}
 				}

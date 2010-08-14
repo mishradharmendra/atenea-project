@@ -43,12 +43,13 @@ public class PersonaMB {
 	private String criterioBusquedaRapida;
 	private Date fechaTarjetaProfesional;
 	private List<Object> personas;
-	private String controlNavegacion;
 	private GppPersona persona;
 	private List<Object> formacionesAcademicas;
 	private List<Object> experienciaLaboral;
 	private Boolean estadoOperacion;
 	private String tabPanel;
+	private String tabPanelFormacion;
+	private String tabPanelExperiencia;
 	private Integer idPais;
 	private Integer idDepto;	
 	private Boolean tabDeshabilitados;
@@ -60,6 +61,8 @@ public class PersonaMB {
 		persona = new GppPersona();
 		tabDeshabilitados = true;
 		documentoCargado = false;
+		tabPanelFormacion = ConstantesFaces.TAB_PANEL_FORMACION;
+		tabPanelExperiencia = ConstantesFaces.TAB_PANEL_EXPERIENCIA;
 	}
 	public Integer getIdPersona() {
 		return idPersona;
@@ -78,12 +81,6 @@ public class PersonaMB {
 	}
 	public void setPersonas(List<Object> personas) {
 		this.personas = personas;
-	}
-	public String getControlNavegacion() {
-		return controlNavegacion;
-	}
-	public void setControlNavegacion(String controlNavegacion) {
-		this.controlNavegacion = controlNavegacion;
 	}
 	public GppPersona getPersona() {
 		return persona;
@@ -114,6 +111,18 @@ public class PersonaMB {
 	}
 	public void setTabPanel(String tabPanel) {
 		this.tabPanel = tabPanel;
+	}
+	public String getTabPanelFormacion() {
+		return tabPanelFormacion;
+	}
+	public void setTabPanelFormacion(String tabPanelFormacion) {
+		this.tabPanelFormacion = tabPanelFormacion;
+	}
+	public String getTabPanelExperiencia() {
+		return tabPanelExperiencia;
+	}
+	public void setTabPanelExperiencia(String tabPanelExperiencia) {
+		this.tabPanelExperiencia = tabPanelExperiencia;
 	}
 	public Boolean getTabDeshabilitados() {
 		return tabDeshabilitados;
@@ -451,10 +460,6 @@ public class PersonaMB {
 				if(personas.size()==1){
 					persona = (GppPersona) personas.get(0);
 					tabDeshabilitados = false;
-					if(documentoCargado==true){
-						personaDelegate.getGuardarHojaVida(persona);
-						documentoCargado=false;
-					}				
 				}
 				return ConstantesFaces.ESTADO_OK;
 			} else {

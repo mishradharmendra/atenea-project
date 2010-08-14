@@ -177,17 +177,22 @@ public class ExperienciaMB {
 	}
 	
 	public String getAgregarExperiencia(){
+		setTabPanel();
+		setTabPanelExperienciaAgregacion();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
-		return ConstantesFaces.CREAR_EXPERIENCIA;
+		return ConstantesFaces.CREAR_HV;
 	}
 	
 	public String getSeleccionarExperiencia(){
 		experiencia = experienciaDelegate.getSeleccionarExperiencia(experienciasLaborales, idExperiencia);
-		return ConstantesFaces.MODIFICAR_EXPERIENCIA;
+		setTabPanel();
+		setTabPanelExperienciaAgregacion();
+		return ConstantesFaces.CREAR_HV;
 	}
 	
 	public String getCancelar(){
 		setTabPanel();
+		setTabPanelExperienciaConsulta();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
 		return ConstantesFaces.CREAR_HV;
 	}
@@ -195,6 +200,7 @@ public class ExperienciaMB {
 	public String getGuardarExperiencia(){
 		getHomePageValueHV();
 		setTabPanel();
+		setTabPanelExperienciaConsulta();
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvAgregarExperiencia")){
 			if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
@@ -229,6 +235,7 @@ public class ExperienciaMB {
 	public String getBorrarExperiencia(){
 		getHomePageValueHV();
 		setTabPanel();
+		setTabPanelExperienciaConsulta();
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvEliminarExperiencia")){
 			estadoOperacion = experienciaDelegate.getBorrarExperiencia(idExperiencia);
@@ -246,6 +253,7 @@ public class ExperienciaMB {
 	public String getActualizarExperiencia(){
 		getHomePageValueHV();
 		setTabPanel();
+		setTabPanelExperienciaConsulta();
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarExperiencia")){
 			estadoOperacion = experienciaDelegate.getActualizarExperiencia(experiencia);
@@ -297,6 +305,15 @@ public class ExperienciaMB {
 	public void setTabPanel(){
 		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_EXPERIENCIA);
 	}
+
+	public void setTabPanelExperienciaAgregacion(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanelExperiencia(ConstantesFaces.TAB_PANEL_EXPERIENCIA_AGREGAR);
+	}
+	
+	public void setTabPanelExperienciaConsulta(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanelExperiencia(ConstantesFaces.TAB_PANEL_EXPERIENCIA);
+	}
+
 	
 	public void getHomePageValueHV(){
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.CREAR_HV);

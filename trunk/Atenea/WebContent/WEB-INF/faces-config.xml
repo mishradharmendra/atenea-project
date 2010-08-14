@@ -583,38 +583,6 @@
 		</navigation-case>
 	</navigation-rule>	
 	<navigation-rule>
-		<from-view-id>/web/faces/hv/hv_crear.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>CREAR_FORMACION</from-outcome>
-			<to-view-id>/web/faces/hv/formacion_crear.jsf</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/web/faces/hv/hv_crear.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>MODIFICAR_FORMACION</from-outcome>
-			<to-view-id>/web/faces/hv/formacion_crear.jsf</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/web/faces/hv/hv_crear.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>CREAR_EXPERIENCIA</from-outcome>
-			<to-view-id>/web/faces/hv/experiencia_crear.jsf</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/web/faces/hv/hv_crear.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>MODIFICAR_EXPERIENCIA</from-outcome>
-			<to-view-id>/web/faces/hv/experiencia_crear.jsf</to-view-id>
-			<redirect/>
-		</navigation-case>	
-	</navigation-rule>	
-	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>HOME_ROL</from-outcome>

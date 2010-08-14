@@ -53,7 +53,7 @@ public class DocumentoDelegate {
 		return documentoService.borrarDocumento(idDocumentoSoporte);
 	}
 	
-	public void getSubirSoporte(UploadEvent event) throws IOException {
+	public void getSubirSoporte(GppPersona persona, UploadEvent event) throws IOException {
 	    if (event != null) {
 	    	parametrizacionService = new ParametrizacionService();
 	    	dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
@@ -61,26 +61,25 @@ public class DocumentoDelegate {
 	        File file = item.getFile();
 	        nombreArchivoSoporte = item.getFileName();	        
 	        urlArchivoSoporte = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
-	        if(urlArchivoSoporte==null){
-	        	urlArchivoSoporte = "/home/memo/Temp-Directory/";
-	        }
-        	urlArchivoSoporte = urlArchivoSoporte + "DOCUMENTOS_" + dateFormat.format(new Date()) + "_" + nombreArchivoSoporte;
-	        FileInputStream fis = new FileInputStream(file.getPath());
-	        BufferedInputStream bis = new BufferedInputStream(fis);
-	        FileOutputStream fos = new FileOutputStream(urlArchivoSoporte);
-	        BufferedOutputStream bos = new BufferedOutputStream(fos);
-	        try {
-	            byte[] array = new byte[100];
-	            int leidos = bis.read(array);
-	            while (leidos > 0) {
-	                bos.write(array, 0, leidos);
-	                leidos = bis.read(array);
-	            }
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } finally {
-	            bis.close();
-	            bos.close();
+	        if(urlArchivoSoporte!=null){
+	        	urlArchivoSoporte = urlArchivoSoporte + "DOCUMENTOS_" + persona.getPerNidentificacion() + "_" + dateFormat.format(new Date()) + "_" + nombreArchivoSoporte;
+		        FileInputStream fis = new FileInputStream(file.getPath());
+		        BufferedInputStream bis = new BufferedInputStream(fis);
+		        FileOutputStream fos = new FileOutputStream(urlArchivoSoporte);
+		        BufferedOutputStream bos = new BufferedOutputStream(fos);
+		        try {
+		            byte[] array = new byte[100];
+		            int leidos = bis.read(array);
+		            while (leidos > 0) {
+		                bos.write(array, 0, leidos);
+		                leidos = bis.read(array);
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        } finally {
+		            bis.close();
+		            bos.close();
+		        }
 	        }
 	    }
 	}

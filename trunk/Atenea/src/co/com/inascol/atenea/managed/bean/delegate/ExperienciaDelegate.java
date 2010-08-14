@@ -121,26 +121,25 @@ public class ExperienciaDelegate {
 	        File file = item.getFile();
 	        nombreArchivoCertificaciones = item.getFileName();
 	        urlArchivoCertificaciones = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
-	        if(urlArchivoCertificaciones==null){
-	        	urlArchivoCertificaciones = "/home/memo/Temp-Directory/";
-	        }		        
-	        urlArchivoCertificaciones = urlArchivoCertificaciones + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificaciones;
-	        FileInputStream fis = new FileInputStream(file.getPath());
-	        BufferedInputStream bis = new BufferedInputStream(fis);
-	        FileOutputStream fos = new FileOutputStream(urlArchivoCertificaciones);
-	        BufferedOutputStream bos = new BufferedOutputStream(fos);
-	        try {
-	            byte[] array = new byte[100];
-	            int leidos = bis.read(array);
-	            while (leidos > 0) {
-	                bos.write(array, 0, leidos);
-	                leidos = bis.read(array);
-	            }
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } finally {
-	            bis.close();
-	            bos.close();
+	        if(urlArchivoCertificaciones!=null){
+		        urlArchivoCertificaciones = urlArchivoCertificaciones + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificaciones;
+		        FileInputStream fis = new FileInputStream(file.getPath());
+		        BufferedInputStream bis = new BufferedInputStream(fis);
+		        FileOutputStream fos = new FileOutputStream(urlArchivoCertificaciones);
+		        BufferedOutputStream bos = new BufferedOutputStream(fos);
+		        try {
+		            byte[] array = new byte[100];
+		            int leidos = bis.read(array);
+		            while (leidos > 0) {
+		                bos.write(array, 0, leidos);
+		                leidos = bis.read(array);
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        } finally {
+		            bis.close();
+		            bos.close();
+		        }
 	        }
 	    }
 	}
@@ -152,26 +151,25 @@ public class ExperienciaDelegate {
 	        File file = item.getFile();
 	        nombreArchivoCertificado1 = item.getFileName();
 	        urlArchivoCertificado1 = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
-	        if(urlArchivoCertificado1==null){
-	        	urlArchivoCertificado1 = "/home/memo/Temp-Directory/";
-	        }	        
-        	urlArchivoCertificado1 = urlArchivoCertificado1 + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificado1;
-	        FileInputStream fis = new FileInputStream(file.getPath());
-	        BufferedInputStream bis = new BufferedInputStream(fis);
-	        FileOutputStream fos = new FileOutputStream(urlArchivoCertificado1);
-	        BufferedOutputStream bos = new BufferedOutputStream(fos);
-	        try {
-	            byte[] array = new byte[100];
-	            int leidos = bis.read(array);
-	            while (leidos > 0) {
-	                bos.write(array, 0, leidos);
-	                leidos = bis.read(array);
-	            }
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } finally {
-	            bis.close();
-	            bos.close();
+	        if(urlArchivoCertificado1!=null){
+	        	urlArchivoCertificado1 = urlArchivoCertificado1 + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificado1;
+		        FileInputStream fis = new FileInputStream(file.getPath());
+		        BufferedInputStream bis = new BufferedInputStream(fis);
+		        FileOutputStream fos = new FileOutputStream(urlArchivoCertificado1);
+		        BufferedOutputStream bos = new BufferedOutputStream(fos);
+		        try {
+		            byte[] array = new byte[100];
+		            int leidos = bis.read(array);
+		            while (leidos > 0) {
+		                bos.write(array, 0, leidos);
+		                leidos = bis.read(array);
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        } finally {
+		            bis.close();
+		            bos.close();
+		        }
 	        }
 	    }
 	}
@@ -183,26 +181,25 @@ public class ExperienciaDelegate {
 	        File file = item.getFile();
 	        nombreArchivoCertificado2 = item.getFileName();
 	        urlArchivoCertificado2 = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
-	        if(urlArchivoCertificado2==null){
-	        	urlArchivoCertificado2 = "/home/memo/Temp-Directory/";
-	        }	        
-        	urlArchivoCertificado2 = urlArchivoCertificado2 + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificado2;
-	        FileInputStream fis = new FileInputStream(file.getPath());
-	        BufferedInputStream bis = new BufferedInputStream(fis);
-	        FileOutputStream fos = new FileOutputStream(urlArchivoCertificado2);
-	        BufferedOutputStream bos = new BufferedOutputStream(fos);
-	        try {
-	            byte[] array = new byte[100];
-	            int leidos = bis.read(array);
-	            while (leidos > 0) {
-	                bos.write(array, 0, leidos);
-	                leidos = bis.read(array);
-	            }
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } finally {
-	            bis.close();
-	            bos.close();
+	        if(urlArchivoCertificado2!=null){
+	        	urlArchivoCertificado2 = urlArchivoCertificado2 + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificado2;
+		        FileInputStream fis = new FileInputStream(file.getPath());
+		        BufferedInputStream bis = new BufferedInputStream(fis);
+		        FileOutputStream fos = new FileOutputStream(urlArchivoCertificado2);
+		        BufferedOutputStream bos = new BufferedOutputStream(fos);
+		        try {
+		            byte[] array = new byte[100];
+		            int leidos = bis.read(array);
+		            while (leidos > 0) {
+		                bos.write(array, 0, leidos);
+		                leidos = bis.read(array);
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        } finally {
+		            bis.close();
+		            bos.close();
+		        }
 	        }
         }
 	}

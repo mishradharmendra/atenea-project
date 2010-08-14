@@ -111,7 +111,7 @@ public class GppUsuarioDAO implements DAO {
 		try{
 			gppUsuarioRowMapper = new GppUsuarioRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_usuario order by usu_vnombre asc";
+			sentenciaSQL = "select * from gpp_usuario order by usu_vlogin asc";
 			gppUsuarios = (List) jdbcTemplate.query(sentenciaSQL, gppUsuarioRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();
@@ -157,6 +157,7 @@ public class GppUsuarioDAO implements DAO {
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "select * from gpp_usuario where usu_vlogin = ? and usu_vactivo = 'true'";
 			gppUsuario = (GppUsuario) jdbcTemplate.queryForObject(sentenciaSQL, new Object[] {idObj}, gppUsuarioRowMapper);
+			System.out.println("Usuario Logeado: '"+idObj+"'.");
 			GppUsuariorolDAO gppUsuariorol = new GppUsuariorolDAO(); 
 			List <Object> usuarioRoles = gppUsuariorol.buscarTodosRolesUsuario(Integer.valueOf(gppUsuario.getUsuNidusuario()));
 			if(usuarioRoles.size()>0){

@@ -49,9 +49,9 @@
 				<rich:extendedDataTable id="tablaUsuarioRol" value="#{UsuariorolMB.usuarios}" var="usuario" width="500px" height="200px">
 					<rich:column width="100px" sortable="true" sortBy="#{usuario.usuNidusuario}" label="Id usuario">
 						<f:facet name="header">
-							<h:outputLabel value="Id usuario"></h:outputLabel>
+							<h:outputLabel value="Login"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{usuario.usuNidusuario}"></h:outputLabel>
+						<h:outputLabel value="#{usuario.usuVlogin}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="300px" sortable="true" sortBy="#{usuario.usuVnombre}" label="Nombre del Usuario">
 						<f:facet name="header">

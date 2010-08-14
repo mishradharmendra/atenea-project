@@ -28,10 +28,12 @@ public class DocumentoMB {
 	private Integer idPersona;
 	private Boolean estadoOperacion;	
 	private String urlDescargaArchivo;
+	private Boolean documentoCargado;
 	
 	public DocumentoMB(){
 		documentoDelegate = new DocumentoDelegate();	
 		documento = new GppDocumento();
+		documentoCargado = false;
 		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB")!=null){
 			idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();
 			soportes = documentoDelegate.getSoportesPorIdPersona(idPersona);
@@ -97,15 +99,21 @@ public class DocumentoMB {
 		setTabPanel();
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvAgregarDocumento")){
-			if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB")!=null){
-				GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
-				documento.setPerNidpersona(persona.getPerNidpersona());
-				estadoOperacion = documentoDelegate.getGuardarSoporte(documento , persona);
-			}
-			if(estadoOperacion==true){
-				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
-				return ConstantesFaces.ESTADO_OK;
-			} else {
+			if(documentoCargado == true){
+				documentoCargado = false;
+				if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB")!=null){
+					GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+					documento.setPerNidpersona(persona.getPerNidpersona());
+					estadoOperacion = documentoDelegate.getGuardarSoporte(documento , persona);
+				}
+				if(estadoOperacion==true){
+					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
+					return ConstantesFaces.ESTADO_OK;
+				} else {
+					return ConstantesFaces.ESTADO_ERROR;
+				}
+			}else{
+				System.out.println("Documento No Cargado.");
 				return ConstantesFaces.ESTADO_ERROR;
 			}
 		}else{
@@ -131,7 +139,11 @@ public class DocumentoMB {
 	}
 	
 	public void getSubirSoporte(UploadEvent event) throws IOException {
-		documentoDelegate.getSubirSoporte(event);
+		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
+			GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
+			documentoCargado = true;
+			documentoDelegate.getSubirSoporte(persona, event);
+		}
 	}
 	
 	public void setTabPanel(){

@@ -15,23 +15,33 @@
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
+						<td width="120px"/>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> ROLES" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
 				<br/><br/><br/><br/>	
 				<h:outputLabel value="Detalle Rol" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>					
-				<table align="center">
+				<table align="left">
 					<tr>
-						<td><h:outputLabel value="Nombre: "></h:outputLabel></td>
-						<td><h:outputLabel value="#{RolMB.rol.rolVnombre}"></h:outputLabel></td>					
-					</tr>
-					<tr>
-						<td><h:outputLabel value="Descripcion: "></h:outputLabel></td>
-						<td><h:inputTextarea cols="30" value="#{RolMB.rol.rolVdescripcion}" disabled="true" style="color:#000000"></h:inputTextarea></td>					
-					</tr>									
+						<td width="120px"/>
+						<td align="left"><h:outputLabel value="Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:outputLabel id="nombreRol" size="30" value="#{RolMB.rol.rolVnombre}"></h:outputLabel></td>
+						<td width="160px"/>
+						<td align="left"><h:outputLabel value="Descripción: " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:inputTextarea id="descripcionRol" value="#{RolMB.rol.rolVdescripcion}" cols="34" disabled="true" style="color:black"></h:inputTextarea></td>
+					</tr>	
 				</table>
-				<br/><br/>
+				<br/><br/><br/><br/><br/><br/>
+				<h:form>			
+				<table align="right">
+					<tr>
+						<td><h:commandButton action="#{RolMB.getCancelar}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="140px"/>
+					</tr>
+				</table>
+				</h:form>	
+				<br/><br/><br/><br/>
 				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Servicios del Rol" styleClass="TituloContenido"></h:outputLabel></td>
@@ -39,29 +49,21 @@
 				</table>
 				<br/>			
 				<h:form>						
-				<rich:extendedDataTable id="tablaServicioRol" value="#{RolMB.rol.gppServicios}" var="servicio" width="500px" height="150px">	
+				<rich:extendedDataTable id="tablaServicioRol" value="#{RolMB.rol.gppServicios}" var="servicio" width="615px" height="150px" headerClass="rich-table-header">	
 					<rich:column width="200px" sortable="true" sortBy="#{servicio.serVnombre}" label="Nombre Servicio">
 						<f:facet name="header">
-							<h:outputLabel value="Nombre Servicio"></h:outputLabel>
+							<h:outputLabel value="Nombre Servicio" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{servicio.serVnombre}"></h:outputLabel>
 					</rich:column>
-					<rich:column width="300px" sortable="true" sortBy="#{servicio.serVruta}" label="Descripción">
+					<rich:column width="400px" sortable="true" sortBy="#{servicio.serVruta}" label="Descripción">
 						<f:facet name="header">
-							<h:outputLabel value="Descripción"></h:outputLabel>
+							<h:outputLabel value="Descripción" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{servicio.serVruta}"></h:outputLabel>
 					</rich:column>														
 				</rich:extendedDataTable>
 				</h:form>				
-				<br/><br/>
-				<h:form>			
-				<table align="right">
-					<tr>
-						<td><h:commandButton action="#{RolMB.getCancelar}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-					</tr>
-				</table>
-				</h:form>	
 			</rich:panel>																
 		</ui:define>
 	</ui:composition>

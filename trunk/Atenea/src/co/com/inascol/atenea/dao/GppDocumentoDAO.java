@@ -96,7 +96,7 @@ public class GppDocumentoDAO implements DAO{
 		try{
 			gppDocumentoRowMapper = new GppDocumentoRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_documento order by doc_niddocumento asc";
+			sentenciaSQL = "select * from gpp_documento order by doc_vnombre asc";
 			gppDocumentos = (List) jdbcTemplate.query(sentenciaSQL, gppDocumentoRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();

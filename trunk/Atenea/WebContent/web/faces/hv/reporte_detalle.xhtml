@@ -19,31 +19,27 @@
 						<td align="left"><h:outputLabel value="FORMATOS PRESENTACIÓN HOJAS DE VIDA" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/><br/><br/>								
+				<br/><br/><br/><br/><br/><br/><br/><br/>							
 				<table align="left">
 					<tr>
-						<td align="left" colspan="2"><h:outputLabel value="Nombre de Persona: " styleClass="TituloContenido"></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="Nombre de Persona: " styleClass="TituloContenido"></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="Profesión:" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 					<tr>
-						<td align="left"><h:outputLabel value="#{ReporteMB.persona.perVnombres}"></h:outputLabel></td>
-						<td align="left"><h:outputLabel value="#{ReporteMB.persona.perVapellidos}"></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="#{ReporteMB.persona.perVnombres} #{ReporteMB.persona.perVapellidos}" styleClass="TextoContenido"></h:outputLabel></td>
+						<c:forEach var="formacion" items="#{ReporteMB.persona.gppFormaciones}">
+							<c:if test="#{formacion.nacNidnivelac == 3}">
+								<td align="left"><h:outputLabel value="#{formacion.forVtitulo} (#{formacion.forDfecgrado}) -" rendered="#{formacion.nacNidnivelac == 3}" styleClass="TextoContenido"></h:outputLabel></td>
+							</c:if>
+						</c:forEach>
 					</tr>
 				</table>
-				<br/><br/><br/><br/><br/><br/>
+				<br/><br/><br/><br/><br/><br/><br/><br/>
 				<table align="left">
 					<tr>
-						<td align="left" colspan="2" width="200px"><h:outputLabel value="Profesión:" styleClass="TituloContenido"></h:outputLabel></td>
-					</tr>
-					<tr>
-						<td align="left" width="200px"><h:dataTable value="#{ReporteMB.persona.gppFormaciones}" var="formacion">
-							<h:column>
-								<h:outputLabel value="#{formacion.forVtitulo} - " rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel>
-								<h:outputLabel value="(#{formacion.forDfecgrado})" rendered="#{formacion.nacNidnivelac == 3}" ></h:outputLabel>
-							</h:column>
-						</h:dataTable></td>
 						<h:form>	
 						<td align="center"><h:outputLabel value="Formato" styleClass="TituloContenido"></h:outputLabel></td>
-						<td align="center"><h:selectOneMenu size="30" id="tipoReporte" value="#{ReporteMB.tipoReporte}" required="true" requiredMessage="Seleccione un Tipo de Reporte">
+						<td align="center"><h:selectOneMenu id="tipoReporte" value="#{ReporteMB.tipoReporte}" required="true" requiredMessage="Seleccione un Tipo de Reporte">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>
 								<f:selectItem itemValue="Formato_Formal" itemLabel="Formato Formal"/>
 								<f:selectItem itemValue="Depto-Fun-Publica" itemLabel="Departamento de la Función Pública"/>

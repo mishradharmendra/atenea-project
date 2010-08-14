@@ -41,7 +41,7 @@ public class RolDelegate {
 				Iterator<Object> it = roles.iterator();
 				while(it.hasNext()){
 					rol = (GppRol) it.next();
-					if(rol.getRolVnombre().contains(nombre)){
+					if(rol.getRolVnombre().toLowerCase().contains(nombre)){
 						rolesConsultados.add(rol);			
 					}
 				}

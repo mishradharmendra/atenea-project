@@ -15,29 +15,35 @@
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
+						<td width="120px"/>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> ROLES" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
 				<br/><br/><br/><br/>	
 				<h:form>
 				<h:outputLabel value="Agregar Rol" styleClass="TituloContenido"></h:outputLabel>
-				<br/><br/>					
-				<table align="center">
+				<br/><br/>			
+				<table align="left">
 					<tr>
-						<td><h:outputLabel value="Nombre: "></h:outputLabel></td>
-						<td><h:inputText id="nombreRol" size="30" value="#{RolMB.nombreRol}" required="true" requiredMessage="Ingrese Nombre del Rol"></h:inputText></td>
-						<td><rich:message for="nombreRol" style="color:red"/></td>					
-					</tr>
-					<tr>
-						<td><h:outputLabel value="Descripción: "></h:outputLabel></td>
-						<td><h:inputTextarea id="descripcionRol" value="#{RolMB.descripcionRol}" cols="30" required="true" requiredMessage="Ingrese Descripción del Rol"></h:inputTextarea></td>
-						<td><rich:message for="descripcionRol" style="color:red"/></td>					
+						<td width="120px"/>
+						<td align="left"><h:outputLabel value="Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:inputText id="nombreRol" size="30" value="#{RolMB.nombreRol}" required="true" requiredMessage="Ingrese Nombre del Rol"></h:inputText></td>
+						<td width="30px"/>
+						<td align="left"><h:outputLabel value="Descripción: " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:inputTextarea id="descripcionRol" value="#{RolMB.descripcionRol}" cols="30" required="true" requiredMessage="Ingrese Descripción del Rol"></h:inputTextarea></td>
 					</tr>		
+					<tr>
+						<td width="120px"/>
+						<td align="center" colspan="2"><rich:message for="nombreRol" style="color:red"/></td>				
+						<td width="30px"/>
+						<td align="center" colspan="2"><rich:message for="descripcionRol" style="color:red"/></td>
+					</tr>
 				</table>
-				<br/>				
+				<br/><br/><br/><br/><br/>			
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{RolMB.getCrearRol}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="140px"/>
 					</tr>
 				</table>
 				</h:form>
@@ -49,26 +55,26 @@
 					</tr>
 				</table>
 				</h:form>					
-				<br/><br/>
+				<br/><br/><br/><br/>
 				<h:outputLabel value="Listado de Servicios" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaServicioRol" value="#{RolMB.servicios}" var="servicio" width="600px" height="200px">
+				<rich:extendedDataTable id="tablaServicioRol" value="#{RolMB.servicios}" var="servicio" width="615px" height="180px" headerClass="rich-table-header">
 					<rich:column width="100px" label="Seleccionar">
 						<f:facet name="header">
-							<h:outputLabel value="Seleccionar"></h:outputLabel>
+							<h:outputLabel value="Seleccionar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<h:selectBooleanCheckbox id="servicio" onclick="procesarSolicitudServicioAsignado('#{servicio.serNidservicio}');"></h:selectBooleanCheckbox>
+						<div align="center"><h:selectBooleanCheckbox id="servicio" onclick="procesarSolicitudServicioAsignado('#{servicio.serNidservicio}');"></h:selectBooleanCheckbox></div>
 					</rich:column>				
 					<rich:column width="200px" sortable="true" sortBy="#{servicio.serVnombre}" label="Nombre Servicio">
 						<f:facet name="header">
-							<h:outputLabel value="Nombre Servicio"></h:outputLabel>
+							<h:outputLabel value="Nombre Servicio" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{servicio.serVnombre}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="300px" sortable="true" sortBy="#{servicio.serVruta}" label="Descripción">
 						<f:facet name="header">
-							<h:outputLabel value="Descripción"></h:outputLabel>
+							<h:outputLabel value="Descripción" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{servicio.serVruta}"></h:outputLabel>
 					</rich:column>														

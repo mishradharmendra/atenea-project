@@ -15,6 +15,7 @@
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
+						<td width="120px"/>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> ROLES" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
@@ -22,22 +23,21 @@
 				<h:outputLabel value="Modificar Rol" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>					
-				<table align="center">
+				<table align="left">
 					<tr>
-						<td><h:outputLabel value="Nombre: "></h:outputLabel></td>
-						<td><h:outputLabel id="nombreRol" size="30" value="#{RolMB.rol.rolVnombre}"></h:outputLabel ></td>
-						<td><rich:message for="nombreRol" style="color:red"/></td>					
-					</tr>
-					<tr>
-						<td><h:outputLabel value="Descripción: "></h:outputLabel></td>
-						<td><h:inputTextarea id="descripcionRol" cols="30" value="#{RolMB.rol.rolVdescripcion}" disabled="true" style="color:#000000"></h:inputTextarea></td>	
-						<td><rich:message for="descripcionRol" style="color:red"/></td>				
-					</tr>									
+						<td width="120px"/>
+						<td align="left"><h:outputLabel value="Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:outputLabel id="nombreRol" size="30" value="#{RolMB.rol.rolVnombre}"></h:outputLabel></td>
+						<td width="160px"/>
+						<td align="left"><h:outputLabel value="Descripción: " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:inputTextarea id="descripcionRol" value="#{RolMB.rol.rolVdescripcion}" cols="34" disabled="true" style="color:black"></h:inputTextarea></td>
+					</tr>		
 				</table>
-				<br/>
+				<br/><br/><br/><br/><br/><br/>
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{RolMB.getBorrarServicios}" value="Borrar Servicios" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="140px"/>
 					</tr>
 				</table>
 				</h:form>
@@ -49,7 +49,7 @@
 					</tr>
 				</table>
 				</h:form>
-				<br/><br/>
+				<br/><br/><br/><br/>
 				<table align="center">
 					<tr>
 						<td align="center"><h:outputLabel value="Servicios Asignados" styleClass="TituloContenido"/></td>
@@ -57,22 +57,22 @@
 					<tr>
 						<td align="center">
 							<h:form>
-							<rich:extendedDataTable id="tablaServicioRolAsignado" value="#{RolMB.rol.gppServicios}" var="servicio" width="550px" height="150px">
+							<rich:extendedDataTable id="tablaServicioRolAsignado" value="#{RolMB.rol.gppServicios}" var="servicio" width="615px" height="150px" headerClass="rich-table-header">
 								<rich:column width="100px" label="Seleccionar">
 									<f:facet name="header">
-										<h:outputLabel value="Seleccionar"></h:outputLabel>
+										<h:outputLabel value="Seleccionar" styleClass="PrimerNivel"></h:outputLabel>
 									</f:facet>
-									<h:selectBooleanCheckbox id="servicio" onclick="procesarSolicitudServicioAsignado('#{servicio.serNidservicio}');"></h:selectBooleanCheckbox>
+									<div align="center"><h:selectBooleanCheckbox id="servicio" onclick="procesarSolicitudServicioAsignado('#{servicio.serNidservicio}');"></h:selectBooleanCheckbox></div>
 								</rich:column>									
-								<rich:column width="150px" sortable="true" sortBy="#{servicio.serVnombre}" label="Nombre Servicio">
+								<rich:column width="200px" sortable="true" sortBy="#{servicio.serVnombre}" label="Nombre Servicio">
 									<f:facet name="header">
-										<h:outputLabel value="Nombre Servicio"></h:outputLabel>
+										<h:outputLabel value="Nombre Servicio" styleClass="PrimerNivel"></h:outputLabel>
 									</f:facet>
 									<h:outputLabel value="#{servicio.serVnombre}"></h:outputLabel>
 								</rich:column>
 								<rich:column width="300px"  sortable="true" sortBy="#{servicio.serVruta}" label="Descripción">
 									<f:facet name="header">
-										<h:outputLabel value="Descripción"></h:outputLabel>
+										<h:outputLabel value="Descripción" styleClass="PrimerNivel"></h:outputLabel>
 									</f:facet>
 									<h:outputLabel value="#{servicio.serVruta}"></h:outputLabel>
 								</rich:column>										
@@ -89,7 +89,7 @@
 						<td height="5px"/>
 					</tr>					
 					<tr>
-						<td colspan="3" align="center"><h:outputLabel value="Seleccione del 'Servicios Asignados' los servicios que quiere borrarle al rol."/></td>
+						<td colspan="3" align="center"><h:outputLabel value="Seleccione del 'Servicios Asignados' los servicios que quiere borrarle al rol." style="color:#026A9F;"/></td>
 					</tr>					
 				</table>
 			</rich:panel>																

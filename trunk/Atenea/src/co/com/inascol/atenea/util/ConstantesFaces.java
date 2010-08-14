@@ -93,12 +93,6 @@ public class ConstantesFaces {
 	public static final String MODIFICAR_USUARIOROL = "MODIFICAR_USUARIOROL";
 	public static final String MODIFICAR_BORRAR_USUARIOROL = "MODIFICAR_BORRAR_USUARIOROL";
 	
-	public static final String CREAR_FORMACION = "CREAR_FORMACION";
-	public static final String MODIFICAR_FORMACION = "MODIFICAR_FORMACION";
-
-	public static final String CREAR_EXPERIENCIA = "CREAR_EXPERIENCIA";
-	public static final String MODIFICAR_EXPERIENCIA = "MODIFICAR_EXPERIENCIA";
-	
 	public static final String ESTADO_OK = "ESTADO_OK";
 	public static final String ESTADO_ERROR = "ESTADO_ERROR";
 	public static final String ESTADO_AUTENTICACION_ERROR = "ESTADO_AUTENTICACION_ERROR";
@@ -109,7 +103,9 @@ public class ConstantesFaces {
 	
 	public static final String TAB_PANEL_PERSONA = "TAB_PANEL_PERSONA";
 	public static final String TAB_PANEL_FORMACION = "TAB_PANEL_FORMACION";
+	public static final String TAB_PANEL_FORMACION_AGREGAR = "TAB_PANEL_FORMACION_AGREGAR";
 	public static final String TAB_PANEL_EXPERIENCIA = "TAB_PANEL_EXPERIENCIA";
+	public static final String TAB_PANEL_EXPERIENCIA_AGREGAR = "TAB_PANEL_EXPERIENCIA_AGREGAR";
 	public static final String TAB_PANEL_PERFIL = "TAB_PANEL_PERFIL";
 	public static final String TAB_PANEL_SOPORTES = "TAB_PANEL_SOPORTES";	
 }
