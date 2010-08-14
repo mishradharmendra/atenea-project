@@ -20,59 +20,60 @@
 				</table>
 				<br/><br/><br/><br/>
 				<h:form>	
-				<table align="center">
+				<table align="left">
 					<tr>
-						<td><h:outputLabel value="Consulta de Roles: "></h:outputLabel></td>
-						<td><h:inputText value="#{RolMB.nombreRol}"></h:inputText></td>					
+						<td align="left"><h:outputLabel value="Consulta de Roles: " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:inputText size="30" value="#{RolMB.nombreRol}"></h:inputText></td>					
 					</tr>
 				</table>
-				<br/>				
+				<br/><br/><br/><br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{RolMB.getBuscarRolPorNombre}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 						<td width="20px"></td>
 						<td><h:commandButton action="#{RolMB.getAgregarRol}" value="Agregar Registro" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="25px"></td>
 					</tr>
 				</table>
 				</h:form>								
-				<br/><br/>
+				<br/><br/><br/><br/>
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaRol" value="#{RolMB.roles}" var="rol" width="900px" height="250px">
+				<rich:extendedDataTable id="tablaRol" value="#{RolMB.roles}" var="rol" width="850px" height="200px" headerClass="rich-table-header">
 					<rich:column width="100px" sortable="true" sortBy="#{rol.rolNidrol}" label="Id Rol">
 						<f:facet name="header">
-							<h:outputLabel value="Id Rol"></h:outputLabel>
+							<h:outputLabel value="Id Rol" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{rol.rolNidrol}"></h:outputLabel>
 					</rich:column>
-					<rich:column width="300px" sortable="true" sortBy="#{rol.rolVnombre}" label="Nombre Rol">
+					<rich:column width="285px" sortable="true" sortBy="#{rol.rolVnombre}" label="Nombre Rol">
 						<f:facet name="header">
-							<h:outputLabel value="Nombre Rol"></h:outputLabel>
+							<h:outputLabel value="Nombre Rol" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="rolVnombre" onclick="procesarSolicitudDetalle('#{rol.rolNidrol}')">
-							<h:outputLabel value="#{rol.rolVnombre}"></h:outputLabel>
+							<h:outputText value="#{rol.rolVnombre}"></h:outputText>
 						</a4j:commandLink>						
 					</rich:column>
-					<rich:column width="300px" sortable="true" sortBy="#{rol.rolVdescripcion}" label="Descripción">
+					<rich:column width="350px" sortable="true" sortBy="#{rol.rolVdescripcion}" label="Descripción">
 						<f:facet name="header">
-							<h:outputLabel value="Descripción"></h:outputLabel>
+							<h:outputLabel value="Descripción" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{rol.rolVdescripcion}"></h:outputLabel>
 					</rich:column>					
-					<rich:column width="100px" label="Modificar">
+					<rich:column width="55px" label="Modificar">
 						<f:facet name="header">
-							<h:outputLabel value="Modificar"></h:outputLabel>
+							<h:outputLabel value="Modificar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{rol.rolNidrol}')">
-                            <h:graphicImage url="../../imagenes/editar.png"/>
+                            <div align="center"><h:graphicImage url="../../imagenes/editar.png" style="border:0"/></div>
                         </a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px" label="Activar">
+					<rich:column width="45px" label="Activar">
 						<f:facet name="header">
-							<h:outputLabel value="Activar"></h:outputLabel>
+							<h:outputLabel value="Activar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<h:selectBooleanCheckbox value="#{rol.rolBactivo}" onclick="aceptar = confirm('Esta seguro que quiere cambiar el estado del elemento seleccionado?'); if(aceptar==true){procesarSolicitudEstadoRol('#{rol.rolNidrol}','#{rol.rolBactivo}');} return false;"></h:selectBooleanCheckbox>
+						<div align="center"><h:selectBooleanCheckbox value="#{rol.rolBactivo}" onclick="aceptar = confirm('Esta seguro que quiere cambiar el estado del elemento seleccionado?'); if(aceptar==true){procesarSolicitudEstadoRol('#{rol.rolNidrol}','#{rol.rolBactivo}');} return false;"></h:selectBooleanCheckbox></div>
 					</rich:column>									
 				</rich:extendedDataTable>
 				</h:form>					

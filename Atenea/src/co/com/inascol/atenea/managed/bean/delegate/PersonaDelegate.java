@@ -227,26 +227,25 @@ public class PersonaDelegate {
 	        File file = item.getFile();
 	        nombreArchivo = item.getFileName();
 	        urlArchivo = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
-	        if(urlArchivo==null){
-	        	urlArchivo = "/home/memo/Temp-Directory/";
-	        }	        
-	        urlArchivo = urlArchivo + "HV_" + persona.getPerNidentificacion() + "_" + nombreArchivo;
-	        FileInputStream fis = new FileInputStream(file.getPath());
-	        BufferedInputStream bis = new BufferedInputStream(fis);
-	        FileOutputStream fos = new FileOutputStream(urlArchivo);
-	        BufferedOutputStream bos = new BufferedOutputStream(fos);
-	        try {
-	            byte[] array = new byte[100];
-	            int leidos = bis.read(array);
-	            while (leidos > 0) {
-	                bos.write(array, 0, leidos);
-	                leidos = bis.read(array);
-	            }
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } finally {
-	            bis.close();
-	            bos.close();
+	        if(urlArchivo!=null){
+		        urlArchivo = urlArchivo + "HV_" + persona.getPerNidentificacion() + "_" + nombreArchivo;
+		        FileInputStream fis = new FileInputStream(file.getPath());
+		        BufferedInputStream bis = new BufferedInputStream(fis);
+		        FileOutputStream fos = new FileOutputStream(urlArchivo);
+		        BufferedOutputStream bos = new BufferedOutputStream(fos);
+		        try {
+		            byte[] array = new byte[100];
+		            int leidos = bis.read(array);
+		            while (leidos > 0) {
+		                bos.write(array, 0, leidos);
+		                leidos = bis.read(array);
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        } finally {
+		            bis.close();
+		            bos.close();
+		        }
 	        }
 	    }
 	}

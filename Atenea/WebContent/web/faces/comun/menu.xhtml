@@ -16,7 +16,7 @@
         	<f:facet name="label"> 
             	<h:panelGroup style="width:940px;">
 					<a4j:commandLink id="hv" action="#{PersonaMB.getHomeHojaVida}">
-                    	<h:outputText value="Hojas de Vida" style="color:#0093DD"/>
+                    	<h:outputText value="Hojas de Vida" style="color:#026A9F;text-align:left;"/>
                     </a4j:commandLink>                    
 				</h:panelGroup>
 			</f:facet>
@@ -25,7 +25,7 @@
         	<f:facet name="label"> 
             	<h:panelGroup >
 					<a4j:commandLink id="reportes" action="#{ReporteMB.getHomeReporte}">
-                    	<h:outputText value="Reportes" style="color:#0093DD"/>
+                    	<h:outputText value="Reportes" style="color:#026A9F;text-align:left;"/>
                     </a4j:commandLink>   
 				</h:panelGroup>
 			</f:facet>
@@ -33,37 +33,37 @@
     	<rich:dropDownMenu>
         	<f:facet name="label"> 
             	<h:panelGroup>
-                    <h:outputText value="Administración" style="color:#0093DD"/>
+                    <h:outputText value="Administración" style="color:#026A9F;text-align:left;"/>
 				</h:panelGroup>
 			</f:facet>		
-			<rich:menuItem submitMode="ajax" value="Roles" action="#{RolMB.getHomeRol}"/>
-			<rich:menuItem submitMode="ajax" value="Usuarios" action="#{UsuarioMB.getHomeUsuario}"/>
-			<rich:menuItem submitMode="ajax" value="Permisos" action="#{UsuariorolMB.getHomeUsuariorol}"/>
-			<rich:menuItem submitMode="ajax" value="Parametrización" action="#{ParametrizacionMB.getHomeParametrizacion}"/>			
-			<rich:menuGroup value="Tablas de Referencia">
-				<rich:menuItem submitMode="ajax" value="Estado Civil" action="#{EstadocivilMB.getHomeEstadocivil}"/>
-				<rich:menuItem submitMode="ajax" value="Idioma" action="#{IdiomaMB.getHomeIdioma}"/>			
-				<rich:menuItem submitMode="ajax" value="Institución" action="#{InstitucionMB.getHomeInstitucion}"/>
-				<rich:menuItem submitMode="ajax" value="Países" action="#{PaisMB.getHomePais}"/>
-				<rich:menuItem submitMode="ajax" value="Departamentos" action="#{DepartamentoMB.getHomeDepartamento}"/>				
-				<rich:menuItem submitMode="ajax" value="Municipios" action="#{MunicipioMB.getHomeMunicipio}"/>			
-				<rich:menuItem submitMode="ajax" value="Nivel Académico" action="#{NivelacademicoMB.getHomeNivelacademico}"/>
-				<rich:menuItem submitMode="ajax" value="Cargo Equivalente" action="#{CargoequivalenteMB.getHomeCargoequivalente}"/>
-				<rich:menuItem submitMode="ajax" value="Perfíl Equivalente" action="#{PerfilequivalenteMB.getHomePerfilequivalente}"/>
-				<rich:menuItem submitMode="ajax" value="Título Equivalente" action="#{TituloequivalenteMB.getHomeTituloequivalente}"/>								
-				<rich:menuItem submitMode="ajax" value="Tipo Archivo" action="#{TipoarchivoMB.getHomeTipoarchivo}"/>						
-				<rich:menuItem submitMode="ajax" value="Tipo Documento" action="#{TipodocumentoMB.getHomeTipodocumento}"/>
+			<rich:menuItem submitMode="ajax" value="Roles" action="#{RolMB.getHomeRol}" style="text-align:left;"/>
+			<rich:menuItem submitMode="ajax" value="Usuarios" action="#{UsuarioMB.getHomeUsuario}" style="text-align:left;"/>
+			<rich:menuItem submitMode="ajax" value="Permisos" action="#{UsuariorolMB.getHomeUsuariorol}" style="text-align:left;"/>
+			<rich:menuItem submitMode="ajax" value="Parametrización" action="#{ParametrizacionMB.getHomeParametrizacion}" style="text-align:left;"/>			
+			<rich:menuGroup value="Tablas de Referencia" style="text-align:left;">
+				<rich:menuItem submitMode="ajax" value="Estado Civil" action="#{EstadocivilMB.getHomeEstadocivil}" style="text-align:left;"/>
+				<rich:menuItem submitMode="ajax" value="Idioma" action="#{IdiomaMB.getHomeIdioma}" style="text-align:left;"/>			
+				<rich:menuItem submitMode="ajax" value="Institución" action="#{InstitucionMB.getHomeInstitucion}" style="text-align:left;"/>
+				<rich:menuItem submitMode="ajax" value="Países" action="#{PaisMB.getHomePais}" style="text-align:left;"/>
+				<rich:menuItem submitMode="ajax" value="Departamentos" action="#{DepartamentoMB.getHomeDepartamento}" style="text-align:left;"/>				
+				<rich:menuItem submitMode="ajax" value="Municipios" action="#{MunicipioMB.getHomeMunicipio}" style="text-align:left;"/>			
+				<rich:menuItem submitMode="ajax" value="Nivel Académico" action="#{NivelacademicoMB.getHomeNivelacademico}" style="text-align:left;"/>
+				<rich:menuItem submitMode="ajax" value="Cargo Equivalente" action="#{CargoequivalenteMB.getHomeCargoequivalente}" style="text-align:left;"/>
+				<rich:menuItem submitMode="ajax" value="Perfíl Equivalente" action="#{PerfilequivalenteMB.getHomePerfilequivalente}" style="text-align:left;"/>
+				<rich:menuItem submitMode="ajax" value="Título Equivalente" action="#{TituloequivalenteMB.getHomeTituloequivalente}" style="text-align:left;"/>								
+				<rich:menuItem submitMode="ajax" value="Tipo Archivo" action="#{TipoarchivoMB.getHomeTipoarchivo}" style="text-align:left;"/>						
+				<rich:menuItem submitMode="ajax" value="Tipo Documento" action="#{TipodocumentoMB.getHomeTipodocumento}" style="text-align:left;"/>
 			</rich:menuGroup>						
 		</rich:dropDownMenu>
 		<rich:toolBarGroup location="right">
            	<h:panelGroup >
            		<table>
            			<tr>
-           				<td><h:outputLabel value="Búsqueda Rápida" style="color:#0093DD"/></td>
+           				<td><h:outputLabel value="Búsqueda Rápida" style="color:#026A9F;text-align:left;"/></td>
            				<td width="5px"/>
            				<td><h:inputText value="#{PersonaMB.criterioBusquedaRapida}"/></td>
            				<td><a4j:commandLink id="rapida" action="#{PersonaMB.getBusquedaRapidaPersona}"> 
-								<h:graphicImage align="center" url="../../imagenes/lupa.png" width="17px" heith="17px" border="0"/>
+								<h:graphicImage align="center" url="../../imagenes/lupa.png" width="17px" heith="17px" style="border:0"/>
                 			</a4j:commandLink></td>
            			</tr>
            		</table>

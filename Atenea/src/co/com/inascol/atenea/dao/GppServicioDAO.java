@@ -76,7 +76,7 @@ public class GppServicioDAO implements DAO {
 		try{
 			gppServicioRowMapper = new GppServicioRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_servicio order by ser_nidservicio asc";
+			sentenciaSQL = "select * from gpp_servicio order by ser_vnombre asc";
 			gppServicios = (List) jdbcTemplate.query(sentenciaSQL, gppServicioRowMapper);
 		} catch(Exception ex){
 			ex.printStackTrace();

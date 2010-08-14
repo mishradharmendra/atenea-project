@@ -137,16 +137,21 @@ public class FormacionMB {
 	
 	public String getAgregarFormacion(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
-		return ConstantesFaces.CREAR_FORMACION;
+		setTabPanel();
+		setTabPanelFormacionAgregacion();
+		return ConstantesFaces.CREAR_HV;
 	}
 	
 	public String getSeleccionarFormacion(){
 		formacion = formacionDelegate.getSeleccionarFormacion(formacionesAcademicas, idFormacion);
-		return ConstantesFaces.MODIFICAR_FORMACION;
+		setTabPanel();
+		setTabPanelFormacionAgregacion();
+		return ConstantesFaces.CREAR_HV;
 	}
 	
 	public String getCancelar(){
 		setTabPanel();
+		setTabPanelFormacionConsulta();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
 		return ConstantesFaces.CREAR_HV;
 	}
@@ -154,6 +159,7 @@ public class FormacionMB {
 	public String getGuardarFormacion(){
 		getHomePageValueHV();
 		setTabPanel();
+		setTabPanelFormacionConsulta();
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvAgregarFormacion")){
 			if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
@@ -185,6 +191,7 @@ public class FormacionMB {
 	public String getBorrarFormacion(){
 		getHomePageValueHV();
 		setTabPanel();
+		setTabPanelFormacionConsulta();
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvEliminarFormacion")){
 			estadoOperacion = formacionDelegate.getBorrarFormacion(idFormacion);
@@ -202,6 +209,7 @@ public class FormacionMB {
 	public String getActualizarFormacion(){
 		getHomePageValueHV();
 		setTabPanel();
+		setTabPanelFormacionConsulta();
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarFormacion")){
 			estadoOperacion = formacionDelegate.getActualizarFormacion(formacion);
@@ -252,6 +260,14 @@ public class FormacionMB {
 		
 	public void setTabPanel(){
 		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_FORMACION);
+	}
+
+	public void setTabPanelFormacionAgregacion(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanelFormacion(ConstantesFaces.TAB_PANEL_FORMACION_AGREGAR);
+	}
+	
+	public void setTabPanelFormacionConsulta(){
+		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanelFormacion(ConstantesFaces.TAB_PANEL_FORMACION);
 	}
 	
 	public void getHomePageValueHV(){

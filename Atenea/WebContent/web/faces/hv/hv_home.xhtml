@@ -20,49 +20,44 @@
 					</tr>
 				</table>
 				<br/><br/><br/><br/>
-				<h:form>	
-				<table>
+				<h:form>
+				<table align="left">
 					<tr>
-						<td><h:outputLabel value="Nombres y Apellidos: "></h:outputLabel></td>
-						<td><h:inputText size="30" value="#{PersonaMB.nombrePersona}"></h:inputText></td>					
-						<td width="100px"></td>
-						<td><h:outputLabel value="Identificación : "></h:outputLabel></td>
-						<td><h:inputText size="30" value="#{PersonaMB.identificacionPersona}"></h:inputText></td>
+						<td align="left"><h:outputLabel value="Nombres y Apellidos: " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:inputText size="30" value="#{PersonaMB.nombrePersona}"></h:inputText></td>					
+						<td width="200px"></td>
+						<td align="left"><h:outputLabel value="Identificación : " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:inputText size="30" value="#{PersonaMB.identificacionPersona}"></h:inputText></td>
 					</tr>
 				</table>
-				<br/>				
+				<br/><br/><br/><br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{PersonaMB.getBusquedaBasicaPersona}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 						<td width="20px"></td>
 						<td><h:commandButton action="#{PersonaMB.getBusquedaAvanzada}" value="Búsqueda Avanzada" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="20px"></td>
+						<td><h:commandButton action="#{PersonaMB.getAgregarHojaVida}" value="Agregar Hoja de Vida" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="30px"></td>
 					</tr>
 				</table>
 				</h:form>
-				<br/><br/>
-				<h:form>
-				<table align="right">
-					<tr>
-						<td><h:commandButton action="#{PersonaMB.getAgregarHojaVida}" value="Agregar Hoja de Vida" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>						
-					</tr>
-				</table>
-				</h:form>												
 				<br/><br/><br/><br/>
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="200px" width="900px" headerClass="rich-table-header">
-					<rich:column width="100px" label="Nombre Completo" sortable="true" sortBy="#{persona.perVnombres}">
+				<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="230px" width="850px" headerClass="rich-table-header">
+					<rich:column width="120px" label="Nombre Completo" sortable="true" sortBy="#{persona.perVnombres}">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Completo" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="persona" onclick="procesarSolicitudPersonaDetalle('#{persona.perNidpersona}')">
-							<h:outputLabel value="#{persona.perVnombres}"></h:outputLabel>
+							<h:outputText value="#{persona.perVnombres}"></h:outputText>
 							<br/>
-							<h:outputLabel value="#{persona.perVapellidos}"></h:outputLabel>
+							<h:outputText value="#{persona.perVapellidos}"></h:outputText>
 						</a4j:commandLink>	
 					</rich:column>
-					<rich:column width="250px" label="Profesión" sortable="true" sortBy="#{formacion.forVtitulo}" headerClass="columna">
+					<rich:column width="200px" label="Profesión" sortable="true" sortBy="#{formacion.forVtitulo}">
 						<f:facet name="header">
 							<h:outputLabel value="Profesión" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
@@ -103,25 +98,25 @@
 							</h:column>
 						</h:dataTable>	
 					</rich:column>
-					<rich:column width="50px" label="Puntaje" sortable="true" sortBy="#{persona.perNpuntaje}">
+					<rich:column width="45px" label="Puntaje" sortable="true" sortBy="#{persona.perNpuntaje}">
 						<f:facet name="header">
 							<h:outputLabel value="Puntaje" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{persona.perNpuntaje}"></h:outputLabel>
 					</rich:column>										
-					<rich:column width="80px" label="Modificar">
+					<rich:column width="55px" label="Modificar">
 						<f:facet name="header">
 							<h:outputLabel value="Modificar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="modificar" onclick="procesarSolicitudEditarPersona('#{persona.perNidpersona}')"> 
-                            <h:graphicImage align="center" url="../../imagenes/editar.png" style="border:0"/>
+                            <div align="center"><h:graphicImage align="center" url="../../imagenes/editar.png" style="border:0"/></div>
                         </a4j:commandLink>
 					</rich:column>
-					<rich:column width="50px" label="Activar">
+					<rich:column width="45px" label="Activar">
 						<f:facet name="header">
 							<h:outputLabel value="Activar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<h:selectBooleanCheckbox value="#{persona.perBactivo}" onclick="aceptar = confirm('Esta seguro que quiere cambiar el estado del elemento seleccionado?'); if(aceptar==true){procesarSolicitudEstadoPersona('#{persona.perNidpersona}','#{persona.perBactivo}');} return false;"></h:selectBooleanCheckbox>
+						<div align="center"><h:selectBooleanCheckbox value="#{persona.perBactivo}" onclick="aceptar = confirm('Esta seguro que quiere cambiar el estado del elemento seleccionado?'); if(aceptar==true){procesarSolicitudEstadoPersona('#{persona.perNidpersona}','#{persona.perBactivo}');} return false;"></h:selectBooleanCheckbox></div>
 					</rich:column>									
 				</rich:extendedDataTable>
 				</h:form>					
