@@ -39,35 +39,35 @@
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaTipoarchivo" value="#{TipoarchivoMB.tipoarchivos}" var="tipoarchivo" width="650px" height="250px">
+				<rich:extendedDataTable headerClass="rich-table-header" id="tablaTipoarchivo" value="#{TipoarchivoMB.tipoarchivos}" var="tipoarchivo" width="650px" height="250px">
 					<rich:column width="150px" sortable="true" sortBy="#{tipoarchivo.tarNidtipoarchivo}" label="Id Tipo de Archivo">
 						<f:facet name="header">
-							<h:outputLabel value="Id Tipo de Archivo"></h:outputLabel>
+							<h:outputLabel value="Id Tipo de Archivo" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{tipoarchivo.tarNidtipoarchivo}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="300px" sortable="true" sortBy="#{tipoarchivo.tarVtipoarchivo}" label="Nombre Tipo Archivo">
 						<f:facet name="header">
-							<h:outputLabel value="Nombre Tipo Archivo"></h:outputLabel>
+							<h:outputLabel value="Nombre Tipo Archivo" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="tarVtipoarchivo" onclick="procesarSolicitudDetalle('#{tipoarchivo.tarNidtipoarchivo}')">
-							<h:outputLabel value="#{tipoarchivo.tarVtipoarchivo}"></h:outputLabel>
+							<h:outputText value="#{tipoarchivo.tarVtipoarchivo}"></h:outputText>
 						</a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px" label="Modificar">
+					<rich:column width="55px" label="Modificar">
 						<f:facet name="header">
-							<h:outputLabel value="Modificar"></h:outputLabel>
+							<h:outputLabel value="Modificar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{tipoarchivo.tarNidtipoarchivo}')">
-                            <h:graphicImage url="../../imagenes/editar.png"/>
+                            <div align="center"><h:graphicImage url="../../imagenes/editar.png" style="border:0"/></div>
                         </a4j:commandLink>
 					</rich:column>	
-					<rich:column width="100px" label="Eliminar">
+					<rich:column width="55px" label="Eliminar">
 						<f:facet name="header">
-							<h:outputLabel value="Eliminar"></h:outputLabel>
+							<h:outputLabel value="Eliminar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="eliminar" onclick="aceptar = confirm('Esta seguro que quiere eliminar el elemento seleccionado?'); if(aceptar==true){procesarSolicitudEliminar('#{tipoarchivo.tarNidtipoarchivo}');} return false;">
-                            <h:graphicImage url="../../imagenes/Delete.png"/>
+                            <div align="center"><h:graphicImage url="../../imagenes/Delete.png" style="border:0"/></div>
                         </a4j:commandLink>
 					</rich:column>													
 				</rich:extendedDataTable>

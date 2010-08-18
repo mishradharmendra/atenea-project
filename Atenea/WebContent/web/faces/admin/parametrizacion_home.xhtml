@@ -43,33 +43,33 @@
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaParametrizacion" value="#{ParametrizacionMB.parametrizaciones}" var="parametrizacion" width="800px" height="250px">
+				<rich:extendedDataTable headerClass="rich-table-header" id="tablaParametrizacion" value="#{ParametrizacionMB.parametrizaciones}" var="parametrizacion" width="800px" height="250px">
 					<rich:column width="200px" sortable="true" sortBy="#{parametrizacion.parVnombre}" label="Parámetro">
 						<f:facet name="header">
-							<h:outputLabel value="Parámetro"></h:outputLabel>
+							<h:outputLabel value="Parámetro" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="parVnombre" onclick="procesarSolicitudDetalle('#{parametrizacion.parNidparam}')">
-							<h:outputLabel value="#{parametrizacion.parVnombre}"></h:outputLabel>
+							<h:outputText value="#{parametrizacion.parVnombre}"></h:outputText>
 						</a4j:commandLink>
 					</rich:column>
 					<rich:column width="300px" sortable="true" sortBy="#{parametrizacion.parVdescripcion}" label="Descripción">
 						<f:facet name="header">
-							<h:outputLabel value="Descripción"></h:outputLabel>
+							<h:outputLabel value="Descripción" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{parametrizacion.parVdescripcion}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="200px" sortable="true" sortBy="#{parametrizacion.parVvalor}" label="Valor">
 						<f:facet name="header">
-							<h:outputLabel value="Valor"></h:outputLabel>
+							<h:outputLabel value="Valor" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{parametrizacion.parVvalor}"></h:outputLabel>
 					</rich:column>					
-					<rich:column width="100px" label="Modificar">
+					<rich:column width="55px" label="Modificar">
 						<f:facet name="header">
-							<h:outputLabel value="Modificar"></h:outputLabel>
+							<h:outputLabel value="Modificar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="modificar" onclick="procesarSolicitud('#{parametrizacion.parNidparam}')">
-                            <h:graphicImage url="../../imagenes/editar.png"/>
+                            <div align="center"><h:graphicImage url="../../imagenes/editar.png" style="border:0"/></div>
                         </a4j:commandLink>
 					</rich:column>
 				</rich:extendedDataTable>

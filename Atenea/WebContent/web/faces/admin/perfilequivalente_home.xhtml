@@ -39,35 +39,35 @@
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaPerfilequivalente" value="#{PerfilequivalenteMB.perfilesequivalentes}" var="perfilequivalente" width="650px" height="250px">
+				<rich:extendedDataTable headerClass="rich-table-header" id="tablaPerfilequivalente" value="#{PerfilequivalenteMB.perfilesequivalentes}" var="perfilequivalente" width="650px" height="250px">
 					<rich:column width="150px" sortable="true" sortBy="#{perfilequivalente.peqNidperfileq}" label="Id Perfil Equivalente">
 						<f:facet name="header">
-							<h:outputLabel value="Id Perfil Equivalente"></h:outputLabel>
+							<h:outputLabel value="Id Perfil Equivalente" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{perfilequivalente.peqNidperfileq}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="300px" sortable="true" sortBy="#{perfilequivalente.peqVperfileq}" label="Nombre Perfil Equivalente">
 						<f:facet name="header">
-							<h:outputLabel value="Nombre Perfil Equivalente"></h:outputLabel>
+							<h:outputLabel value="Nombre Perfil Equivalente" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="peqVperfileq" onclick="procesarSolicitudDetalle('#{perfilequivalente.peqNidperfileq}')">
-							<h:outputLabel value="#{perfilequivalente.peqVperfileq}"></h:outputLabel>
+							<h:outputText value="#{perfilequivalente.peqVperfileq}"></h:outputText>
 						</a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px" label="Modificar">
+					<rich:column width="55px" label="Modificar">
 						<f:facet name="header">
-							<h:outputLabel value="Modificar"></h:outputLabel>
+							<h:outputLabel value="Modificar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{perfilequivalente.peqNidperfileq}')">
-                            <h:graphicImage url="../../imagenes/editar.png"/>
+                            <div align="center"><h:graphicImage url="../../imagenes/editar.png" style="border:0"/></div>
                         </a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px" label="Eliminar">
+					<rich:column width="55px" label="Eliminar">
 						<f:facet name="header">
-							<h:outputLabel value="Eliminar"></h:outputLabel>
+							<h:outputLabel value="Eliminar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="eliminar" onclick="aceptar = confirm('Esta seguro que quiere eliminar el elemento seleccionado?'); if(aceptar==true){procesarSolicitudEliminar('#{perfilequivalente.peqNidperfileq}');} return false;">
-                            <h:graphicImage url="../../imagenes/Delete.png"/>
+                            <div align="center"><h:graphicImage url="../../imagenes/Delete.png" style="border:0"/></div>
                         </a4j:commandLink>
 					</rich:column>									
 				</rich:extendedDataTable>

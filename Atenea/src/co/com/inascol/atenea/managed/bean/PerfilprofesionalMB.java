@@ -108,7 +108,7 @@ public class PerfilprofesionalMB {
 		getHomePageValueHV();
 		setTabPanel();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvAgregarPerfilProfesional")){
+		if(getValidarPermisosServicio("srvAgregarHojadeVida")){
 			if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
 				idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();
 				perfilProfesional.setPerNidpersona(idPersona);
@@ -132,7 +132,7 @@ public class PerfilprofesionalMB {
 		getHomePageValueHV();
 		setTabPanel();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvModificarPerfilProfesional")){			
+		if(getValidarPermisosServicio("srvModificarHojadeVida")){			
 			estadoOperacion = perfilprofesionalDelegate.getActualizarPerfil(perfilProfesional);
 			if(estadoOperacion==true){		
 				return ConstantesFaces.ESTADO_OK;

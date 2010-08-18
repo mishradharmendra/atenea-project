@@ -161,7 +161,7 @@ public class FormacionMB {
 		setTabPanel();
 		setTabPanelFormacionConsulta();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvAgregarFormacion")){
+		if(getValidarPermisosServicio("srvAgregarHojadeVida")){
 			if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
 				idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();						
 				formacion.setPerNidpersona(idPersona);
@@ -193,7 +193,7 @@ public class FormacionMB {
 		setTabPanel();
 		setTabPanelFormacionConsulta();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvEliminarFormacion")){
+		if(getValidarPermisosServicio("srvModificarHojadeVida")){
 			estadoOperacion = formacionDelegate.getBorrarFormacion(idFormacion);
 			if(estadoOperacion==true){	
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
@@ -211,7 +211,7 @@ public class FormacionMB {
 		setTabPanel();
 		setTabPanelFormacionConsulta();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvModificarFormacion")){
+		if(getValidarPermisosServicio("srvModificarHojadeVida")){
 			estadoOperacion = formacionDelegate.getActualizarFormacion(formacion);
 			if(estadoOperacion==true){
 				if(documentoCargadoDiploma == true){

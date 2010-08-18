@@ -39,35 +39,35 @@
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaDepartamentos" value="#{DepartamentoMB.departamentos}" var="depto" width="600px" height="250px">
+				<rich:extendedDataTable headerClass="rich-table-header" id="tablaDepartamentos" value="#{DepartamentoMB.departamentos}" var="depto" width="600px" height="250px">
 					<rich:column width="100px" sortable="true" sortBy="#{depto.dptNiddepto}" label="Id Departamento">
 						<f:facet name="header">
-							<h:outputLabel value="Id Departamento"></h:outputLabel>
+							<h:outputLabel value="Id Departamento" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{depto.dptNiddepto}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="300px" sortable="true" sortBy="#{depto.dptVdepto}" label="Nombre Departamento">
 						<f:facet name="header">
-							<h:outputLabel value="Nombre Departamento"></h:outputLabel>
+							<h:outputLabel value="Nombre Departamento" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="dptVdepto" onclick="procesarSolicitudDetalle('#{depto.dptNiddepto}')">
-							<h:outputLabel value="#{depto.dptVdepto}"></h:outputLabel>
+							<h:outputText value="#{depto.dptVdepto}"></h:outputText>
 						</a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px" label="Modificar">
+					<rich:column width="55px" label="Modificar">
 						<f:facet name="header">
-							<h:outputLabel value="Modificar"></h:outputLabel>
+							<h:outputLabel value="Modificar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{depto.dptNiddepto}')">
-                            <h:graphicImage url="../../imagenes/editar.png"/>
+                            <div align="center"><h:graphicImage url="../../imagenes/editar.png" style="border:0"/></div>
                         </a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px" label="Eliminar">
+					<rich:column width="55px" label="Eliminar">
 						<f:facet name="header">
-							<h:outputLabel value="Eliminar"></h:outputLabel>
+							<h:outputLabel value="Eliminar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="eliminar" onclick="aceptar = confirm('Esta seguro que quiere eliminar el elemento seleccionado?'); if(aceptar==true){procesarSolicitudEliminar('#{depto.dptNiddepto}');} return false;">
-                            <h:graphicImage url="../../imagenes/Delete.png"/>
+                            <div align="center"><h:graphicImage url="../../imagenes/Delete.png" style="border:0"/></div>
                         </a4j:commandLink>
 					</rich:column>									
 				</rich:extendedDataTable>

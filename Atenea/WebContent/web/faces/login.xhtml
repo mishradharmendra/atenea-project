@@ -12,7 +12,7 @@
 <body>
 	<ui:composition template="../template_login.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png);">
+			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png);">			
 				<h:form>
 				<table align="center">
 					<tr>
@@ -22,7 +22,13 @@
 						<td align="center"><h:outputLabel value="GESTIÓN DE PERFILES PROFESIONALES - ATENEA" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>	
 					<tr>
-						<td><object type="application/x-shockwave-flash" data="#{AutenticacionMB.fullContextPath}/web/swf/Pub1.swf" width="800" height="300"></object></td>
+					<td>
+					<script type="text/javascript" src="#{AutenticacionMB.fullContextPath}/web/swf/archivoswfobjects.js"></script>
+					<div id="contenidoflash"></div>
+					<script type="text/javascript">
+						swfobject.embedSWF("#{AutenticacionMB.fullContextPath}/web/swf/Pub1.swf", "contenidoflash", "800", "300", "8", "#000000");
+					</script>  
+                    </td>
 					</tr>
 				</table>
 				<br/>

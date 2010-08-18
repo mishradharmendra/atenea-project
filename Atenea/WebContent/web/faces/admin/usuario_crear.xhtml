@@ -15,43 +15,52 @@
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
+						<td width="80px"/>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Usuario" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
 				<br/><br/><br/><br/>
 				<h:form>
 				<h:outputLabel value="Agregar Usuario" styleClass="TituloContenido"></h:outputLabel>
-				<br/><br/>					
-				<table align="center">
+				<br/><br/><br/><br/><br/><br/>
+				<table align="left">
 					<tr>
-						<td><h:outputLabel value="Nombre Usuario: "></h:outputLabel></td>
+						<td width="80px"/>					
+						<td><h:outputLabel value="Nombre Usuario: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td><h:inputText id="nombreUsuario" size="30" value="#{UsuarioMB.nombreUsuario}" required="true" requiredMessage="Ingrese Nombre Usuario"></h:inputText></td>
 						<td width="50px"/>
-						<td><h:outputLabel value="Login Usuario: "></h:outputLabel></td>
+						<td><h:outputLabel value="Login Usuario: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td><h:inputText id="loginusuario" size="30" value="#{UsuarioMB.loginUsuario}" required="true" requiredMessage="Ingrese Login Usuario"></h:inputText></td>											
 					</tr>
 					<tr>
+						<td width="80px"/>					
 						<td align="center" colspan="2"><rich:message for="nombreUsuario" style="color:red"/></td>
 						<td width="50px"/>						
 						<td align="center" colspan="2"><rich:message for="loginusuario" style="color:red"/></td>								
 					</tr>
 					<tr>
-						<td><h:outputLabel value="Teléfono: "></h:outputLabel></td>
+						<td height="20px"/>						
+					</tr>					
+					<tr>
+						<td width="80px"/>	
+						<td><h:outputLabel value="Teléfono: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td><h:inputText id="telefonoUsuario" size="30" value="#{UsuarioMB.telefonoUsuario}" required="true" requiredMessage="Ingrese Teléfono"></h:inputText></td>
 						<td width="50px"/>
-						<td><h:outputLabel value="Correo Electrónico: "></h:outputLabel></td>
+						<td><h:outputLabel value="Correo Electrónico: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td><h:inputText id="emailUsuario" size="30" value="#{UsuarioMB.emailUsuario}" required="true" requiredMessage="Ingrese Correo Electrónico"></h:inputText></td>											
 					</tr>
 					<tr>
+						<td width="80px"/>	
 						<td align="center" colspan="2"><rich:message for="telefonoUsuario" style="color:red"/></td>
 						<td width="50px"/>						
 						<td align="center" colspan="2"><rich:message for="emailUsuario" style="color:red"/></td>								
 					</tr>											
 				</table>
-				<br/>				
+				<br/><br/><br/><br/><br/><br/><br/><br/><br/>			
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{UsuarioMB.getCrearUsuario}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="100px"/>
 					</tr>
 				</table>
 				</h:form>

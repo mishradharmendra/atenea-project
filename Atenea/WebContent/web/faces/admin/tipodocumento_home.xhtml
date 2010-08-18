@@ -39,35 +39,35 @@
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaTipodocumento" value="#{TipodocumentoMB.tipodocs}" var="tipodoc" width="650px" height="250px">
+				<rich:extendedDataTable headerClass="rich-table-header" id="tablaTipodocumento" value="#{TipodocumentoMB.tipodocs}" var="tipodoc" width="650px" height="250px">
 					<rich:column width="150px" sortable="true" sortBy="#{tipodoc.tdcNidtipodoc}" label="Id Tipo de Documento">
 						<f:facet name="header">
-							<h:outputLabel value="Id Tipo de Documento"></h:outputLabel>
+							<h:outputLabel value="Id Tipo de Documento" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{tipodoc.tdcNidtipodoc}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="300px" sortable="true" sortBy="#{tipodoc.tdcVnombre}" label="Nombre Tipo Documento">
 						<f:facet name="header">
-							<h:outputLabel value="Nombre Tipo Documento"></h:outputLabel>
+							<h:outputLabel value="Nombre Tipo Documento" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="tdcVnombre" onclick="procesarSolicitudDetalle('#{tipodoc.tdcNidtipodoc}')">
-							<h:outputLabel value="#{tipodoc.tdcVnombre}"></h:outputLabel>
+							<h:outputText value="#{tipodoc.tdcVnombre}"></h:outputText>
 						</a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px" label="Modificar">
+					<rich:column width="55px" label="Modificar">
 						<f:facet name="header">
-							<h:outputLabel value="Modificar"></h:outputLabel>
+							<h:outputLabel value="Modificar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{tipodoc.tdcNidtipodoc}')">
-                            <h:graphicImage url="../../imagenes/editar.png"/>
+                            <div align="center"><h:graphicImage url="../../imagenes/editar.png" style="border:0"/></div>
                         </a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px" label="Eliminar">
+					<rich:column width="55px" label="Eliminar">
 						<f:facet name="header">
-							<h:outputLabel value="Eliminar"></h:outputLabel>
+							<h:outputLabel value="Eliminar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="eliminar" onclick="aceptar = confirm('Esta seguro que quiere eliminar el elemento seleccionado?'); if(aceptar==true){procesarSolicitudEliminar('#{tipodoc.tdcNidtipodoc}');} return false;">
-                            <h:graphicImage url="../../imagenes/Delete.png"/>
+                            <div align="center"><h:graphicImage url="../../imagenes/Delete.png" style="border:0"/></div>
                         </a4j:commandLink>
 					</rich:column>					
 				</rich:extendedDataTable>

@@ -98,7 +98,7 @@ public class DocumentoMB {
 		getHomePageValueHV();
 		setTabPanel();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvAgregarDocumento")){
+		if(getValidarPermisosServicio("srvAgregarHojadeVida")){
 			if(documentoCargado == true){
 				documentoCargado = false;
 				if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB")!=null){
@@ -125,7 +125,7 @@ public class DocumentoMB {
 		getHomePageValueHV();
 		setTabPanel();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvEliminarDocumento")){
+		if(getValidarPermisosServicio("srvModificarHojadeVida")){
 			estadoOperacion = documentoDelegate.getBorrarSoporte(idDocumentoSoporte);
 			if(estadoOperacion==true){				
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
