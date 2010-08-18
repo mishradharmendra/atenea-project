@@ -25,10 +25,10 @@
 				<table align="left">
 					<tr>
 						<td align="left"><h:outputLabel value="Nombres y Apellidos: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><h:inputText size="30" value="#{PersonaMB.nombrePersona}"></h:inputText></td>					
-						<td width="125px"></td>
+						<td align="left"><h:inputText size="35" value="#{PersonaMB.nombrePersona}"></h:inputText></td>					
+						<td width="110px"></td>
 						<td align="left"><h:outputLabel value="Identificación : " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><h:inputText size="30" value="#{PersonaMB.identificacionPersona}"></h:inputText></td>
+						<td align="left"><h:inputText size="35" value="#{PersonaMB.identificacionPersona}"></h:inputText></td>
 					</tr>
 					<tr>
 						<td align="left"><h:outputLabel value="Profesión: " styleClass="TextoContenido"></h:outputLabel></td>
@@ -36,9 +36,9 @@
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 							<f:selectItems value="#{PersonaMB.titulosEquivalentes}"/>
 						</h:selectOneMenu></td>
-						<td width="125px"></td>
+						<td width="110px"></td>
 						<td align="left"><h:outputLabel value="Fecha Tarjeta Profesional: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><rich:calendar value="#{PersonaMB.fechaTarjetaProfesional}" datePattern="dd/MM/yyyy" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="27"/></td>						
+						<td align="left"><rich:calendar value="#{PersonaMB.fechaTarjetaProfesional}" datePattern="dd/MM/yyyy" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="31"/></td>						
 					</tr>
 					<tr>
 						<td align="left"><h:outputLabel value="Especialización : " styleClass="TextoContenido"></h:outputLabel></td>
@@ -46,7 +46,7 @@
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 							<f:selectItems value="#{PersonaMB.titulosEquivalentes}"/>
 							</h:selectOneMenu></td>
-						<td width="125px"></td>
+						<td width="110px"></td>
 						<td align="left"><h:outputLabel value="Maestría : " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:selectOneMenu value="#{PersonaMB.idMaestria}" style="width:200px">
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
@@ -55,21 +55,21 @@
 					</tr>					
 					<tr>
 						<td align="left"><h:outputLabel value="Cargo : " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><h:inputText size="30" value="#{PersonaMB.cargo}"></h:inputText></td>
-						<td width="125px"></td>
+						<td align="left"><h:inputText size="35" value="#{PersonaMB.cargo}"></h:inputText></td>
+						<td width="110px"></td>
 						<td colspan="2"/>
 					</tr>
 					<tr>
 						<td align="left"><h:outputLabel value="Base de Datos : " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><h:inputText size="30" value="#{PersonaMB.bd}"></h:inputText></td>
-						<td width="125px"></td>						
+						<td align="left"><h:inputText size="35" value="#{PersonaMB.bd}"></h:inputText></td>
+						<td width="110px"></td>						
 						<td align="left"><h:outputLabel value="Herramientas de Desarrollo : " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><h:inputText size="30" value="#{PersonaMB.herramientas}"></h:inputText></td>
+						<td align="left"><h:inputText size="35" value="#{PersonaMB.herramientas}"></h:inputText></td>
 					</tr>		
 					<tr>
 						<td align="left"><h:outputLabel value="Funciones y Logros : " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><h:inputText size="30" value="#{PersonaMB.funciones}"></h:inputText></td>
-						<td width="125px"></td>
+						<td align="left"><h:inputText size="35" value="#{PersonaMB.funciones}"></h:inputText></td>
+						<td width="110px"></td>
 						<td align="left"><h:outputLabel value="Perfil Profesional : " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:selectOneMenu value="#{PersonaMB.idPerfil}" style="width:200px">
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
@@ -91,15 +91,15 @@
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="180px" width="850px" headerClass="rich-table-header">
+				<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="130px" width="850px" headerClass="rich-table-header">
 					<rich:column width="120px" label="Nombre Completo" sortable="true" sortBy="#{persona.perVnombres}">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Completo" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="persona" onclick="procesarSolicitudPersonaDetalle('#{persona.perNidpersona}')">
-							<h:outputText value="#{persona.perVnombres}"></h:outputText>
+							<div align="left"><h:outputText value="#{persona.perVnombres}"></h:outputText></div>
 							<br/>
-							<h:outputText value="#{persona.perVapellidos}"></h:outputText>
+							<div align="left"><h:outputText value="#{persona.perVapellidos}"></h:outputText></div>
 						</a4j:commandLink>	
 					</rich:column>
 					<rich:column width="200px" label="Profesión" sortable="true" sortBy="#{formacion.forVtitulo}" headerClass="columna">
@@ -108,8 +108,8 @@
 						</f:facet>
 						<h:dataTable value="#{persona.gppFormaciones}" var="formacion">
 							<h:column>
-								<h:outputLabel value="#{formacion.forVtitulo} - " rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel>
-								<h:outputLabel value="(#{formacion.forDfecgrado})" rendered="#{formacion.nacNidnivelac == 3}" ></h:outputLabel>
+								<div align="left"><h:outputLabel value="#{formacion.forVtitulo} - " rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel></div>
+								<div align="left"><h:outputLabel value="(#{formacion.forDfecgrado})" rendered="#{formacion.nacNidnivelac == 3}" ></h:outputLabel></div>
 							</h:column>
 						</h:dataTable>								
 					</rich:column>
@@ -119,7 +119,7 @@
 						</f:facet>
 						<h:dataTable value="#{persona.gppFormaciones}" var="formacion">						
 							<h:column>
-								<h:outputLabel value="#{formacion.forVtarjetaprof}" rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel>
+								<div align="left"><h:outputLabel value="#{formacion.forVtarjetaprof}" rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel></div>
 							</h:column>
 						</h:dataTable>
 					</rich:column>					
@@ -129,7 +129,7 @@
 						</f:facet>
 						<h:dataTable value="#{persona.gppFormaciones}" var="formacion">
 							<h:column>
-								<h:outputLabel value="#{formacion.forVtitulo}" rendered="#{formacion.nacNidnivelac > 3}"></h:outputLabel>
+								<div align="left"><h:outputLabel value="#{formacion.forVtitulo}" rendered="#{formacion.nacNidnivelac > 3}"></h:outputLabel></div>
 							</h:column>
 						</h:dataTable>							
 					</rich:column>
@@ -139,7 +139,7 @@
 						</f:facet>
 						<h:dataTable value="#{persona.gppCertificaciones}" var="certificacion">
 							<h:column>
-								<h:outputLabel value="#{certificacion.forVtitulo}"></h:outputLabel>
+								<div align="left"><h:outputLabel value="#{certificacion.forVtitulo}"></h:outputLabel></div>
 							</h:column>
 						</h:dataTable>	
 					</rich:column>
@@ -147,7 +147,7 @@
 						<f:facet name="header">
 							<h:outputLabel value="Puntaje" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{persona.perNpuntaje}"></h:outputLabel>
+						<div align="left"><h:outputLabel value="#{persona.perNpuntaje}"></h:outputLabel></div>
 					</rich:column>										
 					<rich:column width="55px" label="Modificar">
 						<f:facet name="header">

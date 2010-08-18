@@ -27,10 +27,10 @@
 					<table align="left">
 						<tr>
 							<td align="left"><h:outputLabel value="Nombres" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:inputText size="30" id="perVnombres" value="#{PersonaMB.persona.perVnombres}" required="true" requiredMessage="Ingrese Nombres"></h:inputText></td>
+							<td align="left"><h:inputText size="35" id="perVnombres" value="#{PersonaMB.persona.perVnombres}" required="true" requiredMessage="Ingrese Nombres"></h:inputText></td>
 							<td width="100px"></td>			
 							<td align="left"><h:outputLabel value="Apellidos" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:inputText size="30" id="perVapellidos" value="#{PersonaMB.persona.perVapellidos}" required="true" requiredMessage="Ingrese Apellidos"></h:inputText></td>							
+							<td align="left"><h:inputText size="35" id="perVapellidos" value="#{PersonaMB.persona.perVapellidos}" required="true" requiredMessage="Ingrese Apellidos"></h:inputText></td>							
 						</tr>
 						<tr>
 							<td align="center" colspan="2"><rich:message for="perVnombres" style="color:red"/></td>
@@ -45,7 +45,7 @@
 							</h:selectOneMenu></td>
 							<td width="100px"></td>			
 							<td align="left"><h:outputLabel value="Identificación" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:inputText size="30" id="perNidentificacion" value="#{PersonaMB.persona.perNidentificacion}" required="true" requiredMessage="Ingrese Identificación"></h:inputText></td>							
+							<td align="left"><h:inputText size="35" id="perNidentificacion" value="#{PersonaMB.persona.perNidentificacion}" required="true" requiredMessage="Ingrese Identificación"></h:inputText></td>							
 						</tr>		
 						<tr>
 							<td align="center" colspan="2"><rich:message for="tdcNidtipodoc" style="color:red"/></td>
@@ -73,7 +73,7 @@
 						</tr>													
 						<tr>
 							<td align="left"><h:outputLabel value="Fecha de Nacimiento" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><rich:calendar value="#{PersonaMB.persona.perDfecnacimiento}" datePattern="dd/MM/yyyy" id="perDfecnacimiento" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="27"/></td>
+							<td align="left"><rich:calendar value="#{PersonaMB.persona.perDfecnacimiento}" datePattern="dd/MM/yyyy" id="perDfecnacimiento" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="31"/></td>
 							<td width="100px"></td>			
 							<td align="left"><h:outputLabel value="País" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:selectOneMenu id="idPais" valueChangeListener="#{PersonaMB.getDeptos}" onchange="submit()" style="width:200px">
@@ -101,7 +101,7 @@
 						</tr>							
 						<tr>				
 							<td align="left"><h:outputLabel value="Libreta Militar" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:inputText size="30" value="#{PersonaMB.persona.perVlibretamilitar}"></h:inputText></td>
+							<td align="left"><h:inputText size="35" value="#{PersonaMB.persona.perVlibretamilitar}"></h:inputText></td>
 						</tr>	
 						<tr>
 							<td height="30px"/>
@@ -132,17 +132,17 @@
 						</tr>											
 						<tr>
 							<td align="left"><h:outputLabel value="Movil" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:inputText size="30" id="perVmovil" value="#{PersonaMB.persona.perVmovil}"></h:inputText></td>
+							<td align="left"><h:inputText size="35" id="perVmovil" value="#{PersonaMB.persona.perVmovil}"></h:inputText></td>
 							<td width="100px"></td>	
 							<td align="left"><h:outputLabel value="Correo Electrónico" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:inputText size="30" id="perVemail" value="#{PersonaMB.persona.perVemail}"></h:inputText></td>							
+							<td align="left"><h:inputText size="35" id="perVemail" value="#{PersonaMB.persona.perVemail}"></h:inputText></td>							
 						</tr>								
 						<tr>
 							<td align="left"><h:outputLabel value="Teléfono Fijo" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:inputText size="30" id="perVtelefono" value="#{PersonaMB.persona.perVtelefono}"></h:inputText></td>
+							<td align="left"><h:inputText size="35" id="perVtelefono" value="#{PersonaMB.persona.perVtelefono}"></h:inputText></td>
 							<td width="100px"></td>	
 							<td align="left"><h:outputLabel value="Dirección" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:inputText size="30" id="perVdireccion" value="#{PersonaMB.persona.perVdireccion}"></h:inputText></td>							
+							<td align="left"><h:inputText size="35" id="perVdireccion" value="#{PersonaMB.persona.perVdireccion}"></h:inputText></td>							
 						</tr>																	
 					</table>
 					<br/><br/>
@@ -164,31 +164,31 @@
 					</table>
 					</c:if>
 					<br/><br/>
+					<c:if test="#{PersonaMB.persona.perNidpersona == null}">
 					<table align="right">
 						<tr>
-							<c:if test="#{PersonaMB.persona.perNidpersona == null}">
 							<td><h:commandButton action="#{PersonaMB.getGuardarPersona}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 							<td width="40px"/>
-							</c:if>					
 						</tr>
-					</table>					
+					</table>
+					</c:if>
+					<c:if test="#{PersonaMB.persona.perNidpersona != null}">										
 					<table align="right">
 						<tr>
-							<c:if test="#{PersonaMB.persona.perNidpersona != null}">
 							<td><h:commandButton action="#{PersonaMB.getActualizarPersona}" value="Actualizar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 							<td width="40px"/>
-							</c:if>					
 						</tr>						
 					</table>
+					</c:if>					
 					</h:form>
 					<h:form>
+					<c:if test="#{PersonaMB.persona.perNidpersona != null}">
 					<table align="right">
 						<tr>
-							<c:if test="#{PersonaMB.persona.perNidpersona != null}">
 								<td><h:commandButton action="#{PersonaMB.getSiguiente}" value="Siguiente" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-							</c:if>					
 						</tr>						
 					</table>
+					</c:if>					
 					</h:form>
 					</rich:tab>
 					<rich:tab label="Formación Académica" name="TAB_PANEL_FORMACION" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;">
@@ -549,10 +549,10 @@
 							<table align="left">
 								<tr>
 									<td align="left"><h:outputLabel value="Empresa" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:inputText size="30" id="expVnomempresa" value="#{ExperienciaMB.experiencia.expVnomempresa}" required="true" requiredMessage="Ingrese Empresa"></h:inputText></td>
+									<td align="left"><h:inputText size="35" id="expVnomempresa" value="#{ExperienciaMB.experiencia.expVnomempresa}" required="true" requiredMessage="Ingrese Empresa"></h:inputText></td>
 									<td width="120px"></td>			
 									<td align="left"><h:outputLabel value="Teléfona Empresa" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:inputText size="30" id="expVtelempresa" value="#{ExperienciaMB.experiencia.expVtelempresa}" required="true" requiredMessage="Ingrese Teléfona Empresa"></h:inputText></td>
+									<td align="left"><h:inputText size="35" id="expVtelempresa" value="#{ExperienciaMB.experiencia.expVtelempresa}" required="true" requiredMessage="Ingrese Teléfona Empresa"></h:inputText></td>
 								</tr>
 								<tr>
 									<td align="center" colspan="2"><rich:message for="expVnomempresa" style="color:red"/></td>
@@ -584,10 +584,10 @@
 								</tr>							
 								<tr>
 									<td align="left"><h:outputLabel value="Nombre Contacto" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:inputText size="30" id="expVnomcontacto" value="#{ExperienciaMB.experiencia.expVnomcontacto}" required="true" requiredMessage="Ingrese Nombre Contacto"></h:inputText></td>
+									<td align="left"><h:inputText size="35" id="expVnomcontacto" value="#{ExperienciaMB.experiencia.expVnomcontacto}" required="true" requiredMessage="Ingrese Nombre Contacto"></h:inputText></td>
 									<td width="120px"></td>			
 									<td align="left"><h:outputLabel value="E-Mail Contacto" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:inputText size="30" id="expVemailcontacto" value="#{ExperienciaMB.experiencia.expVemailcontacto}" required="true" requiredMessage="Ingrese Correo Electrónico Contacto"></h:inputText></td>					
+									<td align="left"><h:inputText size="35" id="expVemailcontacto" value="#{ExperienciaMB.experiencia.expVemailcontacto}" required="true" requiredMessage="Ingrese Correo Electrónico Contacto"></h:inputText></td>					
 								</tr>		
 								<tr>
 									<td align="center" colspan="2"><rich:message for="expVnomcontacto" style="color:red"/></td>
@@ -596,7 +596,7 @@
 								</tr>													
 								<tr>
 									<td align="left"><h:outputLabel value="Cargo Desempeñado" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:inputText size="30" id="expVcargo" value="#{ExperienciaMB.experiencia.expVcargo}" required="true" requiredMessage="Ingrese Cargo Desempeñado"></h:inputText></td>
+									<td align="left"><h:inputText size="35" id="expVcargo" value="#{ExperienciaMB.experiencia.expVcargo}" required="true" requiredMessage="Ingrese Cargo Desempeñado"></h:inputText></td>
 									<td width="120px"></td>			
 									<td align="left"><h:outputLabel value="Cargo Equivalente" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:selectOneMenu id="ceqNidcargoeq" value="#{ExperienciaMB.experiencia.ceqNidcargoeq}" required="true" requiredMessage="Ingrese Cargo Equivalente" style="width:200px">
@@ -611,10 +611,10 @@
 								</tr>
 								<tr>
 									<td align="left"><h:outputLabel value="Fecha de Ingreso" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><rich:calendar value="#{ExperienciaMB.experiencia.expDfecingreso}" datePattern="dd/MM/yyyy" id="expDfecingreso" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Ingreso" inputSize="27"/></td>
+									<td align="left"><rich:calendar value="#{ExperienciaMB.experiencia.expDfecingreso}" datePattern="dd/MM/yyyy" id="expDfecingreso" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Ingreso" inputSize="31"/></td>
 									<td width="120px"></td>
 									<td align="left"><h:outputLabel value="Fecha de Retiro" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><rich:calendar value="#{ExperienciaMB.experiencia.expDfecretiro}" datePattern="dd/MM/yyyy" id="expDfecretiro" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="27"/></td>
+									<td align="left"><rich:calendar value="#{ExperienciaMB.experiencia.expDfecretiro}" datePattern="dd/MM/yyyy" id="expDfecretiro" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="31"/></td>
 								</tr>
 								<tr>
 									<td/>
@@ -814,7 +814,7 @@
 										</h:selectOneMenu></td>
 								<td width="190px"></td>
 								<td align="left"><h:outputLabel value="Fecha Expedición" styleClass="TextoContenido"></h:outputLabel></td>
-								<td align="left"><rich:calendar value="#{DocumentoMB.documento.docDfecexpide}" datePattern="dd/MM/yyyy" id="docDfecexpide" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha Expedición" inputSize="27"/></td>										
+								<td align="left"><rich:calendar value="#{DocumentoMB.documento.docDfecexpide}" datePattern="dd/MM/yyyy" id="docDfecexpide" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha Expedición" inputSize="31"/></td>										
 							</tr>
 							<tr>
 								<td align="center" colspan="2"><rich:message for="tarNidtipoarchivo" style="color:red"/></td>
