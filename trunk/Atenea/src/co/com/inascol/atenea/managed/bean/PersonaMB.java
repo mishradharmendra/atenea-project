@@ -408,7 +408,7 @@ public class PersonaMB {
 	public String getCambiarEstadoPersona(){
 		getHomePageValue();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvModificarPersona")){
+		if(getValidarPermisosServicio("srvModificarHojadeVida")){
 			persona = personaDelegate.getSeleccionarPersona(personas, idPersona);
 			if(estadoPersona==true){
 				persona.setPerBactivo(false);
@@ -430,7 +430,7 @@ public class PersonaMB {
 	public String getCambiarEstadoPersonaAvanzada(){
 		getHomePageValueAvanzada();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvModificarPersona")){
+		if(getValidarPermisosServicio("srvModificarHojadeVida")){
 			persona = personaDelegate.getSeleccionarPersona(personas, idPersona);
 			if(estadoPersona==true){
 				persona.setPerBactivo(false);
@@ -453,7 +453,7 @@ public class PersonaMB {
 		getHomePageValueHV();
 		setTabPanel();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvAgregarPersona")){	
+		if(getValidarPermisosServicio("srvAgregarHojadeVida")){	
 			estadoOperacion = personaDelegate.getGuardarPersona(persona);
 			if(estadoOperacion==true){
 				personas = (List<Object>) personaDelegate.getBusquedaBasicaPersona("" , persona.getPerNidentificacion().toString());
@@ -474,7 +474,7 @@ public class PersonaMB {
 		getHomePageValueHV();
 		setTabPanel();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvModificarPersona")){	
+		if(getValidarPermisosServicio("srvModificarHojadeVida")){	
 			estadoOperacion = personaDelegate.getActualizarPersona(persona);
 			if(estadoOperacion==true){
 				if(documentoCargado==true){

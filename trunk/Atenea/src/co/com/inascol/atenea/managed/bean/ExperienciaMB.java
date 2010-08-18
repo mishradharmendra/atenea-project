@@ -202,7 +202,7 @@ public class ExperienciaMB {
 		setTabPanel();
 		setTabPanelExperienciaConsulta();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvAgregarExperiencia")){
+		if(getValidarPermisosServicio("srvAgregarHojadeVida")){
 			if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
 				idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();
 				experiencia.setPerNidpersona(idPersona);
@@ -237,7 +237,7 @@ public class ExperienciaMB {
 		setTabPanel();
 		setTabPanelExperienciaConsulta();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvEliminarExperiencia")){
+		if(getValidarPermisosServicio("srvModificarHojadeVida")){
 			estadoOperacion = experienciaDelegate.getBorrarExperiencia(idExperiencia);
 			if(estadoOperacion==true){	
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ExperienciaMB");
@@ -255,7 +255,7 @@ public class ExperienciaMB {
 		setTabPanel();
 		setTabPanelExperienciaConsulta();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvModificarExperiencia")){
+		if(getValidarPermisosServicio("srvModificarHojadeVida")){
 			estadoOperacion = experienciaDelegate.getActualizarExperiencia(experiencia);
 			if(estadoOperacion==true){
 				if(documentoCargadoCertificacion1==true){

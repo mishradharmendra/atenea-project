@@ -15,6 +15,7 @@
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
+						<td width="120px"/>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Usuarios" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
@@ -26,64 +27,66 @@
 					</tr>
 				</table>
 				<br/>
-				<table align="center">
+				<table align="left">
 					<tr>
-						<td><h:outputLabel value="Login"></h:outputLabel></td>
+						<td width="120px"/>
+						<td><h:outputLabel value="Login" styleClass="TextoContenido"></h:outputLabel></td>
 						<td><h:inputText value="#{UsuarioMB.loginUsuario}"></h:inputText></td>
-						<td width="20px"/>
-						<td><h:outputLabel value="Nombre de Usuario"></h:outputLabel></td>
+						<td width="150px"/>
+						<td><h:outputLabel value="Nombre de Usuario" styleClass="TextoContenido"></h:outputLabel></td>
 						<td><h:inputText value="#{UsuarioMB.nombreUsuario}"></h:inputText></td>					
 					</tr>
 				</table>
-				<br/>				
+				<br/><br/><br/>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{UsuarioMB.getBuscarUsuarioPorNombre}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 						<td width="20px"></td>
 						<td><h:commandButton action="#{UsuarioMB.getAgregarUsuario}" value="Agregar Registro" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="140px"/>
 					</tr>
 				</table>
 				</h:form>								
-				<br/><br/>
+				<br/><br/><br/><br/>
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaUsuario" value="#{UsuarioMB.usuarios}" var="usuario" width="700px" height="200px">
-					<rich:column width="100px" sortable="true" sortBy="#{usuario.usuNidusuario}" label="Id usuario">
+				<rich:extendedDataTable id="tablaUsuario" value="#{UsuarioMB.usuarios}" var="usuario" width="615px" height="200px" headerClass="rich-table-header">
+					<rich:column width="140px" sortable="true" sortBy="#{usuario.usuNidusuario}" label="Id usuario">
 						<f:facet name="header">
-							<h:outputLabel value="Login"></h:outputLabel>
+							<h:outputLabel value="Login" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{usuario.usuVlogin}"></h:outputLabel>
+						<a4j:commandLink id="usuVlogin" onclick="procesarSolicitudDetalle('#{usuario.usuNidusuario}')">
+							<h:outputText value="#{usuario.usuVlogin}"></h:outputText>
+						</a4j:commandLink>						
 					</rich:column>
 					<rich:column width="300px" sortable="true" sortBy="#{usuario.usuVnombre}" label="Nombre del Usuario">
 						<f:facet name="header">
-							<h:outputLabel value="Nombre del Usuario"></h:outputLabel>
+							<h:outputLabel value="Nombre del Usuario" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<a4j:commandLink id="usuVnombre" onclick="procesarSolicitudDetalle('#{usuario.usuNidusuario}')">
-							<h:outputLabel value="#{usuario.usuVnombre}"></h:outputLabel>
-						</a4j:commandLink>
+						<h:outputLabel value="#{usuario.usuVnombre}"></h:outputLabel>
 					</rich:column>
-					<rich:column width="100px" label="Modificar">
+					<rich:column width="60px" label="Modificar">
 						<f:facet name="header">
-							<h:outputLabel value="Modificar"></h:outputLabel>
+							<h:outputLabel value="Modificar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{usuario.usuNidusuario}')">
-                            <h:graphicImage url="../../imagenes/editar.png"/>
+                            <div align="center"><h:graphicImage url="../../imagenes/editar.png" style="border:0"/></div>
                         </a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px" label="Eliminar">
+					<rich:column width="55px" label="Eliminar">
 						<f:facet name="header">
-							<h:outputLabel value="Eliminar"></h:outputLabel>
+							<h:outputLabel value="Eliminar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="eliminar" onclick="aceptar = confirm('Esta seguro que quiere eliminar el usuario seleccionado?'); if(aceptar==true){procesarSolicitudEliminar('#{usuario.usuNidusuario}');} return false;">
-                            <h:graphicImage url="../../imagenes/Delete.png"/>
+                            <div align="center"><h:graphicImage url="../../imagenes/Delete.png" style="border:0"/></div>
                         </a4j:commandLink>
 					</rich:column>							
-					<rich:column width="100px" label="Activar">
+					<rich:column width="45px" label="Activar">
 						<f:facet name="header">
-							<h:outputLabel value="Activar"></h:outputLabel>
+							<h:outputLabel value="Activar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<h:selectBooleanCheckbox id="activar" value="#{usuario.usuBactivo}" onclick="aceptar = confirm('Esta seguro que quiere cambiar el estado del usuario seleccionado?'); if(aceptar==true){procesarSolicitudCambiarEstado('#{usuario.usuNidusuario}','#{usuario.usuBactivo}');} return false;"></h:selectBooleanCheckbox>
+						<div align="center"><h:selectBooleanCheckbox id="activar" value="#{usuario.usuBactivo}" onclick="aceptar = confirm('Esta seguro que quiere cambiar el estado del usuario seleccionado?'); if(aceptar==true){procesarSolicitudCambiarEstado('#{usuario.usuNidusuario}','#{usuario.usuBactivo}');} return false;"></h:selectBooleanCheckbox></div>
 					</rich:column>
 				</rich:extendedDataTable>
 				</h:form>					

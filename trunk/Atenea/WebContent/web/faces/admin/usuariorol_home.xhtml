@@ -46,27 +46,27 @@
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaUsuarioRol" value="#{UsuariorolMB.usuarios}" var="usuario" width="500px" height="200px">
+				<rich:extendedDataTable headerClass="rich-table-header" id="tablaUsuarioRol" value="#{UsuariorolMB.usuarios}" var="usuario" width="500px" height="200px">
 					<rich:column width="100px" sortable="true" sortBy="#{usuario.usuNidusuario}" label="Id usuario">
 						<f:facet name="header">
-							<h:outputLabel value="Login"></h:outputLabel>
+							<h:outputLabel value="Login" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{usuario.usuVlogin}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="300px" sortable="true" sortBy="#{usuario.usuVnombre}" label="Nombre del Usuario">
 						<f:facet name="header">
-							<h:outputLabel value="Nombre del Usuario"></h:outputLabel>
+							<h:outputLabel value="Nombre del Usuario" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="usuVnombre" onclick="procesarSolicitudDetalle('#{usuario.usuNidusuario}')">
-							<h:outputLabel value="#{usuario.usuVnombre}"></h:outputLabel>
+							<h:outputText value="#{usuario.usuVnombre}"></h:outputText>
 						</a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px" label="Modificar">
+					<rich:column width="55px" label="Modificar">
 						<f:facet name="header">
-							<h:outputLabel value="Modificar"></h:outputLabel>
+							<h:outputLabel value="Modificar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{usuario.usuNidusuario}')">
-                            <h:graphicImage url="../../imagenes/editar.png"/>
+                            <div align="center"><h:graphicImage url="../../imagenes/editar.png" style="border:0"/></div>
                         </a4j:commandLink>
 					</rich:column>
 				</rich:extendedDataTable>

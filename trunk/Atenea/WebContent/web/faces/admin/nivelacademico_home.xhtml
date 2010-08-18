@@ -39,27 +39,27 @@
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaNivelacademico" value="#{NivelacademicoMB.nivelesacademicos}" var="nivelacademico" width="550px" height="250px">
+				<rich:extendedDataTable headerClass="rich-table-header" id="tablaNivelacademico" value="#{NivelacademicoMB.nivelesacademicos}" var="nivelacademico" width="550px" height="250px">
 					<rich:column width="150px" sortable="true" sortBy="#{nivelacademico.nacNidnivelac}" label="Id Nivel Académico">
 						<f:facet name="header">
-							<h:outputLabel value="Id Nivel Académico"></h:outputLabel>
+							<h:outputLabel value="Id Nivel Académico" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<h:outputLabel value="#{nivelacademico.nacNidnivelac}"></h:outputLabel>
 					</rich:column>
 					<rich:column width="300px" sortable="true" sortBy="#{nivelacademico.nacVnivelac}" label="Nombre Nivel Académico">
 						<f:facet name="header">
-							<h:outputLabel value="Nombre Nivel Académico"></h:outputLabel>
+							<h:outputLabel value="Nombre Nivel Académico" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="nacVnivelac" onclick="procesarSolicitudDetalle('#{nivelacademico.nacNidnivelac}')">
-							<h:outputLabel value="#{nivelacademico.nacVnivelac}"></h:outputLabel>
+							<h:outputText value="#{nivelacademico.nacVnivelac}"></h:outputText>
 						</a4j:commandLink>
 					</rich:column>
-					<rich:column width="100px" label="Modificar">
+					<rich:column width="55px" label="Modificar">
 						<f:facet name="header">
-							<h:outputLabel value="Modificar"></h:outputLabel>
+							<h:outputLabel value="Modificar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="modificar" onclick="procesarSolicitudModificar('#{nivelacademico.nacNidnivelac}')">
-                            <h:graphicImage url="../../imagenes/editar.png"/>
+                            <div align="center"><h:graphicImage url="../../imagenes/editar.png" style="border:0"/></div>
                         </a4j:commandLink>
 					</rich:column>
 				</rich:extendedDataTable>

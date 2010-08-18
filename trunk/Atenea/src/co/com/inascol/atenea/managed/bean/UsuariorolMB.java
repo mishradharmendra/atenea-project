@@ -106,7 +106,7 @@ public class UsuariorolMB {
 	public String getModificarPermisos(){
 		getHomePageValue();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvModificarUsuarioRol")){
+		if(getValidarPermisosServicio("srvModificarPermisos")){
 			if(idsRoles==null){
 				idsRoles = new ArrayList<Object>();
 			}
@@ -138,7 +138,7 @@ public class UsuariorolMB {
 	public String getBorrarRoles(){
 		getHomePageValue();
 		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvEliminarUsuarioRol")){
+		if(getValidarPermisosServicio("srvModificarPermisos")){
 			List<Object> idsRolesBorrar =  new ArrayList<Object>();
 			if(idsRoles==null){
 				idsRoles = new ArrayList<Object>();
