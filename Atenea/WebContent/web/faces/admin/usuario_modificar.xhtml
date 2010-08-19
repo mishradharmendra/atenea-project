@@ -19,21 +19,29 @@
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Usuario" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>		
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>		
 				<h:form>
 				<h:outputLabel value="Modificación de Datos de Usuario" styleClass="TituloContenido"></h:outputLabel>
-				<br/><br/><br/><br/><br/><br/>		
+				<table align¨"center" with="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>	
 				<table align="left">
 					<tr>
 						<td><h:inputHidden value="#{UsuarioMB.usuario.usuNidusuario}"></h:inputHidden></td>
 					</tr>
 					<tr>
 						<td width="80px"/>
-						<td><h:outputLabel value="Nombre Usuario: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td><h:inputText id="nombreUsuario" size="30" value="#{UsuarioMB.usuario.usuVnombre}" required="true" requiredMessage="Ingrese Nombre Usuario"></h:inputText></td>
+						<td align="left"><h:outputLabel value="Nombre Usuario: " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:inputText id="nombreUsuario" size="30" value="#{UsuarioMB.usuario.usuVnombre}" required="true" requiredMessage="Ingrese Nombre Usuario"></h:inputText></td>
 						<td width="50px"/>
-						<td><h:outputLabel value="Login Usuario: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td><h:inputText id="loginusuario" size="30" value="#{UsuarioMB.usuario.usuVlogin}" required="true" requiredMessage="Ingrese Login Usuario"></h:inputText></td>											
+						<td align="left"><h:outputLabel value="Login Usuario: " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:inputText id="loginusuario" size="30" value="#{UsuarioMB.usuario.usuVlogin}" required="true" requiredMessage="Ingrese Login Usuario"></h:inputText></td>											
 					</tr>
 					<tr>
 						<td width="80px"/>
@@ -46,11 +54,11 @@
 					</tr>						
 					<tr>
 						<td width="80px"/>
-						<td><h:outputLabel value="Teléfono: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td><h:inputText id="telefonoUsuario" size="30" value="#{UsuarioMB.usuario.usuVtelefono}" required="true" requiredMessage="Ingrese Teléfono"></h:inputText></td>
+						<td align="left"><h:outputLabel value="Teléfono: " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:inputText id="telefonoUsuario" size="30" value="#{UsuarioMB.usuario.usuVtelefono}" required="true" requiredMessage="Ingrese Teléfono"></h:inputText></td>
 						<td width="50px"/>
-						<td><h:outputLabel value="Correo Electrónico: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td><h:inputText id="emailUsuario" size="30" value="#{UsuarioMB.usuario.usuVemail}" required="true" requiredMessage="Ingrese Correo Electrónico"></h:inputText></td>											
+						<td align="left"><h:outputLabel value="Correo Electrónico: " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:inputText id="emailUsuario" size="30" value="#{UsuarioMB.usuario.usuVemail}" required="true" requiredMessage="Ingrese Correo Electrónico"></h:inputText></td>											
 					</tr>
 					<tr>
 						<td width="80px"/>					
@@ -59,7 +67,11 @@
 						<td align="center" colspan="2"><rich:message for="#{UsuarioMB.emailUsuario}" style="color:red"/></td>								
 					</tr>						
 				</table>
-				<br/><br/><br/><br/><br/><br/><br/><br/><br/>				
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>		
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{UsuarioMB.getModificarUsuario}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>

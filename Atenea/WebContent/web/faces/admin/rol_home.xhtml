@@ -45,21 +45,21 @@
 						<f:facet name="header">
 							<h:outputLabel value="Id Rol" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{rol.rolNidrol}"></h:outputLabel>
+						<div align="left"><h:outputLabel value="#{rol.rolNidrol}"></h:outputLabel></div>
 					</rich:column>
 					<rich:column width="285px" sortable="true" sortBy="#{rol.rolVnombre}" label="Nombre Rol">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Rol" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="rolVnombre" onclick="procesarSolicitudDetalle('#{rol.rolNidrol}')">
-							<h:outputText value="#{rol.rolVnombre}"></h:outputText>
+							<div align="left"><h:outputText value="#{rol.rolVnombre}"></h:outputText></div>
 						</a4j:commandLink>						
 					</rich:column>
 					<rich:column width="350px" sortable="true" sortBy="#{rol.rolVdescripcion}" label="Descripción">
 						<f:facet name="header">
 							<h:outputLabel value="Descripción" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{rol.rolVdescripcion}"></h:outputLabel>
+						<div align="left"><h:outputLabel value="#{rol.rolVdescripcion}"></h:outputLabel></div>
 					</rich:column>					
 					<rich:column width="55px" label="Modificar">
 						<f:facet name="header">

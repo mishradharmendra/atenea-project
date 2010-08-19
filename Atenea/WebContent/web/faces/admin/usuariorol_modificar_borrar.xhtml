@@ -18,7 +18,11 @@
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Permisos" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>		
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>		
 				<h:form>
 				<h:outputLabel value="Modificación de Permisos" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>					
@@ -27,11 +31,11 @@
 						<td><h:inputHidden value="#{UsuariorolMB.usuario.usuNidusuario}"></h:inputHidden></td>
 					</tr>
 					<tr>
-						<td><h:outputLabel value="Nombre Usuario: "></h:outputLabel></td>
-						<td><h:outputLabel id="nombreUsuario" size="30" value="#{UsuariorolMB.usuario.usuVnombre}" required="true" requiredMessage="Ingrese Nombre Usuario"></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="Nombre Usuario: "></h:outputLabel></td>
+						<td align="left"><h:outputLabel id="nombreUsuario" size="30" value="#{UsuariorolMB.usuario.usuVnombre}" required="true" requiredMessage="Ingrese Nombre Usuario"></h:outputLabel></td>
 						<td width="50px"/>
-						<td><h:outputLabel value="Login Usuario: "></h:outputLabel></td>
-						<td><h:outputLabel id="loginusuario" size="30" value="#{UsuariorolMB.usuario.usuVlogin}" required="true" requiredMessage="Ingrese Login Usuario"></h:outputLabel></td>											
+						<td align="left"><h:outputLabel value="Login Usuario: "></h:outputLabel></td>
+						<td align="left"><h:outputLabel id="loginusuario" size="30" value="#{UsuariorolMB.usuario.usuVlogin}" required="true" requiredMessage="Ingrese Login Usuario"></h:outputLabel></td>											
 					</tr>
 				</table>
 				<br/>				
@@ -62,19 +66,19 @@
 									<f:facet name="header">
 										<h:outputLabel value="Seleccionar"></h:outputLabel>
 									</f:facet>
-									<h:selectBooleanCheckbox id="servicio" onclick="procesarSolicitudRolAsignado('#{rol.rolNidrol}');"></h:selectBooleanCheckbox>
+									<div align="center"><h:selectBooleanCheckbox id="servicio" onclick="procesarSolicitudRolAsignado('#{rol.rolNidrol}');"></h:selectBooleanCheckbox></div>
 								</rich:column>										
 								<rich:column width="150px" sortable="true" sortBy="#{rol.rolVnombre}" label="Nombre Rol">
 									<f:facet name="header">
 										<h:outputLabel value="Nombre Rol"></h:outputLabel>
 									</f:facet>
-									<h:outputLabel value="#{rol.rolVnombre}"></h:outputLabel>
+									<div align="left"><h:outputLabel value="#{rol.rolVnombre}"></h:outputLabel></div>
 								</rich:column>
 								<rich:column width="300px" sortable="true" sortBy="#{rol.rolVdescripcion}" label="Descripción">
 									<f:facet name="header">
 										<h:outputLabel value="Descripción"></h:outputLabel>
 									</f:facet>
-									<h:outputLabel value="#{rol.rolVdescripcion}"></h:outputLabel>
+									<div align="left"><h:outputLabel value="#{rol.rolVdescripcion}"></h:outputLabel></div>
 								</rich:column>									
 							</rich:extendedDataTable>
 							</h:form>
