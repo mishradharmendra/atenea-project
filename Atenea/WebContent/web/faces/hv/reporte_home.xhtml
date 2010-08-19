@@ -19,7 +19,11 @@
 						<td align="left"><h:outputLabel value="GENERAR REPORTE" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>
 				<h:form>	
 				<table align="left">
 					<tr>
@@ -38,7 +42,11 @@
 					</tr>
 				</table>
 				</h:form>
-				<br/><br/><br/><br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
@@ -47,9 +55,11 @@
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Completo" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-							<div align="left"><h:outputLabel value="#{persona.perVnombres}"></h:outputLabel></div>
-							<br/>
-							<div align="left"><h:outputLabel value="#{persona.perVapellidos}"></h:outputLabel></div>
+							<div align="left">
+								<h:outputLabel value="#{persona.perVnombres}"></h:outputLabel>
+								<br/>
+								<h:outputLabel value="#{persona.perVapellidos}"></h:outputLabel>
+							</div>
 					</rich:column>
 					<rich:column width="235px" label="Profesión" sortable="true" sortBy="#{formacion.forVtitulo}">
 						<f:facet name="header">
@@ -57,8 +67,10 @@
 						</f:facet>
 						<h:dataTable value="#{persona.gppFormaciones}" var="formacion">
 							<h:column>
-								<div align="left"><h:outputLabel value="#{formacion.forVtitulo} - " rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel></div>
-								<div align="left"><h:outputLabel value="(#{formacion.forDfecgrado})" rendered="#{formacion.nacNidnivelac == 3}" ></h:outputLabel></div>
+								<div align="left">
+									<h:outputLabel value="#{formacion.forVtitulo} - " rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel>
+									<h:outputLabel value="(#{formacion.forDfecgrado})" rendered="#{formacion.nacNidnivelac == 3}" ></h:outputLabel>
+								</div>
 							</h:column>
 						</h:dataTable>								
 					</rich:column>
