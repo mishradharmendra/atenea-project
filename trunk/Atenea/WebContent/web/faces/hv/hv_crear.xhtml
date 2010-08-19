@@ -148,11 +148,16 @@
 					<br/><br/>
 					<table align="center">
 						<tr>
-							<td height="250px"/>
+							<td height="50px"/>
 						</tr>
 					</table>
 					<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-					<br/><br/>
+					<br/>
+					<table align="center" width="100%">
+						<tr>
+							<td height="50px"/>
+						</tr>
+					</table>	
 					<table align="center">
 						<tr>
 							<td align="center"><h:outputLabel value="Adjuntar Hoja de Vida" styleClass="TituloContenido"></h:outputLabel></td>
@@ -163,7 +168,12 @@
 						</tr>												                   
 					</table>
 					</c:if>
-					<br/><br/>
+					<br/>
+					<table align="center" width="100%">
+						<tr>
+							<td height="50px"/>
+						</tr>
+					</table>					
 					<c:if test="#{PersonaMB.persona.perNidpersona == null}">
 					<table align="right">
 						<tr>
@@ -172,7 +182,7 @@
 						</tr>
 					</table>
 					</c:if>
-					<c:if test="#{PersonaMB.persona.perNidpersona != null}">										
+					<c:if test="#{PersonaMB.persona.perNidpersona != null}">
 					<table align="right">
 						<tr>
 							<td><h:commandButton action="#{PersonaMB.getActualizarPersona}" value="Actualizar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
@@ -185,7 +195,7 @@
 					<c:if test="#{PersonaMB.persona.perNidpersona != null}">
 					<table align="right">
 						<tr>
-								<td><h:commandButton action="#{PersonaMB.getSiguiente}" value="Siguiente" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+							<td><h:commandButton action="#{PersonaMB.getSiguiente}" value="Siguiente" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 						</tr>						
 					</table>
 					</c:if>					
@@ -314,8 +324,8 @@
 							<table align="left">
 								<tr>
 									<td align="left"><h:outputLabel value="Título Obtenido" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:inputText size="47" id="forVtitulo" value="#{FormacionMB.formacion.forVtitulo}" required="true" requiredMessage="Ingrese Título Obtenido"></h:inputText></td>
-									<td width="100px"></td>			
+									<td align="left"><h:inputText size="55" id="forVtitulo" value="#{FormacionMB.formacion.forVtitulo}" required="true" requiredMessage="Ingrese Título Obtenido"></h:inputText></td>
+									<td width="90px"></td>			
 									<td align="left"><h:outputLabel value="Nivel Académico" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:selectOneMenu value="#{FormacionMB.formacion.nacNidnivelac}" id="nacNidnivelac" required="true" requiredMessage="Ingrese Nivel Académico" style="width:160px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
@@ -324,7 +334,7 @@
 								</tr>
 								<tr>
 									<td align="center" colspan="2"><rich:message for="forVtitulo" style="color:red"/></td>
-									<td width="100px"></td>			
+									<td width="90px"></td>			
 									<td align="center" colspan="2"><rich:message for="nacNidnivelac" style="color:red"/></td>							
 								</tr>						
 								<tr>
@@ -333,13 +343,13 @@
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{FormacionMB.instituciones}"/>
 									</h:selectOneMenu></td>
-									<td width="100px"></td>			
+									<td width="90px"></td>			
 									<td align="left"><h:outputLabel value="Fecha de Grado" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><rich:calendar value="#{FormacionMB.formacion.forDfecgrado}" datePattern="dd/MM/yyyy" id="forDfecgrado" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Grado"/></td>							
+									<td align="left"><rich:calendar value="#{FormacionMB.formacion.forDfecgrado}" datePattern="dd/MM/yyyy" id="forDfecgrado" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Grado" inputSize="23"/></td>							
 								</tr>		
 								<tr>
 									<td align="center" colspan="2"><rich:message for="insNidinstitucion" style="color:red"/></td>
-									<td width="100px"></td>	
+									<td width="90px"></td>	
 									<td align="center" colspan="2"><rich:message for="forDfecgrado" style="color:red"/></td>							
 								</tr>							
 								<tr>
@@ -348,7 +358,7 @@
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
 										<f:selectItems value="#{FormacionMB.titulosEquivalentes}"/>
 									</h:selectOneMenu></td>
-									<td width="100px"></td>			
+									<td width="90px"></td>			
 									<td align="left"><h:outputLabel value="Duración (Años)" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:selectOneMenu id="forNduracionmes" value="#{FormacionMB.formacion.forNduracionmes}" required="true" requiredMessage="Ingrese Duración" style="width:160px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
@@ -357,22 +367,22 @@
 								</tr>		
 								<tr>
 									<td align="center" colspan="2"><rich:message for="teqNidtituloeq" style="color:red"/></td>
-									<td width="100px"></td>	
+									<td width="90px"></td>	
 									<td align="center" colspan="2"><rich:message for="forNduracionmes" style="color:red"/></td>							
 								</tr>													
 								<tr>
 									<td align="left"><h:outputLabel value="Tarjeta Profesional" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:inputText size="47" value="#{FormacionMB.formacion.forVtarjetaprof}"></h:inputText></td>
-									<td width="100px"></td>			
+									<td align="left"><h:inputText size="55" value="#{FormacionMB.formacion.forVtarjetaprof}"></h:inputText></td>
+									<td width="90px"></td>			
 									<td align="left"><h:outputLabel value="Fecha de Expedición" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><rich:calendar value="#{FormacionMB.formacion.forDfectarjeta}" datePattern="dd/MM/yyyy" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll"/></td>						
+									<td align="left"><rich:calendar value="#{FormacionMB.formacion.forDfectarjeta}" datePattern="dd/MM/yyyy" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="23"/></td>						
 								</tr>													
 								<tr>
 									<td height="10px"/>
 								</tr>
 								<tr>
 									<td align="left" colspan="2"><h:outputLabel value="Diploma" styleClass="TituloContenido"></h:outputLabel></td>
-									<td width="100px"></td>	
+									<td width="90px"></td>	
 									<td align="left" colspan="2"><h:outputLabel value="Acta de Grado" styleClass="TituloContenido"></h:outputLabel></td>							
 								</tr>	
 								<tr>									
@@ -381,12 +391,17 @@
 								<tr>
 									<td align="left" colspan="2" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirDiploma}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 			                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
-									<td width="100px"></td>
+									<td width="90px"></td>
 									<td align="left" colspan="2" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirActaGrado}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="280px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 			                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 								</tr>																																																							
 							</table>			
-							<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+							<br/>
+							<table align="center" width="100%">
+								<tr>
+									<td height="50px"/>
+								</tr>
+							</table>	
 							<c:if test="#{FormacionMB.formacion.forNidformacion == null}">
 							<table align="right">
 								<tr>
@@ -630,11 +645,11 @@
 								</tr>	
 								<tr>
 									<td align="left"><h:outputLabel value="Herramientas de Desarrollo" styleClass="TextoContenido"></h:outputLabel></td>
-									<td colspan="4"><h:inputTextarea cols="105" id="expVherrasw" value="#{ExperienciaMB.experiencia.expVherrasw}"></h:inputTextarea></td>
+									<td colspan="4" align="left"><h:inputTextarea cols="130" id="expVherrasw" value="#{ExperienciaMB.experiencia.expVherrasw}"></h:inputTextarea></td>
 								</tr>
 								<tr>
 									<td align="left"><h:outputLabel value="Funciones y Logros" styleClass="TextoContenido"></h:outputLabel></td>
-									<td colspan="4"><h:inputTextarea cols="105" id="expVfuncionlogro" value="#{ExperienciaMB.experiencia.expVfuncionlogro}"></h:inputTextarea></td>															
+									<td colspan="4" align="left"><h:inputTextarea cols="130" id="expVfuncionlogro" value="#{ExperienciaMB.experiencia.expVfuncionlogro}"></h:inputTextarea></td>															
 								</tr>
 								<tr>
 									<td height="10px"/>
@@ -655,7 +670,12 @@
 			                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 								</tr>																																																							
 							</table>
-							<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+							<br/>
+							<table align="center" width="100%">
+								<tr>
+									<td height="50px"/>
+								</tr>
+							</table>								
 							<c:if test="#{ExperienciaMB.experiencia.expNidexplaboral == null}">
 							<table align="right">
 								<tr>
@@ -705,7 +725,7 @@
 							<tr>
 								<td align="left"><h:outputLabel value="Descripción" styleClass="TextoContenido"></h:outputLabel></td>
 								<td width="20px"></td>
-								<td align="left"><h:inputTextarea cols="100" value="#{PerfilprofesionalMB.perfilProfesional.pprVperfil}" id="pprVperfil" required="true" requiredMessage="Ingrese Descripción"></h:inputTextarea></td>
+								<td align="left"><h:inputTextarea cols="135" value="#{PerfilprofesionalMB.perfilProfesional.pprVperfil}" id="pprVperfil" required="true" requiredMessage="Ingrese Descripción"></h:inputTextarea></td>
 							</tr>
 							<tr>
 								<td align="center" colspan="3"><rich:message for="pprVperfil" style="color:red"/></td>
@@ -728,7 +748,7 @@
 								<td width="20px"></td>
 								<td align="left"><h:outputLabel value="Dominio (%)" styleClass="TextoContenido"></h:outputLabel></td>
 								<td align="left"><h:inputText size="5" value="#{PerfilprofesionalMB.perfilProfesional.pprNnivelidi1}"></h:inputText></td>
-								<td width="120px"></td>
+								<td width="100px"></td>
 								<td align="left"><h:outputLabel value="Idioma 2" styleClass="TextoContenido"></h:outputLabel></td>							
 								<td align="left"><h:selectOneMenu value="#{PerfilprofesionalMB.perfilProfesional.idiNididioma2}" style="width:100px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
@@ -751,12 +771,17 @@
 						<table align="left">				
 							<tr>
 								<td width="25px"></td>
-								<td align="left"><h:inputTextarea cols="50" value="#{PerfilprofesionalMB.perfilProfesional.pprVherrasw}"></h:inputTextarea></td>
-								<td width="150px"></td>
-								<td align="left"><h:inputTextarea cols="50" value="#{PerfilprofesionalMB.perfilProfesional.pprVmotorbd}"></h:inputTextarea></td>
+								<td align="left"><h:inputTextarea cols="65" value="#{PerfilprofesionalMB.perfilProfesional.pprVherrasw}"></h:inputTextarea></td>
+								<td width="120px"></td>
+								<td align="left"><h:inputTextarea cols="65" value="#{PerfilprofesionalMB.perfilProfesional.pprVmotorbd}"></h:inputTextarea></td>
 							</tr>							
 						</table>
-						<br/><br/><br/><br/><br/><br/>
+						<br/>
+						<table align="center" width="100%">
+							<tr>
+								<td height="50px"/>
+							</tr>
+						</table>	
 						<table align="right">
 							<tr>
 								<c:if test="#{PerfilprofesionalMB.perfilProfesional.pprNidperfilprof == null}">
@@ -822,7 +847,7 @@
 								<td align="center" colspan="2"><rich:message for="docDfecexpide" style="color:red"/></td>
 							</tr>								
 						</table>
-						<br/>
+						<br/><br/><br/><br/>
 						<table align="center">
 							<tr>
 								<td align="center"><h:outputLabel value="Adjuntar Archivo" styleClass="TituloContenido"></h:outputLabel></td>
@@ -900,6 +925,11 @@
 								</td>
 							</tr>
 						</table>	
+						<table align="center" width="100%">
+							<tr>
+								<td height="25px"/>
+							</tr>
+						</table>							
 						<h:form>						
 						<table align="right">
 							<tr>
