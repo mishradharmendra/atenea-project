@@ -19,7 +19,11 @@
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Usuarios" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>
 				<h:form>	
 				<table align="center">
 					<tr>
@@ -30,14 +34,18 @@
 				<table align="left">
 					<tr>
 						<td width="120px"/>
-						<td><h:outputLabel value="Login" styleClass="TextoContenido"></h:outputLabel></td>
-						<td><h:inputText value="#{UsuarioMB.loginUsuario}"></h:inputText></td>
+						<td align="left"><h:outputLabel value="Login" styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:inputText value="#{UsuarioMB.loginUsuario}"></h:inputText></td>
 						<td width="150px"/>
-						<td><h:outputLabel value="Nombre de Usuario" styleClass="TextoContenido"></h:outputLabel></td>
-						<td><h:inputText value="#{UsuarioMB.nombreUsuario}"></h:inputText></td>					
+						<td align="left"><h:outputLabel value="Nombre de Usuario" styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:inputText value="#{UsuarioMB.nombreUsuario}"></h:inputText></td>					
 					</tr>
 				</table>
-				<br/><br/><br/>				
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>		
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{UsuarioMB.getBuscarUsuarioPorNombre}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
@@ -47,7 +55,11 @@
 					</tr>
 				</table>
 				</h:form>								
-				<br/><br/><br/><br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
@@ -56,15 +68,15 @@
 						<f:facet name="header">
 							<h:outputLabel value="Login" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<a4j:commandLink id="usuVlogin" onclick="procesarSolicitudDetalle('#{usuario.usuNidusuario}')">
-							<h:outputText value="#{usuario.usuVlogin}"></h:outputText>
+						<a4j:commandLink id="usuVlogin" onclick="procesarSolicitudDetalle('#{usuario.usuNidusuario}')"></div>
+							<div align="left"><h:outputText value="#{usuario.usuVlogin}"></h:outputText>
 						</a4j:commandLink>						
 					</rich:column>
 					<rich:column width="300px" sortable="true" sortBy="#{usuario.usuVnombre}" label="Nombre del Usuario">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre del Usuario" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{usuario.usuVnombre}"></h:outputLabel>
+						<div align="left"><h:outputLabel value="#{usuario.usuVnombre}"></h:outputLabel></div>
 					</rich:column>
 					<rich:column width="60px" label="Modificar">
 						<f:facet name="header">

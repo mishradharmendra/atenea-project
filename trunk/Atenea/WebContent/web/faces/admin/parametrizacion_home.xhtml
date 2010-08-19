@@ -18,16 +18,20 @@
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Parametrizaciones" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>	
 				<h:form>	
 				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Consulta de Parametrizaciones: "></h:outputLabel></td>
 					</tr>
 					<tr>
-						<td><h:outputLabel value="Nombre"></h:outputLabel></td>					
+						<td align="left"><h:outputLabel value="Nombre"></h:outputLabel></td>					
 						<td width="100px"></td>						
-						<td><h:inputText value="#{ParametrizacionMB.nombreParametrizacion}"></h:inputText></td>					
+						<td align="left"><h:inputText value="#{ParametrizacionMB.nombreParametrizacion}"></h:inputText></td>					
 					</tr>
 				</table>
 				<br/>				
@@ -49,20 +53,20 @@
 							<h:outputLabel value="Parámetro" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="parVnombre" onclick="procesarSolicitudDetalle('#{parametrizacion.parNidparam}')">
-							<h:outputText value="#{parametrizacion.parVnombre}"></h:outputText>
+							<div align="left"><h:outputText value="#{parametrizacion.parVnombre}"></h:outputText></div>
 						</a4j:commandLink>
 					</rich:column>
 					<rich:column width="300px" sortable="true" sortBy="#{parametrizacion.parVdescripcion}" label="Descripción">
 						<f:facet name="header">
 							<h:outputLabel value="Descripción" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{parametrizacion.parVdescripcion}"></h:outputLabel>
+						<div align="left"><h:outputLabel value="#{parametrizacion.parVdescripcion}"></h:outputLabel></div>
 					</rich:column>
 					<rich:column width="200px" sortable="true" sortBy="#{parametrizacion.parVvalor}" label="Valor">
 						<f:facet name="header">
 							<h:outputLabel value="Valor" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{parametrizacion.parVvalor}"></h:outputLabel>
+						<div align="left"><h:outputLabel value="#{parametrizacion.parVvalor}"></h:outputLabel></div>
 					</rich:column>					
 					<rich:column width="55px" label="Modificar">
 						<f:facet name="header">

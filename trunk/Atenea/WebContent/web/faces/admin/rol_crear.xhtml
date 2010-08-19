@@ -19,7 +19,11 @@
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> ROLES" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>	
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>	
 				<h:form>
 				<h:outputLabel value="Agregar Rol" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>			
@@ -39,7 +43,11 @@
 						<td align="center" colspan="2"><rich:message for="descripcionRol" style="color:red"/></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/><br/>			
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>		
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{RolMB.getCrearRol}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
@@ -55,7 +63,11 @@
 					</tr>
 				</table>
 				</h:form>					
-				<br/><br/><br/><br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>
 				<h:outputLabel value="Listado de Servicios" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
@@ -64,19 +76,19 @@
 						<f:facet name="header">
 							<h:outputLabel value="Seleccionar" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<div align="center"><h:selectBooleanCheckbox id="servicio" onclick="procesarSolicitudServicioAsignado('#{servicio.serNidservicio}');"></h:selectBooleanCheckbox></div>
+						<div align="left"><h:selectBooleanCheckbox id="servicio" onclick="procesarSolicitudServicioAsignado('#{servicio.serNidservicio}');"></h:selectBooleanCheckbox></div>
 					</rich:column>				
 					<rich:column width="200px" sortable="true" sortBy="#{servicio.serVnombre}" label="Nombre Servicio">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Servicio" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{servicio.serVnombre}"></h:outputLabel>
+						<div align="left"><h:outputLabel value="#{servicio.serVnombre}"></h:outputLabel></div>
 					</rich:column>
 					<rich:column width="300px" sortable="true" sortBy="#{servicio.serVruta}" label="Descripción">
 						<f:facet name="header">
 							<h:outputLabel value="Descripción" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{servicio.serVruta}"></h:outputLabel>
+						<div align="left"><h:outputLabel value="#{servicio.serVruta}"></h:outputLabel></div>
 					</rich:column>														
 				</rich:extendedDataTable>
 				</h:form>

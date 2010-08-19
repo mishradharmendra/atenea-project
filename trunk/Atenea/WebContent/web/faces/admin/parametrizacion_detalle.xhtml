@@ -18,25 +18,37 @@
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Parametrizaciones" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>	
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>
 				<h:form>
 				<h:outputLabel value="Detalle de Parametrización" styleClass="TituloContenido"></h:outputLabel>
-				<br/><br/>					
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>				
 				<table align="center">
 					<tr>
-						<td><h:outputLabel value="Nombre: "></h:outputLabel></td>
-						<td><h:outputLabel size="30" value="#{ParametrizacionMB.parametrizacion.parVnombre}"></h:outputLabel></td>					
+						<td align="left"><h:outputLabel value="Nombre: "></h:outputLabel></td>
+						<td align="left"><h:outputLabel size="30" value="#{ParametrizacionMB.parametrizacion.parVnombre}"></h:outputLabel></td>					
 					</tr>
 					<tr>
-						<td><h:outputLabel value="Descripción: "></h:outputLabel></td>
-						<td><h:outputLabel size="30" value="#{ParametrizacionMB.parametrizacion.parVdescripcion}"></h:outputLabel></td>					
+						<td align="left"><h:outputLabel value="Descripción: "></h:outputLabel></td>
+						<td align="left"><h:outputLabel size="30" value="#{ParametrizacionMB.parametrizacion.parVdescripcion}"></h:outputLabel></td>					
 					</tr>
 					<tr>
-						<td><h:outputLabel value="Valor del Parámetro: "></h:outputLabel></td>
-						<td><h:outputLabel size="30" value="#{ParametrizacionMB.parametrizacion.parVvalor}"></h:outputLabel></td>					
+						<td align="left"><h:outputLabel value="Valor del Parámetro: "></h:outputLabel></td>
+						<td align="left"><h:outputLabel size="30" value="#{ParametrizacionMB.parametrizacion.parVvalor}"></h:outputLabel></td>					
 					</tr>					
 				</table>
-				<br/>				
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>			
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{ParametrizacionMB.getCancelar}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>

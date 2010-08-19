@@ -19,7 +19,11 @@
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> ROLES" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>	
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>
 				<h:outputLabel value="Modificar Rol" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>					
@@ -33,7 +37,11 @@
 						<td align="left"><h:inputTextarea id="descripcionRol" value="#{RolMB.rol.rolVdescripcion}" cols="34" disabled="true" style="color:black"></h:inputTextarea></td>
 					</tr>		
 				</table>
-				<br/><br/><br/><br/><br/><br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{RolMB.getBorrarServicios}" value="Borrar Servicios" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
@@ -49,7 +57,11 @@
 					</tr>
 				</table>
 				</h:form>
-				<br/><br/><br/><br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>
 				<table align="center">
 					<tr>
 						<td align="center"><h:outputLabel value="Servicios Asignados" styleClass="TituloContenido"/></td>
@@ -68,13 +80,13 @@
 									<f:facet name="header">
 										<h:outputLabel value="Nombre Servicio" styleClass="PrimerNivel"></h:outputLabel>
 									</f:facet>
-									<h:outputLabel value="#{servicio.serVnombre}"></h:outputLabel>
+									<div align="left"><h:outputLabel value="#{servicio.serVnombre}"></h:outputLabel></div>
 								</rich:column>
 								<rich:column width="300px"  sortable="true" sortBy="#{servicio.serVruta}" label="Descripción">
 									<f:facet name="header">
 										<h:outputLabel value="Descripción" styleClass="PrimerNivel"></h:outputLabel>
 									</f:facet>
-									<h:outputLabel value="#{servicio.serVruta}"></h:outputLabel>
+									<div align="left"><h:outputLabel value="#{servicio.serVruta}"></h:outputLabel></div>
 								</rich:column>										
 							</rich:extendedDataTable>
 							</h:form>
