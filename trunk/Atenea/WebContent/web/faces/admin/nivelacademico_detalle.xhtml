@@ -15,22 +15,38 @@
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
+						<td width="150px"></td>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Tablas de Referencia - Niveles Académicos" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>	
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>
 				<h:form>
 				<h:outputLabel value="Detalle de Niveles Académicos" styleClass="TituloContenido"></h:outputLabel>
-				<br/><br/>					
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>				
 				<table align="center">
 					<tr>
 						<td><h:inputHidden value="#{NivelacademicoMB.nivelacademico.nacNidnivelac}"></h:inputHidden></td>
-						<td><h:outputLabel value="Nombre de Nivel Académico: "></h:outputLabel></td>
+						<td><h:outputLabel value="Nivel Académico: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td><h:outputLabel size="30" value="#{NivelacademicoMB.nivelacademico.nacVnivelac}"></h:outputLabel></td>					
 					</tr>
 				</table>
-				<br/>				
-				<table align="right">
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>			
+				<table align="center">
 					<tr>
 						<td><h:commandButton action="#{NivelacademicoMB.getCancelar}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 					</tr>

@@ -15,43 +15,60 @@
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
+						<td width="110px"></td>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Tablas de Referencia - Tipos de Archivo" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>	
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>		
 				<h:form>	
 				<table align="center">
 					<tr>
-						<td><h:outputLabel value="Consulta de Tipos de Archivos: "></h:outputLabel></td>
+						<td><h:outputLabel value="Consulta de Tipos de Archivos por Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td><h:inputText value="#{TipoarchivoMB.nombreTipoarchivo}"></h:inputText></td>					
 					</tr>
 				</table>
-				<br/>				
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{TipoarchivoMB.getBuscarTipoarchivoPorNombre}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 						<td width="20px"></td>
 						<td><h:commandButton action="#{TipoarchivoMB.getAgregarTipoarchivo}" value="Agregar Registro" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="140px"></td>
 					</tr>
 				</table>
 				</h:form>								
-				<br/><br/>
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="20px"/>
+					</tr>
+				</table>	
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable headerClass="rich-table-header" id="tablaTipoarchivo" value="#{TipoarchivoMB.tipoarchivos}" var="tipoarchivo" width="650px" height="250px">
+				<rich:extendedDataTable headerClass="rich-table-header" id="tablaTipoarchivo" value="#{TipoarchivoMB.tipoarchivos}" var="tipoarchivo" width="615px" height="200px">
 					<rich:column width="150px" sortable="true" sortBy="#{tipoarchivo.tarNidtipoarchivo}" label="Id Tipo de Archivo">
 						<f:facet name="header">
 							<h:outputLabel value="Id Tipo de Archivo" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{tipoarchivo.tarNidtipoarchivo}"></h:outputLabel>
+						<div align="left"><h:outputLabel value="#{tipoarchivo.tarNidtipoarchivo}"></h:outputLabel>
 					</rich:column>
-					<rich:column width="300px" sortable="true" sortBy="#{tipoarchivo.tarVtipoarchivo}" label="Nombre Tipo Archivo">
+					<rich:column width="340px" sortable="true" sortBy="#{tipoarchivo.tarVtipoarchivo}" label="Nombre Tipo Archivo"></div>
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Tipo Archivo" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="tarVtipoarchivo" onclick="procesarSolicitudDetalle('#{tipoarchivo.tarNidtipoarchivo}')">
-							<h:outputText value="#{tipoarchivo.tarVtipoarchivo}"></h:outputText>
+							<div align="left"><h:outputText value="#{tipoarchivo.tarVtipoarchivo}"></h:outputText></div>
 						</a4j:commandLink>
 					</rich:column>
 					<rich:column width="55px" label="Modificar">
