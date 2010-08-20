@@ -333,3 +333,7 @@ a.tablaContenido:active {
 .rich-table-header {
 	background-image:url(../../web/imagenes/fondo.png);
 }
+
+.rowClases{
+	text-aling:left;
+}

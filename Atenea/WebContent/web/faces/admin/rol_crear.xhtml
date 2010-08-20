@@ -21,7 +21,7 @@
 				</table>
 				<table align="center" width="100%">
 					<tr>
-						<td height="50px"/>
+						<td height="10px"/>
 					</tr>
 				</table>	
 				<h:form>
@@ -32,7 +32,7 @@
 						<td width="120px"/>
 						<td align="left"><h:outputLabel value="Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText id="nombreRol" size="30" value="#{RolMB.nombreRol}" required="true" requiredMessage="Ingrese Nombre del Rol"></h:inputText></td>
-						<td width="30px"/>
+						<td width="80px"/>
 						<td align="left"><h:outputLabel value="Descripción: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputTextarea id="descripcionRol" value="#{RolMB.descripcionRol}" cols="30" required="true" requiredMessage="Ingrese Descripción del Rol"></h:inputTextarea></td>
 					</tr>		
@@ -43,9 +43,10 @@
 						<td align="center" colspan="2"><rich:message for="descripcionRol" style="color:red"/></td>
 					</tr>
 				</table>
+				<br/>
 				<table align="center" width="100%">
 					<tr>
-						<td height="50px"/>
+						<td height="10px"/>
 					</tr>
 				</table>		
 				<table align="right">
@@ -62,7 +63,8 @@
 						<td width="20px"></td>
 					</tr>
 				</table>
-				</h:form>					
+				</h:form>	
+				<br/>				
 				<table align="center" width="100%">
 					<tr>
 						<td height="50px"/>
@@ -71,7 +73,7 @@
 				<h:outputLabel value="Listado de Servicios" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaServicioRol" value="#{RolMB.servicios}" var="servicio" width="615px" height="180px" headerClass="rich-table-header">
+				<rich:extendedDataTable id="tablaServicioRol" value="#{RolMB.servicios}" var="servicio" width="615px" height="150px" headerClass="rich-table-header">
 					<rich:column width="100px" label="Seleccionar">
 						<f:facet name="header">
 							<h:outputLabel value="Seleccionar" styleClass="PrimerNivel"></h:outputLabel>

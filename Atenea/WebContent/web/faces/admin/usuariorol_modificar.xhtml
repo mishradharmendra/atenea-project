@@ -20,28 +20,35 @@
 				</table>
 				<table align="center" width="100%">
 					<tr>
-						<td height="50px"/>
+						<td height="10px"/>
 					</tr>
 				</table>			
+				<br/>
 				<h:form>
 				<h:outputLabel value="Modificación de Permisos" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>					
-				<table align="center">
+				<table align="left">
 					<tr>
 						<td><h:inputHidden value="#{UsuariorolMB.usuario.usuNidusuario}"></h:inputHidden></td>
 					</tr>
 					<tr>
-						<td align="left"><h:outputLabel value="Nombre Usuario: "></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="Nombre Usuario: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:outputLabel id="nombreUsuario" size="30" value="#{UsuariorolMB.usuario.usuVnombre}" required="true" requiredMessage="Ingrese Nombre Usuario"></h:outputLabel></td>
-						<td width="50px"/>
-						<td align="left"><h:outputLabel value="Login Usuario: "></h:outputLabel></td>
+						<td width="510px"/>
+						<td align="left"><h:outputLabel value="Login Usuario: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:outputLabel id="loginusuario" size="30" value="#{UsuariorolMB.usuario.usuVlogin}" required="true" requiredMessage="Ingrese Login Usuario"></h:outputLabel></td>											
 					</tr>
 				</table>
-				<br/>				
+				<br/>		
+				<table align="center" width="100%">
+					<tr>
+						<td height="10px"/>
+					</tr>
+				</table>						
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{UsuariorolMB.getModificarPermisos}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="40px"></td>
 					</tr>				
 				</table>
 				</h:form>	
@@ -59,45 +66,50 @@
 					</tr>
 				</table>
 				</h:form>
-				<br/><br/><br/><br/>		
-				<table align="center">
+				<br/>		
+				<table align="center" width="100%">
 					<tr>
-						<td align="center"><h:outputLabel value="Roles Asignados" styleClass="TituloContenido"/></td>
+						<td height="30px"/>
+					</tr>
+				</table>		
+				<table align="left">
+					<tr>
+						<td align="left"><h:outputLabel value="Roles Asignados" styleClass="TituloContenido"/></td>
 						<td width="50px"></td>
-						<td align="center"><h:outputLabel value="Listado de Roles" styleClass="TituloContenido"/></td>
+						<td align="left"><h:outputLabel value="Listado de Roles" styleClass="TituloContenido"/></td>
 					</tr>
 					<tr>
-						<td align="center">
+						<td align="left" class="TextoContenido">
 							<h:form>
-							<rich:extendedDataTable id="tablaRolesAsignado" value="#{UsuariorolMB.usuario.gppRoles}" var="rol" width="150px" height="200px">	
+							<rich:extendedDataTable id="tablaRolesAsignado" value="#{UsuariorolMB.usuario.gppRoles}" var="rol" width="165px" height="200px" headerClass="rich-table-header">	
 								<rich:column width="150px" sortable="true" sortBy="#{rol.rolVnombre}" label="Nombre Rol">
 									<f:facet name="header">
-										<h:outputLabel value="Nombre Rol"></h:outputLabel>
+										<h:outputLabel value="Nombre Rol" styleClass="PrimerNivel"></h:outputLabel>
 									</f:facet>
 									<div align="left"><h:outputLabel value="#{rol.rolVnombre}"></h:outputLabel></div>
 								</rich:column>
 							</rich:extendedDataTable>
 							</h:form>
 						</td>
-						<td width="50px"></td>
-						<td align="center">
+						<td width="30px"></td>
+						<td align="left" class="TextoContenido">
 							<h:form>
-							<rich:extendedDataTable id="tablaRoles" value="#{UsuariorolMB.roles}" var="rol" width="600px" height="200px">
+							<rich:extendedDataTable id="tablaRoles" value="#{UsuariorolMB.roles}" var="rol" width="580px" height="200px" headerClass="rich-table-header" >
 								<rich:column width="100px" label="Seleccionar">
 									<f:facet name="header">
-										<h:outputLabel value="Seleccionar"></h:outputLabel>
+										<h:outputLabel value="Seleccionar" styleClass="PrimerNivel"></h:outputLabel>
 									</f:facet>
 									<div align="center"><h:selectBooleanCheckbox id="servicio" onclick="procesarSolicitudRolAsignado('#{rol.rolNidrol}');"></h:selectBooleanCheckbox></div>
 								</rich:column>				
-								<rich:column width="200px" sortable="true" sortBy="#{rol.rolVnombre}" label="Nombre Rol">
+								<rich:column width="180px" sortable="true" sortBy="#{rol.rolVnombre}" label="Nombre Rol">
 									<f:facet name="header">
-										<h:outputLabel value="Nombre Rol"></h:outputLabel>
+										<h:outputLabel value="Nombre Rol" styleClass="PrimerNivel"></h:outputLabel>
 									</f:facet>
 									<div align="left"><h:outputLabel value="#{rol.rolVnombre}"></h:outputLabel></div>
 								</rich:column>
-								<rich:column width="300px" sortable="true" sortBy="#{rol.rolVdescripcion}" label="Descripción">
+								<rich:column width="285px" sortable="true" sortBy="#{rol.rolVdescripcion}" label="Descripción">
 									<f:facet name="header">
-										<h:outputLabel value="Descripción"></h:outputLabel>
+										<h:outputLabel value="Descripción" styleClass="PrimerNivel"></h:outputLabel>
 									</f:facet>
 									<div align="left"><h:outputLabel value="#{rol.rolVdescripcion}"></h:outputLabel></div>
 								</rich:column>														
@@ -111,10 +123,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="center" colspan="3" height="5px"/>
-					</tr>
-					<tr>
-						<td align="center" colspan="3"><h:outputLabel value="Seleccione del 'Listado de Roles' los roles que quiere agregarle al usuario."/></td>
+						<td align="center" colspan="2"/>
+						<td align="center"><h:outputLabel value="Seleccione del 'Listado de Roles' los roles que quiere agregarle al usuario." style="color:#026A9F;"/></td>
 					</tr>					
 				</table>
 			</rich:panel>						
