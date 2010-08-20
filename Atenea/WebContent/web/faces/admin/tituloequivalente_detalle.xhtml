@@ -15,22 +15,38 @@
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
+						<td width="150px"></td>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Tablas de Referencia - Títulos Equivalentes" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>		
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>	
 				<h:form>
 				<h:outputLabel value="Detalle de Títulos Equivalentes" styleClass="TituloContenido"></h:outputLabel>
-				<br/><br/>					
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>				
 				<table align="center">
 					<tr>
 						<td><h:inputHidden value="#{TituloequivalenteMB.tituloequivalente.teqNidtituloeq}"></h:inputHidden></td>
-						<td><h:outputLabel value="Nombre de Título Equivalente: "></h:outputLabel></td>
+						<td><h:outputLabel value="Título Equivalente: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td><h:outputLabel value="#{TituloequivalenteMB.tituloequivalente.teqVtituloeq}"></h:outputLabel></td>					
 					</tr>
 				</table>
-				<br/>				
-				<table align="right">
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>		
+				<table align="center">
 					<tr>
 						<td><h:commandButton action="#{TituloequivalenteMB.getCancelar}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 					</tr>

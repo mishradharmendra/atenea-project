@@ -15,26 +15,43 @@
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
+						<td width="150px"></td>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Tablas de Referencia - Tipos de Archivo" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>		
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>	
 				<h:form>
 				<h:outputLabel value="Agregar Tipo de Archivo" styleClass="TituloContenido"></h:outputLabel>
-				<br/><br/>					
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>				
 				<table align="center">
 					<tr>
-						<td><h:outputLabel value="Nombre de Tipo de Archivo: "></h:outputLabel></td>
+						<td><h:outputLabel value="Tipo de Archivo: " styleClass="TituloContenido"></h:outputLabel></td>
 						<td><h:inputText id="nombreTipoarchivo" size="30" value="#{TipoarchivoMB.nombreTipoarchivo}" required="true" requiredMessage="Ingrese Nombre de Tipo de Archivo"></h:inputText></td>					
 					</tr>
 					<tr>
 						<td align="center" colspan="2"><rich:message for="nombreTipoarchivo" style="color:red"/></td>							
 					</tr>						
 				</table>
-				<br/>				
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>			
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{TipoarchivoMB.getCrearTipoarchivo}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="150px"></td>
 					</tr>
 				</table>
 				</h:form>

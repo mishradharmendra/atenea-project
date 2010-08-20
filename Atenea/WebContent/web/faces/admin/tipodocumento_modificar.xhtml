@@ -15,27 +15,44 @@
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
+						<td width="150px"></td>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Tablas de Referencia - Tipos de Documento" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>		
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>		
 				<h:form>
 				<h:outputLabel value="Modificación de Datos de Tipos de Documento" styleClass="TituloContenido"></h:outputLabel>
-				<br/><br/>					
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>					
 				<table align="center">
 					<tr>
 						<td><h:inputHidden value="#{TipodocumentoMB.tipodoc.tdcNidtipodoc}"></h:inputHidden></td>
-						<td><h:outputLabel value="Nombre de Tipo Documento: "></h:outputLabel></td>
+						<td><h:outputLabel value="Tipo Documento: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td><h:inputText id="nombreTipodoc" size="30" value="#{TipodocumentoMB.tipodoc.tdcVnombre}" required="true" requiredMessage="Ingrese Nombre de Tipo de Documento"></h:inputText></td>					
 					</tr>
 					<tr>
 						<td align="center" colspan="3"><rich:message for="nombreTipodoc" style="color:red"/></td>							
 					</tr>						
 				</table>
-				<br/>				
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{TipodocumentoMB.getModificarTipodoc}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="150px"></td>
 					</tr>
 				</table>
 				</h:form>

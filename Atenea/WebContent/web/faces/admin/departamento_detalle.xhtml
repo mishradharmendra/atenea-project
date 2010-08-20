@@ -18,14 +18,24 @@
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Tablas de Referencia - Departamentos" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>	
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>
 				<h:form>
 				<h:outputLabel value="Detalle de Departamentos" styleClass="TituloContenido"></h:outputLabel>
-				<br/><br/>					
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>				
 				<table>
 					<tr>
 						<td><h:inputHidden value="#{DepartamentoMB.departamento.dptNiddepto}"></h:inputHidden></td>
-						<td><h:outputLabel value="Nombre de Departamento: "></h:outputLabel></td>
+						<td><h:outputLabel value="Departamento: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td><h:outputLabel size="30" value="#{DepartamentoMB.departamento.dptVdepto}"></h:outputLabel></td>					
 						<td width="100px"></td>
 						<td><h:outputLabel value="País"></h:outputLabel></td>
@@ -34,8 +44,13 @@
 							</h:selectOneMenu></td>
 					</tr>
 				</table>
-				<br/>				
-				<table align="right">
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>			
+				<table align="center">
 					<tr>
 						<td><h:commandButton action="#{DepartamentoMB.getCancelar}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 					</tr>
