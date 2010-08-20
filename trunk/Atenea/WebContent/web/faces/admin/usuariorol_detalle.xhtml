@@ -15,40 +15,54 @@
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
+						<td width="110px"/>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Permisos" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
 				<table align="center" width="100%">
 					<tr>
-						<td height="50px"/>
+						<td height="10px"/>
 					</tr>
 				</table>		
+				<br/>
 				<h:form>
 				<h:outputLabel value="Información de Usuario" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>					
-				<table align="center">
+				<table align="left">
 					<tr>
 						<td><h:inputHidden value="#{UsuariorolMB.usuario.usuNidusuario}"></h:inputHidden></td>
 					</tr>
 					<tr>
-						<td align="left"><h:outputLabel value="Nombre Usuario: "></h:outputLabel></td>
+						<td width="110px"/>
+						<td align="left"><h:outputLabel value="Nombre Usuario: "  styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:outputLabel id="nombreUsuario" size="30" value="#{UsuariorolMB.usuario.usuVnombre}" required="true" requiredMessage="Ingrese Nombre Usuario"></h:outputLabel></td>
-						<td width="50px"/>
-						<td align="left"><h:outputLabel value="Login Usuario: "></h:outputLabel></td>
+						<td width="300px"/>
+						<td align="left"><h:outputLabel value="Login Usuario: "  styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:outputLabel id="loginusuario" size="30" value="#{UsuariorolMB.usuario.usuVlogin}" required="true" requiredMessage="Ingrese Login Usuario"></h:outputLabel></td>											
 					</tr>
 				</table>
 				<br/>				
 				</h:form>	
+				<br/>		
+				<table align="center" width="100%">
+					<tr>
+						<td height="10px"/>
+					</tr>
+				</table>					
 				<h:form>		
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{UsuariorolMB.getCancelar}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-						<td width="20px"></td>
+						<td width="140px"></td>
 					</tr>
 				</table>
 				</h:form>	
-				<br/><br/>
+				<br/>		
+				<table align="center" width="100%">
+					<tr>
+						<td height="30px"/>
+					</tr>
+				</table>	
 				<table align="center">
 					<tr>
 						<td align="center"><h:outputLabel value="Roles Asignados" styleClass="TituloContenido"/></td>
@@ -59,16 +73,16 @@
 					<tr>
 						<td align="center">
 						<h:form>
-						<rich:extendedDataTable id="tablaRolesAsignado" value="#{UsuariorolMB.usuario.gppRoles}" var="rol" width="500px" height="150px">	
-							<rich:column width="200px" sortable="true" sortBy="#{rol.rolVnombre}" label="Nombre Rol">
+						<rich:extendedDataTable id="tablaRolesAsignado" value="#{UsuariorolMB.usuario.gppRoles}" var="rol" width="615px" height="150px" headerClass="rich-table-header">	
+							<rich:column width="300px" sortable="true" sortBy="#{rol.rolVnombre}" label="Nombre Rol">
 								<f:facet name="header">
-									<h:outputLabel value="Nombre Rol"></h:outputLabel>
+									<h:outputLabel value="Nombre Rol" styleClass="PrimerNivel"></h:outputLabel>
 								</f:facet>
 								<div align="left"><h:outputLabel value="#{rol.rolVnombre}"></h:outputLabel></div>
 							</rich:column>
 							<rich:column width="300px" sortable="true" sortBy="#{rol.rolVdescripcion}" label="Descripción">
 								<f:facet name="header">
-									<h:outputLabel value="Descripción"></h:outputLabel>
+									<h:outputLabel value="Descripción" styleClass="PrimerNivel"></h:outputLabel>
 								</f:facet>
 								<div align="left"><h:outputLabel value="#{rol.rolVdescripcion}"></h:outputLabel></div>
 							</rich:column>														

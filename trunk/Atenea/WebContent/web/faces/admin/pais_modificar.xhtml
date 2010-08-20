@@ -15,27 +15,44 @@
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
+						<td width="150px"/>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Tablas de Referencia - Países" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>		
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>			
 				<h:form>
 				<h:outputLabel value="Modificación de Datos de Paises" styleClass="TituloContenido"></h:outputLabel>
-				<br/><br/>					
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>						
 				<table align="center">
 					<tr>
 						<td><h:inputHidden value="#{PaisMB.pais.paiNidpais}"></h:inputHidden></td>
-						<td><h:outputLabel value="Nombre de País: "></h:outputLabel></td>
+						<td><h:outputLabel value="Nombre de País: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td><h:inputText id="nombrePais" size="30" value="#{PaisMB.pais.paiVpais}" required="true" requiredMessage="Ingrese Nombre de País:"></h:inputText></td>					
 					</tr>
 					<tr>
 						<td align="center" colspan="3"><rich:message for="nombrePais" style="color:red"/></td>							
 					</tr>						
 				</table>
-				<br/>				
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>			
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{PaisMB.getModificarPais}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="150px"/>
 					</tr>
 				</table>
 				</h:form>

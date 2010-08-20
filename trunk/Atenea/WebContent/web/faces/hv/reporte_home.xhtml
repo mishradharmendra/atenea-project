@@ -50,7 +50,7 @@
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaPersonasReporte" align="center" value="#{ReporteMB.personas}" var="persona" height="220px" width="850px" headerClass="rich-table-header">
+				<rich:extendedDataTable id="tablaPersonasReporte" align="center" value="#{ReporteMB.personas}" var="persona" height="200px" width="850px" headerClass="rich-table-header">
 					<rich:column width="110px"  label="Nombre Completo" sortable="true" sortBy="#{persona.perVnombres}">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Completo" styleClass="PrimerNivel"></h:outputLabel>

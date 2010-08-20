@@ -15,43 +15,60 @@
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
+						<td width="110px"/>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Tablas de Referencia - Instituciones" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>
 				<h:form>	
 				<table align="center">
 					<tr>
-						<td><h:outputLabel value="Consulta de Instituciones: "></h:outputLabel></td>
+						<td><h:outputLabel value="Consulta de Instituciones: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td><h:inputText value="#{InstitucionMB.nombreInstitucion}"></h:inputText></td>					
 					</tr>
 				</table>
-				<br/>				
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="20px"/>
+					</tr>
+				</table>			
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{InstitucionMB.getBuscarInstitucionPorNombre}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 						<td width="20px"></td>
 						<td><h:commandButton action="#{InstitucionMB.getAgregarInstitucion}" value="Agregar Registro" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="140px"/>
 					</tr>
 				</table>
 				</h:form>								
-				<br/><br/>
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="20px"/>
+					</tr>
+				</table>
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable headerClass="rich-table-header" id="tablaInstituciones" value="#{InstitucionMB.instituciones}" var="institucion" width="600px" height="250px">
+				<rich:extendedDataTable headerClass="rich-table-header" id="tablaInstituciones" value="#{InstitucionMB.instituciones}" var="institucion" width="615px" height="200px">
 					<rich:column width="100px" sortable="true" sortBy="#{institucion.insNidinstitucion}" label="Id Institución">
 						<f:facet name="header">
 							<h:outputLabel value="Id Institución" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<h:outputLabel value="#{institucion.insNidinstitucion}"></h:outputLabel>
+						<div align="left"><h:outputLabel value="#{institucion.insNidinstitucion}"></h:outputLabel></div>
 					</rich:column>
-					<rich:column width="300px" sortable="true" sortBy="#{institucion.insVinstitucion}" label="Nombre Institución">
+					<rich:column width="390px" sortable="true" sortBy="#{institucion.insVinstitucion}" label="Nombre Institución">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Institución" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="insVinstitucion" onclick="procesarSolicitudDetalle('#{institucion.insNidinstitucion}')">
-							<h:outputText value="#{institucion.insVinstitucion}"></h:outputText>
+							<div align="left"><h:outputText value="#{institucion.insVinstitucion}"></h:outputText></div>
 						</a4j:commandLink>
 					</rich:column>
 					<rich:column width="55px" label="Modificar">

@@ -15,14 +15,16 @@
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
+						<td width="110px"/>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Permisos" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
 				<table align="center" width="100%">
 					<tr>
-						<td height="50px"/>
+						<td height="10px"/>
 					</tr>
 				</table>
+				<br/>
 				<h:form>	
 				<table align="center">
 					<tr>
@@ -30,41 +32,59 @@
 					</tr>
 				</table>
 				<br/>
-				<table align="center">
+				<table align="left">
 					<tr>
-						<td align="left"><h:outputLabel value="Login"></h:outputLabel></td>
+						<td width="110px"/>
+						<td align="left"><h:outputLabel value="Login" styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText value="#{UsuariorolMB.loginUsuario}"></h:inputText></td>
-						<td width="20px"/>
-						<td align="left"><h:outputLabel value="Nombre de Usuario"></h:outputLabel></td>
+						<td width="170px"/>
+						<td align="left"><h:outputLabel value="Nombre de Usuario" styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText value="#{UsuariorolMB.nombreUsuario}"></h:inputText></td>					
 					</tr>
 				</table>
-				<br/>				
+				<br/>		
+				<table align="center" width="100%">
+					<tr>
+						<td height="20px"/>
+					</tr>
+				</table>						
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{UsuariorolMB.getBuscarUsuarioPorNombre}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="140px"/>
 					</tr>
 				</table>
 				</h:form>								
 				<br/><br/>
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
-				<br/><br/>
+				<br/>		
+				<table align="center" width="100%">
+					<tr>
+						<td height="30px"/>
+					</tr>
+				</table>	
 				<h:form>	
-				<rich:extendedDataTable headerClass="rich-table-header" id="tablaUsuarioRol" value="#{UsuariorolMB.usuarios}" var="usuario" width="500px" height="200px">
+				<rich:extendedDataTable align="center" headerClass="rich-table-header" id="tablaUsuarioRol" value="#{UsuariorolMB.usuarios}" var="usuario" width="615px" height="180px">
 					<rich:column width="100px" sortable="true" sortBy="#{usuario.usuNidusuario}" label="Id usuario">
 						<f:facet name="header">
 							<h:outputLabel value="Login" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						 <div align="left"><h:outputLabel value="#{usuario.usuVlogin}"></h:outputLabel></div>
+						<a4j:commandLink id="usuVlogin" onclick="procesarSolicitudDetalle('#{usuario.usuNidusuario}')">
+							<div align="left"><h:outputText value="#{usuario.usuVlogin}"></h:outputText></div>
+						</a4j:commandLink>							
 					</rich:column>
 					<rich:column width="300px" sortable="true" sortBy="#{usuario.usuVnombre}" label="Nombre del Usuario">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre del Usuario" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<a4j:commandLink id="usuVnombre" onclick="procesarSolicitudDetalle('#{usuario.usuNidusuario}')">
-							 <div align="left"><h:outputText value="#{usuario.usuVnombre}"></h:outputText></div>
-						</a4j:commandLink>
+						<div align="left"><h:outputText value="#{usuario.usuVnombre}"></h:outputText></div>
 					</rich:column>
+					<rich:column width="145px" sortable="true" sortBy="#{usuario.usuVemail}" label="Email">
+						<f:facet name="header">
+							<h:outputLabel value="Email" styleClass="PrimerNivel"></h:outputLabel>
+						</f:facet>
+						<div align="left"><h:outputText value="#{usuario.usuVemail}"></h:outputText></div>
+					</rich:column>					
 					<rich:column width="55px" label="Modificar">
 						<f:facet name="header">
 							<h:outputLabel value="Modificar" styleClass="PrimerNivel"></h:outputLabel>

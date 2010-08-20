@@ -91,15 +91,17 @@
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="130px" width="850px" headerClass="rich-table-header">
+				<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="140px" width="850px" headerClass="rich-table-header">
 					<rich:column width="120px" label="Nombre Completo" sortable="true" sortBy="#{persona.perVnombres}">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Completo" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<a4j:commandLink id="persona" onclick="procesarSolicitudPersonaDetalle('#{persona.perNidpersona}')">
-							<div align="left"><h:outputText value="#{persona.perVnombres}"></h:outputText></div>
-							<br/>
-							<div align="left"><h:outputText value="#{persona.perVapellidos}"></h:outputText></div>
+							<div align="left">
+								<h:outputText value="#{persona.perVnombres}"></h:outputText>
+								<br/>
+								<h:outputText value="#{persona.perVapellidos}"></h:outputText>
+							</div>
 						</a4j:commandLink>	
 					</rich:column>
 					<rich:column width="200px" label="Profesión" sortable="true" sortBy="#{formacion.forVtitulo}" headerClass="columna">
@@ -108,8 +110,10 @@
 						</f:facet>
 						<h:dataTable value="#{persona.gppFormaciones}" var="formacion">
 							<h:column>
-								<div align="left"><h:outputLabel value="#{formacion.forVtitulo} - " rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel></div>
-								<div align="left"><h:outputLabel value="(#{formacion.forDfecgrado})" rendered="#{formacion.nacNidnivelac == 3}" ></h:outputLabel></div>
+								<div align="left">
+									<h:outputLabel value="#{formacion.forVtitulo} - " rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel>
+									<h:outputLabel value="(#{formacion.forDfecgrado})" rendered="#{formacion.nacNidnivelac == 3}" ></h:outputLabel>
+								</div>
 							</h:column>
 						</h:dataTable>								
 					</rich:column>

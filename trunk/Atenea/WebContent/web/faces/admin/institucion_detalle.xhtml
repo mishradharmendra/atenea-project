@@ -18,19 +18,34 @@
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Tablas de Referencia - Instituciones" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>	
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>		
 				<h:form>
 				<h:outputLabel value="Detalle de Instituciones" styleClass="TituloContenido"></h:outputLabel>
-				<br/><br/>					
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>						
 				<table align="center">
 					<tr>
 						<td><h:inputHidden value="#{InstitucionMB.institucion.insNidinstitucion}"></h:inputHidden></td>
-						<td><h:outputLabel value="Nombre de Institución: "></h:outputLabel></td>
+						<td><h:outputLabel value="Nombre de Institución: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td><h:outputLabel size="40" value="#{InstitucionMB.institucion.insVinstitucion}"></h:outputLabel></td>					
 					</tr>
 				</table>
-				<br/>				
-				<table align="right">
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>				
+				<table align="center">
 					<tr>
 						<td><h:commandButton action="#{InstitucionMB.getCancelar}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 					</tr>

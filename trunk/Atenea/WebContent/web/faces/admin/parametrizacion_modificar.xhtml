@@ -15,9 +15,11 @@
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
+						<td width="150px"></td>	
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Parametrizaciones" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
+				<br/>
 				<table align="center" width="100%">
 					<tr>
 						<td height="50px"/>
@@ -25,24 +27,30 @@
 				</table>
 				<h:form>
 				<h:outputLabel value="Modificación de Datos de Parametrización" styleClass="TituloContenido"></h:outputLabel>
-				<br/><br/>					
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="50px"/>
+					</tr>
+				</table>				
 				<table align="center">
 					<tr>
-						<td align="left"><h:outputLabel value="Nombre: "></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText id="nombreParametrizacion" size="30" value="#{ParametrizacionMB.parametrizacion.parVnombre}" required="true" requiredMessage="Ingrese Nombre de Parametro"></h:inputText></td>
 						<td align="center"><rich:message for="nombreParametrizacion" style="color:red"/></td>					
 					</tr>
 					<tr>
-						<td align="left"><h:outputLabel value="Descripción: "></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="Descripción: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText id="descripcionParametrizacion" size="30" value="#{ParametrizacionMB.parametrizacion.parVdescripcion}" required="true" requiredMessage="Ingrese Descripcion"></h:inputText></td>
 						<td align="center"><rich:message for="descripcionParametrizacion" style="color:red"/></td>					
 					</tr>
 					<tr>
-						<td align="left"><h:outputLabel value="Valor del Parámetro: "></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="Valor del Parámetro: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText id="valorParametrizacion" size="30" value="#{ParametrizacionMB.parametrizacion.parVvalor}" required="true" requiredMessage="Ingrese Valor"></h:inputText></td>
 						<td align="center"><rich:message for="valorParametrizacion" style="color:red"/></td>					
 					</tr>					
 				</table>
+				<br/>
 				<table align="center" width="100%">
 					<tr>
 						<td height="50px"/>
@@ -51,6 +59,7 @@
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{ParametrizacionMB.getModificarParametrizacion}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="200px"/>
 					</tr>
 				</table>
 				</h:form>	
@@ -58,7 +67,7 @@
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{ParametrizacionMB.getCancelar}" value="Cancelar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-						<td width="20px"></td>
+						<td width="20px"/>
 					</tr>
 				</table>
 				</h:form>													

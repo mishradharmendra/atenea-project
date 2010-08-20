@@ -144,31 +144,19 @@
 							<td align="left"><h:outputLabel value="Dirección" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:inputText size="35" id="perVdireccion" value="#{PersonaMB.persona.perVdireccion}"></h:inputText></td>							
 						</tr>																	
-					</table>
-					<br/><br/>
-					<table align="center">
 						<tr>
 							<td height="50px"/>
 						</tr>
-					</table>
-					<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-					<br/>
-					<table align="center" width="100%">
+						<c:if test="#{PersonaMB.persona.perNidpersona != null}">
 						<tr>
-							<td height="50px"/>
-						</tr>
-					</table>	
-					<table align="center">
-						<tr>
-							<td align="center"><h:outputLabel value="Adjuntar Hoja de Vida" styleClass="TituloContenido"></h:outputLabel></td>
+							<td align="center" colspan="5"><h:outputLabel value="Adjuntar Hoja de Vida" styleClass="TituloContenido"></h:outputLabel></td>
 						</tr>
 						<tr>
-							<td><rich:fileUpload required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="pdf,zip,rar" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+							<td align="center" colspan="5"><rich:fileUpload required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="pdf,zip,rar" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
                           		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
-						</tr>												                   
-					</table>
-					</c:if>
-					<br/>
+						</tr>		
+						</c:if>										                   
+					</table>					
 					<table align="center" width="100%">
 						<tr>
 							<td height="50px"/>
@@ -645,11 +633,11 @@
 								</tr>	
 								<tr>
 									<td align="left"><h:outputLabel value="Herramientas de Desarrollo" styleClass="TextoContenido"></h:outputLabel></td>
-									<td colspan="4" align="left"><h:inputTextarea cols="130" id="expVherrasw" value="#{ExperienciaMB.experiencia.expVherrasw}"></h:inputTextarea></td>
+									<td colspan="4" align="left"><h:inputTextarea cols="127" id="expVherrasw" value="#{ExperienciaMB.experiencia.expVherrasw}"></h:inputTextarea></td>
 								</tr>
 								<tr>
 									<td align="left"><h:outputLabel value="Funciones y Logros" styleClass="TextoContenido"></h:outputLabel></td>
-									<td colspan="4" align="left"><h:inputTextarea cols="130" id="expVfuncionlogro" value="#{ExperienciaMB.experiencia.expVfuncionlogro}"></h:inputTextarea></td>															
+									<td colspan="4" align="left"><h:inputTextarea cols="127" id="expVfuncionlogro" value="#{ExperienciaMB.experiencia.expVfuncionlogro}"></h:inputTextarea></td>															
 								</tr>
 								<tr>
 									<td height="10px"/>
@@ -771,9 +759,9 @@
 						<table align="left">				
 							<tr>
 								<td width="25px"></td>
-								<td align="left"><h:inputTextarea cols="65" value="#{PerfilprofesionalMB.perfilProfesional.pprVherrasw}"></h:inputTextarea></td>
+								<td align="left"><h:inputTextarea cols="60" value="#{PerfilprofesionalMB.perfilProfesional.pprVherrasw}"></h:inputTextarea></td>
 								<td width="120px"></td>
-								<td align="left"><h:inputTextarea cols="65" value="#{PerfilprofesionalMB.perfilProfesional.pprVmotorbd}"></h:inputTextarea></td>
+								<td align="left"><h:inputTextarea cols="60" value="#{PerfilprofesionalMB.perfilProfesional.pprVmotorbd}"></h:inputTextarea></td>
 							</tr>							
 						</table>
 						<br/>

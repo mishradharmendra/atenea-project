@@ -18,6 +18,7 @@
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Parametrizaciones" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
+				<br/>
 				<table align="center" width="100%">
 					<tr>
 						<td height="50px"/>
@@ -26,28 +27,47 @@
 				<h:form>	
 				<table align="center">
 					<tr>
-						<td><h:outputLabel value="Consulta de Parametrizaciones: "></h:outputLabel></td>
-					</tr>
-					<tr>
-						<td align="left"><h:outputLabel value="Nombre"></h:outputLabel></td>					
-						<td width="100px"></td>						
-						<td align="left"><h:inputText value="#{ParametrizacionMB.nombreParametrizacion}"></h:inputText></td>					
+						<td align="center"><h:outputLabel value="Consulta de Parametrizaciones" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/>				
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="10px"/>
+					</tr>
+				</table>	
+				<table align="left">
+					<tr>
+						<td align="left"><h:outputLabel value="Nombre" styleClass="TextoContenido"></h:outputLabel></td>					
+						<td width="100px"></td>						
+						<td align="left"><h:inputText size="30" value="#{ParametrizacionMB.nombreParametrizacion}"></h:inputText></td>					
+					</tr>
+				</table>
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="20px"/>
+					</tr>
+				</table>			
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{ParametrizacionMB.getBuscarParametrizacionPorNombre}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 						<td width="20px"></td>
 						<td><h:commandButton action="#{ParametrizacionMB.getAgregarParametrizacion}" value="Agregar Registro" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td width="40px"></td>
 					</tr>
 				</table>
 				</h:form>								
-				<br/><br/>
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="20px"/>
+					</tr>
+				</table>		
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable headerClass="rich-table-header" id="tablaParametrizacion" value="#{ParametrizacionMB.parametrizaciones}" var="parametrizacion" width="800px" height="250px">
+				<rich:extendedDataTable headerClass="rich-table-header" id="tablaParametrizacion" value="#{ParametrizacionMB.parametrizaciones}" var="parametrizacion" width="840px" height="160px">
 					<rich:column width="200px" sortable="true" sortBy="#{parametrizacion.parVnombre}" label="Parámetro">
 						<f:facet name="header">
 							<h:outputLabel value="Parámetro" styleClass="PrimerNivel"></h:outputLabel>
@@ -56,7 +76,7 @@
 							<div align="left"><h:outputText value="#{parametrizacion.parVnombre}"></h:outputText></div>
 						</a4j:commandLink>
 					</rich:column>
-					<rich:column width="300px" sortable="true" sortBy="#{parametrizacion.parVdescripcion}" label="Descripción">
+					<rich:column width="370px" sortable="true" sortBy="#{parametrizacion.parVdescripcion}" label="Descripción">
 						<f:facet name="header">
 							<h:outputLabel value="Descripción" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>

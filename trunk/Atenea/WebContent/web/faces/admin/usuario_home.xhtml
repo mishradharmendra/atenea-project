@@ -21,9 +21,10 @@
 				</table>
 				<table align="center" width="100%">
 					<tr>
-						<td height="50px"/>
+						<td height="10px"/>
 					</tr>
 				</table>
+				<br/>
 				<h:form>	
 				<table align="center">
 					<tr>
@@ -36,16 +37,17 @@
 						<td width="120px"/>
 						<td align="left"><h:outputLabel value="Login" styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText value="#{UsuarioMB.loginUsuario}"></h:inputText></td>
-						<td width="150px"/>
+						<td width="170px"/>
 						<td align="left"><h:outputLabel value="Nombre de Usuario" styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText value="#{UsuarioMB.nombreUsuario}"></h:inputText></td>					
 					</tr>
 				</table>
 				<table align="center" width="100%">
 					<tr>
-						<td height="50px"/>
+						<td height="20px"/>
 					</tr>
-				</table>		
+				</table>	
+				<br/>	
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{UsuarioMB.getBuscarUsuarioPorNombre}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
@@ -57,19 +59,20 @@
 				</h:form>								
 				<table align="center" width="100%">
 					<tr>
-						<td height="50px"/>
+						<td height="20px"/>
 					</tr>
 				</table>
+				<br/>
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaUsuario" value="#{UsuarioMB.usuarios}" var="usuario" width="615px" height="200px" headerClass="rich-table-header">
+				<rich:extendedDataTable id="tablaUsuario" value="#{UsuarioMB.usuarios}" var="usuario" width="615px" height="170px" headerClass="rich-table-header">
 					<rich:column width="140px" sortable="true" sortBy="#{usuario.usuNidusuario}" label="Id usuario">
 						<f:facet name="header">
 							<h:outputLabel value="Login" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<a4j:commandLink id="usuVlogin" onclick="procesarSolicitudDetalle('#{usuario.usuNidusuario}')"></div>
-							<div align="left"><h:outputText value="#{usuario.usuVlogin}"></h:outputText>
+						<a4j:commandLink id="usuVlogin" onclick="procesarSolicitudDetalle('#{usuario.usuNidusuario}')">
+							<div align="left"><h:outputText value="#{usuario.usuVlogin}"></h:outputText></div>
 						</a4j:commandLink>						
 					</rich:column>
 					<rich:column width="300px" sortable="true" sortBy="#{usuario.usuVnombre}" label="Nombre del Usuario">
