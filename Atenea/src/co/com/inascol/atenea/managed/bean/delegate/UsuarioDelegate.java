@@ -62,17 +62,16 @@ public class UsuarioDelegate {
 	
 	public GppUsuario getSeleccionarUsuario(Integer idUsuario){
 		usuarioService = new UsuarioService();
-		usuario = new Usuario();
+		usuario = new GppUsuario();
 		List<Object> usuarios = usuarioService.buscarUsuarios();
 		if(usuarios.size()>0){
 			Iterator<Object> itUsuarios = usuarios.iterator();
 			while(itUsuarios.hasNext()){
 				usuario = (GppUsuario) itUsuarios.next();
-				if(usuario.getUsunidusuario() == idUsuario)
+				if(usuario.getUsuNidusuario() == idUsuario)
 					break;
 			}
 		}		
-//		usuario = (GppUsuario) usuarioService.buscarPorIdUsuario(idUsuario);
 		return usuario;
 	}
 	

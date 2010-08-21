@@ -144,6 +144,7 @@ public class FormacionDelegate {
 	        nombreArchivoActa = item.getFileName();
 	        urlArchivoActa = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoActa!=null){
+	        	urlArchivoActa = urlArchivoActa + "ACTA_" + persona.getPerNidentificacion() + "_" + nombreArchivoDiploma;
 		        FileInputStream fis = new FileInputStream(file.getPath());
 		        BufferedInputStream bis = new BufferedInputStream(fis);
 		        FileOutputStream fos = new FileOutputStream(urlArchivoActa);

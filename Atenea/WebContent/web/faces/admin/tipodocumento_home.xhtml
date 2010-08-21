@@ -28,6 +28,7 @@
 				<h:form>	
 				<table align="center">
 					<tr>
+						<td width="110px"/>
 						<td><h:outputLabel value="Consulta de Tipos de Documento por Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td><h:inputText value="#{TipodocumentoMB.nombreTipodoc}"></h:inputText></td>					
 					</tr>
@@ -35,7 +36,7 @@
 				<br/>
 				<table align="center" width="100%">
 					<tr>
-						<td height="50px"/>
+						<td height="20px"/>
 					</tr>
 				</table>		
 				<table align="right">
@@ -63,7 +64,7 @@
 						</f:facet>
 						<div align="left"><h:outputLabel value="#{tipodoc.tdcNidtipodoc}"></h:outputLabel></div>
 					</rich:column>
-					<rich:column width="300px" sortable="true" sortBy="#{tipodoc.tdcVnombre}" label="Nombre Tipo Documento">
+					<rich:column width="340px" sortable="true" sortBy="#{tipodoc.tdcVnombre}" label="Nombre Tipo Documento">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Tipo Documento" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>

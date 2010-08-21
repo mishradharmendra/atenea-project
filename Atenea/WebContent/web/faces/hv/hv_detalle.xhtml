@@ -15,13 +15,18 @@
 		<ui:define name="cuerpo">
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<rich:tabPanel switchType="ajax" selectedTab="#{PersonaMB.tabPanel}" >
-					<rich:tab label="Datos Personales" name="TAB_PANEL_PERSONA" style="background-color:#EEE;height:400px;">					
+					<rich:tab label="Datos Personales" name="TAB_PANEL_PERSONA" style="background-color:#EEE;height:370px;">					
 					<table align="left">
 						<tr>
 							<td><h:outputLabel value="Datos Personales #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
 						</tr>
 					</table>
-					<br/><br/><br/><br/>
+					<br/>
+					<table align="center" width="100%">
+						<tr>
+							<td height="40px"/>
+						</tr>
+					</table>
 					<table align="left">
 						<tr>
 							<td align="left"><h:outputLabel value="Nombres:" styleClass="TextoContenido"></h:outputLabel></td>
@@ -110,7 +115,7 @@
 					<c:if test="#{PersonaMB.persona.perNidpersona != null}">
 					<table align="right">
 						<tr>
-							<td height="70px"/>
+							<td height="40px"/>
 						</tr>
 						<tr>
 							<td><h:commandButton action="#{PersonaMB.getSiguienteDetalle}" value="Siguiente" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
@@ -120,7 +125,7 @@
 					</c:if>
 					</h:form>																		
 					</rich:tab>
-					<rich:tab label="Formación Académica" name="TAB_PANEL_FORMACION" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:400px;">
+					<rich:tab label="Formación Académica" name="TAB_PANEL_FORMACION" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;">
 						<table align="left">
 							<tr>
 								<td><h:outputLabel value="Formación Académica  #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
@@ -142,25 +147,25 @@
 								<f:facet name="header">
 									<h:outputLabel value="Tipo Estudio" styleClass="PrimerNivel"></h:outputLabel>
 								</f:facet>
-								<h:outputLabel value="#{formacion.gppNivelacademico.nacVnivelac}"></h:outputLabel>
+								<div align="left"><h:outputLabel value="#{formacion.gppNivelacademico.nacVnivelac}"></h:outputLabel></div>
 							</rich:column>
 							<rich:column width="345px"  sortable="true" sortBy="#{formacion.gppInstitucion.insVinstitucion}" label="Institución">
 								<f:facet name="header">
 									<h:outputLabel value="Institución" styleClass="PrimerNivel"></h:outputLabel>
 								</f:facet>														
-								<h:outputLabel value="#{formacion.gppInstitucion.insVinstitucion}"></h:outputLabel>	
+								<div align="left"><h:outputLabel value="#{formacion.gppInstitucion.insVinstitucion}"></h:outputLabel></div>	
 							</rich:column>
 							<rich:column width="230px"  sortable="true" sortBy="#{formacion.forVtitulo}" label="Título">
 								<f:facet name="header">
 									<h:outputLabel value="Título" styleClass="PrimerNivel"></h:outputLabel>
 								</f:facet>
-								<h:outputLabel value="#{formacion.forVtitulo}"></h:outputLabel>
+								<div align="left"><h:outputLabel value="#{formacion.forVtitulo}"></h:outputLabel></div>
 							</rich:column>						
 							<rich:column width="100px"  sortable="true" sortBy="#{formacion.forDfecgrado}" label="Fecha de Grado">
 								<f:facet name="header">
 									<h:outputLabel value="Fecha de Grado" styleClass="PrimerNivel"></h:outputLabel>
 								</f:facet>
-								<h:outputLabel value="#{formacion.forDfecgrado}"></h:outputLabel>
+								<div align="left"><h:outputLabel value="#{formacion.forDfecgrado}"></h:outputLabel></div>
 							</rich:column>								
 						</rich:extendedDataTable>
 						</h:form>
@@ -186,7 +191,7 @@
 						</c:if>
 						</h:form>								        	     							
 					</rich:tab>
-					<rich:tab label="Experiencia Laboral" name="TAB_PANEL_EXPERIENCIA" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:400px;">
+					<rich:tab label="Experiencia Laboral" name="TAB_PANEL_EXPERIENCIA" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;">
 						<table align="left">
 							<tr>
 								<td><h:outputLabel value="Experiencia Laboral #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
@@ -198,7 +203,12 @@
 								<td align="center"><h:outputLabel value="Experiencias Laborales" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>
-						<br/><br/><br/>	
+						<br/>
+						<table align="center" width="100%">
+							<tr>
+								<td height="20px"/>
+							</tr>
+						</table>
 						<table align="center">	
 						<tr>
 						<td align="center">	
@@ -208,38 +218,38 @@
 								<f:facet name="header">
 									<h:outputLabel value="Empresa" styleClass="PrimerNivel"></h:outputLabel>
 								</f:facet>
-								<h:outputLabel value="#{exp.expVnomempresa}"></h:outputLabel>
+								<div align="left"><h:outputLabel value="#{exp.expVnomempresa}"></h:outputLabel></div>
 							</rich:column>
 							<rich:column width="140px" sortable="true" sortBy="#{exp.gppMunicipio.munVmunicipio}" label="Ciudad">
 								<f:facet name="header">
 									<h:outputLabel value="Ciudad" styleClass="PrimerNivel"></h:outputLabel>
 								</f:facet>
-								<h:outputLabel value="#{exp.gppMunicipio.munVmunicipio}"></h:outputLabel>
+								<div align="left"><h:outputLabel value="#{exp.gppMunicipio.munVmunicipio}"></h:outputLabel></div>
 							</rich:column>
 							<rich:column width="100px" sortable="true" sortBy="#{exp.expVtelempresa}" label="Teléfono">
 								<f:facet name="header">
 									<h:outputLabel value="Teléfono" styleClass="PrimerNivel"></h:outputLabel>
 								</f:facet>
-								<h:outputLabel value="#{exp.expVtelempresa}"></h:outputLabel>
+								<div align="left"><h:outputLabel value="#{exp.expVtelempresa}"></h:outputLabel></div>
 							</rich:column>						
 							<rich:column width="200px" sortable="true" sortBy="#{exp.expVcargo}" label="Cargo">
 								<f:facet name="header">
 									<h:outputLabel value="Cargo" styleClass="PrimerNivel"></h:outputLabel>
 								</f:facet>
-								<h:outputLabel value="#{exp.expVcargo}"></h:outputLabel>
+								<div align="left"><h:outputLabel value="#{exp.expVcargo}"></h:outputLabel></div>
 							</rich:column>
 							<rich:column width="100px" sortable="true" sortBy="#{exp.expDfecingreso}" label="Fecha Ingreso">
 								<f:facet name="header">
 									<h:outputLabel value="Fecha Ingreso" styleClass="PrimerNivel"></h:outputLabel>
 								</f:facet>
-								<h:outputLabel value="#{exp.expDfecingreso}"></h:outputLabel>
+								<div align="left"><h:outputLabel value="#{exp.expDfecingreso}"></h:outputLabel></div>
 							</rich:column>
 							<rich:column width="100px" sortable="true" sortBy="#{exp.expDfecretiro}" label="Fecha Retiro">
 								<f:facet name="header">
 									<h:outputLabel value="Fecha Retiro" styleClass="PrimerNivel"></h:outputLabel>
 								</f:facet>
-								<h:outputLabel value="#{exp.expDfecretiro}" rendered="#{exp.expDfecretiro != null}"></h:outputLabel>
-								<h:outputLabel value="Actual" rendered="#{exp.expDfecretiro == null}"></h:outputLabel>
+								<div align="left"><h:outputLabel value="#{exp.expDfecretiro}" rendered="#{exp.expDfecretiro != null}"></h:outputLabel></div>
+								<div align="left"><h:outputLabel value="Actual" rendered="#{exp.expDfecretiro == null}"></h:outputLabel></div>
 							</rich:column>																								
 						</rich:extendedDataTable>
 						</h:form>
@@ -265,7 +275,7 @@
 						</c:if>						
 						</h:form>															
 					</rich:tab>
-					<rich:tab label="Perfíl Profesional" name="TAB_PANEL_PERFIL" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:400px;">
+					<rich:tab label="Perfíl Profesional" name="TAB_PANEL_PERFIL" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;">
 						<table align="left">
 							<tr>
 								<td><h:outputLabel value="Perfíl Profesional #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
@@ -287,7 +297,12 @@
 								<td align="left"><h:inputTextarea cols="100" value="#{PerfilprofesionalMB.perfilProfesional.pprVperfil}" id="pprVperfil" disabled="true" style="color:#000000"></h:inputTextarea></td>
 							</tr>
 						</table>	
-						<br/><br/><br/><br/><br/><br/><br/><br/>
+						<br/>
+						<table align="center" width="100%">
+							<tr>
+								<td height="20px"/>
+							</tr>
+						</table>
 						<table align="left">
 							<tr>
 								<td><h:outputLabel value="Idiomas" styleClass="TextoContenido"></h:outputLabel></td>
@@ -333,7 +348,12 @@
 								<td align="left"><h:inputTextarea cols="60" value="#{PerfilprofesionalMB.perfilProfesional.pprVmotorbd}" disabled="true" style="color:#000000"></h:inputTextarea></td>
 							</tr>							
 						</table>
-						<br/><br/>
+						<br/>
+						<table align="center" width="100%">
+							<tr>
+								<td height="25px"/>
+							</tr>
+						</table>
 						<h:form>
 						<c:if test="#{PersonaMB.persona.perNidpersona != null}">					
 						<table align="right">
@@ -352,7 +372,7 @@
 						</c:if>	
 						</h:form>														
 					</rich:tab>
-					<rich:tab label="Soportes" name="TAB_PANEL_SOPORTES" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:400px;">
+					<rich:tab label="Soportes" name="TAB_PANEL_SOPORTES" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;">
 						<table align="left">
 							<tr>
 								<td><h:outputLabel value="Archivos Relacionados #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
@@ -374,31 +394,31 @@
 											<f:facet name="header">
 												<h:outputLabel value="Tipo Archivo" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
-											<h:outputLabel value="#{docu.gppTipoarchivo.tarVtipoarchivo}"></h:outputLabel>
+											<div align="left"><h:outputLabel value="#{docu.gppTipoarchivo.tarVtipoarchivo}"></h:outputLabel></div>
 										</rich:column>
 										<rich:column width="105px"  sortable="true" sortBy="#{docu.docDfecexpide}" label="Fecha Expedición">
 											<f:facet name="header">
 												<h:outputLabel value="Fecha Expedición" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
-											<h:outputLabel value="#{docu.docDfecexpide}"></h:outputLabel>
+											<div align="left"><h:outputLabel value="#{docu.docDfecexpide}"></h:outputLabel></div>
 										</rich:column>
 										<rich:column width="200px" sortable="true" sortBy="#{docu.docVarchivo}" label="Archivo">
 											<f:facet name="header">
 												<h:outputLabel value="Archivo" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
-											<h:outputLabel value="#{docu.docVarchivo}"></h:outputLabel>
+											<div align="left"><h:outputLabel value="#{docu.docVarchivo}"></h:outputLabel></div>
 										</rich:column>
 										<rich:column width="200px" sortable="true" sortBy="#{docu.docVnombre}" label="Nombre">
 											<f:facet name="header">
 												<h:outputLabel value="Nombre" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
-											<h:outputLabel value="#{docu.docVnombre}"></h:outputLabel>
+											<div align="left"><h:outputLabel value="#{docu.docVnombre}"></h:outputLabel></div>
 										</rich:column>	
 										<rich:column width="220px" sortable="true" sortBy="#{docu.docVurlarchivo}" label="Ubicación">
 											<f:facet name="header">
 												<h:outputLabel value="Ubicación" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
-											<h:outputLabel value="#{docu.docVurlarchivo}"></h:outputLabel>
+											<div align="left"><h:outputLabel value="#{docu.docVurlarchivo}"></h:outputLabel></div>
 										</rich:column>																												
 									</rich:extendedDataTable>
 									</h:form>
