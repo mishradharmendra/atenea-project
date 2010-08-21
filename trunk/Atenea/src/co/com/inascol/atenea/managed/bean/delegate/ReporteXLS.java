@@ -967,8 +967,12 @@ public class ReporteXLS {
 
 			HSSFCellStyle estiloPlantillaRelleno2 = libro.createCellStyle();
 			estiloPlantillaRelleno2.setAlignment(HSSFCellStyle.ALIGN_LEFT);
-			estiloPlantillaRelleno2.setFillBackgroundColor(IndexedColors.GREEN.getIndex());
+			estiloPlantillaRelleno2.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
 			estiloPlantillaRelleno2.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+			estiloPlantillaRelleno2.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+			estiloPlantillaRelleno2.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+			estiloPlantillaRelleno2.setBorderRight(HSSFCellStyle.BORDER_THIN);
+			estiloPlantillaRelleno2.setBorderTop(HSSFCellStyle.BORDER_THIN);			
 			estiloPlantillaRelleno2.setWrapText(true);
 			estiloPlantillaRelleno2.setFont(fuenteContenido);
 			
