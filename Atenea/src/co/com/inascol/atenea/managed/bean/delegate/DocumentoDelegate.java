@@ -37,7 +37,6 @@ public class DocumentoDelegate {
 	private String nombreArchivoSoporte;
 	private String urlArchivoSoporte;
 	private GppDocumento documento;
-	private SimpleDateFormat dateFormat;
 	private GppUsuario usuarioAutenticado;
 	
 	public DocumentoDelegate(){}
@@ -56,13 +55,12 @@ public class DocumentoDelegate {
 	public void getSubirSoporte(GppPersona persona, UploadEvent event) throws IOException {
 	    if (event != null) {
 	    	parametrizacionService = new ParametrizacionService();
-	    	dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	        UploadItem item = event.getUploadItem();
 	        File file = item.getFile();
 	        nombreArchivoSoporte = item.getFileName();	        
 	        urlArchivoSoporte = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoSoporte!=null){
-	        	urlArchivoSoporte = urlArchivoSoporte + "DOCUMENTOS_" + persona.getPerNidentificacion() + "_" + dateFormat.format(new Date()) + "_" + nombreArchivoSoporte;
+	        	urlArchivoSoporte = urlArchivoSoporte + "DOCUMENTOS_" + persona.getPerNidentificacion() + "_" + nombreArchivoSoporte + "_" + new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss").format(new Date());
 		        FileInputStream fis = new FileInputStream(file.getPath());
 		        BufferedInputStream bis = new BufferedInputStream(fis);
 		        FileOutputStream fos = new FileOutputStream(urlArchivoSoporte);

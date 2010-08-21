@@ -2552,9 +2552,10 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			texto = new HSSFRichTextString("");
-			if(idioma1!=null)
+			if(idioma1!=null){
 				texto = new HSSFRichTextString(idioma1.getIdiVidioma());
-			celda.setCellValue(texto);
+				celda.setCellValue(texto);
+			}
 			celda.setCellStyle(estiloContenido);			
 			hoja1.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+12));
 			// 
@@ -2562,7 +2563,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){
-				if(perfil.getPprNnivelidi1()<35)
+				if(perfil.getPprNnivelidi1()<=35 && perfil.getPprNnivelidi1()>0)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2577,7 +2578,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){
-				if(perfil.getPprNnivelidi1()>35 && perfil.getPprNnivelidi1()<70)
+				if(perfil.getPprNnivelidi1()>=36 && perfil.getPprNnivelidi1()<=70)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2592,7 +2593,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){
-				if(perfil.getPprNnivelidi1()>70)
+				if(perfil.getPprNnivelidi1()>=71)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2607,7 +2608,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){
-				if(perfil.getPprNnivelidi1()<35)
+				if(perfil.getPprNnivelidi1()<=35 && perfil.getPprNnivelidi1()>0)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2622,7 +2623,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){
-				if(perfil.getPprNnivelidi1()>35 && perfil.getPprNnivelidi1()<70)
+				if(perfil.getPprNnivelidi1()>=36 && perfil.getPprNnivelidi1()<=70)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2637,7 +2638,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){
-				if(perfil.getPprNnivelidi1()>70)
+				if(perfil.getPprNnivelidi1()>=71)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2652,7 +2653,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){
-				if(perfil.getPprNnivelidi1()<35)
+				if(perfil.getPprNnivelidi1()<=35 && perfil.getPprNnivelidi1()>0)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2667,7 +2668,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){
-				if(perfil.getPprNnivelidi1()>35 && perfil.getPprNnivelidi1()<70)
+				if(perfil.getPprNnivelidi1()>=36 && perfil.getPprNnivelidi1()<=70)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2682,7 +2683,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){
-				if(perfil.getPprNnivelidi1()>70)
+				if(perfil.getPprNnivelidi1()>=71)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2699,9 +2700,10 @@ public class ReporteXLS {
 			numColumna = 13;
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
-			if(idioma2!=null)
+			if(idioma2!=null){
 				texto = new HSSFRichTextString(idioma2.getIdiVidioma());
-			celda.setCellValue(texto);
+				celda.setCellValue(texto);
+			}
 			celda.setCellStyle(estiloContenido);			
 			hoja1.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+12));
 			// 
@@ -2709,7 +2711,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){
-				if(perfil.getPprNnivelidi2()<35)
+				if(perfil.getPprNnivelidi2()<=35 && perfil.getPprNnivelidi2()>0)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2724,7 +2726,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){
-				if(perfil.getPprNnivelidi2()>35 && perfil.getPprNnivelidi2()<70)
+				if(perfil.getPprNnivelidi2()>=36 && perfil.getPprNnivelidi2()<=70)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2739,7 +2741,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){			
-				if(perfil.getPprNnivelidi2()>70)
+				if(perfil.getPprNnivelidi2()>=71)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2754,7 +2756,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){	
-				if(perfil.getPprNnivelidi2()<35)
+				if(perfil.getPprNnivelidi2()<=35 && perfil.getPprNnivelidi2()>0)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2769,7 +2771,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){	
-				if(perfil.getPprNnivelidi2()>35 && perfil.getPprNnivelidi2()<70)
+				if(perfil.getPprNnivelidi2()>=36 && perfil.getPprNnivelidi2()<=70)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2784,7 +2786,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){	
-				if(perfil.getPprNnivelidi2()>70)
+				if(perfil.getPprNnivelidi2()>=71)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2799,7 +2801,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){
-				if(perfil.getPprNnivelidi2()<35)
+				if(perfil.getPprNnivelidi2()<=35 && perfil.getPprNnivelidi2()>0)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2814,7 +2816,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){
-				if(perfil.getPprNnivelidi2()>35 && perfil.getPprNnivelidi2()<70)
+				if(perfil.getPprNnivelidi2()>=36 && perfil.getPprNnivelidi2()<=70)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
@@ -2829,7 +2831,7 @@ public class ReporteXLS {
 			fila = hoja1.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			if(perfil!=null){
-				if(perfil.getPprNnivelidi2()>70)
+				if(perfil.getPprNnivelidi2()>=70)
 					texto = new HSSFRichTextString("X");
 				else
 					texto = new HSSFRichTextString("");
