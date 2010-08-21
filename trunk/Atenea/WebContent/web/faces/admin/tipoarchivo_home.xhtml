@@ -26,16 +26,17 @@
 					</tr>
 				</table>		
 				<h:form>	
-				<table align="center">
+				<table align="left">
 					<tr>
-						<td><h:outputLabel value="Consulta de Tipos de Archivos por Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td><h:inputText value="#{TipoarchivoMB.nombreTipoarchivo}"></h:inputText></td>					
+						<td width="110px"/>
+						<td align="left"><h:outputLabel value="Consulta de Tipos de Archivos por Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:inputText size="30" value="#{TipoarchivoMB.nombreTipoarchivo}"></h:inputText></td>					
 					</tr>
 				</table>
 				<br/>
 				<table align="center" width="100%">
 					<tr>
-						<td height="50px"/>
+						<td height="20px"/>
 					</tr>
 				</table>				
 				<table align="right">
@@ -61,9 +62,9 @@
 						<f:facet name="header">
 							<h:outputLabel value="Id Tipo de Archivo" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<div align="left"><h:outputLabel value="#{tipoarchivo.tarNidtipoarchivo}"></h:outputLabel>
+						<div align="left"><h:outputLabel value="#{tipoarchivo.tarNidtipoarchivo}"></h:outputLabel></div>
 					</rich:column>
-					<rich:column width="340px" sortable="true" sortBy="#{tipoarchivo.tarVtipoarchivo}" label="Nombre Tipo Archivo"></div>
+					<rich:column width="340px" sortable="true" sortBy="#{tipoarchivo.tarVtipoarchivo}" label="Nombre Tipo Archivo">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Tipo Archivo" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>

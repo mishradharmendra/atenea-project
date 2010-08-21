@@ -212,25 +212,25 @@
 											<f:facet name="header">
 												<h:outputLabel value="Tipo Estudio" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
-											<h:outputLabel value="#{formacion.gppNivelacademico.nacVnivelac}"></h:outputLabel>
+											<div align="left"><h:outputLabel value="#{formacion.gppNivelacademico.nacVnivelac}"></h:outputLabel></div>
 										</rich:column>
 										<rich:column width="250px" sortable="true" sortBy="#{formacion.gppInstitucion.insVinstitucion}" label="Institución">
 											<f:facet name="header">
 												<h:outputLabel value="Institución" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>														
-											<h:outputLabel value="#{formacion.gppInstitucion.insVinstitucion}"></h:outputLabel>	
+											<div align="left"><h:outputLabel value="#{formacion.gppInstitucion.insVinstitucion}"></h:outputLabel></div>	
 										</rich:column>
 										<rich:column width="235px" sortable="true" sortBy="#{formacion.forVtitulo}" label="Título">
 											<f:facet name="header">
 												<h:outputLabel value="Título" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
-											<h:outputLabel value="#{formacion.forVtitulo}"></h:outputLabel>
+											<div align="left"><h:outputLabel value="#{formacion.forVtitulo}"></h:outputLabel></div>
 										</rich:column>						
 										<rich:column width="100px" sortable="true" sortBy="#{formacion.forDfecgrado}" label="Fecha de Grado">
 											<f:facet name="header">
 												<h:outputLabel value="Fecha de Grado" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
-											<h:outputLabel value="#{formacion.forDfecgrado}"></h:outputLabel>
+											<div align="left"><h:outputLabel value="#{formacion.forDfecgrado}"></h:outputLabel></div>
 										</rich:column>								
 										<rich:column width="55px" label="Modificar">
 											<f:facet name="header">
@@ -377,10 +377,10 @@
 									<td height="10px"/>
 								</tr>
 								<tr>
-									<td align="left" colspan="2" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirDiploma}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+									<td align="left" colspan="2" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirDiploma}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 			                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
 									<td width="90px"></td>
-									<td align="left" colspan="2" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirActaGrado}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="280px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+									<td align="left" colspan="2" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirActaGrado}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="280px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 			                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 								</tr>																																																							
 							</table>			
@@ -439,38 +439,38 @@
 										<f:facet name="header">
 											<h:outputLabel value="Empresa" styleClass="PrimerNivel"></h:outputLabel>
 										</f:facet>
-										<h:outputLabel value="#{exp.expVnomempresa}"></h:outputLabel>
+										<div align="left"><h:outputLabel value="#{exp.expVnomempresa}"></h:outputLabel></div>
 									</rich:column>
 									<rich:column width="100px" sortable="true" sortBy="#{exp.gppMunicipio.munVmunicipio}" label="Ciudad">
 										<f:facet name="header">
 											<h:outputLabel value="Ciudad" styleClass="PrimerNivel"></h:outputLabel>
 										</f:facet>
-										<h:outputLabel value="#{exp.gppMunicipio.munVmunicipio}"></h:outputLabel>
+										<div align="left"><h:outputLabel value="#{exp.gppMunicipio.munVmunicipio}"></h:outputLabel></div>
 									</rich:column>
 									<rich:column width="100px" sortable="true" sortBy="#{exp.expVtelempresa}" label="Teléfono">
 										<f:facet name="header">
 											<h:outputLabel value="Teléfono" styleClass="PrimerNivel"></h:outputLabel>
 										</f:facet>
-										<h:outputLabel value="#{exp.expVtelempresa}"></h:outputLabel>
+										<div align="left"><h:outputLabel value="#{exp.expVtelempresa}"></h:outputLabel></div>
 									</rich:column>						
 									<rich:column width="165px" sortable="true" sortBy="#{exp.expVcargo}" label="Cargo">
 										<f:facet name="header">
 											<h:outputLabel value="Cargo" styleClass="PrimerNivel"></h:outputLabel>
 										</f:facet>
-										<h:outputLabel value="#{exp.expVcargo}"></h:outputLabel>
+										<div align="left"><h:outputLabel value="#{exp.expVcargo}"></h:outputLabel></div>
 									</rich:column>
 									<rich:column width="100px" sortable="true" sortBy="#{exp.expDfecingreso}" label="Fecha Ingreso">
 										<f:facet name="header">
 											<h:outputLabel value="Fecha Ingreso" styleClass="PrimerNivel"></h:outputLabel>
 										</f:facet>
-										<h:outputLabel value="#{exp.expDfecingreso}"></h:outputLabel>
+										<div align="left"><h:outputLabel value="#{exp.expDfecingreso}"></h:outputLabel></div>
 									</rich:column>
 									<rich:column width="100px" sortable="true" sortBy="#{exp.expDfecretiro}" label="Fecha Retiro">
 										<f:facet name="header">
 											<h:outputLabel value="Fecha Retiro" styleClass="PrimerNivel"></h:outputLabel>
 										</f:facet>
-											<h:outputLabel value="#{exp.expDfecretiro}" rendered="#{exp.expDfecretiro != null}"></h:outputLabel>
-											<h:outputLabel value="Actual" rendered="#{exp.expDfecretiro == null}"></h:outputLabel>
+											<div align="left"><h:outputLabel value="#{exp.expDfecretiro}" rendered="#{exp.expDfecretiro != null}"></h:outputLabel></div>
+											<div align="left"><h:outputLabel value="Actual" rendered="#{exp.expDfecretiro == null}"></h:outputLabel></div>
 									</rich:column>																								
 									<rich:column width="55px" label="Modificar">
 										<f:facet name="header">
@@ -651,10 +651,10 @@
 									<td height="10px"/>
 								</tr>			
 								<tr>
-									<td align="left" colspan="2" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado1}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+									<td align="left" colspan="2" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado1}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 			                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
 									<td width="10px"></td>	
-									<td align="left" colspan="2" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado2}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+									<td align="left" colspan="2" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado2}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 			                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 								</tr>																																																							
 							</table>
@@ -869,31 +869,31 @@
 											<f:facet name="header">
 												<h:outputLabel value="Tipo Archivo" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
-											<h:outputLabel value="#{docu.gppTipoarchivo.tarVtipoarchivo}"></h:outputLabel>
+											<div align="left"><h:outputLabel value="#{docu.gppTipoarchivo.tarVtipoarchivo}"></h:outputLabel></div>
 										</rich:column>
 										<rich:column width="100px" sortable="true" sortBy="#{docu.docDfecexpide}" label="Fecha Expedición">
 											<f:facet name="header">
 												<h:outputLabel value="Fecha Expedición" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
-											<h:outputLabel value="#{docu.docDfecexpide}"></h:outputLabel>
+											<div align="left"><h:outputLabel value="#{docu.docDfecexpide}"></h:outputLabel></div>
 										</rich:column>
 										<rich:column width="150px" sortable="true" sortBy="#{docu.docVarchivo}" label="Archivo">
 											<f:facet name="header">
 												<h:outputLabel value="Archivo" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
-											<h:outputLabel value="#{docu.docVarchivo}"></h:outputLabel>
+											<div align="left"><h:outputLabel value="#{docu.docVarchivo}"></h:outputLabel></div>
 										</rich:column>
 										<rich:column width="150px" sortable="true" sortBy="#{docu.docVnombre}" label="Nombre">
 											<f:facet name="header">
 												<h:outputLabel value="Nombre" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
-											<h:outputLabel value="#{docu.docVnombre}"></h:outputLabel>
+											<div align="left"><h:outputLabel value="#{docu.docVnombre}"></h:outputLabel></div>
 										</rich:column>	
 										<rich:column width="255px" sortable="true" sortBy="#{docu.docVurlarchivo}" label="Ubicación">
 											<f:facet name="header">
 												<h:outputLabel value="Ubicación" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
-											<h:outputLabel value="#{docu.docVurlarchivo}"></h:outputLabel>
+											<div align="left"><h:outputLabel value="#{docu.docVurlarchivo}"></h:outputLabel></div>
 										</rich:column>																												
 										<rich:column width="50px" label="Eliminar">
 											<f:facet name="header">
