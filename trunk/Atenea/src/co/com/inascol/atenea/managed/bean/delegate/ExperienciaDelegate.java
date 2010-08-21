@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -122,7 +123,7 @@ public class ExperienciaDelegate {
 	        nombreArchivoCertificaciones = item.getFileName();
 	        urlArchivoCertificaciones = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoCertificaciones!=null){
-		        urlArchivoCertificaciones = urlArchivoCertificaciones + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificaciones;
+		        urlArchivoCertificaciones = urlArchivoCertificaciones + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificaciones + "_" + new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss").format(new Date());
 		        FileInputStream fis = new FileInputStream(file.getPath());
 		        BufferedInputStream bis = new BufferedInputStream(fis);
 		        FileOutputStream fos = new FileOutputStream(urlArchivoCertificaciones);
@@ -152,7 +153,7 @@ public class ExperienciaDelegate {
 	        nombreArchivoCertificado1 = item.getFileName();
 	        urlArchivoCertificado1 = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoCertificado1!=null){
-	        	urlArchivoCertificado1 = urlArchivoCertificado1 + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificado1;
+	        	urlArchivoCertificado1 = urlArchivoCertificado1 + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificado1 + "_" + new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss").format(new Date());
 		        FileInputStream fis = new FileInputStream(file.getPath());
 		        BufferedInputStream bis = new BufferedInputStream(fis);
 		        FileOutputStream fos = new FileOutputStream(urlArchivoCertificado1);
@@ -182,7 +183,7 @@ public class ExperienciaDelegate {
 	        nombreArchivoCertificado2 = item.getFileName();
 	        urlArchivoCertificado2 = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoCertificado2!=null){
-	        	urlArchivoCertificado2 = urlArchivoCertificado2 + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificado2;
+	        	urlArchivoCertificado2 = urlArchivoCertificado2 + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificado2 + "_" + new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss").format(new Date());
 		        FileInputStream fis = new FileInputStream(file.getPath());
 		        BufferedInputStream bis = new BufferedInputStream(fis);
 		        FileOutputStream fos = new FileOutputStream(urlArchivoCertificado2);

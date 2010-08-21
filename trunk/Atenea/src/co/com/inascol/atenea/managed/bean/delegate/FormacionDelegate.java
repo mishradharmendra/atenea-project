@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -114,7 +115,7 @@ public class FormacionDelegate {
 	        nombreArchivoDiploma = item.getFileName();
 	        urlArchivoDiploma = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoDiploma!=null){
-		        urlArchivoDiploma = urlArchivoDiploma + "DIPLOMA_" + persona.getPerNidentificacion() + "_" + nombreArchivoDiploma;
+		        urlArchivoDiploma = urlArchivoDiploma + "DIPLOMA_" + persona.getPerNidentificacion() + "_" + nombreArchivoDiploma + "_" + new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss").format(new Date());
 		        FileInputStream fis = new FileInputStream(file.getPath());
 		        BufferedInputStream bis = new BufferedInputStream(fis);
 		        FileOutputStream fos = new FileOutputStream(urlArchivoDiploma);
@@ -144,7 +145,7 @@ public class FormacionDelegate {
 	        nombreArchivoActa = item.getFileName();
 	        urlArchivoActa = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoActa!=null){
-	        	urlArchivoActa = urlArchivoActa + "ACTA_" + persona.getPerNidentificacion() + "_" + nombreArchivoDiploma;
+	        	urlArchivoActa = urlArchivoActa + "ACTA_" + persona.getPerNidentificacion() + "_" + nombreArchivoDiploma + "_" + new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss").format(new Date());
 		        FileInputStream fis = new FileInputStream(file.getPath());
 		        BufferedInputStream bis = new BufferedInputStream(fis);
 		        FileOutputStream fos = new FileOutputStream(urlArchivoActa);
@@ -174,7 +175,7 @@ public class FormacionDelegate {
 	        nombreArchivoSoportes = item.getFileName();
 	        urlArchivoSoportes = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoSoportes!=null){
-	        	urlArchivoSoportes = urlArchivoSoportes + "SOP_ACADEM_" + persona.getPerNidentificacion() + "_" + nombreArchivoSoportes;
+	        	urlArchivoSoportes = urlArchivoSoportes + "SOP_ACADEM_" + persona.getPerNidentificacion() + "_" + nombreArchivoSoportes + "_" + new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss").format(new Date());
 		        FileInputStream fis = new FileInputStream(file.getPath());
 		        BufferedInputStream bis = new BufferedInputStream(fis);
 		        FileOutputStream fos = new FileOutputStream(urlArchivoSoportes);
