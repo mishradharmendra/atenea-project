@@ -123,7 +123,7 @@ public class ExperienciaDelegate {
 	        nombreArchivoCertificaciones = item.getFileName();
 	        urlArchivoCertificaciones = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoCertificaciones!=null){
-		        urlArchivoCertificaciones = urlArchivoCertificaciones + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificaciones + "_" + new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss").format(new Date());
+		        urlArchivoCertificaciones = urlArchivoCertificaciones + "CERTS_CC_" + persona.getPerNidentificacion() + "_" + new SimpleDateFormat("ddMMyyyy-HHmmss").format(new Date()) + "_" + nombreArchivoCertificaciones;
 		        FileInputStream fis = new FileInputStream(file.getPath());
 		        BufferedInputStream bis = new BufferedInputStream(fis);
 		        FileOutputStream fos = new FileOutputStream(urlArchivoCertificaciones);
@@ -153,7 +153,7 @@ public class ExperienciaDelegate {
 	        nombreArchivoCertificado1 = item.getFileName();
 	        urlArchivoCertificado1 = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoCertificado1!=null){
-	        	urlArchivoCertificado1 = urlArchivoCertificado1 + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificado1 + "_" + new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss").format(new Date());
+	        	urlArchivoCertificado1 = urlArchivoCertificado1 + "CERT_CC_" + persona.getPerNidentificacion() + "_" + new SimpleDateFormat("ddMMyyyy-HHmmss").format(new Date()) + "_" + nombreArchivoCertificado1;
 		        FileInputStream fis = new FileInputStream(file.getPath());
 		        BufferedInputStream bis = new BufferedInputStream(fis);
 		        FileOutputStream fos = new FileOutputStream(urlArchivoCertificado1);
@@ -183,7 +183,7 @@ public class ExperienciaDelegate {
 	        nombreArchivoCertificado2 = item.getFileName();
 	        urlArchivoCertificado2 = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoCertificado2!=null){
-	        	urlArchivoCertificado2 = urlArchivoCertificado2 + "CERT_" + persona.getPerNidentificacion() + "_" + nombreArchivoCertificado2 + "_" + new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss").format(new Date());
+	        	urlArchivoCertificado2 = urlArchivoCertificado2 + "CERT_CC_" + persona.getPerNidentificacion() + "_" + new SimpleDateFormat("ddMMyyyy-HHmmss").format(new Date()) + "_" + nombreArchivoCertificado2;
 		        FileInputStream fis = new FileInputStream(file.getPath());
 		        BufferedInputStream bis = new BufferedInputStream(fis);
 		        FileOutputStream fos = new FileOutputStream(urlArchivoCertificado2);

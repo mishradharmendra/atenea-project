@@ -228,7 +228,7 @@ public class PersonaDelegate {
 	        nombreArchivo = item.getFileName();
 	        urlArchivo = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivo!=null){
-		        urlArchivo = urlArchivo + "HV_" + persona.getPerNidentificacion() + "_" + nombreArchivo + "_" + new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss").format(new Date());
+		        urlArchivo = urlArchivo + "HV_CC_" + persona.getPerNidentificacion() + "_" + new SimpleDateFormat("ddMMyyyy-HHmmss").format(new Date()) + "_" + nombreArchivo;
 		        FileInputStream fis = new FileInputStream(file.getPath());
 		        BufferedInputStream bis = new BufferedInputStream(fis);
 		        FileOutputStream fos = new FileOutputStream(urlArchivo);

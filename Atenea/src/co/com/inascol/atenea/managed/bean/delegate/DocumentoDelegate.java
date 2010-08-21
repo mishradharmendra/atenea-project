@@ -60,7 +60,7 @@ public class DocumentoDelegate {
 	        nombreArchivoSoporte = item.getFileName();	        
 	        urlArchivoSoporte = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivoSoporte!=null){
-	        	urlArchivoSoporte = urlArchivoSoporte + "DOCUMENTOS_" + persona.getPerNidentificacion() + "_" + nombreArchivoSoporte + "_" + new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss").format(new Date());
+	        	urlArchivoSoporte = urlArchivoSoporte + "DOCUMENTOS_CC_" + persona.getPerNidentificacion() + "_" + new SimpleDateFormat("ddMMyyyy-HHmmss").format(new Date()) + "_" + nombreArchivoSoporte;
 		        FileInputStream fis = new FileInputStream(file.getPath());
 		        BufferedInputStream bis = new BufferedInputStream(fis);
 		        FileOutputStream fos = new FileOutputStream(urlArchivoSoporte);
