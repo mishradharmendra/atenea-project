@@ -751,6 +751,13 @@ public class ReporteXLS {
 			texto = new HSSFRichTextString("TERMINACIÓN");
 			celda.setCellValue(texto);
 			celda.setCellStyle(estiloContenido);
+						
+			for (Integer i = 24; i <= 26; i++) {
+				fila = hoja.getRow(i);
+				for (Integer j = 1; j <= 10; j++) {
+					fila.getCell(j).setCellStyle(estiloContenido);
+				}
+			}
 			
 			List<Object> experienciasLaborales = persona.getGppExperienciasLaborales();
 			
@@ -1669,6 +1676,13 @@ public class ReporteXLS {
 			celda.setCellStyle(estiloContenido);			
 			hoja1.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+11));
 			//
+			for (Integer i = 9; i <= 19; i++) {
+				fila = hoja1.getRow(i);
+				for (Integer j = 1; j <= 55; j++) {
+					fila.getCell(j).setCellStyle(estiloContenido);
+				}
+			}						
+			//
 			for (int i = 1; i <= 55; i++) {
 				fila = hoja1.getRow(8);
 				celda = fila.getCell(i);
@@ -1707,8 +1721,11 @@ public class ReporteXLS {
 			texto = new HSSFRichTextString("EDUCACIÓN BÁSICA Y MEDIA");
 			celda.setCellValue(texto);
 			celda.setCellStyle(estiloContenido);
-			celda = fila.getCell(numColumna+54);
-			celda.setCellStyle(estiloContenido);
+			for (Integer j = 1; j <= 55; j++) {
+				fila.getCell(j).setCellStyle(estiloContenido);
+			}
+			//celda = fila.getCell(numColumna+54);
+			//celda.setCellStyle(estiloContenido);
 			hoja1.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+54));						
 			// 
 			numFila += 1;
@@ -1943,6 +1960,23 @@ public class ReporteXLS {
 			celda.setCellStyle(estiloContenido);
 			hoja1.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+4));
 			//
+			for (Integer i = 27; i <= 28; i++) {
+				fila = hoja1.getRow(i);
+				for (Integer j = 5; j <= 50; j++) {
+					fila.getCell(j).setCellStyle(estiloContenido);
+				}
+			}
+			//
+			fila = hoja1.getRow(27);
+			for (Integer j = 5; j <= 36; j++) {
+				fila.getCell(j).setCellStyle(estiloPlantillaRelleno2);
+			}
+			//
+			fila = hoja1.getRow(28);
+			for (Integer j = 5; j <= 50; j++) {
+				fila.getCell(j).setCellStyle(estiloPlantillaRelleno2);
+			}			
+			//			
 			for (int i = 5; i <= 50; i++) {
 				fila = hoja1.getRow(26);
 				celda = fila.getCell(i);
@@ -2102,7 +2136,7 @@ public class ReporteXLS {
 			celda.setCellStyle(estiloContenido);
 			celda = fila.getCell(42);
 			celda.setCellStyle(estiloContenido);
-			hoja1.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+14));
+			hoja1.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+27));
 			// 
 			numFila += 1;
 			numColumna = 1;
@@ -2194,7 +2228,21 @@ public class ReporteXLS {
 			celda.setCellValue(texto);
 			celda.setCellStyle(estiloPlantillaRelleno2);			
 			hoja1.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+3));
-			
+			//
+			for (Integer i = 31; i <= 37; i++) {
+				fila = hoja1.getRow(i);
+				for (Integer j = 1; j <= 55; j++) {
+					fila.getCell(j).setCellStyle(estiloContenido);
+				}
+			}
+			//
+			for (Integer i = 36; i <= 37; i++) {
+				fila = hoja1.getRow(i);
+				for (Integer j = 1; j <= 55; j++) {
+					fila.getCell(j).setCellStyle(estiloPlantillaRelleno2);
+				}
+			}
+				
 			// formaciones academicas
 			int filaFormaciones = numFila + 1;
 			int contadorControl = 1;
@@ -2352,12 +2400,14 @@ public class ReporteXLS {
 				hoja1.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+10));
 				filaFormaciones++;
 			}
-			for (int i = 38; i <= 42; i++) {
+			//
+			for (Integer i = 38; i <= 42; i++) {
 				fila = hoja1.getRow(i);
-				celda = fila.getCell(55);
-				celda.setCellStyle(estiloContenido);
-			}
-			// 
+				for (Integer j = 1; j <= 55; j++) {
+					fila.getCell(j).setCellStyle(estiloContenido);
+				}
+			}					
+			//
 			numFila+= 2;
 			numColumna = 1;
 			fila = hoja1.getRow(numFila);
@@ -2368,6 +2418,13 @@ public class ReporteXLS {
 			celda = fila.getCell(55);
 			celda.setCellStyle(estiloContenido);
 			hoja1.addMergedRegion(new CellRangeAddress(numFila,numFila+1,numColumna,numColumna+54));
+			//
+			for (Integer i = 44; i <= 45; i++) {
+				fila = hoja1.getRow(i);
+				for (Integer j = 1; j <= 55; j++) {
+					fila.getCell(j).setCellStyle(estiloContenido);
+				}
+			}			
 			fila = hoja1.getRow(numFila+1);
 			for (int i = 1; i <= 55; i++) {
 				celda = fila.getCell(i);
@@ -2784,6 +2841,20 @@ public class ReporteXLS {
 			celda = fila.getCell(43);
 			celda.setCellStyle(estiloContenido);
 			hoja1.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+1));
+			//
+			for (Integer i = 46; i <= 49; i++) {
+				fila = hoja1.getRow(i);
+				for (Integer j = 13; j <= 43; j++) {
+					fila.getCell(j).setCellStyle(estiloContenido);
+				}
+			}		
+			//
+			for (Integer i = 46; i <= 47; i++) {
+				fila = hoja1.getRow(i);
+				for (Integer j = 13; j <= 43; j++) {
+					fila.getCell(j).setCellStyle(estiloPlantillaRelleno2);
+				}
+			}				
 			//
 			for (int i = 1; i <= 55; i++) {
 				fila = hoja1.getRow(22);
@@ -3574,13 +3645,7 @@ public class ReporteXLS {
 							celda.setCellStyle(estiloContenido);			
 							hoja2.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+17));	
 						}
-						
-						for (int i = 10; i <= 46; i++) {
-							fila = hoja2.getRow(i);
-							celda = fila.getCell(55);
-							celda.setCellStyle(estiloContenido);
-						}
-						
+											
 						// 
 						numFila += 1;
 						numColumna = 1;
@@ -3591,6 +3656,32 @@ public class ReporteXLS {
 						celda.setCellStyle(estiloContenido);			
 						hoja2.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+54));
 						//
+						for (Integer i = 9; i <= 47; i++) {
+							fila = hoja2.getRow(i);
+							for (Integer j = 1; j <= 55; j++) {
+								fila.getCell(j).setCellStyle(estiloContenido);
+							}
+						}	
+						//						
+						fila = hoja2.getRow(11);
+						for (Integer j = 1; j <= 55; j++) {
+							fila.getCell(j).setCellStyle(estiloPlantillaRelleno2);
+						}
+						//						
+						fila = hoja2.getRow(20);
+						for (Integer j = 1; j <= 55; j++) {
+							fila.getCell(j).setCellStyle(estiloPlantillaRelleno2);
+						}
+						//						
+						fila = hoja2.getRow(29);
+						for (Integer j = 1; j <= 55; j++) {
+							fila.getCell(j).setCellStyle(estiloPlantillaRelleno2);
+						}
+						//						
+						fila = hoja2.getRow(38);
+						for (Integer j = 1; j <= 55; j++) {
+							fila.getCell(j).setCellStyle(estiloPlantillaRelleno2);
+						}						
 						for (int i = 1; i <= 55; i++) {
 							fila = hoja2.getRow(8);
 							celda = fila.getCell(i);
@@ -3612,7 +3703,7 @@ public class ReporteXLS {
 							celda.setCellStyle(estiloIzq);
 						}
 						for (Integer i = 0; i <= 1000; i++) {
-							hoja2.setColumnWidth(i, 410);
+							hoja2.autoSizeColumn(i,true);	
 						}
 					}
 				}
@@ -3702,9 +3793,13 @@ public class ReporteXLS {
 			texto = new HSSFRichTextString("INDIQUE EL TIEMPO DE SU EXPERIENCIA LABORAL EN NÚMERO DE AÑOS Y MESES.");
 			celda.setCellValue(texto);
 			celda.setCellStyle(estiloContenido);		
+			//
+			for (Integer j = 1; j <= 55; j++) {
+				fila.getCell(j).setCellStyle(estiloContenido);
+			}				
 			celda = fila.getCell(55);
 			celda.setCellStyle(estiloContenido);
-			hoja3.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+54));
+			hoja3.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+54));			
 			// 
 			numFila += 2;
 			numColumna = 13;
@@ -3869,10 +3964,13 @@ public class ReporteXLS {
 			celda.setCellStyle(estiloContenido);			
 			hoja3.addMergedRegion(new CellRangeAddress(numFila,numFila+1,numColumna,numColumna+5));
 			fila = hoja3.getRow(numFila+1);
-			for (int i = 13; i <= 45; i++) {
-				celda = fila.getCell(i);
-				celda.setCellStyle(estiloContenido);
-			}
+			//
+			for (Integer i = 11; i <= 20; i++) {
+				fila = hoja3.getRow(i);
+				for (Integer j = 13; j <= 45; j++) {
+					fila.getCell(j).setCellStyle(estiloContenido);
+				}
+			}							
 			//
 			for (int i = 1; i <= 55; i++) {
 				fila = hoja3.getRow(8);
@@ -3932,10 +4030,13 @@ public class ReporteXLS {
 			celda.setCellStyle(estiloContenido);
 			hoja3.addMergedRegion(new CellRangeAddress(numFila,numFila+1,numColumna,numColumna+54));
 			fila = hoja3.getRow(numFila+1);
-			for (int i = 1; i <= 55; i++) {
-				celda = fila.getCell(i);
-				celda.setCellStyle(estiloContenido);
-			}
+			//
+			for (Integer i = 28; i <= 29; i++) {
+				fila = hoja3.getRow(i);
+				for (Integer j = 1; j <= 55; j++) {
+					fila.getCell(j).setCellStyle(estiloContenido);
+				}
+			}		
 			// 
 			numFila += 2;
 			numColumna = 1;
@@ -3959,9 +4060,11 @@ public class ReporteXLS {
 			celda = fila.getCell(numColumna);
 			texto = new HSSFRichTextString("FIRMA DEL SERVIDOR PÚBLICO O CONTRATISTA");
 			celda.setCellValue(texto);
-			celda.setCellStyle(estiloContenido);	
-			celda = fila.getCell(38);
-			celda.setCellStyle(estiloContenido);
+			celda.setCellStyle(estiloTitulos);	
+			//
+			for (Integer j = 16; j <= 38; j++) {
+				fila.getCell(j).setCellStyle(estiloTitulos);
+			}
 			hoja3.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+22));
 			//
 			for (int i = 1; i <= 55; i++) {
@@ -4008,6 +4111,13 @@ public class ReporteXLS {
 			texto = new HSSFRichTextString("CERTIFICO QUE LA INFORMACIÓN AQUÍ SUMINISTRADA HA SIDO CONSTATADA FRENTE A LOS DOCUMENTOS QUE HAN SIDO PRESENTADOS COMO SOPORTE.");
 			celda.setCellValue(texto);
 			celda.setCellStyle(estiloContenido);
+			//
+			for (Integer i = 44; i <= 45; i++) {
+				fila = hoja3.getRow(i);
+				for (Integer j = 1; j <= 55; j++) {
+					fila.getCell(j).setCellStyle(estiloContenido);
+				}
+			}					
 			hoja3.addMergedRegion(new CellRangeAddress(numFila,numFila+1,numColumna,numColumna+54));
 			// 
 			numFila += 2;
@@ -4029,15 +4139,17 @@ public class ReporteXLS {
 			}				
 			// 
 			numFila += 4;
-			numColumna = 24;
+			numColumna = 34;
 			fila = hoja3.getRow(numFila);
 			celda = fila.getCell(numColumna);
 			texto = new HSSFRichTextString("NOMBRE Y FIRMA DEL JEFE DE PERSONAL O DE CONTRATOS");
 			celda.setCellValue(texto);
-			celda.setCellStyle(estiloContenido);
-			celda = fila.getCell(55);
-			celda.setCellStyle(estiloContenido);
-			hoja3.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+31));
+			celda.setCellStyle(estiloTitulos);
+			//
+			for (Integer j = 1; j <= 55; j++) {
+				fila.getCell(j).setCellStyle(estiloTitulos);
+			}
+			hoja3.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+21));
 			//
 			for (int i = 1; i <= 55; i++) {
 				fila = hoja3.getRow(38);
@@ -4070,10 +4182,14 @@ public class ReporteXLS {
 			celda = fila.getCell(55);
 			celda.setCellStyle(estiloContenido);
 			hoja3.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+54));
-			
+			//
+			for (Integer j = 1; j <= 55; j++) {
+				fila.getCell(j).setCellStyle(estiloContenido);
+			}
+			//
 			for (Integer i = 0; i <= 1000; i++) {
-				hoja1.setColumnWidth(i, 410);
-				hoja3.setColumnWidth(i, 410);
+				hoja1.autoSizeColumn(i,true);	
+				hoja3.autoSizeColumn(i,true);	
 			}
 			
 			String rutaSalidaExportacion = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(2) ).getParVvalor();
