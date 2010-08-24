@@ -337,13 +337,17 @@ public class PersonaMB {
 	}	
 	
 	public void getDeptos(ValueChangeEvent evento){
-		idPais = Integer.valueOf((String) evento.getNewValue());
-		getDepartamentosPais();
+		if(evento.getNewValue()!=null){
+			idPais = Integer.valueOf((String) evento.getNewValue());
+			getDepartamentosPais();
+		}
 	}
 	
 	public void getMpios(ValueChangeEvent evento){
-		idDepto = Integer.valueOf((String) evento.getNewValue());
-		getMunicipios();
+		if(evento.getNewValue()!=null){
+			idDepto = Integer.valueOf((String) evento.getNewValue());
+			getMunicipios();
+		}
 	}
 	
 	public String getSiguiente(){
@@ -364,6 +368,7 @@ public class PersonaMB {
 	
 	public String getBusquedaBasicaPersona(){
 		personas = personaDelegate.getBusquedaBasicaPersona(nombrePersona, identificacionPersona);
+		criterioBusquedaRapida = "";
 		return ConstantesFaces.HOME_HV;
 	}
 	
@@ -374,6 +379,8 @@ public class PersonaMB {
 	
 	public String getBusquedaRapidaPersona(){
 		personas = personaDelegate.getBusquedaRapidaPersona(criterioBusquedaRapida);
+		nombrePersona = "";
+		identificacionPersona = "";
 		return ConstantesFaces.HOME_HV;		
 	}
 	

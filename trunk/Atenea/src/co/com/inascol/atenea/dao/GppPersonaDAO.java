@@ -212,7 +212,10 @@ public class GppPersonaDAO implements DAO{
 						criterioConsulta = " WHERE " + criterios[0] + " LIKE '%" + criterios[1] + "%'";
 					}else{
 						criterios = ( (String) it.next() ).split("\\|");
-						criterioConsulta = criterioConsulta + " AND " + criterios[0] + " LIKE '%" + criterios[1] + "%'";
+						if(criterios[0].equalsIgnoreCase("per_nidentificacion"))
+							criterioConsulta = criterioConsulta + " AND " + criterios[0] + " LIKE '%" + criterios[1] + "%'";
+						else
+							criterioConsulta = criterioConsulta + " OR " + criterios[0] + " LIKE '%" + criterios[1] + "%'";
 					}
 					contadorCriterios++;
 				}
@@ -400,7 +403,9 @@ public class GppPersonaDAO implements DAO{
 				// Formacion de Otros
 				while(itFormaciones.hasNext()){
 					gppFormacion = (GppFormacion) itFormaciones.next();
-					if(gppFormacion.getNacNidnivelac()==1 || gppFormacion.getNacNidnivelac()==2){
+					if(gppFormacion.getNacNidnivelac()==1 || gppFormacion.getNacNidnivelac()==2
+							|| gppFormacion.getNacNidnivelac()==6 || gppFormacion.getNacNidnivelac()==7
+								|| gppFormacion.getNacNidnivelac()==8 || gppFormacion.getNacNidnivelac()==9 || gppFormacion.getNacNidnivelac()==10){
 						if(banderaOtros==false){
 							puntajeFormacion += 10;
 							banderaOtros = true;

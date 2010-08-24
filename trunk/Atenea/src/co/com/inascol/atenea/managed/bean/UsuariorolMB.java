@@ -185,6 +185,7 @@ public class UsuariorolMB {
 	
 	public String getHomeUsuariorol(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("UsuariorolMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_USUARIOROL;
 	}
 	

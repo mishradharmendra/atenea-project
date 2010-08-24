@@ -138,6 +138,7 @@ public class EstadocivilMB {
 	
 	public String getHomeEstadocivil(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("EstadocivilMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_ESTADOCIVIL;
 	}
 	

@@ -138,6 +138,7 @@ public class InstitucionMB {
 	
 	public String getHomeInstitucion(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("InstitucionMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_INSTITUCION;
 	}
 	

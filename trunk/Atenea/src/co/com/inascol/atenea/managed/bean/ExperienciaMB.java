@@ -134,13 +134,17 @@ public class ExperienciaMB {
 	}
 	
 	public void getDeptos(ValueChangeEvent evento){
-		idPais = Integer.valueOf((String) evento.getNewValue());
-		getDepartamentosPais();
+		if(evento.getNewValue()!=null){
+			idPais = Integer.valueOf((String) evento.getNewValue());
+			getDepartamentosPais();
+		}
 	}
 	
 	public void getMpios(ValueChangeEvent evento){
-		idDepto = Integer.valueOf((String) evento.getNewValue());
-		getMunicipios();
+		if(evento.getNewValue()!=null){
+			idDepto = Integer.valueOf((String) evento.getNewValue());
+			getMunicipios();
+		}
 	}
 
 	public List<SelectItem> getCargosEquivalentes(){

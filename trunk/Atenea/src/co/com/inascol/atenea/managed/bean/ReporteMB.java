@@ -90,10 +90,12 @@ public class ReporteMB {
 
 	public String getHomeReporte(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ReporteMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.REPORTE_HOME;
 	}
 	
 	public String getBusquedaBasicaPersona(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		personas = reporteDelegate.getBusquedaBasicaPersona(nombrePersona, identificacionPersona);
 		return ConstantesFaces.REPORTE_HOME;
 	}
