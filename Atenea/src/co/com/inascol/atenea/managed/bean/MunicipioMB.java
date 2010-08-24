@@ -165,6 +165,7 @@ public class MunicipioMB {
 
 	public String getHomeMunicipio(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("MunicipioMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_MUNICIPIO;
 	}
 	

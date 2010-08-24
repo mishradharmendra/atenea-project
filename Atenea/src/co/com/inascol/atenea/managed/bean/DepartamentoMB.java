@@ -165,6 +165,7 @@ public class DepartamentoMB {
 	
 	public String getHomeDepartamento(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_DEPTO;
 	}
 	

@@ -138,6 +138,7 @@ public class TituloequivalenteMB {
 	
 	public String getHomeTituloequivalente(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TituloequivalenteMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_TITULOEQUIVALENTE;
 	}
 	

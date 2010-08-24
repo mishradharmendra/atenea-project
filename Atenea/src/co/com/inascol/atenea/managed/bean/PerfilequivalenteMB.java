@@ -138,6 +138,7 @@ public class PerfilequivalenteMB {
 	
 	public String getHomePerfilequivalente(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PerfilequivalenteMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_PERFILEQUIVALENTE;
 	}
 	

@@ -138,6 +138,7 @@ public class IdiomaMB {
 	
 	public String getHomeIdioma(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("IdiomaMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_IDIOMA;
 	}
 	

@@ -261,6 +261,7 @@ public class RolMB {
 	
 	public String getHomeRol(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("RolMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_ROL;
 	}
 	

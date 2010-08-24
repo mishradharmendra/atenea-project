@@ -129,6 +129,7 @@ public class ParametrizacionMB {
 	
 	public String getHomeParametrizacion(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ParametrizacionMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_PARAMETRIZACION;
 	}
 	

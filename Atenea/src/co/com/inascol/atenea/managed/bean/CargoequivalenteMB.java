@@ -138,6 +138,7 @@ public class CargoequivalenteMB {
 	
 	public String getHomeCargoequivalente(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("CargoequivalenteMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_CARGOEQUIVALENTE;
 	}
 	

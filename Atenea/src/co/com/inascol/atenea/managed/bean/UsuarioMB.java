@@ -176,6 +176,7 @@ public class UsuarioMB {
 	
 	public String getHomeUsuario(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("UsuarioMB");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_USUARIO;
 	}
 	

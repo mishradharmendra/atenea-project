@@ -123,8 +123,10 @@ public class PersonaDelegate {
 				apellidoPersona = nombreApellido[2] + " " + nombreApellido[3];
 			}
 			List<Object> criteriosBusqueda = new ArrayList<Object>();							
-			if(!nombrePersona.equalsIgnoreCase(""))
+			if(!nombrePersona.equalsIgnoreCase("")){
 				criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
+				criteriosBusqueda.add("per_vapellidos"+"|"+nombrePersona);
+			}
             if(!apellidoPersona.equalsIgnoreCase("")) 
                 criteriosBusqueda.add("per_vapellidos"+"|"+apellidoPersona);
 			if(!identificacionPersona.equalsIgnoreCase(""))
