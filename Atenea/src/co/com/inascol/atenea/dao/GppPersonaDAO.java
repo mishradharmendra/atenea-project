@@ -216,7 +216,7 @@ public class GppPersonaDAO implements DAO{
 							criterioConsulta = " WHERE " + criterios[0] + " LIKE '%" + criterios[1] + "%'";
 						}else{
 							criterios = ( (String) it.next() ).split("\\|");
-							criterioConsulta = criterioConsulta + " OR " + criterios[0] + " LIKE '%" + criterios[1] + "%'";
+							criterioConsulta = criterioConsulta + " " + criterios[1] + " " + criterios[0] + " LIKE '%" + criterios[2] + "%'";
 						}
 						contadorCriterios++;
 					}else if(banderaConsulta.equalsIgnoreCase("DOS")){
@@ -228,7 +228,7 @@ public class GppPersonaDAO implements DAO{
 							if(criterios[0].equalsIgnoreCase("per_nidentificacion"))
 								criterioConsulta = criterioConsulta + " AND " + criterios[0] + " LIKE '%" + criterios[1] + "%'";
 							else
-								criterioConsulta = criterioConsulta + " OR " + criterios[0] + " LIKE '%" + criterios[1] + "%' )";
+								criterioConsulta = criterioConsulta + " " + criterios[1] + " " + criterios[0] + " LIKE '%" + criterios[2] + "%' )";
 						}
 						contadorCriterios++;	
 					}
@@ -237,7 +237,7 @@ public class GppPersonaDAO implements DAO{
 			sentenciaSQL = "select * from gpp_persona " +
 							criterioConsulta;
 			gppPersonas = (List) jdbcTemplate.query(sentenciaSQL, gppPersonaRowMapper);
-			construirDatosPerons(gppPersonas);
+			construirDatosPersonas(gppPersonas);
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}
@@ -295,7 +295,7 @@ public class GppPersonaDAO implements DAO{
 				sentenciaSQL = "select * from gpp_persona " +
 				criterioConsulta;
 				gppPersonas = (List) jdbcTemplate.query(sentenciaSQL, gppPersonaRowMapper);
-				construirDatosPerons(gppPersonas);
+				construirDatosPersonas(gppPersonas);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -353,7 +353,7 @@ public class GppPersonaDAO implements DAO{
 					sentenciaSQL = "select * from gpp_persona " +
 					criterioConsulta;
 					gppPersonas = (List) jdbcTemplate.query(sentenciaSQL, gppPersonaRowMapper);
-					construirDatosPerons(gppPersonas);
+					construirDatosPersonas(gppPersonas);
 				}
 			}
 		}catch (Exception ex){
@@ -362,7 +362,7 @@ public class GppPersonaDAO implements DAO{
 		return gppPersonas;
 	}
 	
-	public void construirDatosPerons(List<Object> gppPersonas){
+	public void construirDatosPersonas(List<Object> gppPersonas){
 		if(gppPersonas.size()>0){
 			GppFormacionDAO gppFormacionDAO = new GppFormacionDAO();
 			GppPerfilproDAO gppPerfilproDAO = new GppPerfilproDAO();
