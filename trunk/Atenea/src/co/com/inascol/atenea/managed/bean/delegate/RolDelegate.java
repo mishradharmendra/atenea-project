@@ -33,7 +33,7 @@ public class RolDelegate {
 		rolService = new RolService();
 		roles = rolService.buscarRoles();		
 		List<Object> rolesConsultados = new ArrayList<Object>();
-		CharSequence nombre = nombreRol;
+		CharSequence nombre = nombreRol.toLowerCase();
 		if(roles.size()>0){
 			if(nombreRol.equalsIgnoreCase("")){
 				rolesConsultados = roles;

@@ -43,6 +43,7 @@ public class UsuariorolDelegate {
 		usuarios = usuarioService.buscarUsuarios();
 		List<Object> usuariosConsultados = new ArrayList<Object>();
 		CharSequence nombre = nombreUsuario.toLowerCase();
+		CharSequence login = loginUsuario.toLowerCase();
 		if(usuarios.size()>0){
 			if(loginUsuario.equalsIgnoreCase("") && nombreUsuario.equalsIgnoreCase("")){
 				usuariosConsultados = usuarios;
@@ -50,19 +51,20 @@ public class UsuariorolDelegate {
 				Iterator<Object> it = usuarios.iterator();
 				while(it.hasNext()){
 					usuario = (GppUsuario) it.next();
-					if(loginUsuario.equalsIgnoreCase("")){
-						if(usuario.getUsuVnombre().toLowerCase().contains(nombre)){
+					if(!nombreUsuario.equalsIgnoreCase("") && !loginUsuario.equalsIgnoreCase("")){
+						if(usuario.getUsuVlogin().toLowerCase().contains(login) && usuario.getUsuVnombre().toLowerCase().contains(nombre)){
 							usuariosConsultados.add(usuario);
 						}
-					}
-					if(nombreUsuario.equalsIgnoreCase("")){
-						if(usuario.getUsuVlogin().equalsIgnoreCase(loginUsuario)){
-							usuariosConsultados.add(usuario);
-						}						
-					}
-					if(!nombreUsuario.equalsIgnoreCase("") && !loginUsuario.equalsIgnoreCase("")){
-						if(usuario.getUsuVlogin().equalsIgnoreCase(loginUsuario) && usuario.getUsuVnombre().toLowerCase().contains(nombre)){
-							usuariosConsultados.add(usuario);
+					}else{
+						if(loginUsuario.equalsIgnoreCase("")){
+							if(usuario.getUsuVnombre().toLowerCase().contains(nombre)){
+								usuariosConsultados.add(usuario);
+							}
+						}
+						if(nombreUsuario.equalsIgnoreCase("")){
+							if(usuario.getUsuVlogin().toLowerCase().contains(login)){
+								usuariosConsultados.add(usuario);
+							}						
 						}
 					}
 				}
