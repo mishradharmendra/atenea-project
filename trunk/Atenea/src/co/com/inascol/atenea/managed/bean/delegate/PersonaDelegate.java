@@ -108,27 +108,37 @@ public class PersonaDelegate {
 	public List<Object> getBusquedaBasicaPersona(String nombrePersona, String identificacionPersona){
 		if(!nombrePersona.equalsIgnoreCase("") || !identificacionPersona.equalsIgnoreCase("")){
 			personaService = new PersonaService();
+			List<Object> criteriosBusqueda = new ArrayList<Object>();
+			if(!nombrePersona.equalsIgnoreCase("") && !identificacionPersona.equalsIgnoreCase(""))
+				criteriosBusqueda.add("DOS|");
+			else
+				criteriosBusqueda.add("UNO|");
 			String apellidoPersona = "";
 			String [] nombreApellido = nombrePersona.split("\\s+");
-			if(nombreApellido.length==2){
+			if(nombreApellido.length==1){
+				nombrePersona = nombreApellido[0];
+				apellidoPersona = nombreApellido[0];
+				criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
+				criteriosBusqueda.add("per_vapellidos"+"|"+apellidoPersona);
+			}				
+			else if(nombreApellido.length==2){
 				nombrePersona = nombreApellido[0];
 				apellidoPersona = nombreApellido[1];
+				criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
+				criteriosBusqueda.add("per_vapellidos"+"|"+apellidoPersona);
 			}
-			if(nombreApellido.length==3){
+			else if(nombreApellido.length==3){
 				nombrePersona = nombreApellido[0];
 				apellidoPersona = nombreApellido[1] + " " + nombreApellido[2];
+				criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
+				criteriosBusqueda.add("per_vapellidos"+"|"+apellidoPersona);
 			}
-			if(nombreApellido.length==4){
+			else if(nombreApellido.length==4){
 				nombrePersona = nombreApellido[0] + " " + nombreApellido[1];
 				apellidoPersona = nombreApellido[2] + " " + nombreApellido[3];
-			}
-			List<Object> criteriosBusqueda = new ArrayList<Object>();							
-			if(!nombrePersona.equalsIgnoreCase("")){
 				criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
-				criteriosBusqueda.add("per_vapellidos"+"|"+nombrePersona);
+				criteriosBusqueda.add("per_vapellidos"+"|"+apellidoPersona);
 			}
-            if(!apellidoPersona.equalsIgnoreCase("")) 
-                criteriosBusqueda.add("per_vapellidos"+"|"+apellidoPersona);
 			if(!identificacionPersona.equalsIgnoreCase(""))
 				criteriosBusqueda.add("per_nidentificacion"+"|"+identificacionPersona);
 			personas = personaService.buscarPersonaPorCriterios(criteriosBusqueda);

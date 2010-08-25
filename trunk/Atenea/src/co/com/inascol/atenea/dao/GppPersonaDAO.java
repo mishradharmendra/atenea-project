@@ -206,18 +206,32 @@ public class GppPersonaDAO implements DAO{
 				String [] criterios;
 				Iterator<Object> it = criteriosBusqueda.iterator();
 				int contadorCriterios = 1;
+				String banderaConsulta = "";
+				criterios = ( (String) it.next() ).split("\\|");
+				banderaConsulta = criterios[0];
 				while(it.hasNext()){
-					if(contadorCriterios == 1){
-						criterios = ( (String) it.next() ).split("\\|");
-						criterioConsulta = " WHERE " + criterios[0] + " LIKE '%" + criterios[1] + "%'";
-					}else{
-						criterios = ( (String) it.next() ).split("\\|");
-						if(criterios[0].equalsIgnoreCase("per_nidentificacion"))
-							criterioConsulta = criterioConsulta + " AND " + criterios[0] + " LIKE '%" + criterios[1] + "%'";
-						else
+					if(banderaConsulta.equalsIgnoreCase("UNO")){
+						if(contadorCriterios == 1){
+							criterios = ( (String) it.next() ).split("\\|");						
+							criterioConsulta = " WHERE " + criterios[0] + " LIKE '%" + criterios[1] + "%'";
+						}else{
+							criterios = ( (String) it.next() ).split("\\|");
 							criterioConsulta = criterioConsulta + " OR " + criterios[0] + " LIKE '%" + criterios[1] + "%'";
+						}
+						contadorCriterios++;
+					}else if(banderaConsulta.equalsIgnoreCase("DOS")){
+						if(contadorCriterios == 1){
+							criterios = ( (String) it.next() ).split("\\|");						
+							criterioConsulta = " WHERE ( " + criterios[0] + " LIKE '%" + criterios[1] + "%'";
+						}else{
+							criterios = ( (String) it.next() ).split("\\|");
+							if(criterios[0].equalsIgnoreCase("per_nidentificacion"))
+								criterioConsulta = criterioConsulta + " AND " + criterios[0] + " LIKE '%" + criterios[1] + "%'";
+							else
+								criterioConsulta = criterioConsulta + " OR " + criterios[0] + " LIKE '%" + criterios[1] + "%' )";
+						}
+						contadorCriterios++;	
 					}
-					contadorCriterios++;
 				}
 			}
 			sentenciaSQL = "select * from gpp_persona " +
