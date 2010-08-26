@@ -170,14 +170,6 @@
 							<td height="50px"/>
 						</tr>
 					</table>
-					<h:form>
-					<table align="right">
-						<tr>
-							<td><h:commandButton action="/favicon.ico" value="Descargar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-							<td width="40px"/>
-						</tr>
-					</table>
-					</h:form>										
 					<c:if test="#{PersonaMB.persona.perNidpersona == null}">
 					<table align="right">
 						<tr>
@@ -204,6 +196,14 @@
 					</table>
 					</c:if>					
 					</h:form>
+					<form action="http://localhost/publico/Temp File.pdf" target="_blank">
+					<table align="right">
+						<tr>
+							<td><input type="submit" value="Descargar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+							<td width="40px"/>
+						</tr>
+					</table>
+					</form>	
 					</rich:tab>
 					<rich:tab label="Formación Académica" name="TAB_PANEL_FORMACION" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;">
 						<c:if test="#{PersonaMB.tabPanelFormacion == 'TAB_PANEL_FORMACION'}">
