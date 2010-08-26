@@ -19,7 +19,8 @@ public class GppFormacionRowMapper implements RowMapper{
 		gppFormacion.setForNidformacion(rs.getInt("for_nidformacion"));
 		gppFormacion.setForVtitulo(rs.getString("for_vtitulo"));
 		gppFormacion.setForDfecgrado(rs.getDate("for_dfecgrado"));
-		gppFormacion.setForNduracionmes(rs.getInt("for_nduracionmes"));
+		gppFormacion.setForNduracion(rs.getInt("for_nduracion"));
+		gppFormacion.setForVunidaddurac(rs.getString("for_vunidaddurac"));
 		gppFormacion.setForVtarjetaprof(rs.getString("for_vtarjetaprof"));
 		gppFormacion.setForDfectarjeta(rs.getDate("for_dfectarjeta"));
 		gppFormacion.setPerNidpersona(rs.getInt("per_nidpersona"));

@@ -107,14 +107,6 @@ public class FormacionMB {
 		return listadoTitulosEquivalentes;
 	}
 	
-	public List<SelectItem> getDuraciones(){
-		List<SelectItem> listadoDuraciones = new ArrayList<SelectItem>();
-		for (int i = 1; i <= 20; i++) {
-			listadoDuraciones.add(new SelectItem(i));
-		}		
-		return listadoDuraciones;
-	}
-	
 	public String getAnterior(){
 		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_PERSONA);
 		return ConstantesFaces.CREAR_HV;

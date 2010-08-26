@@ -14,7 +14,8 @@ public class GppFormacion {
 	private int insNidinstitucion;
 	private int teqNidtituloeq;
 	private Date forDfecgrado;
-	private Integer forNduracionmes;
+	private Integer forNduracion;
+	private String forVunidaddurac;
 	private String forVtarjetaprof;
 	private Date forDfectarjeta;
 	private Integer docNtarjetaprof;
@@ -71,11 +72,11 @@ public class GppFormacion {
 	public void setForDfecgrado(Date forDfecgrado) {
 		this.forDfecgrado = forDfecgrado;
 	}
-	public Integer getForNduracionmes() {
-		return this.forNduracionmes;
+	public Integer getForNduracion() {
+		return this.forNduracion;
 	}
-	public void setForNduracionmes(Integer forNduracionmes) {
-		this.forNduracionmes = forNduracionmes;
+	public void setForNduracion(Integer forNduracion) {
+		this.forNduracion = forNduracion;
 	}
 	public String getForVtarjetaprof() {
 		return this.forVtarjetaprof;
@@ -142,5 +143,11 @@ public class GppFormacion {
 	}
 	public void setGppNivelacademico(GppNivelacademico gppNivelacademico) {
 		this.gppNivelacademico = gppNivelacademico;
-	}	
+	}
+	public String getForVunidaddurac() {
+		return forVunidaddurac;
+	}
+	public void setForVunidaddurac(String forVunidaddurac) {
+		this.forVunidaddurac = forVunidaddurac;
+	}
 }

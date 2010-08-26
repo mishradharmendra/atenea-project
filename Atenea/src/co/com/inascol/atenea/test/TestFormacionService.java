@@ -32,7 +32,8 @@ public class TestFormacionService {
 		for(int i =1; i<10;i++){
 			String titulo = "Titulo "+i;
 			Date fechaGrado = new Date(); 
-			Integer duracionMeses = i;
+			Integer duracion = i;
+			String unidadDuracion = "A";
 			String tarjetaProfesional = "99--aaii-"+i;
 			Date fechaTarjetaProfecional = new Date();
 			Integer idPersona = i;
@@ -42,7 +43,7 @@ public class TestFormacionService {
 			Integer idDocumentoTarjeta = i;
 			Integer idActaGrado = i;
 			Integer idDocumentoDiploma = i;
-			estadoOperacion = formacionService.crearFormacion(titulo, fechaGrado, duracionMeses, tarjetaProfesional, fechaTarjetaProfecional, idPersona, idNivelAcademico, idInstitucion, idTituloEquivalente, idDocumentoTarjeta, idActaGrado, idDocumentoDiploma, usuarioAutenticado);			
+			estadoOperacion = formacionService.crearFormacion(titulo, fechaGrado, duracion, unidadDuracion, tarjetaProfesional, fechaTarjetaProfecional, idPersona, idNivelAcademico, idInstitucion, idTituloEquivalente, idDocumentoTarjeta, idActaGrado, idDocumentoDiploma, usuarioAutenticado);			
 			System.out.println(estadoOperacion);
 		}
 	}
@@ -54,7 +55,8 @@ public class TestFormacionService {
 			Integer idFormacion = i;
 			String titulo = "Titulo "+i+i;
 			Date fechaGrado = new Date(); 
-			Integer duracionMeses = i+i;
+			Integer duracion = i;
+			String unidadDuracion = "A";
 			String tarjetaProfesional = "99--aaii-"+i+i;
 			Date fechaTarjetaProfecional = new Date();
 			Integer idPersona = i+i;
@@ -64,7 +66,7 @@ public class TestFormacionService {
 			Integer idDocumentoTarjeta = i+i;
 			Integer idActaGrado = i+i;
 			Integer idDocumentoDiploma = i+i;
-			estadoOperacion = formacionService.actualizarFormacion(idFormacion, titulo, fechaGrado, duracionMeses, tarjetaProfesional, fechaTarjetaProfecional, idPersona, idNivelAcademico, idInstitucion, idTituloEquivalente, idDocumentoTarjeta, idActaGrado, idDocumentoDiploma, usuarioAutenticado);
+			estadoOperacion = formacionService.actualizarFormacion(idFormacion, titulo, fechaGrado, duracion, unidadDuracion, tarjetaProfesional, fechaTarjetaProfecional, idPersona, idNivelAcademico, idInstitucion, idTituloEquivalente, idDocumentoTarjeta, idActaGrado, idDocumentoDiploma, usuarioAutenticado);
 			System.out.println(estadoOperacion);
 		}
 	}
@@ -85,7 +87,8 @@ public class TestFormacionService {
 			System.out.println(gppFormacion.getForNidformacion());
 			System.out.println(gppFormacion.getForVtitulo());
 			System.out.println(gppFormacion.getForDfecgrado());
-			System.out.println(gppFormacion.getForNduracionmes());
+			System.out.println(gppFormacion.getForNduracion());
+			System.out.println(gppFormacion.getForVunidaddurac());
 			System.out.println(gppFormacion.getForVtarjetaprof());
 			System.out.println(gppFormacion.getForDfectarjeta());
 			System.out.println(gppFormacion.getPerNidpersona());
@@ -115,7 +118,8 @@ public class TestFormacionService {
 				System.out.println(gppFormacion.getForNidformacion());
 				System.out.println(gppFormacion.getForVtitulo());
 				System.out.println(gppFormacion.getForDfecgrado());
-				System.out.println(gppFormacion.getForNduracionmes());
+				System.out.println(gppFormacion.getForNduracion());
+				System.out.println(gppFormacion.getForVunidaddurac());
 				System.out.println(gppFormacion.getForVtarjetaprof());
 				System.out.println(gppFormacion.getForDfectarjeta());
 				System.out.println(gppFormacion.getPerNidpersona());

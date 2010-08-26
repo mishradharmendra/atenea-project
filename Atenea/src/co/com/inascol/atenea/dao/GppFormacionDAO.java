@@ -33,7 +33,8 @@ public class GppFormacionDAO implements DAO{
 			sentenciaSQL = "update gpp_formacion " +
 							"set for_vtitulo = ?, " +
 							"for_dfecgrado = ?, " +
-							"for_nduracionmes = ?, " +
+							"for_nduracion = ?, " +
+							"for_vunidaddurac = ?, " +
 							"for_vtarjetaprof = ?, " +
 							"for_dfectarjeta = ?, " +	
 							"per_nidpersona = ?, " +
@@ -48,7 +49,8 @@ public class GppFormacionDAO implements DAO{
 							"where for_nidformacion = ?";	
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppFormacion.getForVtitulo(),
 															gppFormacion.getForDfecgrado(),
-															gppFormacion.getForNduracionmes(),
+															gppFormacion.getForNduracion(),
+															gppFormacion.getForVunidaddurac(),
 															gppFormacion.getForVtarjetaprof(),
 															gppFormacion.getForDfectarjeta(),
 															gppFormacion.getPerNidpersona(),
@@ -63,7 +65,8 @@ public class GppFormacionDAO implements DAO{
 															gppFormacion.getForNidformacion()},
 															new int[] {Types.VARCHAR,
 																		Types.DATE,
-																		Types.INTEGER,																		
+																		Types.INTEGER,
+																		Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.DATE,
 																		Types.INTEGER,
@@ -128,11 +131,12 @@ public class GppFormacionDAO implements DAO{
 		try{
 			gppFormacion = (GppFormacion) obj;			
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "insert into gpp_formacion (for_vtitulo, for_dfecgrado, for_nduracionmes, for_vtarjetaprof, for_dfectarjeta, per_nidpersona, nac_nidnivelac, Ins_nidinstitucion, teq_nidtituloeq, doc_ntarjetaprof, doc_nactagrado, doc_nidiploma, for_vusucrea, for_dfeccrea) " +
-							"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			sentenciaSQL = "insert into gpp_formacion (for_vtitulo, for_dfecgrado, for_nduracion, for_vunidaddurac, for_vtarjetaprof, for_dfectarjeta, per_nidpersona, nac_nidnivelac, Ins_nidinstitucion, teq_nidtituloeq, doc_ntarjetaprof, doc_nactagrado, doc_nidiploma, for_vusucrea, for_dfeccrea) " +
+							"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			jdbcTemplate.update(sentenciaSQL, new Object[]{gppFormacion.getForVtitulo(),
 															gppFormacion.getForDfecgrado(),
-															gppFormacion.getForNduracionmes(),
+															gppFormacion.getForNduracion(),
+															gppFormacion.getForVunidaddurac(),
 															gppFormacion.getForVtarjetaprof(),
 															gppFormacion.getForDfectarjeta(),
 															gppFormacion.getPerNidpersona(),
@@ -147,6 +151,7 @@ public class GppFormacionDAO implements DAO{
 															new int[] {Types.VARCHAR,
 																		Types.DATE,
 																		Types.INTEGER,																		
+																		Types.VARCHAR,
 																		Types.VARCHAR,
 																		Types.DATE,
 																		Types.INTEGER,

@@ -898,8 +898,16 @@ public class ReporteXLS {
 					hoja.addMergedRegion(new CellRangeAddress(fila.getRowNum(),fila.getRowNum(),5,6));				
 					celda = fila.getCell(7);
 					celda.setCellStyle(estiloContenido);
-					if(formacion.getForNduracionmes()!=null)
-						celda.setCellValue(formacion.getForNduracionmes());
+					if(formacion.getForNduracion()!=null){
+						if(formacion.getForVunidaddurac().equalsIgnoreCase("D"))
+							celda.setCellValue(String.valueOf(formacion.getForNduracion()/365));
+						else if(formacion.getForVunidaddurac().equalsIgnoreCase("S"))
+							celda.setCellValue(String.valueOf(formacion.getForNduracion()/52));
+						else if(formacion.getForVunidaddurac().equalsIgnoreCase("M"))
+							celda.setCellValue(String.valueOf(formacion.getForNduracion()/12));
+						else if(formacion.getForVunidaddurac().equalsIgnoreCase("A"))
+							celda.setCellValue(String.valueOf(formacion.getForNduracion()));
+					}
 					hoja.addMergedRegion(new CellRangeAddress(fila.getRowNum(),fila.getRowNum(),7,8));
 					if(formacion.getForDfecgrado()!=null){
 						celda = fila.getCell(9);
@@ -2279,9 +2287,16 @@ public class ReporteXLS {
 							numColumna = 8;
 							fila = hoja1.getRow(numFila);
 							celda = fila.getCell(numColumna);
-							if(formacion.getForNduracionmes()!=null)
-								texto = new HSSFRichTextString(String.valueOf(formacion.getForNduracionmes()*2));
-							celda.setCellValue(texto);
+							if(formacion.getForNduracion()!=null){
+								if(formacion.getForVunidaddurac().equalsIgnoreCase("D"))
+									celda.setCellValue(String.valueOf(formacion.getForNduracion()/182));
+								else if(formacion.getForVunidaddurac().equalsIgnoreCase("S"))
+									celda.setCellValue(String.valueOf(formacion.getForNduracion()/26));
+								else if(formacion.getForVunidaddurac().equalsIgnoreCase("M"))
+									celda.setCellValue(String.valueOf(formacion.getForNduracion()/6));
+								else if(formacion.getForVunidaddurac().equalsIgnoreCase("A"))
+									celda.setCellValue(String.valueOf(formacion.getForNduracion()/2));
+							}
 							celda.setCellStyle(estiloContenido);			
 							hoja1.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+7));			
 							// 
