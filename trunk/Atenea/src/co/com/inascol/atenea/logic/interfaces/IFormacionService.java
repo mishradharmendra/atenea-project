@@ -11,10 +11,10 @@ import co.com.inascol.atenea.entity.GppUsuario;
  */
 public interface IFormacionService {
 
-	public boolean crearFormacion(String titulo, Date fechaGrado, Integer duracionMeses, String tarjetaProfesional,
+	public boolean crearFormacion(String titulo, Date fechaGrado, Integer duracion, String unidadDuracion, String tarjetaProfesional,
 									Date fechaTarjetaProfecional, Integer idPersona, Integer idNivelAcademico, Integer idInstitucion, 
 									Integer idTituloEquivalente, Integer idDocumentoTarjeta, Integer idActaGrado, Integer idDocumentoDiploma, GppUsuario usuarioAutenticado);
-	public boolean actualizarFormacion(Integer idFormacion, String titulo, Date fechaGrado, Integer duracionMeses, String tarjetaProfesional,
+	public boolean actualizarFormacion(Integer idFormacion, String titulo, Date fechaGrado, Integer duracion, String unidadDuracion, String tarjetaProfesional,
 										Date fechaTarjetaProfecional, Integer idPersona, Integer idNivelAcademico, Integer idInstitucion, 
 										Integer idTituloEquivalente, Integer idDocumentoTarjeta, Integer idActaGrado, Integer idDocumentoDiploma, GppUsuario usuarioAutenticado);
 	public boolean borrarFormacion(Integer idFormacion);

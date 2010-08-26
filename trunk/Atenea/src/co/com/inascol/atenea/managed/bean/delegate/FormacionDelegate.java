@@ -80,13 +80,13 @@ public class FormacionDelegate {
 	public Boolean getGuardarFormacion(GppFormacion formacion){
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		formacionService = new FormacionService();
-		return formacionService.crearFormacion(formacion.getForVtitulo(), formacion.getForDfecgrado(), formacion.getForNduracionmes(), formacion.getForVtarjetaprof(), formacion.getForDfectarjeta(), formacion.getPerNidpersona(), formacion.getNacNidnivelac(), formacion.getInsNidinstitucion(), formacion.getTeqNidtituloeq(), formacion.getDocNtarjetaprof(), formacion.getDocNactagrado(), formacion.getDocNidiploma(), usuarioAutenticado);
+		return formacionService.crearFormacion(formacion.getForVtitulo(), formacion.getForDfecgrado(), formacion.getForNduracion(), formacion.getForVunidaddurac(), formacion.getForVtarjetaprof(), formacion.getForDfectarjeta(), formacion.getPerNidpersona(), formacion.getNacNidnivelac(), formacion.getInsNidinstitucion(), formacion.getTeqNidtituloeq(), formacion.getDocNtarjetaprof(), formacion.getDocNactagrado(), formacion.getDocNidiploma(), usuarioAutenticado);
 	}
 	
 	public Boolean getActualizarFormacion(GppFormacion formacion){
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		formacionService = new FormacionService();
-		return formacionService.actualizarFormacion(formacion.getForNidformacion(), formacion.getForVtitulo(), formacion.getForDfecgrado(), formacion.getForNduracionmes(), formacion.getForVtarjetaprof(), formacion.getForDfectarjeta(), formacion.getPerNidpersona(), formacion.getNacNidnivelac(), formacion.getInsNidinstitucion(), formacion.getTeqNidtituloeq(), formacion.getDocNtarjetaprof(), formacion.getDocNactagrado(), formacion.getDocNidiploma(), usuarioAutenticado);
+		return formacionService.actualizarFormacion(formacion.getForNidformacion(), formacion.getForVtitulo(), formacion.getForDfecgrado(), formacion.getForNduracion(), formacion.getForVunidaddurac(), formacion.getForVtarjetaprof(), formacion.getForDfectarjeta(), formacion.getPerNidpersona(), formacion.getNacNidnivelac(), formacion.getInsNidinstitucion(), formacion.getTeqNidtituloeq(), formacion.getDocNtarjetaprof(), formacion.getDocNactagrado(), formacion.getDocNidiploma(), usuarioAutenticado);
 	}
 	
 	public Boolean getBorrarFormacion(Integer idFormacion){

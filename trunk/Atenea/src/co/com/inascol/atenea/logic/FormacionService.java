@@ -19,7 +19,7 @@ public class FormacionService implements IFormacionService{
 	private List<Object> gppFormaciones;
 	
 	public boolean actualizarFormacion(Integer idFormacion, String titulo,
-										Date fechaGrado, Integer duracionMeses, String tarjetaProfesional,
+										Date fechaGrado, Integer duracion, String unidadDuracion, String tarjetaProfesional,
 										Date fechaTarjetaProfecional, Integer idPersona,
 										Integer idNivelAcademico, Integer idInstitucion,
 										Integer idTituloEquivalente, Integer idDocumentoTarjeta,
@@ -31,7 +31,8 @@ public class FormacionService implements IFormacionService{
 			gppFormacion.setForNidformacion(idFormacion);
 			gppFormacion.setForVtitulo(titulo);
 			gppFormacion.setForDfecgrado(fechaGrado);
-			gppFormacion.setForNduracionmes(duracionMeses);
+			gppFormacion.setForNduracion(duracion);
+			gppFormacion.setForVunidaddurac(unidadDuracion);
 			gppFormacion.setForVtarjetaprof(tarjetaProfesional);
 			gppFormacion.setForDfectarjeta(fechaTarjetaProfecional);
 			gppFormacion.setPerNidpersona(idPersona);
@@ -84,7 +85,7 @@ public class FormacionService implements IFormacionService{
 	}
 
 	public boolean crearFormacion(String titulo, Date fechaGrado,
-									Integer duracionMeses, String tarjetaProfesional,
+									Integer duracion, String unidadDuracion, String tarjetaProfesional,
 									Date fechaTarjetaProfecional, Integer idPersona,
 									Integer idNivelAcademico, Integer idInstitucion,
 									Integer idTituloEquivalente, Integer idDocumentoTarjeta,
@@ -95,7 +96,8 @@ public class FormacionService implements IFormacionService{
 			gppFormacion = new GppFormacion();
 			gppFormacion.setForVtitulo(titulo);
 			gppFormacion.setForDfecgrado(fechaGrado);
-			gppFormacion.setForNduracionmes(duracionMeses);
+			gppFormacion.setForNduracion(duracion);
+			gppFormacion.setForVunidaddurac(unidadDuracion);
 			gppFormacion.setForVtarjetaprof(tarjetaProfesional);
 			gppFormacion.setForDfectarjeta(fechaTarjetaProfecional);
 			gppFormacion.setPerNidpersona(idPersona);
