@@ -21,12 +21,19 @@ public class AutenticacionMB {
 	private String login;
 	private Boolean estadoOperacion;
 	private String fullContextPath;
+	private String servidor;
+	private String puerto;
+	private String aliasDocumentos;
+	private String aliasReportes;
+	private String urlDescargasDocumentos;
+	private String urlDescargasReportes;
 	private Boolean usuarioAutenticado;
 	private String homePage;
 	
 	public AutenticacionMB() throws Exception{
 		autenticacionDelegate = new AutenticacionDelegate();
 		getContextPath();
+		getContextPathHttpServer();
 	}
 
 	public String getLogin() {
@@ -53,6 +60,18 @@ public class AutenticacionMB {
 	public void setHomePage(String homePage) {
 		this.homePage = homePage;
 	}
+	public String getUrlDescargasDocumentos() {
+		return urlDescargasDocumentos;
+	}
+	public void setUrlDescargasDocumentos(String urlDescargasDocumentos) {
+		this.urlDescargasDocumentos = urlDescargasDocumentos;
+	}
+	public String getUrlDescargasReportes() {
+		return urlDescargasReportes;
+	}
+	public void setUrlDescargasReportes(String urlDescargasReportes) {
+		this.urlDescargasReportes = urlDescargasReportes;
+	}
 
 	public String getVerificarPermisos(){
 		estadoOperacion = false;
@@ -77,6 +96,16 @@ public class AutenticacionMB {
 		requestURL = ( (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest() ).getRequestURL();
 		fullContextPath = ( (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest() ).getServletPath();
 		fullContextPath = (requestURL.toString()).split(fullContextPath)[0];
+		
+	}
+	
+	public void getContextPathHttpServer(){
+		servidor = ( (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest() ).getServerName();
+		puerto = autenticacionDelegate.getParametro(3);
+		aliasDocumentos = autenticacionDelegate.getParametro(4);
+		aliasReportes = autenticacionDelegate.getParametro(5);
+		urlDescargasDocumentos = servidor + ":" + puerto + aliasDocumentos;
+		urlDescargasReportes = servidor + ":" + puerto + aliasReportes;
 	}
 
 	public Boolean validarPermisosServicio(String nombreServicio){

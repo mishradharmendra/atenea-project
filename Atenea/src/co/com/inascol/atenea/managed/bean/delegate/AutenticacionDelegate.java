@@ -2,8 +2,11 @@ package co.com.inascol.atenea.managed.bean.delegate;
 
 import javax.faces.context.FacesContext;
 
+import co.com.inascol.atenea.entity.GppParametrizacion;
 import co.com.inascol.atenea.entity.GppUsuario;
+import co.com.inascol.atenea.logic.ParametrizacionService;
 import co.com.inascol.atenea.logic.UsuarioService;
+import co.com.inascol.atenea.logic.interfaces.IParametrizacionService;
 import co.com.inascol.atenea.logic.interfaces.IUsuarioService;
 /**
  * @author Guillermo Toro
@@ -12,6 +15,7 @@ import co.com.inascol.atenea.logic.interfaces.IUsuarioService;
 public class AutenticacionDelegate {
 	
 	private IUsuarioService usuarioService;
+	private IParametrizacionService parametrizacionService;
 	private GppUsuario usuario;
 	
 	public AutenticacionDelegate(){}
@@ -25,5 +29,10 @@ public class AutenticacionDelegate {
 		}else{
 			return false;
 		}
+	}
+	
+	public String getParametro(Integer idParametro){
+		parametrizacionService = new ParametrizacionService();
+		return ((GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(idParametro)).getParVvalor();
 	}
 }
