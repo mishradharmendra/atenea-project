@@ -24,6 +24,7 @@ public class DocumentoMB {
 	private DocumentoDelegate documentoDelegate;
 	private Integer idDocumentoSoporte;
 	private List<Object> soportes;
+	private List<Object> hojasDeVida;
 	private GppDocumento documento;
 	private Integer idPersona;
 	private Boolean estadoOperacion;	
@@ -37,6 +38,7 @@ public class DocumentoMB {
 		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB")!=null){
 			idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();
 			soportes = documentoDelegate.getSoportesPorIdPersona(idPersona);
+			hojasDeVida = documentoDelegate.getHojasDeVidaPersona(idPersona);
 		}
 	}
 	
@@ -69,6 +71,12 @@ public class DocumentoMB {
 	}
 	public void setUrlDescargaArchivo(String urlDescargaArchivo) {
 		this.urlDescargaArchivo = urlDescargaArchivo;
+	}
+	public List<Object> getHojasDeVida() {
+		return hojasDeVida;
+	}
+	public void setHojasDeVida(List<Object> hojasDeVida) {
+		this.hojasDeVida = hojasDeVida;
 	}
 
 	public List<SelectItem> getTiposArchivos(){

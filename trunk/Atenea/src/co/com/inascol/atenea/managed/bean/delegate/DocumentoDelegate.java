@@ -7,7 +7,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
@@ -92,6 +94,25 @@ public class DocumentoDelegate {
 	public List<Object> getSoportesPorIdPersona(Integer idPersona){
 		documentoService = new DocumentoService();
 		return documentoService.buscarDocumentosPorPersona(idPersona);
+	}
+	
+	public List<Object> getHojasDeVidaPersona(Integer idPersona){
+		documentoService = new DocumentoService();
+		List<Object> hojasDeVida = null;
+		List<Object> documentos = documentoService.buscarDocumentosPorPersona(idPersona);
+		String prefijo = "Hoja";
+		if(documentos!=null){
+			Iterator<Object> it = documentos.iterator();
+			while(it.hasNext()){
+				GppDocumento documento = (GppDocumento) it.next();
+				if(documento.getDocVnombre().startsWith(prefijo)){
+					if(hojasDeVida==null)
+						hojasDeVida = new ArrayList<Object>();
+					hojasDeVida.add(documento);
+				}
+			}
+		}
+		return hojasDeVida;
 	}
 	
 	public void getBorrarSoporteFisico(Integer idDocumentoSoporte){

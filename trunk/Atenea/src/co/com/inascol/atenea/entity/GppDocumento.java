@@ -19,6 +19,7 @@ public class GppDocumento {
 	private String docVusumodifica;
 	private Date docDfecmodifica;
 	private GppTipoarchivo gppTipoarchivo;
+	private String documento; 
 	
 	public GppDocumento() {}
 
@@ -93,5 +94,15 @@ public class GppDocumento {
 	}
 	public void setGppTipoarchivo(GppTipoarchivo gppTipoarchivo) {
 		this.gppTipoarchivo = gppTipoarchivo;
+	}
+	public String getDocumento() {
+		String [] nombreDocumento = getDocVurlarchivo().split("\\/");
+		if(nombreDocumento[0].equalsIgnoreCase(getDocVurlarchivo()))
+			nombreDocumento = getDocVurlarchivo().split("\\\\");
+		documento = nombreDocumento[nombreDocumento.length-1];
+		return documento;
+	}
+	public void setDocumento(String documento) {
+		this.documento = documento;
 	}
 }

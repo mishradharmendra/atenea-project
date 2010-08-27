@@ -164,7 +164,57 @@
                           		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
 						</tr>		
 						</c:if>										                   
-					</table>					
+					</table>	
+					<table align="center" width="100%">
+						<tr>
+							<td height="50px"/>
+						</tr>
+					</table>				
+					<c:if test="#{DocumentoMB.hojasDeVida != null}">
+						<table align="center">
+							<tr>
+								<td align="center">
+									<h:form>
+									<rich:extendedDataTable id="tablaSoportesHv" align="center" value="#{DocumentoMB.hojasDeVida}" var="docu" width="620px" height="90px" headerClass="rich-table-header">
+										<rich:column width="200px" sortable="true" sortBy="#{docu.docVnombre}" label="Nombre">
+											<f:facet name="header">
+												<h:outputLabel value="Nombre" styleClass="PrimerNivel"></h:outputLabel>
+											</f:facet>
+											<div align="left"><h:outputLabel value="#{docu.docVnombre}"></h:outputLabel></div>
+										</rich:column>	
+										<rich:column width="295px" sortable="true" sortBy="#{docu.docVurlarchivo}" label="Ubicación">
+											<f:facet name="header">
+												<h:outputLabel value="Ubicación" styleClass="PrimerNivel"></h:outputLabel>
+											</f:facet>
+											<div align="left"><h:outputLabel value="#{docu.docVurlarchivo}"></h:outputLabel></div>
+										</rich:column>																												
+										<rich:column width="50px" label="Eliminar">
+											<f:facet name="header">
+												<h:outputLabel value="Eliminar" styleClass="PrimerNivel"></h:outputLabel>
+											</f:facet>
+											<a4j:commandLink id="eliminar" onclick="aceptar = confirm('Esta seguro que quiere eliminar el elemento seleccionado?'); if(aceptar==true){procesarSolicitudEliminarSoporte('#{docu.docNiddocumento}');} return false;">
+				                            	<div align="center"><h:graphicImage url="../../imagenes/Delete.png" style="border:0"/></div>
+				                        	</a4j:commandLink>
+				                        </rich:column>
+										<rich:column width="60px" label="Descargar">
+											<f:facet name="header">
+												<h:outputLabel value="Descargar" styleClass="PrimerNivel"></h:outputLabel>
+											</f:facet>
+											<a4j:commandLink id="descargar" onclick="window.open('http://#{AutenticacionMB.urlDescargasDocumentos}#{docu.documento}','blank')">
+												<div align="center"><h:graphicImage url="../../imagenes/download.png" style="border:0"/></div>
+											</a4j:commandLink>
+										</rich:column>			
+									</rich:extendedDataTable>
+									</h:form>
+							      	<a4j:form>
+							            <a4j:jsFunction name="procesarSolicitudEliminarSoporte" action="#{DocumentoMB.getBorrarSoporte}" >
+							                <a4j:actionparam name="p1" assignTo="#{DocumentoMB.idDocumentoSoporte}" />                
+						            	</a4j:jsFunction>
+						        	</a4j:form>	
+								</td>
+							</tr>
+						</table>
+					</c:if>														
 					<table align="center" width="100%">
 						<tr>
 							<td height="50px"/>
@@ -196,14 +246,6 @@
 					</table>
 					</c:if>					
 					</h:form>
-					<form action="http://localhost/publico/Temp File.pdf" target="_blank">
-					<table align="right">
-						<tr>
-							<td><input type="submit" value="Descargar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-							<td width="40px"/>
-						</tr>
-					</table>
-					</form>	
 					</rich:tab>
 					<rich:tab label="Formación Académica" name="TAB_PANEL_FORMACION" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;">
 						<c:if test="#{PersonaMB.tabPanelFormacion == 'TAB_PANEL_FORMACION'}">
@@ -911,7 +953,7 @@
 							<tr>
 								<td align="center">
 									<h:form>
-									<rich:extendedDataTable id="tablaSoportes" align="center" value="#{DocumentoMB.soportes}" var="docu" width="830px" height="200px" headerClass="rich-table-header">
+									<rich:extendedDataTable id="tablaSoportes" align="center" value="#{DocumentoMB.soportes}" var="docu" width="835px" height="200px" headerClass="rich-table-header">
 										<rich:column width="110px" sortable="true" sortBy="#{docu.gppTipoarchivo.tarVtipoarchivo}" label="Tipo Archivo">
 											<f:facet name="header">
 												<h:outputLabel value="Tipo Archivo" styleClass="PrimerNivel"></h:outputLabel>
@@ -924,7 +966,7 @@
 											</f:facet>
 											<div align="left"><h:outputLabel value="#{docu.docDfecexpide}"></h:outputLabel></div>
 										</rich:column>
-										<rich:column width="150px" sortable="true" sortBy="#{docu.docVarchivo}" label="Archivo">
+										<rich:column width="100px" sortable="true" sortBy="#{docu.docVarchivo}" label="Archivo">
 											<f:facet name="header">
 												<h:outputLabel value="Archivo" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
@@ -936,7 +978,7 @@
 											</f:facet>
 											<div align="left"><h:outputLabel value="#{docu.docVnombre}"></h:outputLabel></div>
 										</rich:column>	
-										<rich:column width="255px" sortable="true" sortBy="#{docu.docVurlarchivo}" label="Ubicación">
+										<rich:column width="250px" sortable="true" sortBy="#{docu.docVurlarchivo}" label="Ubicación">
 											<f:facet name="header">
 												<h:outputLabel value="Ubicación" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
@@ -949,7 +991,15 @@
 											<a4j:commandLink id="eliminar" onclick="aceptar = confirm('Esta seguro que quiere eliminar el elemento seleccionado?'); if(aceptar==true){procesarSolicitudEliminarSoporte('#{docu.docNiddocumento}');} return false;">
 					                            <div align="center"><h:graphicImage url="../../imagenes/Delete.png" style="border:0"/></div>
 					                        </a4j:commandLink>
-										</rich:column>			
+										</rich:column>
+										<rich:column width="60px" label="Descargar">
+											<f:facet name="header">
+												<h:outputLabel value="Descargar" styleClass="PrimerNivel"></h:outputLabel>
+											</f:facet>
+											<a4j:commandLink id="descargar" onclick="window.open('http://#{AutenticacionMB.urlDescargasDocumentos}#{docu.documento}','blank')">
+												<div align="center"><h:graphicImage url="../../imagenes/download.png" style="border:0"/></div>
+											</a4j:commandLink>
+										</rich:column>													
 									</rich:extendedDataTable>
 									</h:form>
 							      	<a4j:form>

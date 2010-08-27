@@ -396,13 +396,13 @@
 											</f:facet>
 											<div align="left"><h:outputLabel value="#{docu.gppTipoarchivo.tarVtipoarchivo}"></h:outputLabel></div>
 										</rich:column>
-										<rich:column width="105px"  sortable="true" sortBy="#{docu.docDfecexpide}" label="Fecha Expedición">
+										<rich:column width="100px"  sortable="true" sortBy="#{docu.docDfecexpide}" label="Fecha Expedición">
 											<f:facet name="header">
 												<h:outputLabel value="Fecha Expedición" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
 											<div align="left"><h:outputLabel value="#{docu.docDfecexpide}"></h:outputLabel></div>
 										</rich:column>
-										<rich:column width="200px" sortable="true" sortBy="#{docu.docVarchivo}" label="Archivo">
+										<rich:column width="145px" sortable="true" sortBy="#{docu.docVarchivo}" label="Archivo">
 											<f:facet name="header">
 												<h:outputLabel value="Archivo" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
@@ -419,7 +419,15 @@
 												<h:outputLabel value="Ubicación" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
 											<div align="left"><h:outputLabel value="#{docu.docVurlarchivo}"></h:outputLabel></div>
-										</rich:column>																												
+										</rich:column>	
+										<rich:column width="60px" label="Descargar">
+											<f:facet name="header">
+												<h:outputLabel value="Descargar" styleClass="PrimerNivel"></h:outputLabel>
+											</f:facet>
+											<a4j:commandLink id="descargar" onclick="window.open('http://#{AutenticacionMB.urlDescargasDocumentos}#{docu.documento}','blank')">
+												<div align="center"><h:graphicImage url="../../imagenes/download.png" style="border:0"/></div>
+											</a4j:commandLink>
+										</rich:column>		
 									</rich:extendedDataTable>
 									</h:form>
 								</td>
