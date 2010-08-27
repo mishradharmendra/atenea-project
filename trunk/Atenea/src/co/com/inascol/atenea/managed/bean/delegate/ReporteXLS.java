@@ -22,6 +22,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import co.com.inascol.atenea.entity.GppDepartamento;
 import co.com.inascol.atenea.entity.GppEstadocivil;
 import co.com.inascol.atenea.entity.GppExperiencia;
@@ -426,8 +428,9 @@ public class ReporteXLS {
 				String nombreArchivo = "FORMATO_HV_UPME_"+persona.getPerNidentificacion()+".xls";		
 				FileOutputStream formatoExportado = new FileOutputStream(rutaSalidaExportacion+nombreArchivo);
 				libro.write(formatoExportado);
-				formatoExportado.close();		
+				formatoExportado.close();				
 				estadoOperacion = true;
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("documentoExportado", nombreArchivo);				
 			}
 		} catch (Exception ex){
 			ex.printStackTrace();
@@ -932,8 +935,9 @@ public class ReporteXLS {
 				String nombreArchivo = "FORMATO_HV_INGEOMINAS_"+persona.getPerNidentificacion()+".xls";		
 				FileOutputStream formatoExportado = new FileOutputStream(rutaSalidaExportacion+nombreArchivo);
 				libro.write(formatoExportado);
-				formatoExportado.close();		
+				formatoExportado.close();			
 				estadoOperacion = true;
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("documentoExportado", nombreArchivo);				
 			}
 		} catch (Exception ex){
 			ex.printStackTrace();
@@ -2295,7 +2299,7 @@ public class ReporteXLS {
 								else if(formacion.getForVunidaddurac().equalsIgnoreCase("M"))
 									celda.setCellValue(String.valueOf(formacion.getForNduracion()/6));
 								else if(formacion.getForVunidaddurac().equalsIgnoreCase("A"))
-									celda.setCellValue(String.valueOf(formacion.getForNduracion()/2));
+									celda.setCellValue(String.valueOf(formacion.getForNduracion()*2));
 							}
 							celda.setCellStyle(estiloContenido);			
 							hoja1.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+7));			
@@ -4214,8 +4218,9 @@ public class ReporteXLS {
 				String nombreArchivo = "FORMATO_HV_FUHV_"+persona.getPerNidentificacion()+".xls";		
 				FileOutputStream formatoExportado = new FileOutputStream(rutaSalidaExportacion+nombreArchivo);
 				libro.write(formatoExportado);
-				formatoExportado.close();		
+				formatoExportado.close();	
 				estadoOperacion = true;
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("documentoExportado", nombreArchivo);				
 			}
 		} catch (Exception ex){
 			ex.printStackTrace();
@@ -4770,6 +4775,7 @@ public class ReporteXLS {
 				libro.write(formatoExportado);
 				formatoExportado.close();		
 				estadoOperacion = true;
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("documentoExportado", nombreArchivo);
 			}			
 		}catch (Exception e) {
 			e.printStackTrace();

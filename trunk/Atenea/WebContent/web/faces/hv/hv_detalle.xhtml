@@ -14,8 +14,8 @@
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
 			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
-				<rich:tabPanel switchType="ajax" selectedTab="#{PersonaMB.tabPanel}" >
-					<rich:tab label="Datos Personales" name="TAB_PANEL_PERSONA" style="background-color:#EEE;height:370px;">					
+				<rich:tabPanel switchType="server" selectedTab="#{PersonaMB.tabPanel}" >
+					<rich:tab label="Datos Personales" name="TAB_PANEL_PERSONA" style="background-color:#EEE;height:370px;" switchType="server">					
 					<table align="left">
 						<tr>
 							<td><h:outputLabel value="Datos Personales #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
@@ -125,7 +125,7 @@
 					</c:if>
 					</h:form>																		
 					</rich:tab>
-					<rich:tab label="Formación Académica" name="TAB_PANEL_FORMACION" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;">
+					<rich:tab label="Formación Académica" name="TAB_PANEL_FORMACION" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;" switchType="server">
 						<table align="left">
 							<tr>
 								<td><h:outputLabel value="Formación Académica  #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
@@ -191,7 +191,7 @@
 						</c:if>
 						</h:form>								        	     							
 					</rich:tab>
-					<rich:tab label="Experiencia Laboral" name="TAB_PANEL_EXPERIENCIA" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;">
+					<rich:tab label="Experiencia Laboral" name="TAB_PANEL_EXPERIENCIA" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;" switchType="server">
 						<table align="left">
 							<tr>
 								<td><h:outputLabel value="Experiencia Laboral #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
@@ -275,7 +275,7 @@
 						</c:if>						
 						</h:form>															
 					</rich:tab>
-					<rich:tab label="Perfíl Profesional" name="TAB_PANEL_PERFIL" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;">
+					<rich:tab label="Perfíl Profesional" name="TAB_PANEL_PERFIL" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;" switchType="server">
 						<table align="left">
 							<tr>
 								<td><h:outputLabel value="Perfíl Profesional #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
@@ -372,7 +372,7 @@
 						</c:if>	
 						</h:form>														
 					</rich:tab>
-					<rich:tab label="Soportes" name="TAB_PANEL_SOPORTES" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;">
+					<rich:tab label="Soportes" name="TAB_PANEL_SOPORTES" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;" switchType="server">
 						<table align="left">
 							<tr>
 								<td><h:outputLabel value="Archivos Relacionados #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>

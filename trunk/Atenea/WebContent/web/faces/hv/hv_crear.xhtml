@@ -14,9 +14,9 @@
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
 			<rich:panel style="width:940px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
-				<rich:tabPanel switchType="ajax" selectedTab="#{PersonaMB.tabPanel}" style="background-color:#EEE;">
+				<rich:tabPanel switchType="server" selectedTab="#{PersonaMB.tabPanel}" style="background-color:#EEE;">
 					<script type="text/javascript" src="../../swf/calendario.js"></script>					
-					<rich:tab label="Datos Personales *" name="TAB_PANEL_PERSONA" style="background-color:#EEE;" styleClass="rojo">					
+					<rich:tab label="Datos Personales *" name="TAB_PANEL_PERSONA" style="background-color:#EEE;" styleClass="rojo" switchType="server">					
 					<table align="left">
 						<tr>
 							<td><h:outputLabel value="Datos Personales #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
@@ -175,7 +175,7 @@
 							<tr>
 								<td align="center">
 									<h:form>
-									<rich:extendedDataTable id="tablaSoportesHv" align="center" value="#{DocumentoMB.hojasDeVida}" var="docu" width="620px" height="90px" headerClass="rich-table-header">
+									<rich:extendedDataTable id="tablaSoportesHv" align="center" value="#{DocumentoMB.hojasDeVida}" var="docu" width="570px" height="90px" headerClass="rich-table-header">
 										<rich:column width="200px" sortable="true" sortBy="#{docu.docVnombre}" label="Nombre">
 											<f:facet name="header">
 												<h:outputLabel value="Nombre" styleClass="PrimerNivel"></h:outputLabel>
@@ -188,14 +188,6 @@
 											</f:facet>
 											<div align="left"><h:outputLabel value="#{docu.docVurlarchivo}"></h:outputLabel></div>
 										</rich:column>																												
-										<rich:column width="50px" label="Eliminar">
-											<f:facet name="header">
-												<h:outputLabel value="Eliminar" styleClass="PrimerNivel"></h:outputLabel>
-											</f:facet>
-											<a4j:commandLink id="eliminar" onclick="aceptar = confirm('Esta seguro que quiere eliminar el elemento seleccionado?'); if(aceptar==true){procesarSolicitudEliminarSoporte('#{docu.docNiddocumento}');} return false;">
-				                            	<div align="center"><h:graphicImage url="../../imagenes/Delete.png" style="border:0"/></div>
-				                        	</a4j:commandLink>
-				                        </rich:column>
 										<rich:column width="60px" label="Descargar">
 											<f:facet name="header">
 												<h:outputLabel value="Descargar" styleClass="PrimerNivel"></h:outputLabel>
@@ -207,10 +199,10 @@
 									</rich:extendedDataTable>
 									</h:form>
 							      	<a4j:form>
-							            <a4j:jsFunction name="procesarSolicitudEliminarSoporte" action="#{DocumentoMB.getBorrarSoporte}" >
+							            <a4j:jsFunction name="procesarSolicitudEliminarSoporte" action="#{DocumentoMB.getBorrarSoporte}" immediate="true" ajaxSingle="true">
 							                <a4j:actionparam name="p1" assignTo="#{DocumentoMB.idDocumentoSoporte}" />                
 						            	</a4j:jsFunction>
-						        	</a4j:form>	
+						        	</a4j:form>
 								</td>
 							</tr>
 						</table>
@@ -247,7 +239,7 @@
 					</c:if>					
 					</h:form>
 					</rich:tab>
-					<rich:tab label="Formación Académica" name="TAB_PANEL_FORMACION" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;">
+					<rich:tab label="Formación Académica" name="TAB_PANEL_FORMACION" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;" switchType="server">
 						<c:if test="#{PersonaMB.tabPanelFormacion == 'TAB_PANEL_FORMACION'}">
 							<table align="left">
 								<tr>
@@ -490,7 +482,7 @@
 							</h:form>
 						</c:if>								        	     							
 					</rich:tab>
-					<rich:tab label="Experiencia Laboral" name="TAB_PANEL_EXPERIENCIA" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;">
+					<rich:tab label="Experiencia Laboral" name="TAB_PANEL_EXPERIENCIA" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;" switchType="server">
 						<c:if test="#{PersonaMB.tabPanelExperiencia == 'TAB_PANEL_EXPERIENCIA'}">
 							<table align="left">
 								<tr>
@@ -770,7 +762,7 @@
 							</h:form>
 						</c:if>													
 					</rich:tab>
-					<rich:tab label="Perfil Profesional" name="TAB_PANEL_PERFIL" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;">
+					<rich:tab label="Perfil Profesional" name="TAB_PANEL_PERFIL" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;" switchType="server">
 						<table align="left">
 							<tr>
 								<td><h:outputLabel value="Perfil Profesional #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
@@ -891,7 +883,7 @@
 						</table>	
 						</h:form>
 					</rich:tab>
-					<rich:tab label="Soportes" name="TAB_PANEL_SOPORTES" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;">
+					<rich:tab label="Soportes" name="TAB_PANEL_SOPORTES" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;" switchType="server">
 						<table align="left">
 							<tr>
 								<td><h:outputLabel value="Archivos Relacionados #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
