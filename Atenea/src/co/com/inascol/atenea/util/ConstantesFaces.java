@@ -100,6 +100,7 @@ public class ConstantesFaces {
 
 	public static final String REPORTE_HOME = "REPORTE_HOME";
 	public static final String REPORTE_DETALLE = "REPORTE_DETALLE";
+	public static final String REPORTE_DESCARGA = "REPORTE_DESCARGA";
 	
 	public static final String TAB_PANEL_PERSONA = "TAB_PANEL_PERSONA";
 	public static final String TAB_PANEL_FORMACION = "TAB_PANEL_FORMACION";

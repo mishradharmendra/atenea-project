@@ -22,11 +22,11 @@ public class ReporteMB {
 	private String tipoReporte;
 	private Boolean estadoOperacion;
 	private List<Object> personas;
+	private String documentoExportado;
 	
 	public ReporteMB(){
 		reporteDelegate = new ReporteDelegate();
 	}
-
 	public GppPersona getPersona() {
 		return persona;
 	}
@@ -39,55 +39,49 @@ public class ReporteMB {
 	public void setReporteDelegate(ReporteDelegate reporteDelegate) {
 		this.reporteDelegate = reporteDelegate;
 	}	
-	
 	public Integer getIdPersona() {
 		return idPersona;
 	}
-
 	public void setIdPersona(Integer idPersona) {
 		this.idPersona = idPersona;
 	}
-
 	public String getNombrePersona() {
 		return nombrePersona;
 	}
-
 	public void setNombrePersona(String nombrePersona) {
 		this.nombrePersona = nombrePersona;
 	}
-
 	public String getIdentificacionPersona() {
 		return identificacionPersona;
 	}
-
 	public void setIdentificacionPersona(String identificacionPersona) {
 		this.identificacionPersona = identificacionPersona;
 	}
-
 	public Boolean getEstadoPersona() {
 		return estadoPersona;
 	}
-
 	public void setEstadoPersona(Boolean estadoPersona) {
 		this.estadoPersona = estadoPersona;
 	}
-
 	public String getTipoReporte() {
 		return tipoReporte;
 	}
-
 	public void setTipoReporte(String tipoReporte) {
 		this.tipoReporte = tipoReporte;
 	}
-
 	public List<Object> getPersonas() {
 		return personas;
 	}
-
 	public void setPersonas(List<Object> personas) {
 		this.personas = personas;
 	}
-
+	public String getDocumentoExportado() {
+		return documentoExportado;
+	}
+	public void setDocumentoExportado(String documentoExportado) {
+		this.documentoExportado = documentoExportado;
+	}
+	
 	public String getHomeReporte(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ReporteMB");
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
@@ -111,8 +105,8 @@ public class ReporteMB {
 		if(getValidarPermisosServicio("srvCrearReporte")){	
 			estadoOperacion  = reporteDelegate.getCrearReporte(tipoReporte, persona);
 			if(estadoOperacion==true){
-				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ReporteMB");
-				return ConstantesFaces.ESTADO_OK;
+				documentoExportado = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("documentoExportado");
+				return ConstantesFaces.REPORTE_DESCARGA;
 			}else{
 				return ConstantesFaces.ESTADO_ERROR;
 			}

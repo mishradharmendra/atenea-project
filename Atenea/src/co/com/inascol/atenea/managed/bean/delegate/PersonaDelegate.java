@@ -106,6 +106,7 @@ public class PersonaDelegate {
 	}
 	
 	public List<Object> getBusquedaBasicaPersona(String nombrePersona, String identificacionPersona){
+		personas = new ArrayList<Object>();
 		if(!nombrePersona.equalsIgnoreCase("") || !identificacionPersona.equalsIgnoreCase("")){
 			personaService = new PersonaService();
 			List<Object> criteriosBusqueda = new ArrayList<Object>();
@@ -149,32 +150,40 @@ public class PersonaDelegate {
 	}
 	
 	public List<Object> getBusquedaAvanzadaPersona(String nombrePersona, String identificacionPersona, String idPregrado, Date fechaTarjetaProfesional, String idEspecializacion, String idMaestria, String cargo, String bd, String herramientas, String funciones, String idPerfil){
+		personas = new ArrayList<Object>();
 		if(!nombrePersona.equalsIgnoreCase("") || !identificacionPersona.equalsIgnoreCase("") || !idPregrado.equalsIgnoreCase("") || 
 				!idEspecializacion.equalsIgnoreCase("") || !idMaestria.equalsIgnoreCase("") || !cargo.equalsIgnoreCase("") ||
 					!herramientas.equalsIgnoreCase("") || !bd.equalsIgnoreCase("") || !funciones.equalsIgnoreCase("") || 
 						!idPerfil.equalsIgnoreCase("") || fechaTarjetaProfesional!=null){
 			personaService = new PersonaService();
-			String apellidoPersona = "";			
-			if(!nombrePersona.equalsIgnoreCase("")){				
-				String [] nombreApellido = nombrePersona.split("\\s+");
-				if(nombreApellido.length==2){
+			List<Object> criteriosBusqueda = new ArrayList<Object>();
+			String apellidoPersona = "";
+			String [] nombreApellido = nombrePersona.split("\\s+");
+			if(!nombreApellido[0].equalsIgnoreCase("")){
+				if(nombreApellido.length==1){
+					nombrePersona = nombreApellido[0];
+					apellidoPersona = nombreApellido[0];
+					criteriosBusqueda.add("( p.per_vnombres LIKE '%"+nombrePersona+"%' OR p.per_vapellidos LIKE '%"+apellidoPersona+"%' )");
+				}				
+				else if(nombreApellido.length==2){
 					nombrePersona = nombreApellido[0];
 					apellidoPersona = nombreApellido[1];
+					criteriosBusqueda.add("p.per_vnombres LIKE '%"+nombrePersona+"%'");
+					criteriosBusqueda.add("p.per_vapellidos LIKE '%"+apellidoPersona+"%'");
 				}
-				if(nombreApellido.length==3){
+				else if(nombreApellido.length==3){
 					nombrePersona = nombreApellido[0];
 					apellidoPersona = nombreApellido[1] + " " + nombreApellido[2];
+					criteriosBusqueda.add("p.per_vnombres LIKE '%"+nombrePersona+"%'");
+					criteriosBusqueda.add("p.per_vapellidos LIKE '%"+apellidoPersona+"%'");
 				}
-				if(nombreApellido.length==4){
+				else if(nombreApellido.length==4){
 					nombrePersona = nombreApellido[0] + " " + nombreApellido[1];
 					apellidoPersona = nombreApellido[2] + " " + nombreApellido[3];
+					criteriosBusqueda.add("p.per_vnombres LIKE '%"+nombrePersona+"%'");
+					criteriosBusqueda.add("p.per_vapellidos LIKE '%"+apellidoPersona+"%'");
 				}
 			}
-			List<Object> criteriosBusqueda = new ArrayList<Object>();							
-			if(!nombrePersona.equalsIgnoreCase(""))
-				criteriosBusqueda.add("p.per_vnombres LIKE '%"+nombrePersona+"%'");
-            if(!apellidoPersona.equalsIgnoreCase("")) 
-                criteriosBusqueda.add("p.per_vapellidos LIKE '%"+apellidoPersona+"%'");
 			if(!identificacionPersona.equalsIgnoreCase(""))
 				criteriosBusqueda.add("p.per_nidentificacion LIKE '%"+identificacionPersona+"%'");
 			if(!idPregrado.equalsIgnoreCase(""))
