@@ -19,7 +19,8 @@ public class GppDocumento {
 	private String docVusumodifica;
 	private Date docDfecmodifica;
 	private GppTipoarchivo gppTipoarchivo;
-	private String documento; 
+	private String documento;
+	private String prefijoDocumento;
 	
 	public GppDocumento() {}
 
@@ -104,5 +105,16 @@ public class GppDocumento {
 	}
 	public void setDocumento(String documento) {
 		this.documento = documento;
+	}
+	public String getPrefijoDocumento() {
+		String [] prefijoDocumentoArray = getDocVnombre().split("\\-");
+		if(prefijoDocumentoArray[0].equalsIgnoreCase(getDocVnombre()))
+			prefijoDocumento = getDocVnombre().substring(0,1);
+		else
+			prefijoDocumento = prefijoDocumentoArray[0];
+		return prefijoDocumento;
+	}
+	public void setPrefijoDocumento(String prefijoDocumento) {
+		this.prefijoDocumento = prefijoDocumento;
 	}
 }

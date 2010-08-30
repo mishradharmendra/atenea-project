@@ -176,14 +176,14 @@
 							<tr>
 								<td align="center">
 									<h:form>
-									<rich:extendedDataTable id="tablaSoportesHv" align="center" value="#{DocumentoMB.hojasDeVida}" var="docu" width="570px" height="90px" headerClass="rich-table-header">
+									<rich:extendedDataTable id="tablaSoportesHv" align="center" value="#{DocumentoMB.hojasDeVida}" var="docu" width="615px" height="90px" headerClass="rich-table-header">
 										<rich:column width="200px" sortable="true" sortBy="#{docu.docVnombre}" label="Nombre">
 											<f:facet name="header">
 												<h:outputLabel value="Nombre" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
 											<div align="left"><h:outputLabel value="#{docu.docVnombre}"></h:outputLabel></div>
 										</rich:column>	
-										<rich:column width="295px" sortable="true" sortBy="#{docu.docVurlarchivo}" label="Ubicación">
+										<rich:column width="340px" sortable="true" sortBy="#{docu.docVurlarchivo}" label="Ubicación">
 											<f:facet name="header">
 												<h:outputLabel value="Ubicación" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
@@ -193,9 +193,9 @@
 											<f:facet name="header">
 												<h:outputLabel value="Descargar" styleClass="PrimerNivel"></h:outputLabel>
 											</f:facet>
-											<a4j:commandLink id="descargar" onclick="window.open('http://#{AutenticacionMB.urlDescargasDocumentos}#{docu.documento}','blank')">
-												<div align="center"><h:graphicImage url="../../imagenes/download.png" style="border:0"/></div>
-											</a4j:commandLink>
+												<a4j:commandLink id="descargar" onclick="window.open('http://#{AutenticacionMB.urlDescargasDocumentos}#{docu.documento}','blank')">
+													<div align="center"><h:graphicImage url="../../imagenes/download.png" style="border:0"/></div>
+												</a4j:commandLink>
 										</rich:column>			
 									</rich:extendedDataTable>
 									</h:form>
@@ -207,7 +207,7 @@
 								</td>
 							</tr>
 						</table>
-					</c:if>														
+					</c:if>
 					<table align="center" width="100%">
 						<tr>
 							<td height="50px"/>

@@ -208,7 +208,7 @@ public class ExperienciaDelegate {
 	public void getGuardarCertificaciones(GppPersona persona){
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
-		String nombreDocumento = "Consolidado-Certificaciones-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
+		String nombreDocumento = "Consolidado_Certificaciones-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
 		Integer tipoDocumento = 4;
 		documentoService.crearDocumento(nombreDocumento, nombreArchivoCertificaciones, urlArchivoCertificaciones, new Date(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
@@ -217,7 +217,7 @@ public class ExperienciaDelegate {
 	public void getGuardarCertificacion1(GppPersona persona){
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
-		String nombreDocumento = "Certificacion-1-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
+		String nombreDocumento = "Certificacion_1-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
 		Integer tipoDocumento = 1;
 		if(nombreArchivoCertificado1.toLowerCase().endsWith(".pdf")){
 			tipoDocumento = 1;
@@ -235,7 +235,7 @@ public class ExperienciaDelegate {
 	public void getGuardarCertificacion2(GppPersona persona){
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
-		String nombreDocumento = "Certificacion-2-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
+		String nombreDocumento = "Certificacion_2-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
 		Integer tipoDocumento = 1;
 		if(nombreArchivoCertificado2.toLowerCase().endsWith(".pdf")){
 			tipoDocumento = 1;
