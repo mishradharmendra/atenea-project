@@ -200,7 +200,7 @@ public class FormacionDelegate {
 	public void getGuardarSoporte(GppPersona persona){
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
-		String nombreDocumento = "Consolidado-Soportes-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
+		String nombreDocumento = "Consolidado_Soportes-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
 		Integer tipoDocumento = 4;
 		documentoService.crearDocumento(nombreDocumento, nombreArchivoSoportes, urlArchivoSoportes, new Date(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");

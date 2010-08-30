@@ -163,7 +163,7 @@ public class PersonaDelegate {
 				if(nombreApellido.length==1){
 					nombrePersona = nombreApellido[0];
 					apellidoPersona = nombreApellido[0];
-					criteriosBusqueda.add("( p.per_vnombres LIKE '%"+nombrePersona+"%' OR p.per_vapellidos LIKE '%"+apellidoPersona+"%' )");
+					criteriosBusqueda.add("p.per_vnombres LIKE '%"+nombrePersona+"%' OR p.per_vapellidos LIKE '%"+apellidoPersona+"%'");
 				}				
 				else if(nombreApellido.length==2){
 					nombrePersona = nombreApellido[0];
@@ -276,7 +276,7 @@ public class PersonaDelegate {
 	public void getGuardarHojaVida(GppPersona persona){
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
-		String nombreDocumento = "Hoja de Vida-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
+		String nombreDocumento = "Hoja_de_Vida-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
 		Integer tipoDocumento = 1;
 		if(nombreArchivo.toLowerCase().endsWith(".pdf")){
 			tipoDocumento = 1;
