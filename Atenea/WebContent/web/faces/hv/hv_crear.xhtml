@@ -12,11 +12,12 @@
 </head>		  
 <body>
 	<ui:composition template="../../template.xhtml">
-		<ui:define name="cuerpo">
+		<ui:define name="cuerpo">					
 			<rich:panel style="width:940px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
+			<div align="left" style="position: relative">
 				<rich:tabPanel switchType="server" selectedTab="#{PersonaMB.tabPanel}" style="background-color:#EEE;">
-					<script type="text/javascript" src="../../swf/calendario.js"></script>					
-					<rich:tab label="Datos Personales *" name="TAB_PANEL_PERSONA" style="background-color:#EEE;" styleClass="rojo" switchType="server">					
+					<script type="text/javascript" src="../../swf/calendario.js"></script>
+					<rich:tab label="Datos Personales" name="TAB_PANEL_PERSONA" style="background-color:#EEE;" switchType="server">					
 					<table align="left">
 						<tr>
 							<td><h:outputLabel value="Datos Personales #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
@@ -27,11 +28,11 @@
 					<table align="left">
 						<tr>
 							<td align="left"><h:outputLabel value="Nombres" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 							<td align="left"><h:inputText size="35" id="perVnombres" value="#{PersonaMB.persona.perVnombres}" required="true" requiredMessage="Ingrese Nombres"></h:inputText></td>
 							<td width="100px"></td>			
 							<td align="left"><h:outputLabel value="Apellidos" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 							<td align="left"><h:inputText size="35" id="perVapellidos" value="#{PersonaMB.persona.perVapellidos}" required="true" requiredMessage="Ingrese Apellidos"></h:inputText></td>							
 						</tr>
 						<tr>
@@ -41,14 +42,14 @@
 						</tr>						
 						<tr>
 							<td align="left"><h:outputLabel value="Tipo de Identificación" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 							<td align="left"><h:selectOneMenu value="#{PersonaMB.persona.tdcNidtipodoc}" id="tdcNidtipodoc" required="true" requiredMessage="Ingrese Tipo de Identificación" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.tiposIdentificacion}"/>
 							</h:selectOneMenu></td>
 							<td width="100px"></td>			
 							<td align="left"><h:outputLabel value="Identificación" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 							<td align="left"><h:inputText size="35" id="perNidentificacion" value="#{PersonaMB.persona.perNidentificacion}" required="true" requiredMessage="Ingrese Identificación"></h:inputText></td>							
 						</tr>		
 						<tr>
@@ -58,7 +59,7 @@
 						</tr>							
 						<tr>
 							<td align="left"><h:outputLabel value="Sexo" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 							<td align="left"><h:selectOneMenu id="perVsexo" value="#{PersonaMB.persona.perVsexo}" required="true" requiredMessage="Ingrese Sexo" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
 								<f:selectItem itemValue="H" itemLabel="Hombre"/>
@@ -66,7 +67,7 @@
 							</h:selectOneMenu></td>
 							<td width="100px"></td>			
 							<td align="left"><h:outputLabel value="Estado Civil" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 							<td align="left"><h:selectOneMenu id="escNidestadocivil" value="#{PersonaMB.persona.escNidestadocivil}" required="true" requiredMessage="Ingrese Estado Civil" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.estadosCiviles}"/>
@@ -95,7 +96,7 @@
 							</h:selectOneMenu></td>		
 							<td width="100px"></td>	
 							<td align="left"><h:outputLabel value="Municipio" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 							<td align="left"><h:selectOneMenu id="munNidmunicipio" value="#{PersonaMB.persona.munNidmunicipio}" required="true" requiredMessage="Seleccione un Municipio" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.municipios}"/>
@@ -121,7 +122,7 @@
 						</tr>									
 						<tr>
 							<td align="left"><h:outputLabel value="País Residencia" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 							<td align="left"><h:selectOneMenu id="idPaisResidencia" value="#{PersonaMB.persona.paiNpaisresidencia}" required="true" requiredMessage="Seleccione un Pais de Residencia" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.paises}"/>
@@ -238,7 +239,7 @@
 					</table>
 					</c:if>					
 					</h:form>
-					</rich:tab>
+					</rich:tab>		
 					<rich:tab label="Formación Académica" name="TAB_PANEL_FORMACION" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;" switchType="server">
 						<c:if test="#{PersonaMB.tabPanelFormacion == 'TAB_PANEL_FORMACION'}">
 							<table align="left">
@@ -362,11 +363,11 @@
 							<table align="left">
 								<tr>
 									<td align="left"><h:outputLabel value="Título Obtenido" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:inputText size="55" id="forVtitulo" value="#{FormacionMB.formacion.forVtitulo}" required="true" requiredMessage="Ingrese Título Obtenido"></h:inputText></td>
 									<td width="90px"></td>			
 									<td align="left"><h:outputLabel value="Nivel Académico" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:selectOneMenu value="#{FormacionMB.formacion.nacNidnivelac}" id="nacNidnivelac" required="true" requiredMessage="Ingrese Nivel Académico" style="width:160px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{FormacionMB.nivelesAcademicos}"/>
@@ -379,14 +380,14 @@
 								</tr>						
 								<tr>
 									<td align="left"><h:outputLabel value="Institución" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:selectOneMenu value="#{FormacionMB.formacion.insNidinstitucion}" id="insNidinstitucion" required="true" requiredMessage="Ingrese Institución" style="width:300px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{FormacionMB.instituciones}"/>
 									</h:selectOneMenu></td>
 									<td width="90px"></td>			
 									<td align="left"><h:outputLabel value="Fecha de Grado" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><rich:calendar value="#{FormacionMB.formacion.forDfecgrado}" datePattern="dd/MM/yyyy" id="forDfecgrado" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Grado" inputSize="23"/></td>							
 								</tr>		
 								<tr>
@@ -396,14 +397,14 @@
 								</tr>							
 								<tr>
 									<td align="left"><h:outputLabel value="Título Equivalente" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:selectOneMenu id="teqNidtituloeq" value="#{FormacionMB.formacion.teqNidtituloeq}" required="true" requiredMessage="Ingrese Título Equivalente" style="width:300px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
 										<f:selectItems value="#{FormacionMB.titulosEquivalentes}"/>
 									</h:selectOneMenu></td>
 									<td width="90px"></td>			
 									<td align="left"><h:outputLabel value="Duración" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left">
 										<h:inputText size="8" id="forNduracion" value="#{FormacionMB.formacion.forNduracion}" required="true" requiredMessage="Ingrese Número de Duración"></h:inputText>
 										<h:selectOneMenu id="forVunidaddurac" value="#{FormacionMB.formacion.forVunidaddurac}" required="true" requiredMessage="Ingrese Unidades de Duración" style="width:90px">
@@ -618,11 +619,11 @@
 							<table align="left">
 								<tr>
 									<td align="left"><h:outputLabel value="Empresa" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:inputText size="35" id="expVnomempresa" value="#{ExperienciaMB.experiencia.expVnomempresa}" required="true" requiredMessage="Ingrese Empresa"></h:inputText></td>
 									<td width="120px"></td>			
 									<td align="left"><h:outputLabel value="Teléfona Empresa" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:inputText size="35" id="expVtelempresa" value="#{ExperienciaMB.experiencia.expVtelempresa}" required="true" requiredMessage="Ingrese Teléfona Empresa"></h:inputText></td>
 								</tr>
 								<tr>
@@ -645,7 +646,7 @@
 								</tr>
 								<tr>
 									<td align="left"><h:outputLabel value="Municipio" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:selectOneMenu id="munVidmunicipio" value="#{ExperienciaMB.experiencia.munVidmunicipio}" required="true" requiredMessage="Ingrese Municipio" style="width:200px">
 											<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 											<f:selectItems value="#{ExperienciaMB.municipios}"/>
@@ -656,7 +657,7 @@
 								</tr>							
 								<tr>
 									<td align="left"><h:outputLabel value="Nombre Contacto" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:inputText size="35" id="expVnomcontacto" value="#{ExperienciaMB.experiencia.expVnomcontacto}" required="true" requiredMessage="Ingrese Nombre Contacto"></h:inputText></td>
 									<td width="120px"></td>			
 									<td align="left" colspan="2"><h:outputLabel value="E-Mail Contacto" styleClass="TextoContenido"></h:outputLabel></td>
@@ -669,11 +670,11 @@
 								</tr>													
 								<tr>
 									<td align="left"><h:outputLabel value="Cargo Desempeñado" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:inputText size="35" id="expVcargo" value="#{ExperienciaMB.experiencia.expVcargo}" required="true" requiredMessage="Ingrese Cargo Desempeñado"></h:inputText></td>
 									<td width="120px"></td>			
 									<td align="left"><h:outputLabel value="Cargo Equivalente" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:selectOneMenu id="ceqNidcargoeq" value="#{ExperienciaMB.experiencia.ceqNidcargoeq}" required="true" requiredMessage="Ingrese Cargo Equivalente" style="width:200px">
 											<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 											<f:selectItems value="#{ExperienciaMB.cargosEquivalentes}"/>
@@ -686,7 +687,7 @@
 								</tr>
 								<tr>
 									<td align="left"><h:outputLabel value="Fecha de Ingreso" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><rich:calendar value="#{ExperienciaMB.experiencia.expDfecingreso}" datePattern="dd/MM/yyyy" id="expDfecingreso" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Ingreso" inputSize="31"/></td>
 									<td width="120px"></td>
 									<td align="left" colspan="2"><h:outputLabel value="Fecha de Retiro" styleClass="TextoContenido"></h:outputLabel></td>
@@ -773,7 +774,7 @@
 						<table align="left">
 							<tr>
 								<td align="left"><h:outputLabel value="Perfil Profesional" styleClass="TextoContenido"></h:outputLabel></td>
-								<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+								<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 								<td width="20px"></td>
 								<td align="left"><h:selectOneMenu value="#{PerfilprofesionalMB.perfilProfesional.peqNidperfileq}" id="peqNidperfileq" required="true" requiredMessage="Ingrese Perfil Profesional" style="width:215px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
@@ -785,7 +786,7 @@
 							</tr>								
 							<tr>
 								<td align="left"><h:outputLabel value="Descripción" styleClass="TextoContenido"></h:outputLabel></td>
-								<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+								<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 								<td width="20px"></td>
 								<td align="left"><h:inputTextarea cols="135" value="#{PerfilprofesionalMB.perfilProfesional.pprVperfil}" id="pprVperfil" required="true" requiredMessage="Ingrese Descripción"></h:inputTextarea></td>
 							</tr>
@@ -900,14 +901,14 @@
 						<table align="left">
 							<tr>
 								<td align="left"><h:outputLabel value="Tipo de Archivo" styleClass="TextoContenido"></h:outputLabel></td>
-								<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+								<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 								<td align="left"><h:selectOneMenu value="#{DocumentoMB.documento.tarNidtipoarchivo}" id="tarNidtipoarchivo" required="true" requiredMessage="Ingrese Tipo de Archivo" style="width:200px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{DocumentoMB.tiposArchivos}"/>
 										</h:selectOneMenu></td>
 								<td width="190px"></td>
 								<td align="left"><h:outputLabel value="Fecha Expedición" styleClass="TextoContenido"></h:outputLabel></td>
-								<td align="left"><h:outputLabel value="*" style="color:red"></h:outputLabel></td>
+								<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 								<td align="left"><rich:calendar value="#{DocumentoMB.documento.docDfecexpide}" datePattern="dd/MM/yyyy" id="docDfecexpide" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha Expedición" inputSize="31"/></td>										
 							</tr>
 							<tr>
@@ -1019,7 +1020,9 @@
 						</h:form>				        		 			        	  																										
 					</rich:tab>
 				</rich:tabPanel>
+			</div>					
 			</rich:panel>
+			<div align="left" style="position: absolute; color: red; top: 135pt; left: 209pt; font-size: 7pt;">*</div>
 		</ui:define>
 	</ui:composition>
 </body>
