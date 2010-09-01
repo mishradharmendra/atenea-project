@@ -8,47 +8,38 @@
 	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<table width="940px">
-		<tr>
-			<td height="20" bgcolor="#0093DD" class="PrimerNivel" align="right">			
-			<table align="right" class="PrimerNivel">
-			<c:if test="#{AutenticacionMB.usuarioAutenticado == true}">
+		<div align="center" style="position:absolute; height: 10px; width: 940px; background-color:#0093DD; height: 10px; top: 5pt;"></div>
+		<script type="text/javascript" src="#{AutenticacionMB.fullContextPath}/web/swf/archivoswfobjects.js"></script>	
+		<div id="headerpage"></div>
+				<script type="text/javascript">
+					swfobject.embedSWF("#{AutenticacionMB.fullContextPath}/web/swf/menu_pequeno.swf", "headerpage", "940", "45", "8", "#000000");
+				</script>  
+		<div align="center" style="position: absolute; top: 25pt; right: 20pt;">
+			<!--  <c:if test="#{AutenticacionMB.usuarioAutenticado == true}"> -->
 				<h:form>
-				<tr>
-					<td width="10px"></td>
-					<td>
-						<a4j:commandLink onclick="aceptar = confirm('Esta seguro que quiere salir de la aplicacion?'); if(aceptar==true){procesarSolicitudIniciar();} return false;">
-							<h:outputText value="Salir" styleClass="PrimerNivel"/>
-						</a4j:commandLink>
-					</td>
-					<td width="5px"></td>
-					<td>
-						<a4j:commandLink onclick="procesarSolicitudInicio()">
-							<img src="#{AutenticacionMB.fullContextPath}/web/imagenes/home.png" alt="Home" title="Home" width="16" height="16" border="0" />
-						</a4j:commandLink>
-					</td>
-					<td width="10px"></td>
-				</tr>
+				<table>
+					<tr>
+						<td>
+							<a4j:commandLink onclick="aceptar = confirm('Esta seguro que quiere salir de la aplicacion?'); if(aceptar==true){procesarSolicitudIniciar();} return false;">
+								<h:outputText value="Salir" styleClass="PrimerNivel"/>
+							</a4j:commandLink>
+						</td>
+						<td width="20px"/>
+						<td>
+							<a4j:commandLink onclick="procesarSolicitudInicio()">
+								<img src="#{AutenticacionMB.fullContextPath}/web/imagenes/home.png" alt="Home" title="Home" width="16" height="16" border="0" />
+							</a4j:commandLink>
+						</td>
+					</tr>
+				</table>
 				</h:form>
 				<a4j:form>
-					<a4j:jsFunction name="procesarSolicitudIniciar" action="#{AutenticacionMB.getIniciarAplicacion}"></a4j:jsFunction>
+					<a4j:jsFunction name="procesarSolicitu	dIniciar" action="#{AutenticacionMB.getIniciarAplicacion}"></a4j:jsFunction>
 				</a4j:form>	
 		      	<a4j:form>
 		            <a4j:jsFunction name="procesarSolicitudInicio" action="#{PersonaMB.getHomeHojaVida}"></a4j:jsFunction>
-	        	</a4j:form>	  
-			</c:if>
-			</table>			
-			</td>
-		</tr>
-		<tr>
-			<td height="80" align="center">
-			<script type="text/javascript" src="#{AutenticacionMB.fullContextPath}/web/swf/archivoswfobjects.js"></script>
-			<div id="headerpage"></div>
-			<script type="text/javascript">
-				swfobject.embedSWF("#{AutenticacionMB.fullContextPath}/web/swf/menuNuevo.swf", "headerpage", "940", "80", "8", "#000000");
-			</script>  
-            </td>  			
-		</tr>
-	</table>		
+	        	</a4j:form>
+			<!--  </c:if> -->
+		</div>
 </body>
 </html>
