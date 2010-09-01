@@ -8,6 +8,10 @@
 	  xmlns:a4j="http://richfaces.org/a4j">
 <head>      
 	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		A:link {text-decoration:none}
+		A:visited {text-decoration:none}
+	</style>
 </head>	 
 <body>
 <h:form>
@@ -23,7 +27,7 @@
 		</rich:dropDownMenu>
     	<rich:dropDownMenu>
         	<f:facet name="label"> 
-            	<h:panelGroup >
+            	<h:panelGroup>
 					<a4j:commandLink id="reportes" action="#{ReporteMB.getHomeReporte}">
                     	<h:outputText value="Reportes" style="color:#026A9F;text-align:left;"/>
                     </a4j:commandLink>   
@@ -61,7 +65,7 @@
            			<tr>
            				<td><h:outputLabel value="Búsqueda Rápida" style="color:#026A9F;text-align:left;"/></td>
            				<td width="5px"/>
-           				<td><h:inputText value="#{PersonaMB.criterioBusquedaRapida}"/></td>
+           				<td><h:inputText value="#{PersonaMB.criterioBusquedaRapida}" style="height:10px;" title="Ingrese una palabra clave para buscar de manera rápida hojas de vida."/></td>
            				<td>
 							<a4j:commandLink id="rapida" action="#{PersonaMB.getBusquedaRapidaPersona}"> 
 								<h:graphicImage align="center" url="../../imagenes/lupa.png" width="17px" heith="17px" style="border:0"/>

@@ -13,7 +13,7 @@
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
+			<rich:panel style="width:938px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
 						<td align="left"><h:outputLabel value="GENERAR REPORTE" styleClass="TituloContenido"></h:outputLabel></td>
@@ -42,90 +42,92 @@
 					</tr>
 				</table>
 				</h:form>
-				<table align="center" width="100%">
-					<tr>
-						<td height="50px"/>
-					</tr>
-				</table>
-				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
-				<br/><br/>
-				<h:form>	
-				<rich:extendedDataTable id="tablaPersonasReporte" align="center" value="#{ReporteMB.personas}" var="persona" height="180px" width="850px" headerClass="rich-table-header">
-					<rich:column width="110px"  label="Nombre Completo" sortable="true" sortBy="#{persona.perVnombres}">
-						<f:facet name="header">
-							<h:outputLabel value="Nombre Completo" styleClass="PrimerNivel"></h:outputLabel>
-						</f:facet>
-							<div align="left">
-								<h:outputLabel value="#{persona.perVnombres}"></h:outputLabel>
-								<br/>
-								<h:outputLabel value="#{persona.perVapellidos}"></h:outputLabel>
-							</div>
-					</rich:column>
-					<rich:column width="235px" label="Profesión" sortable="true" sortBy="#{formacion.forVtitulo}">
-						<f:facet name="header">
-							<h:outputLabel value="Profesión" styleClass="PrimerNivel"></h:outputLabel>
-						</f:facet>
-						<h:dataTable value="#{persona.gppFormaciones}" var="formacion">
-							<h:column>
+				<c:if test="#{ReporteMB.personas != null}">
+					<table align="center" width="100%">
+						<tr>
+							<td height="50px"/>
+						</tr>
+					</table>
+					<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
+					<br/><br/>
+					<h:form>	
+					<rich:extendedDataTable id="tablaPersonasReporte" align="center" value="#{ReporteMB.personas}" var="persona" height="180px" width="850px" headerClass="rich-table-header" style="background-color:#EEE;">
+						<rich:column width="110px"  label="Nombre Completo" sortable="true" sortBy="#{persona.perVnombres}">
+							<f:facet name="header">
+								<h:outputLabel value="Nombre Completo" styleClass="PrimerNivel"></h:outputLabel>
+							</f:facet>
 								<div align="left">
-									<h:outputLabel value="#{formacion.forVtitulo} - " rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel>
-									<h:outputLabel value="(#{formacion.forDfecgrado})" rendered="#{formacion.nacNidnivelac == 3}" ></h:outputLabel>
+									<h:outputLabel value="#{persona.perVnombres}"></h:outputLabel>
+									<br/>
+									<h:outputLabel value="#{persona.perVapellidos}"></h:outputLabel>
 								</div>
-							</h:column>
-						</h:dataTable>								
-					</rich:column>
-					<rich:column width="120px" label="Tarjeta Profesional" sortable="true" sortBy="#{formacion.forVtarjetaprof}">
-						<f:facet name="header">
-							<h:outputLabel value="Tarjeta Profesional" styleClass="PrimerNivel"></h:outputLabel>
-						</f:facet>
-						<h:dataTable value="#{persona.gppFormaciones}" var="formacion">						
-							<h:column>
-								<div align="left"><h:outputLabel value="#{formacion.forVtarjetaprof}" rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel></div>
-							</h:column>
-						</h:dataTable>
-					</rich:column>					
-					<rich:column width="150px" label="Conocimientos" sortable="true" sortBy="#{persona.gppPerfilprofesional.pprVperfil}">
-						<f:facet name="header">
-							<h:outputLabel value="Conocimientos" styleClass="PrimerNivel"></h:outputLabel>
-						</f:facet>
-						<h:dataTable value="#{persona.gppFormaciones}" var="formacion">
-							<h:column>
-								<div align="left"><h:outputLabel value="#{formacion.forVtitulo}" rendered="#{formacion.nacNidnivelac > 3}"></h:outputLabel></div>
-							</h:column>
-						</h:dataTable>		
-					</rich:column>
-					<rich:column width="100px" label="Certificación" sortable="true" sortBy="#{certificacion.forVtitulo}">
-						<f:facet name="header">
-							<h:outputLabel value="Certificación" styleClass="PrimerNivel"></h:outputLabel>
-						</f:facet>
-						<h:dataTable value="#{persona.gppCertificaciones}" var="certificacion">
-							<h:column>
-								<div align="left"><h:outputLabel value="#{certificacion.forVtitulo}"></h:outputLabel></div>
-							</h:column>
-						</h:dataTable>	
-					</rich:column>
-					<rich:column width="60px" label="Puntaje" sortable="true" sortBy="#{persona.perNpuntaje}">
-						<f:facet name="header">
-							<h:outputLabel value="Puntaje" styleClass="PrimerNivel"></h:outputLabel>
-						</f:facet>
-						<div align="center"><h:outputLabel value="#{persona.perNpuntaje}"></h:outputLabel></div>
-					</rich:column>										
-					<rich:column width="60px" label="Reporte">
-						<f:facet name="header">
-							<h:outputLabel value="Reporte" styleClass="PrimerNivel"></h:outputLabel>
-						</f:facet>
-						<a4j:commandLink id="reporte" onclick="procesarSolicitudReportePersona('#{persona.perNidpersona}')"> 
-                            <div align="center"><h:graphicImage align="center" url="../../imagenes/reporte.png" style="border:0"/></div>
-                        </a4j:commandLink>
-					</rich:column>
-				</rich:extendedDataTable>
-				</h:form>					
+						</rich:column>
+						<rich:column width="235px" label="Profesión" sortable="true" sortBy="#{formacion.forVtitulo}">
+							<f:facet name="header">
+								<h:outputLabel value="Profesión" styleClass="PrimerNivel"></h:outputLabel>
+							</f:facet>
+							<h:dataTable value="#{persona.gppFormaciones}" var="formacion">
+								<h:column>
+									<div align="left">
+										<h:outputLabel value="#{formacion.forVtitulo} - " rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel>
+										<h:outputLabel value="(#{formacion.forDfecgrado})" rendered="#{formacion.nacNidnivelac == 3}" ></h:outputLabel>
+									</div>
+								</h:column>
+							</h:dataTable>								
+						</rich:column>
+						<rich:column width="120px" label="Tarjeta Profesional" sortable="true" sortBy="#{formacion.forVtarjetaprof}">
+							<f:facet name="header">
+								<h:outputLabel value="Tarjeta Profesional" styleClass="PrimerNivel"></h:outputLabel>
+							</f:facet>
+							<h:dataTable value="#{persona.gppFormaciones}" var="formacion">						
+								<h:column>
+									<div align="left"><h:outputLabel value="#{formacion.forVtarjetaprof}" rendered="#{formacion.nacNidnivelac == 3}"></h:outputLabel></div>
+								</h:column>
+							</h:dataTable>
+						</rich:column>					
+						<rich:column width="150px" label="Conocimientos" sortable="true" sortBy="#{persona.gppPerfilprofesional.pprVperfil}">
+							<f:facet name="header">
+								<h:outputLabel value="Conocimientos" styleClass="PrimerNivel"></h:outputLabel>
+							</f:facet>
+							<h:dataTable value="#{persona.gppFormaciones}" var="formacion">
+								<h:column>
+									<div align="left"><h:outputLabel value="#{formacion.forVtitulo}" rendered="#{formacion.nacNidnivelac > 3}"></h:outputLabel></div>
+								</h:column>
+							</h:dataTable>		
+						</rich:column>
+						<rich:column width="100px" label="Certificación" sortable="true" sortBy="#{certificacion.forVtitulo}">
+							<f:facet name="header">
+								<h:outputLabel value="Certificación" styleClass="PrimerNivel"></h:outputLabel>
+							</f:facet>
+							<h:dataTable value="#{persona.gppCertificaciones}" var="certificacion">
+								<h:column>
+									<div align="left"><h:outputLabel value="#{certificacion.forVtitulo}"></h:outputLabel></div>
+								</h:column>
+							</h:dataTable>	
+						</rich:column>
+						<rich:column width="60px" label="Puntaje" sortable="true" sortBy="#{persona.perNpuntaje}">
+							<f:facet name="header">
+								<h:outputLabel value="Puntaje" styleClass="PrimerNivel"></h:outputLabel>
+							</f:facet>
+							<div align="center"><h:outputLabel value="#{persona.perNpuntaje}"></h:outputLabel></div>
+						</rich:column>										
+						<rich:column width="60px" label="Reporte">
+							<f:facet name="header">
+								<h:outputLabel value="Reporte" styleClass="PrimerNivel"></h:outputLabel>
+							</f:facet>
+							<a4j:commandLink id="reporte" onclick="procesarSolicitudReportePersona('#{persona.perNidpersona}')"> 
+	                            <div align="center"><h:graphicImage align="center" url="../../imagenes/reporte.png" style="border:0"/></div>
+	                        </a4j:commandLink>
+						</rich:column>
+					</rich:extendedDataTable>
+					</h:form>	
+		        	<a4j:form>
+			            <a4j:jsFunction name="procesarSolicitudReportePersona" action="#{ReporteMB.getSeleccionarPersonaReporte}" >
+			                <a4j:actionparam name="p1" assignTo="#{ReporteMB.idPersona}" />                
+		            	</a4j:jsFunction>
+		        	</a4j:form>						
+				</c:if>				
 			</rich:panel>
-        	<a4j:form>
-	            <a4j:jsFunction name="procesarSolicitudReportePersona" action="#{ReporteMB.getSeleccionarPersonaReporte}" >
-	                <a4j:actionparam name="p1" assignTo="#{ReporteMB.idPersona}" />                
-            	</a4j:jsFunction>
-        	</a4j:form>				
 		</ui:define>
 	</ui:composition>
 </body>
