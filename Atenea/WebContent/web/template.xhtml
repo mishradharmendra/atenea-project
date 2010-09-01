@@ -9,27 +9,23 @@
         <link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-		<table align="center" width="940px">
-			<tr>
-				<td width="940px" align="center">
-					<ui:include src="../web/faces/comun/encabezado.xhtml"/>
-				</td>
-			</tr>
-			<tr>
-				<td width="940px" align="center">
-					<ui:include src="../web/faces/comun/menu.xhtml"/>
-				</td>
-			</tr>
-			<tr>
-				<td width="940px" align="center">
-					<ui:insert name="cuerpo"/>
-				</td>
-			</tr>
-			<tr>
-				<td width="940px" align="center">
-					<ui:include src="../web/faces/comun/pie.xhtml"/>
-				</td>
-			</tr>
-		</table>
+    	<table align="center" width="940px">
+    		<tr>
+    			<td>
+					<div align="center" style="position: relative; width: 940px;">
+						<ui:include src="../web/faces/comun/encabezado.xhtml"/>
+					</div>
+					<div align="center" style="position: relative; width: 940px; height: 25px;">
+						<ui:include src="../web/faces/comun/menu.xhtml"/>
+					</div>
+					<div align="center" style="position: relative; width: 940px; top: 7pt;">
+						<ui:insert name="cuerpo"/>
+					</div>
+					<div align="center" style="position: relative; width: 940px;">
+						<ui:include src="../web/faces/comun/pie.xhtml"/>
+					</div>
+    			</td>
+    		</tr>
+    	</table>    
 	</body>      
 </html>

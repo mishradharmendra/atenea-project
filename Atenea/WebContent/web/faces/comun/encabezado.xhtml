@@ -6,40 +6,48 @@
 	  xmlns:a4j="http://richfaces.org/a4j">
 <head>      
 	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		A:link {text-decoration:none}
+		A:visited {text-decoration:none}
+	</style>
 </head>
 <body>
-		<div align="center" style="position:absolute; height: 10px; width: 940px; background-color:#0093DD; height: 10px; top: 5pt;"></div>
-		<script type="text/javascript" src="#{AutenticacionMB.fullContextPath}/web/swf/archivoswfobjects.js"></script>	
-		<div id="headerpage"></div>
-				<script type="text/javascript">
-					swfobject.embedSWF("#{AutenticacionMB.fullContextPath}/web/swf/menu_pequeno.swf", "headerpage", "940", "45", "8", "#000000");
-				</script>  
-		<div align="center" style="position: absolute; top: 25pt; right: 20pt;">
-			<!--  <c:if test="#{AutenticacionMB.usuarioAutenticado == true}"> -->
+	<div align="center" id="contenedorHeader">
+		<div align="center" style="position: relative; height: 10px; width: 940px; background-color:#0093DD;"></div>
+		<div align="center" style="position: relative; height: 45px; width: 940px;">
+			<script type="text/javascript" src="#{AutenticacionMB.fullContextPath}/web/swf/archivoswfobjects.js"></script>
+			<div id="headerpage"/>
+			<script type="text/javascript">
+				swfobject.embedSWF("#{AutenticacionMB.fullContextPath}/web/swf/menu_pequeno.swf", "headerpage", "940", "45", "8", "#000000", {}, { wmode: "opaque" }, {});
+			</script>  
+		</div>
+		<div align="center" style="position: absolute; right: 20pt; top: 16pt; right: 20pt;">
+			<c:if test="#{AutenticacionMB.usuarioAutenticado == true}">
 				<h:form>
 				<table>
 					<tr>
 						<td>
-							<a4j:commandLink onclick="aceptar = confirm('Esta seguro que quiere salir de la aplicacion?'); if(aceptar==true){procesarSolicitudIniciar();} return false;">
-								<h:outputText value="Salir" styleClass="PrimerNivel"/>
-							</a4j:commandLink>
-						</td>
-						<td width="20px"/>
-						<td>
 							<a4j:commandLink onclick="procesarSolicitudInicio()">
 								<img src="#{AutenticacionMB.fullContextPath}/web/imagenes/home.png" alt="Home" title="Home" width="16" height="16" border="0" />
+							</a4j:commandLink>
+						</td>
+						<td width="20px"/>					
+						<td>
+							<a4j:commandLink onclick="aceptar = confirm('Esta seguro que quiere salir de la aplicacion?'); if(aceptar==true){procesarSolicitudIniciar();} return false;">
+								<h:outputText value="Salir" styleClass="PrimerNivel"/>
 							</a4j:commandLink>
 						</td>
 					</tr>
 				</table>
 				</h:form>
 				<a4j:form>
-					<a4j:jsFunction name="procesarSolicitu	dIniciar" action="#{AutenticacionMB.getIniciarAplicacion}"></a4j:jsFunction>
+					<a4j:jsFunction name="procesarSolicitudIniciar" action="#{AutenticacionMB.getIniciarAplicacion}"></a4j:jsFunction>
 				</a4j:form>	
 		      	<a4j:form>
 		            <a4j:jsFunction name="procesarSolicitudInicio" action="#{PersonaMB.getHomeHojaVida}"></a4j:jsFunction>
 	        	</a4j:form>
-			<!--  </c:if> -->
+			</c:if>
 		</div>
+	</div>
 </body>
 </html>

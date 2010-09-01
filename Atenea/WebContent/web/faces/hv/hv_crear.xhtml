@@ -13,7 +13,7 @@
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">					
-			<rich:panel style="width:940px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
+			<rich:panel style="width:938px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 			<div align="left" style="position: relative">
 				<rich:tabPanel switchType="server" selectedTab="#{PersonaMB.tabPanel}" style="background-color:#EEE;">
 					<script type="text/javascript" src="../../swf/calendario.js"></script>
@@ -24,16 +24,16 @@
 						</tr>
 					</table>
 					<br/><br/><br/>
-					<h:form>
+					<h:form id="formDatosPersonales">
 					<table align="left">
 						<tr>
 							<td align="left"><h:outputLabel value="Nombres" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-							<td align="left"><h:inputText size="35" id="perVnombres" value="#{PersonaMB.persona.perVnombres}" required="true" requiredMessage="Ingrese Nombres"></h:inputText></td>
+							<td align="left"><h:inputText size="35" id="perVnombres" value="#{PersonaMB.persona.perVnombres}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Nombres"></h:inputText></td>
 							<td width="100px"></td>			
 							<td align="left"><h:outputLabel value="Apellidos" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-							<td align="left"><h:inputText size="35" id="perVapellidos" value="#{PersonaMB.persona.perVapellidos}" required="true" requiredMessage="Ingrese Apellidos"></h:inputText></td>							
+							<td align="left"><h:inputText size="35" id="perVapellidos" value="#{PersonaMB.persona.perVapellidos}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Apellidos"></h:inputText></td>							
 						</tr>
 						<tr>
 							<td align="center" colspan="3"><rich:message for="perVnombres" style="color:red"/></td>
@@ -43,14 +43,14 @@
 						<tr>
 							<td align="left"><h:outputLabel value="Tipo de Identificación" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-							<td align="left"><h:selectOneMenu value="#{PersonaMB.persona.tdcNidtipodoc}" id="tdcNidtipodoc" required="true" requiredMessage="Ingrese Tipo de Identificación" style="width:200px">
+							<td align="left"><h:selectOneMenu value="#{PersonaMB.persona.tdcNidtipodoc}" id="tdcNidtipodoc" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Tipo de Identificación" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.tiposIdentificacion}"/>
 							</h:selectOneMenu></td>
 							<td width="100px"></td>			
 							<td align="left"><h:outputLabel value="Identificación" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-							<td align="left"><h:inputText size="35" id="perNidentificacion" value="#{PersonaMB.persona.perNidentificacion}" required="true" requiredMessage="Ingrese Identificación"></h:inputText></td>							
+							<td align="left"><h:inputText size="35" id="perNidentificacion" value="#{PersonaMB.persona.perNidentificacion}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Identificación"></h:inputText></td>							
 						</tr>		
 						<tr>
 							<td align="center" colspan="3"><rich:message for="tdcNidtipodoc" style="color:red"/></td>
@@ -60,7 +60,7 @@
 						<tr>
 							<td align="left"><h:outputLabel value="Sexo" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-							<td align="left"><h:selectOneMenu id="perVsexo" value="#{PersonaMB.persona.perVsexo}" required="true" requiredMessage="Ingrese Sexo" style="width:200px">
+							<td align="left"><h:selectOneMenu id="perVsexo" value="#{PersonaMB.persona.perVsexo}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Sexo" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
 								<f:selectItem itemValue="H" itemLabel="Hombre"/>
 								<f:selectItem itemValue="M" itemLabel="Mujer"/>
@@ -68,7 +68,7 @@
 							<td width="100px"></td>			
 							<td align="left"><h:outputLabel value="Estado Civil" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-							<td align="left"><h:selectOneMenu id="escNidestadocivil" value="#{PersonaMB.persona.escNidestadocivil}" required="true" requiredMessage="Ingrese Estado Civil" style="width:200px">
+							<td align="left"><h:selectOneMenu id="escNidestadocivil" value="#{PersonaMB.persona.escNidestadocivil}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Estado Civil" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.estadosCiviles}"/>
 							</h:selectOneMenu></td>						
@@ -83,21 +83,21 @@
 							<td align="left"><rich:calendar value="#{PersonaMB.persona.perDfecnacimiento}" datePattern="dd/MM/yyyy" id="perDfecnacimiento" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="31"/></td>
 							<td width="100px"></td>			
 							<td align="left" colspan="2"><h:outputLabel value="País" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:selectOneMenu id="idPais" valueChangeListener="#{PersonaMB.getDeptos}" onchange="submit()" style="width:200px">
-								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
-								<f:selectItems value="#{PersonaMB.paises}"/>
-							</h:selectOneMenu></td>
+                            <td align="left"><h:selectOneMenu id="idPais" valueChangeListener="#{PersonaMB.getDeptos}" onchange="submit()" style="width:200px">
+                                    <f:selectItem itemValue="" itemLabel="Seleccione..."/>  
+                                    <f:selectItems value="#{PersonaMB.paises}"/>
+                            </h:selectOneMenu></td>
 						</tr>										
 						<tr>
 							<td align="left" colspan="2"><h:outputLabel value="Departamento" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:selectOneMenu id="idDepto" valueChangeListener="#{PersonaMB.getMpios}" onchange="submit()" style="width:200px">
-								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
-								<f:selectItems value="#{PersonaMB.departamentosPais}"/>
-							</h:selectOneMenu></td>		
+                            <td align="left"><h:selectOneMenu id="idDepto" valueChangeListener="#{PersonaMB.getMpios}" onchange="submit()" style="width:200px">
+                                    <f:selectItem itemValue="" itemLabel="Seleccione..."/>  
+                                    <f:selectItems value="#{PersonaMB.departamentosPais}"/>
+                            </h:selectOneMenu></td> 
 							<td width="100px"></td>	
 							<td align="left"><h:outputLabel value="Municipio" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-							<td align="left"><h:selectOneMenu id="munNidmunicipio" value="#{PersonaMB.persona.munNidmunicipio}" required="true" requiredMessage="Seleccione un Municipio" style="width:200px">
+							<td align="left"><h:selectOneMenu id="munNidmunicipio" value="#{PersonaMB.persona.munNidmunicipio}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Seleccione un Municipio" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.municipios}"/>
 							</h:selectOneMenu></td>	
@@ -123,7 +123,7 @@
 						<tr>
 							<td align="left"><h:outputLabel value="País Residencia" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-							<td align="left"><h:selectOneMenu id="idPaisResidencia" value="#{PersonaMB.persona.paiNpaisresidencia}" required="true" requiredMessage="Seleccione un Pais de Residencia" style="width:200px">
+							<td align="left"><h:selectOneMenu id="idPaisResidencia" value="#{PersonaMB.persona.paiNpaisresidencia}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Seleccione un Pais de Residencia" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.paises}"/>
 								</h:selectOneMenu></td>
@@ -157,18 +157,18 @@
 							<td height="50px"/>
 						</tr>
 						<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-						<tr>
-							<td align="center" colspan="7"><h:outputLabel value="Adjuntar Hoja de Vida" styleClass="TituloContenido"></h:outputLabel></td>
-						</tr>
-						<tr>
-							<td align="center" colspan="7"><rich:fileUpload required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="pdf,zip,rar" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
-                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
-						</tr>		
+							<tr>
+								<td align="center" colspan="7"><h:outputLabel value="Adjuntar Hoja de Vida" styleClass="TituloContenido"></h:outputLabel></td>
+							</tr>
+							<tr>
+								<td align="center" colspan="7"><rich:fileUpload required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="pdf,zip,rar" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+	                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
+							</tr>		
 						</c:if>										                   
 					</table>	
 					<table align="center" width="100%">
 						<tr>
-							<td height="50px"/>
+							<td height="5px"/>
 						</tr>
 					</table>				
 					<c:if test="#{DocumentoMB.hojasDeVida != null}">
@@ -199,44 +199,47 @@
 										</rich:column>			
 									</rich:extendedDataTable>
 									</h:form>
-							      	<a4j:form>
-							            <a4j:jsFunction name="procesarSolicitudEliminarSoporte" action="#{DocumentoMB.getBorrarSoporte}" immediate="true" ajaxSingle="true">
-							                <a4j:actionparam name="p1" assignTo="#{DocumentoMB.idDocumentoSoporte}" />                
-						            	</a4j:jsFunction>
-						        	</a4j:form>
 								</td>
 							</tr>
 						</table>
 					</c:if>
+					<div align="center" style="position: relative;">
 					<table align="center" width="100%">
 						<tr>
 							<td height="50px"/>
 						</tr>
 					</table>
+					</div>
 					<c:if test="#{PersonaMB.persona.perNidpersona == null}">
-					<table align="right">
-						<tr>
-							<td><h:commandButton action="#{PersonaMB.getGuardarPersona}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-							<td width="40px"/>
-						</tr>
-					</table>
+					<div align="center" style="position: relative; top: 0pt; right: -10pt;">
+						<table align="right">
+							<tr>
+								<td><h:commandButton id="GuardarPersona" action="#{PersonaMB.getGuardarPersona}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+								<td width="40px"/>
+							</tr>
+						</table>
+					</div>
 					</c:if>
 					<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-					<table align="right">
-						<tr>
-							<td><h:commandButton action="#{PersonaMB.getActualizarPersona}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-							<td width="40px"/>
-						</tr>						
-					</table>
-					</c:if>					
+					<div align="center" style="position: relative; top: 0pt; right: 40pt;">
+						<table align="right">
+							<tr>
+								<td><h:commandButton id="GuardarPersona" action="#{PersonaMB.getActualizarPersona}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+								<td width="40px"/>
+							</tr>						
+						</table>
+					</div>
+					</c:if>	
 					</h:form>
 					<h:form>
 					<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-					<table align="right">
-						<tr>
-							<td><h:commandButton action="#{PersonaMB.getSiguiente}" value="Siguiente" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-						</tr>						
-					</table>
+					<div align="center" style="position: relative; top: 0pt; right: -55pt;">
+						<table align="right">
+							<tr>
+								<td><h:commandButton action="#{PersonaMB.getSiguiente}" value="Siguiente" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+							</tr>						
+						</table>
+					</div>
 					</c:if>					
 					</h:form>
 					</rich:tab>		
@@ -253,7 +256,15 @@
 									<td align="center"><h:outputLabel value="Formaciones Académicas" styleClass="TituloContenido"></h:outputLabel></td>
 								</tr>
 							</table>	
-							<br/><br/>									
+							<br/><br/>	
+							<c:if test="#{FormacionMB.formacionesAcademicas == null}">
+								<table align="center">
+								<tr>
+									<td><h:outputLabel value="No se ha registrado ninguna Formación Académica. Use 'Agregar Formación Académica' para ingresar una nueva." styleClass="TituloContenido"></h:outputLabel></td>
+								</tr>
+							</table>
+							</c:if>
+							<c:if test="#{FormacionMB.formacionesAcademicas != null}">								
 							<h:form>
 							<table align="center">
 							<tr>
@@ -313,7 +324,8 @@
 					            <a4j:jsFunction name="procesarSolicitudEliminarFormacion" action="#{FormacionMB.getBorrarFormacion}" >
 					                <a4j:actionparam name="p1" assignTo="#{FormacionMB.idFormacion}" />                
 				            	</a4j:jsFunction>
-				        	</a4j:form>	   
+				        	</a4j:form>	
+				        	</c:if>   
 							<br/>
 							<h:form>
 							<table align="center">
@@ -359,16 +371,16 @@
 								</tr>
 							</table>
 							<br/><br/>
-							<h:form>
+							<h:form id="formFormacionAcademica">
 							<table align="left">
 								<tr>
 									<td align="left"><h:outputLabel value="Título Obtenido" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-									<td align="left"><h:inputText size="55" id="forVtitulo" value="#{FormacionMB.formacion.forVtitulo}" required="true" requiredMessage="Ingrese Título Obtenido"></h:inputText></td>
+									<td align="left"><h:inputText size="55" id="forVtitulo" value="#{FormacionMB.formacion.forVtitulo}" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Título Obtenido"></h:inputText></td>
 									<td width="90px"></td>			
 									<td align="left"><h:outputLabel value="Nivel Académico" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-									<td align="left"><h:selectOneMenu value="#{FormacionMB.formacion.nacNidnivelac}" id="nacNidnivelac" required="true" requiredMessage="Ingrese Nivel Académico" style="width:160px">
+									<td align="left"><h:selectOneMenu value="#{FormacionMB.formacion.nacNidnivelac}" id="nacNidnivelac" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Nivel Académico" style="width:160px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{FormacionMB.nivelesAcademicos}"/>
 									</h:selectOneMenu></td>							
@@ -381,14 +393,14 @@
 								<tr>
 									<td align="left"><h:outputLabel value="Institución" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-									<td align="left"><h:selectOneMenu value="#{FormacionMB.formacion.insNidinstitucion}" id="insNidinstitucion" required="true" requiredMessage="Ingrese Institución" style="width:300px">
+									<td align="left"><h:selectOneMenu value="#{FormacionMB.formacion.insNidinstitucion}" id="insNidinstitucion" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Institución" style="width:300px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{FormacionMB.instituciones}"/>
 									</h:selectOneMenu></td>
 									<td width="90px"></td>			
 									<td align="left"><h:outputLabel value="Fecha de Grado" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-									<td align="left"><rich:calendar value="#{FormacionMB.formacion.forDfecgrado}" datePattern="dd/MM/yyyy" id="forDfecgrado" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Grado" inputSize="23"/></td>							
+									<td align="left"><rich:calendar value="#{FormacionMB.formacion.forDfecgrado}" datePattern="dd/MM/yyyy" id="forDfecgrado" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Fecha de Grado" inputSize="23"/></td>							
 								</tr>		
 								<tr>
 									<td align="center" colspan="3"><rich:message for="insNidinstitucion" style="color:red"/></td>
@@ -398,7 +410,7 @@
 								<tr>
 									<td align="left"><h:outputLabel value="Título Equivalente" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-									<td align="left"><h:selectOneMenu id="teqNidtituloeq" value="#{FormacionMB.formacion.teqNidtituloeq}" required="true" requiredMessage="Ingrese Título Equivalente" style="width:300px">
+									<td align="left"><h:selectOneMenu id="teqNidtituloeq" value="#{FormacionMB.formacion.teqNidtituloeq}" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Título Equivalente" style="width:300px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
 										<f:selectItems value="#{FormacionMB.titulosEquivalentes}"/>
 									</h:selectOneMenu></td>
@@ -406,8 +418,8 @@
 									<td align="left"><h:outputLabel value="Duración" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left">
-										<h:inputText size="8" id="forNduracion" value="#{FormacionMB.formacion.forNduracion}" required="true" requiredMessage="Ingrese Número de Duración"></h:inputText>
-										<h:selectOneMenu id="forVunidaddurac" value="#{FormacionMB.formacion.forVunidaddurac}" required="true" requiredMessage="Ingrese Unidades de Duración" style="width:90px">
+										<h:inputText size="8" id="forNduracion" value="#{FormacionMB.formacion.forNduracion}" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Número de Duración"></h:inputText>
+										<h:selectOneMenu id="forVunidaddurac" value="#{FormacionMB.formacion.forVunidaddurac}" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Unidades de Duración" style="width:90px">
 											<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 											<f:selectItem itemValue="D" itemLabel="Día(s)"/>
 											<f:selectItem itemValue="S" itemLabel="Semana(s)"/>
@@ -460,7 +472,7 @@
 							<c:if test="#{FormacionMB.formacion.forNidformacion == null}">
 							<table align="right">
 								<tr>
-									<td><h:commandButton action="#{FormacionMB.getGuardarFormacion}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+									<td><h:commandButton id="GuardarFormacion" action="#{FormacionMB.getGuardarFormacion}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 									<td width="35px"/>
 								</tr>
 							</table>
@@ -468,7 +480,7 @@
 							<c:if test="#{FormacionMB.formacion.forNidformacion != null}">			
 							<table align="right">
 								<tr>
-									<td><h:commandButton action="#{FormacionMB.getActualizarFormacion}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+									<td><h:commandButton id="GuardarFormacion" action="#{FormacionMB.getActualizarFormacion}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 									<td width="35px"/>
 								</tr>
 							</table>
@@ -496,7 +508,15 @@
 									<td align="center"><h:outputLabel value="Experiencias Laborales" styleClass="TituloContenido"></h:outputLabel></td>
 								</tr>
 							</table>
-							<br/>					
+							<br/><br/>
+							<c:if test="#{ExperienciaMB.experienciasLaborales == null}">
+								<table align="center">
+								<tr>
+									<td><h:outputLabel value="No se ha registrado ninguna Formación Académica. Use 'Agregar Formación Académica' para ingresar una nueva." styleClass="TituloContenido"></h:outputLabel></td>
+								</tr>
+							</table>
+							</c:if>
+							<c:if test="#{ExperienciaMB.experienciasLaborales != null}">						
 							<h:form>
 							<table align="center">
 							<tr>
@@ -569,7 +589,8 @@
 					            <a4j:jsFunction name="procesarSolicitudEliminarExperiencia" action="#{ExperienciaMB.getBorrarExperiencia}" >
 					                <a4j:actionparam name="p1" assignTo="#{ExperienciaMB.idExperiencia}" />                
 				            	</a4j:jsFunction>
-				        	</a4j:form>	   
+				        	</a4j:form>	 
+				        	</c:if>  
 							<br/>
 							<h:form>
 							<table align="center">
@@ -615,16 +636,16 @@
 								</tr>
 							</table>
 							<br/>
-							<h:form>
+							<h:form id="formExperiencia">
 							<table align="left">
 								<tr>
 									<td align="left"><h:outputLabel value="Empresa" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-									<td align="left"><h:inputText size="35" id="expVnomempresa" value="#{ExperienciaMB.experiencia.expVnomempresa}" required="true" requiredMessage="Ingrese Empresa"></h:inputText></td>
+									<td align="left"><h:inputText size="35" id="expVnomempresa" value="#{ExperienciaMB.experiencia.expVnomempresa}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Empresa"></h:inputText></td>
 									<td width="120px"></td>			
 									<td align="left"><h:outputLabel value="Teléfono Empresa" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-									<td align="left"><h:inputText size="35" id="expVtelempresa" value="#{ExperienciaMB.experiencia.expVtelempresa}" required="true" requiredMessage="Ingrese Teléfono Empresa"></h:inputText></td>
+									<td align="left"><h:inputText size="35" id="expVtelempresa" value="#{ExperienciaMB.experiencia.expVtelempresa}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Teléfono Empresa"></h:inputText></td>
 								</tr>
 								<tr>
 									<td align="center" colspan="3"><rich:message for="expVnomempresa" style="color:red"/></td>
@@ -647,7 +668,7 @@
 								<tr>
 									<td align="left"><h:outputLabel value="Municipio" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-									<td align="left"><h:selectOneMenu id="munVidmunicipio" value="#{ExperienciaMB.experiencia.munVidmunicipio}" required="true" requiredMessage="Ingrese Municipio" style="width:200px">
+									<td align="left"><h:selectOneMenu id="munVidmunicipio" value="#{ExperienciaMB.experiencia.munVidmunicipio}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Municipio" style="width:200px">
 											<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 											<f:selectItems value="#{ExperienciaMB.municipios}"/>
 										</h:selectOneMenu></td>							
@@ -658,7 +679,7 @@
 								<tr>
 									<td align="left"><h:outputLabel value="Nombre Contacto" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-									<td align="left"><h:inputText size="35" id="expVnomcontacto" value="#{ExperienciaMB.experiencia.expVnomcontacto}" required="true" requiredMessage="Ingrese Nombre Contacto"></h:inputText></td>
+									<td align="left"><h:inputText size="35" id="expVnomcontacto" value="#{ExperienciaMB.experiencia.expVnomcontacto}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Nombre Contacto"></h:inputText></td>
 									<td width="120px"></td>			
 									<td align="left" colspan="2"><h:outputLabel value="E-Mail Contacto" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:inputText size="35" id="expVemailcontacto" value="#{ExperienciaMB.experiencia.expVemailcontacto}"></h:inputText></td>					
@@ -671,11 +692,11 @@
 								<tr>
 									<td align="left"><h:outputLabel value="Cargo Desempeñado" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-									<td align="left"><h:inputText size="35" id="expVcargo" value="#{ExperienciaMB.experiencia.expVcargo}" required="true" requiredMessage="Ingrese Cargo Desempeñado"></h:inputText></td>
+									<td align="left"><h:inputText size="35" id="expVcargo" value="#{ExperienciaMB.experiencia.expVcargo}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Cargo Desempeñado"></h:inputText></td>
 									<td width="120px"></td>			
 									<td align="left"><h:outputLabel value="Cargo Equivalente" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-									<td align="left"><h:selectOneMenu id="ceqNidcargoeq" value="#{ExperienciaMB.experiencia.ceqNidcargoeq}" required="true" requiredMessage="Ingrese Cargo Equivalente" style="width:200px">
+									<td align="left"><h:selectOneMenu id="ceqNidcargoeq" value="#{ExperienciaMB.experiencia.ceqNidcargoeq}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Cargo Equivalente" style="width:200px">
 											<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 											<f:selectItems value="#{ExperienciaMB.cargosEquivalentes}"/>
 										</h:selectOneMenu></td>							
@@ -688,7 +709,7 @@
 								<tr>
 									<td align="left"><h:outputLabel value="Fecha de Ingreso" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-									<td align="left"><rich:calendar value="#{ExperienciaMB.experiencia.expDfecingreso}" datePattern="dd/MM/yyyy" id="expDfecingreso" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha de Ingreso" inputSize="31"/></td>
+									<td align="left"><rich:calendar value="#{ExperienciaMB.experiencia.expDfecingreso}" datePattern="dd/MM/yyyy" id="expDfecingreso" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Fecha de Ingreso" inputSize="31"/></td>
 									<td width="120px"></td>
 									<td align="left" colspan="2"><h:outputLabel value="Fecha de Retiro" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><rich:calendar value="#{ExperienciaMB.experiencia.expDfecretiro}" datePattern="dd/MM/yyyy" id="expDfecretiro" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="31"/></td>
@@ -740,7 +761,7 @@
 							<c:if test="#{ExperienciaMB.experiencia.expNidexplaboral == null}">
 							<table align="right">
 								<tr>
-									<td><h:commandButton action="#{ExperienciaMB.getGuardarExperiencia}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+									<td><h:commandButton id="GuardarExperiencia" action="#{ExperienciaMB.getGuardarExperiencia}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 									<td width="35px"></td>
 								</tr>
 							</table>
@@ -748,7 +769,7 @@
 							<c:if test="#{ExperienciaMB.experiencia.expNidexplaboral != null}">					 					
 							<table align="right">
 								<tr>
-									<td><h:commandButton action="#{ExperienciaMB.getActualizarExperiencia}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+									<td><h:commandButton id="GuardarExperiencia" action="#{ExperienciaMB.getActualizarExperiencia}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 									<td width="35px"></td>
 								</tr>
 							</table>
@@ -780,9 +801,9 @@
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{PerfilprofesionalMB.perfilesProfesionales}"/>
 										</h:selectOneMenu></td>
-								<td align="center"><rich:message for="peqNidperfileq" style="color:red"/></td>
 							</tr>
 							<tr>
+								<td align="center"><rich:message for="peqNidperfileq" style="color:red"/></td>
 							</tr>								
 							<tr>
 								<td align="left"><h:outputLabel value="Descripción" styleClass="TextoContenido"></h:outputLabel></td>
@@ -1022,7 +1043,7 @@
 				</rich:tabPanel>
 			</div>					
 			</rich:panel>
-			<div align="left" style="position: absolute; color: red; top: 135pt; left: 209pt; font-size: 7pt;">*</div>
+			<div align="left" style="position: absolute; color: red; top: 12pt; left: 85pt; font-size: 7pt;">*</div>
 		</ui:define>
 	</ui:composition>
 </body>
