@@ -138,6 +138,7 @@ public class GppPersonaDAO implements DAO{
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
 			sentenciaSQL = "select * from gpp_persona order by per_vnombres asc";
 			gppPersonas = (List<Object>) jdbcTemplate.query(sentenciaSQL, gppPersonaRowMapper);
+			construirDatosPersonas(gppPersonas);
 		} catch(Exception ex){
 			ex.printStackTrace();
 		}

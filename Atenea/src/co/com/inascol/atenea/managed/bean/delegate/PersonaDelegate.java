@@ -107,106 +107,117 @@ public class PersonaDelegate {
 	
 	public List<Object> getBusquedaBasicaPersona(String nombrePersona, String identificacionPersona){
 		personas = new ArrayList<Object>();
-		if(!nombrePersona.equalsIgnoreCase("") || !identificacionPersona.equalsIgnoreCase("")){
-			personaService = new PersonaService();
-			List<Object> criteriosBusqueda = new ArrayList<Object>();
-			if(!nombrePersona.equalsIgnoreCase("") && !identificacionPersona.equalsIgnoreCase(""))
-				criteriosBusqueda.add("DOS|");
-			else
-				criteriosBusqueda.add("UNO|");
-			String apellidoPersona = "";
-			String [] nombreApellido = nombrePersona.split("\\s+");
-			if(!nombreApellido[0].equalsIgnoreCase("")){
-				if(nombreApellido.length==1){
-					nombrePersona = nombreApellido[0];
-					apellidoPersona = nombreApellido[0];
-					criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
-					criteriosBusqueda.add("per_vapellidos"+"|OR|"+apellidoPersona);
-				}				
-				else if(nombreApellido.length==2){
-					nombrePersona = nombreApellido[0];
-					apellidoPersona = nombreApellido[1];
-					criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
-					criteriosBusqueda.add("per_vapellidos"+"|AND|"+apellidoPersona);
+		personaService = new PersonaService();
+		List<Object> criteriosBusqueda = new ArrayList<Object>();
+		if(nombrePersona.equalsIgnoreCase("") && identificacionPersona.equalsIgnoreCase("")){
+			personas = personaService.buscarPersonas();
+		}else{
+			if(!nombrePersona.equalsIgnoreCase("") || !identificacionPersona.equalsIgnoreCase("")){
+				if(!nombrePersona.equalsIgnoreCase("") && !identificacionPersona.equalsIgnoreCase(""))
+					criteriosBusqueda.add("DOS|");
+				else
+					criteriosBusqueda.add("UNO|");
+				String apellidoPersona = "";
+				String [] nombreApellido = nombrePersona.split("\\s+");
+				if(!nombreApellido[0].equalsIgnoreCase("")){
+					if(nombreApellido.length==1){
+						nombrePersona = nombreApellido[0];
+						apellidoPersona = nombreApellido[0];
+						criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
+						criteriosBusqueda.add("per_vapellidos"+"|OR|"+apellidoPersona);
+					}				
+					else if(nombreApellido.length==2){
+						nombrePersona = nombreApellido[0];
+						apellidoPersona = nombreApellido[1];
+						criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
+						criteriosBusqueda.add("per_vapellidos"+"|AND|"+apellidoPersona);
+					}
+					else if(nombreApellido.length==3){
+						nombrePersona = nombreApellido[0];
+						apellidoPersona = nombreApellido[1] + " " + nombreApellido[2];
+						criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
+						criteriosBusqueda.add("per_vapellidos"+"|AND|"+apellidoPersona);
+					}
+					else if(nombreApellido.length==4){
+						nombrePersona = nombreApellido[0] + " " + nombreApellido[1];
+						apellidoPersona = nombreApellido[2] + " " + nombreApellido[3];
+						criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
+						criteriosBusqueda.add("per_vapellidos"+"|AND|"+apellidoPersona);
+					}
 				}
-				else if(nombreApellido.length==3){
-					nombrePersona = nombreApellido[0];
-					apellidoPersona = nombreApellido[1] + " " + nombreApellido[2];
-					criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
-					criteriosBusqueda.add("per_vapellidos"+"|AND|"+apellidoPersona);
-				}
-				else if(nombreApellido.length==4){
-					nombrePersona = nombreApellido[0] + " " + nombreApellido[1];
-					apellidoPersona = nombreApellido[2] + " " + nombreApellido[3];
-					criteriosBusqueda.add("per_vnombres"+"|"+nombrePersona);
-					criteriosBusqueda.add("per_vapellidos"+"|AND|"+apellidoPersona);
-				}
+				if(!identificacionPersona.equalsIgnoreCase(""))
+					criteriosBusqueda.add("per_nidentificacion"+"|"+identificacionPersona);
+				personas = personaService.buscarPersonaPorCriterios(criteriosBusqueda);
 			}
-			if(!identificacionPersona.equalsIgnoreCase(""))
-				criteriosBusqueda.add("per_nidentificacion"+"|"+identificacionPersona);
-			personas = personaService.buscarPersonaPorCriterios(criteriosBusqueda);
 		}
 		return personas;
 	}
 	
 	public List<Object> getBusquedaAvanzadaPersona(String nombrePersona, String identificacionPersona, String idPregrado, Date fechaTarjetaProfesional, String idEspecializacion, String idMaestria, String cargo, String bd, String herramientas, String funciones, String idPerfil){
 		personas = new ArrayList<Object>();
-		if(!nombrePersona.equalsIgnoreCase("") || !identificacionPersona.equalsIgnoreCase("") || !idPregrado.equalsIgnoreCase("") || 
-				!idEspecializacion.equalsIgnoreCase("") || !idMaestria.equalsIgnoreCase("") || !cargo.equalsIgnoreCase("") ||
-					!herramientas.equalsIgnoreCase("") || !bd.equalsIgnoreCase("") || !funciones.equalsIgnoreCase("") || 
-						!idPerfil.equalsIgnoreCase("") || fechaTarjetaProfesional!=null){
-			personaService = new PersonaService();
-			List<Object> criteriosBusqueda = new ArrayList<Object>();
-			String apellidoPersona = "";
-			String [] nombreApellido = nombrePersona.split("\\s+");
-			if(!nombreApellido[0].equalsIgnoreCase("")){
-				if(nombreApellido.length==1){
-					nombrePersona = nombreApellido[0];
-					apellidoPersona = nombreApellido[0];
-					criteriosBusqueda.add("p.per_vnombres LIKE '%"+nombrePersona+"%' OR p.per_vapellidos LIKE '%"+apellidoPersona+"%'");
-				}				
-				else if(nombreApellido.length==2){
-					nombrePersona = nombreApellido[0];
-					apellidoPersona = nombreApellido[1];
-					criteriosBusqueda.add("p.per_vnombres LIKE '%"+nombrePersona+"%'");
-					criteriosBusqueda.add("p.per_vapellidos LIKE '%"+apellidoPersona+"%'");
+		personaService = new PersonaService();
+		List<Object> criteriosBusqueda = new ArrayList<Object>();
+		if(nombrePersona.equalsIgnoreCase("") && identificacionPersona.equalsIgnoreCase("") && idPregrado.equalsIgnoreCase("") && 
+				idEspecializacion.equalsIgnoreCase("") && idMaestria.equalsIgnoreCase("") && cargo.equalsIgnoreCase("") &&
+					herramientas.equalsIgnoreCase("") && bd.equalsIgnoreCase("") && funciones.equalsIgnoreCase("") && 
+						idPerfil.equalsIgnoreCase("") && fechaTarjetaProfesional==null){
+			personas = personaService.buscarPersonas();
+		}else{
+			if(!nombrePersona.equalsIgnoreCase("") || !identificacionPersona.equalsIgnoreCase("") || !idPregrado.equalsIgnoreCase("") || 
+					!idEspecializacion.equalsIgnoreCase("") || !idMaestria.equalsIgnoreCase("") || !cargo.equalsIgnoreCase("") ||
+						!herramientas.equalsIgnoreCase("") || !bd.equalsIgnoreCase("") || !funciones.equalsIgnoreCase("") || 
+							!idPerfil.equalsIgnoreCase("") || fechaTarjetaProfesional!=null){
+				String apellidoPersona = "";
+				String [] nombreApellido = nombrePersona.split("\\s+");
+				if(!nombreApellido[0].equalsIgnoreCase("")){
+					if(nombreApellido.length==1){
+						nombrePersona = nombreApellido[0];
+						apellidoPersona = nombreApellido[0];
+						criteriosBusqueda.add("p.per_vnombres LIKE '%"+nombrePersona+"%' OR p.per_vapellidos LIKE '%"+apellidoPersona+"%'");
+					}				
+					else if(nombreApellido.length==2){
+						nombrePersona = nombreApellido[0];
+						apellidoPersona = nombreApellido[1];
+						criteriosBusqueda.add("p.per_vnombres LIKE '%"+nombrePersona+"%'");
+						criteriosBusqueda.add("p.per_vapellidos LIKE '%"+apellidoPersona+"%'");
+					}
+					else if(nombreApellido.length==3){
+						nombrePersona = nombreApellido[0];
+						apellidoPersona = nombreApellido[1] + " " + nombreApellido[2];
+						criteriosBusqueda.add("p.per_vnombres LIKE '%"+nombrePersona+"%'");
+						criteriosBusqueda.add("p.per_vapellidos LIKE '%"+apellidoPersona+"%'");
+					}
+					else if(nombreApellido.length==4){
+						nombrePersona = nombreApellido[0] + " " + nombreApellido[1];
+						apellidoPersona = nombreApellido[2] + " " + nombreApellido[3];
+						criteriosBusqueda.add("p.per_vnombres LIKE '%"+nombrePersona+"%'");
+						criteriosBusqueda.add("p.per_vapellidos LIKE '%"+apellidoPersona+"%'");
+					}
 				}
-				else if(nombreApellido.length==3){
-					nombrePersona = nombreApellido[0];
-					apellidoPersona = nombreApellido[1] + " " + nombreApellido[2];
-					criteriosBusqueda.add("p.per_vnombres LIKE '%"+nombrePersona+"%'");
-					criteriosBusqueda.add("p.per_vapellidos LIKE '%"+apellidoPersona+"%'");
+				if(!identificacionPersona.equalsIgnoreCase(""))
+					criteriosBusqueda.add("p.per_nidentificacion LIKE '%"+identificacionPersona+"%'");
+				if(!idPregrado.equalsIgnoreCase(""))
+					criteriosBusqueda.add("pre.teq_nidtituloeq = "+idPregrado);
+				if(!idEspecializacion.equalsIgnoreCase(""))
+					criteriosBusqueda.add("esp.teq_nidtituloeq = "+idEspecializacion);
+				if(!idMaestria.equalsIgnoreCase(""))
+					criteriosBusqueda.add("msc.teq_nidtituloeq = "+idMaestria);
+				if(!cargo.equalsIgnoreCase(""))
+					criteriosBusqueda.add("e.exp_vcargo LIKE '%"+cargo+"%'");
+				if(!herramientas.equalsIgnoreCase(""))
+					criteriosBusqueda.add("pp.ppr_vherrasw LIKE '%"+herramientas+"%'");
+				if(!bd.equalsIgnoreCase(""))
+					criteriosBusqueda.add("pp.ppr_vmotorbd LIKE '%"+bd+"%'");
+				if(!funciones.equalsIgnoreCase(""))
+					criteriosBusqueda.add("e.exp_vfuncionlogro LIKE '%"+funciones+"%'");
+				if(!idPerfil.equalsIgnoreCase(""))
+					criteriosBusqueda.add("pp.peq_nidperfileq = "+idPerfil);
+				if(fechaTarjetaProfesional!=null){
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					criteriosBusqueda.add("pre.for_dfectarjeta = '"+dateFormat.format(fechaTarjetaProfesional)+"'");
 				}
-				else if(nombreApellido.length==4){
-					nombrePersona = nombreApellido[0] + " " + nombreApellido[1];
-					apellidoPersona = nombreApellido[2] + " " + nombreApellido[3];
-					criteriosBusqueda.add("p.per_vnombres LIKE '%"+nombrePersona+"%'");
-					criteriosBusqueda.add("p.per_vapellidos LIKE '%"+apellidoPersona+"%'");
-				}
+				personas = personaService.buscarPersonaPorCriteriosAvanzados(criteriosBusqueda);
 			}
-			if(!identificacionPersona.equalsIgnoreCase(""))
-				criteriosBusqueda.add("p.per_nidentificacion LIKE '%"+identificacionPersona+"%'");
-			if(!idPregrado.equalsIgnoreCase(""))
-				criteriosBusqueda.add("pre.teq_nidtituloeq = "+idPregrado);
-			if(!idEspecializacion.equalsIgnoreCase(""))
-				criteriosBusqueda.add("esp.teq_nidtituloeq = "+idEspecializacion);
-			if(!idMaestria.equalsIgnoreCase(""))
-				criteriosBusqueda.add("msc.teq_nidtituloeq = "+idMaestria);
-			if(!cargo.equalsIgnoreCase(""))
-				criteriosBusqueda.add("e.exp_vcargo LIKE '%"+cargo+"%'");
-			if(!herramientas.equalsIgnoreCase(""))
-				criteriosBusqueda.add("pp.ppr_vherrasw LIKE '%"+herramientas+"%'");
-			if(!bd.equalsIgnoreCase(""))
-				criteriosBusqueda.add("pp.ppr_vmotorbd LIKE '%"+bd+"%'");
-			if(!funciones.equalsIgnoreCase(""))
-				criteriosBusqueda.add("e.exp_vfuncionlogro LIKE '%"+funciones+"%'");
-			if(!idPerfil.equalsIgnoreCase(""))
-				criteriosBusqueda.add("pp.peq_nidperfileq = "+idPerfil);
-			if(fechaTarjetaProfesional!=null){
-				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-				criteriosBusqueda.add("pre.for_dfectarjeta = '"+dateFormat.format(fechaTarjetaProfesional)+"'");
-			}
-			personas = personaService.buscarPersonaPorCriteriosAvanzados(criteriosBusqueda);
 		}
 		return personas;
 	}

@@ -190,6 +190,18 @@ public class PersonaMB {
 	public void setFechaTarjetaProfesional(Date fechaTarjetaProfesional) {
 		this.fechaTarjetaProfesional = fechaTarjetaProfesional;
 	}
+	public Integer getIdPais() {
+		return idPais;
+	}
+	public void setIdPais(Integer idPais) {
+		this.idPais = idPais;
+	}
+	public Integer getIdDepto() {
+		return idDepto;
+	}
+	public void setIdDepto(Integer idDepto) {
+		this.idDepto = idDepto;
+	}
 	public String getCriterioBusquedaRapida() {
 		return criterioBusquedaRapida;
 	}
