@@ -9,22 +9,20 @@
 		<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-		<table align="center" width="940px">
-			<tr>
-				<td width="940px">
-					<ui:include src="../web/faces/comun/encabezado.xhtml"/>
-				</td>
-			</tr>
-			<tr>
-				<td width="940px" align="center">
-					<ui:insert name="cuerpo"/>
-				</td>
-			</tr>
-			<tr>
-				<td width="940px" colspan="3">
-					<ui:include src="../web/faces/comun/pie.xhtml"/>
-				</td>
-			</tr>
-		</table>
+    	<table align="center" width="940px">
+    		<tr>
+    			<td>
+					<div align="center" style="position: absolute; width: 940px;top: 0pt;">
+						<ui:include src="../web/faces/comun/encabezado.xhtml"/>
+					</div>
+					<div align="center" style="position: absolute; width: 940px;top: 77pt;">
+						<ui:insert name="cuerpo"/>
+					</div>
+					<div align="center" style="position: absolute; width: 940px;top: 408pt;">
+						<ui:include src="../web/faces/comun/pie.xhtml"/>
+					</div>
+    			</td>
+    		</tr>
+    	</table>
 	</body>      
 </html>

@@ -143,7 +143,7 @@ public class EstadocivilMB {
 	}
 	
 	public void getHomePageValue(){
-		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_IDIOMA);
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_ESTADOCIVIL);
 	}
 	
 	public Boolean getValidarPermisosServicio(String nombreServicio){
