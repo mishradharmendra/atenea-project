@@ -20,24 +20,29 @@
 					<rich:tab label="Datos Personales" name="TAB_PANEL_PERSONA" style="background-color:#EEE;" switchType="server">					
 					<table align="left">
 						<tr>
-							<td><h:outputLabel value="Datos Personales #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
+							<td><h:outputLabel value="Datos Personales " styleClass="TituloContenido"></h:outputLabel></td>
+							<td><h:outputLabel value="#{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="ItalicFormat"></h:outputLabel></td>
 						</tr>
 					</table>
-					<br/><br/><br/>
+					<table align="center" width="100%">
+						<tr>
+							<td height="10px"/>
+						</tr>
+					</table>
 					<h:form id="formDatosPersonales">
-					<table align="left">
+					<table align="left" width="100%">
 						<tr>
 							<td align="left"><h:outputLabel value="Nombres" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 							<td align="left"><h:inputText size="35" id="perVnombres" value="#{PersonaMB.persona.perVnombres}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Nombres"></h:inputText></td>
-							<td width="100px"></td>			
+							<td width="50px"></td>			
 							<td align="left"><h:outputLabel value="Apellidos" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 							<td align="left"><h:inputText size="35" id="perVapellidos" value="#{PersonaMB.persona.perVapellidos}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Apellidos"></h:inputText></td>							
 						</tr>
 						<tr>
 							<td align="center" colspan="3"><rich:message for="perVnombres" style="color:red"/></td>
-							<td width="100px"></td>			
+							<td width="50px"></td>			
 							<td align="center" colspan="3"><rich:message for="perVapellidos" style="color:red"/></td>							
 						</tr>						
 						<tr>
@@ -47,14 +52,14 @@
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.tiposIdentificacion}"/>
 							</h:selectOneMenu></td>
-							<td width="100px"></td>			
+							<td width="50px"></td>			
 							<td align="left"><h:outputLabel value="Identificación" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 							<td align="left"><h:inputText size="35" id="perNidentificacion" value="#{PersonaMB.persona.perNidentificacion}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Identificación"></h:inputText></td>							
 						</tr>		
 						<tr>
 							<td align="center" colspan="3"><rich:message for="tdcNidtipodoc" style="color:red"/></td>
-							<td width="100px"></td>	
+							<td width="50px"></td>	
 							<td align="center" colspan="3"><rich:message for="perNidentificacion" style="color:red"/></td>							
 						</tr>							
 						<tr>
@@ -65,7 +70,7 @@
 								<f:selectItem itemValue="H" itemLabel="Hombre"/>
 								<f:selectItem itemValue="M" itemLabel="Mujer"/>
 							</h:selectOneMenu></td>
-							<td width="100px"></td>			
+							<td width="50px"></td>			
 							<td align="left"><h:outputLabel value="Estado Civil" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 							<td align="left"><h:selectOneMenu id="escNidestadocivil" value="#{PersonaMB.persona.escNidestadocivil}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Estado Civil" style="width:200px">
@@ -75,13 +80,13 @@
 						</tr>		
 						<tr>
 							<td align="center" colspan="3"><rich:message for="perVsexo" style="color:red"/></td>
-							<td width="100px"></td>	
+							<td width="50px"></td>	
 							<td align="center" colspan="3"><rich:message for="escNidestadocivil" style="color:red"/></td>							
 						</tr>													
 						<tr>
 							<td align="left" colspan="2"><h:outputLabel value="Fecha de Nacimiento" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><rich:calendar value="#{PersonaMB.persona.perDfecnacimiento}" datePattern="dd/MM/yyyy" id="perDfecnacimiento" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="31"/></td>
-							<td width="100px"></td>			
+							<td width="50px"></td>			
 							<td align="left" colspan="2"><h:outputLabel value="País" styleClass="TextoContenido"></h:outputLabel></td>
                             <td align="left"><h:selectOneMenu id="idPais" valueChangeListener="#{PersonaMB.getDeptos}" onchange="submit()" style="width:200px">
                                     <f:selectItem itemValue="" itemLabel="Seleccione..."/>  
@@ -94,7 +99,7 @@
                                     <f:selectItem itemValue="" itemLabel="Seleccione..."/>  
                                     <f:selectItems value="#{PersonaMB.departamentosPais}"/>
                             </h:selectOneMenu></td> 
-							<td width="100px"></td>	
+							<td width="50px"></td>	
 							<td align="left"><h:outputLabel value="Municipio" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 							<td align="left"><h:selectOneMenu id="munNidmunicipio" value="#{PersonaMB.persona.munNidmunicipio}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Seleccione un Municipio" style="width:200px">
@@ -104,7 +109,7 @@
 						</tr>
 						<tr>
 							<td colspan="3"></td>	
-							<td width="100px"></td>	
+							<td width="50px"></td>	
 							<td align="center" colspan="3"><rich:message for="munNidmunicipio" style="color:red"/></td>							
 						</tr>							
 						<tr>				
@@ -112,7 +117,7 @@
 							<td align="left"><h:inputText size="35" value="#{PersonaMB.persona.perVlibretamilitar}"></h:inputText></td>
 						</tr>	
 						<tr>
-							<td height="30px"/>
+							<td height="10px"/>
 						</tr>																																																
 						<tr>
 							<td align="left"><h:outputLabel value="Datos Contacto" styleClass="TituloContenido"></h:outputLabel></td>
@@ -127,7 +132,7 @@
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.paises}"/>
 								</h:selectOneMenu></td>
-							<td width="100px"></td>	
+							<td width="50px"></td>	
 							<td align="left" colspan="2"><h:outputLabel value="Municipio Residencia" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:selectOneMenu id="mpio" value="#{PersonaMB.persona.munNmpioresidencia}" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
@@ -136,27 +141,27 @@
 						</tr>	
 						<tr>
 							<td align="center" colspan="3"><rich:message for="idPaisResidencia" style="color:red"/></td>
-							<td width="100px"></td>	
+							<td width="50px"></td>	
 							<td colspan="3"/>							
 						</tr>											
 						<tr>
 							<td align="left" colspan="2"><h:outputLabel value="Movil" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:inputText size="35" id="perVmovil" value="#{PersonaMB.persona.perVmovil}"></h:inputText></td>
-							<td width="100px"></td>	
+							<td width="50px"></td>	
 							<td align="left" colspan="2"><h:outputLabel value="Correo Electrónico" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:inputText size="35" id="perVemail" value="#{PersonaMB.persona.perVemail}"></h:inputText></td>							
 						</tr>								
 						<tr>
 							<td align="left" colspan="2"><h:outputLabel value="Teléfono Fijo" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:inputText size="35" id="perVtelefono" value="#{PersonaMB.persona.perVtelefono}"></h:inputText></td>
-							<td width="100px"></td>	
+							<td width="50px"></td>	
 							<td align="left" colspan="2"><h:outputLabel value="Dirección" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:inputText size="35" id="perVdireccion" value="#{PersonaMB.persona.perVdireccion}"></h:inputText></td>							
 						</tr>																	
-						<tr>
-							<td height="50px"/>
-						</tr>
 						<c:if test="#{PersonaMB.persona.perNidpersona != null}">
+							<tr>
+								<td height="10px"/>
+							</tr>						
 							<tr>
 								<td align="center" colspan="7"><h:outputLabel value="Adjuntar Hoja de Vida" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
@@ -165,13 +170,13 @@
 	                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
 							</tr>		
 						</c:if>										                   
-					</table>	
-					<table align="center" width="100%">
-						<tr>
-							<td height="5px"/>
-						</tr>
-					</table>				
+					</table>					
 					<c:if test="#{DocumentoMB.hojasDeVida != null}">
+						<table align="center" width="100%">
+							<tr>
+								<td height="5px"/>
+							</tr>
+						</table>					
 						<table align="center">
 							<tr>
 								<td align="center">
@@ -206,26 +211,24 @@
 					<div align="center" style="position: relative;">
 					<table align="center" width="100%">
 						<tr>
-							<td height="50px"/>
+							<td height="10px"/>
 						</tr>
 					</table>
 					</div>
 					<c:if test="#{PersonaMB.persona.perNidpersona == null}">
-					<div align="center" style="position: relative; top: 0pt; right: -10pt;">
+					<div align="center" style="position: relative; top: 0pt; right: 17pt;">
 						<table align="right">
 							<tr>
 								<td><h:commandButton id="GuardarPersona" action="#{PersonaMB.getGuardarPersona}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-								<td width="40px"/>
 							</tr>
 						</table>
 					</div>
 					</c:if>
 					<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-					<div align="center" style="position: relative; top: 0pt; right: 40pt;">
+					<div align="center" style="position: relative; top: 0pt; right: 70pt;">
 						<table align="right">
 							<tr>
 								<td><h:commandButton id="GuardarPersona" action="#{PersonaMB.getActualizarPersona}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-								<td width="40px"/>
 							</tr>						
 						</table>
 					</div>
@@ -233,7 +236,7 @@
 					</h:form>
 					<h:form>
 					<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-					<div align="center" style="position: relative; top: 0pt; right: -55pt;">
+					<div align="center" style="position: relative; top: 0pt; right: -25pt;">
 						<table align="right">
 							<tr>
 								<td><h:commandButton action="#{PersonaMB.getSiguiente}" value="Siguiente" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
@@ -247,72 +250,81 @@
 						<c:if test="#{PersonaMB.tabPanelFormacion == 'TAB_PANEL_FORMACION'}">
 							<table align="left">
 								<tr>
-									<td><h:outputLabel value="Formación Académica  #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
+									<td><h:outputLabel value="Formación Académica " styleClass="TituloContenido"></h:outputLabel></td>
+									<td><h:outputLabel value="#{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="ItalicFormat"></h:outputLabel></td>
 								</tr>
 							</table>				
-							<br/><br/><br/>
+							<table align="center" width="100%">
+								<tr>
+									<td height="10px"/>
+								</tr>
+							</table>
 							<table align="center">
 								<tr>
 									<td align="center"><h:outputLabel value="Formaciones Académicas" styleClass="TituloContenido"></h:outputLabel></td>
 								</tr>
 							</table>	
-							<br/><br/>	
+							<table align="center" width="100%">
+								<tr>
+									<td height="10px"/>
+								</tr>
+							</table>
 							<c:if test="#{FormacionMB.formacionesAcademicas == null}">
 								<table align="center">
 								<tr>
-									<td><h:outputLabel value="No se ha registrado ninguna Formación Académica. Use 'Agregar Formación Académica' para ingresar una nueva." styleClass="TituloContenido"></h:outputLabel></td>
+									<td><h:outputLabel value="No se ha registrado ninguna Formación Académica. Use 'Agregar Formación Académica' para ingresar una nueva." styleClass="TextoContenido"></h:outputLabel></td>
 								</tr>
 							</table>
 							</c:if>
 							<c:if test="#{FormacionMB.formacionesAcademicas != null}">								
 							<h:form>
 							<table align="center">
-							<tr>
-								<td align="center">
-									<rich:extendedDataTable id="tablaFormacionesAcademicas" align="center" value="#{FormacionMB.formacionesAcademicas}" var="formacion" width="830px" height="200px" headerClass="rich-table-header">
-										<rich:column width="120px" sortable="true" sortBy="#{formacion.gppNivelacademico.nacVnivelac}" label="Tipo Estudio">
-											<f:facet name="header">
-												<h:outputLabel value="Tipo Estudio" styleClass="PrimerNivel"></h:outputLabel>
-											</f:facet>
-											<div align="left"><h:outputLabel value="#{formacion.gppNivelacademico.nacVnivelac}"></h:outputLabel></div>
-										</rich:column>
-										<rich:column width="250px" sortable="true" sortBy="#{formacion.gppInstitucion.insVinstitucion}" label="Institución">
-											<f:facet name="header">
-												<h:outputLabel value="Institución" styleClass="PrimerNivel"></h:outputLabel>
-											</f:facet>														
-											<div align="left"><h:outputLabel value="#{formacion.gppInstitucion.insVinstitucion}"></h:outputLabel></div>	
-										</rich:column>
-										<rich:column width="235px" sortable="true" sortBy="#{formacion.forVtitulo}" label="Título">
-											<f:facet name="header">
-												<h:outputLabel value="Título" styleClass="PrimerNivel"></h:outputLabel>
-											</f:facet>
-											<div align="left"><h:outputLabel value="#{formacion.forVtitulo}"></h:outputLabel></div>
-										</rich:column>						
-										<rich:column width="100px" sortable="true" sortBy="#{formacion.forDfecgrado}" label="Fecha de Grado">
-											<f:facet name="header">
-												<h:outputLabel value="Fecha de Grado" styleClass="PrimerNivel"></h:outputLabel>
-											</f:facet>
-											<div align="left"><h:outputLabel value="#{formacion.forDfecgrado}"></h:outputLabel></div>
-										</rich:column>								
-										<rich:column width="55px" label="Modificar">
-											<f:facet name="header">
-												<h:outputLabel value="Modificar" styleClass="PrimerNivel"></h:outputLabel>
-											</f:facet>
-											<a4j:commandLink id="modificar" onclick="procesarSolicitudModificarFormacion('#{formacion.forNidformacion}')">
-					                            <div align="center"><h:graphicImage align="center" url="../../imagenes/editar.png" style="border:0"/></div>
-					                        </a4j:commandLink>
-										</rich:column>		
-										<rich:column width="55px" label="Eliminar">
-											<f:facet name="header">
-												<h:outputLabel value="Eliminar" styleClass="PrimerNivel"></h:outputLabel>
-											</f:facet>
-											<a4j:commandLink id="eliminar" onclick="aceptar = confirm('Esta seguro que quiere eliminar el elemento seleccionado?'); if(aceptar==true){procesarSolicitudEliminarFormacion('#{formacion.forNidformacion}');} return false;"> 
-					                            <div align="center"><h:graphicImage align="center" url="../../imagenes/Delete.png"  style="border:0"/></div>
-					                        </a4j:commandLink>
-										</rich:column>												
-									</rich:extendedDataTable>
-								</td>
-							</tr>
+								<tr>
+									<td align="center">
+										<rich:extendedDataTable id="tablaFormacionesAcademicas" align="center" value="#{FormacionMB.formacionesAcademicas}" var="formacion" width="830px" height="150px" headerClass="rich-table-header">
+											<rich:column width="120px" sortable="true" sortBy="#{formacion.gppNivelacademico.nacVnivelac}" label="Tipo Estudio">
+												<f:facet name="header">
+													<h:outputLabel value="Tipo Estudio" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>
+												<div align="left"><h:outputLabel value="#{formacion.gppNivelacademico.nacVnivelac}"></h:outputLabel></div>
+											</rich:column>
+											<rich:column width="250px" sortable="true" sortBy="#{formacion.gppInstitucion.insVinstitucion}" label="Institución">
+												<f:facet name="header">
+													<h:outputLabel value="Institución" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>														
+												<div align="left"><h:outputLabel value="#{formacion.gppInstitucion.insVinstitucion}"></h:outputLabel></div>	
+											</rich:column>
+											<rich:column width="235px" sortable="true" sortBy="#{formacion.forVtitulo}" label="Título">
+												<f:facet name="header">
+													<h:outputLabel value="Título" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>
+												<div align="left"><h:outputLabel value="#{formacion.forVtitulo}"></h:outputLabel></div>
+											</rich:column>						
+											<rich:column width="100px" sortable="true" sortBy="#{formacion.forDfecgrado}" label="Fecha de Grado">
+												<f:facet name="header">
+													<h:outputLabel value="Fecha de Grado" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>
+												<div align="left"><h:outputLabel value="#{formacion.forDfecgrado}"></h:outputLabel></div>
+											</rich:column>								
+											<rich:column width="55px" label="Modificar">
+												<f:facet name="header">
+													<h:outputLabel value="Modificar" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>
+												<a4j:commandLink id="modificar" onclick="procesarSolicitudModificarFormacion('#{formacion.forNidformacion}')">
+						                            <div align="center"><h:graphicImage align="center" url="../../imagenes/editar.png" style="border:0"/></div>
+						                        </a4j:commandLink>
+											</rich:column>		
+											<rich:column width="55px" label="Eliminar">
+												<f:facet name="header">
+													<h:outputLabel value="Eliminar" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>
+												<a4j:commandLink id="eliminar" onclick="aceptar = confirm('Esta seguro que quiere eliminar el elemento seleccionado?'); if(aceptar==true){procesarSolicitudEliminarFormacion('#{formacion.forNidformacion}');} return false;"> 
+						                            <div align="center"><h:graphicImage align="center" url="../../imagenes/Delete.png"  style="border:0"/></div>
+						                        </a4j:commandLink>
+											</rich:column>												
+										</rich:extendedDataTable>
+									</td>
+								</tr>
 							</table>
 							</h:form>
 					      	<a4j:form>
@@ -326,14 +338,22 @@
 				            	</a4j:jsFunction>
 				        	</a4j:form>	
 				        	</c:if>   
-							<br/>
+							<table align="center" width="100%">
+								<tr>
+									<td height="10px"/>
+								</tr>
+							</table>
 							<h:form>
 							<table align="center">
 								<tr>
-									<td><h:commandButton action="#{FormacionMB.getAgregarFormacion}" value="Agregar Estudio" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+									<td><h:commandButton action="#{FormacionMB.getAgregarFormacion}" value="Agregar Formación Académica" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 								</tr>
 							</table>			
-							<br/>		
+							<table align="center" width="100%">
+								<tr>
+									<td height="10px"/>
+								</tr>
+							</table>	
 							<table align="center">
 								<tr>
 									<td align="center"><h:outputLabel value="Consolidado Soportes de Estudios" styleClass="TituloContenido"></h:outputLabel></td>
@@ -344,7 +364,11 @@
 								</tr>												                   
 							</table>										
 							</h:form>
-							<br/><br/>
+							<table align="center" width="100%">
+								<tr>
+									<td height="10px"/>
+								</tr>
+							</table>
 							<h:form>
 							<table align="right">
 								<tr>
@@ -367,17 +391,22 @@
 							<script type="text/javascript" src="../../swf/calendario.js"></script>
 							<table>
 								<tr>
-									<td><h:outputLabel value="Formación Académica #{PersonaMB.persona.perVnombres}" styleClass="TituloContenido"></h:outputLabel></td>
+									<td><h:outputLabel value="Formación Académica " styleClass="TituloContenido"></h:outputLabel></td>
+									<td><h:outputLabel value="#{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="ItalicFormat"></h:outputLabel></td>
 								</tr>
 							</table>
-							<br/><br/>
+							<table align="center" width="100%">
+								<tr>
+									<td height="10px"/>
+								</tr>
+							</table>
 							<h:form id="formFormacionAcademica">
-							<table align="left">
+							<table align="left" width="100%">
 								<tr>
 									<td align="left"><h:outputLabel value="Título Obtenido" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:inputText size="55" id="forVtitulo" value="#{FormacionMB.formacion.forVtitulo}" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Título Obtenido"></h:inputText></td>
-									<td width="90px"></td>			
+									<td width="10px"></td>			
 									<td align="left"><h:outputLabel value="Nivel Académico" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:selectOneMenu value="#{FormacionMB.formacion.nacNidnivelac}" id="nacNidnivelac" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Nivel Académico" style="width:160px">
@@ -387,7 +416,7 @@
 								</tr>
 								<tr>
 									<td align="center" colspan="3"><rich:message for="forVtitulo" style="color:red"/></td>
-									<td width="90px"></td>			
+									<td width="10px"></td>			
 									<td align="center" colspan="3"><rich:message for="nacNidnivelac" style="color:red"/></td>							
 								</tr>						
 								<tr>
@@ -397,14 +426,14 @@
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{FormacionMB.instituciones}"/>
 									</h:selectOneMenu></td>
-									<td width="90px"></td>			
+									<td width="10px"></td>			
 									<td align="left"><h:outputLabel value="Fecha de Grado" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><rich:calendar value="#{FormacionMB.formacion.forDfecgrado}" datePattern="dd/MM/yyyy" id="forDfecgrado" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Fecha de Grado" inputSize="23"/></td>							
 								</tr>		
 								<tr>
 									<td align="center" colspan="3"><rich:message for="insNidinstitucion" style="color:red"/></td>
-									<td width="90px"></td>	
+									<td width="10px"></td>	
 									<td align="center" colspan="3"><rich:message for="forDfecgrado" style="color:red"/></td>							
 								</tr>							
 								<tr>
@@ -414,12 +443,12 @@
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
 										<f:selectItems value="#{FormacionMB.titulosEquivalentes}"/>
 									</h:selectOneMenu></td>
-									<td width="90px"></td>			
+									<td width="10px"></td>			
 									<td align="left"><h:outputLabel value="Duración" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left">
 										<h:inputText size="8" id="forNduracion" value="#{FormacionMB.formacion.forNduracion}" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Número de Duración"></h:inputText>
-										<h:selectOneMenu id="forVunidaddurac" value="#{FormacionMB.formacion.forVunidaddurac}" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Unidades de Duración" style="width:90px">
+										<h:selectOneMenu id="forVunidaddurac" value="#{FormacionMB.formacion.forVunidaddurac}" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Unidades de Duración" style="width:94px">
 											<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 											<f:selectItem itemValue="D" itemLabel="Día(s)"/>
 											<f:selectItem itemValue="S" itemLabel="Semana(s)"/>
@@ -430,68 +459,71 @@
 								</tr>		
 								<tr>
 									<td align="center" colspan="3"><rich:message for="teqNidtituloeq" style="color:red"/></td>
-									<td width="90px"></td>	
+									<td width="10px"></td>	
 									<td align="center" colspan="3">
 										<rich:message for="forNduracion" style="color:red"/>
 										<br/>
 										<rich:message for="forVunidaddurac" style="color:red"/>
 									</td>							
-								</tr>													
+								</tr>
 								<tr>
 									<td align="left" colspan="2"><h:outputLabel value="Tarjeta Profesional" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:inputText size="55" value="#{FormacionMB.formacion.forVtarjetaprof}"></h:inputText></td>
-									<td width="90px"></td>			
+									<td width="10px"></td>			
 									<td align="left" colspan="2"><h:outputLabel value="Fecha de Expedición" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><rich:calendar value="#{FormacionMB.formacion.forDfectarjeta}" datePattern="dd/MM/yyyy" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="23"/></td>						
-								</tr>													
-								<tr>
-									<td height="10px"/>
 								</tr>
+								<tr>									
+									<td height="10px" colspan="7"/>
+								</tr>								
 								<tr>
 									<td align="left" colspan="3"><h:outputLabel value="Diploma" styleClass="TituloContenido"></h:outputLabel></td>
-									<td width="90px"></td>	
+									<td width="15px"></td>	
 									<td align="left" colspan="3"><h:outputLabel value="Acta de Grado" styleClass="TituloContenido"></h:outputLabel></td>							
 								</tr>	
-								<tr>									
-									<td height="10px"/>
-								</tr>
 								<tr>
 									<td align="left" colspan="3" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirDiploma}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 			                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
-									<td width="90px"></td>
-									<td align="left" colspan="3" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirActaGrado}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="280px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+									<td width="15px"></td>
+									<td align="left" colspan="3" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirActaGrado}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="310px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 			                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 								</tr>																																																							
-							</table>			
-							<br/>
+							</table>
+							<br/>			
 							<table align="center" width="100%">
 								<tr>
-									<td height="50px"/>
+									<td height="10px"/>
 								</tr>
 							</table>	
 							<c:if test="#{FormacionMB.formacion.forNidformacion == null}">
-							<table align="right">
-								<tr>
-									<td><h:commandButton id="GuardarFormacion" action="#{FormacionMB.getGuardarFormacion}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-									<td width="35px"/>
-								</tr>
-							</table>
+							<div align="center" style="position: relative; right: 50pt;">
+								<table align="right">
+									<tr>
+										<td><h:commandButton id="GuardarFormacion" action="#{FormacionMB.getGuardarFormacion}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+										<td width="35px"/>
+									</tr>
+								</table>
+							</div>
 							</c:if>	
-							<c:if test="#{FormacionMB.formacion.forNidformacion != null}">			
-							<table align="right">
-								<tr>
-									<td><h:commandButton id="GuardarFormacion" action="#{FormacionMB.getActualizarFormacion}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-									<td width="35px"/>
-								</tr>
-							</table>
+							<c:if test="#{FormacionMB.formacion.forNidformacion != null}">
+							<div align="center" style="position: relative; right: 50pt;">										
+								<table align="right">
+									<tr>
+										<td><h:commandButton id="GuardarFormacion" action="#{FormacionMB.getActualizarFormacion}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+										<td width="35px"/>
+									</tr>
+								</table>
+							</div>
 							</c:if>
 							</h:form>
-							<h:form>				
-							<table align="right">
-								<tr>						
-									<td><h:commandButton action="#{FormacionMB.getCancelar}" value="Cancelar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>						
-								</tr>									
-							</table>
+							<h:form>			
+							<div align="center" style="position: relative; top: 0pt; right: -47pt;">	
+								<table align="right">
+									<tr>						
+										<td><h:commandButton action="#{FormacionMB.getCancelar}" value="Cancelar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>						
+									</tr>									
+								</table>
+							</div>
 							</h:form>
 						</c:if>								        	     							
 					</rich:tab>
@@ -499,29 +531,38 @@
 						<c:if test="#{PersonaMB.tabPanelExperiencia == 'TAB_PANEL_EXPERIENCIA'}">
 							<table align="left">
 								<tr>
-									<td><h:outputLabel value="Experiencia Laboral #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
+									<td><h:outputLabel value="Experiencia Laboral " styleClass="TituloContenido"></h:outputLabel></td>
+									<td><h:outputLabel value="#{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="ItalicFormat"></h:outputLabel></td>
 								</tr>
 							</table>				
-							<br/><br/><br/>
+							<table align="center" width="100%">
+								<tr>
+									<td height="10px"/>
+								</tr>
+							</table>
 							<table align="center">
 								<tr>
 									<td align="center"><h:outputLabel value="Experiencias Laborales" styleClass="TituloContenido"></h:outputLabel></td>
 								</tr>
 							</table>
-							<br/><br/>
-							<c:if test="#{ExperienciaMB.experienciasLaborales == null}">
-								<table align="center">
+							<table align="center" width="100%">
 								<tr>
-									<td><h:outputLabel value="No se ha registrado ninguna Formación Académica. Use 'Agregar Formación Académica' para ingresar una nueva." styleClass="TituloContenido"></h:outputLabel></td>
+									<td height="10px"/>
 								</tr>
 							</table>
+							<c:if test="#{ExperienciaMB.experienciasLaborales == null}">
+								<table align="center">
+									<tr>
+										<td><h:outputLabel value="No se ha registrado ninguna Experiencia Laboral. Use 'Agregar ExperienciaLaboral' para ingresar una nueva." styleClass="TituloContenido"></h:outputLabel></td>
+									</tr>
+								</table>
 							</c:if>
 							<c:if test="#{ExperienciaMB.experienciasLaborales != null}">						
 							<h:form>
 							<table align="center">
 							<tr>
 							<td align="center">
-								<rich:extendedDataTable id="tablaExperienciaLaboral" align="center" value="#{ExperienciaMB.experienciasLaborales}" var="exp" width="830px" height="200px" headerClass="rich-table-header">
+								<rich:extendedDataTable id="tablaExperienciaLaboral" align="center" value="#{ExperienciaMB.experienciasLaborales}" var="exp" width="830px" height="150px" headerClass="rich-table-header">
 									<rich:column width="140px" sortable="true" sortBy="#{exp.expVnomempresa}" label="Empresa">
 										<f:facet name="header">
 											<h:outputLabel value="Empresa" styleClass="PrimerNivel"></h:outputLabel>
@@ -591,14 +632,22 @@
 				            	</a4j:jsFunction>
 				        	</a4j:form>	 
 				        	</c:if>  
-							<br/>
+							<table align="center" width="100%">
+								<tr>
+									<td height="10px"/>
+								</tr>
+							</table>
 							<h:form>
 							<table align="center">
 								<tr>
-									<td><h:commandButton action="#{ExperienciaMB.getAgregarExperiencia}" value="Agregar Experiencia" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+									<td><h:commandButton action="#{ExperienciaMB.getAgregarExperiencia}" value="Agregar Experiencia Laboral" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 								</tr>
 							</table>			
-							<br/>						
+							<table align="center" width="100%">
+								<tr>
+									<td height="10px"/>
+								</tr>
+							</table>					
 							<table align="center">
 								<tr>
 									<td align="center"><h:outputLabel value="Consolidado Certificaciones" styleClass="TituloContenido"></h:outputLabel></td>
@@ -609,7 +658,11 @@
 								</tr>												                   
 							</table>					
 							</h:form>	
-							<br/><br/>
+							<table align="center" width="100%">
+								<tr>
+									<td height="10px"/>
+								</tr>
+							</table>
 							<h:form>
 							<table align="right">
 								<tr>
@@ -632,24 +685,29 @@
 							<script type="text/javascript" src="../../swf/calendario.js"></script>
 							<table>
 								<tr>
-									<td><h:outputLabel value="Experiencia Laboral #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
+									<td><h:outputLabel value="Experiencia Laboral " styleClass="TituloContenido"></h:outputLabel></td>
+									<td><h:outputLabel value="#{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="ItalicFormat"></h:outputLabel></td>
 								</tr>
 							</table>
-							<br/>
+							<table align="center" width="100%">
+								<tr>
+									<td height="10px"/>
+								</tr>
+							</table>
 							<h:form id="formExperiencia">
-							<table align="left">
+							<table align="left" width="100%">
 								<tr>
 									<td align="left"><h:outputLabel value="Empresa" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:inputText size="35" id="expVnomempresa" value="#{ExperienciaMB.experiencia.expVnomempresa}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Empresa"></h:inputText></td>
-									<td width="120px"></td>			
+									<td width="15px"></td>			
 									<td align="left"><h:outputLabel value="Teléfono Empresa" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:inputText size="35" id="expVtelempresa" value="#{ExperienciaMB.experiencia.expVtelempresa}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Teléfono Empresa"></h:inputText></td>
 								</tr>
 								<tr>
 									<td align="center" colspan="3"><rich:message for="expVnomempresa" style="color:red"/></td>
-									<td width="120px"></td>			
+									<td width="15px"></td>			
 									<td align="center" colspan="3"><rich:message for="expVtelempresa" style="color:red"/></td>							
 								</tr>
 								<tr>
@@ -658,7 +716,7 @@
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{ExperienciaMB.paises}"/>
 									</h:selectOneMenu></td>
-									<td width="120px"></td>	
+									<td width="15px"></td>	
 									<td align="left" colspan="2"><h:outputLabel value="Departamento" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:selectOneMenu id="idDepto" valueChangeListener="#{ExperienciaMB.getMpios}" onchange="submit()" style="width:200px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
@@ -680,20 +738,20 @@
 									<td align="left"><h:outputLabel value="Nombre Contacto" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:inputText size="35" id="expVnomcontacto" value="#{ExperienciaMB.experiencia.expVnomcontacto}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Nombre Contacto"></h:inputText></td>
-									<td width="120px"></td>			
+									<td width="15px"></td>			
 									<td align="left" colspan="2"><h:outputLabel value="E-Mail Contacto" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:inputText size="35" id="expVemailcontacto" value="#{ExperienciaMB.experiencia.expVemailcontacto}"></h:inputText></td>					
 								</tr>		
 								<tr>
 									<td align="center" colspan="3"><rich:message for="expVnomcontacto" style="color:red"/></td>
-									<td width="120px"></td>	
+									<td width="15px"></td>	
 									<td align="center" colspan="3"/>							
 								</tr>													
 								<tr>
 									<td align="left"><h:outputLabel value="Cargo Desempeñado" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:inputText size="35" id="expVcargo" value="#{ExperienciaMB.experiencia.expVcargo}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Cargo Desempeñado"></h:inputText></td>
-									<td width="120px"></td>			
+									<td width="15px"></td>			
 									<td align="left"><h:outputLabel value="Cargo Equivalente" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><h:selectOneMenu id="ceqNidcargoeq" value="#{ExperienciaMB.experiencia.ceqNidcargoeq}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Cargo Equivalente" style="width:200px">
@@ -703,131 +761,129 @@
 								</tr>	
 								<tr>
 									<td align="center" colspan="3"><rich:message for="expVcargo" style="color:red"/></td>				
-									<td width="120px"></td>	
+									<td width="15px"></td>	
 									<td align="center" colspan="3"><rich:message for="ceqNidcargoeq" style="color:red"/></td>							
 								</tr>
 								<tr>
 									<td align="left"><h:outputLabel value="Fecha de Ingreso" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><rich:calendar value="#{ExperienciaMB.experiencia.expDfecingreso}" datePattern="dd/MM/yyyy" id="expDfecingreso" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Fecha de Ingreso" inputSize="31"/></td>
-									<td width="120px"></td>
+									<td width="15px"></td>
 									<td align="left" colspan="2"><h:outputLabel value="Fecha de Retiro" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><rich:calendar value="#{ExperienciaMB.experiencia.expDfecretiro}" datePattern="dd/MM/yyyy" id="expDfecretiro" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="31"/></td>
 								</tr>
 								<tr>
 									<td align="center" colspan="3"><rich:message for="expDfecingreso" style="color:red"/></td>
-									<td width="120px"></td>
-									<td align="left"><h:outputLabel value="Actual" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left" colspan="2"><h:selectBooleanCheckbox name="fechaActual" value="#{ExperienciaMB.fechaActual}" id="fechaActual" ></h:selectBooleanCheckbox></td>															
+									<td width="15px"></td>
+									<td align="left"  colspan="2"><h:outputLabel value="Actual" styleClass="TextoContenido"></h:outputLabel></td>
+									<td align="left"><h:selectBooleanCheckbox name="fechaActual" value="#{ExperienciaMB.fechaActual}" id="fechaActual" ></h:selectBooleanCheckbox></td>															
 								</tr>
 								<tr>
 									<td align="center" colspan="3"/>				
-									<td width="120px"></td>	
+									<td width="15px"></td>	
 									<td align="center" colspan="3"><rich:message for="expDfecretiro" style="color:red"/></td>							
 								</tr>	
 								<tr>
-									<td align="left"><h:outputLabel value="Herramientas de Desarrollo" styleClass="TextoContenido"></h:outputLabel></td>
-									<td colspan="6" align="left"><h:inputTextarea cols="127" id="expVherrasw" value="#{ExperienciaMB.experiencia.expVherrasw}"></h:inputTextarea></td>
+									<td align="left" colspan="2"><h:outputLabel value="Herramientas de Desarrollo" styleClass="TextoContenido"></h:outputLabel></td>
+									<td colspan="5" align="left"><h:inputTextarea cols="118" id="expVherrasw" value="#{ExperienciaMB.experiencia.expVherrasw}"></h:inputTextarea></td>
 								</tr>
 								<tr>
-									<td align="left"><h:outputLabel value="Funciones y Logros" styleClass="TextoContenido"></h:outputLabel></td>
-									<td colspan="6" align="left"><h:inputTextarea cols="127" id="expVfuncionlogro" value="#{ExperienciaMB.experiencia.expVfuncionlogro}"></h:inputTextarea></td>															
+									<td align="left" colspan="2"><h:outputLabel value="Funciones y Logros" styleClass="TextoContenido"></h:outputLabel></td>
+									<td colspan="5" align="left"><h:inputTextarea cols="118" id="expVfuncionlogro" value="#{ExperienciaMB.experiencia.expVfuncionlogro}"></h:inputTextarea></td>															
 								</tr>
 								<tr>
 									<td height="10px"/>
 								</tr>	
 								<tr>
 									<td align="left" colspan="3"><h:outputLabel value="Certificado Laboral 1" styleClass="TituloContenido"></h:outputLabel></td>
-									<td width="10px"></td>	
+									<td width="15px"></td>	
 									<td align="left" colspan="3"><h:outputLabel value="Certificado Laboral 2" styleClass="TituloContenido"></h:outputLabel></td>							
 								</tr>	
 								<tr>
 									<td height="10px"/>
 								</tr>			
 								<tr>
-									<td align="left" colspan="3" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado1}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+									<td align="left" colspan="3" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado1}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="350px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 			                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
-									<td width="10px"></td>	
-									<td align="left" colspan="3" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado2}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+									<td width="15px"></td>	
+									<td align="left" colspan="3" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado2}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="360px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 			                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 								</tr>																																																							
 							</table>
 							<br/>
 							<table align="center" width="100%">
 								<tr>
-									<td height="50px"/>
+									<td height="10px"/>
 								</tr>
 							</table>								
 							<c:if test="#{ExperienciaMB.experiencia.expNidexplaboral == null}">
-							<table align="right">
-								<tr>
-									<td><h:commandButton id="GuardarExperiencia" action="#{ExperienciaMB.getGuardarExperiencia}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-									<td width="35px"></td>
-								</tr>
-							</table>
+							<div align="center" style="position: relative; top: 0pt; right: 90pt;">
+								<table align="right">
+									<tr>
+										<td><h:commandButton id="GuardarExperiencia" action="#{ExperienciaMB.getGuardarExperiencia}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+									</tr>
+								</table>
+							</div>
 							</c:if>
-							<c:if test="#{ExperienciaMB.experiencia.expNidexplaboral != null}">					 					
-							<table align="right">
-								<tr>
-									<td><h:commandButton id="GuardarExperiencia" action="#{ExperienciaMB.getActualizarExperiencia}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-									<td width="35px"></td>
-								</tr>
-							</table>
+							<c:if test="#{ExperienciaMB.experiencia.expNidexplaboral != null}">
+							<div align="center" style="position: relative; top: 0pt; right: 90pt;">					 					
+								<table align="right">
+									<tr>
+										<td><h:commandButton id="GuardarExperiencia" action="#{ExperienciaMB.getActualizarExperiencia}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+									</tr>
+								</table>
+							</div>
 							</c:if>					 									
 							</h:form>	
 							<h:form>
+							<div align="center" style="position: relative; top: 0pt; right: -10pt;">	
 								<table align="right">
-								<tr>
-									<td><h:commandButton action="#{ExperienciaMB.getCancelar}" value="Cancelar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>						 					
-								</tr>
-							</table>
+									<tr>
+										<td><h:commandButton action="#{ExperienciaMB.getCancelar}" value="Cancelar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>						 					
+									</tr>
+								</table>
+							</div>							
 							</h:form>
 						</c:if>													
 					</rich:tab>
 					<rich:tab label="Perfil Profesional" name="TAB_PANEL_PERFIL" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;" switchType="server">
 						<table align="left">
 							<tr>
-								<td><h:outputLabel value="Perfil Profesional #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
+								<td><h:outputLabel value="Perfil Profesional " styleClass="TituloContenido"></h:outputLabel></td>
+								<td><h:outputLabel value="#{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="ItalicFormat"></h:outputLabel></td>
 							</tr>
 						</table>	
-						<br/><br/><br/><br/>
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>
 						<h:form>
 						<table align="left">
 							<tr>
 								<td align="left"><h:outputLabel value="Perfil Profesional" styleClass="TextoContenido"></h:outputLabel></td>
 								<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 								<td width="20px"></td>
-								<td align="left"><h:selectOneMenu value="#{PerfilprofesionalMB.perfilProfesional.peqNidperfileq}" id="peqNidperfileq" required="true" requiredMessage="Ingrese Perfil Profesional" style="width:215px">
+								<td align="left" colspan="8"><h:selectOneMenu value="#{PerfilprofesionalMB.perfilProfesional.peqNidperfileq}" id="peqNidperfileq" required="true" requiredMessage="Ingrese Perfil Profesional" style="width:215px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{PerfilprofesionalMB.perfilesProfesionales}"/>
 										</h:selectOneMenu></td>
 							</tr>
 							<tr>
-								<td align="center"><rich:message for="peqNidperfileq" style="color:red"/></td>
+								<td align="center" colspan="10"><rich:message for="peqNidperfileq" style="color:red"/></td>
 							</tr>								
 							<tr>
 								<td align="left"><h:outputLabel value="Descripción" styleClass="TextoContenido"></h:outputLabel></td>
 								<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 								<td width="20px"></td>
-								<td align="left"><h:inputTextarea cols="135" value="#{PerfilprofesionalMB.perfilProfesional.pprVperfil}" id="pprVperfil" required="true" requiredMessage="Ingrese Descripción"></h:inputTextarea></td>
+								<td align="center" colspan="8"><h:inputTextarea cols="112" value="#{PerfilprofesionalMB.perfilProfesional.pprVperfil}" id="pprVperfil" required="true" requiredMessage="Ingrese Descripción"></h:inputTextarea></td>
 							</tr>
 							<tr>
-								<td align="center" colspan="5"><rich:message for="pprVperfil" style="color:red"/></td>
+								<td align="center" colspan="10"><rich:message for="pprVperfil" style="color:red"/></td>
 							</tr>								
-						</table>
-						<br/>	
-						<table align="center">
-							<tr>
-								<td height="30px"/>
-							</tr>
-						</table>
-						<table align="left">
 							<tr>
 								<td><h:outputLabel value="Idiomas" styleClass="TextoContenido"></h:outputLabel></td>
 							</tr>
-						</table>
-						<br/><br/>
-						<table align="left">
 							<tr>
 								<td align="left"><h:outputLabel value="Idioma 1" styleClass="TextoContenido"></h:outputLabel></td>							
 								<td align="left"><h:selectOneMenu value="#{PerfilprofesionalMB.perfilProfesional.idiNididioma1}" style="width:100px">
@@ -837,7 +893,7 @@
 								<td width="20px"></td>
 								<td align="left"><h:outputLabel value="Dominio (%)" styleClass="TextoContenido"></h:outputLabel></td>
 								<td align="left"><h:inputText size="5" value="#{PerfilprofesionalMB.perfilProfesional.pprNnivelidi1}"></h:inputText></td>
-								<td width="100px"></td>
+								<td width="70px"></td>
 								<td align="left"><h:outputLabel value="Idioma 2" styleClass="TextoContenido"></h:outputLabel></td>							
 								<td align="left"><h:selectOneMenu value="#{PerfilprofesionalMB.perfilProfesional.idiNididioma2}" style="width:100px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
@@ -848,78 +904,106 @@
 								<td align="left"><h:inputText size="5" value="#{PerfilprofesionalMB.perfilProfesional.pprNnivelidi2}"></h:inputText></td>
 							</tr>							
 						</table>
-						<br/><br/><br/><br/>
+						<table align="left" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>
 						<table align="left">
 							<tr>
 								<td align="left"><h:outputLabel value="Herramientas de Software" styleClass="TituloContenido"></h:outputLabel></td>
-								<td width="240px"></td>
+								<td width="210px"></td>
 								<td align="left"><h:outputLabel value="Motores de Bases de Datos" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>
-						<br/><br/>
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>
 						<table align="left">				
 							<tr>
 								<td width="25px"></td>
 								<td align="left"><h:inputTextarea cols="60" value="#{PerfilprofesionalMB.perfilProfesional.pprVherrasw}"></h:inputTextarea></td>
 								<td width="120px"></td>
-								<td align="left"><h:inputTextarea cols="60" value="#{PerfilprofesionalMB.perfilProfesional.pprVmotorbd}"></h:inputTextarea></td>
+								<td align="left"><h:inputTextarea cols="63" value="#{PerfilprofesionalMB.perfilProfesional.pprVmotorbd}"></h:inputTextarea></td>
 							</tr>							
 						</table>
-						<br/>
 						<table align="center" width="100%">
 							<tr>
-								<td height="50px"/>
-							</tr>
-						</table>	
-						<table align="right">
-							<tr>
-								<c:if test="#{PerfilprofesionalMB.perfilProfesional.pprNidperfilprof == null}">
-								<td><h:commandButton action="#{PerfilprofesionalMB.getGuardarPerfil}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-								<td width="30px"/>
-								</c:if>					
+								<td height="10px"/>
 							</tr>
 						</table>
-						<table align="right">
+						<table align="center" width="100%">
 							<tr>
-								<c:if test="#{PerfilprofesionalMB.perfilProfesional.pprNidperfilprof != null}">
-								<td><h:commandButton action="#{PerfilprofesionalMB.getActualizarPerfil}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-								<td width="30px"/>
-								</c:if>					
-							</tr>							
+								<td height="10px"/>
+							</tr>
 						</table>
+						<c:if test="#{PerfilprofesionalMB.perfilProfesional.pprNidperfilprof == null}">
+						<div align="center" style="position: relative; right: 125pt;">	
+							<table align="right">
+								<tr>
+									<td><h:commandButton action="#{PerfilprofesionalMB.getGuardarPerfil}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+								</tr>
+							</table>
+						</div>
+						</c:if>
+						<c:if test="#{PerfilprofesionalMB.perfilProfesional.pprNidperfilprof != null}">
+						<div align="center" style="position: relative; right: 125pt;">
+							<table align="right">
+								<tr>
+									<td><h:commandButton action="#{PerfilprofesionalMB.getActualizarPerfil}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+														
+								</tr>							
+							</table>
+						</div>
+						</c:if>
 						</h:form>						
 						<h:form>
-						<table align="right">
-							<tr>
-								<c:if test="#{PersonaMB.persona.perNidpersona != null}">
+						<c:if test="#{PersonaMB.persona.perNidpersona != null}">
+						<div align="center" style="position: relative; right: -25pt;">
+							<table align="right">
+								<tr>
 									<td><h:commandButton action="#{PerfilprofesionalMB.getSiguiente}" value="Siguiente" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-								</c:if>					
-							</tr>						
-						</table>						
-						<table align="right">
-							<tr>
-								<c:if test="#{PersonaMB.persona.perNidpersona != null}">
+								</tr>
+							</table>
+						</div>
+						</c:if>	
+						<c:if test="#{PersonaMB.persona.perNidpersona != null}">
+						<div align="center" style="position: relative; right: -20pt;">						
+							<table align="right">
+								<tr>
 									<td><h:commandButton action="#{PerfilprofesionalMB.getAnterior}" value="Anterior" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-								</c:if>					
-							</tr>						
-						</table>	
+								</tr>						
+							</table>
+						</div>
+						</c:if>		
 						</h:form>
 					</rich:tab>
 					<rich:tab label="Soportes" name="TAB_PANEL_SOPORTES" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;" switchType="server">
 						<table align="left">
 							<tr>
-								<td><h:outputLabel value="Archivos Relacionados #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
+								<td><h:outputLabel value="Archivos Relacionados " styleClass="TituloContenido"></h:outputLabel></td>
+								<td><h:outputLabel value="#{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="ItalicFormat"></h:outputLabel></td>
 							</tr>
 						</table>	
-						<br/><br/><br/><br/>												
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>											
 						<table align="left">
 							<tr>
 								<td><h:outputLabel value="Archivos Relacionados" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>	
-						<br/><br/>						
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>				
 						<h:form>
-						<table align="left">
+						<table align="left" width="100%">
 							<tr>
 								<td align="left"><h:outputLabel value="Tipo de Archivo" styleClass="TextoContenido"></h:outputLabel></td>
 								<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
@@ -927,18 +1011,23 @@
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{DocumentoMB.tiposArchivos}"/>
 										</h:selectOneMenu></td>
-								<td width="190px"></td>
+								<td width="120px"></td>
 								<td align="left"><h:outputLabel value="Fecha Expedición" styleClass="TextoContenido"></h:outputLabel></td>
 								<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 								<td align="left"><rich:calendar value="#{DocumentoMB.documento.docDfecexpide}" datePattern="dd/MM/yyyy" id="docDfecexpide" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha Expedición" inputSize="31"/></td>										
 							</tr>
 							<tr>
 								<td align="center" colspan="3"><rich:message for="tarNidtipoarchivo" style="color:red"/></td>
-								<td width="200px"></td>
+								<td width="120px"></td>
 								<td align="center" colspan="3"><rich:message for="docDfecexpide" style="color:red"/></td>
 							</tr>								
 						</table>
-						<br/><br/><br/><br/>
+						<br/>
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>
 						<table align="center">
 							<tr>
 								<td align="center"><h:outputLabel value="Adjuntar Archivo" styleClass="TituloContenido"></h:outputLabel></td>
@@ -948,26 +1037,33 @@
 	                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 							</tr>								
 						</table>
-			        	<br/><br/>
+						<table align="center" width="100%">
+							<tr>
+								<td height="5px"/>
+							</tr>
+						</table>
 						<table align="right">
 							<tr>
 								<td><h:commandButton action="#{DocumentoMB.getGuardarSoporte}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-								<td width="25px"/>				
+								<td width="25px"/>
 							</tr>
 						</table>	
-						</h:form>						
-						<br/><br/>						
+						</h:form>			
+						<table align="center" width="100%">
+							<tr>
+								<td height="5px"/>
+							</tr>
+						</table>									
 						<table align="center">
 							<tr>
 								<td align="center"><h:outputLabel value="Listado de Soportes" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>
-						<br/>
 						<table align="center">
 							<tr>
 								<td align="center">
 									<h:form>
-									<rich:extendedDataTable id="tablaSoportes" align="center" value="#{DocumentoMB.soportes}" var="docu" width="835px" height="200px" headerClass="rich-table-header">
+									<rich:extendedDataTable id="tablaSoportes" align="center" value="#{DocumentoMB.soportes}" var="docu" width="835px" height="100px" headerClass="rich-table-header">
 										<rich:column width="110px" sortable="true" sortBy="#{docu.gppTipoarchivo.tarVtipoarchivo}" label="Tipo Archivo">
 											<f:facet name="header">
 												<h:outputLabel value="Tipo Archivo" styleClass="PrimerNivel"></h:outputLabel>
@@ -1026,19 +1122,19 @@
 						</table>	
 						<table align="center" width="100%">
 							<tr>
-								<td height="25px"/>
+								<td height="10px"/>
 							</tr>
-						</table>							
-						<h:form>						
-						<table align="right">
-							<tr>
-								<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-									<td><h:commandButton action="#{DocumentoMB.getAnterior}" value="Anterior" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-									<td width="25px"/>
-								</c:if>					
-							</tr>						
 						</table>						
-						</h:form>				        		 			        	  																										
+						<h:form>								
+							<table align="right">
+								<tr>
+									<c:if test="#{PersonaMB.persona.perNidpersona != null}">
+										<td><h:commandButton action="#{DocumentoMB.getAnterior}" value="Anterior" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+										<td width="25px"/>
+									</c:if>					
+								</tr>						
+							</table>
+						</h:form>
 					</rich:tab>
 				</rich:tabPanel>
 			</div>					

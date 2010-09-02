@@ -20,13 +20,17 @@
 						<td align="left"><h:outputLabel value="BÚSQUEDA AVANZADA DE HOJAS DE VIDA" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="10px"/>
+					</tr>
+				</table>
 				<h:form>	
-				<table align="left">
+				<table align="left" width="100%">
 					<tr>
 						<td align="left"><h:outputLabel value="Nombres y Apellidos: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText size="35" value="#{PersonaMB.nombrePersona}"></h:inputText></td>					
-						<td width="110px"></td>
+						<td width="30px"></td>
 						<td align="left"><h:outputLabel value="Identificación : " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText size="35" value="#{PersonaMB.identificacionPersona}"></h:inputText></td>
 					</tr>
@@ -36,7 +40,7 @@
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 							<f:selectItems value="#{PersonaMB.titulosEquivalentes}"/>
 						</h:selectOneMenu></td>
-						<td width="110px"></td>
+						<td width="30px"></td>
 						<td align="left"><h:outputLabel value="Fecha Tarjeta Profesional: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><rich:calendar value="#{PersonaMB.fechaTarjetaProfesional}" datePattern="dd/MM/yyyy" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="31"/></td>						
 					</tr>
@@ -46,7 +50,7 @@
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 							<f:selectItems value="#{PersonaMB.titulosEquivalentes}"/>
 							</h:selectOneMenu></td>
-						<td width="110px"></td>
+						<td width="30px"></td>
 						<td align="left"><h:outputLabel value="Maestría : " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:selectOneMenu value="#{PersonaMB.idMaestria}" style="width:200px">
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
@@ -56,20 +60,20 @@
 					<tr>
 						<td align="left"><h:outputLabel value="Cargo : " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText size="35" value="#{PersonaMB.cargo}"></h:inputText></td>
-						<td width="110px"></td>
+						<td width="30px"></td>
 						<td colspan="2"/>
 					</tr>
 					<tr>
 						<td align="left"><h:outputLabel value="Base de Datos : " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText size="35" value="#{PersonaMB.bd}"></h:inputText></td>
-						<td width="110px"></td>						
+						<td width="30px"></td>						
 						<td align="left"><h:outputLabel value="Herramientas de Desarrollo : " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText size="35" value="#{PersonaMB.herramientas}"></h:inputText></td>
 					</tr>		
 					<tr>
 						<td align="left"><h:outputLabel value="Funciones y Logros : " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText size="35" value="#{PersonaMB.funciones}"></h:inputText></td>
-						<td width="110px"></td>
+						<td width="30px"></td>
 						<td align="left"><h:outputLabel value="Perfil Profesional : " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:selectOneMenu value="#{PersonaMB.idPerfil}" style="width:200px">
 							<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
@@ -77,7 +81,12 @@
 							</h:selectOneMenu></td>
 					</tr>														
 				</table>
-				<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+				<br/>
+				<table align="center">
+					<tr>
+						<td height="10px"/>
+					</tr>
+				</table>
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{PersonaMB.getBusquedaAvanzadaPersona}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>						
@@ -88,11 +97,19 @@
 				</table>
 				</h:form>
 				<c:if test="#{PersonaMB.personas != null}">
-					<br/><br/><br/>
+					<table align="center" width="100%">
+						<tr>
+							<td height="10px"/>
+						</tr>
+					</table>
 					<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
-					<br/><br/>
+					<table align="center" width="100%">
+						<tr>
+							<td height="10px"/>
+						</tr>
+					</table>
 					<h:form>	
-					<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="140px" width="850px" headerClass="rich-table-header">
+					<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="150px" width="850px" headerClass="rich-table-header">
 						<rich:column width="120px" label="Nombre Completo" sortable="true" sortBy="#{persona.perVnombres}">
 							<f:facet name="header">
 								<h:outputLabel value="Nombre Completo" styleClass="PrimerNivel"></h:outputLabel>

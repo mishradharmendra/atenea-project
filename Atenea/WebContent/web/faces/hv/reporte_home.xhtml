@@ -21,20 +21,25 @@
 				</table>
 				<table align="center" width="100%">
 					<tr>
-						<td height="50px"/>
+						<td height="10px"/>
 					</tr>
 				</table>
 				<h:form>	
-				<table align="left">
+				<table align="left" width="100%">
 					<tr>
 						<td align="left"><h:outputLabel value="Nombres y Apellidos: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText size="30" value="#{ReporteMB.nombrePersona}"></h:inputText></td>					
-						<td width="240px"></td>
+						<td width="160px"></td>
 						<td align="left"><h:outputLabel value="Identificación : " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText size="30" value="#{ReporteMB.identificacionPersona}"></h:inputText></td>
 					</tr>
 				</table>
-				<br/><br/><br/>						
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="10px"/>
+					</tr>
+				</table>				
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{ReporteMB.getBusquedaBasicaPersona}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
@@ -45,13 +50,17 @@
 				<c:if test="#{ReporteMB.personas != null}">
 					<table align="center" width="100%">
 						<tr>
-							<td height="50px"/>
+							<td height="10px"/>
 						</tr>
 					</table>
 					<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
-					<br/><br/>
+					<table align="center" width="100%">
+						<tr>
+							<td height="10px"/>
+						</tr>
+					</table>
 					<h:form>	
-					<rich:extendedDataTable id="tablaPersonasReporte" align="center" value="#{ReporteMB.personas}" var="persona" height="180px" width="850px" headerClass="rich-table-header" style="background-color:#EEE;">
+					<rich:extendedDataTable id="tablaPersonasReporte" align="center" value="#{ReporteMB.personas}" var="persona" height="250px" width="850px" headerClass="rich-table-header">
 						<rich:column width="110px"  label="Nombre Completo" sortable="true" sortBy="#{persona.perVnombres}">
 							<f:facet name="header">
 								<h:outputLabel value="Nombre Completo" styleClass="PrimerNivel"></h:outputLabel>

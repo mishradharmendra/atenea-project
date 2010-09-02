@@ -19,18 +19,27 @@
 						<td align="left"><h:outputLabel value="BÚSQUEDA DE HOJAS DE VIDA" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="10px"/>
+					</tr>
+				</table>
 				<h:form>
-				<table align="left">
+				<table align="left" width="100%">
 					<tr>
 						<td align="left"><h:outputLabel value="Nombres y Apellidos: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><h:inputText size="30" value="#{PersonaMB.nombrePersona}" title="Ingrese el nombre, apellido, nombre o apellido de la persona a buscar."></h:inputText></td>					
-						<td width="240px"></td>
+						<td align="left"><h:inputText size="30" value="#{PersonaMB.nombrePersona}" title="Ingrese el nombre y/o apellido de la persona a buscar."></h:inputText></td>					
+						<td width="160px"></td>
 						<td align="left"><h:outputLabel value="Identificación : " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText size="30" value="#{PersonaMB.identificacionPersona}" title="Ingrese un numero de identificacion o parte de el para consultar."></h:inputText></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>				
+				<br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="10px"/>
+					</tr>
+				</table>		
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{PersonaMB.getBusquedaBasicaPersona}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
@@ -41,13 +50,21 @@
 						<td width="30px"></td>
 					</tr>
 				</table>
-				</h:form>
+				</h:form>				
 				<c:if test="#{PersonaMB.personas != null}">
-					<br/><br/><br/><br/>
+					<table align="center" width="100%">
+						<tr>
+							<td height="10px"/>
+						</tr>
+					</table>
 					<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
-					<br/><br/>
+					<table align="center" width="100%">
+						<tr>
+							<td height="10px"/>
+						</tr>
+					</table>
 					<h:form>	
-					<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="200px" width="850px" headerClass="rich-table-header" rowClasses="rowClases">
+					<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="250px" width="850px" headerClass="rich-table-header" rowClasses="rowClases">
 						<rich:column width="120px" label="Nombre Completo" sortable="true" sortBy="#{persona.perVnombres}">
 							<f:facet name="header">
 								<h:outputLabel value="Nombre Completo" styleClass="PrimerNivel"></h:outputLabel>
