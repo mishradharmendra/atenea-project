@@ -41,8 +41,11 @@ import co.com.inascol.atenea.logic.interfaces.IPersonaService;
 import co.com.inascol.atenea.logic.interfaces.ITipodocService;
 import co.com.inascol.atenea.logic.interfaces.ITituloequivalenteService;
 /**
- * @author Guillermo Toro
- *
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construcción de Software
+ * Esp. Sistemas de Información Geográfica
+ * Ing. Catastral y Geodesta
  */
 public class PersonaDelegate {
 

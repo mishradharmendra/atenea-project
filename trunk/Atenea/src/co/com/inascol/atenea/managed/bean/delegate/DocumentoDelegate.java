@@ -28,8 +28,11 @@ import co.com.inascol.atenea.logic.interfaces.IDocumentoService;
 import co.com.inascol.atenea.logic.interfaces.IParametrizacionService;
 import co.com.inascol.atenea.logic.interfaces.ITipoarchivoService;
 /**
- * @author Guillermo Toro
- *
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construcción de Software
+ * Esp. Sistemas de Información Geográfica
+ * Ing. Catastral y Geodesta
  */
 public class DocumentoDelegate {
 

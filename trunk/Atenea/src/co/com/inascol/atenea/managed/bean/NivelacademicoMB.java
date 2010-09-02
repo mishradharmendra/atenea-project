@@ -8,8 +8,11 @@ import co.com.inascol.atenea.entity.GppNivelacademico;
 import co.com.inascol.atenea.managed.bean.delegate.NivelacademicoDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
 /**
- * @author Guillermo Toro
- *
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construcción de Software
+ * Esp. Sistemas de Información Geográfica
+ * Ing. Catastral y Geodesta
  */
 public class NivelacademicoMB {
 

@@ -13,8 +13,11 @@ import co.com.inascol.atenea.logic.interfaces.IIdiomaService;
 import co.com.inascol.atenea.logic.interfaces.IPerfilequivalenteService;
 import co.com.inascol.atenea.logic.interfaces.IPerfilprofService;
 /**
- * @author Guillermo Toro
- *
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construcción de Software
+ * Esp. Sistemas de Información Geográfica
+ * Ing. Catastral y Geodesta
  */
 public class PerfilprofesionalDelegate {
 	

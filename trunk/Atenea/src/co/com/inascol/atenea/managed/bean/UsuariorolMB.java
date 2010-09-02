@@ -11,8 +11,11 @@ import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.managed.bean.delegate.UsuariorolDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
 /**
- * @author Guillermo Toro
- *
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construcción de Software
+ * Esp. Sistemas de Información Geográfica
+ * Ing. Catastral y Geodesta
  */
 public class UsuariorolMB {
 

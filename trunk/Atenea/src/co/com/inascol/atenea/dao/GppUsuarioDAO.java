@@ -16,8 +16,11 @@ import co.com.inascol.atenea.entity.GppUsuariorol;
 import co.com.inascol.atenea.dao.GppUsuariorolDAO;
 import co.com.inascol.atenea.entity.rowmapper.GppUsuarioRowMapper;
 /**
- * @author Guillermo Toro
- *
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construcción de Software
+ * Esp. Sistemas de Información Geográfica
+ * Ing. Catastral y Geodesta
  */
 public class GppUsuarioDAO implements DAO {
 	

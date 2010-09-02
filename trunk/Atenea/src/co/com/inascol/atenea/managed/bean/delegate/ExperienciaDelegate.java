@@ -35,8 +35,11 @@ import co.com.inascol.atenea.logic.interfaces.IMunicipioService;
 import co.com.inascol.atenea.logic.interfaces.IPaisService;
 import co.com.inascol.atenea.logic.interfaces.IParametrizacionService;
 /**
- * @author Guillermo Toro
- *
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construcción de Software
+ * Esp. Sistemas de Información Geográfica
+ * Ing. Catastral y Geodesta
  */
 public class ExperienciaDelegate {
 

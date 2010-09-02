@@ -23,8 +23,11 @@ import co.com.inascol.atenea.entity.GppTituloequivalente;
 import co.com.inascol.atenea.managed.bean.delegate.PersonaDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
 /**
- * @author Guillermo Toro
- *
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construcción de Software
+ * Esp. Sistemas de Información Geográfica
+ * Ing. Catastral y Geodesta
  */
 public class PersonaMB {
 
@@ -207,6 +210,12 @@ public class PersonaMB {
 	}
 	public void setCriterioBusquedaRapida(String criterioBusquedaRapida) {
 		this.criterioBusquedaRapida = criterioBusquedaRapida;
+	}
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
 	}
 	
 	public List<SelectItem> getTiposIdentificacion(){
@@ -468,6 +477,27 @@ public class PersonaMB {
 		}			
 	}
 	
+//	public String getGuardarPersona(){
+//		getHomePageValueHV();
+//		setTabPanel();
+//		estadoOperacion = false;
+//		if(getValidarPermisosServicio("srvAgregarHojadeVida")){	
+//			estadoOperacion = personaDelegate.getGuardarPersona(persona);
+//			if(estadoOperacion==true){
+//				personas = (List<Object>) personaDelegate.getBusquedaBasicaPersona("" , persona.getPerNidentificacion().toString());
+//				if(personas.size()==1){
+//					persona = (GppPersona) personas.get(0);
+//					tabDeshabilitados = false;
+//				}
+//				return ConstantesFaces.ESTADO_OK;
+//			} else {
+//				return ConstantesFaces.ESTADO_ERROR;
+//			}
+//		}else{
+//			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+//		}				
+//	}	
+	
 	public String getGuardarPersona(){
 		getHomePageValueHV();
 		setTabPanel();
@@ -480,14 +510,14 @@ public class PersonaMB {
 					persona = (GppPersona) personas.get(0);
 					tabDeshabilitados = false;
 				}
-				return ConstantesFaces.ESTADO_OK;
+				return ConstantesFaces.CREAR_HV;
 			} else {
 				return ConstantesFaces.ESTADO_ERROR;
 			}
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}				
-	}	
+	}
 	
 	public String getActualizarPersona(){
 		getHomePageValueHV();

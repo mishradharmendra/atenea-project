@@ -12,8 +12,11 @@ import co.com.inascol.atenea.entity.GppDocumento;
 import co.com.inascol.atenea.entity.GppTipoarchivo;
 import co.com.inascol.atenea.entity.rowmapper.GppDocumentoRowMapper;
 /**
- * @author Guillermo Toro
- *
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construcción de Software
+ * Esp. Sistemas de Información Geográfica
+ * Ing. Catastral y Geodesta
  */
 public class GppDocumentoDAO implements DAO{
 
