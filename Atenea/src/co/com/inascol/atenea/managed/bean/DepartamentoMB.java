@@ -13,8 +13,11 @@ import co.com.inascol.atenea.managed.bean.delegate.DepartamentoDelegate;
 import co.com.inascol.atenea.managed.bean.delegate.PaisDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
 /**
- * @author Guillermo Toro
- *
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construcción de Software
+ * Esp. Sistemas de Información Geográfica
+ * Ing. Catastral y Geodesta
  */
 public class DepartamentoMB {
 

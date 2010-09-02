@@ -8,8 +8,11 @@ import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.MunicipioService;
 import co.com.inascol.atenea.logic.interfaces.IMunicipioService;
 /**
- * @author Guillermo Toro
- *
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construcción de Software
+ * Esp. Sistemas de Información Geográfica
+ * Ing. Catastral y Geodesta
  */
 public class TestMunicipioService {
 

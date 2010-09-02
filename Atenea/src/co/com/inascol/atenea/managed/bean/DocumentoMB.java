@@ -16,8 +16,11 @@ import co.com.inascol.atenea.entity.GppTipoarchivo;
 import co.com.inascol.atenea.managed.bean.delegate.DocumentoDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
 /**
- * @author Guillermo Toro
- *
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construcción de Software
+ * Esp. Sistemas de Información Geográfica
+ * Ing. Catastral y Geodesta
  */
 public class DocumentoMB {
 	

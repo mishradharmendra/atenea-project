@@ -9,8 +9,21 @@
 	  xmlns:c="http://java.sun.com/jstl/core">
 <head>
 	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+	<script language="javascript">
+		function validarRespuesta(){
+			if(#{PersonaMB.estadoOperacion == null){
+				return;	
+			}
+			if(#{PersonaMB.estadoOperacion == true){
+				alert('Se ha realizado la operacion correctamente.')
+			}
+			if(#{PersonaMB.estadoOperacion == false){
+				alert('Error al realizar la operacion.')
+			}		
+		}
+	</script>	
 </head>		  
-<body>
+<body onload="validarRespuesta();">
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">					
 			<rich:panel style="width:938px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">

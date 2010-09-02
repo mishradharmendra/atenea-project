@@ -8,8 +8,11 @@ import co.com.inascol.atenea.entity.GppPais;
 import co.com.inascol.atenea.entity.GppUsuario;
 import co.com.inascol.atenea.logic.interfaces.IPaisService;
 /**
- * @author Guillermo Toro
- *
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construcción de Software
+ * Esp. Sistemas de Información Geográfica
+ * Ing. Catastral y Geodesta
  */
 public class PaisService implements IPaisService {
 

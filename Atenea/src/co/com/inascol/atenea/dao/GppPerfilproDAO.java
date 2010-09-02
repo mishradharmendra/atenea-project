@@ -10,8 +10,11 @@ import co.com.inascol.atenea.dao.utils.TemplateManager;
 import co.com.inascol.atenea.entity.GppPerfilprof;
 import co.com.inascol.atenea.entity.rowmapper.GppPerfilprofRowMapper;
 /**
- * @author Guillermo Toro
- *
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construcción de Software
+ * Esp. Sistemas de Información Geográfica
+ * Ing. Catastral y Geodesta
  */
 public class GppPerfilproDAO implements DAO{
 
