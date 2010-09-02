@@ -18,13 +18,14 @@
 					<rich:tab label="Datos Personales" name="TAB_PANEL_PERSONA" style="background-color:#EEE;height:370px;" switchType="server">					
 					<table align="left">
 						<tr>
-							<td><h:outputLabel value="Datos Personales #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
+							<td><h:outputLabel value="Datos Personales " styleClass="TituloContenido"></h:outputLabel></td>
+							<td><h:outputLabel value="#{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="ItalicFormat"></h:outputLabel></td>
 						</tr>
 					</table>
 					<br/>
 					<table align="center" width="100%">
 						<tr>
-							<td height="40px"/>
+							<td height="10px"/>
 						</tr>
 					</table>
 					<table align="left">
@@ -110,12 +111,16 @@
 							<td align="left"><h:outputLabel size="35" id="perVdireccion" value="#{PersonaMB.persona.perVdireccion}"></h:outputLabel></td>							
 						</tr>																	
 					</table>
-					<br/><br/>
+					<table align="center" width="100%">
+						<tr>
+							<td height="10px"/>
+						</tr>
+					</table>
 					<h:form>
 					<c:if test="#{PersonaMB.persona.perNidpersona != null}">
 					<table align="right">
 						<tr>
-							<td height="40px"/>
+							<td height="10px"/>
 						</tr>
 						<tr>
 							<td><h:commandButton action="#{PersonaMB.getSiguienteDetalle}" value="Siguiente" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
@@ -128,51 +133,74 @@
 					<rich:tab label="Formación Académica" name="TAB_PANEL_FORMACION" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;" switchType="server">
 						<table align="left">
 							<tr>
-								<td><h:outputLabel value="Formación Académica  #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
+								<td><h:outputLabel value="Formación Académica " styleClass="TituloContenido"></h:outputLabel></td>
+								<td><h:outputLabel value="#{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="ItalicFormat"></h:outputLabel></td>
 							</tr>
 						</table>				
-						<br/><br/><br/>
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>
 						<table align="center">
 							<tr>
 								<td align="center"><h:outputLabel value="Formaciones Académicas" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>	
-						<br/><br/><br/>	
-						<table align="center">	
-						<tr>
-						<td align="center">		
-						<h:form>					
-						<rich:extendedDataTable id="tablaFormacionesAcademicas" align="center" value="#{FormacionMB.formacionesAcademicas}" var="formacion" width="830px" height="200px" headerClass="rich-table-header">
-							<rich:column width="140px" sortable="true" sortBy="#{formacion.gppNivelacademico.nacVnivelac}" label="Tipo Estudio">
-								<f:facet name="header">
-									<h:outputLabel value="Tipo Estudio" styleClass="PrimerNivel"></h:outputLabel>
-								</f:facet>
-								<div align="left"><h:outputLabel value="#{formacion.gppNivelacademico.nacVnivelac}"></h:outputLabel></div>
-							</rich:column>
-							<rich:column width="345px"  sortable="true" sortBy="#{formacion.gppInstitucion.insVinstitucion}" label="Institución">
-								<f:facet name="header">
-									<h:outputLabel value="Institución" styleClass="PrimerNivel"></h:outputLabel>
-								</f:facet>														
-								<div align="left"><h:outputLabel value="#{formacion.gppInstitucion.insVinstitucion}"></h:outputLabel></div>	
-							</rich:column>
-							<rich:column width="230px"  sortable="true" sortBy="#{formacion.forVtitulo}" label="Título">
-								<f:facet name="header">
-									<h:outputLabel value="Título" styleClass="PrimerNivel"></h:outputLabel>
-								</f:facet>
-								<div align="left"><h:outputLabel value="#{formacion.forVtitulo}"></h:outputLabel></div>
-							</rich:column>						
-							<rich:column width="100px"  sortable="true" sortBy="#{formacion.forDfecgrado}" label="Fecha de Grado">
-								<f:facet name="header">
-									<h:outputLabel value="Fecha de Grado" styleClass="PrimerNivel"></h:outputLabel>
-								</f:facet>
-								<div align="left"><h:outputLabel value="#{formacion.forDfecgrado}"></h:outputLabel></div>
-							</rich:column>								
-						</rich:extendedDataTable>
-						</h:form>
-						</td>
-						</tr>
+						<br/>
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
 						</table>
-						<br/><br/>
+						<c:if test="#{FormacionMB.formacionesAcademicas == null}">
+							<table align="center">
+							<tr>
+								<td><h:outputLabel value="No se ha registrado ninguna Formación Académica. Use 'Agregar Formación Académica' para ingresar una nueva." styleClass="TextoContenido"></h:outputLabel></td>
+							</tr>
+						</table>
+						</c:if>
+						<c:if test="#{FormacionMB.formacionesAcademicas != null}">							
+						<table align="center">	
+							<tr>
+								<td align="center">		
+									<h:form>					
+										<rich:extendedDataTable id="tablaFormacionesAcademicas" align="center" value="#{FormacionMB.formacionesAcademicas}" var="formacion" width="830px" height="200px" headerClass="rich-table-header">
+											<rich:column width="140px" sortable="true" sortBy="#{formacion.gppNivelacademico.nacVnivelac}" label="Tipo Estudio">
+												<f:facet name="header">
+													<h:outputLabel value="Tipo Estudio" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>
+												<div align="left"><h:outputLabel value="#{formacion.gppNivelacademico.nacVnivelac}"></h:outputLabel></div>
+											</rich:column>
+											<rich:column width="345px"  sortable="true" sortBy="#{formacion.gppInstitucion.insVinstitucion}" label="Institución">
+												<f:facet name="header">
+													<h:outputLabel value="Institución" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>														
+												<div align="left"><h:outputLabel value="#{formacion.gppInstitucion.insVinstitucion}"></h:outputLabel></div>	
+											</rich:column>
+											<rich:column width="230px"  sortable="true" sortBy="#{formacion.forVtitulo}" label="Título">
+												<f:facet name="header">
+													<h:outputLabel value="Título" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>
+												<div align="left"><h:outputLabel value="#{formacion.forVtitulo}"></h:outputLabel></div>
+											</rich:column>						
+											<rich:column width="100px"  sortable="true" sortBy="#{formacion.forDfecgrado}" label="Fecha de Grado">
+												<f:facet name="header">
+													<h:outputLabel value="Fecha de Grado" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>
+												<div align="left"><h:outputLabel value="#{formacion.forDfecgrado}"></h:outputLabel></div>
+											</rich:column>								
+										</rich:extendedDataTable>
+									</h:form>
+								</td>
+							</tr>
+						</table>
+						</c:if>
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>
 						<h:form>
 						<c:if test="#{PersonaMB.persona.perNidpersona != null}">						
 						<table align="right">
@@ -185,19 +213,24 @@
 						<c:if test="#{PersonaMB.persona.perNidpersona != null}">
 						<table align="right">
 							<tr>
-								<td><h:commandButton action="#{FormacionMB.getAnteriorDetalle}" value="Anterior" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-							</tr>						
+								<td><h:commandButton action="#{FormacionMB.getAnterior}" value="Anterior" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+							</tr>
 						</table>
 						</c:if>
 						</h:form>								        	     							
 					</rich:tab>
 					<rich:tab label="Experiencia Laboral" name="TAB_PANEL_EXPERIENCIA" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;" switchType="server">
 						<table align="left">
-							<tr>
-								<td><h:outputLabel value="Experiencia Laboral #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
-							</tr>
+								<tr>
+									<td><h:outputLabel value="Experiencia Laboral " styleClass="TituloContenido"></h:outputLabel></td>
+									<td><h:outputLabel value="#{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="ItalicFormat"></h:outputLabel></td>
+								</tr>
 						</table>				
-						<br/><br/><br/>
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>
 						<table align="center">
 							<tr>
 								<td align="center"><h:outputLabel value="Experiencias Laborales" styleClass="TituloContenido"></h:outputLabel></td>
@@ -206,57 +239,70 @@
 						<br/>
 						<table align="center" width="100%">
 							<tr>
-								<td height="20px"/>
+								<td height="10px"/>
 							</tr>
 						</table>
-						<table align="center">	
-						<tr>
-						<td align="center">	
-						<h:form>						
-						<rich:extendedDataTable id="tablaExperienciaLaboral" align="center" value="#{ExperienciaMB.experienciasLaborales}" var="exp" width="840px" height="200px" headerClass="rich-table-header">
-							<rich:column width="185px" sortable="true" sortBy="#{exp.expVnomempresa}" label="Empresa">
-								<f:facet name="header">
-									<h:outputLabel value="Empresa" styleClass="PrimerNivel"></h:outputLabel>
-								</f:facet>
-								<div align="left"><h:outputLabel value="#{exp.expVnomempresa}"></h:outputLabel></div>
-							</rich:column>
-							<rich:column width="140px" sortable="true" sortBy="#{exp.gppMunicipio.munVmunicipio}" label="Ciudad">
-								<f:facet name="header">
-									<h:outputLabel value="Ciudad" styleClass="PrimerNivel"></h:outputLabel>
-								</f:facet>
-								<div align="left"><h:outputLabel value="#{exp.gppMunicipio.munVmunicipio}"></h:outputLabel></div>
-							</rich:column>
-							<rich:column width="100px" sortable="true" sortBy="#{exp.expVtelempresa}" label="Teléfono">
-								<f:facet name="header">
-									<h:outputLabel value="Teléfono" styleClass="PrimerNivel"></h:outputLabel>
-								</f:facet>
-								<div align="left"><h:outputLabel value="#{exp.expVtelempresa}"></h:outputLabel></div>
-							</rich:column>						
-							<rich:column width="200px" sortable="true" sortBy="#{exp.expVcargo}" label="Cargo">
-								<f:facet name="header">
-									<h:outputLabel value="Cargo" styleClass="PrimerNivel"></h:outputLabel>
-								</f:facet>
-								<div align="left"><h:outputLabel value="#{exp.expVcargo}"></h:outputLabel></div>
-							</rich:column>
-							<rich:column width="100px" sortable="true" sortBy="#{exp.expDfecingreso}" label="Fecha Ingreso">
-								<f:facet name="header">
-									<h:outputLabel value="Fecha Ingreso" styleClass="PrimerNivel"></h:outputLabel>
-								</f:facet>
-								<div align="left"><h:outputLabel value="#{exp.expDfecingreso}"></h:outputLabel></div>
-							</rich:column>
-							<rich:column width="100px" sortable="true" sortBy="#{exp.expDfecretiro}" label="Fecha Retiro">
-								<f:facet name="header">
-									<h:outputLabel value="Fecha Retiro" styleClass="PrimerNivel"></h:outputLabel>
-								</f:facet>
-								<div align="left"><h:outputLabel value="#{exp.expDfecretiro}" rendered="#{exp.expDfecretiro != null}"></h:outputLabel></div>
-								<div align="left"><h:outputLabel value="Actual" rendered="#{exp.expDfecretiro == null}"></h:outputLabel></div>
-							</rich:column>																								
-						</rich:extendedDataTable>
-						</h:form>
-						</td>
-						</tr>
+							<c:if test="#{ExperienciaMB.experienciasLaborales == null}">
+								<table align="center">
+									<tr>
+										<td><h:outputLabel value="No se ha registrado ninguna Experiencia Laboral. Use 'Agregar ExperienciaLaboral' para ingresar una nueva." styleClass="TituloContenido"></h:outputLabel></td>
+									</tr>
+								</table>
+							</c:if>
+							<c:if test="#{ExperienciaMB.experienciasLaborales != null}">						
+								<table align="center">	
+									<tr>
+									<td align="center">	
+										<h:form>						
+										<rich:extendedDataTable id="tablaExperienciaLaboral" align="center" value="#{ExperienciaMB.experienciasLaborales}" var="exp" width="840px" height="200px" headerClass="rich-table-header">
+											<rich:column width="185px" sortable="true" sortBy="#{exp.expVnomempresa}" label="Empresa">
+												<f:facet name="header">
+													<h:outputLabel value="Empresa" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>
+												<div align="left"><h:outputLabel value="#{exp.expVnomempresa}"></h:outputLabel></div>
+											</rich:column>
+											<rich:column width="140px" sortable="true" sortBy="#{exp.gppMunicipio.munVmunicipio}" label="Ciudad">
+												<f:facet name="header">
+													<h:outputLabel value="Ciudad" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>
+												<div align="left"><h:outputLabel value="#{exp.gppMunicipio.munVmunicipio}"></h:outputLabel></div>
+											</rich:column>
+											<rich:column width="100px" sortable="true" sortBy="#{exp.expVtelempresa}" label="Teléfono">
+												<f:facet name="header">
+													<h:outputLabel value="Teléfono" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>
+												<div align="left"><h:outputLabel value="#{exp.expVtelempresa}"></h:outputLabel></div>
+											</rich:column>						
+											<rich:column width="200px" sortable="true" sortBy="#{exp.expVcargo}" label="Cargo">
+												<f:facet name="header">
+													<h:outputLabel value="Cargo" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>
+												<div align="left"><h:outputLabel value="#{exp.expVcargo}"></h:outputLabel></div>
+											</rich:column>
+											<rich:column width="100px" sortable="true" sortBy="#{exp.expDfecingreso}" label="Fecha Ingreso">
+												<f:facet name="header">
+													<h:outputLabel value="Fecha Ingreso" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>
+												<div align="left"><h:outputLabel value="#{exp.expDfecingreso}"></h:outputLabel></div>
+											</rich:column>
+											<rich:column width="100px" sortable="true" sortBy="#{exp.expDfecretiro}" label="Fecha Retiro">
+												<f:facet name="header">
+													<h:outputLabel value="Fecha Retiro" styleClass="PrimerNivel"></h:outputLabel>
+												</f:facet>
+												<div align="left"><h:outputLabel value="#{exp.expDfecretiro}" rendered="#{exp.expDfecretiro != null}"></h:outputLabel></div>
+												<div align="left"><h:outputLabel value="Actual" rendered="#{exp.expDfecretiro == null}"></h:outputLabel></div>
+											</rich:column>																								
+										</rich:extendedDataTable>
+										</h:form>
+									</td>
+								</tr>
+							</table>
+							</c:if>
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
 						</table>
-						<br/><br/>
 						<h:form>
 						<c:if test="#{PersonaMB.persona.perNidpersona != null}">						
 						<table align="right">
@@ -278,10 +324,15 @@
 					<rich:tab label="Perfíl Profesional" name="TAB_PANEL_PERFIL" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;" switchType="server">
 						<table align="left">
 							<tr>
-								<td><h:outputLabel value="Perfíl Profesional #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
+								<td><h:outputLabel value="Perfil Profesional " styleClass="TituloContenido"></h:outputLabel></td>
+								<td><h:outputLabel value="#{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="ItalicFormat"></h:outputLabel></td>
 							</tr>
 						</table>	
-						<br/><br/><br/><br/>
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>
 						<table align="left">
 							<tr>
 								<td align="left"><h:outputLabel value="Perfíl Profesional" styleClass="TextoContenido"></h:outputLabel></td>
@@ -300,7 +351,7 @@
 						<br/>
 						<table align="center" width="100%">
 							<tr>
-								<td height="20px"/>
+								<td height="10px"/>
 							</tr>
 						</table>
 						<table align="left">
@@ -308,7 +359,11 @@
 								<td><h:outputLabel value="Idiomas" styleClass="TextoContenido"></h:outputLabel></td>
 							</tr>
 						</table>
-						<br/><br/>
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>
 						<table align="left">
 							<tr>
 								
@@ -331,7 +386,11 @@
 								<td align="left"><h:inputText size="5" value="#{PerfilprofesionalMB.perfilProfesional.pprNnivelidi2}" disabled="true" style="color:#000000"></h:inputText></td>
 							</tr>							
 						</table>
-						<br/><br/><br/><br/>
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>
 						<table align="left">
 							<tr>
 								<td align="left"><h:outputLabel value="Herramientas de Software" styleClass="TituloContenido"></h:outputLabel></td>
@@ -359,7 +418,7 @@
 						<table align="right">
 							<tr>
 								<td><h:commandButton action="#{PerfilprofesionalMB.getSiguienteDetalle}" value="Siguiente" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-								<td width="25px"/>
+								<td width="35px"/>
 							</tr>						
 						</table>
 						</c:if>						
@@ -375,16 +434,26 @@
 					<rich:tab label="Soportes" name="TAB_PANEL_SOPORTES" disabled="#{PersonaMB.tabDeshabilitados}" style="background-color:#EEE;height:370px;" switchType="server">
 						<table align="left">
 							<tr>
-								<td><h:outputLabel value="Archivos Relacionados #{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="TituloContenido"></h:outputLabel></td>
+								<td><h:outputLabel value="Archivos Relacionados " styleClass="TituloContenido"></h:outputLabel></td>
+								<td><h:outputLabel value="#{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="ItalicFormat"></h:outputLabel></td>
 							</tr>
 						</table>	
-						<br/><br/><br/><br/>								
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>							
 						<table align="center">
 							<tr>
 								<td align="center"><h:outputLabel value="Listado de Soportes" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>
-						<br/><br/>							
+						<br/>
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>						
 						<table align="center">
 							<tr>
 								<td align="center">		
@@ -433,7 +502,11 @@
 								</td>
 							</tr>
 						</table>
-						<br/><br/>	
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>
 						<h:form>
 						<c:if test="#{PersonaMB.persona.perNidpersona != null}">
 						<table align="right">
