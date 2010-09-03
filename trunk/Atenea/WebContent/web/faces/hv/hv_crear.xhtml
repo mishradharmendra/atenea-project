@@ -9,25 +9,11 @@
 	  xmlns:c="http://java.sun.com/jstl/core">
 <head>
 	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
-	<script language="javascript">
-		function validarRespuesta(){
-			if(#{PersonaMB.estadoOperacion == null){
-				return;	
-			}
-			if(#{PersonaMB.estadoOperacion == true){
-				alert('Se ha realizado la operacion correctamente.')
-			}
-			if(#{PersonaMB.estadoOperacion == false){
-				alert('Error al realizar la operacion.')
-			}		
-		}
-	</script>	
 </head>		  
-<body onload="validarRespuesta();">
+<body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">					
 			<rich:panel style="width:938px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
-			<div align="left" style="position: relative">
 				<rich:tabPanel switchType="server" selectedTab="#{PersonaMB.tabPanel}" style="background-color:#EEE;">
 					<script type="text/javascript" src="../../swf/calendario.js"></script>
 					<rich:tab label="Datos Personales" name="TAB_PANEL_PERSONA" style="background-color:#EEE;" switchType="server">					
@@ -35,11 +21,6 @@
 						<tr>
 							<td><h:outputLabel value="Datos Personales " styleClass="TituloContenido"></h:outputLabel></td>
 							<td><h:outputLabel value="#{PersonaMB.persona.perVnombres} #{PersonaMB.persona.perVapellidos}" styleClass="ItalicFormat"></h:outputLabel></td>
-						</tr>
-					</table>
-					<table align="center" width="100%">
-						<tr>
-							<td height="10px"/>
 						</tr>
 					</table>
 					<h:form id="formDatosPersonales">
@@ -1150,7 +1131,6 @@
 						</h:form>
 					</rich:tab>
 				</rich:tabPanel>
-			</div>					
 			</rich:panel>
 			<div align="left" style="position: absolute; color: red; top: 12pt; left: 85pt; font-size: 7pt;">*</div>
 		</ui:define>

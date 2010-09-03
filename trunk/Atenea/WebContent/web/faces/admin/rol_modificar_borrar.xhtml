@@ -34,7 +34,7 @@
 						<td width="120px"/>
 						<td align="left"><h:outputLabel value="Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:outputLabel id="nombreRol" size="30" value="#{RolMB.rol.rolVnombre}"></h:outputLabel></td>
-						<td width="190px"/>
+						<td width="180px"/>
 						<td align="left"><h:outputLabel value="Descripción: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputTextarea id="descripcionRol" value="#{RolMB.rol.rolVdescripcion}" cols="34" disabled="true" style="color:black"></h:inputTextarea></td>
 					</tr>		
@@ -42,28 +42,30 @@
 				<br/>
 				<table align="center" width="100%">
 					<tr>
-						<td height="20px"/>
+						<td height="5px"/>
 					</tr>
 				</table>
+				<div align="center" style="position: relative; right: 170pt;">
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{RolMB.getBorrarServicios}" value="Borrar Servicios" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-						<td width="140px"/>
 					</tr>
 				</table>
+				</div>
 				</h:form>
 				<h:form>
+				<div align="center" style="position: relative; right: 35pt;">
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{RolMB.getCancelar}" value="Cancelar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-						<td width="20px"></td>
 					</tr>
 				</table>
+				</div>
 				</h:form>
 				<br/>
 				<table align="center" width="100%">
 					<tr>
-						<td height="30px"/>
+						<td height="5px"/>
 					</tr>
 				</table>
 				<table align="center">
@@ -73,7 +75,7 @@
 					<tr>
 						<td align="center">
 							<h:form>
-							<rich:extendedDataTable id="tablaServicioRolAsignado" value="#{RolMB.rol.gppServicios}" var="servicio" width="615px" height="150px" headerClass="rich-table-header">
+							<rich:extendedDataTable id="tablaServicioRolAsignado" value="#{RolMB.rol.gppServicios}" var="servicio" width="615px" height="180px" headerClass="rich-table-header">
 								<rich:column width="100px" label="Seleccionar">
 									<f:facet name="header">
 										<h:outputLabel value="Seleccionar" styleClass="PrimerNivel"></h:outputLabel>
@@ -105,7 +107,7 @@
 						<td height="5px"/>
 					</tr>					
 					<tr>
-						<td colspan="3" align="center"><h:outputLabel value="Seleccione del 'Servicios Asignados' los servicios que quiere borrarle al rol." style="color:#026A9F;"/></td>
+						<td colspan="3" align="center"><h:outputLabel value="Seleccione del listado 'Servicios Asignados' los servicios que quiere borrarle al rol." style="color:#026A9F;"/></td>
 					</tr>					
 				</table>
 			</rich:panel>																

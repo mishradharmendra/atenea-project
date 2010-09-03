@@ -46,34 +46,36 @@
 				<br/>
 				<table align="center" width="100%">
 					<tr>
-						<td height="10px"/>
+						<td height="5px"/>
 					</tr>
 				</table>		
+				<div align="center" style="position: relative; right: 160pt;">
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{RolMB.getCrearRol}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-						<td width="140px"/>
+						<td><h:commandButton action="#{RolMB.getCrearRol}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 					</tr>
 				</table>
+				</div>
 				</h:form>
 				<h:form>
+				<div align="center" style="position: relative; right: 63pt;">
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{RolMB.getCancelar}" value="Cancelar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-						<td width="20px"></td>
 					</tr>
 				</table>
+				</div>
 				</h:form>	
 				<br/>				
 				<table align="center" width="100%">
 					<tr>
-						<td height="50px"/>
+						<td height="10px"/>
 					</tr>
 				</table>
 				<h:outputLabel value="Listado de Servicios" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaServicioRol" value="#{RolMB.servicios}" var="servicio" width="615px" height="150px" headerClass="rich-table-header">
+				<rich:extendedDataTable id="tablaServicioRol" value="#{RolMB.servicios}" var="servicio" width="615px" height="180px" headerClass="rich-table-header">
 					<rich:column width="100px" label="Seleccionar">
 						<f:facet name="header">
 							<h:outputLabel value="Seleccionar" styleClass="PrimerNivel"></h:outputLabel>

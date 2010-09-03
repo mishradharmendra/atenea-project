@@ -47,7 +47,7 @@
 				</table>						
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{UsuariorolMB.getModificarPermisos}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td><h:commandButton action="#{UsuariorolMB.getModificarPermisos}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 						<td width="40px"></td>
 					</tr>				
 				</table>
@@ -56,7 +56,7 @@
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{UsuariorolMB.getModificarBorrarUsuarioRol}" value="Borrar Roles" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-						<td width="20px"></td>
+						<td width="10px"></td>
 					</tr>
 				</table>					
 				<table align="right">
@@ -69,7 +69,7 @@
 				<br/>		
 				<table align="center" width="100%">
 					<tr>
-						<td height="30px"/>
+						<td height="5px"/>
 					</tr>
 				</table>		
 				<table align="left">
@@ -81,7 +81,7 @@
 					<tr>
 						<td align="left" class="TextoContenido">
 							<h:form>
-							<rich:extendedDataTable id="tablaRolesAsignado" value="#{UsuariorolMB.usuario.gppRoles}" var="rol" width="165px" height="200px" headerClass="rich-table-header">	
+							<rich:extendedDataTable id="tablaRolesAsignado" value="#{UsuariorolMB.usuario.gppRoles}" var="rol" width="165px" height="180px" headerClass="rich-table-header">	
 								<rich:column width="150px" sortable="true" sortBy="#{rol.rolVnombre}" label="Nombre Rol">
 									<f:facet name="header">
 										<h:outputLabel value="Nombre Rol" styleClass="PrimerNivel"></h:outputLabel>
@@ -94,7 +94,7 @@
 						<td width="30px"></td>
 						<td align="left" class="TextoContenido">
 							<h:form>
-							<rich:extendedDataTable id="tablaRoles" value="#{UsuariorolMB.roles}" var="rol" width="580px" height="200px" headerClass="rich-table-header" >
+							<rich:extendedDataTable id="tablaRoles" value="#{UsuariorolMB.roles}" var="rol" width="580px" height="180px" headerClass="rich-table-header" >
 								<rich:column width="100px" label="Seleccionar">
 									<f:facet name="header">
 										<h:outputLabel value="Seleccionar" styleClass="PrimerNivel"></h:outputLabel>

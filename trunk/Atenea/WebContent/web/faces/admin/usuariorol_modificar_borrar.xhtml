@@ -46,26 +46,28 @@
 					<tr>
 						<td height="10px"/>
 					</tr>
-				</table>				
+				</table>			
+				<div align="center" style="position: relative; right: 170pt;">	
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{UsuariorolMB.getBorrarRoles}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-						<td width="140px"/>
+						<td><h:commandButton action="#{UsuariorolMB.getBorrarRoles}" value="Borrar Roles" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 					</tr>				
 				</table>
+				</div>
 				</h:form>	
-				<h:form>		
+				<h:form>	
+				<div align="center" style="position: relative; right: 50pt;">	
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{UsuariorolMB.getCancelar}" value="Cancelar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-						<td width="20px"></td>
 					</tr>
 				</table>
+				</div>
 				</h:form>
 				<br/>		
 				<table align="center" width="100%">
 					<tr>
-						<td height="30px"/>
+						<td height="5px"/>
 					</tr>
 				</table>	
 				<table align="center">
@@ -104,7 +106,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="center"><h:outputLabel value="Seleccione del 'Roles Asignados' los roles que quiere eliminarle al usuario." style="color:#026A9F;"/></td>
+						<td align="center"><h:outputLabel value="Seleccione del listado 'Roles Asignados' los roles que quiere eliminarle al usuario." style="color:#026A9F;"/></td>
 					</tr>
 				</table>
 			</rich:panel>						

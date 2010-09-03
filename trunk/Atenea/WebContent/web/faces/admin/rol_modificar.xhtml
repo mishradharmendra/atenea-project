@@ -31,26 +31,26 @@
 					<tr>
 						<td align="left"><h:outputLabel value="Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText id="nombreRol" size="30" value="#{RolMB.rol.rolVnombre}" required="true" requiredMessage="Ingrese Nombre del Rol"></h:inputText></td>
-						<td width="180px"/>
+						<td width="190px"/>
 						<td align="left"><h:outputLabel value="Descripción: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputTextarea id="descripcionRol" value="#{RolMB.rol.rolVdescripcion}" cols="30" required="true" requiredMessage="Ingrese Descripción del Rol"></h:inputTextarea></td>
 					</tr>		
 					<tr>
 						<td width="120px"/>
 						<td align="center" colspan="2"><rich:message for="nombreRol" style="color:red"/></td>				
-						<td width="180px"/>
+						<td width="190px"/>
 						<td align="center" colspan="2"><rich:message for="descripcionRol" style="color:red"/></td>
 					</tr>
 				</table>
 				<br/>
 				<table align="center" width="100%">
 					<tr>
-						<td height="20px"/>
+						<td height="5px"/>
 					</tr>
 				</table>
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{RolMB.getModificarRol}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td><h:commandButton action="#{RolMB.getModificarRol}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 						<td width="30px"></td>
 					</tr>
 				</table>
@@ -72,7 +72,7 @@
 				<br/>
 				<table align="center" width="100%">
 					<tr>
-						<td height="40px"/>
+						<td height="5px"/>
 					</tr>
 				</table>
 				<table align="left">
@@ -84,7 +84,7 @@
 					<tr>
 						<td align="left" class="TextoContenido">
 							<h:form>						
-							<rich:extendedDataTable id="tablaServicioRolAsignado" value="#{RolMB.rol.gppServicios}" var="servicio" width="165px" height="150px" headerClass="rich-table-header">	
+							<rich:extendedDataTable id="tablaServicioRolAsignado" value="#{RolMB.rol.gppServicios}" var="servicio" width="165px" height="180px" headerClass="rich-table-header">	
 								<rich:column width="150px" sortable="true" sortBy="#{servicio.serVnombre}" label="Nombre Servicio">
 									<f:facet name="header">
 										<h:outputLabel value="Nombre Servicio" styleClass="PrimerNivel"></h:outputLabel>
@@ -97,7 +97,7 @@
 						<td width="30px"></td>
 						<td align="left" class="TextoContenido">
 							<h:form>
-							<rich:extendedDataTable id="tablaServicioRol" value="#{RolMB.servicios}" var="servicio" width="600px" height="150px" headerClass="rich-table-header">
+							<rich:extendedDataTable id="tablaServicioRol" value="#{RolMB.servicios}" var="servicio" width="600px" height="180px" headerClass="rich-table-header">
 								<rich:column width="100px" label="Seleccionar">
 									<f:facet name="header">
 										<h:outputLabel value="Seleccionar" styleClass="PrimerNivel"></h:outputLabel>
