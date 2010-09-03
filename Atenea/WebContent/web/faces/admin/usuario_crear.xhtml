@@ -69,23 +69,26 @@
 				<br/>
 				<table align="center" width="100%">
 					<tr>
-						<td height="30px"/>
+						<td height="50px"/>
 					</tr>
 				</table>
+				<div align="center" style="position: relative; right: 120pt;">
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{UsuarioMB.getCrearUsuario}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						<td><h:commandButton action="#{UsuarioMB.getCrearUsuario}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 						<td width="100px"/>
 					</tr>
 				</table>
+				</div>
 				</h:form>
-				<h:form>		
+				<h:form>
+				<div align="center" style="position: relative; right: 20pt;">		
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{UsuarioMB.getCancelar}" value="Cancelar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-						<td width="20px"></td>
 					</tr>
 				</table>
+				</div>
 				</h:form>												
 			</rich:panel>						
 		</ui:define>

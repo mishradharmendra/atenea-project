@@ -22,21 +22,21 @@
 				<br/>
 				<table align="center" width="100%">
 					<tr>
-						<td height="50px"/>
+						<td height="10px"/>
 					</tr>
 				</table>
 				<h:form>	
 				<table align="left">
 					<tr>
 						<td width="110px"/>
-						<td align="left"><h:outputLabel value="Consulta de Perfiles Equivalentes por Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText size="30" value="#{PerfilequivalenteMB.nombrePerfil}"></h:inputText></td>					
 					</tr>
 				</table>
 				<br/>
 				<table align="center" width="100%">
 					<tr>
-						<td height="20px"/>
+						<td height="10px"/>
 					</tr>
 				</table>			
 				<table align="right">
@@ -51,13 +51,13 @@
 				<br/>
 				<table align="center" width="100%">
 					<tr>
-						<td height="20px"/>
+						<td height="10px"/>
 					</tr>
 				</table>
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable headerClass="rich-table-header" id="tablaPerfilequivalente" value="#{PerfilequivalenteMB.perfilesequivalentes}" var="perfilequivalente" width="615px" height="200px">
+				<rich:extendedDataTable headerClass="rich-table-header" id="tablaPerfilequivalente" value="#{PerfilequivalenteMB.perfilesequivalentes}" var="perfilequivalente" width="615px" height="250px">
 					<rich:column width="150px" sortable="true" sortBy="#{perfilequivalente.peqNidperfileq}" label="Id Perfil Equivalente">
 						<f:facet name="header">
 							<h:outputLabel value="Id Perfil Equivalente" styleClass="PrimerNivel"></h:outputLabel>
@@ -68,9 +68,7 @@
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Perfil Equivalente" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
-						<a4j:commandLink id="peqVperfileq" onclick="procesarSolicitudDetalle('#{perfilequivalente.peqNidperfileq}')">
-							<div align="left"><h:outputText value="#{perfilequivalente.peqVperfileq}"></h:outputText></div>
-						</a4j:commandLink>
+						<div align="left"><h:outputText value="#{perfilequivalente.peqVperfileq}"></h:outputText></div>
 					</rich:column>
 					<rich:column width="55px" label="Modificar">
 						<f:facet name="header">

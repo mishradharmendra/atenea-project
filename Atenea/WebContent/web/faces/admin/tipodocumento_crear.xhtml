@@ -47,21 +47,24 @@
 					<tr>
 						<td height="50px"/>
 					</tr>
-				</table>					
+				</table>	
+				<div align="center" style="position: relative; right: 120pt;">				
 				<table align="right">
 					<tr>
-						<td><h:commandButton action="#{TipodocumentoMB.getCrearTipodoc}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>						
+						<td><h:commandButton action="#{TipodocumentoMB.getCrearTipodoc}" value="Guardar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>						
 						<td width="150px"></td>
 					</tr>
 				</table>
+				</div>
 				</h:form>
-				<h:form>	
+				<h:form>
+				<div align="center" style="position: relative; right: 20pt;">	
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{TipodocumentoMB.getCancelar}" value="Cancelar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-						<td width="20px"></td>
 					</tr>
 				</table>
+				</div>
 				</h:form>											
 			</rich:panel>						
 		</ui:define>

@@ -18,15 +18,23 @@
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> ROLES" styleClass="TituloContenido"></h:outputLabel></td>
 					</tr>
 				</table>
-				<br/><br/><br/><br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="10px"/>
+					</tr>
+				</table>
 				<h:form>	
 				<table align="left">
 					<tr>
-						<td align="left"><h:outputLabel value="Consulta de Roles por Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:inputText size="30" value="#{RolMB.nombreRol}"></h:inputText></td>					
 					</tr>
 				</table>
-				<br/><br/><br/><br/>				
+				<table align="center" width="100%">
+					<tr>
+						<td height="10px"/>
+					</tr>
+				</table>			
 				<table align="right">
 					<tr>
 						<td><h:commandButton action="#{RolMB.getBuscarRolPorNombre}" value="Buscar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
@@ -36,11 +44,15 @@
 					</tr>
 				</table>
 				</h:form>								
-				<br/><br/><br/><br/>
+				<table align="center" width="100%">
+					<tr>
+						<td height="10px"/>
+					</tr>
+				</table>
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
-				<rich:extendedDataTable id="tablaRol" value="#{RolMB.roles}" var="rol" width="850px" height="200px" headerClass="rich-table-header">
+				<rich:extendedDataTable id="tablaRol" value="#{RolMB.roles}" var="rol" width="850px" height="250px" headerClass="rich-table-header">
 					<rich:column width="100px" sortable="true" sortBy="#{rol.rolNidrol}" label="Id Rol">
 						<f:facet name="header">
 							<h:outputLabel value="Id Rol" styleClass="PrimerNivel"></h:outputLabel>
