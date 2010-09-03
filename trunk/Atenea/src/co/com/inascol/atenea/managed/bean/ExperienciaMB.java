@@ -147,6 +147,11 @@ public class ExperienciaMB {
 		}
 	}
 
+	public void getFecha(ValueChangeEvent evento){
+		if(evento.getNewValue()!=null){
+			fechaActual = (Boolean) evento.getNewValue();
+		}
+	}
 	public List<SelectItem> getCargosEquivalentes(){
 		List<SelectItem> listadoCargos = new ArrayList<SelectItem>();
 		List<Object> cargos = experienciaDelegate.getCargosEquivalentes();

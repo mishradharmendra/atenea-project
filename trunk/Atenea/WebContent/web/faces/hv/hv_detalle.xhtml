@@ -70,9 +70,11 @@
 								<f:selectItems value="#{PersonaMB.municipios}"/>
 							</h:selectOneMenu></td>	
 						</tr>										
-						<tr>				
-							<td align="left"><h:outputLabel value="Libreta Militar:" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:outputLabel size="35" value="#{PersonaMB.persona.perVlibretamilitar}"></h:outputLabel></td>
+						<tr>			
+							<c:if test="#{PersonaMB.persona.perVsexo == 'H'}">		
+								<td align="left"><h:outputLabel value="Libreta Militar:" styleClass="TextoContenido"></h:outputLabel></td>
+								<td align="left"><h:outputLabel size="35" value="#{PersonaMB.persona.perVlibretamilitar}"></h:outputLabel></td>
+							</c:if>
 						</tr>																																																	
 						<tr>
 							<td height="30px"/>
@@ -366,7 +368,6 @@
 						</table>
 						<table align="left">
 							<tr>
-								
 								<td align="left"><h:outputLabel value="Idioma 1" styleClass="TextoContenido"></h:outputLabel></td>							
 								<td align="left"><h:selectOneMenu value="#{PerfilprofesionalMB.perfilProfesional.idiNididioma1}" disabled="true" style="color:#000000;width:100px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	

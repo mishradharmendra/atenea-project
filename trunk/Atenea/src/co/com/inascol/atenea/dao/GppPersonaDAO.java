@@ -259,18 +259,23 @@ public class GppPersonaDAO implements DAO{
 				Iterator<Object> it = criteriosBusqueda.iterator();
 				int contadorCriterios = 1;
 				while(it.hasNext()){
-					criterios = (String) it.next();
-					criterioConsulta += "AND " +criterios+" ";
+					if(contadorCriterios == 1){
+						criterios = (String) it.next();						
+						criterioConsulta = " WHERE " + criterios + " ";
+					}else{
+						criterios = (String) it.next();
+						criterioConsulta += "AND " +criterios+" ";
+					}					
 					contadorCriterios++;
 				}
 			}
 			sentenciaSQL = "select p.per_nidpersona " +
-							"from gpp_persona p, gpp_perfilprof pp, gpp_experiencia e, gpp_formacion pre, gpp_formacion esp, gpp_formacion msc " +
-							"where p.per_nidpersona = pp.per_nidpersona " +
-							"and p.per_nidpersona = e.per_nidpersona " +
-							"and p.per_nidpersona = pre.per_nidpersona " +
-							"and p.per_nidpersona = esp.per_nidpersona " +
-							"and p.per_nidpersona = msc.per_nidpersona " +
+							"from (gpp_persona p " +
+							"left join gpp_perfilprof pp on p.per_nidpersona = pp.per_nidpersona " +
+							"left join gpp_experiencia e on p.per_nidpersona = e.per_nidpersona " +
+							"left join gpp_formacion pre on p.per_nidpersona = pre.per_nidpersona " +
+							"left join gpp_formacion esp on p.per_nidpersona = esp.per_nidpersona " +
+							"left join gpp_formacion msc on p.per_nidpersona = msc.per_nidpersona)" +
 							criterioConsulta +
 							"group by p.per_nidpersona ";
 			List<Object> idPersonas = (List) jdbcTemplate.queryForList(sentenciaSQL, Integer.class);
