@@ -59,7 +59,7 @@
 						<tr>
 							<td align="left"><h:outputLabel value="Sexo" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-							<td align="left"><h:selectOneMenu id="perVsexo" value="#{PersonaMB.persona.perVsexo}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Sexo" style="width:200px">
+							<td align="left"><h:selectOneMenu id="perVsexo" value="#{PersonaMB.persona.perVsexo}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Sexo" style="width:200px" valueChangeListener="#{PersonaMB.getLibreta}" onchange="submit()">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>						
 								<f:selectItem itemValue="H" itemLabel="Hombre"/>
 								<f:selectItem itemValue="M" itemLabel="Mujer"/>
@@ -98,7 +98,7 @@
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 							<td align="left"><h:selectOneMenu id="munNidmunicipio" value="#{PersonaMB.persona.munNidmunicipio}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Seleccione un Municipio" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
-								<f:selectItems value="#{PersonaMB.municipios}"/>
+								<f:selectItems value="#{PersonaMB.municipiosDepto}"/>
 							</h:selectOneMenu></td>	
 						</tr>
 						<tr>
@@ -106,9 +106,11 @@
 							<td width="50px"></td>	
 							<td align="center" colspan="3"><rich:message for="munNidmunicipio" style="color:red"/></td>							
 						</tr>							
-						<tr>				
-							<td align="left" colspan="2"><h:outputLabel value="Libreta Militar" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:inputText size="35" value="#{PersonaMB.persona.perVlibretamilitar}"></h:inputText></td>
+						<tr>			
+							<c:if test="#{PersonaMB.persona.perVsexo == 'H'}">	
+								<td align="left" colspan="2"><h:outputLabel value="Libreta Militar" styleClass="TextoContenido"></h:outputLabel></td>
+								<td align="left"><h:inputText size="35" value="#{PersonaMB.persona.perVlibretamilitar}"></h:inputText></td>
+							</c:if>
 						</tr>	
 						<tr>
 							<td height="10px"/>
@@ -122,17 +124,24 @@
 						<tr>
 							<td align="left"><h:outputLabel value="País Residencia" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
-							<td align="left"><h:selectOneMenu id="idPaisResidencia" value="#{PersonaMB.persona.paiNpaisresidencia}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Seleccione un Pais de Residencia" style="width:200px">
+							<td align="left"><h:selectOneMenu id="idPaisResidencia" value="#{PersonaMB.persona.paiNpaisresidencia}" valueChangeListener="#{PersonaMB.getDeptosResidencia}" onchange="submit()" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Seleccione un Pais de Residencia" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.paises}"/>
 								</h:selectOneMenu></td>
 							<td width="50px"></td>	
-							<td align="left" colspan="2"><h:outputLabel value="Municipio Residencia" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:selectOneMenu id="mpio" value="#{PersonaMB.persona.munNmpioresidencia}" style="width:200px">
+							<td align="left" colspan="2"><h:outputLabel value="Departamento Residencia" styleClass="TextoContenido"></h:outputLabel></td>
+							<td align="left"><h:selectOneMenu id="deptoResidencia" value="#{PersonaMB.persona.munNmpioresidencia}" valueChangeListener="#{PersonaMB.getMpiosResidencia}" onchange="submit()" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
-								<f:selectItems value="#{PersonaMB.municipiosResidencia}"/>
+								<f:selectItems value="#{PersonaMB.deptosPaisResidencia}"/>
 								</h:selectOneMenu></td>							
 						</tr>	
+						<tr>
+							<td align="left" colspan="2"><h:outputLabel value="Municipio Residencia" styleClass="TextoContenido"></h:outputLabel></td>
+							<td align="left"><h:selectOneMenu id="mpioResidencia" value="#{PersonaMB.persona.munNmpioresidencia}" style="width:200px">
+								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
+								<f:selectItems value="#{PersonaMB.municipiosResidencia}"/>
+								</h:selectOneMenu></td>								
+						</tr>
 						<tr>
 							<td align="center" colspan="3"><rich:message for="idPaisResidencia" style="color:red"/></td>
 							<td width="50px"></td>	
@@ -763,14 +772,16 @@
 									<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 									<td align="left"><rich:calendar value="#{ExperienciaMB.experiencia.expDfecingreso}" datePattern="dd/MM/yyyy" id="expDfecingreso" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Fecha de Ingreso" inputSize="31"/></td>
 									<td width="15px"></td>
-									<td align="left" colspan="2"><h:outputLabel value="Fecha de Retiro" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><rich:calendar value="#{ExperienciaMB.experiencia.expDfecretiro}" datePattern="dd/MM/yyyy" id="expDfecretiro" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="31"/></td>
+									<c:if test="#{ExperienciaMB.fechaActual != true}">
+										<td align="left" colspan="2"><h:outputLabel value="Fecha de Retiro" styleClass="TextoContenido"></h:outputLabel></td>
+										<td align="left"><rich:calendar value="#{ExperienciaMB.experiencia.expDfecretiro}" datePattern="dd/MM/yyyy" id="expDfecretiro" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="31"/></td>
+									</c:if>
 								</tr>
 								<tr>
 									<td align="center" colspan="3"><rich:message for="expDfecingreso" style="color:red"/></td>
 									<td width="15px"></td>
 									<td align="left"  colspan="2"><h:outputLabel value="Actual" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:selectBooleanCheckbox name="fechaActual" value="#{ExperienciaMB.fechaActual}" id="fechaActual" ></h:selectBooleanCheckbox></td>															
+									<td align="left"><h:selectBooleanCheckbox name="fechaActual" value="#{ExperienciaMB.fechaActual}" id="fechaActual" valueChangeListener="#{ExperienciaMB.getFecha}" onchange="submit()"></h:selectBooleanCheckbox></td>															
 								</tr>
 								<tr>
 									<td align="center" colspan="3"/>				
@@ -893,7 +904,7 @@
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{PerfilprofesionalMB.idiomas}"/>
 										</h:selectOneMenu></td>
-								<td width="20px"></td>										
+								<td width="20px"></td>	
 								<td align="left"><h:outputLabel value="Dominio (%)" styleClass="TextoContenido"></h:outputLabel></td>
 								<td align="left"><h:inputText size="5" value="#{PerfilprofesionalMB.perfilProfesional.pprNnivelidi2}"></h:inputText></td>
 							</tr>							

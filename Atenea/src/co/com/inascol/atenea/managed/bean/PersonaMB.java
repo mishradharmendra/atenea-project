@@ -55,6 +55,8 @@ public class PersonaMB {
 	private String tabPanelExperiencia;
 	private Integer idPais;
 	private Integer idDepto;	
+	private Integer idPaisResidencia;
+	private Integer idDeptoResidencia;	
 	private Boolean tabDeshabilitados;
 	private Boolean documentoCargado;
 	private Boolean estadoPersona;
@@ -217,6 +219,18 @@ public class PersonaMB {
 	public void setEstadoOperacion(Boolean estadoOperacion) {
 		this.estadoOperacion = estadoOperacion;
 	}
+	public Integer getIdPaisResidencia() {
+		return idPaisResidencia;
+	}
+	public void setIdPaisResidencia(Integer idPaisResidencia) {
+		this.idPaisResidencia = idPaisResidencia;
+	}
+	public Integer getIdDeptoResidencia() {
+		return idDeptoResidencia;
+	}
+	public void setIdDeptoResidencia(Integer idDeptoResidencia) {
+		this.idDeptoResidencia = idDeptoResidencia;
+	}
 	
 	public List<SelectItem> getTiposIdentificacion(){
 		List<SelectItem> listadoTipos = new ArrayList<SelectItem>();
@@ -274,6 +288,23 @@ public class PersonaMB {
 		return listadoDepartamentos;
 	}
 	
+	public List<SelectItem> getDeptosPaisResidencia(){
+		List<SelectItem> listadoDepartamentos = new ArrayList<SelectItem>();		
+		if(idPaisResidencia!=null){
+			List<Object> deptos = personaDelegate.getListaDepartamentos();
+			if(deptos.size()>0){
+				Iterator<Object> it = deptos.iterator();
+				while(it.hasNext()){
+					GppDepartamento gppDepartamento = (GppDepartamento) it.next();
+					if(gppDepartamento.getPaiNidpais()==idPaisResidencia){
+						listadoDepartamentos.add(new SelectItem(gppDepartamento.getDptNiddepto(),gppDepartamento.getDptVdepto()));
+					}
+				}
+	        }
+		}
+		return listadoDepartamentos;
+	}
+	
 	public List<SelectItem> getMunicipiosDepto(){
 		List<SelectItem> listadoMunicipios = new ArrayList<SelectItem>();
 		if(idPais!=null && idDepto!=null){
@@ -291,41 +322,18 @@ public class PersonaMB {
 		return listadoMunicipios;
 	}		
 
-	public List<SelectItem> getMunicipios(){
+	public List<SelectItem> getMunicipiosResidencia(){
 		List<SelectItem> listadoMunicipios = new ArrayList<SelectItem>();
-		if(idPais!=null && idDepto!=null){
+		if(idPaisResidencia!=null && idDeptoResidencia!=null){
 			List<Object> mpios = personaDelegate.getListaMunicipios();
 			if(mpios.size()>0){
 				Iterator<Object> it = mpios.iterator();
 				while(it.hasNext()){
 					GppMunicipio gppMunicipio = (GppMunicipio) it.next();
-					if(gppMunicipio.getDptNiddepto()==idDepto){
+					if(gppMunicipio.getDptNiddepto()==idDeptoResidencia){
 						listadoMunicipios.add(new SelectItem(gppMunicipio.getMunNidmunicipio(),gppMunicipio.getMunVmunicipio()));
 					}
 				}
-	        }
-		}
-		else{
-			List<Object> mpios = personaDelegate.getListaMunicipios();
-			if(mpios.size()>0){
-				Iterator<Object> it = mpios.iterator();
-				while(it.hasNext()){
-					GppMunicipio gppMunicipio = (GppMunicipio) it.next();
-					listadoMunicipios.add(new SelectItem(gppMunicipio.getMunNidmunicipio(),gppMunicipio.getMunVmunicipio()));
-		        }
-			}
-		}
-		return listadoMunicipios;
-	}		
-	
-	public List<SelectItem> getMunicipiosResidencia(){
-		List<SelectItem> listadoMunicipios = new ArrayList<SelectItem>();
-		List<Object> mpios = personaDelegate.getListaMunicipios();
-		if(mpios.size()>0){
-			Iterator<Object> it = mpios.iterator();
-			while(it.hasNext()){
-				GppMunicipio gppMunicipio = (GppMunicipio) it.next();
-				listadoMunicipios.add(new SelectItem(gppMunicipio.getMunNidmunicipio(),gppMunicipio.getMunVmunicipio()));
 	        }
 		}
 		return listadoMunicipios;
@@ -367,7 +375,27 @@ public class PersonaMB {
 	public void getMpios(ValueChangeEvent evento){
 		if(evento.getNewValue()!=null){
 			idDepto = Integer.valueOf((String) evento.getNewValue());
-			getMunicipios();
+			getMunicipiosDepto();
+		}
+	}
+	
+	public void getDeptosResidencia(ValueChangeEvent evento){
+		if(evento.getNewValue()!=null){
+			idPaisResidencia = Integer.valueOf((Integer) evento.getNewValue());
+			getDeptosPaisResidencia();
+		}
+	}
+	
+	public void getMpiosResidencia(ValueChangeEvent evento){
+		if(evento.getNewValue()!=null){
+			idDeptoResidencia = Integer.valueOf((Integer)evento.getNewValue());
+			getMunicipiosResidencia();
+		}
+	}
+	
+	public void getLibreta(ValueChangeEvent evento){
+		if(evento.getNewValue()!=null){
+			persona.setPerVsexo((String) evento.getNewValue());
 		}
 	}
 	
