@@ -12,7 +12,7 @@
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
+			<rich:panel style="width:938px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
 						<td width="120px"/>
@@ -65,7 +65,10 @@
 				<br/>
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
-				<h:form>	
+				<h:form>
+				<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
+				<tr>
+				<td>					
 				<rich:extendedDataTable id="tablaUsuario" value="#{UsuarioMB.usuarios}" var="usuario" width="615px" height="180px" headerClass="rich-table-header">
 					<rich:column width="140px" sortable="true" sortBy="#{usuario.usuNidusuario}" label="Id usuario">
 						<f:facet name="header">
@@ -104,6 +107,9 @@
 						<div align="center"><h:selectBooleanCheckbox id="activar" value="#{usuario.usuBactivo}" onclick="aceptar = confirm('Esta seguro que quiere cambiar el estado del usuario seleccionado?'); if(aceptar==true){procesarSolicitudCambiarEstado('#{usuario.usuNidusuario}','#{usuario.usuBactivo}');} return false;"></h:selectBooleanCheckbox></div>
 					</rich:column>
 				</rich:extendedDataTable>
+				</td>
+				</tr>
+				</table>
 				</h:form>					
 			</rich:panel>
         	<a4j:form>

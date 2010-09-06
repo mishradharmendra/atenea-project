@@ -111,5 +111,9 @@ public class ConstantesFaces {
 	public static final String TAB_PANEL_EXPERIENCIA = "TAB_PANEL_EXPERIENCIA";
 	public static final String TAB_PANEL_EXPERIENCIA_AGREGAR = "TAB_PANEL_EXPERIENCIA_AGREGAR";
 	public static final String TAB_PANEL_PERFIL = "TAB_PANEL_PERFIL";
-	public static final String TAB_PANEL_SOPORTES = "TAB_PANEL_SOPORTES";	
+	public static final String TAB_PANEL_SOPORTES = "TAB_PANEL_SOPORTES";
+	
+	public static final String MENU_HOJA_VIDA = "MENU_HOJA_VIDA";
+	public static final String MENU_REPORTES = "MENU_REPORTES";
+	public static final String MENU_ADMINISTRACION = "MENU_ADMINISTRACION";
 }

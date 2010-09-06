@@ -12,7 +12,7 @@
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
+			<rich:panel style="width:938px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> Permisos" styleClass="TituloContenido"></h:outputLabel></td>
@@ -81,6 +81,9 @@
 					<tr>
 						<td align="left" class="TextoContenido">
 							<h:form>
+							<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
+							<tr>
+							<td>
 							<rich:extendedDataTable id="tablaRolesAsignado" value="#{UsuariorolMB.usuario.gppRoles}" var="rol" width="165px" height="180px" headerClass="rich-table-header">	
 								<rich:column width="150px" sortable="true" sortBy="#{rol.rolVnombre}" label="Nombre Rol">
 									<f:facet name="header">
@@ -89,11 +92,17 @@
 									<div align="left"><h:outputLabel value="#{rol.rolVnombre}"></h:outputLabel></div>
 								</rich:column>
 							</rich:extendedDataTable>
+							</td>
+							</tr>
+							</table>
 							</h:form>
 						</td>
 						<td width="30px"></td>
 						<td align="left" class="TextoContenido">
 							<h:form>
+							<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
+							<tr>
+							<td>							
 							<rich:extendedDataTable id="tablaRoles" value="#{UsuariorolMB.roles}" var="rol" width="580px" height="180px" headerClass="rich-table-header" >
 								<rich:column width="100px" label="Seleccionar">
 									<f:facet name="header">
@@ -114,6 +123,9 @@
 									<div align="left"><h:outputLabel value="#{rol.rolVdescripcion}"></h:outputLabel></div>
 								</rich:column>														
 							</rich:extendedDataTable>
+							</td>
+							</tr>
+							</table>
 							</h:form>
 							<a4j:form>
 					            <a4j:jsFunction name="procesarSolicitudRolAsignado" action="#{UsuariorolMB.getIdRolAsignar}" >

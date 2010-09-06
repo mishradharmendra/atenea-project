@@ -81,12 +81,11 @@ public class EstadocivilMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvAgregarEstadoCivil")){
 			estadoOperacion = estadocivilDelegate.getCrearEstadocivil(nombreEstadocivil);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("EstadocivilMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_ESTADOCIVIL;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
@@ -107,12 +106,11 @@ public class EstadocivilMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarEstadoCivil")){
 			estadoOperacion = estadocivilDelegate.getModificarEstadocivil(estadocivil.getEscNidestadocivil(), estadocivil.getEscVestadocivil());
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("EstadocivilMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_ESTADOCIVIL;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
@@ -123,12 +121,11 @@ public class EstadocivilMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvEliminarEstadoCivil")){
 			estadoOperacion = estadocivilDelegate.getEliminarEstadocivil(idEstadocivil);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("EstadocivilMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_ESTADOCIVIL;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
@@ -140,6 +137,7 @@ public class EstadocivilMB {
 	}
 	
 	public String getHomeEstadocivil(){
+		getMenuSeleccionado();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("EstadocivilMB");
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_ESTADOCIVIL;
@@ -148,7 +146,19 @@ public class EstadocivilMB {
 	public void getHomePageValue(){
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_ESTADOCIVIL);
 	}
-	
+
+	public void getMenuSeleccionado(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setMenuSeleccionado(ConstantesFaces.MENU_ADMINISTRACION);		
+	}
+
+	public void getResultadoOperacion(Boolean resultadoOperacion){
+		if(resultadoOperacion==true)
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("OK");
+		else
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("ERROR");
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setOperacionBD("BD");
+	}
+
 	public Boolean getValidarPermisosServicio(String nombreServicio){
 		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}

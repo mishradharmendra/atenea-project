@@ -81,12 +81,11 @@ public class CargoequivalenteMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvAgregarCargoEquivalente")){
 			estadoOperacion = cargoequivalenteDelegate.getCrearCargoequivalente(nombreCargo);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("CargoequivalenteMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_CARGOEQUIVALENTE;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
@@ -107,12 +106,11 @@ public class CargoequivalenteMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarCargoEquivalente")){
 			estadoOperacion = cargoequivalenteDelegate.getModificarCargoequivalente(cargoequivalente.getCeqNidcargoeq(), cargoequivalente.getCeqVcargoeq());
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("CargoequivalenteMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_CARGOEQUIVALENTE;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
@@ -123,12 +121,11 @@ public class CargoequivalenteMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvEliminarCargoEquivalente")){
 			estadoOperacion = cargoequivalenteDelegate.getEliminarCargoequivalente(idCargoequivalente);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("CargoequivalenteMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_CARGOEQUIVALENTE;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
@@ -140,6 +137,7 @@ public class CargoequivalenteMB {
 	}
 	
 	public String getHomeCargoequivalente(){
+		getMenuSeleccionado();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("CargoequivalenteMB");
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_CARGOEQUIVALENTE;
@@ -147,6 +145,18 @@ public class CargoequivalenteMB {
 	
 	public void getHomePageValue(){
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_CARGOEQUIVALENTE);
+	}
+
+	public void getMenuSeleccionado(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setMenuSeleccionado(ConstantesFaces.MENU_ADMINISTRACION);		
+	}
+
+	public void getResultadoOperacion(Boolean resultadoOperacion){
+		if(resultadoOperacion==true)
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("OK");
+		else
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("ERROR");
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setOperacionBD("BD");
 	}
 	
 	public Boolean getValidarPermisosServicio(String nombreServicio){

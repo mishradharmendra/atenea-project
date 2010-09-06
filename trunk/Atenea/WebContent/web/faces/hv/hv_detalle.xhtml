@@ -67,7 +67,7 @@
 							<td align="left"><h:outputLabel value="Municipio" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:selectOneMenu id="munNidmunicipio" value="#{PersonaMB.persona.munNidmunicipio}" disabled="true" style="color:#000000;width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
-								<f:selectItems value="#{PersonaMB.municipios}"/>
+								<f:selectItems value="#{PersonaMB.municipiosDepto}"/>
 							</h:selectOneMenu></td>	
 						</tr>										
 						<tr>			
@@ -163,7 +163,7 @@
 						</table>
 						</c:if>
 						<c:if test="#{FormacionMB.formacionesAcademicas != null}">							
-						<table align="center">	
+						<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
 							<tr>
 								<td align="center">		
 									<h:form>					
@@ -215,7 +215,7 @@
 						<c:if test="#{PersonaMB.persona.perNidpersona != null}">
 						<table align="right">
 							<tr>
-								<td><h:commandButton action="#{FormacionMB.getAnterior}" value="Anterior" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+								<td><h:commandButton action="#{FormacionMB.getAnteriorDetalle}" value="Anterior" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
 							</tr>
 						</table>
 						</c:if>
@@ -252,7 +252,7 @@
 								</table>
 							</c:if>
 							<c:if test="#{ExperienciaMB.experienciasLaborales != null}">						
-								<table align="center">	
+							<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">	
 									<tr>
 									<td align="center">	
 										<h:form>						
@@ -455,7 +455,7 @@
 								<td height="10px"/>
 							</tr>
 						</table>						
-						<table align="center">
+						<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
 							<tr>
 								<td align="center">		
 									<h:form>							

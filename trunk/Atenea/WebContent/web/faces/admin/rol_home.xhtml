@@ -12,7 +12,7 @@
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
+			<rich:panel style="width:938px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> ROLES" styleClass="TituloContenido"></h:outputLabel></td>
@@ -52,6 +52,9 @@
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
+				<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
+				<tr>
+				<td>				
 				<rich:extendedDataTable id="tablaRol" value="#{RolMB.roles}" var="rol" width="850px" height="250px" headerClass="rich-table-header">
 					<rich:column width="100px" sortable="true" sortBy="#{rol.rolNidrol}" label="Id Rol">
 						<f:facet name="header">
@@ -88,6 +91,9 @@
 						<div align="center"><h:selectBooleanCheckbox value="#{rol.rolBactivo}" onclick="aceptar = confirm('Esta seguro que quiere cambiar el estado del elemento seleccionado?'); if(aceptar==true){procesarSolicitudEstadoRol('#{rol.rolNidrol}','#{rol.rolBactivo}');} return false;"></h:selectBooleanCheckbox></div>
 					</rich:column>									
 				</rich:extendedDataTable>
+				</td>
+				</tr>
+				</table>				
 				</h:form>					
 			</rich:panel>
         	<a4j:form>

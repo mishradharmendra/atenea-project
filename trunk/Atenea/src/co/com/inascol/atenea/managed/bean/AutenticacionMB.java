@@ -23,6 +23,8 @@ public class AutenticacionMB {
 	private AutenticacionDelegate autenticacionDelegate;
 	private String login;
 	private Boolean estadoOperacion;
+	private String resultadoOperacion;
+	private String operacionBD;
 	private String fullContextPath;
 	private String servidor;
 	private String puerto;
@@ -32,6 +34,7 @@ public class AutenticacionMB {
 	private String urlDescargasReportes;
 	private Boolean usuarioAutenticado;
 	private String homePage;
+	private String menuSeleccionado;
 	
 	public AutenticacionMB() throws Exception{
 		autenticacionDelegate = new AutenticacionDelegate();
@@ -75,12 +78,36 @@ public class AutenticacionMB {
 	public void setUrlDescargasReportes(String urlDescargasReportes) {
 		this.urlDescargasReportes = urlDescargasReportes;
 	}
+	public String getMenuSeleccionado() {
+		return menuSeleccionado;
+	}
+	public void setMenuSeleccionado(String menuSeleccionado) {
+		this.menuSeleccionado = menuSeleccionado;
+	}
+	public String getResultadoOperacion() {
+		return resultadoOperacion;
+	}
+	public void setResultadoOperacion(String resultadoOperacion) {
+		this.resultadoOperacion = resultadoOperacion;
+	}
+	public String getOperacionBD() {
+		return operacionBD;
+	}
+	public void setOperacionBD(String operacionBD) {
+		this.operacionBD = operacionBD;
+	}
 
+	public void getLimpiarOperacion(){
+		resultadoOperacion = "NINGUNO";
+		operacionBD = "NINGUNA";
+	}
+	
 	public String getVerificarPermisos(){
 		estadoOperacion = false;
 		estadoOperacion = autenticacionDelegate.getVerificarPermisos(login);
 		if(estadoOperacion==true){
 			usuarioAutenticado = true;
+			menuSeleccionado = ConstantesFaces.MENU_HOJA_VIDA;
 			return ConstantesFaces.HOME_HV;
 		}else{
 			return ConstantesFaces.ESTADO_AUTENTICACION_ERROR;
@@ -111,6 +138,10 @@ public class AutenticacionMB {
 		urlDescargasReportes = servidor + ":" + puerto + aliasReportes;
 	}
 
+	public String getHomePageValue(){
+		return getHomePage();
+	}
+	
 	public Boolean validarPermisosServicio(String nombreServicio){
 		try{
 			GppUsuario usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
@@ -137,9 +168,5 @@ public class AutenticacionMB {
 			return false;
 		}
 		return false;
-	}
-	
-	public String getHomePageValue(){
-		return getHomePage();
 	}
 }

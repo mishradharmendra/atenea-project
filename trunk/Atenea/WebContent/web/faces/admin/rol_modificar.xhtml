@@ -12,7 +12,7 @@
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
+			<rich:panel style="width:938px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
 						<td align="left"><h:outputLabel value="ADMINISTRACIÓN >> ROLES" styleClass="TituloContenido"></h:outputLabel></td>
@@ -83,7 +83,10 @@
 					</tr>
 					<tr>
 						<td align="left" class="TextoContenido">
-							<h:form>						
+							<h:form>		
+							<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
+							<tr>
+							<td>				
 							<rich:extendedDataTable id="tablaServicioRolAsignado" value="#{RolMB.rol.gppServicios}" var="servicio" width="165px" height="180px" headerClass="rich-table-header">	
 								<rich:column width="150px" sortable="true" sortBy="#{servicio.serVnombre}" label="Nombre Servicio">
 									<f:facet name="header">
@@ -92,11 +95,17 @@
 									<div align="left"><h:outputLabel value="#{servicio.serVnombre}"></h:outputLabel></div>
 								</rich:column>
 							</rich:extendedDataTable>
+							</td>
+							</tr>
+							</table>
 							</h:form>
 						</td>
 						<td width="30px"></td>
 						<td align="left" class="TextoContenido">
 							<h:form>
+							<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
+							<tr>
+							<td>							
 							<rich:extendedDataTable id="tablaServicioRol" value="#{RolMB.servicios}" var="servicio" width="600px" height="180px" headerClass="rich-table-header">
 								<rich:column width="100px" label="Seleccionar">
 									<f:facet name="header">
@@ -117,6 +126,9 @@
 									<div align="left"><h:outputLabel value="#{servicio.serVruta}"></h:outputLabel></div>
 								</rich:column>														
 							</rich:extendedDataTable>
+							</td>
+							</tr>
+							</table>
 							</h:form>
 							<a4j:form>
 					            <a4j:jsFunction name="procesarSolicitudServicioAsignado" action="#{RolMB.getIdServiciosAsignar}" >

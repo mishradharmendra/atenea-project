@@ -1,7 +1,9 @@
 package co.com.inascol.atenea.dao;
 
 import java.sql.Types;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -153,14 +155,14 @@ public class GppUsuarioDAO implements DAO {
 		return estadoOperation;
 	}
 	
-	public Object buscarPorLogin (Object idObj) {
+	public Object buscarPorLogin (Object loginUsuario) {
 		gppUsuario = null;
 		try{ 
 			gppUsuarioRowMapper = new GppUsuarioRowMapper();
 			jdbcTemplate = TemplateManager.getInstance().getJDBCTemplate();
-			sentenciaSQL = "select * from gpp_usuario where usu_vlogin = ? and usu_vactivo = 'true'";
-			gppUsuario = (GppUsuario) jdbcTemplate.queryForObject(sentenciaSQL, new Object[] {idObj}, gppUsuarioRowMapper);
-			System.out.println("Usuario Logeado: '"+idObj+"'.");
+			sentenciaSQL = "select * from gpp_usuario where binary usu_vlogin = ? and usu_vactivo = 'true'";
+			gppUsuario = (GppUsuario) jdbcTemplate.queryForObject(sentenciaSQL, new Object[] {loginUsuario}, gppUsuarioRowMapper);
+			System.out.println("Usuario Logeado: '"+loginUsuario+"'. ("+ new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss").format(new Date())+").");
 			GppUsuariorolDAO gppUsuariorol = new GppUsuariorolDAO(); 
 			List <Object> usuarioRoles = gppUsuariorol.buscarTodosRolesUsuario(Integer.valueOf(gppUsuario.getUsuNidusuario()));
 			if(usuarioRoles.size()>0){
@@ -174,7 +176,7 @@ public class GppUsuarioDAO implements DAO {
 				gppUsuario.setGppRoles(gppRoles);
 			}
 		} catch (EmptyResultDataAccessException ex){
-			System.out.println("Usuario y Password no Encontrados. Datos ingresados: '"+idObj+"'.");
+			System.out.println("Usuario y Password no Encontrados. Datos ingresados: '"+loginUsuario+"'. ("+ new SimpleDateFormat("dd/MM/yyyy-HH:mm:ss").format(new Date())+").");
 		}
 		return gppUsuario;
 	} 		

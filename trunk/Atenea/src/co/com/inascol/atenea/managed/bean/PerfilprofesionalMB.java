@@ -116,16 +116,15 @@ public class PerfilprofesionalMB {
 				idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();
 				perfilProfesional.setPerNidpersona(idPersona);
 				estadoOperacion = perfilprofesionalDelegate.getGuardarPerfil(perfilProfesional);
+				getResultadoOperacion(estadoOperacion);
 			}
 			if(estadoOperacion==true){
 				perfilesProfesionales = perfilprofesionalDelegate.getBuscarPerfilesProfesionalesPersona(idPersona);
 				if(perfilesProfesionales.size()==1){
 					perfilProfesional = (GppPerfilprof) perfilesProfesionales.get(0);	
 				}			
-				return ConstantesFaces.ESTADO_OK;
-			} else {
-				return ConstantesFaces.ESTADO_ERROR;
-			}
+			} 
+			return ConstantesFaces.CREAR_HV;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}			
@@ -137,11 +136,8 @@ public class PerfilprofesionalMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarHojadeVida")){			
 			estadoOperacion = perfilprofesionalDelegate.getActualizarPerfil(perfilProfesional);
-			if(estadoOperacion==true){		
-				return ConstantesFaces.ESTADO_OK;
-			} else {
-				return ConstantesFaces.ESTADO_ERROR;
-			}	
+			getResultadoOperacion(estadoOperacion);
+			return ConstantesFaces.CREAR_HV;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}		
@@ -154,7 +150,15 @@ public class PerfilprofesionalMB {
 	public void getHomePageValueHV(){
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.CREAR_HV);
 	}
-	
+
+	public void getResultadoOperacion(Boolean resultadoOperacion){
+		if(resultadoOperacion==true)
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("OK");
+		else
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("ERROR");
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setOperacionBD("BD");
+	}
+
 	public Boolean getValidarPermisosServicio(String nombreServicio){
 		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}

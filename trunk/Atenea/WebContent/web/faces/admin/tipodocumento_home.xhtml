@@ -12,7 +12,7 @@
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
+			<rich:panel style="width:938px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
 						<td width="110px"></td>
@@ -57,6 +57,9 @@
 				<h:outputLabel value="Resultados de Búsqueda" styleClass="TituloContenido"></h:outputLabel>
 				<br/><br/>
 				<h:form>	
+				<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
+				<tr>
+				<td>				
 				<rich:extendedDataTable headerClass="rich-table-header" id="tablaTipodocumento" value="#{TipodocumentoMB.tipodocs}" var="tipodoc" width="615px" height="250px">
 					<rich:column width="150px" sortable="true" sortBy="#{tipodoc.tdcNidtipodoc}" label="Id Tipo de Documento">
 						<f:facet name="header">
@@ -87,6 +90,9 @@
                         </a4j:commandLink>
 					</rich:column>					
 				</rich:extendedDataTable>
+				</td>
+				</tr>
+				</table>
 				</h:form>					
 			</rich:panel>
         	<a4j:form>

@@ -12,7 +12,7 @@
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel style="width:940px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
+			<rich:panel style="width:938px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<table align="left">
 					<tr>
 						<td width="110px"/>
@@ -64,6 +64,9 @@
 					</tr>
 				</table>	
 				<h:form>	
+				<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
+				<tr>
+				<td>				
 				<rich:extendedDataTable align="center" headerClass="rich-table-header" id="tablaUsuarioRol" value="#{UsuariorolMB.usuarios}" var="usuario" width="615px" height="200px">
 					<rich:column width="100px" sortable="true" sortBy="#{usuario.usuNidusuario}" label="Id usuario">
 						<f:facet name="header">
@@ -94,6 +97,9 @@
                         </a4j:commandLink>
 					</rich:column>
 				</rich:extendedDataTable>
+				</td>
+				</tr>
+				</table>
 				</h:form>					
 			</rich:panel>
         	<a4j:form>

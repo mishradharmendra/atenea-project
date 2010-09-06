@@ -2,12 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
     <head>
         <title><h:outputText value="INASCOL"></h:outputText></title>
         <link rel="icon" href="#{AutenticacionMB.fullContextPath}/web/imagenes/icono.gif" type="image"/>
 		<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
     </head>
+    <f:view contentType="text/html"/>
     <body>
     	<table align="center" width="940px">
     		<tr>
@@ -18,7 +20,7 @@
 					<div align="center" style="position: relative; width: 940px;">
 						<ui:insert name="cuerpo"/>
 					</div>
-					<div align="center" style="position: relative; width: 940px; top: 3pt;">
+					<div align="center" style="position: relative; width: 940px;">
 						<ui:include src="../web/faces/comun/pie.xhtml"/>
 					</div>
     			</td>

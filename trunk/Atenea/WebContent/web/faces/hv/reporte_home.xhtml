@@ -59,7 +59,10 @@
 							<td height="10px"/>
 						</tr>
 					</table>
-					<h:form>	
+					<h:form>
+					<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">						
+					<tr>
+					<td>					
 					<rich:extendedDataTable id="tablaPersonasReporte" align="center" value="#{ReporteMB.personas}" var="persona" height="250px" width="850px" headerClass="rich-table-header">
 						<rich:column width="110px"  label="Nombre Completo" sortable="true" sortBy="#{persona.perVnombres}">
 							<f:facet name="header">
@@ -129,6 +132,9 @@
 	                        </a4j:commandLink>
 						</rich:column>
 					</rich:extendedDataTable>
+					</td>
+					</tr>
+					</table>
 					</h:form>	
 		        	<a4j:form>
 			            <a4j:jsFunction name="procesarSolicitudReportePersona" action="#{ReporteMB.getSeleccionarPersonaReporte}" >

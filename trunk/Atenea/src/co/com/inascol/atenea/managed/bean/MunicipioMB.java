@@ -108,12 +108,11 @@ public class MunicipioMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvAgregarMunicipio")){
 			estadoOperacion = municipioDelegate.getCrearMunicipio(nombreMunicipio, idDepto);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("MunicipioMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_MUNICIPIO;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
@@ -134,12 +133,11 @@ public class MunicipioMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarMunicipio")){
 			estadoOperacion = municipioDelegate.getModificarMunicipio(municipio.getMunNidmunicipio(), municipio.getMunVmunicipio(), municipio.getDptNiddepto());
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("MunicipioMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_MUNICIPIO;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
@@ -150,12 +148,11 @@ public class MunicipioMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvEliminarMunicipio")){
 			estadoOperacion = municipioDelegate.getEliminarMunicipio(idMunicipio);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("MunicipioMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_MUNICIPIO;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}	
@@ -167,6 +164,7 @@ public class MunicipioMB {
 	}
 
 	public String getHomeMunicipio(){
+		getMenuSeleccionado();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("MunicipioMB");
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_MUNICIPIO;
@@ -175,7 +173,19 @@ public class MunicipioMB {
 	public void getHomePageValue(){
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_MUNICIPIO);
 	}
-	
+
+	public void getMenuSeleccionado(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setMenuSeleccionado(ConstantesFaces.MENU_ADMINISTRACION);		
+	}
+
+	public void getResultadoOperacion(Boolean resultadoOperacion){
+		if(resultadoOperacion==true)
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("OK");
+		else
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("ERROR");
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setOperacionBD("BD");
+	}
+
 	public Boolean getValidarPermisosServicio(String nombreServicio){
 		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}
