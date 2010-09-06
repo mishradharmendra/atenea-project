@@ -161,6 +161,7 @@ public class FormacionMB {
 				idPersona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona().getPerNidpersona();						
 				formacion.setPerNidpersona(idPersona);
 				estadoOperacion = formacionDelegate.getGuardarFormacion(formacion);
+				getResultadoOperacion(estadoOperacion);
 			}
 			if(estadoOperacion==true){
 				if(documentoCargadoDiploma == true){
@@ -174,10 +175,8 @@ public class FormacionMB {
 					documentoCargadoActa = false;
 				}
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
-				return ConstantesFaces.ESTADO_OK;
-			} else {
-				return ConstantesFaces.ESTADO_ERROR;
-			}	
+			} 
+			return ConstantesFaces.CREAR_HV;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}			
@@ -190,12 +189,11 @@ public class FormacionMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarHojadeVida")){
 			estadoOperacion = formacionDelegate.getBorrarFormacion(idFormacion);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){	
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
-				return ConstantesFaces.ESTADO_OK;
-			} else {
-				return ConstantesFaces.ESTADO_ERROR;
-			}
+			} 
+			return ConstantesFaces.CREAR_HV;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}				
@@ -208,6 +206,7 @@ public class FormacionMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarHojadeVida")){
 			estadoOperacion = formacionDelegate.getActualizarFormacion(formacion);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				if(documentoCargadoDiploma == true){
 					GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
@@ -220,10 +219,8 @@ public class FormacionMB {
 					documentoCargadoActa = false;
 				}
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("FormacionMB");
-				return ConstantesFaces.ESTADO_OK;
-			} else {
-				return ConstantesFaces.ESTADO_ERROR;
-			}
+			} 
+			return ConstantesFaces.CREAR_HV;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}			
@@ -267,6 +264,14 @@ public class FormacionMB {
 	
 	public void getHomePageValueHV(){
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.CREAR_HV);
+	}
+
+	public void getResultadoOperacion(Boolean resultadoOperacion){
+		if(resultadoOperacion==true)
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("OK");
+		else
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("ERROR");
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setOperacionBD("BD");
 	}
 	
 	public Boolean getValidarPermisosServicio(String nombreServicio){

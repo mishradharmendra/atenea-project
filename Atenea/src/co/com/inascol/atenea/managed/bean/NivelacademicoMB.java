@@ -81,12 +81,11 @@ public class NivelacademicoMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvAgregarNivelesAcademicos")){
 			estadoOperacion = nivelacademicoDelegate.getCrearNivelacademico(nombreNivelacademico);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("NivelacademicoMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_NIVELACADEMICO;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}			
@@ -107,12 +106,11 @@ public class NivelacademicoMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarNivelesAcademicos")){
 			estadoOperacion = nivelacademicoDelegate.getModificarNivelacademico(nivelacademico.getNacNidnivelac(), nivelacademico.getNacVnivelac());
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("NivelacademicoMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_NIVELACADEMICO;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}			
@@ -123,12 +121,11 @@ public class NivelacademicoMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvEliminarNivelesAcademicos")){
 			estadoOperacion = nivelacademicoDelegate.getEliminarNivelacademico(idNivelacademico);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("NivelacademicoMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_NIVELACADEMICO;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}			
@@ -140,6 +137,7 @@ public class NivelacademicoMB {
 	}
 	
 	public String getHomeNivelacademico(){
+		getMenuSeleccionado();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("NivelacademicoMB");
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_NIVELACADEMICO;
@@ -147,6 +145,18 @@ public class NivelacademicoMB {
 	
 	public void getHomePageValue(){
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_NIVELACADEMICO);
+	}
+
+	public void getMenuSeleccionado(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setMenuSeleccionado(ConstantesFaces.MENU_ADMINISTRACION);		
+	}
+
+	public void getResultadoOperacion(Boolean resultadoOperacion){
+		if(resultadoOperacion==true)
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("OK");
+		else
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("ERROR");
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setOperacionBD("BD");
 	}
 	
 	public Boolean getValidarPermisosServicio(String nombreServicio){

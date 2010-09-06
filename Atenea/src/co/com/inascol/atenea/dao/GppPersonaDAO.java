@@ -384,7 +384,7 @@ public class GppPersonaDAO implements DAO{
 				List<Object> gppPerfiles = gppPerfilproDAO.buscarPerfilesPersona(gppPersona.getPerNidpersona());
 				List<Object> gppExperienciasLaborales = gppExperienciaDAO.buscarExperienciasPersona(gppPersona.getPerNidpersona());
 				List<Object> gppCertificaciones = new ArrayList<Object>();
-				if(gppFormaciones.size()>0){
+				if(gppFormaciones!=null && gppFormaciones.size()>0){
 					gppPersona.setGppFormaciones(organizarFormaciones(gppFormaciones));
 					Iterator<Object> itFormacion = gppFormaciones.iterator();
 					while(itFormacion.hasNext()){
@@ -397,10 +397,10 @@ public class GppPersonaDAO implements DAO{
 					}
 					gppPersona.setGppCertificaciones(gppCertificaciones);
 				}
-				if(gppPerfiles.size()==1){
+				if(gppPerfiles!=null && gppPerfiles.size()==1){
 					gppPersona.setGppPerfilprofesional((GppPerfilprof) gppPerfiles.get(0));
 				}
-				if(gppExperienciasLaborales.size()>0){
+				if(gppExperienciasLaborales!=null && gppExperienciasLaborales.size()>0){
 					gppPersona.setGppExperienciasLaborales(organizarExperiencias(gppExperienciasLaborales));
 				}
 				gppPersona.setPerNpuntaje(getPuntajePersona(gppPersona));
@@ -483,17 +483,19 @@ public class GppPersonaDAO implements DAO{
 				Double aniosExperiencia = Double.valueOf("0");
 				while(itExperiencias.hasNext()){
 					gppExperiencia = (GppExperiencia) itExperiencias.next();
-					if( (fechaPregrado.getTime() < gppExperiencia.getExpDfecingreso().getTime()) ){
-						aniosExperiencia += Calculos.diferenciaFechasDias(gppExperiencia.getExpDfecingreso(), gppExperiencia.getExpDfecretiro()) / (365) ;
-						if(aniosExperiencia>10){
-							puntajeExpe = 10;
-							break;
-						}else{
-							if(aniosExperiencia>1){
-								puntajeExpe = aniosExperiencia.intValue();
-								if(puntajeExpe>10){
-									puntajeExpe = 10;
-									break;
+					if(fechaPregrado!=null){
+						if( (fechaPregrado.getTime() < gppExperiencia.getExpDfecingreso().getTime()) ){
+							aniosExperiencia += Calculos.diferenciaFechasDias(gppExperiencia.getExpDfecingreso(), gppExperiencia.getExpDfecretiro()) / (365) ;
+							if(aniosExperiencia>10){
+								puntajeExpe = 10;
+								break;
+							}else{
+								if(aniosExperiencia>1){
+									puntajeExpe = aniosExperiencia.intValue();
+									if(puntajeExpe>10){
+										puntajeExpe = 10;
+										break;
+									}
 								}
 							}
 						}

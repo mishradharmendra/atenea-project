@@ -81,12 +81,11 @@ public class InstitucionMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvAgregarInstitucion")){
 			estadoOperacion = institucionDelegate.getCrearInstitucion(nombreInstitucion);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("InstitucionMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_INSTITUCION;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}	
@@ -107,12 +106,11 @@ public class InstitucionMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarInstitucion")){
 			estadoOperacion = institucionDelegate.getModificarInstitucion(institucion.getInsNidinstitucion(), institucion.getInsVinstitucion());
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("InstitucionMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_INSTITUCION;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}	
@@ -123,12 +121,11 @@ public class InstitucionMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvEliminarInstitucion")){
 			estadoOperacion = institucionDelegate.getEliminarInstitucion(idInstitucion);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("InstitucionMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_INSTITUCION;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}				
@@ -140,6 +137,7 @@ public class InstitucionMB {
 	}
 	
 	public String getHomeInstitucion(){
+		getMenuSeleccionado();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("InstitucionMB");
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_INSTITUCION;
@@ -148,7 +146,19 @@ public class InstitucionMB {
 	public void getHomePageValue(){
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_INSTITUCION);
 	}
-	
+
+	public void getMenuSeleccionado(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setMenuSeleccionado(ConstantesFaces.MENU_ADMINISTRACION);		
+	}
+
+	public void getResultadoOperacion(Boolean resultadoOperacion){
+		if(resultadoOperacion==true)
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("OK");
+		else
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("ERROR");
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setOperacionBD("BD");
+	}
+
 	public Boolean getValidarPermisosServicio(String nombreServicio){
 		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}

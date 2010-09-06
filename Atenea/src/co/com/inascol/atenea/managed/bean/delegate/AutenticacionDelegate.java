@@ -36,6 +36,10 @@ public class AutenticacionDelegate {
 	
 	public String getParametro(Integer idParametro){
 		parametrizacionService = new ParametrizacionService();
-		return ((GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(idParametro)).getParVvalor();
+		GppParametrizacion parametro = (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(idParametro);
+		if(parametro!=null)
+			return parametro.getParVvalor();
+		else
+			return null;
 	}
 }

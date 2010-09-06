@@ -108,12 +108,11 @@ public class DepartamentoMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvAgregarDepartamento")){
 			estadoOperacion = departamentoDelegate.getCrearDepto(nombreDepartamento, idPais);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_DEPTO;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
@@ -134,12 +133,11 @@ public class DepartamentoMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarDepartamento")){
 			estadoOperacion = departamentoDelegate.getModificarDepto(departamento.getDptNiddepto(), departamento.getDptVdepto(), departamento.getPaiNidpais());
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_DEPTO;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}
@@ -150,12 +148,11 @@ public class DepartamentoMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvEliminarDepartamento")){
 			estadoOperacion = departamentoDelegate.getEliminarDepto(idDepartamento);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;
 			}
+			return ConstantesFaces.HOME_DEPTO;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}		
@@ -167,6 +164,7 @@ public class DepartamentoMB {
 	}
 	
 	public String getHomeDepartamento(){
+		getMenuSeleccionado();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DepartamentoMB");
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_DEPTO;
@@ -176,6 +174,18 @@ public class DepartamentoMB {
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_DEPTO);
 	}
 	
+	public void getMenuSeleccionado(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setMenuSeleccionado(ConstantesFaces.MENU_ADMINISTRACION);		
+	}
+
+	public void getResultadoOperacion(Boolean resultadoOperacion){
+		if(resultadoOperacion==true)
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("OK");
+		else
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("ERROR");
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setOperacionBD("BD");
+	}
+
 	public Boolean getValidarPermisosServicio(String nombreServicio){
 		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}

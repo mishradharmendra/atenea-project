@@ -8,7 +8,7 @@
 	  xmlns:a4j="http://richfaces.org/a4j"
 	  xmlns:c="http://java.sun.com/jstl/core">
 <head>
-	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+	<link href="#{Autentic`acionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
 </head>		  
 <body>
 	<ui:composition template="../../template.xhtml">
@@ -180,10 +180,9 @@
 								<td height="5px"/>
 							</tr>
 						</table>					
-						<table align="center">
+						<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
 							<tr>
-								<td align="center">
-									<h:form>
+								<td>
 									<rich:extendedDataTable id="tablaSoportesHv" align="center" value="#{DocumentoMB.hojasDeVida}" var="docu" width="615px" height="90px" headerClass="rich-table-header">
 										<rich:column width="200px" sortable="true" sortBy="#{docu.docVnombre}" label="Nombre">
 											<f:facet name="header">
@@ -206,7 +205,6 @@
 												</a4j:commandLink>
 										</rich:column>			
 									</rich:extendedDataTable>
-									</h:form>
 								</td>
 							</tr>
 						</table>
@@ -272,18 +270,18 @@
 									<td height="10px"/>
 								</tr>
 							</table>
-							<c:if test="#{FormacionMB.formacionesAcademicas == null}">
+							<c:if test="#{empty FormacionMB.formacionesAcademicas}">
 								<table align="center">
 								<tr>
 									<td><h:outputLabel value="No se ha registrado ninguna Formación Académica. Use 'Agregar Formación Académica' para ingresar una nueva." styleClass="TextoContenido"></h:outputLabel></td>
 								</tr>
 							</table>
 							</c:if>
-							<c:if test="#{FormacionMB.formacionesAcademicas != null}">								
+							<c:if test="#{not empty FormacionMB.formacionesAcademicas}">								
 							<h:form>
-							<table align="center">
+							<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
 								<tr>
-									<td align="center">
+									<td>
 										<rich:extendedDataTable id="tablaFormacionesAcademicas" align="center" value="#{FormacionMB.formacionesAcademicas}" var="formacion" width="830px" height="150px" headerClass="rich-table-header">
 											<rich:column width="120px" sortable="true" sortBy="#{formacion.gppNivelacademico.nacVnivelac}" label="Tipo Estudio">
 												<f:facet name="header">
@@ -553,18 +551,18 @@
 									<td height="10px"/>
 								</tr>
 							</table>
-							<c:if test="#{ExperienciaMB.experienciasLaborales == null}">
+							<c:if test="#{empty ExperienciaMB.experienciasLaborales}">
 								<table align="center">
 									<tr>
-										<td><h:outputLabel value="No se ha registrado ninguna Experiencia Laboral. Use 'Agregar ExperienciaLaboral' para ingresar una nueva." styleClass="TituloContenido"></h:outputLabel></td>
+										<td><h:outputLabel value="No se ha registrado ninguna Experiencia Laboral. Use 'Agregar ExperienciaLaboral' para ingresar una nueva." styleClass="TextoContenido"></h:outputLabel></td>
 									</tr>
 								</table>
 							</c:if>
-							<c:if test="#{ExperienciaMB.experienciasLaborales != null}">						
+							<c:if test="#{not empty ExperienciaMB.experienciasLaborales}">						
 							<h:form>
-							<table align="center">
+							<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
 							<tr>
-							<td align="center">
+							<td>
 								<rich:extendedDataTable id="tablaExperienciaLaboral" align="center" value="#{ExperienciaMB.experienciasLaborales}" var="exp" width="830px" height="150px" headerClass="rich-table-header">
 									<rich:column width="140px" sortable="true" sortBy="#{exp.expVnomempresa}" label="Empresa">
 										<f:facet name="header">
@@ -997,11 +995,6 @@
 								<td height="10px"/>
 							</tr>
 						</table>											
-						<table align="left">
-							<tr>
-								<td><h:outputLabel value="Archivos Relacionados" styleClass="TituloContenido"></h:outputLabel></td>
-							</tr>
-						</table>	
 						<table align="center" width="100%">
 							<tr>
 								<td height="10px"/>
@@ -1064,11 +1057,11 @@
 								<td align="center"><h:outputLabel value="Listado de Soportes" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 						</table>
-						<table align="center">
+						<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
 							<tr>
-								<td align="center">
+								<td>
 									<h:form>
-									<rich:extendedDataTable id="tablaSoportes" align="center" value="#{DocumentoMB.soportes}" var="docu" width="835px" height="100px" headerClass="rich-table-header">
+									<rich:extendedDataTable id="tablaSoportes" align="center" value="#{DocumentoMB.soportes}" var="docu" width="835px" height="120px" headerClass="rich-table-header">
 										<rich:column width="110px" sortable="true" sortBy="#{docu.gppTipoarchivo.tarVtipoarchivo}" label="Tipo Archivo">
 											<f:facet name="header">
 												<h:outputLabel value="Tipo Archivo" styleClass="PrimerNivel"></h:outputLabel>

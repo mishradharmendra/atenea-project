@@ -81,12 +81,11 @@ public class PerfilequivalenteMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvAgregarPerfilEquivalente")){
 			estadoOperacion = perfilequivalenteDelegate.getCrearPerfilequivalente(nombrePerfil);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PerfilequivalenteMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;	
 			}
+			return ConstantesFaces.HOME_PERFILEQUIVALENTE;	
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}				
@@ -107,12 +106,11 @@ public class PerfilequivalenteMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarPerfilEquivalente")){
 			estadoOperacion = perfilequivalenteDelegate.getModificarPerfilequivalente(perfilequivalente.getPeqNidperfileq(), perfilequivalente.getPeqVperfileq());
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PerfilequivalenteMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;	
 			}
+			return ConstantesFaces.HOME_PERFILEQUIVALENTE;	
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}				
@@ -123,12 +121,11 @@ public class PerfilequivalenteMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvEliminarPerfilEquivalente")){
 			estadoOperacion = perfilequivalenteDelegate.getEliminarPerfilequivalente(idPerfilequivalente);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PerfilequivalenteMB");
-				return ConstantesFaces.ESTADO_OK;
-			}else{
-				return ConstantesFaces.ESTADO_ERROR;	
 			}
+			return ConstantesFaces.HOME_PERFILEQUIVALENTE;	
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}				
@@ -140,6 +137,7 @@ public class PerfilequivalenteMB {
 	}
 	
 	public String getHomePerfilequivalente(){
+		getMenuSeleccionado();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PerfilequivalenteMB");
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_PERFILEQUIVALENTE;
@@ -147,6 +145,18 @@ public class PerfilequivalenteMB {
 	
 	public void getHomePageValue(){
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_PERFILEQUIVALENTE);
+	}
+
+	public void getMenuSeleccionado(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setMenuSeleccionado(ConstantesFaces.MENU_ADMINISTRACION);		
+	}
+
+	public void getResultadoOperacion(Boolean resultadoOperacion){
+		if(resultadoOperacion==true)
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("OK");
+		else
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("ERROR");
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setOperacionBD("BD");
 	}
 	
 	public Boolean getValidarPermisosServicio(String nombreServicio){

@@ -318,6 +318,15 @@ public class PersonaMB {
 					}
 				}
 	        }
+		}else{
+			List<Object> mpios = personaDelegate.getListaMunicipios();
+			if(mpios.size()>0){
+				Iterator<Object> it = mpios.iterator();
+				while(it.hasNext()){
+					GppMunicipio gppMunicipio = (GppMunicipio) it.next();
+					listadoMunicipios.add(new SelectItem(gppMunicipio.getMunNidmunicipio(),gppMunicipio.getMunVmunicipio()));
+				}
+			}
 		}
 		return listadoMunicipios;
 	}		
@@ -335,6 +344,15 @@ public class PersonaMB {
 					}
 				}
 	        }
+		}else{
+			List<Object> mpios = personaDelegate.getListaMunicipios();
+			if(mpios.size()>0){
+				Iterator<Object> it = mpios.iterator();
+				while(it.hasNext()){
+					GppMunicipio gppMunicipio = (GppMunicipio) it.next();
+					listadoMunicipios.add(new SelectItem(gppMunicipio.getMunNidmunicipio(),gppMunicipio.getMunVmunicipio()));
+				}
+			}
 		}
 		return listadoMunicipios;
 	}
@@ -409,8 +427,9 @@ public class PersonaMB {
 		return ConstantesFaces.DETALLE_HV;
 	}
 	
-	public String getHomeHojaVida(){
+	public String getHomeHojaVida(){		
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
+		getMenuSeleccionado();
 		getLimpiarSession();
 		return ConstantesFaces.HOME_HV; 
 	}
@@ -473,11 +492,8 @@ public class PersonaMB {
 			}
 			estadoPersona = null;
 			estadoOperacion = personaDelegate.getActualizarPersona(persona);
-			if(estadoOperacion==true){
-				return ConstantesFaces.ESTADO_OK;
-			} else {
-				return ConstantesFaces.ESTADO_ERROR;
-			}
+			getResultadoOperacion(estadoOperacion);
+			return ConstantesFaces.HOME_HV;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}			
@@ -495,36 +511,12 @@ public class PersonaMB {
 			}
 			estadoPersona = null;
 			estadoOperacion = personaDelegate.getActualizarPersona(persona);
-			if(estadoOperacion==true){
-				return ConstantesFaces.ESTADO_OK;
-			} else {
-				return ConstantesFaces.ESTADO_ERROR;
-			}
+			getResultadoOperacion(estadoOperacion);
+			return ConstantesFaces.AVANZADA_HV;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}			
 	}
-	
-//	public String getGuardarPersona(){
-//		getHomePageValueHV();
-//		setTabPanel();
-//		estadoOperacion = false;
-//		if(getValidarPermisosServicio("srvAgregarHojadeVida")){	
-//			estadoOperacion = personaDelegate.getGuardarPersona(persona);
-//			if(estadoOperacion==true){
-//				personas = (List<Object>) personaDelegate.getBusquedaBasicaPersona("" , persona.getPerNidentificacion().toString());
-//				if(personas.size()==1){
-//					persona = (GppPersona) personas.get(0);
-//					tabDeshabilitados = false;
-//				}
-//				return ConstantesFaces.ESTADO_OK;
-//			} else {
-//				return ConstantesFaces.ESTADO_ERROR;
-//			}
-//		}else{
-//			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
-//		}				
-//	}	
 	
 	public String getGuardarPersona(){
 		getHomePageValueHV();
@@ -532,16 +524,15 @@ public class PersonaMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvAgregarHojadeVida")){	
 			estadoOperacion = personaDelegate.getGuardarPersona(persona);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				personas = (List<Object>) personaDelegate.getBusquedaBasicaPersona("" , persona.getPerNidentificacion().toString());
 				if(personas.size()==1){
 					persona = (GppPersona) personas.get(0);
 					tabDeshabilitados = false;
 				}
-				return ConstantesFaces.CREAR_HV;
-			} else {
-				return ConstantesFaces.ESTADO_ERROR;
-			}
+			} 
+			return ConstantesFaces.CREAR_HV;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}				
@@ -553,23 +544,22 @@ public class PersonaMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarHojadeVida")){	
 			estadoOperacion = personaDelegate.getActualizarPersona(persona);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				if(documentoCargado==true){
 					personaDelegate.getGuardarHojaVida(persona);
 					documentoCargado=false;
 				}
-				return ConstantesFaces.ESTADO_OK;
-			} else {
-				return ConstantesFaces.ESTADO_ERROR;
-			}	
+			}
+			return ConstantesFaces.CREAR_HV;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}			
 	}
 
-    public void getSubirDocumentoHojaVida(UploadEvent event) throws IOException {
-    	documentoCargado = true;
+    public void getSubirDocumentoHojaVida(UploadEvent event) throws IOException {    	
     	personaDelegate.getSubirDocumentoHojaVida(persona, event);
+    	documentoCargado = true;
     }
 	
 	public void getLimpiarSession(){		
@@ -593,6 +583,18 @@ public class PersonaMB {
 	
 	public void getHomePageValueHV(){
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.CREAR_HV);
+	}
+
+	public void getMenuSeleccionado(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setMenuSeleccionado(ConstantesFaces.MENU_HOJA_VIDA);		
+	}
+	
+	public void getResultadoOperacion(Boolean resultadoOperacion){
+		if(resultadoOperacion==true)
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("OK");
+		else
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("ERROR");
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setOperacionBD("BD");
 	}
 	
 	public Boolean getValidarPermisosServicio(String nombreServicio){

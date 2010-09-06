@@ -116,16 +116,16 @@ public class DocumentoMB {
 					GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
 					documento.setPerNidpersona(persona.getPerNidpersona());
 					estadoOperacion = documentoDelegate.getGuardarSoporte(documento , persona);
+					getResultadoOperacion(estadoOperacion);
 				}
 				if(estadoOperacion==true){
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
-					return ConstantesFaces.ESTADO_OK;
-				} else {
-					return ConstantesFaces.ESTADO_ERROR;
 				}
+				return ConstantesFaces.CREAR_HV;
 			}else{
 				System.out.println("Documento No Cargado.");
-				return ConstantesFaces.ESTADO_ERROR;
+				getResultadoOperacion(estadoOperacion);
+				return ConstantesFaces.CREAR_HV;
 			}
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
@@ -138,12 +138,11 @@ public class DocumentoMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarHojadeVida")){
 			estadoOperacion = documentoDelegate.getBorrarSoporte(idDocumentoSoporte);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){				
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
-				return ConstantesFaces.ESTADO_OK;
-			} else {
-				return ConstantesFaces.ESTADO_ERROR;
-			}
+			} 
+			return ConstantesFaces.CREAR_HV;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}			
@@ -151,9 +150,9 @@ public class DocumentoMB {
 	
 	public void getSubirSoporte(UploadEvent event) throws IOException {
 		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") != null){
-			GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();
-			documentoCargado = true;
+			GppPersona persona = ( (PersonaMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).getPersona();			
 			documentoDelegate.getSubirSoporte(persona, event);
+			documentoCargado = true;
 		}
 	}
 	
@@ -164,7 +163,15 @@ public class DocumentoMB {
 	public void getHomePageValueHV(){
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.CREAR_HV);
 	}
-	
+
+	public void getResultadoOperacion(Boolean resultadoOperacion){
+		if(resultadoOperacion==true)
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("OK");
+		else
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("ERROR");
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setOperacionBD("BD");
+	}
+
 	public Boolean getValidarPermisosServicio(String nombreServicio){
 		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}

@@ -81,12 +81,11 @@ public class TituloequivalenteMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvAgregarTituloEquivalente")){
 			estadoOperacion = tituloequivalenteDelegate.getCrearTituloequivalente(nombreTitulo);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TituloequivalenteMB");
-				return ConstantesFaces.ESTADO_OK;
-			} else {
-				return ConstantesFaces.ESTADO_ERROR;
-			}
+			} 
+			return ConstantesFaces.HOME_TITULOEQUIVALENTE;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}				
@@ -107,12 +106,11 @@ public class TituloequivalenteMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarTituloEquivalente")){
 			estadoOperacion = tituloequivalenteDelegate.getModificarTituloequivalente(tituloequivalente.getTeqNidtituloeq(), tituloequivalente.getTeqVtituloeq());
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TituloequivalenteMB");
-				return ConstantesFaces.ESTADO_OK;
-			} else {
-				return ConstantesFaces.ESTADO_ERROR;
-			}
+			} 
+			return ConstantesFaces.HOME_TITULOEQUIVALENTE;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}				
@@ -123,12 +121,11 @@ public class TituloequivalenteMB {
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvEliminarTituloEquivalente")){
 			estadoOperacion = tituloequivalenteDelegate.getEliminarTituloequivalente(idTituloequivalente);
+			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TituloequivalenteMB");
-				return ConstantesFaces.ESTADO_OK;
-			} else {
-				return ConstantesFaces.ESTADO_ERROR;
-			}
+			} 
+			return ConstantesFaces.HOME_TITULOEQUIVALENTE;
 		}else{
 			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
 		}			
@@ -140,6 +137,7 @@ public class TituloequivalenteMB {
 	}
 	
 	public String getHomeTituloequivalente(){
+		getMenuSeleccionado();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("TituloequivalenteMB");
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.HOME_TITULOEQUIVALENTE;
@@ -148,7 +146,19 @@ public class TituloequivalenteMB {
 	public void getHomePageValue(){
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.HOME_TITULOEQUIVALENTE);
 	}
-	
+
+	public void getMenuSeleccionado(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setMenuSeleccionado(ConstantesFaces.MENU_ADMINISTRACION);		
+	}
+
+	public void getResultadoOperacion(Boolean resultadoOperacion){
+		if(resultadoOperacion==true)
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("OK");
+		else
+			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("ERROR");
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setOperacionBD("BD");
+	}
+
 	public Boolean getValidarPermisosServicio(String nombreServicio){
 		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}

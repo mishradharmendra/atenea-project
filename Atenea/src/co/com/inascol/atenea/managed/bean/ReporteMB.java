@@ -86,6 +86,7 @@ public class ReporteMB {
 	}
 	
 	public String getHomeReporte(){
+		getMenuSeleccionado();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ReporteMB");
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
 		return ConstantesFaces.REPORTE_HOME;
@@ -120,6 +121,10 @@ public class ReporteMB {
 	
 	public void getHomePageValue(){
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setHomePage(ConstantesFaces.REPORTE_HOME);
+	}
+
+	public void getMenuSeleccionado(){
+		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setMenuSeleccionado(ConstantesFaces.MENU_REPORTES);		
 	}
 	
 	public Boolean getValidarPermisosServicio(String nombreServicio){

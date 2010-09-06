@@ -109,6 +109,9 @@
 						</tr>
 					</table>
 					<h:form>	
+					<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
+					<tr>
+					<td>
 					<rich:extendedDataTable id="tablaPersonas" align="center" value="#{PersonaMB.personas}" var="persona" height="150px" width="850px" headerClass="rich-table-header">
 						<rich:column width="120px" label="Nombre Completo" sortable="true" sortBy="#{persona.perVnombres}">
 							<f:facet name="header">
@@ -186,6 +189,9 @@
 							<div align="center"><h:selectBooleanCheckbox value="#{persona.perBactivo}" onclick="aceptar = confirm('Esta seguro que quiere cambiar el estado del elemento seleccionado?'); if(aceptar==true){procesarSolicitudEstadoPersona('#{persona.perNidpersona}','#{persona.perBactivo}');} return false;"></h:selectBooleanCheckbox></div>
 						</rich:column>									
 					</rich:extendedDataTable>
+					</td>
+					</tr>
+					</table>
 					</h:form>	
 		        	<a4j:form>
 			            <a4j:jsFunction name="procesarSolicitudPersonaDetalle" action="#{PersonaMB.getSeleccionarPersonaDetalle}" >

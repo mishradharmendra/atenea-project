@@ -2,13 +2,35 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:a4j="http://richfaces.org/a4j"      
       xmlns:h="http://java.sun.com/jsf/html">
     <head>
         <title><h:outputText value="Inascol Ltda."></h:outputText></title>
         <link rel="icon" href="#{AutenticacionMB.fullContextPath}/web/imagenes/icono.gif" type="image"/>
         <link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
+	    <script language="javascript">
+	    	function validarOperacion(resultadoOperacion, operacionBD){
+				if(resultadoOperacion == 'NINGUNO'){
+					return;
+				}
+				else if(resultadoOperacion == 'OK'){
+					alert('La operacion ha sido exitosa.');
+				}
+				else if(resultadoOperacion == 'ERROR'){
+					alert('Se ha presentado un error.\nComuniquese con el administrador de la aplicacion.');
+				}
+				if(operacionBD == 'BD'){
+					limpiarOperacion();
+				}
+	    	} 
+	    </script>        
     </head>
-    <body>
+    <f:view contentType="text/html"/>
+    <body onload="validarOperacion('#{AutenticacionMB.resultadoOperacion}' , '#{AutenticacionMB.operacionBD}')">
+	   	<a4j:form>
+	    	<a4j:jsFunction name="limpiarOperacion" action="#{AutenticacionMB.getLimpiarOperacion}"></a4j:jsFunction>
+		</a4j:form>		
     	<table align="center" width="940px">
     		<tr>
     			<td>
@@ -21,7 +43,7 @@
 					<div align="center" style="position: relative; width: 940px; top: 7pt;">
 						<ui:insert name="cuerpo"/>
 					</div>
-					<div align="center" style="position: relative; width: 940px; top: 3pt;">
+					<div align="center" style="position: relative; width: 940px; top: 7pt;">
 						<ui:include src="../web/faces/comun/pie.xhtml"/>
 					</div>
     			</td>
