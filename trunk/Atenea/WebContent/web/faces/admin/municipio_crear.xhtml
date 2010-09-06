@@ -36,15 +36,17 @@
 				<table>
 					<tr>
 						<td><h:outputLabel value="Municipio: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td><h:inputText id="nombreMunicipio" size="30" value="#{MunicipioMB.nombreMunicipio}" required="true" requiredMessage="Ingrese Nombre de Municipio"></h:inputText></td>					
+						<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
+						<td><h:inputText title="Ingrese el nombre del municipio." id="nombreMunicipio" size="30" value="#{MunicipioMB.nombreMunicipio}" required="true" requiredMessage="Ingrese Nombre de Municipio"></h:inputText></td>					
 						<td width="100px"></td>
 						<td><h:outputLabel value="Departamento:" styleClass="TextoContenido"></h:outputLabel></td>
+						<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
 						<td><h:selectOneMenu value="#{MunicipioMB.idDepto}">
 								<f:selectItems value="#{MunicipioMB.departamentos}"/>
 							</h:selectOneMenu></td>
 					</tr>
 					<tr>
-						<td align="center" colspan="2"><rich:message for="nombreMunicipio" style="color:red"/></td>							
+						<td align="center" colspan="3"><rich:message for="nombreMunicipio" style="color:red"/></td>							
 					</tr>						
 				</table>
 				<br/>

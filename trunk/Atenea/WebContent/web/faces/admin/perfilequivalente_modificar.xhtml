@@ -37,7 +37,8 @@
 					<tr>
 						<td><h:inputHidden value="#{PerfilequivalenteMB.perfilequivalente.peqNidperfileq}"></h:inputHidden></td>
 						<td><h:outputLabel value="Nombre de Perfil Equivalente: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td><h:inputText id="nombrePerfil" size="30" value="#{PerfilequivalenteMB.perfilequivalente.peqVperfileq}" required="true" requiredMessage="Ingrese Perfil Equivalente"></h:inputText></td>					
+						<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
+						<td><h:inputText title="Ingrese el nombre del perfil equivalente." id="nombrePerfil" size="30" value="#{PerfilequivalenteMB.perfilequivalente.peqVperfileq}" required="true" requiredMessage="Ingrese Perfil Equivalente"></h:inputText></td>					
 					</tr>
 					<tr>
 						<td align="center" colspan="3"><rich:message for="nombrePerfil" style="color:red"/></td>							

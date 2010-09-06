@@ -37,7 +37,8 @@
 					<tr>
 						<td><h:inputHidden value="#{InstitucionMB.institucion.insNidinstitucion}"></h:inputHidden></td>
 						<td><h:outputLabel value="Institución: "  styleClass="TextoContenido"></h:outputLabel></td>
-						<td><h:inputText id="nombreInstitucion" size="40" value="#{InstitucionMB.institucion.insVinstitucion}" required="true" requiredMessage="Ingrese Nombre de Institución"></h:inputText></td>					
+						<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
+						<td><h:inputText title="Ingrese el nombre de la institución." id="nombreInstitucion" size="40" value="#{InstitucionMB.institucion.insVinstitucion}" required="true" requiredMessage="Ingrese Nombre de Institución"></h:inputText></td>					
 					</tr>
 					<tr>
 						<td align="center" colspan="3"><rich:message for="nombreInstitucion" style="color:red"/></td>							

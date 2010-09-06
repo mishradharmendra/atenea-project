@@ -36,7 +36,8 @@
 				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Estado Civil: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td><h:inputText id="nombreEstadocivil" size="30" value="#{EstadocivilMB.nombreEstadocivil}" required="true" requiredMessage="Ingrese Estado Civil"></h:inputText></td>					
+						<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
+						<td><h:inputText title="Ingrese el nombre del estado civil." id="nombreEstadocivil" size="30" value="#{EstadocivilMB.nombreEstadocivil}" required="true" requiredMessage="Ingrese Estado Civil"></h:inputText></td>					
 					</tr>
 					<tr>
 						<td align="center" colspan="2"><rich:message for="nombreEstadocivil" style="color:red"/></td>							

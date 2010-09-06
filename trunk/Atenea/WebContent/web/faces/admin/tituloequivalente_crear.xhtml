@@ -36,7 +36,8 @@
 				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Título Equivalente: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td><h:inputText id="nombreTitulo" size="30" value="#{TituloequivalenteMB.nombreTitulo}" required="true" requiredMessage="Ingrese Título Equivalente"></h:inputText></td>					
+						<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
+						<td><h:inputText title="ingrese el nombre del t{itulo equivalente." id="nombreTitulo" size="30" value="#{TituloequivalenteMB.nombreTitulo}" required="true" requiredMessage="Ingrese Título Equivalente"></h:inputText></td>					
 					</tr>
 					<tr>
 						<td align="center" colspan="2"><rich:message for="nombreTitulo" style="color:red"/></td>							
