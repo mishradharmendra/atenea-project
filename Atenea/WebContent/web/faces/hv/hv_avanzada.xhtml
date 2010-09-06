@@ -29,10 +29,10 @@
 				<table align="left" width="100%">
 					<tr>
 						<td align="left"><h:outputLabel value="Nombres y Apellidos: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><h:inputText size="35" value="#{PersonaMB.nombrePersona}"></h:inputText></td>					
+						<td align="left"><h:inputText title="Ingrese el Nombre y/o Apellido de la persona a buscar." size="35" value="#{PersonaMB.nombrePersona}"></h:inputText></td>					
 						<td width="30px"></td>
 						<td align="left"><h:outputLabel value="Identificación : " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><h:inputText size="35" value="#{PersonaMB.identificacionPersona}"></h:inputText></td>
+						<td align="left"><h:inputText title="Ingrese el Número de identificación de la persona a buscar." size="35" value="#{PersonaMB.identificacionPersona}"></h:inputText></td>
 					</tr>
 					<tr>
 						<td align="left"><h:outputLabel value="Profesión: " styleClass="TextoContenido"></h:outputLabel></td>
@@ -42,7 +42,7 @@
 						</h:selectOneMenu></td>
 						<td width="30px"></td>
 						<td align="left"><h:outputLabel value="Fecha Tarjeta Profesional: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><rich:calendar value="#{PersonaMB.fechaTarjetaProfesional}" datePattern="dd/MM/yyyy" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="31"/></td>						
+						<td align="left"><rich:calendar title="Ingrese la Fecha de Expedición de la Tarjeta Profesional de la persona a buscar." value="#{PersonaMB.fechaTarjetaProfesional}" datePattern="dd/MM/yyyy" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="31"/></td>						
 					</tr>
 					<tr>
 						<td align="left"><h:outputLabel value="Especialización : " styleClass="TextoContenido"></h:outputLabel></td>
@@ -59,20 +59,20 @@
 					</tr>					
 					<tr>
 						<td align="left"><h:outputLabel value="Cargo : " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><h:inputText size="35" value="#{PersonaMB.cargo}"></h:inputText></td>
+						<td align="left"><h:inputText title="Ingrese una palabra clave correspondiente al cargo a buscar. (ej. Gerente)." size="35" value="#{PersonaMB.cargo}"></h:inputText></td>
 						<td width="30px"></td>
 						<td colspan="2"/>
 					</tr>
 					<tr>
 						<td align="left"><h:outputLabel value="Base de Datos : " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><h:inputText size="35" value="#{PersonaMB.bd}"></h:inputText></td>
+						<td align="left"><h:inputText title="Ingrese una palabra clave que indique el nombre de un motor de base de datos para encontrar personas con conocimiento en dicho producto (ej. Oracle)." size="35" value="#{PersonaMB.bd}"></h:inputText></td>
 						<td width="30px"></td>						
 						<td align="left"><h:outputLabel value="Herramientas de Desarrollo : " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><h:inputText size="35" value="#{PersonaMB.herramientas}"></h:inputText></td>
+						<td align="left"><h:inputText title="Ingrese una palabra clave que indique el nombre de alguna herramienta de desarrollo de software para encontrar personas con conocimiento en dicho producto (ej. Eclipse)." size="35" value="#{PersonaMB.herramientas}"></h:inputText></td>
 					</tr>		
 					<tr>
 						<td align="left"><h:outputLabel value="Funciones y Logros : " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><h:inputText size="35" value="#{PersonaMB.funciones}"></h:inputText></td>
+						<td align="left"><h:inputText title="Ingrese una palabra clave que indique logros o funciones desempeñadas en los trabajos de la persona (ej. Coordinar, Gerenciar, Desarrollo, Análisis, etc.)" size="35" value="#{PersonaMB.funciones}"></h:inputText></td>
 						<td width="30px"></td>
 						<td align="left"><h:outputLabel value="Perfil Profesional : " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:selectOneMenu value="#{PersonaMB.idPerfil}" style="width:200px">

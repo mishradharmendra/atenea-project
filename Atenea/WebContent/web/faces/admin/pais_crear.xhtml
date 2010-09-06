@@ -36,7 +36,8 @@
 				<table align="center">
 					<tr>
 						<td><h:outputLabel value="País: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td><h:inputText id="nombrePais" size="30" value="#{PaisMB.nombrePais}" required="true" requiredMessage="Ingrese Nombre de País:"></h:inputText></td>					
+						<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
+						<td><h:inputText title="Ingresel el nombre del país." id="nombrePais" size="30" value="#{PaisMB.nombrePais}" required="true" requiredMessage="Ingrese Nombre de País:"></h:inputText></td>					
 					</tr>
 					<tr>
 						<td align="center" colspan="2"><rich:message for="nombrePais" style="color:red"/></td>							

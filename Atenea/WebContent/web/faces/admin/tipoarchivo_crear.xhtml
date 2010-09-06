@@ -36,7 +36,8 @@
 				<table align="center">
 					<tr>
 						<td><h:outputLabel value="Tipo de Archivo: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td><h:inputText id="nombreTipoarchivo" size="30" value="#{TipoarchivoMB.nombreTipoarchivo}" required="true" requiredMessage="Ingrese Nombre de Tipo de Archivo"></h:inputText></td>					
+						<td align="left"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></td>
+						<td><h:inputText title="Ingrese el nombre del tipo de archivo." id="nombreTipoarchivo" size="30" value="#{TipoarchivoMB.nombreTipoarchivo}" required="true" requiredMessage="Ingrese Nombre de Tipo de Archivo"></h:inputText></td>					
 					</tr>
 					<tr>
 						<td align="center" colspan="2"><rich:message for="nombreTipoarchivo" style="color:red"/></td>							
