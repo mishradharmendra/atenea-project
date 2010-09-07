@@ -6,12 +6,14 @@ import java.util.List;
 
 import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.logic.PersonaService;
+import co.com.inascol.atenea.logic.ReporteService;
 import co.com.inascol.atenea.logic.interfaces.IPersonaService;
+import co.com.inascol.atenea.logic.interfaces.IReporteService;
 /**
  * @author Guillermo Antonio Toro Bayona
  * memo.toro@gmail.com
- * Esp. Construcción de Software
- * Esp. Sistemas de Información Geográfica
+ * Esp. Construcciï¿½n de Software
+ * Esp. Sistemas de Informaciï¿½n Geogrï¿½fica
  * Ing. Catastral y Geodesta
  */
 public class ReporteDelegate {
@@ -19,7 +21,7 @@ public class ReporteDelegate {
 	private IPersonaService personaService;	
 	private List<Object> personas;
 	private GppPersona persona;
-	private ReporteXLS reporteXLS;
+	private IReporteService reporteService;
 	private Boolean estadoOperacion;
 	
 	public List<Object> getBusquedaBasicaPersona(String nombrePersona, String identificacionPersona){
@@ -86,20 +88,20 @@ public class ReporteDelegate {
 	public Boolean getCrearReporte(String tipoReporte, GppPersona personaSeleccionada){
 		persona = personaSeleccionada;
 		if(tipoReporte.equalsIgnoreCase("Depto-Fun-Publica")){
-			reporteXLS = new ReporteXLS();
-			estadoOperacion = reporteXLS.generarReporteXLSFUHV(persona);	
+			reporteService = new ReporteService();
+			estadoOperacion = reporteService.generarReporteXLSFUHV(persona);	
 		}
 		else if(tipoReporte.equalsIgnoreCase("INGEOMINAS")){
-			reporteXLS = new ReporteXLS();
-			estadoOperacion = reporteXLS.generarReporteXLSIngeominas(persona);
+			reporteService = new ReporteService();
+			estadoOperacion = reporteService.generarReporteXLSIngeominas(persona);
 		}
 		else if(tipoReporte.equalsIgnoreCase("UPME")){
-			reporteXLS = new ReporteXLS();
-			estadoOperacion = reporteXLS.generarReporteXLSUpme(persona);
+			reporteService = new ReporteService();
+			estadoOperacion = reporteService.generarReporteXLSUpme(persona);
 		}
 		else if(tipoReporte.equalsIgnoreCase("Formato_Formal")){
-			reporteXLS = new ReporteXLS();
-			estadoOperacion = reporteXLS.generarReporteFormal(persona);
+			reporteService = new ReporteService();
+			estadoOperacion = reporteService.generarReporteXLSFormal(persona);
 		}
 		return estadoOperacion;
 	}
