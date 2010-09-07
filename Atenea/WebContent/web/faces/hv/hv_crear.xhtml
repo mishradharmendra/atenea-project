@@ -357,10 +357,10 @@
 							</table>	
 							<table align="center">
 								<tr>
-									<td align="center"><h:outputLabel value="Consolidado Soportes de Estudios" styleClass="TituloContenido"></h:outputLabel></td>
+									<td align="center"><h:outputLabel value="Consolidado Soportes de Estudios (zip,rar)" styleClass="TituloContenido"></h:outputLabel></td>
 								</tr>
 								<tr>
-									<td><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirSoportesAcademicos}" acceptedTypes="zip,rar" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+									<td align="center"><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirSoportesAcademicos}" acceptedTypes="zip,rar" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 		                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 								</tr>												                   
 							</table>										
@@ -409,7 +409,7 @@
 									<td align="left"><h:inputText title="Ingrese el Nombre del Título obtenido por la persona." size="55" id="forVtitulo" value="#{FormacionMB.formacion.forVtitulo}" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Título Obtenido"></h:inputText></td>
 									<td width="10px"></td>			
 									<td align="left"><h:outputLabel value="Nivel Académico" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><div style="position: relative; left: -30pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
+									<td align="left"><div style="position: relative; left: -20pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
 									<td align="left"><h:selectOneMenu value="#{FormacionMB.formacion.nacNidnivelac}" id="nacNidnivelac" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Nivel Académico" style="width:160px">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{FormacionMB.nivelesAcademicos}"/>
@@ -429,7 +429,7 @@
 									</h:selectOneMenu></td>
 									<td width="10px"></td>			
 									<td align="left"><h:outputLabel value="Fecha de Grado" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><div style="position: relative; left: -30pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
+									<td align="left"><div style="position: relative; left: -20pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
 									<td align="left"><rich:calendar title="Ingrese la fecha de grado del Título obtenido." value="#{FormacionMB.formacion.forDfecgrado}" datePattern="dd/MM/yyyy" id="forDfecgrado" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Fecha de Grado" inputSize="23"/></td>							
 								</tr>		
 								<tr>
@@ -446,7 +446,7 @@
 									</h:selectOneMenu></td>
 									<td width="10px"></td>			
 									<td align="left"><h:outputLabel value="Duración" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><div style="position: relative; left: -60pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
+									<td align="left"><div style="position: relative; left: -50pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
 									<td align="left">
 										<h:inputText title="Ingrese el Número que indique la duración del estudio y luego selecciona la unidad (ej. 8 Meses, 1 Año, etc.)." size="8" id="forNduracion" value="#{FormacionMB.formacion.forNduracion}" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Número de Duración"></h:inputText>
 										<h:selectOneMenu id="forVunidaddurac" value="#{FormacionMB.formacion.forVunidaddurac}" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Unidades de Duración" style="width:94px">
@@ -651,10 +651,10 @@
 							</table>					
 							<table align="center">
 								<tr>
-									<td align="center"><h:outputLabel value="Consolidado Certificaciones" styleClass="TituloContenido"></h:outputLabel></td>
+									<td align="center"><h:outputLabel value="Consolidado Certificaciones (zip,rar)" styleClass="TituloContenido"></h:outputLabel></td>
 								</tr>
 								<tr>
-									<td><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificaciones}" acceptedTypes="zip,rar" ajaxSingle="true" maxFilesQuantity="10" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+									<td align="center"><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificaciones}" acceptedTypes="zip,rar" ajaxSingle="true" maxFilesQuantity="10" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 		                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 								</tr>												                   
 							</table>					
@@ -703,7 +703,7 @@
 									<td align="left"><h:inputText title="Ingrese el nombre de la Empresa donde trabajó la persona." size="35" id="expVnomempresa" value="#{ExperienciaMB.experiencia.expVnomempresa}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Empresa"></h:inputText></td>
 									<td width="15px"></td>			
 									<td align="left"><h:outputLabel value="Teléfono Empresa" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><div style="position: relative; left: -20pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
+									<td align="left"><div style="position: relative; left: -10pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
 									<td align="left"><h:inputText title="Ingrese el número de teléfono de la empresa." size="35" id="expVtelempresa" value="#{ExperienciaMB.experiencia.expVtelempresa}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Teléfono Empresa"></h:inputText></td>
 								</tr>
 								<tr>
@@ -754,7 +754,7 @@
 									<td align="left"><h:inputText title="Ingrese el nombre del cargo desempeñado." size="35" id="expVcargo" value="#{ExperienciaMB.experiencia.expVcargo}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Cargo Desempeñado"></h:inputText></td>
 									<td width="15px"></td>			
 									<td align="left"><h:outputLabel value="Cargo Equivalente" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><div style="position: relative; left: -20pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
+									<td align="left"><div style="position: relative; left: -10pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
 									<td align="left"><h:selectOneMenu id="ceqNidcargoeq" value="#{ExperienciaMB.experiencia.ceqNidcargoeq}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Cargo Equivalente" style="width:200px">
 											<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 											<f:selectItems value="#{ExperienciaMB.cargosEquivalentes}"/>
