@@ -1,7 +1,6 @@
 package co.com.inascol.atenea.logic.interfaces;
 
 import co.com.inascol.atenea.entity.GppPersona;
-
 /**
  * @author Guillermo Antonio Toro Bayona
  * memo.toro@gmail.com
