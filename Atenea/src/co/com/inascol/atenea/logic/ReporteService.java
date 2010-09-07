@@ -2,7 +2,13 @@ package co.com.inascol.atenea.logic;
 
 import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.logic.interfaces.IReporteService;
-
+/**
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construcción de Software
+ * Esp. Sistemas de Información Geográfica
+ * Ing. Catastral y Geodesta
+ */
 public class ReporteService extends ReporteXLS implements IReporteService{
 
 	public Boolean generarReporteXLSFormal(GppPersona persona) {
