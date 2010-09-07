@@ -30,17 +30,17 @@
 				<table align="left">
 					<tr>
 						<td align="left"><h:outputLabel value="Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><div style="position: relative; left: -80pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
+						<td align="left"><div style="position: relative; left: -30pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
 						<td align="left"><h:inputText title="Ingrese el nombre del rol." id="nombreRol" size="30" value="#{RolMB.rol.rolVnombre}" required="true" requiredMessage="Ingrese Nombre del Rol"></h:inputText></td>
-						<td width="190px"/>
+						<td width="160px"/>
 						<td align="left"><h:outputLabel value="Descripción: " styleClass="TextoContenido"></h:outputLabel></td>
-						<td align="left"><div style="position: relative; left: -80pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
+						<td align="left"><div style="position: relative; left: -40pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
 						<td align="left"><h:inputTextarea title="Ingrese la descripción del rol." id="descripcionRol" value="#{RolMB.rol.rolVdescripcion}" cols="30" required="true" requiredMessage="Ingrese Descripción del Rol"></h:inputTextarea></td>
 					</tr>		
 					<tr>
 						<td width="120px"/>
 						<td align="center" colspan="3"><rich:message for="nombreRol" style="color:red"/></td>				
-						<td width="190px"/>
+						<td width="160px"/>
 						<td align="center" colspan="3"><rich:message for="descripcionRol" style="color:red"/></td>
 					</tr>
 				</table>
