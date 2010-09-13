@@ -6,7 +6,16 @@
       xmlns:rich="http://richfaces.org/rich"
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
 	  xmlns:a4j="http://richfaces.org/a4j">
-<head>
+<!--
+/**
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construccion de Software
+ * Esp. Sistemas de Informacion Geografica
+ * Ing. Catastral y Geodesta
+ */
+-->	  
+    <head>
 	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
 </head>	 	  
 <body>
@@ -49,9 +58,11 @@
 					</tr>
 					<tr>
 						<td width="80px"/>
-						<td align="center" colspan="3"><rich:message for="nombreUsuario" style="color:red"/></td>
-						<td width="90px"/>						
-						<td align="center" colspan="3"><rich:message for="loginusuario" style="color:red"/></td>								
+						<td colspan="2"/>
+						<td align="left" colspan="1"><rich:message for="nombreUsuario" style="color:red"/></td>
+						<td width="90px"/>	
+						<td colspan="2"/>					
+						<td align="left" colspan="1"><rich:message for="loginusuario" style="color:red"/></td>								
 					</tr>
 					<tr>
 						<td height="20px"/>						
@@ -67,10 +78,12 @@
 						<td align="left"><h:inputText title="Ingrese el correo electrónico del usuario." id="emailUsuario" size="30" value="#{UsuarioMB.usuario.usuVemail}" required="true" requiredMessage="Ingrese Correo Electrónico"></h:inputText></td>											
 					</tr>
 					<tr>
-						<td width="80px"/>					
-						<td align="center" colspan="3"><rich:message for="telefonoUsuario" style="color:red"/></td>
-						<td width="90px"/>						
-						<td align="center" colspan="3"><rich:message for="#{UsuarioMB.emailUsuario}" style="color:red"/></td>								
+						<td width="80px"/>	
+						<td colspan="2"/>				
+						<td align="left" colspan="1"><rich:message for="telefonoUsuario" style="color:red"/></td>
+						<td width="90px"/>	
+						<td colspan="2"/>					
+						<td align="left" colspan="1"><rich:message for="emailUsuario" style="color:red"/></td>								
 					</tr>						
 				</table>
 				<table align="center" width="100%">

@@ -6,7 +6,16 @@
       xmlns:rich="http://richfaces.org/rich"
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
 	  xmlns:a4j="http://richfaces.org/a4j">
-<head>
+<!--
+/**
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construccion de Software
+ * Esp. Sistemas de Informacion Geografica
+ * Ing. Catastral y Geodesta
+ */
+-->	  
+    <head>
 	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
 </head>	 	  
 <body>
@@ -36,7 +45,7 @@
 						<td width="110px"/>
 						<td align="left"><h:outputLabel value="Nombre Usuario: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:outputLabel id="nombreUsuario" size="30" value="#{UsuariorolMB.usuario.usuVnombre}" required="true" requiredMessage="Ingrese Nombre Usuario"></h:outputLabel></td>
-						<td width="300px"/>
+						<td width="260px"/>
 						<td align="left"><h:outputLabel value="Login Usuario: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><h:outputLabel id="loginusuario" size="30" value="#{UsuariorolMB.usuario.usuVlogin}" required="true" requiredMessage="Ingrese Login Usuario"></h:outputLabel></td>											
 					</tr>

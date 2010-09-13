@@ -6,7 +6,16 @@
       xmlns:rich="http://richfaces.org/rich"
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
 	  xmlns:a4j="http://richfaces.org/a4j">
-<head>
+<!--
+/**
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construccion de Software
+ * Esp. Sistemas de Informacion Geografica
+ * Ing. Catastral y Geodesta
+ */
+-->	  
+    <head>
 	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
 </head>	 	  
 <body>
@@ -41,7 +50,8 @@
 						<td><h:inputText title="Ingrese el nombre del idioma." id="nombreIdioma" size="30" value="#{IdiomaMB.idioma.idiVidioma}" required="true" requiredMessage="Ingrese Idioma"></h:inputText></td>					
 					</tr>
 					<tr>
-						<td align="center" colspan="4"><rich:message for="nombreIdioma" style="color:red"/></td>							
+						<td colspan="3"/>
+						<td align="left" colspan="1"><rich:message for="nombreIdioma" style="color:red"/></td>							
 					</tr>						
 				</table>
 				<br/>

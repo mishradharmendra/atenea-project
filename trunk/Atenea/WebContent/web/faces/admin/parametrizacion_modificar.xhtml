@@ -6,7 +6,16 @@
       xmlns:rich="http://richfaces.org/rich"
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
 	  xmlns:a4j="http://richfaces.org/a4j">
-<head>
+<!--
+/**
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construccion de Software
+ * Esp. Sistemas de Informacion Geografica
+ * Ing. Catastral y Geodesta
+ */
+-->	  
+    <head>
 	<link href="#{AutenticacionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
 </head>	 	  
 <body>
@@ -38,19 +47,19 @@
 						<td align="left"><h:outputLabel value="Nombre: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><div style="position: relative; left: -50pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
 						<td align="left"><h:inputText title="Ingrese el nombre del parámetro." id="nombreParametrizacion" size="50" value="#{ParametrizacionMB.parametrizacion.parVnombre}" required="true" requiredMessage="Ingrese Nombre de Parametro"></h:inputText></td>
-						<td align="center"><rich:message for="nombreParametrizacion" style="color:red"/></td>					
+						<td align="left"><rich:message for="nombreParametrizacion" style="color:red"/></td>					
 					</tr>
 					<tr>
 						<td align="left"><h:outputLabel value="Descripción: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><div style="position: relative; left: -30pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
 						<td align="left"><h:inputText title="Ingrese la descripción del parámetro." id="descripcionParametrizacion" size="50" value="#{ParametrizacionMB.parametrizacion.parVdescripcion}" required="true" requiredMessage="Ingrese Descripcion"></h:inputText></td>
-						<td align="center"><rich:message for="descripcionParametrizacion" style="color:red"/></td>					
+						<td align="left"><rich:message for="descripcionParametrizacion" style="color:red"/></td>					
 					</tr>
 					<tr>
 						<td align="left"><h:outputLabel value="Valor del Parámetro: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><div style="position: relative; left: 0pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
 						<td align="left"><h:inputText title="Ingrese el valor del parámetro." id="valorParametrizacion" size="50" value="#{ParametrizacionMB.parametrizacion.parVvalor}" required="true" requiredMessage="Ingrese Valor"></h:inputText></td>
-						<td align="center"><rich:message for="valorParametrizacion" style="color:red"/></td>					
+						<td align="left"><rich:message for="valorParametrizacion" style="color:red"/></td>					
 					</tr>					
 				</table>
 				<br/>
