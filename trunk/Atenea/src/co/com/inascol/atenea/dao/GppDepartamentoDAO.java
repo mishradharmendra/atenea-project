@@ -12,8 +12,8 @@ import co.com.inascol.atenea.entity.rowmapper.GppDepartamentoRowMapper;
 /**
  * @author Guillermo Antonio Toro Bayona
  * memo.toro@gmail.com
- * Esp. Construcción de Software
- * Esp. Sistemas de Información Geográfica
+ * Esp. Construccion de Software
+ * Esp. Sistemas de Informacion Geografica
  * Ing. Catastral y Geodesta
  */
 public class GppDepartamentoDAO implements DAO {

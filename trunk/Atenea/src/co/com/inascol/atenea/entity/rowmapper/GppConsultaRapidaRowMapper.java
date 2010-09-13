@@ -8,8 +8,13 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
-
-
+/**
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construccion de Software
+ * Esp. Sistemas de Informacion Geografica
+ * Ing. Catastral y Geodesta
+ */
 public class GppConsultaRapidaRowMapper implements ResultSetExtractor{
 
 	private List<Object> nombreColumnas;
@@ -25,6 +30,5 @@ public class GppConsultaRapidaRowMapper implements ResultSetExtractor{
 			nombreColumnas.add(nombreColumna);
 		}
 		return nombreColumnas;
-	}
-	
+	}	
 }

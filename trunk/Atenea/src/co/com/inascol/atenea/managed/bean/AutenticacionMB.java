@@ -14,8 +14,8 @@ import co.com.inascol.atenea.util.ConstantesFaces;
 /**
  * @author Guillermo Antonio Toro Bayona
  * memo.toro@gmail.com
- * Esp. Construcción de Software
- * Esp. Sistemas de Información Geográfica
+ * Esp. Construccion de Software
+ * Esp. Sistemas de Informacion Geografica
  * Ing. Catastral y Geodesta
  */
 public class AutenticacionMB {
@@ -95,6 +95,30 @@ public class AutenticacionMB {
 	}
 	public void setOperacionBD(String operacionBD) {
 		this.operacionBD = operacionBD;
+	}
+	public String getServidor() {
+		return servidor;
+	}
+	public void setServidor(String servidor) {
+		this.servidor = servidor;
+	}
+	public String getPuerto() {
+		return puerto;
+	}
+	public void setPuerto(String puerto) {
+		this.puerto = puerto;
+	}
+	public String getAliasDocumentos() {
+		return aliasDocumentos;
+	}
+	public void setAliasDocumentos(String aliasDocumentos) {
+		this.aliasDocumentos = aliasDocumentos;
+	}
+	public String getAliasReportes() {
+		return aliasReportes;
+	}
+	public void setAliasReportes(String aliasReportes) {
+		this.aliasReportes = aliasReportes;
 	}
 
 	public void getLimpiarOperacion(){

@@ -19,7 +19,13 @@ import co.com.inascol.atenea.entity.GppPais;
 import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.managed.bean.delegate.ExperienciaDelegate;
 import co.com.inascol.atenea.util.ConstantesFaces;
-
+/**
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construccion de Software
+ * Esp. Sistemas de Informacion Geografica
+ * Ing. Catastral y Geodesta
+ */
 public class ExperienciaMB {
 
 	private ExperienciaDelegate experienciaDelegate;
