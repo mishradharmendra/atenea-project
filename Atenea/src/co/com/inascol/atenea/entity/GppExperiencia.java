@@ -2,8 +2,11 @@ package co.com.inascol.atenea.entity;
 
 import java.util.Date;
 /**
- * @author Guillermo Toro
- *
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construccion de Software
+ * Esp. Sistemas de Informacion Geografica
+ * Ing. Catastral y Geodesta
  */
 public class GppExperiencia {
 

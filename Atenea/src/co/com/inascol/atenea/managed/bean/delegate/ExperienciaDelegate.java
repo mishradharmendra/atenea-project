@@ -37,8 +37,8 @@ import co.com.inascol.atenea.logic.interfaces.IParametrizacionService;
 /**
  * @author Guillermo Antonio Toro Bayona
  * memo.toro@gmail.com
- * Esp. Construcción de Software
- * Esp. Sistemas de Información Geográfica
+ * Esp. Construccion de Software
+ * Esp. Sistemas de Informacion Geografica
  * Ing. Catastral y Geodesta
  */
 public class ExperienciaDelegate {

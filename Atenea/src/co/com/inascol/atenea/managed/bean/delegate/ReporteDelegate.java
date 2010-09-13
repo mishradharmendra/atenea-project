@@ -12,8 +12,8 @@ import co.com.inascol.atenea.logic.interfaces.IReporteService;
 /**
  * @author Guillermo Antonio Toro Bayona
  * memo.toro@gmail.com
- * Esp. Construcci�n de Software
- * Esp. Sistemas de Informaci�n Geogr�fica
+ * Esp. Construccion de Software
+ * Esp. Sistemas de Informacion Geografica
  * Ing. Catastral y Geodesta
  */
 public class ReporteDelegate {
