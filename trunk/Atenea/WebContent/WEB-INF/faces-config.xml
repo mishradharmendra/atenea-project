@@ -559,7 +559,7 @@
 		</navigation-case>
 	</navigation-rule>	
 	<navigation-rule>
-		<from-view-id>/web/faces/hv/hv_home.xhtml</from-view-id>
+		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>AVANZADA_HV</from-outcome>
 			<to-view-id>/web/faces/hv/hv_avanzada.jsf</to-view-id>
