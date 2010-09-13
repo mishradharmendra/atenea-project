@@ -7,6 +7,15 @@
 	  xmlns:richfaces="http://richfaces.ajax4jsf.org/rich"      
 	  xmlns:a4j="http://richfaces.org/a4j"
 	  xmlns:c="http://java.sun.com/jstl/core">
+<!--
+/**
+ * @author Guillermo Antonio Toro Bayona
+ * memo.toro@gmail.com
+ * Esp. Construccion de Software
+ * Esp. Sistemas de Informacion Geografica
+ * Ing. Catastral y Geodesta
+ */
+-->	  
 <head>
 	<link href="#{Autentic`acionMB.fullContextPath}/web/estilos/inascolNuevo.css" rel="stylesheet" type="text/css" />
 </head>		  
@@ -35,9 +44,11 @@
 							<td align="left"><h:inputText title="Ingrese el/los apellido(s) de la persona. " size="35" id="perVapellidos" value="#{PersonaMB.persona.perVapellidos}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Apellidos"></h:inputText></td>							
 						</tr>
 						<tr>
-							<td align="center" colspan="3"><rich:message for="perVnombres" style="color:red"/></td>
+							<td colspan="2"></td>
+							<td align="left" colspan="1"><rich:message for="perVnombres" style="color:red"/></td>
 							<td width="50px"></td>			
-							<td align="center" colspan="3"><rich:message for="perVapellidos" style="color:red"/></td>							
+							<td colspan="2"></td>
+							<td align="left" colspan="1"><rich:message for="perVapellidos" style="color:red"/></td>							
 						</tr>						
 						<tr>
 							<td align="left"><h:outputLabel value="Tipo de Identificación" styleClass="TextoContenido"></h:outputLabel></td>
@@ -49,12 +60,14 @@
 							<td width="50px"></td>			
 							<td align="left"><h:outputLabel value="Identificación" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><div style="position: relative; left: -50pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
-							<td align="left"><h:inputText title="Ingrese el número de identificación de la persona." size="35" id="perNidentificacion" value="#{PersonaMB.persona.perNidentificacion}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Identificación"></h:inputText></td>							
+							<td align="left"><h:inputText title="Ingrese el número de identificación de la persona." size="35" id="perNidentificacion" value="#{PersonaMB.persona.perNidentificacion}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Identificación"></h:inputText></td>
 						</tr>		
 						<tr>
-							<td align="center" colspan="3"><rich:message for="tdcNidtipodoc" style="color:red"/></td>
+							<td colspan="2"></td>
+							<td align="left" colspan="1"><rich:message for="tdcNidtipodoc" style="color:red"/></td>
 							<td width="50px"></td>	
-							<td align="center" colspan="3"><rich:message for="perNidentificacion" style="color:red"/></td>							
+							<td colspan="2"></td>
+							<td align="left" colspan="1"><rich:message for="perNidentificacion" style="color:red"/></td>							
 						</tr>							
 						<tr>
 							<td align="left"><h:outputLabel value="Sexo" styleClass="TextoContenido"></h:outputLabel></td>
@@ -73,9 +86,11 @@
 							</h:selectOneMenu></td>						
 						</tr>		
 						<tr>
-							<td align="center" colspan="3"><rich:message for="perVsexo" style="color:red"/></td>
-							<td width="50px"></td>	
-							<td align="center" colspan="3"><rich:message for="escNidestadocivil" style="color:red"/></td>							
+							<td colspan="2"></td>
+							<td align="left" colspan="1"><rich:message for="perVsexo" style="color:red"/></td>
+							<td width="50px"></td>
+							<td colspan="2"></td>	
+							<td align="left" colspan="1"><rich:message for="escNidestadocivil" style="color:red"/></td>							
 						</tr>													
 						<tr>
 							<td align="left" colspan="2"><h:outputLabel value="Fecha de Nacimiento" styleClass="TextoContenido"></h:outputLabel></td>
@@ -102,9 +117,11 @@
 							</h:selectOneMenu></td>	
 						</tr>
 						<tr>
+						
 							<td colspan="3"></td>	
 							<td width="50px"></td>	
-							<td align="center" colspan="3"><rich:message for="munNidmunicipio" style="color:red"/></td>							
+							<td colspan="2"></td>
+							<td align="left" colspan="1"><rich:message for="munNidmunicipio" style="color:red"/></td>							
 						</tr>							
 						<tr>			
 							<c:if test="#{PersonaMB.persona.perVsexo == 'H'}">	
@@ -143,7 +160,8 @@
 								</h:selectOneMenu></td>								
 						</tr>
 						<tr>
-							<td align="center" colspan="3"><rich:message for="idPaisResidencia" style="color:red"/></td>
+							<td colspan="2"></td>
+							<td align="left" colspan="1"><rich:message for="idPaisResidencia" style="color:red"/></td>
 							<td width="50px"></td>	
 							<td colspan="3"/>							
 						</tr>											
@@ -166,7 +184,7 @@
 								<td height="10px"/>
 							</tr>						
 							<tr>
-								<td align="center" colspan="7"><h:outputLabel value="Adjuntar Hoja de Vida" styleClass="TituloContenido"></h:outputLabel></td>
+								<td align="center" colspan="7"><h:outputLabel value="Adjuntar Hoja de Vida (pdf,zip,rar)" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 							<tr>
 								<td align="center" colspan="7"><rich:fileUpload required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="pdf,zip,rar" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
@@ -416,9 +434,11 @@
 									</h:selectOneMenu></td>							
 								</tr>
 								<tr>
-									<td align="center" colspan="3"><rich:message for="forVtitulo" style="color:red"/></td>
-									<td width="10px"></td>			
-									<td align="center" colspan="3"><rich:message for="nacNidnivelac" style="color:red"/></td>							
+									<td colspan="2"></td>
+									<td align="left" colspan="1"><rich:message for="forVtitulo" style="color:red"/></td>
+									<td width="10px"></td>
+									<td colspan="2"></td>			
+									<td align="left" colspan="1"><rich:message for="nacNidnivelac" style="color:red"/></td>							
 								</tr>						
 								<tr>
 									<td align="left"><h:outputLabel value="Institución" styleClass="TextoContenido"></h:outputLabel></td>
@@ -433,9 +453,11 @@
 									<td align="left"><rich:calendar title="Ingrese la fecha de grado del Título obtenido." value="#{FormacionMB.formacion.forDfecgrado}" datePattern="dd/MM/yyyy" id="forDfecgrado" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="#{!empty param['formFormacionAcademica:GuardarFormacion']}" requiredMessage="Ingrese Fecha de Grado" inputSize="23"/></td>							
 								</tr>		
 								<tr>
-									<td align="center" colspan="3"><rich:message for="insNidinstitucion" style="color:red"/></td>
-									<td width="10px"></td>	
-									<td align="center" colspan="3"><rich:message for="forDfecgrado" style="color:red"/></td>							
+									<td colspan="2"></td>
+									<td align="left" colspan="1"><rich:message for="insNidinstitucion" style="color:red"/></td>
+									<td width="10px"></td>
+									<td colspan="2"></td>	
+									<td align="left" colspan="1"><rich:message for="forDfecgrado" style="color:red"/></td>							
 								</tr>							
 								<tr>
 									<td align="left"><h:outputLabel value="Título Equivalente" styleClass="TextoContenido"></h:outputLabel></td>
@@ -459,9 +481,11 @@
 									</td>						
 								</tr>		
 								<tr>
-									<td align="center" colspan="3"><rich:message for="teqNidtituloeq" style="color:red"/></td>
+									<td colspan="2"></td>
+									<td align="left" colspan="1"><rich:message for="teqNidtituloeq" style="color:red"/></td>
 									<td width="10px"></td>	
-									<td align="center" colspan="3">
+									<td colspan="2"></td>
+									<td align="left" colspan="1">
 										<rich:message for="forNduracion" style="color:red"/>
 										<br/>
 										<rich:message for="forVunidaddurac" style="color:red"/>
@@ -707,9 +731,11 @@
 									<td align="left"><h:inputText title="Ingrese el número de teléfono de la empresa." size="35" id="expVtelempresa" value="#{ExperienciaMB.experiencia.expVtelempresa}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Teléfono Empresa"></h:inputText></td>
 								</tr>
 								<tr>
-									<td align="center" colspan="3"><rich:message for="expVnomempresa" style="color:red"/></td>
-									<td width="15px"></td>			
-									<td align="center" colspan="3"><rich:message for="expVtelempresa" style="color:red"/></td>							
+									<td colspan="2"></td>
+									<td align="left" colspan="1"><rich:message for="expVnomempresa" style="color:red"/></td>
+									<td width="15px"></td>		
+									<td colspan="2"></td>	
+									<td align="left" colspan="1"><rich:message for="expVtelempresa" style="color:red"/></td>							
 								</tr>
 								<tr>
 									<td align="left" colspan="2"><h:outputLabel value="País" styleClass="TextoContenido"></h:outputLabel></td>
@@ -733,7 +759,8 @@
 										</h:selectOneMenu></td>							
 								</tr>		
 								<tr>
-									<td align="center" colspan="3"><rich:message for="munVidmunicipio" style="color:red"/></td>							
+									<td colspan="2"></td>	
+									<td align="left" colspan="1"><rich:message for="munVidmunicipio" style="color:red"/></td>							
 								</tr>							
 								<tr>
 									<td align="left"><h:outputLabel value="Nombre Contacto" styleClass="TextoContenido"></h:outputLabel></td>
@@ -744,9 +771,11 @@
 									<td align="left"><h:inputText title="Ingrese el correo electrónico de la persona contacto en la empresa." size="35" id="expVemailcontacto" value="#{ExperienciaMB.experiencia.expVemailcontacto}"></h:inputText></td>					
 								</tr>		
 								<tr>
-									<td align="center" colspan="3"><rich:message for="expVnomcontacto" style="color:red"/></td>
+									<td colspan="2"></td>
+									<td align="left" colspan="1"><rich:message for="expVnomcontacto" style="color:red"/></td>
 									<td width="15px"></td>	
-									<td align="center" colspan="3"/>							
+									<td colspan="2"></td>
+									<td align="left" colspan="1"/>							
 								</tr>													
 								<tr>
 									<td align="left"><h:outputLabel value="Cargo Desempeñado" styleClass="TextoContenido"></h:outputLabel></td>
@@ -761,9 +790,11 @@
 										</h:selectOneMenu></td>							
 								</tr>	
 								<tr>
-									<td align="center" colspan="3"><rich:message for="expVcargo" style="color:red"/></td>				
+									<td colspan="2"></td>
+									<td align="left" colspan="1"><rich:message for="expVcargo" style="color:red"/></td>				
 									<td width="15px"></td>	
-									<td align="center" colspan="3"><rich:message for="ceqNidcargoeq" style="color:red"/></td>							
+									<td colspan="2"></td>
+									<td align="left" colspan="1"><rich:message for="ceqNidcargoeq" style="color:red"/></td>							
 								</tr>
 								<tr>
 									<td align="left"><h:outputLabel value="Fecha de Ingreso" styleClass="TextoContenido"></h:outputLabel></td>
@@ -776,15 +807,17 @@
 									</c:if>
 								</tr>
 								<tr>
-									<td align="center" colspan="3"><rich:message for="expDfecingreso" style="color:red"/></td>
+									<td colspan="2"></td>
+									<td align="left" colspan="1"><rich:message for="expDfecingreso" style="color:red"/></td>
 									<td width="15px"></td>
 									<td align="left" colspan="2"><h:outputLabel value="Actual" styleClass="TextoContenido"></h:outputLabel></td>
 									<td align="left"><h:selectBooleanCheckbox name="fechaActual" value="#{ExperienciaMB.fechaActual}" id="fechaActual" valueChangeListener="#{ExperienciaMB.getFecha}" onchange="submit()"></h:selectBooleanCheckbox></td>															
 								</tr>
-								<tr>
+								<tr>									
 									<td align="center" colspan="3"/>				
 									<td width="15px"></td>	
-									<td align="center" colspan="3"><rich:message for="expDfecretiro" style="color:red"/></td>							
+									<td colspan="2"></td>
+									<td align="left" colspan="1"><rich:message for="expDfecretiro" style="color:red"/></td>							
 								</tr>	
 								<tr>
 									<td align="left" colspan="2"><h:outputLabel value="Herramientas de Desarrollo" styleClass="TextoContenido"></h:outputLabel></td>
@@ -873,16 +906,18 @@
 										</h:selectOneMenu></td>
 							</tr>
 							<tr>
-								<td align="center" colspan="10"><rich:message for="peqNidperfileq" style="color:red"/></td>
+								<td colspan="3"></td>
+								<td align="left" colspan="1"><rich:message for="peqNidperfileq" style="color:red"/></td>
 							</tr>								
 							<tr>
 								<td align="left"><h:outputLabel value="Descripción" styleClass="TextoContenido"></h:outputLabel></td>
 								<td align="left"><div style="position: relative; left: -20pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
 								<td width="20px"></td>
-								<td align="center" colspan="8"><h:inputTextarea title="Ingrese una descripción del perfil profesional de la persona." cols="112" value="#{PerfilprofesionalMB.perfilProfesional.pprVperfil}" id="pprVperfil" required="true" requiredMessage="Ingrese Descripción"></h:inputTextarea></td>
+								<td align="left" colspan="8"><h:inputTextarea title="Ingrese una descripción del perfil profesional de la persona." cols="112" value="#{PerfilprofesionalMB.perfilProfesional.pprVperfil}" id="pprVperfil" required="true" requiredMessage="Ingrese Descripción"></h:inputTextarea></td>
 							</tr>
 							<tr>
-								<td align="center" colspan="10"><rich:message for="pprVperfil" style="color:red"/></td>
+								<td colspan="3"></td>
+								<td align="left" colspan="8"><rich:message for="pprVperfil" style="color:red"/></td>
 							</tr>								
 							<tr>
 								<td><h:outputLabel value="Idiomas" styleClass="TextoContenido"></h:outputLabel></td>
@@ -1015,9 +1050,11 @@
 								<td align="left"><rich:calendar title="Ingrese la fecha de expedición del documento cargado." value="#{DocumentoMB.documento.docDfecexpide}" datePattern="dd/MM/yyyy" id="docDfecexpide" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" required="true" requiredMessage="Ingrese Fecha Expedición" inputSize="31"/></td>										
 							</tr>
 							<tr>
-								<td align="center" colspan="3"><rich:message for="tarNidtipoarchivo" style="color:red"/></td>
+								<td colspan="2"></td>
+								<td align="left" colspan="1"><rich:message for="tarNidtipoarchivo" style="color:red"/></td>
 								<td width="120px"></td>
-								<td align="center" colspan="3"><rich:message for="docDfecexpide" style="color:red"/></td>
+								<td colspan="2"></td>
+								<td align="left" colspan="1"><rich:message for="docDfecexpide" style="color:red"/></td>
 							</tr>								
 						</table>
 						<br/>
