@@ -49,22 +49,24 @@
 					</tr>				
 				</table>
 				<br/>
-				<h:form>
-					<table align="center">
-						<tr>
-							<td align="center"><h:outputLabel value="Descarga Reporte." styleClass="TituloContenido"></h:outputLabel>
-								<a4j:commandLink id="descargar" onclick="window.open('http://#{AutenticacionMB.urlDescargasReportes}#{ReporteMB.documentoExportado}','blank');procesarLimpiarSesionReporte()">
-									<div align="center"><h:graphicImage url="../../imagenes/download.png" style="border:0"/></div>
-								</a4j:commandLink>
-						      	<a4j:form>
-						            <a4j:jsFunction name="procesarLimpiarSesionReporte" action="#{ReporteMB.getHomeReporte}"></a4j:jsFunction>
-					        	</a4j:form>
-							</td>
-							<td width="100px"/>
-							<td><h:commandButton action="#{ReporteMB.getHomeReporte}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
-						</tr>
-					</table>
-				</h:form>				
+				<table align="center">
+					<tr>
+						<h:form>
+						<td align="center"><h:outputLabel value="Descarga Reporte." styleClass="TituloContenido"></h:outputLabel>
+							<a4j:commandLink id="descargar" onclick="window.open('http://#{AutenticacionMB.urlDescargasReportes}#{ReporteMB.documentoExportado}','blank'); procesarLimpiarSesionReporte();">
+								<div align="center"><h:graphicImage url="../../imagenes/download.png" style="border:0"/></div>
+							</a4j:commandLink>
+					      	<a4j:form>
+					            <a4j:jsFunction name="procesarLimpiarSesionReporte" action="#{ReporteMB.getHomeReporte}"></a4j:jsFunction>
+				        	</a4j:form>
+						</td>
+						</h:form>
+						<td width="100px"/>
+						<h:form>
+						<td><h:commandButton action="#{ReporteMB.getHomeReporte}" value="Aceptar" style="background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondo.png);color:#FFFFFF;"/></td>
+						</h:form>
+					</tr>
+				</table>
 			</rich:panel>
 		</ui:define>
 	</ui:composition>
