@@ -257,7 +257,7 @@ public class PersonaDelegate {
 		return persona;
 	}
 	
-	public void getSubirDocumentoHojaVida(GppPersona persona, UploadEvent event) throws IOException {
+	public void getSubirDocumentoHojaVida(UploadEvent event) throws IOException {
 	    if (event != null) {
 	    	parametrizacionService = new ParametrizacionService();
 	        UploadItem item = event.getUploadItem();
@@ -265,7 +265,7 @@ public class PersonaDelegate {
 	        nombreArchivo = item.getFileName();
 	        urlArchivo = ( (GppParametrizacion) parametrizacionService.buscarPorIdParametrizacion(1) ).getParVvalor();
 	        if(urlArchivo!=null){
-		        urlArchivo = urlArchivo + "HV_CC_" + persona.getPerNidentificacion() + "_" + new SimpleDateFormat("ddMMyyyy-HHmmss").format(new Date()) + "_" + nombreArchivo;
+		        urlArchivo = urlArchivo + "HV_" + new SimpleDateFormat("ddMMyyyy-HHmmss").format(new Date()) + "_" + nombreArchivo;
 		        FileInputStream fis = new FileInputStream(file.getPath());
 		        BufferedInputStream bis = new BufferedInputStream(fis);
 		        FileOutputStream fos = new FileOutputStream(urlArchivo);
@@ -292,11 +292,6 @@ public class PersonaDelegate {
 		documentoService = new DocumentoService();
 		String nombreDocumento = "Hoja_de_Vida-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
 		Integer tipoDocumento = 1;
-		if(nombreArchivo.toLowerCase().endsWith(".pdf")){
-			tipoDocumento = 1;
-		}else if(nombreArchivo.toLowerCase().endsWith(".zip") || nombreArchivo.toLowerCase().endsWith(".rar")){
-			tipoDocumento = 4;
-		}
 		documentoService.crearDocumento(nombreDocumento, nombreArchivo, urlArchivo, new Date(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}

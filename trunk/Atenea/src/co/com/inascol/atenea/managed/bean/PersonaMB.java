@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
@@ -357,6 +360,62 @@ public class PersonaMB {
 		return listadoMunicipios;
 	}
 
+	public Integer getBuscarPais(GppPersona persona){
+		Integer idDepartamento = getBuscarDepto(persona,0);
+		Integer idPaisBusqueda = 0;
+		List<Object> deptos = personaDelegate.getListaDepartamentos();
+		if(deptos.size()>0){
+			Iterator<Object> itDeptos = deptos.iterator();
+			while(itDeptos.hasNext()){
+				GppDepartamento gppDepartamento = (GppDepartamento) itDeptos.next();
+				if(gppDepartamento.getDptNiddepto()==idDepartamento){
+					List<Object> paises = personaDelegate.getListaPaises();
+					if(paises.size()>0){
+						Iterator<Object> it = paises.iterator();
+						while(it.hasNext()){
+							GppPais gppPais= (GppPais) it.next();
+							if(gppPais.getPaiNidpais()==gppDepartamento.getPaiNidpais()){
+								idPaisBusqueda = gppPais.getPaiNidpais();
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+		return idPaisBusqueda;
+	}
+
+	public Integer getBuscarDepto(GppPersona persona, Integer banderaResidencia){
+		List<Object> mpios = personaDelegate.getListaMunicipios();
+		Integer idDepartamentoBusqueda = 0;
+		Integer idMpioBusqueda = 0;
+		if(banderaResidencia==0)
+			idMpioBusqueda = persona.getMunNidmunicipio();
+		else if(banderaResidencia==1)
+			idMpioBusqueda = persona.getMunNmpioresidencia();
+		if(mpios.size()>0){
+			Iterator<Object> it = mpios.iterator();
+			while(it.hasNext()){
+				GppMunicipio gppMunicipio = (GppMunicipio) it.next();
+				if(gppMunicipio.getMunNidmunicipio()==idMpioBusqueda){
+					List<Object> deptos = personaDelegate.getListaDepartamentos();
+					if(deptos.size()>0){
+						Iterator<Object> itDeptos = deptos.iterator();
+						while(itDeptos.hasNext()){
+							GppDepartamento gppDepartamento = (GppDepartamento) itDeptos.next();
+							if(gppDepartamento.getDptNiddepto()==gppMunicipio.getDptNiddepto()){
+								idDepartamentoBusqueda = gppDepartamento.getDptNiddepto();
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+		return idDepartamentoBusqueda;
+	}
+	
 	public List<SelectItem> getTitulosEquivalentes(){
 		List<SelectItem> listadoTitulosEquivalentes = new ArrayList<SelectItem>();
 		List<Object> instituciones = personaDelegate.getTitulosEquivalentes();
@@ -411,12 +470,36 @@ public class PersonaMB {
 		}
 	}
 	
+	public void getBuscarPaisyDepto(GppPersona persona){
+		idPais = getBuscarPais(persona);
+		idDepto = getBuscarDepto(persona,0);
+		idDeptoResidencia = getBuscarDepto(persona,1);
+	}
+	
 	public void getLibreta(ValueChangeEvent evento){
 		if(evento.getNewValue()!=null){
 			persona.setPerVsexo((String) evento.getNewValue());
 		}
 	}
 	
+    public void validarEmail(FacesContext context, UIComponent validate, Object value){
+        String email = (String) value;
+        if(email.indexOf('@')==-1){
+            ((UIInput)validate).setValid(false);
+            FacesMessage msg = new FacesMessage("Ingrese una dirección de correo válida (Debe contener @).");
+            context.addMessage(validate.getClientId(context), msg);
+        }
+    }
+
+    public void validarCedula(FacesContext context, UIComponent validate, Object value){
+        Integer cedula = (Integer) value;
+        if(cedula.SIZE<6 || cedula.SIZE<16){
+            ((UIInput)validate).setValid(false);
+            FacesMessage msg = new FacesMessage("Ingrese una cédula con tamaño válido (6 a 15 dígitos).");
+            context.addMessage(validate.getClientId(context), msg);
+        }
+    }
+    
 	public String getSiguiente(){
 		tabPanel = ConstantesFaces.TAB_PANEL_FORMACION;
 		return ConstantesFaces.CREAR_HV;
@@ -467,6 +550,7 @@ public class PersonaMB {
 	public String getSeleccionarPersona(){
 		setTabPanel();
 		persona = personaDelegate.getSeleccionarPersona(personas, idPersona);
+		getBuscarPaisyDepto(persona);
 		getLimpiarSession();
 		tabDeshabilitados = false;
 		return ConstantesFaces.CREAR_HV;		
@@ -529,6 +613,10 @@ public class PersonaMB {
 				personas = (List<Object>) personaDelegate.getBusquedaBasicaPersona("" , persona.getPerNidentificacion().toString());
 				if(personas.size()==1){
 					persona = (GppPersona) personas.get(0);
+					if(documentoCargado==true){
+						personaDelegate.getGuardarHojaVida(persona);
+						documentoCargado=false;
+					}					
 					tabDeshabilitados = false;
 				}
 			} 
@@ -558,7 +646,7 @@ public class PersonaMB {
 	}
 
     public void getSubirDocumentoHojaVida(UploadEvent event) throws IOException {    	
-    	personaDelegate.getSubirDocumentoHojaVida(persona, event);
+    	personaDelegate.getSubirDocumentoHojaVida(event);
     	documentoCargado = true;
     }
 	

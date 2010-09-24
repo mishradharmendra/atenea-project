@@ -22,7 +22,7 @@
 <body>
 	<ui:composition template="../../template.xhtml">
 		<ui:define name="cuerpo">
-			<rich:panel style="width:938px;height:440px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
+			<rich:panel style="width:938px;height:480px;background-image:url(#{AutenticacionMB.fullContextPath}/web/imagenes/fondopagina.png)">
 				<rich:tabPanel switchType="server" selectedTab="#{PersonaMB.tabPanel}" >
 					<rich:tab label="Datos Personales" name="TAB_PANEL_PERSONA" style="background-color:#EEE;height:370px;" switchType="server">					
 					<table align="left">
@@ -73,12 +73,24 @@
 							<td align="left"><h:outputLabel value="Fecha de Nacimiento:" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel value="#{PersonaMB.persona.perDfecnacimiento}" datePattern="dd/MM/yyyy"/></td>
 							<td width="100px"></td>			
+							<td align="left"><h:outputLabel value="País" styleClass="TextoContenido"></h:outputLabel></td>
+                            <td align="left"><h:selectOneMenu id="idPais" value="#{PersonaMB.idPais}" disabled="true" style="color:#000000;width:200px">
+                                    <f:selectItem itemValue="" itemLabel="Seleccione..."/>  
+                                    <f:selectItems value="#{PersonaMB.paises}"/>
+                            </h:selectOneMenu></td>							
+						</tr>					
+						<tr>
+							<td align="left" colspan="2"><h:outputLabel value="Departamento" styleClass="TextoContenido"></h:outputLabel></td>
+                            <td align="left"><h:selectOneMenu id="idDepto" value="#{PersonaMB.idDepto}" disabled="true" style="color:#000000;width:200px">
+                                    <f:selectItem itemValue="" itemLabel="Seleccione..."/>  
+                                    <f:selectItems value="#{PersonaMB.departamentosPais}"/>
+                            </h:selectOneMenu></td> 
+							<td width="50px"></td>	
 							<td align="left"><h:outputLabel value="Municipio" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:selectOneMenu id="munNidmunicipio" value="#{PersonaMB.persona.munNidmunicipio}" disabled="true" style="color:#000000;width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.municipiosDepto}"/>
-							</h:selectOneMenu></td>	
-						</tr>										
+							</h:selectOneMenu></td>							</tr>											
 						<tr>			
 							<c:if test="#{PersonaMB.persona.perVsexo == 'H'}">		
 								<td align="left"><h:outputLabel value="Libreta Militar:" styleClass="TextoContenido"></h:outputLabel></td>
@@ -101,12 +113,19 @@
 								<f:selectItems value="#{PersonaMB.paises}"/>
 								</h:selectOneMenu></td>
 							<td width="100px"></td>	
+							<td align="left" colspan="2"><h:outputLabel value="Departamento Residencia" styleClass="TextoContenido"></h:outputLabel></td>
+							<td align="left"><h:selectOneMenu id="deptoResidencia" value="#{PersonaMB.idDeptoResidencia}" disabled="true" style="color:#000000;width:200px">
+								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
+								<f:selectItems value="#{PersonaMB.deptosPaisResidencia}"/>
+								</h:selectOneMenu></td>									
+						</tr>	
+						<tr>
 							<td align="left"><h:outputLabel value="Municipio Residencia:" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:selectOneMenu id="mpio" value="#{PersonaMB.persona.munNmpioresidencia}" disabled="true" style="color:#000000;width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.municipiosResidencia}"/>
 								</h:selectOneMenu></td>								
-						</tr>	
+						</tr>
 						<tr>
 							<td align="left"><h:outputLabel value="Movil:" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:outputLabel size="35" id="perVmovil" value="#{PersonaMB.persona.perVmovil}"></h:outputLabel></td>
@@ -122,6 +141,47 @@
 							<td align="left"><h:outputLabel size="35" id="perVdireccion" value="#{PersonaMB.persona.perVdireccion}"></h:outputLabel></td>							
 						</tr>																	
 					</table>
+					<c:if test="#{DocumentoMB.hojasDeVida != null}">
+						<table align="center" width="100%">
+							<tr>
+								<td height="10px"/>
+							</tr>
+						</table>					
+						<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
+							<tr>
+								<td>
+									<rich:extendedDataTable id="tablaSoportesHv" align="center" value="#{DocumentoMB.hojasDeVida}" var="docu" width="725px" height="90px" headerClass="rich-table-header">
+										<rich:column width="110px" sortable="true" sortBy="#{docu.gppTipoarchivo.tarVtipoarchivo}" label="Tipo Archivo">
+											<f:facet name="header">
+												<h:outputLabel value="Tipo Archivo" styleClass="PrimerNivel"></h:outputLabel>
+											</f:facet>
+											<div align="left"><h:outputLabel value="#{docu.gppTipoarchivo.tarVtipoarchivo}"></h:outputLabel></div>
+										</rich:column>									
+										<rich:column width="200px" sortable="true" sortBy="#{docu.docVnombre}" label="Nombre">
+											<f:facet name="header">
+												<h:outputLabel value="Nombre" styleClass="PrimerNivel"></h:outputLabel>
+											</f:facet>
+											<div align="left"><h:outputLabel value="#{docu.docVnombre}"></h:outputLabel></div>
+										</rich:column>	
+										<rich:column width="340px" sortable="true" sortBy="#{docu.docVurlarchivo}" label="Ubicación">
+											<f:facet name="header">
+												<h:outputLabel value="Ubicación" styleClass="PrimerNivel"></h:outputLabel>
+											</f:facet>
+											<div align="left"><h:outputLabel value="#{docu.docVurlarchivo}"></h:outputLabel></div>
+										</rich:column>																												
+										<rich:column width="60px" label="Descargar">
+											<f:facet name="header">
+												<h:outputLabel value="Descargar" styleClass="PrimerNivel"></h:outputLabel>
+											</f:facet>
+												<a4j:commandLink id="descargar" onclick="window.open('http://#{AutenticacionMB.urlDescargasDocumentos}#{docu.documento}','blank')">
+													<div align="center"><h:graphicImage url="../../imagenes/download.png" style="border:0"/></div>
+												</a4j:commandLink>
+										</rich:column>			
+									</rich:extendedDataTable>
+								</td>
+							</tr>
+						</table>
+					</c:if>					
 					<table align="center" width="100%">
 						<tr>
 							<td height="10px"/>

@@ -60,7 +60,7 @@
 							<td width="50px"></td>			
 							<td align="left"><h:outputLabel value="Identificación" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><div style="position: relative; left: -50pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
-							<td align="left"><h:inputText title="Ingrese el número de identificación de la persona." size="35" id="perNidentificacion" value="#{PersonaMB.persona.perNidentificacion}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Identificación"></h:inputText></td>
+							<td align="left"><h:inputText title="Ingrese el número de identificación de la persona válido." size="35" id="perNidentificacion" value="#{PersonaMB.persona.perNidentificacion}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Ingrese Identificación" validator="#{PersonaMB.validarCedula}"></h:inputText></td>
 						</tr>		
 						<tr>
 							<td colspan="2"></td>
@@ -96,15 +96,24 @@
 							<td align="left" colspan="2"><h:outputLabel value="Fecha de Nacimiento" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><rich:calendar title="Ingrese la fecha de nacimiento de la persona." value="#{PersonaMB.persona.perDfecnacimiento}" datePattern="dd/MM/yyyy" id="perDfecnacimiento" isDayEnabled="disablementFunction" dayStyleClass="disabledClassesProv" boundaryDatesMode="scroll" inputSize="31"/></td>
 							<td width="50px"></td>			
-							<td align="left" colspan="2"><h:outputLabel value="País" styleClass="TextoContenido"></h:outputLabel></td>
-                            <td align="left"><h:selectOneMenu id="idPais" valueChangeListener="#{PersonaMB.getDeptos}" onchange="submit()" style="width:200px">
+							<td align="left"><h:outputLabel value="País" styleClass="TextoContenido"></h:outputLabel></td>
+							<td align="left"><div style="position: relative; left: -65pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
+                            <td align="left"><h:selectOneMenu id="idPais" valueChangeListener="#{PersonaMB.getDeptos}" onchange="submit()" value="#{PersonaMB.idPais}" style="width:200px" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Seleccione un País" >
                                     <f:selectItem itemValue="" itemLabel="Seleccione..."/>  
                                     <f:selectItems value="#{PersonaMB.paises}"/>
                             </h:selectOneMenu></td>
-						</tr>										
+						</tr>	
 						<tr>
-							<td align="left" colspan="2"><h:outputLabel value="Departamento" styleClass="TextoContenido"></h:outputLabel></td>
-                            <td align="left"><h:selectOneMenu id="idDepto" valueChangeListener="#{PersonaMB.getMpios}" onchange="submit()" style="width:200px">
+							<td colspan="2"></td>
+							<td align="left" colspan="1"/>
+							<td width="50px"></td>
+							<td colspan="2"></td>	
+							<td align="left" colspan="1"><rich:message for="idPais" style="color:red"/></td>							
+						</tr>																
+						<tr>
+							<td align="left"><h:outputLabel value="Departamento" styleClass="TextoContenido"></h:outputLabel></td>
+							<td align="left"><div style="position: relative; left: -65pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
+                            <td align="left"><h:selectOneMenu id="idDepto" valueChangeListener="#{PersonaMB.getMpios}" onchange="submit()" value="#{PersonaMB.idDepto}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Seleccione un Departamento" style="width:200px">
                                     <f:selectItem itemValue="" itemLabel="Seleccione..."/>  
                                     <f:selectItems value="#{PersonaMB.departamentosPais}"/>
                             </h:selectOneMenu></td> 
@@ -118,7 +127,8 @@
 						</tr>
 						<tr>
 						
-							<td colspan="3"></td>	
+							<td colspan="2"></td>
+							<td align="left" colspan="1"><rich:message for="idDepto" style="color:red"/></td>	
 							<td width="50px"></td>	
 							<td colspan="2"></td>
 							<td align="left" colspan="1"><rich:message for="munNidmunicipio" style="color:red"/></td>							
@@ -146,14 +156,23 @@
 								<f:selectItems value="#{PersonaMB.paises}"/>
 								</h:selectOneMenu></td>
 							<td width="50px"></td>	
-							<td align="left" colspan="2"><h:outputLabel value="Departamento Residencia" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:selectOneMenu id="deptoResidencia" value="#{PersonaMB.persona.munNmpioresidencia}" valueChangeListener="#{PersonaMB.getMpiosResidencia}" onchange="submit()" style="width:200px">
+							<td align="left"><h:outputLabel value="Departamento Residencia" styleClass="TextoContenido"></h:outputLabel></td>
+							<td align="left"><div style="position: relative; left: -65pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
+							<td align="left"><h:selectOneMenu id="deptoResidencia" value="#{PersonaMB.idDeptoResidencia}" valueChangeListener="#{PersonaMB.getMpiosResidencia}" onchange="submit()" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.deptosPaisResidencia}"/>
 								</h:selectOneMenu></td>							
-						</tr>	
+						</tr>
 						<tr>
-							<td align="left" colspan="2"><h:outputLabel value="Municipio Residencia" styleClass="TextoContenido"></h:outputLabel></td>
+							<td colspan="2"></td>
+							<td align="left" colspan="1"><rich:message for="idPaisResidencia" style="color:red"/></td>
+							<td width="50px"></td>	
+							<td colspan="2"/>
+							<td align="left" colspan="1"><rich:message for="deptoResidencia" style="color:red"/></td>							
+						</tr>								
+						<tr>
+							<td align="left"><h:outputLabel value="Municipio Residencia" styleClass="TextoContenido"></h:outputLabel></td>
+							<td align="left"><div style="position: relative; left: -65pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>							
 							<td align="left"><h:selectOneMenu id="mpioResidencia" value="#{PersonaMB.persona.munNmpioresidencia}" style="width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.municipiosResidencia}"/>
@@ -170,7 +189,11 @@
 							<td align="left"><h:inputText title="Ingrese el número de celular de la persona." size="35" id="perVmovil" value="#{PersonaMB.persona.perVmovil}"></h:inputText></td>
 							<td width="50px"></td>	
 							<td align="left" colspan="2"><h:outputLabel value="Correo Electrónico" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:inputText title="Ingrese el correo electrónico de la persona." size="35" id="perVemail" value="#{PersonaMB.persona.perVemail}"></h:inputText></td>							
+							<td align="left"><h:inputText title="Ingrese el correo electrónico de la persona." size="35" id="perVemail" value="#{PersonaMB.persona.perVemail}" validator="#{PersonaMB.validarEmail}"></h:inputText></td>
+						</tr>
+						<tr>
+							<td colspan="6"/>
+							<td align="left" colspan="1"><rich:message for="perVemail" style="color:red"/></td>
 						</tr>								
 						<tr>
 							<td align="left" colspan="2"><h:outputLabel value="Teléfono Fijo" styleClass="TextoContenido"></h:outputLabel></td>
@@ -179,18 +202,16 @@
 							<td align="left" colspan="2"><h:outputLabel value="Dirección" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><h:inputText title="Ingrese la dirección de residencia de la persona." size="35" id="perVdireccion" value="#{PersonaMB.persona.perVdireccion}"></h:inputText></td>							
 						</tr>																	
-						<c:if test="#{PersonaMB.persona.perNidpersona != null}">
-							<tr>
-								<td height="10px"/>
-							</tr>						
-							<tr>
-								<td align="center" colspan="7"><h:outputLabel value="Adjuntar Hoja de Vida (pdf,zip,rar)" styleClass="TituloContenido"></h:outputLabel></td>
-							</tr>
-							<tr>
-								<td align="center" colspan="7"><rich:fileUpload required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" acceptedTypes="pdf,zip,rar" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
-	                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
-							</tr>		
-						</c:if>										                   
+						<tr>
+							<td height="10px"/>
+						</tr>						
+						<tr>
+							<td align="center" colspan="7"><h:outputLabel value="Adjuntar Hoja de Vida" styleClass="TituloContenido"></h:outputLabel></td>
+						</tr>
+						<tr>
+							<td align="center" colspan="7"><rich:fileUpload required="true" fileUploadListener="#{PersonaMB.getSubirDocumentoHojaVida}" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
+						</tr>		
 					</table>					
 					<c:if test="#{DocumentoMB.hojasDeVida != null}">
 						<table align="center" width="100%">
@@ -201,7 +222,13 @@
 						<table align="center" style="border-width: medium; border-spacing: 0px; border-style: solid; border-color: lightgray; border-collapse: separate; background-color: white;">
 							<tr>
 								<td>
-									<rich:extendedDataTable id="tablaSoportesHv" align="center" value="#{DocumentoMB.hojasDeVida}" var="docu" width="615px" height="90px" headerClass="rich-table-header">
+									<rich:extendedDataTable id="tablaSoportesHv" align="center" value="#{DocumentoMB.hojasDeVida}" var="docu" width="725px" height="90px" headerClass="rich-table-header">
+										<rich:column width="110px" sortable="true" sortBy="#{docu.gppTipoarchivo.tarVtipoarchivo}" label="Tipo Archivo">
+											<f:facet name="header">
+												<h:outputLabel value="Tipo Archivo" styleClass="PrimerNivel"></h:outputLabel>
+											</f:facet>
+											<div align="left"><h:outputLabel value="#{docu.gppTipoarchivo.tarVtipoarchivo}"></h:outputLabel></div>
+										</rich:column>									
 										<rich:column width="200px" sortable="true" sortBy="#{docu.docVnombre}" label="Nombre">
 											<f:facet name="header">
 												<h:outputLabel value="Nombre" styleClass="PrimerNivel"></h:outputLabel>
@@ -507,10 +534,10 @@
 									<td align="left" colspan="3"><h:outputLabel value="Acta de Grado" styleClass="TituloContenido"></h:outputLabel></td>							
 								</tr>	
 								<tr>
-									<td align="left" colspan="3" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirDiploma}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+									<td align="left" colspan="3" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirDiploma}" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 			                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
 									<td width="15px"></td>
-									<td align="left" colspan="3" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirActaGrado}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="310px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+									<td align="left" colspan="3" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{FormacionMB.getSubirActaGrado}" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="310px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 			                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 								</tr>																																																							
 							</table>
@@ -768,14 +795,14 @@
 									<td align="left"><h:inputText title="Ingrese el Nombre de la persona contacto que pueda dar referencias de la persona." size="35" id="expVnomcontacto" value="#{ExperienciaMB.experiencia.expVnomcontacto}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Nombre Contacto"></h:inputText></td>
 									<td width="15px"></td>			
 									<td align="left" colspan="2"><h:outputLabel value="E-Mail Contacto" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:inputText title="Ingrese el correo electrónico de la persona contacto en la empresa." size="35" id="expVemailcontacto" value="#{ExperienciaMB.experiencia.expVemailcontacto}"></h:inputText></td>					
+									<td align="left"><h:inputText title="Ingrese el correo electrónico de la persona contacto en la empresa." size="35" id="expVemailcontacto" value="#{ExperienciaMB.experiencia.expVemailcontacto}" validator="#{ExperienciaMB.validarEmail}"></h:inputText></td>					
 								</tr>		
 								<tr>
 									<td colspan="2"></td>
 									<td align="left" colspan="1"><rich:message for="expVnomcontacto" style="color:red"/></td>
 									<td width="15px"></td>	
 									<td colspan="2"></td>
-									<td align="left" colspan="1"/>							
+									<td align="left" colspan="1"><rich:message for="expVemailcontacto" style="color:red"/></td>							
 								</tr>													
 								<tr>
 									<td align="left"><h:outputLabel value="Cargo Desempeñado" styleClass="TextoContenido"></h:outputLabel></td>
@@ -839,10 +866,10 @@
 									<td height="10px"/>
 								</tr>			
 								<tr>
-									<td align="left" colspan="3" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado1}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="350px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+									<td align="left" colspan="3" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado1}" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="350px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 			                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>
 									<td width="15px"></td>	
-									<td align="left" colspan="3" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado2}" acceptedTypes="pdf,zip,rar,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="360px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+									<td align="left" colspan="3" class="TextoContenido"><rich:fileUpload required="true" fileUploadListener="#{ExperienciaMB.getSubirCertificado2}" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="360px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 			                         		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 								</tr>																																																							
 							</table>
@@ -1068,7 +1095,7 @@
 								<td align="center"><h:outputLabel value="Adjuntar Archivo" styleClass="TituloContenido"></h:outputLabel></td>
 							</tr>
 							<tr>
-								<td><rich:fileUpload required="true" fileUploadListener="#{DocumentoMB.getSubirSoporte}" acceptedTypes="pdf,doc,docx,xls,xlsx,zip,rar,ppt,pptx,jpeg,jpg,bmp,tif,tiff,png" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
+								<td><rich:fileUpload required="true" fileUploadListener="#{DocumentoMB.getSubirSoporte}" ajaxSingle="true" maxFilesQuantity="1" immediateUpload="true" listWidth="300px" listHeight="60px" addControlLabel="Examinar" cancelEntryControlLabel="Cancelar" clearAllControlLabel="Borrar" clearControlLabel="Eliminar">
 	                          		<a4j:support ajaxSingle="true" event="onuploadcomplete"/></rich:fileUpload></td>							
 							</tr>								
 						</table>

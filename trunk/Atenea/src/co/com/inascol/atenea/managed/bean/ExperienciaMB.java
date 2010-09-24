@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
@@ -170,6 +173,15 @@ public class ExperienciaMB {
         }
 		return listadoCargos;
 	}
+	
+    public void validarEmail(FacesContext context, UIComponent validate, Object value){
+        String email = (String) value;
+        if(email.indexOf('@')==-1){
+            ((UIInput)validate).setValid(false);
+            FacesMessage msg = new FacesMessage("Ingrese una dirección de correo válida (Debe contener @).");
+            context.addMessage(validate.getClientId(context), msg);
+        }
+    }
 	
 	public String getAnterior(){
 		( ( PersonaMB ) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("PersonaMB") ).setTabPanel(ConstantesFaces.TAB_PANEL_FORMACION);
