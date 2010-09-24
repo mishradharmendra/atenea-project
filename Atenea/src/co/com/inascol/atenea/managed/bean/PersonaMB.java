@@ -59,10 +59,18 @@ public class PersonaMB {
 	private Integer idPais;
 	private Integer idDepto;	
 	private Integer idPaisResidencia;
-	private Integer idDeptoResidencia;	
+	private Integer idDeptoResidencia;
+	private Integer idPaisPersona;
+	private Integer idDeptoPersona;	
+	private Integer idDeptoResidenciaPersona;	
 	private Boolean tabDeshabilitados;
 	private Boolean documentoCargado;
 	private Boolean estadoPersona;
+	public List<SelectItem> paises;
+	public List<SelectItem> departamentosPais;
+	public List<SelectItem> deptosPaisResidencia;
+	public List<SelectItem> municipiosDepto;	
+	public List<SelectItem> municipiosResidencia;
 	
 	public PersonaMB(){
 		personaDelegate = new PersonaDelegate();		
@@ -71,7 +79,14 @@ public class PersonaMB {
 		documentoCargado = false;
 		tabPanelFormacion = ConstantesFaces.TAB_PANEL_FORMACION;
 		tabPanelExperiencia = ConstantesFaces.TAB_PANEL_EXPERIENCIA;
+		idPais = 0;
+		idPaisPersona = 0;
+		idDepto = 0;
+		idDeptoPersona = 0;
+		idDeptoResidencia = 0;
+		idPaisResidencia = 0;
 	}
+	
 	public Integer getIdPersona() {
 		return idPersona;
 	}
@@ -234,7 +249,41 @@ public class PersonaMB {
 	public void setIdDeptoResidencia(Integer idDeptoResidencia) {
 		this.idDeptoResidencia = idDeptoResidencia;
 	}
+	public Integer getIdPaisPersona() {
+		return idPaisPersona;
+	}
+	public void setIdPaisPersona(Integer idPaisPersona) {
+		this.idPaisPersona = idPaisPersona;
+	}
+	public Integer getIdDeptoPersona() {
+		return idDeptoPersona;
+	}
+	public void setIdDeptoPersona(Integer idDeptoPersona) {
+		this.idDeptoPersona = idDeptoPersona;
+	}
+	public Integer getIdDeptoResidenciaPersona() {
+		return idDeptoResidenciaPersona;
+	}
+	public void setIdDeptoResidenciaPersona(Integer idDeptoResidenciaPersona) {
+		this.idDeptoResidenciaPersona = idDeptoResidenciaPersona;
+	}
 	
+	public void setPaises(List<SelectItem> paises) {
+		this.paises = paises;
+	}
+	public void setDepartamentosPais(List<SelectItem> departamentosPais) {
+		this.departamentosPais = departamentosPais;
+	}
+	public void setDeptosPaisResidencia(List<SelectItem> deptosPaisResidencia) {
+		this.deptosPaisResidencia = deptosPaisResidencia;
+	}
+	public void setMunicipiosDepto(List<SelectItem> municipiosDepto) {
+		this.municipiosDepto = municipiosDepto;
+	}
+	public void setMunicipiosResidencia(List<SelectItem> municipiosResidencia) {
+		this.municipiosResidencia = municipiosResidencia;
+	}
+
 	public List<SelectItem> getTiposIdentificacion(){
 		List<SelectItem> listadoTipos = new ArrayList<SelectItem>();
 		List<Object> tiposIdentificacion = personaDelegate.getListaTipoIndentificacion();
@@ -275,8 +324,8 @@ public class PersonaMB {
 	}
 	
 	public List<SelectItem> getDepartamentosPais(){
-		List<SelectItem> listadoDepartamentos = new ArrayList<SelectItem>();		
-		if(idPais!=null){
+		List<SelectItem> listadoDepartamentos = new ArrayList<SelectItem>();
+		if(idPais>0){
 			List<Object> deptos = personaDelegate.getListaDepartamentos();
 			if(deptos.size()>0){
 				Iterator<Object> it = deptos.iterator();
@@ -287,13 +336,22 @@ public class PersonaMB {
 					}
 				}
 	        }
+		}else{
+			List<Object> deptos = personaDelegate.getListaDepartamentos();
+			if(deptos.size()>0){
+				Iterator<Object> it = deptos.iterator();
+				while(it.hasNext()){
+					GppDepartamento gppDepartamento = (GppDepartamento) it.next();
+					listadoDepartamentos.add(new SelectItem(gppDepartamento.getDptNiddepto(),gppDepartamento.getDptVdepto()));
+				}
+			}
 		}
 		return listadoDepartamentos;
 	}
 	
 	public List<SelectItem> getDeptosPaisResidencia(){
-		List<SelectItem> listadoDepartamentos = new ArrayList<SelectItem>();		
-		if(idPaisResidencia!=null){
+		List<SelectItem> listadoDepartamentos = new ArrayList<SelectItem>();
+		if(idPaisResidencia>0){
 			List<Object> deptos = personaDelegate.getListaDepartamentos();
 			if(deptos.size()>0){
 				Iterator<Object> it = deptos.iterator();
@@ -304,13 +362,22 @@ public class PersonaMB {
 					}
 				}
 	        }
+		}else{
+			List<Object> deptos = personaDelegate.getListaDepartamentos();
+			if(deptos.size()>0){
+				Iterator<Object> it = deptos.iterator();
+				while(it.hasNext()){
+					GppDepartamento gppDepartamento = (GppDepartamento) it.next();
+					listadoDepartamentos.add(new SelectItem(gppDepartamento.getDptNiddepto(),gppDepartamento.getDptVdepto()));
+				}
+			}
 		}
 		return listadoDepartamentos;
 	}
 	
 	public List<SelectItem> getMunicipiosDepto(){
 		List<SelectItem> listadoMunicipios = new ArrayList<SelectItem>();
-		if(idPais!=null && idDepto!=null){
+		if(idDepto>0){
 			List<Object> mpios = personaDelegate.getListaMunicipios();
 			if(mpios.size()>0){
 				Iterator<Object> it = mpios.iterator();
@@ -336,7 +403,7 @@ public class PersonaMB {
 
 	public List<SelectItem> getMunicipiosResidencia(){
 		List<SelectItem> listadoMunicipios = new ArrayList<SelectItem>();
-		if(idPaisResidencia!=null && idDeptoResidencia!=null){
+		if(idDeptoResidencia>0){
 			List<Object> mpios = personaDelegate.getListaMunicipios();
 			if(mpios.size()>0){
 				Iterator<Object> it = mpios.iterator();
@@ -443,37 +510,65 @@ public class PersonaMB {
 	}	
 	
 	public void getDeptos(ValueChangeEvent evento){
-		if(evento.getNewValue()!=null){
-			idPais = Integer.valueOf((String) evento.getNewValue());
+		if((Integer)evento.getNewValue()>0){
+			idPais = (Integer) evento.getNewValue();
 			getDepartamentosPais();
+		}else{
+			idPais = 0;
+			idPaisPersona = 0;
+			idDepto = 0;
+			idDeptoPersona = 0;
+			persona.setMunNidmunicipio(0);
+			this.setDepartamentosPais(null);
+			this.setMunicipiosDepto(null);
+			getDepartamentosPais();
+			getMunicipiosDepto();
 		}
 	}
 	
 	public void getMpios(ValueChangeEvent evento){
-		if(evento.getNewValue()!=null){
-			idDepto = Integer.valueOf((String) evento.getNewValue());
+		if((Integer)evento.getNewValue()>0){
+			idDepto = (Integer) evento.getNewValue();
+			getMunicipiosDepto();
+		}else{
+			idDepto = 0;
+			persona.setMunNidmunicipio(0);
+			this.setMunicipiosDepto(null);
 			getMunicipiosDepto();
 		}
 	}
 	
 	public void getDeptosResidencia(ValueChangeEvent evento){
-		if(evento.getNewValue()!=null){
-			idPaisResidencia = Integer.valueOf((Integer) evento.getNewValue());
+		if((Integer)evento.getNewValue()>0){
+			idPaisResidencia = (Integer) evento.getNewValue();
+			getDeptosPaisResidencia();
+		}else{
+			idPaisResidencia  = 0;
+			persona.setPaiNpaisresidencia(0);
+			idDeptoResidenciaPersona = 0;
+			persona.setMunNmpioresidencia(0);
+			this.setDeptosPaisResidencia(null);
 			getDeptosPaisResidencia();
 		}
 	}
 	
 	public void getMpiosResidencia(ValueChangeEvent evento){
-		if(evento.getNewValue()!=null){
-			idDeptoResidencia = Integer.valueOf((Integer)evento.getNewValue());
+		if((Integer)evento.getNewValue()>0){
+			idDeptoResidencia = (Integer) evento.getNewValue();
+			getMunicipiosResidencia();
+		}else{
+			idDeptoResidencia = 0;
+			idDeptoResidenciaPersona = 0;
+			persona.setMunNmpioresidencia(0);
+			this.setMunicipiosResidencia(null);
 			getMunicipiosResidencia();
 		}
 	}
 	
 	public void getBuscarPaisyDepto(GppPersona persona){
-		idPais = getBuscarPais(persona);
-		idDepto = getBuscarDepto(persona,0);
-		idDeptoResidencia = getBuscarDepto(persona,1);
+		idPaisPersona = personaDelegate.getIdPais(persona);
+		idDeptoPersona = personaDelegate.getIdDepto(persona, 0);
+		idDeptoResidenciaPersona = personaDelegate.getIdDepto(persona, 1);
 	}
 	
 	public void getLibreta(ValueChangeEvent evento){
@@ -549,7 +644,7 @@ public class PersonaMB {
 	
 	public String getSeleccionarPersona(){
 		setTabPanel();
-		persona = personaDelegate.getSeleccionarPersona(personas, idPersona);
+		persona = personaDelegate.getSeleccionarPersona(idPersona);
 		getBuscarPaisyDepto(persona);
 		getLimpiarSession();
 		tabDeshabilitados = false;
@@ -558,7 +653,8 @@ public class PersonaMB {
 	
 	public String getSeleccionarPersonaDetalle(){
 		setTabPanel();
-		persona = personaDelegate.getSeleccionarPersona(personas, idPersona);
+		persona = personaDelegate.getSeleccionarPersona(idPersona);
+		getBuscarPaisyDepto(persona);
 		getLimpiarSession();
 		tabDeshabilitados = false;
 		return ConstantesFaces.DETALLE_HV;		
@@ -568,7 +664,7 @@ public class PersonaMB {
 		getHomePageValue();
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarHojadeVida")){
-			persona = personaDelegate.getSeleccionarPersona(personas, idPersona);
+			persona = personaDelegate.getSeleccionarPersona(idPersona);
 			if(estadoPersona==true){
 				persona.setPerBactivo(false);
 			} else {
@@ -587,7 +683,7 @@ public class PersonaMB {
 		getHomePageValueAvanzada();
 		estadoOperacion = false;
 		if(getValidarPermisosServicio("srvModificarHojadeVida")){
-			persona = personaDelegate.getSeleccionarPersona(personas, idPersona);
+			persona = personaDelegate.getSeleccionarPersona(idPersona);
 			if(estadoPersona==true){
 				persona.setPerBactivo(false);
 			} else {

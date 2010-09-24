@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
@@ -17,6 +16,9 @@ import javax.faces.context.FacesContext;
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
+import co.com.inascol.atenea.entity.GppDepartamento;
+import co.com.inascol.atenea.entity.GppMunicipio;
+import co.com.inascol.atenea.entity.GppPais;
 import co.com.inascol.atenea.entity.GppParametrizacion;
 import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.entity.GppUsuario;
@@ -106,6 +108,26 @@ public class PersonaDelegate {
 	public List<Object> getPerfilesProfesionalesEquivalente(){
 		perfilequivalenteService = new PerfilequivalenteService();
 		return perfilequivalenteService.buscarPerfilesEquivalentes();
+	}
+	
+	public Integer getIdPais(GppPersona persona){
+		departamentoService = new DepartamentoService();
+		paisService = new PaisService();
+		Integer idDepto = getIdDepto(persona, 0);
+		GppDepartamento depto = departamentoService.buscarPorIdDepartamento(idDepto);
+		GppPais pais = paisService.buscarPorIdPais(depto.getPaiNidpais());
+		return pais.getPaiNidpais();
+	}
+	
+	public Integer getIdDepto(GppPersona persona, Integer banderaDeptoResidencia){
+		GppMunicipio mpio = null;
+		municipioService = new MunicipioService();
+		if(banderaDeptoResidencia==0)
+			mpio = municipioService.buscarPorIdMunicipio(persona.getMunNidmunicipio());
+		else if(banderaDeptoResidencia==1)
+			mpio = municipioService.buscarPorIdMunicipio(persona.getMunNmpioresidencia());
+		GppDepartamento depto = departamentoService.buscarPorIdDepartamento(mpio.getDptNiddepto());
+		return depto.getDptNiddepto();
 	}
 	
 	public List<Object> getBusquedaBasicaPersona(String nombrePersona, String identificacionPersona){
@@ -244,16 +266,9 @@ public class PersonaDelegate {
 		return personaService.actualizarPersona(persona.getPerNidpersona(), persona.getPerVnombres(), persona.getPerVapellidos(), persona.getPerNidentificacion(), persona.getPerVsexo(), persona.getPerDfecnacimiento(), persona.getPerVlibretamilitar(), persona.getPerVmovil(), persona.getPerVemail(), persona.getPerVdireccion(), persona.getPerVtelefono(), persona.getMunNidmunicipio(), persona.getTdcNidtipodoc(), persona.getEscNidestadocivil(), persona.getPaiNpaisresidencia(), persona.getMunNmpioresidencia(), persona.getPerBactivo(), usuarioAutenticado);		
 	}
 	
-	public GppPersona getSeleccionarPersona(List<Object> personas, Integer idPersona){
-		if(personas.size()>0){
-			Iterator<Object> it = personas.iterator();
-			while(it.hasNext()){
-				persona = (GppPersona) it.next();
-				if(persona.getPerNidpersona()==idPersona){
-					break;
-				}
-			}		
-		}
+	public GppPersona getSeleccionarPersona(Integer idPersona){
+		personaService = new PersonaService();
+		persona = personaService.buscarPersonaPorId(idPersona);
 		return persona;
 	}
 	

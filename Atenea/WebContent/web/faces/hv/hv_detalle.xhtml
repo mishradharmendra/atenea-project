@@ -74,14 +74,14 @@
 							<td align="left"><h:outputLabel value="#{PersonaMB.persona.perDfecnacimiento}" datePattern="dd/MM/yyyy"/></td>
 							<td width="100px"></td>			
 							<td align="left"><h:outputLabel value="País" styleClass="TextoContenido"></h:outputLabel></td>
-                            <td align="left"><h:selectOneMenu id="idPais" value="#{PersonaMB.idPais}" disabled="true" style="color:#000000;width:200px">
+                            <td align="left"><h:selectOneMenu id="idPais" value="#{PersonaMB.idPaisPersona}" disabled="true" style="color:#000000;width:200px">
                                     <f:selectItem itemValue="" itemLabel="Seleccione..."/>  
                                     <f:selectItems value="#{PersonaMB.paises}"/>
                             </h:selectOneMenu></td>							
 						</tr>					
 						<tr>
-							<td align="left" colspan="2"><h:outputLabel value="Departamento" styleClass="TextoContenido"></h:outputLabel></td>
-                            <td align="left"><h:selectOneMenu id="idDepto" value="#{PersonaMB.idDepto}" disabled="true" style="color:#000000;width:200px">
+							<td align="left"><h:outputLabel value="Departamento" styleClass="TextoContenido"></h:outputLabel></td>
+                            <td align="left"><h:selectOneMenu id="idDepto" value="#{PersonaMB.idDeptoPersona}" disabled="true" style="color:#000000;width:200px">
                                     <f:selectItem itemValue="" itemLabel="Seleccione..."/>  
                                     <f:selectItems value="#{PersonaMB.departamentosPais}"/>
                             </h:selectOneMenu></td> 
@@ -113,8 +113,8 @@
 								<f:selectItems value="#{PersonaMB.paises}"/>
 								</h:selectOneMenu></td>
 							<td width="100px"></td>	
-							<td align="left" colspan="2"><h:outputLabel value="Departamento Residencia" styleClass="TextoContenido"></h:outputLabel></td>
-							<td align="left"><h:selectOneMenu id="deptoResidencia" value="#{PersonaMB.idDeptoResidencia}" disabled="true" style="color:#000000;width:200px">
+							<td align="left"><h:outputLabel value="Departamento Residencia" styleClass="TextoContenido"></h:outputLabel></td>
+							<td align="left"><h:selectOneMenu id="deptoResidencia" value="#{PersonaMB.idDeptoResidenciaPersona}" disabled="true" style="color:#000000;width:200px">
 								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.deptosPaisResidencia}"/>
 								</h:selectOneMenu></td>									
