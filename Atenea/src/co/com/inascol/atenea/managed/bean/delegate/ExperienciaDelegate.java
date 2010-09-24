@@ -212,7 +212,7 @@ public class ExperienciaDelegate {
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
 		String nombreDocumento = "Consolidado_Certificaciones-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
-		Integer tipoDocumento = 4;
+		Integer tipoDocumento = 2;
 		documentoService.crearDocumento(nombreDocumento, nombreArchivoCertificaciones, urlArchivoCertificaciones, new Date(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}
@@ -221,16 +221,7 @@ public class ExperienciaDelegate {
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
 		String nombreDocumento = "Certificacion_1-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
-		Integer tipoDocumento = 1;
-		if(nombreArchivoCertificado1.toLowerCase().endsWith(".pdf")){
-			tipoDocumento = 1;
-		}else if(nombreArchivoCertificado1.toLowerCase().endsWith(".zip") || nombreArchivoCertificado1.toLowerCase().endsWith(".rar")){
-			tipoDocumento = 4;
-		}else if(nombreArchivoCertificado1.toLowerCase().endsWith(".jpeg") || nombreArchivoCertificado1.toLowerCase().endsWith(".jpg") ||
-					nombreArchivoCertificado1.toLowerCase().endsWith(".bmp") || nombreArchivoCertificado1.toLowerCase().endsWith(".tif") ||
-						nombreArchivoCertificado1.toLowerCase().endsWith(".tiff") || nombreArchivoCertificado1.toLowerCase().endsWith(".png")){
-			tipoDocumento = 6;
-		}			
+		Integer tipoDocumento = 6;			
 		documentoService.crearDocumento(nombreDocumento, nombreArchivoCertificado1, urlArchivoCertificado1, new Date(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}
@@ -239,16 +230,7 @@ public class ExperienciaDelegate {
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
 		String nombreDocumento = "Certificacion_2-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
-		Integer tipoDocumento = 1;
-		if(nombreArchivoCertificado2.toLowerCase().endsWith(".pdf")){
-			tipoDocumento = 1;
-		}else if(nombreArchivoCertificado2.toLowerCase().endsWith(".zip") || nombreArchivoCertificado2.toLowerCase().endsWith(".rar")){
-			tipoDocumento = 4;
-		}else if(nombreArchivoCertificado2.toLowerCase().endsWith(".jpeg") || nombreArchivoCertificado2.toLowerCase().endsWith(".jpg") ||
-					nombreArchivoCertificado2.toLowerCase().endsWith(".bmp") || nombreArchivoCertificado2.toLowerCase().endsWith(".tif") ||
-						nombreArchivoCertificado2.toLowerCase().endsWith(".tiff") || nombreArchivoCertificado2.toLowerCase().endsWith(".png")){
-			tipoDocumento = 6;
-		}			
+		Integer tipoDocumento = 6;
 		documentoService.crearDocumento(nombreDocumento, nombreArchivoCertificado2, urlArchivoCertificado2, new Date(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}

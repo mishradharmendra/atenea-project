@@ -204,7 +204,7 @@ public class FormacionDelegate {
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
 		String nombreDocumento = "Consolidado_Soportes-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
-		Integer tipoDocumento = 4;
+		Integer tipoDocumento = 2;
 		documentoService.crearDocumento(nombreDocumento, nombreArchivoSoportes, urlArchivoSoportes, new Date(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}
@@ -213,16 +213,7 @@ public class FormacionDelegate {
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
 		String nombreDocumento = "Diploma-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
-		Integer tipoDocumento = 1;
-		if(nombreArchivoDiploma.toLowerCase().endsWith(".pdf")){
-			tipoDocumento = 1;
-		}else if(nombreArchivoDiploma.toLowerCase().endsWith(".zip") || nombreArchivoDiploma.toLowerCase().endsWith(".rar")){
-			tipoDocumento = 4;
-		}else if(nombreArchivoDiploma.toLowerCase().endsWith(".jpeg") || nombreArchivoDiploma.toLowerCase().endsWith(".jpg") ||
-					nombreArchivoDiploma.toLowerCase().endsWith(".bmp") || nombreArchivoDiploma.toLowerCase().endsWith(".tif") ||
-						nombreArchivoDiploma.toLowerCase().endsWith(".tiff") || nombreArchivoDiploma.toLowerCase().endsWith(".png")){
-			tipoDocumento = 6;
-		}
+		Integer tipoDocumento = 5;
 		documentoService.crearDocumento(nombreDocumento, nombreArchivoDiploma, urlArchivoDiploma, formacion.getForDfecgrado(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}
@@ -231,16 +222,7 @@ public class FormacionDelegate {
 		usuarioAutenticado = (GppUsuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioAutenticado");
 		documentoService = new DocumentoService();
 		String nombreDocumento = "Acta-"+persona.getPerVnombres()+"-"+persona.getPerVapellidos();
-		Integer tipoDocumento = 1;
-		if(nombreArchivoActa.toLowerCase().endsWith(".pdf")){
-			tipoDocumento = 1;
-		}else if(nombreArchivoActa.toLowerCase().endsWith(".zip") || nombreArchivoActa.toLowerCase().endsWith(".rar")){
-			tipoDocumento = 4;
-		}else if(nombreArchivoActa.toLowerCase().endsWith(".jpeg") || nombreArchivoActa.toLowerCase().endsWith(".jpg") ||
-					nombreArchivoActa.toLowerCase().endsWith(".bmp") || nombreArchivoActa.toLowerCase().endsWith(".tif") ||
-						nombreArchivoActa.toLowerCase().endsWith(".tiff") || nombreArchivoActa.toLowerCase().endsWith(".png")){
-			tipoDocumento = 6;
-		}		
+		Integer tipoDocumento = 4;
 		documentoService.crearDocumento(nombreDocumento, nombreArchivoActa, urlArchivoActa, formacion.getForDfecgrado(), persona.getPerNidpersona(), tipoDocumento, usuarioAutenticado);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("DocumentoMB");
 	}
