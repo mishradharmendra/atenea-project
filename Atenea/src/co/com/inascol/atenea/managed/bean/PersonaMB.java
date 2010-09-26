@@ -66,11 +66,6 @@ public class PersonaMB {
 	private Boolean tabDeshabilitados;
 	private Boolean documentoCargado;
 	private Boolean estadoPersona;
-	public List<SelectItem> paises;
-	public List<SelectItem> departamentosPais;
-	public List<SelectItem> deptosPaisResidencia;
-	public List<SelectItem> municipiosDepto;	
-	public List<SelectItem> municipiosResidencia;
 	
 	public PersonaMB(){
 		personaDelegate = new PersonaDelegate();		
@@ -266,22 +261,6 @@ public class PersonaMB {
 	}
 	public void setIdDeptoResidenciaPersona(Integer idDeptoResidenciaPersona) {
 		this.idDeptoResidenciaPersona = idDeptoResidenciaPersona;
-	}
-	
-	public void setPaises(List<SelectItem> paises) {
-		this.paises = paises;
-	}
-	public void setDepartamentosPais(List<SelectItem> departamentosPais) {
-		this.departamentosPais = departamentosPais;
-	}
-	public void setDeptosPaisResidencia(List<SelectItem> deptosPaisResidencia) {
-		this.deptosPaisResidencia = deptosPaisResidencia;
-	}
-	public void setMunicipiosDepto(List<SelectItem> municipiosDepto) {
-		this.municipiosDepto = municipiosDepto;
-	}
-	public void setMunicipiosResidencia(List<SelectItem> municipiosResidencia) {
-		this.municipiosResidencia = municipiosResidencia;
 	}
 
 	public List<SelectItem> getTiposIdentificacion(){
@@ -510,7 +489,7 @@ public class PersonaMB {
 	}	
 	
 	public void getDeptos(ValueChangeEvent evento){
-		if((Integer)evento.getNewValue()>0){
+		if(evento.getNewValue()!=null){
 			idPais = (Integer) evento.getNewValue();
 			getDepartamentosPais();
 		}else{
@@ -519,27 +498,21 @@ public class PersonaMB {
 			idDepto = 0;
 			idDeptoPersona = 0;
 			persona.setMunNidmunicipio(0);
-			this.setDepartamentosPais(null);
-			this.setMunicipiosDepto(null);
-			getDepartamentosPais();
-			getMunicipiosDepto();
 		}
 	}
 	
 	public void getMpios(ValueChangeEvent evento){
-		if((Integer)evento.getNewValue()>0){
+		if(evento.getNewValue()!=null){
 			idDepto = (Integer) evento.getNewValue();
 			getMunicipiosDepto();
 		}else{
 			idDepto = 0;
 			persona.setMunNidmunicipio(0);
-			this.setMunicipiosDepto(null);
-			getMunicipiosDepto();
 		}
 	}
 	
 	public void getDeptosResidencia(ValueChangeEvent evento){
-		if((Integer)evento.getNewValue()>0){
+		if(evento.getNewValue()!=null){
 			idPaisResidencia = (Integer) evento.getNewValue();
 			getDeptosPaisResidencia();
 		}else{
@@ -547,21 +520,17 @@ public class PersonaMB {
 			persona.setPaiNpaisresidencia(0);
 			idDeptoResidenciaPersona = 0;
 			persona.setMunNmpioresidencia(0);
-			this.setDeptosPaisResidencia(null);
-			getDeptosPaisResidencia();
 		}
 	}
 	
 	public void getMpiosResidencia(ValueChangeEvent evento){
-		if((Integer)evento.getNewValue()>0){
+		if(evento.getNewValue()!=null){
 			idDeptoResidencia = (Integer) evento.getNewValue();
 			getMunicipiosResidencia();
 		}else{
 			idDeptoResidencia = 0;
 			idDeptoResidenciaPersona = 0;
 			persona.setMunNmpioresidencia(0);
-			this.setMunicipiosResidencia(null);
-			getMunicipiosResidencia();
 		}
 	}
 	
@@ -581,7 +550,7 @@ public class PersonaMB {
         String email = (String) value;
         if(email.indexOf('@')==-1){
             ((UIInput)validate).setValid(false);
-            FacesMessage msg = new FacesMessage("Ingrese una dirección de correo válida (Debe contener @).");
+            FacesMessage msg = new FacesMessage("Ingrese una dirección de correo válida.");
             context.addMessage(validate.getClientId(context), msg);
         }
     }

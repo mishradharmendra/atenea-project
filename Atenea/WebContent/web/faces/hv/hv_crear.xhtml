@@ -99,7 +99,7 @@
 							<td align="left"><h:outputLabel value="País" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><div style="position: relative; left: -65pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
                             <td align="left"><h:selectOneMenu id="idPais" valueChangeListener="#{PersonaMB.getDeptos}" onchange="submit()" value="#{PersonaMB.idPaisPersona}" style="width:200px" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Seleccione un País" >
-                                    <f:selectItem itemValue="0" itemLabel="Seleccione..."/>  
+                                    <f:selectItem itemValue="" itemLabel="Seleccione..."/>  
                                     <f:selectItems value="#{PersonaMB.paises}"/>
                             </h:selectOneMenu></td>
 						</tr>	
@@ -114,14 +114,14 @@
 							<td align="left"><h:outputLabel value="Departamento" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><div style="position: relative; left: -65pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
                             <td align="left"><h:selectOneMenu id="idDepto" valueChangeListener="#{PersonaMB.getMpios}" onchange="submit()" value="#{PersonaMB.idDeptoPersona}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Seleccione un Departamento" style="width:200px">
-                                    <f:selectItem itemValue="0" itemLabel="Seleccione..."/>  
+                                    <f:selectItem itemValue="" itemLabel="Seleccione..."/>  
                                     <f:selectItems value="#{PersonaMB.departamentosPais}"/>
                             </h:selectOneMenu></td> 
 							<td width="50px"></td>	
 							<td align="left"><h:outputLabel value="Municipio" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><div style="position: relative; left: -65pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
 							<td align="left"><h:selectOneMenu id="munNidmunicipio" value="#{PersonaMB.persona.munNidmunicipio}" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Seleccione un Municipio" style="width:200px">
-								<f:selectItem itemValue="0" itemLabel="Seleccione..."/>	
+								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.municipiosDepto}"/>
 							</h:selectOneMenu></td>	
 						</tr>
@@ -151,14 +151,14 @@
 							<td align="left"><h:outputLabel value="País Residencia" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><div style="position: relative; left: -50pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
 							<td align="left"><h:selectOneMenu id="idPaisResidencia" value="#{PersonaMB.persona.paiNpaisresidencia}" valueChangeListener="#{PersonaMB.getDeptosResidencia}" onchange="submit()" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Seleccione un Pais de Residencia" style="width:200px">
-								<f:selectItem itemValue="0" itemLabel="Seleccione..."/>	
+								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.paises}"/>
 								</h:selectOneMenu></td>
 							<td width="50px"></td>	
 							<td align="left"><h:outputLabel value="Departamento Residencia" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><div style="position: relative; left: -65pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
-							<td align="left"><h:selectOneMenu id="deptoResidencia" value="#{PersonaMB.idDeptoResidenciaPersona}" valueChangeListener="#{PersonaMB.getMpiosResidencia}" onchange="submit()" style="width:200px">
-								<f:selectItem itemValue="0" itemLabel="Seleccione..."/>	
+							<td align="left"><h:selectOneMenu id="deptoResidencia" value="#{PersonaMB.idDeptoResidenciaPersona}" valueChangeListener="#{PersonaMB.getMpiosResidencia}" onchange="submit()" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Seleccione un Departamento de Residencia" style="width:200px">
+								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.deptosPaisResidencia}"/>
 								</h:selectOneMenu></td>							
 						</tr>
@@ -172,14 +172,14 @@
 						<tr>
 							<td align="left"><h:outputLabel value="Municipio Residencia" styleClass="TextoContenido"></h:outputLabel></td>
 							<td align="left"><div style="position: relative; left: -65pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>							
-							<td align="left"><h:selectOneMenu id="mpioResidencia" value="#{PersonaMB.persona.munNmpioresidencia}" style="width:200px">
-								<f:selectItem itemValue="0" itemLabel="Seleccione..."/>	
+							<td align="left"><h:selectOneMenu id="mpioResidencia" value="#{PersonaMB.persona.munNmpioresidencia}" style="width:200px" required="#{!empty param['formDatosPersonales:GuardarPersona']}" requiredMessage="Seleccione un Municipio de Residencia">
+								<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 								<f:selectItems value="#{PersonaMB.municipiosResidencia}"/>
 								</h:selectOneMenu></td>								
 						</tr>
 						<tr>
 							<td colspan="2"></td>
-							<td align="left" colspan="1"><rich:message for="idPaisResidencia" style="color:red"/></td>
+							<td align="left" colspan="1"><rich:message for="mpioResidencia" style="color:red"/></td>
 							<td width="50px"></td>	
 							<td colspan="3"/>							
 						</tr>											
@@ -765,16 +765,23 @@
 								</tr>
 								<tr>
 									<td align="left" colspan="2"><h:outputLabel value="País" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:selectOneMenu id="idPais" valueChangeListener="#{ExperienciaMB.getDeptos}" onchange="submit()" style="width:200px">
+									<td align="left"><h:selectOneMenu id="idPais" value="#{ExperienciaMB.idPaisExperiencia}" valueChangeListener="#{ExperienciaMB.getDeptos}" onchange="submit()" style="width:200px" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese País">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{ExperienciaMB.paises}"/>
 									</h:selectOneMenu></td>
 									<td width="15px"></td>	
 									<td align="left" colspan="2"><h:outputLabel value="Departamento" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:selectOneMenu id="idDepto" valueChangeListener="#{ExperienciaMB.getMpios}" onchange="submit()" style="width:200px">
+									<td align="left"><h:selectOneMenu id="idDepto" value="#{ExperienciaMB.idDeptoExperiencia}" valueChangeListener="#{ExperienciaMB.getMpios}" onchange="submit()" style="width:200px" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Departameto">
 										<f:selectItem itemValue="" itemLabel="Seleccione..."/>	
 										<f:selectItems value="#{ExperienciaMB.departamentosPais}"/>
 									</h:selectOneMenu></td>
+								</tr>
+								<tr>
+									<td colspan="2"></td>
+									<td align="left" colspan="1"><rich:message for="idPais" style="color:red"/></td>
+									<td width="15px"></td>		
+									<td colspan="2"></td>	
+									<td align="left" colspan="1"><rich:message for="idDepto" style="color:red"/></td>							
 								</tr>
 								<tr>
 									<td align="left"><h:outputLabel value="Municipio" styleClass="TextoContenido"></h:outputLabel></td>
@@ -794,7 +801,7 @@
 									<td align="left"><h:inputText title="Ingrese el Nombre de la persona contacto que pueda dar referencias de la persona." size="35" id="expVnomcontacto" value="#{ExperienciaMB.experiencia.expVnomcontacto}" required="#{!empty param['formExperiencia:GuardarExperiencia']}" requiredMessage="Ingrese Nombre Contacto"></h:inputText></td>
 									<td width="15px"></td>			
 									<td align="left" colspan="2"><h:outputLabel value="E-Mail Contacto" styleClass="TextoContenido"></h:outputLabel></td>
-									<td align="left"><h:inputText title="Ingrese el correo electrónico de la persona contacto en la empresa." size="35" id="expVemailcontacto" value="#{ExperienciaMB.experiencia.expVemailcontacto}" validator="#{ExperienciaMB.validarEmail}"></h:inputText></td>					
+									<td align="left"><h:inputText title="Ingrese el correo electrónico de la persona contacto en la empresa." size="35" id="expVemailcontacto" value="#{ExperienciaMB.experiencia.expVemailcontacto}" validator="#{ExperienciaMB.validarEmail}" immediate="false"></h:inputText></td>					
 								</tr>		
 								<tr>
 									<td colspan="2"></td>

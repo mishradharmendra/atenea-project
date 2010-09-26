@@ -16,7 +16,10 @@ import javax.faces.context.FacesContext;
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
+import co.com.inascol.atenea.entity.GppDepartamento;
 import co.com.inascol.atenea.entity.GppExperiencia;
+import co.com.inascol.atenea.entity.GppMunicipio;
+import co.com.inascol.atenea.entity.GppPais;
 import co.com.inascol.atenea.entity.GppParametrizacion;
 import co.com.inascol.atenea.entity.GppPersona;
 import co.com.inascol.atenea.entity.GppUsuario;
@@ -116,6 +119,23 @@ public class ExperienciaDelegate {
 			}
 		}
 		return experiencia;
+	}	
+	
+	public Integer getIdPais(GppExperiencia experiencia){
+		departamentoService = new DepartamentoService();
+		paisService = new PaisService();
+		Integer idDepto = getIdDepto(experiencia);
+		GppDepartamento depto = departamentoService.buscarPorIdDepartamento(idDepto);
+		GppPais pais = paisService.buscarPorIdPais(depto.getPaiNidpais());
+		return pais.getPaiNidpais();
+	}
+	
+	public Integer getIdDepto(GppExperiencia experiencia){
+		GppMunicipio mpio = null;
+		municipioService = new MunicipioService();
+		mpio = municipioService.buscarPorIdMunicipio(experiencia.getMunVidmunicipio());
+		GppDepartamento depto = departamentoService.buscarPorIdDepartamento(mpio.getDptNiddepto());
+		return depto.getDptNiddepto();
 	}	
 	
 	public void getSubirCertificaciones(GppPersona persona, UploadEvent event) throws IOException {

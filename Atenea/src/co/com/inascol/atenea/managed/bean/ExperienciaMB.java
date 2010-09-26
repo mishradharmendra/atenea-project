@@ -37,7 +37,9 @@ public class ExperienciaMB {
 	private List<Object> experienciasLaborales;
 	private GppExperiencia experiencia;
 	private Integer idPais;
-	private Integer idDepto;	
+	private Integer idDepto;
+	private Integer idPaisExperiencia;
+	private Integer idDeptoExperiencia;	
 	private Boolean estadoOperacion;
 	private Boolean fechaActual;
 	private Boolean documentoCargadoCertificacion1;
@@ -84,6 +86,30 @@ public class ExperienciaMB {
 	public void setFechaActual(Boolean fechaActual) {
 		this.fechaActual = fechaActual;
 	}
+	public Integer getIdPais() {
+		return idPais;
+	}
+	public void setIdPais(Integer idPais) {
+		this.idPais = idPais;
+	}
+	public Integer getIdDepto() {
+		return idDepto;
+	}
+	public void setIdDepto(Integer idDepto) {
+		this.idDepto = idDepto;
+	}
+	public Integer getIdPaisExperiencia() {
+		return idPaisExperiencia;
+	}
+	public void setIdPaisExperiencia(Integer idPaisExperiencia) {
+		this.idPaisExperiencia = idPaisExperiencia;
+	}
+	public Integer getIdDeptoExperiencia() {
+		return idDeptoExperiencia;
+	}
+	public void setIdDeptoExperiencia(Integer idDeptoExperiencia) {
+		this.idDeptoExperiencia = idDeptoExperiencia;
+	}
 
 	public List<SelectItem> getPaises(){
 		List<SelectItem> listadoPaises = new ArrayList<SelectItem>();
@@ -111,6 +137,15 @@ public class ExperienciaMB {
 					}
 				}
 	        }
+		}else{
+			List<Object> deptos = experienciaDelegate.getListaDepartamentos();
+			if(deptos.size()>0){
+				Iterator<Object> it = deptos.iterator();
+				while(it.hasNext()){
+					GppDepartamento gppDepartamento = (GppDepartamento) it.next();
+					listadoDepartamentos.add(new SelectItem(gppDepartamento.getDptNiddepto(),gppDepartamento.getDptVdepto()));
+				}
+			}	
 		}
 		return listadoDepartamentos;
 	}
@@ -146,14 +181,22 @@ public class ExperienciaMB {
 		if(evento.getNewValue()!=null){
 			idPais = Integer.valueOf((String) evento.getNewValue());
 			getDepartamentosPais();
-		}
+		}else{
+			idPais = 0;
+			idPaisExperiencia = 0;
+			experiencia.setMunVidmunicipio(0);
+		}		
 	}
 	
 	public void getMpios(ValueChangeEvent evento){
 		if(evento.getNewValue()!=null){
 			idDepto = Integer.valueOf((String) evento.getNewValue());
 			getMunicipios();
-		}
+		}else{
+			idDepto = 0;
+			idDeptoExperiencia = 0;
+			experiencia.setMunVidmunicipio(0);
+		}		
 	}
 
 	public void getFecha(ValueChangeEvent evento){
@@ -161,6 +204,12 @@ public class ExperienciaMB {
 			fechaActual = (Boolean) evento.getNewValue();
 		}
 	}
+	
+	public void getBuscarPaisyDepto(GppExperiencia experiencia){
+		idPaisExperiencia = experienciaDelegate.getIdPais(experiencia);
+		idDeptoExperiencia = experienciaDelegate.getIdDepto(experiencia);
+	}
+	
 	public List<SelectItem> getCargosEquivalentes(){
 		List<SelectItem> listadoCargos = new ArrayList<SelectItem>();
 		List<Object> cargos = experienciaDelegate.getCargosEquivalentes();
@@ -178,7 +227,7 @@ public class ExperienciaMB {
         String email = (String) value;
         if(email.indexOf('@')==-1){
             ((UIInput)validate).setValid(false);
-            FacesMessage msg = new FacesMessage("Ingrese una dirección de correo válida (Debe contener @).");
+            FacesMessage msg = new FacesMessage("Ingrese una dirección de correo válida.");
             context.addMessage(validate.getClientId(context), msg);
         }
     }
@@ -212,6 +261,7 @@ public class ExperienciaMB {
 	
 	public String getSeleccionarExperiencia(){
 		experiencia = experienciaDelegate.getSeleccionarExperiencia(experienciasLaborales, idExperiencia);
+		getBuscarPaisyDepto(experiencia);
 		setTabPanel();
 		setTabPanelExperienciaAgregacion();
 		return ConstantesFaces.CREAR_HV;
