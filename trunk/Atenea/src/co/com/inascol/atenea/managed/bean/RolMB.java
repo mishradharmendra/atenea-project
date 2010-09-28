@@ -1,3 +1,4 @@
+
 package co.com.inascol.atenea.managed.bean;
 
 import java.util.ArrayList;
@@ -47,7 +48,6 @@ public class RolMB {
 	public void setNombreRol(String nombreRol) {
 		this.nombreRol = nombreRol;
 	}
-	
 	public String getDescripcionRol() {
 		return descripcionRol;
 	}
@@ -157,6 +157,7 @@ public class RolMB {
 	public String getModificarRol(){
 		getHomePageValue();
 		estadoOperacion = false;
+		List<Object> serviciosRolesModificados = new ArrayList<Object>();
 		if(getValidarPermisosServicio("srvModificarRol")){
 			if(serviciosRoles==null){
 				serviciosRoles = new ArrayList<Object>();
@@ -165,46 +166,19 @@ public class RolMB {
 				Iterator<Object> itServiciosAsignados = rol.getGppServicios().iterator();
 				while(itServiciosAsignados.hasNext()){
 					Integer idServicioAsignado = ( (Integer) ( (GppServicio) itServiciosAsignados.next() ).getSerNidservicio() );
-					if(serviciosRoles.contains(idServicioAsignado)==false){
-						serviciosRoles.add(idServicioAsignado);
-					}
+					serviciosRolesModificados.add(idServicioAsignado);
 				}
 			}
-			rol.setServicios(serviciosRoles);
-			estadoOperacion = rolDelegate.getModificarRol(rol.getRolNidrol(), rol.getRolVnombre(), rol.getRolVdescripcion(), rol.getRolBactivo(), rol.getServicios());
-			getResultadoOperacion(estadoOperacion);
-			if(estadoOperacion==true){
-				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("RolMB");
-			}
-			return ConstantesFaces.HOME_ROL;
-		}else{
-			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
-		}				
-	}
-	
-	public String getBorrarServicios(){
-		getHomePageValue();
-		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvModificarRol")){
-			List<Object> idsAsignados = new ArrayList<Object>();
-			if(serviciosRoles==null){
-				serviciosRoles = new ArrayList<Object>();
-			}
-			if(rol.getGppServicios()!=null){
-				Iterator<Object> itGppServicios = rol.getGppServicios().iterator();
-				while(itGppServicios.hasNext()){
-					Integer idAsignado = ( (Integer) ( (GppServicio) itGppServicios.next()).getSerNidservicio());
-					idsAsignados.add(idAsignado);
+			Iterator<Object> itServiciosRoles = serviciosRoles.iterator();
+			while(itServiciosRoles.hasNext()){
+				Integer idServicioRol =  (Integer) (itServiciosRoles.next());
+				if(serviciosRolesModificados.contains(idServicioRol)){
+					serviciosRolesModificados.remove(idServicioRol);
+				}else{
+					serviciosRolesModificados.add(idServicioRol);
 				}
-				Iterator<Object> itServiciosEliminados = serviciosRoles.iterator();
-				while(itServiciosEliminados.hasNext()){
-					Integer idServicioEliminado = (Integer) itServiciosEliminados.next();
-					if(idsAsignados.contains(idServicioEliminado)==true){
-						idsAsignados.remove(idServicioEliminado);
-					}
-				}
-			}		
-			rol.setServicios(idsAsignados);
+			}
+			rol.setServicios(serviciosRolesModificados);
 			estadoOperacion = rolDelegate.getModificarRol(rol.getRolNidrol(), rol.getRolVnombre(), rol.getRolVdescripcion(), rol.getRolBactivo(), rol.getServicios());
 			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
@@ -246,6 +220,21 @@ public class RolMB {
 	public List<Object> getServicios(){
 		servicioDelegate = new ServicioDelegate();
 		List<Object> listadoServicios = servicioDelegate.getListaServicios();
+		if(rol.getGppServicios()!=null){
+			Iterator<Object> itServiciosAsignados = rol.getGppServicios().iterator();
+			while(itServiciosAsignados.hasNext()){
+				GppServicio gppServicioAsignado = (GppServicio) itServiciosAsignados.next();
+				if(listadoServicios!=null){
+					Iterator<Object> itServicios = listadoServicios.iterator();
+					while(itServicios.hasNext()){
+						GppServicio servicio = (GppServicio) itServicios.next();
+						if(gppServicioAsignado.getSerNidservicio()==servicio.getSerNidservicio()){
+							servicio.setSerBservicioActivado(true);
+						}
+					}
+				}
+			}
+		}
 		return listadoServicios;
 	}	
 	

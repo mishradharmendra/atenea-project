@@ -58,7 +58,7 @@ public class GppRolDAO implements DAO {
 			sentenciaSQL = "select ser_nidservicio from gpp_serviciorol where rol_nidrol = ? ";
 			List<Object> idsRegistrados = jdbcTemplate.queryForList(sentenciaSQL, new Object[]{gppRol.getRolNidrol()},new int[] {Types.INTEGER}, Integer.class);
 			if(gppRol.getServicios()!=null){
-				if(gppRol.getServicios().size()>0){
+				if(gppRol.getServicios().size()>=0){
 					Iterator<Object> idsNuevos = gppRol.getServicios().iterator();
 					GppServiciorolDAO gppServiciorolDAO = new GppServiciorolDAO();
 					while(idsNuevos.hasNext()){
