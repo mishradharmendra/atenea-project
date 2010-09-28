@@ -80,14 +80,30 @@ public class UsuariorolMB {
 	}
 	public List<Object> getRoles() {
 		List<Object> rolesActivos = new ArrayList<Object>();
-		Iterator<Object> it = roles.iterator();
-		while(it.hasNext()){
-			GppRol rol = (GppRol) it.next();
-			if(rol.getRolBactivo()==true)
-				rolesActivos.add(rol);
+		roles = usuariorolDelegate.getListaRoles();	
+		if(roles!=null){
+			Iterator<Object> itRol = roles.iterator();
+			while(itRol.hasNext()){
+				GppRol gppRol = (GppRol) itRol.next();
+				if(gppRol.getRolBactivo()==true)
+					rolesActivos.add(gppRol);
+			}
+			if(usuario.getGppRoles()!=null){
+				Iterator<Object> itRolesAsignados = usuario.getGppRoles().iterator();
+				while(itRolesAsignados.hasNext()){
+					GppRol gppRolAsignado = (GppRol) itRolesAsignados.next();
+					Iterator<Object> itRolesActivos = rolesActivos.iterator();
+					while(itRolesActivos.hasNext()){
+						GppRol gppRol = (GppRol) itRolesActivos.next();
+						if(gppRolAsignado.getRolNidrol()==gppRol.getRolNidrol())
+							gppRol.setRolBrolActivado(true);
+					}
+				}
+			}
 		}
 		return rolesActivos;
 	}
+	
 	public void setRoles(List<Object> roles) {
 		this.roles = roles;
 	}
@@ -109,6 +125,7 @@ public class UsuariorolMB {
 	public String getModificarPermisos(){
 		getHomePageValue();
 		estadoOperacion = false;
+		List<Object> rolesAsignadosModiicados = new ArrayList<Object>();
 		if(getValidarPermisosServicio("srvModificarPermisos")){
 			if(idsRoles==null){
 				idsRoles = new ArrayList<Object>();
@@ -117,12 +134,19 @@ public class UsuariorolMB {
 				Iterator<Object> itRolesAsignados = usuario.getGppRoles().iterator();
 				while(itRolesAsignados.hasNext()){
 					Integer idRolAsignado = ( (Integer) ( (GppRol) itRolesAsignados.next() ).getRolNidrol() );
-					if(idsRoles.contains(idRolAsignado)==false){
-						idsRoles.add(idRolAsignado);
-					}
+					rolesAsignadosModiicados.add(idRolAsignado);
+				}		
+			}	
+			Iterator<Object> itIdsRoles = idsRoles.iterator();
+			while(itIdsRoles.hasNext()){
+				Integer idRolAsignado = (Integer) (itIdsRoles.next());
+				if(rolesAsignadosModiicados.contains(idRolAsignado)==false){
+					rolesAsignadosModiicados.add(idRolAsignado);
+				}else{
+					rolesAsignadosModiicados.remove(idRolAsignado);
 				}
-			}		
-			estadoOperacion = usuariorolDelegate.getModificarPermisos(usuario, idsRoles);
+			}			
+			estadoOperacion = usuariorolDelegate.getModificarPermisos(usuario, rolesAsignadosModiicados);
 			getResultadoOperacion(estadoOperacion);
 			if(estadoOperacion==true){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("UsuariorolMB");			
@@ -137,39 +161,6 @@ public class UsuariorolMB {
 		return ConstantesFaces.MODIFICAR_BORRAR_USUARIOROL;
 	}
 	
-	public String getBorrarRoles(){
-		getHomePageValue();
-		estadoOperacion = false;
-		if(getValidarPermisosServicio("srvModificarPermisos")){
-			List<Object> idsRolesBorrar =  new ArrayList<Object>();
-			if(idsRoles==null){
-				idsRoles = new ArrayList<Object>();
-			}
-			if(usuario.getGppRoles()!=null){
-				Iterator<Object> itGppRoles = usuario.getGppRoles().iterator();
-				while(itGppRoles.hasNext()){
-					Integer idRolAsignado = ((Integer) ((GppRol) itGppRoles.next()).getRolNidrol());
-					idsRolesBorrar.add(idRolAsignado);
-				}
-				Iterator<Object> idsRolesSeleccionados = idsRoles.iterator();
-				while(idsRolesSeleccionados.hasNext()){
-					Integer idSeleccionado = (Integer) idsRolesSeleccionados.next();
-					if(idsRolesBorrar.contains(idSeleccionado)==true){
-						idsRolesBorrar.remove(idSeleccionado);
-					}
-				}
-			}
-			estadoOperacion = usuariorolDelegate.getModificarPermisos(usuario, idsRolesBorrar);
-			getResultadoOperacion(estadoOperacion);
-			if(estadoOperacion==true){
-				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("UsuariorolMB");			
-			}
-			return ConstantesFaces.HOME_USUARIOROL;
-		}else{
-			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
-		}			
-	}
-
 	public void getIdRolAsignar(){
 		if(idsRoles==null)
 			idsRoles = new ArrayList<Object>();

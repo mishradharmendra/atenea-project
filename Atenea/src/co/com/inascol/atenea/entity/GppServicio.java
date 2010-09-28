@@ -15,7 +15,8 @@ public class GppServicio  {
 	private String serVruta;
 	private String serVusucrea;
 	private Date serDfeccrea;
-
+	private Boolean serBservicioActivado;
+	
 	public GppServicio() {}
 
 	public GppServicio(String serVusucrea, Date serDfeccrea) {
@@ -59,4 +60,10 @@ public class GppServicio  {
 	public void setSerDfeccrea(Date serDfeccrea) {
 		this.serDfeccrea = serDfeccrea;
 	}
+	public Boolean getSerBservicioActivado() {
+		return serBservicioActivado;
+	}
+	public void setSerBservicioActivado(Boolean serBservicioActivado) {
+		this.serBservicioActivado = serBservicioActivado;
+	}	
 }

@@ -21,6 +21,7 @@ public class GppRol  {
 	private Date rolDfecmodifica;
 	private List <Object> servicios;
 	private List <Object> gppServicios;
+	private Boolean rolBrolActivado; 
 	
 	public GppRol() {}
 
@@ -83,5 +84,11 @@ public class GppRol  {
 	}
 	public void setServicios(List<Object> servicios) {
 		this.servicios = servicios;
+	}
+	public Boolean getRolBrolActivado() {
+		return rolBrolActivado;
+	}
+	public void setRolBrolActivado(Boolean rolBrolActivado) {
+		this.rolBrolActivado = rolBrolActivado;
 	}
 }

@@ -175,13 +175,15 @@ public class AutenticacionMB {
 					Iterator<Object> itRoles = roles.iterator();
 					while(itRoles.hasNext()){
 						GppRol rol = (GppRol) itRoles.next();
-						List<Object> servicios = rol.getGppServicios();
-						if(servicios.size()>0){
-							Iterator<Object> itServicios = servicios.iterator();
-							while(itServicios.hasNext()){
-								GppServicio servicio = (GppServicio) itServicios.next();
-								if(servicio.getSerVnombre().equalsIgnoreCase(nombreServicio)){
-									return true;
+						if(rol.getRolBactivo()==true){
+							List<Object> servicios = rol.getGppServicios();
+							if(servicios.size()>0){
+								Iterator<Object> itServicios = servicios.iterator();
+								while(itServicios.hasNext()){
+									GppServicio servicio = (GppServicio) itServicios.next();
+									if(servicio.getSerVnombre().equalsIgnoreCase(nombreServicio)){
+										return true;
+									}
 								}
 							}
 						}
