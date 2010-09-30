@@ -535,9 +535,11 @@ public class PersonaMB {
 	}
 	
 	public void getBuscarPaisyDepto(GppPersona persona){
-		idPaisPersona = personaDelegate.getIdPais(persona);
-		idDeptoPersona = personaDelegate.getIdDepto(persona, 0);
-		idDeptoResidenciaPersona = personaDelegate.getIdDepto(persona, 1);
+		if(persona!=null){
+			idPaisPersona = personaDelegate.getIdPais(persona);
+			idDeptoPersona = personaDelegate.getIdDepto(persona, 0);
+			idDeptoResidenciaPersona = personaDelegate.getIdDepto(persona, 1);
+		}
 	}
 	
 	public void getLibreta(ValueChangeEvent evento){
@@ -555,15 +557,6 @@ public class PersonaMB {
         }
     }
 
-    public void validarCedula(FacesContext context, UIComponent validate, Object value){
-        Integer cedula = (Integer) value;
-        if(cedula.SIZE<6 || cedula.SIZE<16){
-            ((UIInput)validate).setValid(false);
-            FacesMessage msg = new FacesMessage("Ingrese una cédula con tamaño válido (6 a 15 dígitos).");
-            context.addMessage(validate.getClientId(context), msg);
-        }
-    }
-    
 	public String getSiguiente(){
 		tabPanel = ConstantesFaces.TAB_PANEL_FORMACION;
 		return ConstantesFaces.CREAR_HV;
@@ -604,21 +597,21 @@ public class PersonaMB {
 		return ConstantesFaces.AVANZADA_HV;		
 	}
 	
-	public String getAgregarHojaVida(){
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
-		getLimpiarSession();
-		tabDeshabilitados = true;
-		return ConstantesFaces.CREAR_HV;
-	}
+    public String getAgregarHojaVida(){
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("PersonaMB");
+        getLimpiarSession();
+        tabDeshabilitados = true;
+        return ConstantesFaces.CREAR_HV;
+    }
 	
-	public String getSeleccionarPersona(){
-		setTabPanel();
-		persona = personaDelegate.getSeleccionarPersona(idPersona);
-		getBuscarPaisyDepto(persona);
-		getLimpiarSession();
-		tabDeshabilitados = false;
-		return ConstantesFaces.CREAR_HV;		
-	}
+    public String getSeleccionarPersona(){
+        setTabPanel();
+        persona = personaDelegate.getSeleccionarPersona(idPersona);
+        getBuscarPaisyDepto(persona);
+        getLimpiarSession();
+        tabDeshabilitados = false;
+        return ConstantesFaces.CREAR_HV;                
+    }
 	
 	public String getSeleccionarPersonaDetalle(){
 		setTabPanel();
@@ -644,7 +637,7 @@ public class PersonaMB {
 			getResultadoOperacion(estadoOperacion);
 			return ConstantesFaces.HOME_HV;
 		}else{
-			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;	
 		}			
 	}
 	
@@ -663,7 +656,7 @@ public class PersonaMB {
 			getResultadoOperacion(estadoOperacion);
 			return ConstantesFaces.AVANZADA_HV;
 		}else{
-			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;	
 		}			
 	}
 	
@@ -687,7 +680,7 @@ public class PersonaMB {
 			} 
 			return ConstantesFaces.CREAR_HV;
 		}else{
-			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;	
 		}				
 	}
 	
@@ -706,7 +699,7 @@ public class PersonaMB {
 			}
 			return ConstantesFaces.CREAR_HV;
 		}else{
-			return ConstantesFaces.ESTADO_PERMISOS_ERROR;
+			return ConstantesFaces.ESTADO_PERMISOS_ERROR;	
 		}			
 	}
 
@@ -749,7 +742,7 @@ public class PersonaMB {
 			((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setResultadoOperacion("ERROR");
 		((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).setOperacionBD("BD");
 	}
-	
+
 	public Boolean getValidarPermisosServicio(String nombreServicio){
 		return ((AutenticacionMB) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("AutenticacionMB")).validarPermisosServicio(nombreServicio);
 	}
