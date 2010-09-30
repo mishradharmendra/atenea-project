@@ -8,8 +8,8 @@
 
 	<application>
 		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>    
-	</application> 
-
+    </application>
+		
 	<managed-bean>
         <managed-bean-name>DepartamentoMB</managed-bean-name>
         <managed-bean-class>co.com.inascol.atenea.managed.bean.DepartamentoMB</managed-bean-class>
