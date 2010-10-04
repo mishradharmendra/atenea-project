@@ -120,6 +120,12 @@ public class AutenticacionMB {
 	public void setAliasReportes(String aliasReportes) {
 		this.aliasReportes = aliasReportes;
 	}
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
 
 	public void getLimpiarOperacion(){
 		resultadoOperacion = "NINGUNO";

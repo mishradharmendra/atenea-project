@@ -79,7 +79,12 @@ public class DepartamentoMB {
 	public void setControlNavegacion(String controlNavegacion) {
 		this.controlNavegacion = controlNavegacion;
 	}
-
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
 	public void getBuscarDeptoPorNombre() {
 		departamentos = departamentoDelegate.getDeptoPorNombre(nombreDepartamento);
 	}

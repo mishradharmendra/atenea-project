@@ -114,6 +114,12 @@ public class RolMB {
 	public void setEstadoCheck(Boolean estadoCheck) {
 		this.estadoCheck = estadoCheck;
 	}
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
 
 	public void getBuscarRolPorNombre() {
 		roles = rolDelegate.getRolPorNombre(nombreRol);

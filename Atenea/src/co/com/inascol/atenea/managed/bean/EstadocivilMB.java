@@ -66,7 +66,15 @@ public class EstadocivilMB {
 	public void setControlNavegacion(String controlNavegacion) {
 		this.controlNavegacion = controlNavegacion;
 	}
-
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
+	public void setIdEstadocivil(Integer idEstadocivil) {
+		this.idEstadocivil = idEstadocivil;
+	}
 	public void getBuscarEstadocivilPorNombre() {
 		estadociviles = estadocivilDelegate.getEstadocivilPorNombre(nombreEstadocivil);
 	}

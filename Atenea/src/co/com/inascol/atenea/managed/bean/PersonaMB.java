@@ -262,6 +262,12 @@ public class PersonaMB {
 	public void setIdDeptoResidenciaPersona(Integer idDeptoResidenciaPersona) {
 		this.idDeptoResidenciaPersona = idDeptoResidenciaPersona;
 	}
+	public Boolean getDocumentoCargado() {
+		return documentoCargado;
+	}
+	public void setDocumentoCargado(Boolean documentoCargado) {
+		this.documentoCargado = documentoCargado;
+	}
 
 	public List<SelectItem> getTiposIdentificacion(){
 		List<SelectItem> listadoTipos = new ArrayList<SelectItem>();

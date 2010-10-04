@@ -73,7 +73,15 @@ public class ParametrizacionMB {
 	public void setControlNavegacion(String controlNavegacion) {
 		this.controlNavegacion = controlNavegacion;
 	}
-
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
+	public void setIdParametrizacion(Integer idParametrizacion) {
+		this.idParametrizacion = idParametrizacion;
+	}
 	public void getBuscarParametrizacionPorNombre() {
 		parametrizaciones = parametrizacionDelegate.getParametrizacionPorNombre(nombreParametrizacion);
 	}

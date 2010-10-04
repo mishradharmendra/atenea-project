@@ -66,7 +66,15 @@ public class PaisMB {
 	public void setControlNavegacion(String controlNavegacion) {
 		this.controlNavegacion = controlNavegacion;
 	}
-
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
+	public void setPaises(List<Object> paises) {
+		this.paises = paises;
+	}
 	public void getBuscarPaisPorNombre() {
 		paises = paisDelegate.getPaisPorNombre(nombrePais);
 	}

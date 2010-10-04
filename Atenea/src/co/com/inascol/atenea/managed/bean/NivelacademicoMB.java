@@ -66,6 +66,15 @@ public class NivelacademicoMB {
 	public void setControlNavegacion(String controlNavegacion) {
 		this.controlNavegacion = controlNavegacion;
 	}
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
+	public void setIdNivelacademico(Integer idNivelacademico) {
+		this.idNivelacademico = idNivelacademico;
+	}
 
 	public void getBuscarNivelacademicoPorNombre() {
 		nivelesacademicos = nivelacademicoDelegate.getNivelacademicoPorNombre(nombreNivelacademico);

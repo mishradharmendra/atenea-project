@@ -70,7 +70,25 @@ public class FormacionMB {
 	public void setFormacion(GppFormacion formacion) {
 		this.formacion = formacion;
 	}
-	
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
+	public Boolean getDocumentoCargadoDiploma() {
+		return documentoCargadoDiploma;
+	}
+	public void setDocumentoCargadoDiploma(Boolean documentoCargadoDiploma) {
+		this.documentoCargadoDiploma = documentoCargadoDiploma;
+	}
+	public Boolean getDocumentoCargadoActa() {
+		return documentoCargadoActa;
+	}
+	public void setDocumentoCargadoActa(Boolean documentoCargadoActa) {
+		this.documentoCargadoActa = documentoCargadoActa;
+	}
+
 	public List<SelectItem> getNivelesAcademicos(){
 		List<SelectItem> listadoNivelesAcademicos = new ArrayList<SelectItem>();
 		List<Object> nivelesAcademicos = formacionDelegate.getNivelesAcademicos();

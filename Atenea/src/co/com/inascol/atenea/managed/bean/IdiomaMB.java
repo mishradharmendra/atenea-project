@@ -66,6 +66,15 @@ public class IdiomaMB {
 	public void setControlNavegacion(String controlNavegacion) {
 		this.controlNavegacion = controlNavegacion;
 	}
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
+	public void setIdIdioma(Integer idIdioma) {
+		this.idIdioma = idIdioma;
+	}
 
 	public void getBuscarIdiomaPorNombre() {
 		idiomas = idiomaDelegate.getIdiomaPorNombre(nombreIdioma);
