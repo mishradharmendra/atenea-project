@@ -7,7 +7,11 @@
     version="1.2">
 
 	<application>
-		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>    
+		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+		<locale-config>
+            <default-locale>es</default-locale>
+        </locale-config>
+        <message-bundle>co.com.inascol.atenea.util.MisMensajes</message-bundle>
     </application>
 		
 	<managed-bean>

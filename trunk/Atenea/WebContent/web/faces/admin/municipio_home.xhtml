@@ -70,12 +70,14 @@
 				<tr>
 				<td>				
 				<rich:extendedDataTable headerClass="rich-table-header" id="tablaMunicipios" value="#{MunicipioMB.municipios}" var="municipio" width="615px" height="250px">
+					<!-- 				
 					<rich:column width="100px" sortable="true" sortBy="#{municipio.munNidmunicipio}" label="Id Municipio"> 
 						<f:facet name="header">
 							<h:outputLabel value="Id Municipio" styleClass="PrimerNivel"></h:outputLabel>
 						</f:facet>
 						<div align="left"><h:outputLabel value="#{municipio.munNidmunicipio}"></h:outputLabel></div>
 					</rich:column>
+					 -->
 					<rich:column width="390px" sortable="true" sortBy="#{municipio.munVmunicipio}" label="Nombre Municipio">
 						<f:facet name="header">
 							<h:outputLabel value="Nombre Municipios" styleClass="PrimerNivel"></h:outputLabel>
