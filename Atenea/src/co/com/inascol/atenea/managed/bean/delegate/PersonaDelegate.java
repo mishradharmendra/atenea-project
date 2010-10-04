@@ -115,8 +115,12 @@ public class PersonaDelegate {
 		paisService = new PaisService();
 		Integer idDepto = getIdDepto(persona, 0);
 		GppDepartamento depto = departamentoService.buscarPorIdDepartamento(idDepto);
-		GppPais pais = paisService.buscarPorIdPais(depto.getPaiNidpais());
-		return pais.getPaiNidpais();
+		if(depto!=null){
+			GppPais pais = paisService.buscarPorIdPais(depto.getPaiNidpais());
+			return pais.getPaiNidpais();
+		} else{
+			return 0;
+		}
 	}
 	
 	public Integer getIdDepto(GppPersona persona, Integer banderaDeptoResidencia){
@@ -126,8 +130,12 @@ public class PersonaDelegate {
 			mpio = municipioService.buscarPorIdMunicipio(persona.getMunNidmunicipio());
 		else if(banderaDeptoResidencia==1)
 			mpio = municipioService.buscarPorIdMunicipio(persona.getMunNmpioresidencia());
-		GppDepartamento depto = departamentoService.buscarPorIdDepartamento(mpio.getDptNiddepto());
-		return depto.getDptNiddepto();
+		if(mpio!=null){
+			GppDepartamento depto = departamentoService.buscarPorIdDepartamento(mpio.getDptNiddepto());
+			return depto.getDptNiddepto();
+		} else {
+			return 0;
+		}
 	}
 	
 	public List<Object> getBusquedaBasicaPersona(String nombrePersona, String identificacionPersona){
