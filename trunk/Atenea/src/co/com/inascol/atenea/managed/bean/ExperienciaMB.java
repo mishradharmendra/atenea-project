@@ -110,6 +110,26 @@ public class ExperienciaMB {
 	public void setIdDeptoExperiencia(Integer idDeptoExperiencia) {
 		this.idDeptoExperiencia = idDeptoExperiencia;
 	}
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
+	public Boolean getDocumentoCargadoCertificacion1() {
+		return documentoCargadoCertificacion1;
+	}
+	public void setDocumentoCargadoCertificacion1(
+			Boolean documentoCargadoCertificacion1) {
+		this.documentoCargadoCertificacion1 = documentoCargadoCertificacion1;
+	}
+	public Boolean getDocumentoCargadoCertificacion2() {
+		return documentoCargadoCertificacion2;
+	}
+	public void setDocumentoCargadoCertificacion2(
+			Boolean documentoCargadoCertificacion2) {
+		this.documentoCargadoCertificacion2 = documentoCargadoCertificacion2;
+	}
 
 	public List<SelectItem> getPaises(){
 		List<SelectItem> listadoPaises = new ArrayList<SelectItem>();

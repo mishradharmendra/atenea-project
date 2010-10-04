@@ -75,7 +75,7 @@
 						<td width="90px"/>
 						<td align="left"><h:outputLabel value="Correo Electrónico: " styleClass="TextoContenido"></h:outputLabel></td>
 						<td align="left"><div style="position: relative; left: 0pt;"><h:outputLabel value="*" style="color:red;font-size: 10pt;"></h:outputLabel></div></td>
-						<td align="left"><h:inputText title="Ingrese el correo electrónico del usuario." id="emailUsuario" size="30" value="#{UsuarioMB.usuario.usuVemail}" required="true" requiredMessage="Ingrese Correo Electrónico"></h:inputText></td>											
+						<td align="left"><h:inputText title="Ingrese el correo electrónico del usuario." id="emailUsuario" size="30" value="#{UsuarioMB.usuario.usuVemail}" required="true" requiredMessage="Ingrese Correo Electrónico" validator="#{UsuarioMB.validarEmail}" immediate="false"></h:inputText></td>											
 					</tr>
 					<tr>
 						<td width="80px"/>	

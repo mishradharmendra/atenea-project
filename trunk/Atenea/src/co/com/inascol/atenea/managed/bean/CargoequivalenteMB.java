@@ -66,7 +66,15 @@ public class CargoequivalenteMB {
 	public void setControlNavegacion(String controlNavegacion) {
 		this.controlNavegacion = controlNavegacion;
 	}
-
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
+	public void setIdCargoequivalente(Integer idCargoequivalente) {
+		this.idCargoequivalente = idCargoequivalente;
+	}
 	public void getBuscarCargoequivalentePorNombre() {
 		cargosequivalentes = cargoequivalenteDelegate.getCargoequivalentePorNombre(nombreCargo);
 	}

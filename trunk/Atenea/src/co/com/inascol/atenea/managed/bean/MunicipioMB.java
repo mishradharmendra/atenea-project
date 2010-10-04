@@ -70,6 +70,12 @@ public class MunicipioMB {
 	public Integer getIdDepto() {
 		return idDepto;
 	}
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
 	public void setIdDepto(Integer idDepto) {
 		this.idDepto = idDepto;
 	}

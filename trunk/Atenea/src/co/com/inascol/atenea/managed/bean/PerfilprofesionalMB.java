@@ -61,7 +61,13 @@ public class PerfilprofesionalMB {
 	public void setPerfilesProfesionales(List<Object> perfilesProfesionales) {
 		this.perfilesProfesionales = perfilesProfesionales;
 	}
-	
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
+
 	public List<SelectItem> getPerfilesProfesionales(){
 		List<SelectItem> listadoPerfilesProfesionales = new ArrayList<SelectItem>();
 		List<Object> perfilesEquivalente = perfilprofesionalDelegate.getPerfilesProfesionalesEquivalente();

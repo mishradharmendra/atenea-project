@@ -80,6 +80,12 @@ public class UsuarioMB {
 	public void setUsuario(GppUsuario usuario) {
 		this.usuario = usuario;
 	}
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
 
 	public String getAgregarUsuario() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("UsuarioMB");

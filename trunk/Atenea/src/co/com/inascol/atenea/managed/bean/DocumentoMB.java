@@ -81,6 +81,18 @@ public class DocumentoMB {
 	public void setHojasDeVida(List<Object> hojasDeVida) {
 		this.hojasDeVida = hojasDeVida;
 	}
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
+	public Boolean getDocumentoCargado() {
+		return documentoCargado;
+	}
+	public void setDocumentoCargado(Boolean documentoCargado) {
+		this.documentoCargado = documentoCargado;
+	}
 
 	public List<SelectItem> getTiposArchivos(){
 		List<SelectItem> listadoTipos = new ArrayList<SelectItem>();

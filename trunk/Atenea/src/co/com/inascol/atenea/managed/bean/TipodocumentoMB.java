@@ -66,7 +66,18 @@ public class TipodocumentoMB {
 	public void setControlNavegacion(String controlNavegacion) {
 		this.controlNavegacion = controlNavegacion;
 	}
-
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
+	public void setIdTipodoc(Integer idTipodoc) {
+		this.idTipodoc = idTipodoc;
+	}
+	public void setTipodoc(GppTipodoc tipodoc) {
+		this.tipodoc = tipodoc;
+	}
 	public void getBuscarTipodocPorNombre() {
 		tipodocs = tipodocDelegate.getTipodocPorNombre(nombreTipodoc);
 	}

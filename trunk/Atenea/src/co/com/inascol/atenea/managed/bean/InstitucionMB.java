@@ -66,6 +66,18 @@ public class InstitucionMB {
 	public void setControlNavegacion(String controlNavegacion) {
 		this.controlNavegacion = controlNavegacion;
 	}
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
+	public void setIdInstitucion(Integer idInstitucion) {
+		this.idInstitucion = idInstitucion;
+	}
+	public void setInstituciones(List<Object> instituciones) {
+		this.instituciones = instituciones;
+	}
 
 	public void getBuscarInstitucionPorNombre() {
 		instituciones = institucionDelegate.getInstitucionPorNombre(nombreInstitucion);

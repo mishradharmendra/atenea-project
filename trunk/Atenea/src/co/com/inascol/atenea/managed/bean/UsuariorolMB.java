@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 
 import co.com.inascol.atenea.entity.GppRol;
@@ -78,6 +81,13 @@ public class UsuariorolMB {
 	public void setIdsRoles(List<Object> idsRoles) {
 		this.idsRoles = idsRoles;
 	}
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
+
 	public List<Object> getRoles() {
 		List<Object> rolesActivos = new ArrayList<Object>();
 		roles = usuariorolDelegate.getListaRoles();	
@@ -104,6 +114,15 @@ public class UsuariorolMB {
 		return rolesActivos;
 	}
 	
+    public void validarEmail(FacesContext context, UIComponent validate, Object value){
+        String email = (String) value;
+        if(email.indexOf('@')==-1){
+            ((UIInput)validate).setValid(false);
+            FacesMessage msg = new FacesMessage("Ingrese una dirección de correo válida.");
+            context.addMessage(validate.getClientId(context), msg);
+        }
+    }
+    
 	public void setRoles(List<Object> roles) {
 		this.roles = roles;
 	}

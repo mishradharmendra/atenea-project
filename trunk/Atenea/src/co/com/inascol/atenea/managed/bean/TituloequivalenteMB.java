@@ -66,6 +66,15 @@ public class TituloequivalenteMB {
 	public void setControlNavegacion(String controlNavegacion) {
 		this.controlNavegacion = controlNavegacion;
 	}
+	public Boolean getEstadoOperacion() {
+		return estadoOperacion;
+	}
+	public void setEstadoOperacion(Boolean estadoOperacion) {
+		this.estadoOperacion = estadoOperacion;
+	}
+	public void setIdTituloequivalente(Integer idTituloequivalente) {
+		this.idTituloequivalente = idTituloequivalente;
+	}
 
 	public void getBuscarTituloequivalentePorNombre() {
 		titulosequivalentes = tituloequivalenteDelegate.getTituloequivalentePorNombre(nombreTitulo);
