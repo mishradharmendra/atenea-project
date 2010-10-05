@@ -114,15 +114,6 @@ public class UsuariorolMB {
 		return rolesActivos;
 	}
 	
-    public void validarEmail(FacesContext context, UIComponent validate, Object value){
-        String email = (String) value;
-        if(email.indexOf('@')==-1){
-            ((UIInput)validate).setValid(false);
-            FacesMessage msg = new FacesMessage("Ingrese una dirección de correo válida.");
-            context.addMessage(validate.getClientId(context), msg);
-        }
-    }
-    
 	public void setRoles(List<Object> roles) {
 		this.roles = roles;
 	}
