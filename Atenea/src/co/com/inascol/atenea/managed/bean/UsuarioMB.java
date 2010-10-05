@@ -2,6 +2,9 @@ package co.com.inascol.atenea.managed.bean;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 
 import co.com.inascol.atenea.entity.GppUsuario;
@@ -95,6 +98,15 @@ public class UsuarioMB {
 	public void getBuscarUsuarioPorNombre() {
 		usuarios = usuarioDelegate.getUsuarioPorNombre(loginUsuario, nombreUsuario);
 	}
+	
+    public void validarEmail(FacesContext context, UIComponent validate, Object value){
+        String email = (String) value;
+        if(email.indexOf('@')==-1){
+            ((UIInput)validate).setValid(false);
+            FacesMessage msg = new FacesMessage("Ingrese una dirección de correo válida.");
+            context.addMessage(validate.getClientId(context), msg);
+        }
+    }
 	
 	public String getCrearUsuario() {	
 		getHomePageValue();
