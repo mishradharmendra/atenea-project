@@ -1148,9 +1148,10 @@ public class ReporteXLS {
 			// 
 			numColumna = 18;
 			celda = fila.getCell(numColumna);
-			if(nombreApellido.length>=2)
+			if(nombreApellido.length>=2){
 				texto = new HSSFRichTextString(nombreApellido[1]);
-			celda.setCellValue(texto);
+				celda.setCellValue(texto);
+			}
 			celda.setCellStyle(estiloContenido);
 			hoja1.addMergedRegion(new CellRangeAddress(numFila,numFila,numColumna,numColumna+16));
 			// 
